@@ -1,5 +1,6 @@
+
 header{
-    background-color: #1a1d24;
+    background-color: #fff;
 }
 .container{
     max-width: 98rem;
@@ -20,17 +21,25 @@ header{
     padding-inline: 1.5rem;
 }
 .navbar{
+    font-family: 'Poppins';
     height: 7.5 rem;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
     border-bottom: 2px solid
         rgba(255,255,255,0,05);
     transition: height 0.25s;
+    color: transparent;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    
 }
 .logo{
     font-size: 2.4rem;
     font-weight: 900;
+    font-family: 'Popins';
+    text-decoration: none;
+    color: #093040;
 }
 .nav-list{
     list-style: none;
@@ -40,7 +49,7 @@ header{
     margin-right: auto;
 }
 .nav-link:hover{
-    color: #d3d3d3;
+    color: #38496b;
 }
 .button{
     display: inline-block;

@@ -1,33 +1,48 @@
-import React from 'react'
+import React from "react";
+import {FaGoogle} from "react-icons/fa";
 
 const Login = () => {
   return (
-   <div className='container-forms sign-up'>
-        <div className='welcome-back'>
-            <div className='message'>
-                <h2>Bienvenido a JOBINDER</h2>
-                <p>Si ya tienes una cuenta por favor inicia sesión aquí</p>
-                <button type="button" classNameName="btn btn-primary">Iniciar sesión con JOBINDER</button>
-            </div>
-        </div>
-        <form>
-  <div className="mb-3">
-    <label for="exampleInputEmail1" className="form-label">Email address</label>
-    <input type="email" classNameName="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
-    <div id="emailHelp" classNameName="form-text">We'll never share your email with anyone else.</div>
-  </div>
-  <div className="mb-3">
-    <label for="exampleInputPassword1" className="form-label">Password</label>
-    <input type="password" className="form-control" id="exampleInputPassword1"/>
-  </div>
-  <div className="mb-3 form-check">
-    <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
-    <label className="form-check-label" for="exampleCheck1">Check me out</label>
-  </div>
-  <button type="submit" className="btn btn-primary">Submit</button>
-</form>
-   </div>
-  )
-}
+    <section className="vh-100 gradient-custom" style={{ backgroundColor: "blue" }}>
 
-export default Login
+      <div className="container py-5 h-100">
+        <div className="row d-flex justify-content-center align-items-center h-100">
+          <div className="col-12 col-md-8 col-lg-6 col-xl-5">
+            <div className="card bg-dark text-white" style={{ borderRadius: "1rem" }}>
+              <div className="card-body p-5 text-center">
+                <div className="mb-md-5 mt-md-4 pb-5">
+                  <h2 className="fw-bold mb-2 text-uppercase">Login</h2>
+                  <p className="text-white-50 mb-5">Please enter your login and password!</p>
+
+                  <div className="form-outline form-white mb-4">
+                    <input type="email" id="typeEmailX" className="form-control form-control-lg" />
+                    <label className="form-label" htmlFor="typeEmailX">Email</label>
+                  </div>
+
+                  <div className="form-outline form-white mb-4">
+                    <input type="password" id="typePasswordX" className="form-control form-control-lg" />
+                    <label className="form-label" htmlFor="typePasswordX">Password</label>
+                  </div>
+
+                  <p className="small mb-5 pb-lg-2"><a className="text-white-50" href="#!">Forgot password?</a></p>
+
+                  <button className="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
+
+                  <div className="d-flex justify-content-center text-center mt-4 pt-1">
+                    <FaGoogle className ="text-white" style={{ width: "4vw", height: "4vh" }}/>
+                  </div>
+                </div>
+
+                <div>
+                  <p className="mb-0">Don't have an account? <a href="#!" className="text-white-50 fw-bold">Sign Up</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Login;

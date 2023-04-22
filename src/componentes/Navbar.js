@@ -103,54 +103,7 @@ const Navbar = () => {
           </div>
         </div>
       </main>
-      <footer className="bg-light text-center text-lg-start">
-      <div className="container-fluid">
-        <div className="row">
-          <div className="col-lg-4">
-            <h5 className="text-uppercase mb-4">Empresa</h5>
-            <ul className="list-unstyled mb-0">
-              <li>
-                <a href="#!" className="text-dark">Acerca de nosotros</a>
-              </li>
-              <li>
-                <a href="#!" className="text-dark">Empleo</a>
-              </li>
-              <li>
-                <a href="#!" className="text-dark">Contacto</a>
-              </li>
-            </ul>
-          </div>
-          <div className="col-lg-4">
-            <h5 className="text-uppercase mb-4">Síguenos</h5>
-            <ul className="list-unstyled mb-0">
-              <li>
-                <a href="#!" className="text-dark">Facebook</a>
-              </li>
-              <li>
-                <a href="#!" className="text-dark">Twitter</a>
-              </li>
-              <li>
-                <a href="#!" className="text-dark">LinkedIn</a>
-              </li>
-            </ul>
-          </div>
-          <div className="col-lg-4">
-            <h5 className="text-uppercase mb-4">Legal</h5>
-            <ul className="list-unstyled mb-0">
-              <li>
-                <a href="#!" className="text-dark">Términos y condiciones</a>
-              </li>
-              <li>
-                <a href="#!" className="text-dark">Política de privacidad</a>
-              </li>
-              <li>
-                <a href="#!" className="text-dark">Cookies</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </footer>
+     
     </div>
   );
 };

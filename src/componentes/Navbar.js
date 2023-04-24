@@ -1,12 +1,6 @@
 import React from "react";
 import "../stylesheets/navbar.css";
-import {
-  FaGithub,
-  FaFacebook,
-  FaInstagram,
-  FaGoogle,
-  FaTwitter,
-} from "react-icons/fa";
+
 
 const Navbar = () => {
   return (

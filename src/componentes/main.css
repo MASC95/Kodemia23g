@@ -1,0 +1,85 @@
+*{
+    margin: 0;
+    padding: 0;
+    border: none;
+
+}
+h1{
+  font-family: 'Epilogue'; 
+  align-items: 'center';
+  text-indent: '1em';
+  color: #093040;
+}
+.main-container{
+    margin-bottom: 100px;
+}
+
+.card-container-1{
+    width: 268px;
+    height: 326px;
+    font-family: inherit;
+    
+
+}
+.create-account{
+    font-family: Monserrat;
+}
+.card-container-2{
+    width: 268px;
+    height: 326px;
+    font-family: inherit;
+}
+.acceder-reclutador{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+.acceder-candidato{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+.card-container-3{
+    width: 400px;
+    height: 329px;
+    margin-left: 300px;
+    margin-top: 20px;
+}
+.card-container-4{
+    width: 400px;
+    height: 329px;
+    margin-top: 20px;
+}
+.letras{
+    margin-top: 100px;
+    font-family: 'Epilogue'; 
+    align-items: 'center';
+    text-indent: '1em';
+    color: #093040;
+    
+}
+p{
+    color: #498BA6FF;
+    text-align: justify;
+    font-weight: 400;
+}
+.empleo{
+    display: flex;
+    justify-content: center;
+    padding-right: 300px;
+    
+}
+.texto-final{
+    font-family:Epilogue;
+    font-size: 28px;
+    line-height: 42px;
+    display: flex;
+    justify-content: start;
+
+}
+ul li {
+    margin-bottom: 10px;
+    
+  }

@@ -1,105 +1,47 @@
-import React from "react";
-import "../stylesheets/navbar.css";
-
-
+import React from 'react'
+import { FaHome, FaBell, FaUser, FaSearch } from 'react-icons/fa';
+import './navbar.css'
 const Navbar = () => {
   return (
-    <div>
-      <header
-        className="primary-header"
-        style={{ boxShadow: "1px 1px 4px grey" }}
-      >
-        <nav className="navbar container d-flex justify-content-between align-items-center ">
-          <a href="#" className="logo col-3">
-            JOBINDER
+    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <div className="container-fluid justify-content-between">
+        <div className="col-lg-3 logo">
+          <a className=" navbar-brand me-2 mb-1 d-flex align-items-center" href="#">
+            <a height="20" loading="lazy" style={{marginTop: "2px", fontFamily: "EB Garamond"}} />JOBINDER <a/>
           </a>
-          <ul className="navbar col-7 d-flex flex-row ">
-            <li className="nav-item ">
-              <a href="#!" className="nav-link ">
-                PERFIL
-              </a>
-            </li>
-            <li className="nav-item">
-              <a href="#!" className="nav-link">
-                BUSQUEDA
-              </a>
-            </li>
-            <li className="nav-item">
-              <a href="#!" className="nav-link">
-                MIS VACANTES
-              </a>
-            </li>
-            <li className="nav-item">
-              <a href="#!" className="nav-link">
-                CERRAR SESIÓN
-              </a>
-            </li>
-          </ul>
-          <button
-            type="button"
-            className="btn btn-primary col-2 "
-            style={{
-              width: "10vw",
-              height: "7vh",
-              boxShadow: "1px 1px 4px grey",
-            }}
-          >
-            Ingresar
-          </button>
-        </nav>
-      </header>
-      <main className="container my-5">
-        <h1>
-          Jobinder Conectando talentos y oportunidades, un match a la vez.
-        </h1>
-
-        <div className="row my-5">
-          <div className="col-md-6">
-            <div className="card">
-              <div className="card-body">
-                <img
-                  src="https://static.wixstatic.com/media/db1759_d15635cbc0e44d289279d19d0413efad~mv2.png/v1/fill/w_97,h_109,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/software%20de%20reclutamiento.png"
-                  alt="profile-pic1"
-                  className="rounded-circle "
-                  style={{ width: "15vw", height: "15vh" }}
-                />
-                <h5 className="card-title">¿Eres Reclutador?</h5>
-                <p className="card-text">
-                  Accede a nuestra plataforma para publicar tus vacantes, buscar
-                  talentos y gestionar tus procesos de selección.
-                </p>
-                <a href="#!" className="btn btn-primary">
-                  Acceder como Reclutador
-                </a>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-6">
-            <div className="card">
-              <div className="card-body">
-                <img
-                  src="https://static.wixstatic.com/media/87303a_b8da96639f8742fda91d0e68f307e88f~mv2.jpg/v1/fill/w_122,h_121,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/empresario.jpg"
-                  alt="profile-pic2"
-                  className="rounded-circle"
-                  style={{ width: "15vw", height: "15vh" }}
-                />
-                <h5 className="card-title">¿Eres Empleado?</h5>
-                <p className="card-text">
-                  Encuentra las mejores ofertas de trabajo, aplica a las
-                  vacantes de las empresas más importantes y haz crecer tu
-                  carrera profesional.
-                </p>
-                <a href="#!" className="btn btn-primary">
-                  Acceder como Empleado
-                </a>
-              </div>
-            </div>
-          </div>
         </div>
-      </main>
-     
-    </div>
-  );
-};
+        <div className="col-lg-6 my-auto">
+          <form className="input-group w-auto my-auto d-none d-sm-flex">
+            <div className="input-group-prepend">
+              <button className="input-group-text border-0 d-none d-lg-flex"><FaSearch /></button>
+            </div>
+            <input autoComplete="off" type="search" className="form-control rounded" placeholder="Buscar" />
+          </form>
+          <button className="input-group-text border-0 d-lg-none"><FaSearch /></button>
+        </div>
 
-export default Navbar;
+        <ul className="navbar-nav d-flex flex-row justify-content-end col-lg-3">
+          <li className="nav-item me-3 me-lg-1 mb-2">
+            <a className="nav-link" href="#">
+              <span><FaHome size={18} /></span>
+              <span className="badge rounded-pill badge-notification bg-danger">1</span>
+            </a>
+          </li>
+          <li className="nav-item me-3 me-lg-1 mb-2">
+            <a className="nav-link" href="#">
+              <span><FaBell size={18} /></span>
+              <span className="badge rounded-pill badge-notification bg-danger">12</span>
+            </a>
+          </li>
+          <li className="nav-item me-3 me-lg-1 mb-2">
+            <a className="nav-link" href="#">
+              <span><FaUser size={18} /></span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  )
+}
+
+export default Navbar

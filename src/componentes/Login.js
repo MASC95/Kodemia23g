@@ -4,17 +4,17 @@ import {FaGoogle} from "react-icons/fa";
 const Login = () => {
  
   return (
-    <body style={{backgroundColor: '#498BA6FF'}}>
+    <body >
     <section className="vh-100 gradient-custom " style={{  marginBottom:'250px' }}>
 
       <div className="container py-5 h-100 ">
         <div className="row d-flex justify-content-center align-items-center h-100">
           <div className="col-12 col-md-8 col-lg-6 col-xl-5">
-            <div className="card bg-dark text-white" style={{ borderRadius: "1rem" }}>
+            <div className="card  text-white" style={{ borderRadius: "1rem", backgroundColor: "#498BA6" }}>
               <div className="card-body p-5 text-center">
                 <div className="mb-md-5 mt-md-4 pb-5">
                   <h2 className="fw-bold mb-2 text-uppercase">Login</h2>
-                  <p className="text-white-50 mb-5">Please enter your login and password!</p>
+                  <p className="text-white-50 mb-5 d-flex justify-content-center ">Please enter your login and password!</p>
 
                   <div className="form-outline form-white mb-4">
                     <input type="email" id="typeEmailX" className="form-control form-control-lg" />
@@ -32,7 +32,7 @@ const Login = () => {
 
                   <div className="d-flex justify-content-center text-center mt-4 pt-1" style={{padding: '10px'}}>
                   <button type="button" class="btn btn-outline-light btn-lg " style={{ width: '300px', height: '70px' }}>
-  <h4>Login with Google <FaGoogle color="gray" size={24} style={{ marginLeft: 10 }} /></h4>
+  <h4>Login with Google <FaGoogle  size={24} style={{ marginLeft: 10 }} /></h4>
 </button>
 
                   </div>

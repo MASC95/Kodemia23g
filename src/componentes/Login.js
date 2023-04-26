@@ -2,10 +2,12 @@ import React from "react";
 import {FaGoogle} from "react-icons/fa";
 
 const Login = () => {
+ 
   return (
-    <section className="vh-100 gradient-custom" style={{ backgroundColor: "blue" }}>
+    <body style={{backgroundColor: '#498BA6FF'}}>
+    <section className="vh-100 gradient-custom " style={{  marginBottom:'250px' }}>
 
-      <div className="container py-5 h-100">
+      <div className="container py-5 h-100 ">
         <div className="row d-flex justify-content-center align-items-center h-100">
           <div className="col-12 col-md-8 col-lg-6 col-xl-5">
             <div className="card bg-dark text-white" style={{ borderRadius: "1rem" }}>
@@ -28,8 +30,8 @@ const Login = () => {
 
                   <button className="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
 
-                  <div className="d-flex justify-content-center text-center mt-4 pt-1">
-                  <button type="button" class="btn btn-outline-light btn-lg" style={{ width: '30vw', height: '10vh' }}>
+                  <div className="d-flex justify-content-center text-center mt-4 pt-1" style={{padding: '10px'}}>
+                  <button type="button" class="btn btn-outline-light btn-lg " style={{ width: '300px', height: '70px' }}>
   <h4>Login with Google <FaGoogle color="gray" size={24} style={{ marginLeft: 10 }} /></h4>
 </button>
 
@@ -45,6 +47,7 @@ const Login = () => {
         </div>
       </div>
     </section>
+    </body>
   );
 };
 

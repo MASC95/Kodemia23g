@@ -29,7 +29,10 @@ const Login = () => {
                   <button className="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
 
                   <div className="d-flex justify-content-center text-center mt-4 pt-1">
-                    <FaGoogle className ="text-white" style={{ width: "4vw", height: "4vh" }}/>
+                  <button type="button" class="btn btn-outline-light btn-lg" style={{ width: '30vw', height: '10vh' }}>
+  <h4>Login with Google <FaGoogle color="gray" size={24} style={{ marginLeft: 10 }} /></h4>
+</button>
+
                   </div>
                 </div>
 

@@ -103,19 +103,19 @@ const Mains = () => {
     </div>
   </div>
   <div className="row">
-    <div className="col-md-3 cards-abajo">
-      <img className='rounded-circle'src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1780&q=80" alt="profile-pic" style={{width:"400px", height: "300px"}}/>
-    </div>
-    <div className="col-md-8 cards-abajo">
-      <div className="texto-final text-start">
+    <div className="col-md-3 cards-abajo ">
+    <img className="rounded-circle d-none d-lg-block" src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1780&q=80" alt="profile-pic" style={{width:"400px", height: "300px"}} />
+  </div>
+    <div className="col-md-8  cards-abajo ">
+      <div className="texto-final text-start d-sm-text-center">
      <strong> Encuentra un mejor empleo con Jobinder.</strong>
       </div>
-      <p style={{color: "#565E6CFF"}}> Nuestra aplicación te ayudará a encontrar oportunidades laborales acordes a tus habilidades y experiencia. </p>
+      <p style={{color: "#565E6CFF"}} className='d-sm-text-center'> Nuestra aplicación te ayudará a encontrar oportunidades laborales acordes a tus habilidades y experiencia. </p>
       <ul className="list group mb-100">
-     <li className ="list-unstyled "> <FaCheck color="green" className=""/>Registro gratuito. Encuentra tu proximo trabajo hoy </li>
-     <li className ="list-unstyled"> <FaCheck color="green" className="" />Disfruta de ofertas diarias que se ajustan a tu perfil  </li>
-     <li className ="list-unstyled"> <FaCheck color="green"className="" />Personaliza tus alertas de empleo para estar siempre informado </li>
-     <li className ="list-unstyled"> <FaCheck color="green" className=""/>Completa tu perfil en Jobinder para mostrar tu profesionalismo y ganar visibilidad </li>
+     <li className ="list-unstyled "> <FaCheck color="green"/>Registro gratuito. Encuentra tu proximo trabajo hoy </li>
+     <li className ="list-unstyled"> <FaCheck color="green"/>Disfruta de ofertas diarias que se ajustan a tu perfil  </li>
+     <li className ="list-unstyled"> <FaCheck color="green"/>Personaliza tus alertas de empleo para estar siempre informado </li>
+     <li className ="list-unstyled"> <FaCheck color="green"/>Completa tu perfil en Jobinder para mostrar tu profesionalismo y ganar visibilidad </li>
       </ul>
     </div>  
   </div>

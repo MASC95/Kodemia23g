@@ -1,9 +1,10 @@
 import './App.css';
 import Navbar from './componentes/Navbar';
 import Mains from './componentes/Mains';
-import Footer from './componentes/Footer';
+import Footer from './componentes/footer';
 import Login from './componentes/Login';
-import Dropdownmenu from './componentes/Dropdownmenu';
+import Dropdownmenu from './componentes/dropdownmenu/Dropdownmenu';
+
 
 function App() {
   return (

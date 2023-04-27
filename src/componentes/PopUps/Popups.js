@@ -1,4 +1,5 @@
 import React from 'react'
+import "./popups.scss";
 
 const Popups = () => {
   return (

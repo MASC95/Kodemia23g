@@ -1,11 +1,7 @@
-/**
- * The function returns a dropdown menu component with icons for profile, search, suitcase, and logout.
- * @returns A React component called Dropdownmenu, which renders a collapsible sidebar navigation menu
- * with four clickable items/icons: MdAccountCircle, BsSearch, FaSuitcase, and IoLogOutOutline.
- */
+
 import React from "react";
 import "./dropdownmenu.scss";
-import { MdAccountCircle } from "react-icons/md";
+import { MdAccountCircle, MdPadding } from "react-icons/md";
 import { BsSearch } from "react-icons/bs";
 import { FaSuitcase } from "react-icons/fa";
 import { IoLogOutOutline } from "react-icons/io5";
@@ -14,75 +10,82 @@ const Dropdownmenu = () => {
   return (
     <div className="container-fluid">
       <div className="row flex-nowrap">
-        <div className="bg-dark col-auto col-md-2 min-vh-100 ">
-            <div className="bg-dark p-2">
-            <a className="d-flex text-decoration-none mt-1 align-items-center text-white">
-            <span className="fs-4 d-none d-sm-inline ">
-              JOBINDER
-            </span>
+        <div className="bg-dark col-auto col-md-3 col-lg-3 min-vh-100 ">
+          <div className="bg-dark p-2">
+            <a className="d-flex text-decoration-none mt- align-items-center text-white" href="!#">
+              <span className="fs-4 d-none d-sm-inline ">JOBINDER</span>
             </a>
-           
 
-            <ul className="nav nav-pills flex-column">
-              <li className="nav-item">
+            <ul className="nav nav-pills flex-column mt-4 text-start">
+              <li className="nav-item py-2 py-sm-0">
                 <a
                   href="#!"
-                  className="list-group-item list-group-item-action py-2 ripple"
-                  aria-current="true"
+                  className="nav-link text-white "
+                  aria-current="true" 
                 >
-                  <span className="profile-pic">
-                    <MdAccountCircle size={40} color="white"/>
+                  <MdAccountCircle size={50} color="white"/><span className="profile-pic1 fs-4 ms-3 d-none d-sm-inline" >
+                  
+                  Elizabeth Watson
+                  ewatson@yahoo.com
+                  
                   </span>
                 </a>
               </li>
-              <li className="nav-item">
+              <li className="nav-item py-2 py-sm-0">
                 <a
                   href="#!"
-                  className="list-group-item list-group-item-action py-2 ripple"
+                  className="nav-link text-white"
                   aria-current="true"
+                  style={{fontSize: '24px' }}
                 >
-                  <span className="profile-pic">
-                    <MdAccountCircle size={40} color="white"/> <h3 className="text-white">esto es una prueba</h3>
+                 <MdAccountCircle size={50} color="white"/> <span className="profile-pic fs-4 ms-3 d-none d-sm-inline">
+                    
+                   Perfil
                   </span>
                 </a>
               </li>
-              <li className="nav-item">
+              <li className="nav-item py-2 py-sm-0">
                 <a
                   href="!#"
-                  className="list-group-item list-group-item-action py-2 ripple active"
+                  className="nav-link text-white"
+                  style={{fontSize: '24px'}}
                 >
-                  <span className="profile-pic">
-                    <BsSearch size={40} color="white"/>
+                <BsSearch size={50} color="white"/>  <span className="profile-pic fs-4 ms-3 d-none d-sm-inline">
+                    
+                    Search
                   </span>
                 </a>
               </li>
-              <li className="nav-item">
+              <li className="nav-item py-2 py-sm-0">
                 <a
                   href="#!"
-                  className="list-group-item list-group-item-action py-2 ripple"
+                  className="nav-link text-white"
                   aria-current="true"
+                  style={{fontSize: '24px'}}
                 >
-                  <span className="profile-pic">
-                    <FaSuitcase size={40} color="white" />
+                  <span className="profile-pic fs-4 ms-3 d-none d-sm-inline">
+                    <FaSuitcase size={50} color="white" />
+                    Mis Vacantes
                   </span>
                 </a>
               </li>
-              <li className="nav-item">
+              <li className="nav-item py-2 py-sm-0">
                 <a
                   href="#!"
-                  className="list-group-item list-group-item-action py-2 ripple"
+                  className="nav-link text-white"
                   aria-current="true"
+                  style={{fontSize: '24px'}}
                 >
-                  <span className="profile-pic">
-                    <IoLogOutOutline size={40} color="white"/>
+                <IoLogOutOutline size={50} color="white"  /><span className="profile-pic fs-4 ms-3 d-none d-sm-inline">
+                    
+                    Logout
                   </span>
                 </a>
               </li>
             </ul>
-         
+          </div>
         </div>
       </div>
-    </div>
     </div>
   );
 };

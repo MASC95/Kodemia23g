@@ -3,10 +3,13 @@ import "./popups.scss";
 
 const Popups = () => {
   return (
+    
     <div className='notification'>
-        <p>Esto es un pop up creado con React y Bootstrap V!👻👻</p>
-        <span className='notification__progress'></span>
+        <h4 className='d-flex align-items-start text-secondary'>Felicidades!</h4>
+        <p className=''>Haz aplicado correctamente a esta vacante</p>
+        <span className='notification__progress text-ligth'></span>
     </div>
+   
   )
 }
 

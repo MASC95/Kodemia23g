@@ -10,35 +10,37 @@ const Dropdownmenu = () => {
   return (
     <div className="container-fluid">
       <div className="row flex-nowrap">
-        <div className="bg-dark col-auto col-md-3 col-lg-3 min-vh-100 ">
-          <div className="bg-dark p-2">
+        <div className="col-auto col-md-3 col-lg-3 min-vh-100 " style={{backgroundColor:'#498BA6'}}>
+          <div className="p-2" style={{backgroundColor:'#498BA6'}}>
             <a className="d-flex text-decoration-none mt- align-items-center text-white" href="!#">
               <span className="fs-4 d-none d-sm-inline ">JOBINDER</span>
             </a>
 
-            <ul className="nav nav-pills flex-column mt-4 text-start">
+            <ul className="nav nav-pills flex-column mt-4 text-start d-flex">
               <li className="nav-item py-2 py-sm-0">
                 <a
                   href="#!"
                   className="nav-link text-white "
                   aria-current="true" 
+                  fontSize ='14px'
                 >
-                  <MdAccountCircle size={50} color="white"/><span className="profile-pic1 fs-4 ms-3 d-none d-sm-inline" >
-                  
+                  <MdAccountCircle size={24} color="white"/><span className="profile-pic1 fs-4 ms-3 d-none d-sm-inline" >
+                  <div className="mx-3">
                   Elizabeth Watson
                   ewatson@yahoo.com
-                  
+                  </div>
                   </span>
                 </a>
               </li>
+              {/* insertar línea hr con mx-2 y  my-4 si se requiere separar*/}
               <li className="nav-item py-2 py-sm-0">
                 <a
                   href="#!"
                   className="nav-link text-white"
                   aria-current="true"
-                  style={{fontSize: '24px' }}
+                  style={{fontSize: '14px' }}
                 >
-                 <MdAccountCircle size={50} color="white"/> <span className="profile-pic fs-4 ms-3 d-none d-sm-inline">
+                 <MdAccountCircle size={24} color="white"/> <span className="profile-pic fs-4 ms-3 d-none d-sm-inline">
                     
                    Perfil
                   </span>
@@ -48,9 +50,9 @@ const Dropdownmenu = () => {
                 <a
                   href="!#"
                   className="nav-link text-white"
-                  style={{fontSize: '24px'}}
+                  style={{fontSize: '14px'}}
                 >
-                <BsSearch size={50} color="white"/>  <span className="profile-pic fs-4 ms-3 d-none d-sm-inline">
+                <BsSearch size={24} color="white"/>  <span className="profile-pic fs-4 ms-3 d-none d-sm-inline">
                     
                     Search
                   </span>
@@ -61,10 +63,10 @@ const Dropdownmenu = () => {
                   href="#!"
                   className="nav-link text-white"
                   aria-current="true"
-                  style={{fontSize: '24px'}}
+                  style={{fontSize: '14px'}}
                 >
-                  <span className="profile-pic fs-4 ms-3 d-none d-sm-inline">
-                    <FaSuitcase size={50} color="white" />
+                <FaSuitcase size={24} color="white"  /><span className="profile-pic fs-4 ms-3 d-none d-sm-inline">
+                    
                     Mis Vacantes
                   </span>
                 </a>
@@ -74,9 +76,9 @@ const Dropdownmenu = () => {
                   href="#!"
                   className="nav-link text-white"
                   aria-current="true"
-                  style={{fontSize: '24px'}}
+                  style={{fontSize: '14px'}}
                 >
-                <IoLogOutOutline size={50} color="white"  /><span className="profile-pic fs-4 ms-3 d-none d-sm-inline">
+                <IoLogOutOutline size={24} color="white"  /><span className="profile-pic fs-4 ms-3 d-none d-sm-inline">
                     
                     Logout
                   </span>

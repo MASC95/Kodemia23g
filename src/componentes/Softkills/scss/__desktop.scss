@@ -1,13 +1,12 @@
-
-@media (min-width: 542px) and (max-width:768px){ 
+@media (min-width: 768px)  and (max-width:1400px) {
     body{
         background-color: #ffffff;
     }
-    .buttons_actions{
+   
+    .softskills{
         width: 100%;
         display: flex;
         flex-wrap: wrap;
-        justify-content:center;
-    
+        justify-content: end;
     }
 }

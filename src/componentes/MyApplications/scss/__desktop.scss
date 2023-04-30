@@ -3,11 +3,16 @@
         background-color: #ffffff;
     }
    
-    .buttons_actions{
+    .softskills{
         width: 100%;
         display: flex;
         flex-wrap: wrap;
         justify-content: end;
-      
+    }
+    .table{
+        .thead-dark{
+            background-color: #FAFAFB;
+        }
+        
     }
 }

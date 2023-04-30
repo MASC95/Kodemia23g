@@ -1,0 +1,50 @@
+@media (min-width: 768px)  and (max-width:1400px) {
+    body{
+        background-color: #ffffff;
+    }
+    h1{
+        font-size: 25px;
+    }
+    h2{
+        font-size: 22px;
+    }
+    span{
+        font-size: 12px;
+    }
+    .vacancy{
+        .img_vacancy{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .col{
+            margin-bottom: 50px;
+        }
+        .table{
+            .thead-dark{
+                background-color: #FAFAFB;
+            }
+            
+        }
+        .buttons{
+            height: 40px;
+            display: flex;
+            justify-content: space-around;
+            
+        }
+    .generalidades{
+        height: 60px;
+        display: flex;
+        flex-direction: column;
+        .col{
+            margin: 10px;
+            height: 80px;
+            padding-left: 50px;
+            display: flex;
+            flex-direction: column;
+            // border: 1px solid #9b1818;
+        }
+    }
+    }
+}

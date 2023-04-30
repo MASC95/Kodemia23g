@@ -1,22 +1,20 @@
-import './App.css';
+// import './App.css';
+import {Routes, Route} from 'react-router-dom'
 import Navbar from './componentes/Navbar';
 import FormProfile from './componentes/FormProfile/FormProfile';
-
+import Softskills from './componentes/Softkills/Softskills';
+import ListVancancy from './componentes/ListVacancy/ListVacancy.js';
+import MyApplications from './componentes/MyApplications/MyApplications';
+import Vacancy from './componentes/Vacancy/Vacancy';
 function App() {
   return (
-    // <div className="App">
-    //   <Navbar/>
-    // </div>
-    <>
-    <div className='container-fluid'>
-      <div className='row'>
-        <div className='col-3 bg-primary'> SIDE BAR MENU</div>
-        <div className='col-9'>
-          <FormProfile/>
-        </div>
-      </div>
+    <div className='App'>
+      <Routes>
+        <Route path="/ListVacancy" element={<ListVancancy/>}/>
+        <Route path="/MyApplications" element={<MyApplications/>}/>
+        <Route path="/Vacancy" element={<Vacancy/>}/>
+      </Routes>
     </div>
-    </>
   );
 }
 

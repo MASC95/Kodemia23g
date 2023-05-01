@@ -8,7 +8,7 @@ const Window = () => {
         const handleShow = () => setShow(true);
   return (
     <>
-    <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    <button type="button" className="btn btn-success" data-toggle="modal" data-target="#exampleModal">
       Launch demo modal
     </button>
 

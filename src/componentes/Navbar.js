@@ -21,20 +21,21 @@ const Navbar = () => {
         </div>
 
         <ul className="navbar-nav d-flex flex-row justify-content-end col-lg-3">
+            <button type='button' className='inicio btn btn-primary'> Iniciar Sesión</button>
           <li className="nav-item me-3 me-lg-1 mb-2">
-            <a className="nav-link" href="!#">
+            <a className="nav-link d-none" href="!#">
               <span><FaHome size={18} /></span>
               <span className="badge rounded-pill badge-notification bg-danger">1</span>
             </a>
           </li>
           <li className="nav-item me-3 me-lg-1 mb-2">
-            <a className="nav-link" href="!#">
+            <a className="nav-link d-none" href="!#">
               <span><FaBell size={18} /></span>
               <span className="badge rounded-pill badge-notification bg-danger">12</span>
             </a>
           </li>
           <li className="nav-item me-3 me-lg-1 mb-2">
-            <a className="nav-link" href="!#">
+            <a className="nav-link d-none" href="!#">
               <span><FaUser size={18} /></span>
             </a>
           </li>

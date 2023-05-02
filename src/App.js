@@ -10,8 +10,9 @@ import Dropdownmenu from './componentes/dropdownmenu/Dropdownmenu';
 function App() {
   return (
     <div className="App">
-     <Dropdownmenu/>
-      
+     <Navbar />
+     <Mains />
+     <Footer/>
     </div>
   );
 }

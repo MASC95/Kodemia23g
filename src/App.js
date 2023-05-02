@@ -6,12 +6,11 @@ import Login from './componentes/Login';
 import Dropdownmenu from './componentes/dropdownmenu/Dropdownmenu';
 
 
+
 function App() {
   return (
     <div className="App">
-      <Navbar/>
-      <Mains/>
-      <Footer/>
+     <Dropdownmenu/>
       
     </div>
   );

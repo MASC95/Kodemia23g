@@ -1,7 +1,7 @@
 import React from "react";
 import SidebarRecruiter from "../SidebarRecruiter/SidebarRecruiter";
 import PatchVancy from "./Forms/PatchVacancy";
-import {FaPlus} from 'react-icons/fa'
+import Softskills from "../SoftSkills/SoftSkills";
 
 export const EditVacancy=()=>{
     return(
@@ -17,14 +17,12 @@ export const EditVacancy=()=>{
                                <div className="col">
                                 <div className='card-header d-flex gap-5'>
                                     <h1>'Nombre de la vacante'</h1>
-                                       <div className="d-flex h-100  justify-content-around">
-                                         <button type="submit" className="text-light buttons btn btn-info btn-lg"><FaPlus/> Agregar</button>
-                                       </div> 
                                       </div>
                                 </div> 
                             </div>
                             <div className='card-body'>
                                 <PatchVancy/>
+                                <Softskills/>
                             </div>
                         </div>
                     </div>

@@ -1,12 +1,11 @@
 import React from "react";
+import {Link} from 'react-router-dom'
 import SidebarRecruiter from "../SidebarRecruiter/SidebarRecruiter";
-import PostVacancy from "./Forms/PostVacancy";
-import Softskills from "../SoftSkills/SoftSkills";
-
-export const AddVacancy=()=>{
+import DetailsProfile from "./DetailsProfile";
+export const ProfileCandidate=()=>{
     return(
         <>
-        <div className='dashboard'>
+            <div className='dashboard'>
             <SidebarRecruiter/>
             <div className='dashboard-app'>
                 <header className='dashboard-toolbar'><a href="#!" className="menu-toggle"><i className="fas fa-bars"></i></a></header>
@@ -17,15 +16,16 @@ export const AddVacancy=()=>{
                                <div className="col">
                                 <div className='card-header d-flex gap-5'>
                                     <h1>Vacantes</h1>
-                                       {/* <div className="d-flex h-100  justify-content-around">
+                                       <div className="d-flex h-100  justify-content-around">
+                                        {/* <Link to={`/recruiter-vacancy/addNew`}>
                                          <button type="submit" className="text-light buttons btn btn-info btn-lg"><FaPlus/> Agregar</button>
-                                       </div>  */}
+                                        </Link> */}
+                                       </div> 
                                       </div>
                                 </div> 
                             </div>
                             <div className='card-body'>
-                                <PostVacancy/>
-                                <Softskills/>
+                               <DetailsProfile/>
                             </div>
                         </div>
                     </div>
@@ -35,4 +35,5 @@ export const AddVacancy=()=>{
         </>
     )
 }
-export default AddVacancy
+
+export default ProfileCandidate

@@ -1,11 +1,13 @@
 import React from "react";
 import SidebarRecruiter from "../SidebarRecruiter/SidebarRecruiter";
+import Dropdownmenu from "../SidebarRecruiter/Dropdownmenu";
 
 export const Dashboard=()=>{
     return(
         <>
+            <Dropdownmenu/>
           <div className='dashboard'>
-            <SidebarRecruiter/>
+            {/* <SidebarRecruiter/> */}
             <div className='dashboard-app'>
                 <header className='dashboard-toolbar'><a href="#!" className="menu-toggle"><i className="fas fa-bars"></i></a></header>
                 <div className='dashboard-content'>

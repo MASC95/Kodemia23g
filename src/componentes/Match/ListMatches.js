@@ -9,7 +9,7 @@ export const ListMatches=()=>{
         <div className="row softskills">
             <div className="col">
             <table className="table">
-                <thead className="thead-dark">
+                <thead className="thead-dark bg-body-secondary">
                     <tr>
                     <th scope="col">#</th>
                     <th scope="col">Titulo</th>

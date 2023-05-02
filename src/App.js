@@ -11,6 +11,7 @@ import EditVacancy from './componentes/Vacancy/EditVacancy';
 
 import Match from './componentes/Match/Match';
 import MatchDetails from './componentes/Match/MatchDetails';
+import ProfileCandidate from './componentes/Profile/ProfileCandidate';
 
 function App() {
   return (
@@ -25,7 +26,9 @@ function App() {
 
         <Route path='/recruiter-listMatches' element={<Match/>}/>
         <Route path='/recruiter-vacancy/matchDetails/id' element={<MatchDetails/>}/>
-        
+        <Route path='/recruiter-vacancy/id/candidate' element={<ProfileCandidate/>}/>
+
+
       </Routes>
     </div>
   );

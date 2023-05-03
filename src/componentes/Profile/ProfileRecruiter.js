@@ -2,6 +2,7 @@ import React from "react";
 import {FaBars} from 'react-icons/fa'
 import imgProfile from '../assets/img/profile.png'
 import SidebarRecruiter from "../SidebarRecruiter/SidebarRecruiter";
+import FormRecruiter from "./Form/FormRecruiter";
 
 export const ProfileRecruiter=()=>{
     return(
@@ -30,8 +31,8 @@ export const ProfileRecruiter=()=>{
                             </div> 
                         </div>
                         <div className='card-body'>
-                           <h1>Profile</h1>
-                            
+                           <h1 className="text-start">Información General</h1>
+                            <FormRecruiter/>
                         </div>
                     </div>
                 </div>

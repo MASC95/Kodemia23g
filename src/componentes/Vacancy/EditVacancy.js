@@ -32,7 +32,7 @@ export const EditVacancy=()=>{
                                 </div> 
                             </div>
                             <div className='card-body'>
-                               <h1>'Nombre de la vacante'</h1>
+                               <h1 className="text-start">'Nombre de la vacante'</h1>
                                 <PatchVancy/>
                                 <Softskills/>
                             </div>

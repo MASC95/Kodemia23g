@@ -28,7 +28,7 @@ export const Vacancy=()=>{
                             <div className="row">
                                <div className="col">
                                 <div className='card-header d-flex gap-5'>
-                                    <h1><b>Vacantes</b></h1>
+                                    <h1 className="text-start"><b>Vacantes</b></h1>
                                        <div className="d-flex h-100  justify-content-around">
                                         <Link to={`/recruiter-vacancy/addNew`}>
                                          <button type="submit" className="text-light buttons btn btn-info btn-lg"> Agregar Nuevo</button>

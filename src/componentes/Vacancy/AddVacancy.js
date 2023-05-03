@@ -35,7 +35,7 @@ export const AddVacancy=()=>{
                                 </div> 
                             </div>
                             <div className='card-body '>
-                            <h1><b>Agregar Vacante</b></h1>
+                            <h1  className="text-start"><b>Agregar Vacante</b></h1>
 
                                 <PostVacancy/>
                                 <Softskills/>

@@ -30,7 +30,7 @@ export const Match=()=>{
                                 </div> 
                             </div>
                             <div className='card-body'>
-                            <h1><b>Match's</b></h1>
+                            <h1 className="text-start"><b>Match's</b></h1>
                                 <ListMatches/>
                             </div>
                         </div>

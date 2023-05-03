@@ -1,7 +1,7 @@
 import React from "react";
 import {Link} from 'react-router-dom'
 import {FaEdit, FaEye} from 'react-icons/fa'
-
+import './style.scss'
 export const ListMatches=()=>{
     return(
         <>
@@ -12,10 +12,10 @@ export const ListMatches=()=>{
                 <thead className="thead-dark bg-body-secondary">
                     <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Titulo</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Candidatos</th>
-                    <th scope="col">Opciones</th>
+                    <th scope="col">TITULO</th>
+                    <th scope="col">STATUS</th>
+                    <th scope="col">CANDIDATOS</th>
+                    <th scope="col">OPCIONES</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -24,11 +24,11 @@ export const ListMatches=()=>{
                     <td>Mark</td>
                     <td>Otto</td>
                     <td>Mark</td>
-                    <td className="options_buttons">
+                    <td className="options_buttons  d-flex justify-content-center gap-3">
                       <Link to={`/recruiter-vacancy/matchDetails/id`}>
-                         <button type="button" class="btn btn-info"><FaEye/></button>
+                        <a href=""><FaEye/></a>
                       </Link>
-                    <button type="button" class="btn btn-outline-info"><FaEdit/></button>
+                        <a href=""><FaEdit className="icon_edit"/></a>
                     </td>
                     </tr>
                 </tbody>

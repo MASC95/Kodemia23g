@@ -14,13 +14,14 @@ const SidebarRecruiter= () => {
                 <img src={logo} className="logo_Jobinder" alt=""/>
             </a>
           </div>
-          <a href="#!" className="menu-toggle"><FaBars/></a>
         </header>
         <nav className="dashboard-nav-list">
           <Link to={`/welcome-recruiter`}>
           <a href="#!" className="dashboard-nav-item"><FaHome/> &nbsp;Home </a>
           </Link>
+          <Link to={`/welcome-recruiter/profile`}>
           <a href="#!" className="dashboard-nav-item"> <FaUser/> &nbsp;Perfil </a>
+          </Link>
           <Link to={`/recruiter-vacancy`}>
           <a href="#!" className="dashboard-nav-item"><FaSuitcase/> &nbsp;Vacantes </a>
           </Link>

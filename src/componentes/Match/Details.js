@@ -1,7 +1,7 @@
 import React from "react";
 import {FaEye, FaCheck} from 'react-icons/fa'
 import {Link} from 'react-router-dom'
-
+import './style.scss'
 export const Details=()=>{
     return(
         <>
@@ -9,12 +9,12 @@ export const Details=()=>{
         <div className="row softskills">
             <div className="col">
             <table className="table">
-                <thead className="thead-dark">
+                <thead className="thead-dark bg-body-secondary">
                     <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Role</th>
-                    <th scope="col">Opciones</th>
+                    <th scope="col">NOMBRE</th>
+                    <th scope="col">ROLE</th>
+                    <th scope="col">OPCIONES</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -24,9 +24,9 @@ export const Details=()=>{
                     <td>Otto</td>
                     <td className="options_buttons d-flex justify-content-center gap-3">
                         <Link to={`/recruiter-vacancy/id/candidate`}>
-                           <button type="button" class="btn btn-outline-info"><FaEye/></button>
+                            <a href=""><FaEye className="icon_eye"/></a>
                         </Link>
-                           <button type="button" class="btn btn-info"><FaCheck/></button>
+                           <a href=""><FaCheck className="icon_check"/></a>
                     </td>
                     </tr>
                 </tbody>

@@ -14,15 +14,15 @@ export const MatchDetails=()=>{
                             <div className="row">
                                <div className="col">
                                 <div className='card-header d-flex gap-5'>
-                                    <h1>Match's 'Nombre de la vacante'</h1>
                                       </div>
                                 </div> 
                             </div>
                             <div className='card-body'>
+                                <h1>Match's 'Nombre de la vacante'</h1>
                                 <Details/>
                             </div>
                             <div className="d-flex w-100 justify-content-end p-4">
-                              <button type="button" class="btn btn-info">Panel de Reclutamiento</button>
+                              <button type="button" class="btn btn-info text-light">Panel de Reclutamiento</button>
                             </div>
                         </div>
                     </div>

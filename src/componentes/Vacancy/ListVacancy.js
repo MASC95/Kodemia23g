@@ -1,6 +1,7 @@
 import React from "react";
 import {FaEdit, FaTrash} from 'react-icons/fa'
 import {Link} from 'react-router-dom'
+import './style.scss'
 
 export const ListVacancy=()=>{
     return(
@@ -11,26 +12,26 @@ export const ListVacancy=()=>{
             <table className="table">
                 <thead className="thead-dark bg-body-secondary">
                     <tr>
-                    {/* <th scope="col">#</th> */}
-                    <th scope="col">Titulo</th>
-                    <th scope="col">Ubicación</th>
-                    <th scope="col">Posición</th>
-                    <th scope="col">Salario</th>
-                    <th scope="col">Opciones</th>
+                    <th scope="col">#</th>
+                    <th scope="col">TITULO</th>
+                    <th scope="col">TIPO DE TRABAJO</th>
+                    <th scope="col">MODALIDAD</th>
+                    <th scope="col">SALARIO</th>
+                    <th scope="col">OPCIONES</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                    {/* <th scope="row">1</th> */}
+                    <th scope="row">1</th>
                     <td>Mark</td>
                     <td>Otto</td>
                     <td>Mark</td>
                     <td>Otto</td>
                     <td className="options_buttons d-flex justify-content-center gap-3">
                         <Link to={`/recruiter-vacancy/edit/id`}>
-                           <button type="button" class="btn btn-outline-info"><FaEdit/></button>
+                            <a href=""><FaEdit className="icon_edit"/></a>
                         </Link>
-                           <button type="button" class="btn btn-info"><FaTrash/></button>
+                           <a href=""><FaTrash className="icon_trash"/></a>
                     </td>
                     </tr>
                 </tbody>

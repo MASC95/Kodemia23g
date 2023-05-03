@@ -41,7 +41,7 @@ export const Softskills=()=>{
                         </div>
                     </div>
                     <div className="buttons_actions">  
-                        <button type="button" className="buttons btn btn-outline-info">Guardar</button>               
+                        <button type="button" className="buttons btn btn-info text-light">Guardar Skill</button>               
                     </div>
                 </form>
             </div>

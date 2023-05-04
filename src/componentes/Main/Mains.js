@@ -1,7 +1,7 @@
 import React from "react";
 import { FaCheck } from "react-icons/fa";
 import "./main.css";
-
+import Dropdownmenu from './componentes/dropdownmenu/Dropdownmenu.js';
 
 const Mains = () => {
   return (
@@ -14,7 +14,7 @@ const Mains = () => {
 
       <div className="container first-card-container">
         <div className="row gx-5 ">
-          <div className="rigth-blank-space col-lg-2 col-sm-1"></div>
+          <div className="rigth-blank-space col-lg-2 col-sm-1"> <Dropdownmenu/> </div>
 
           <div className="father-container-1 col-lg-8 col-sm-12">
             <div className="child-container-1 d-flex justify-content-center align-items-center">

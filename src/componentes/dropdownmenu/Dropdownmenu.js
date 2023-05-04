@@ -8,7 +8,7 @@ import { IoLogOutOutline } from "react-icons/io5";
 
 const Dropdownmenu = () => {
   return (
-    <div className="container-fluid">
+    <div className="container-fluid vh-100 vw-100">
       <div className="row flex-nowrap">
         <div className="col-auto col-md-3 col-lg-3 min-vh-100 " style={{backgroundColor:'#498BA6'}}> 
           <div className="p-2" style={{backgroundColor:'#498BA6'}}>

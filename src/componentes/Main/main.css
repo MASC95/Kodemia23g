@@ -16,27 +16,30 @@ h1{
 }
 
 .card-container-1{
-    width: 268px;
-    height: 326px;
+    width: 50%;
+    height: 50%;
     font-family: inherit;
     
 
+}
+.space{
+    width: 200px;
 }
 .create-account{
     font-family: Monserrat;
 }
 .card-container-2{
-    width: 268px;
-    height: 326px;
+    width: 50%;
+    height: 50%;
     font-family: inherit;
 }
-.acceder-reclutador{
+.access-recruiter{
     display: flex;
     justify-content: center;
     margin-top: 10px;
     margin-bottom: 30px;
 }
-.acceder-candidato{
+.access-candidate{
     display: flex;
     justify-content: center;
     margin-top: 10px;
@@ -62,9 +65,10 @@ h1{
     
 }
 p{
-    color: #498BA6FF;
+    color: #171A1FFF;
     text-align: justify;
     font-weight: 400;
+    font-family: Arial, Helvetica, sans-serif;
 }
 .empleo{
     display: flex;

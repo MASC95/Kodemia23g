@@ -1,17 +1,18 @@
-import React from 'react'
+import React from 'react';
 import { FaHome, FaBell, FaUser, FaSearch } from 'react-icons/fa';
-import './navbar.css'
+import './Navbar.scss';
+
 const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <div className="container-fluid justify-content-between">
+      <div className="nav-container container-fluid justify-content-between">
         <div className="col-lg-3 logo">
           <a className=" navbar-brand me-2 mb-1 d-flex align-items-center" href="!#">
-            <a height="20" loading="lazy" style={{marginTop: "2px", fontFamily: "EB Garamond"}} />JOBINDER <a/>
+            <a className='jobinder' height="20" loading="lazy" style={{marginTop: "2px", fontFamily: "EB Garamond"}} />JOBINDER <a/>
           </a>
         </div>
-        <div className="col-lg-6 my-auto">
-          <form className="input-group w-auto my-auto d-none d-sm-flex">
+        <div className="col-lg-6 my-auto search-bar-div">
+          <form className="form-search nput-group w-auto my-auto d-none d-sm-flex">
             <div className="input-group-prepend">
               <button className="input-group-text border-0 d-none d-lg-flex"><FaSearch /></button>
             </div>
@@ -21,7 +22,7 @@ const Navbar = () => {
         </div>
 
         <ul className="navbar-nav d-flex flex-row justify-content-end col-lg-3">
-            <button type='button' className='inicio btn btn-primary'> Iniciar Sesión</button>
+            <button type='button' className='inicio btn btn-primary' style={{width: '200px', height: '38px' }}> Iniciar Sesión</button>
           <li className="nav-item me-3 me-lg-1 mb-2">
             <a className="nav-link d-none" href="!#">
               <span><FaHome size={18} /></span>

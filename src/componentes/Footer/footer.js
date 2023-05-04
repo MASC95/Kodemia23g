@@ -34,13 +34,7 @@ const Footer = () => {
         >
           <FaInstagram />
         </a>
-        <a className="btn btn-link btn-floating btn-lg text-dark m-1"
-          href="#!"
-          role="button"
-          data-mdb-ripple-color="dark"
-        >
-          <FaLinkedin />
-        </a>
+      
         <a className="btn btn-link btn-floating btn-lg text-dark m-1"
           href="#!"
           role="button"

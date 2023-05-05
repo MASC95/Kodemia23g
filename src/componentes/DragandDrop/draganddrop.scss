@@ -97,12 +97,13 @@
                         color: #6FD2AF;
     
                     }
+                    .body3{
+                        @include cuerpo()
+    
+                    }
                 }
                 
-                .body3{
-                    @include cuerpo()
-
-                }
+                
             }
         }
     }

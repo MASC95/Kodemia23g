@@ -3,7 +3,10 @@ import { FaFacebookF, FaTwitter, FaGoogle, FaInstagram, FaLinkedin, FaGithub } f
 
 const Footer = () => {
   return (
+
     <footer className="text-center text-white" style={{backgroundColor: "#f1f1f1"}}>
+      <div className="row">
+        <div className="col-sm-md-12">
     <div className="container pt-4">
       <section className="mb-4">
         <a className="btn btn-link btn-floating btn-lg text-dark m-1"
@@ -43,6 +46,7 @@ const Footer = () => {
           <FaGithub />
         </a>
       </section>
+      </div>
     </div>
     <ul className="d-flex justify-content-around list-unstyled" style={{color:"black", fontSize: "24px" }}>
       <li>Institucional</li>
@@ -56,6 +60,7 @@ const Footer = () => {
     </ul>
     <div className="text-center text-dark p-3" style={{backgroundColor: "rgba(0, 0, 0, 0.2)"}}>
       © Jobinder 2023. All Rights Reserved.
+    </div>
     </div>
   </footer>
   );

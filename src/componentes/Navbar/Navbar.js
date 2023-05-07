@@ -22,7 +22,7 @@ const Navbar = () => {
         </div>
 
         <ul className="navbar-nav d-flex flex-row justify-content-end col-lg-3">
-            <button type='button' className='inicio btn btn-primary' style={{width: '200px', height: '38px' }}> Iniciar Sesión</button>
+            <button type='button' className='inicio btn btn-primary d-none d-sm-block' style={{width: '200px', height: '42px' }}> Iniciar Sesión</button>
           <li className="nav-item me-3 me-lg-1 mb-2">
             <a className="nav-link d-none" href="!#">
               <span><FaHome size={18} /></span>

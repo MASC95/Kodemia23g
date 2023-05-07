@@ -62,8 +62,9 @@ function App() {
         <Route path='/welcome-candidate/my-app-vacancy' element={<AppVacancyCandidate/>}/>
         
       </Routes>
-    </div>
-  );
+      </div>
+
+)
 }
 
 export default App;

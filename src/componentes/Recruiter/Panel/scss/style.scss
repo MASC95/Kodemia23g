@@ -1,0 +1,110 @@
+@mixin dzone{
+    display: flex;
+    flex-direction: column;
+    grid-gap: 16px;
+    height: 100%;
+
+}
+@mixin cuerpo{
+    font-size: 14px;
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+@mixin columnas{
+    display: flex;
+    flex-direction: column;
+    background-color: #F6F8FC;
+    width: 400px;
+    min-height: 100px;
+    padding: 24px 12px;
+    border-radius: 8px;
+    border-top: 7px solid;
+    box-shadow: 0 8px 16px rgba(#333, 0.1);
+}
+@mixin element{
+    font-size: 18px;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    padding: 26px 20px;
+    cursor: pointer;
+    color: #5b5b73;
+
+}
+.main{
+    h1{
+        color: red;
+
+    }
+    .drag-and-drop{
+        display: flex;
+        grid-gap: 40px;
+        .column--1{
+            border-color: #FF9E4A;
+            @include columnas();
+            h3{
+
+            }
+            .dd-zone{
+                @include dzone();
+                .dd-element{
+                    @include element();
+                    .title{
+                        color: #FF9E4A;
+                    }
+                    .body{
+                        @include cuerpo()
+
+                    }
+                }
+
+            }
+
+        }
+        .column--2{
+            border-color: #C56BE2;
+            @include columnas();
+            h3{
+
+            }
+            .zona2{
+                @include dzone();
+                .elem2{
+                    @include element();
+                    .titulo2{
+                        color: #C56BE2;
+
+                    }
+                    .body2{
+                        @include cuerpo()
+
+                    }
+
+                }
+
+            }
+        }
+        .column--3{
+            border-color: #6FD2AF;
+            @include columnas();
+            h3{
+            
+            }
+            .zona3{
+                @include dzone();
+                .elem3{
+                    @include element();
+                    .titulo3{
+                        color: #6FD2AF;
+    
+                    }
+                    .body3{
+                        @include cuerpo()
+    
+                    }
+                }
+                
+                
+            }
+        }
+    }
+}

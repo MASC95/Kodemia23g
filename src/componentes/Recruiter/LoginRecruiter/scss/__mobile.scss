@@ -1,0 +1,59 @@
+//LOGINRECRUITER
+@media (min-width: 542px) and (max-width:768px){
+    .formLoginGral{
+        padding: 100px;
+    }
+    .form_login{
+        height: 100%;
+        input{
+            background-color:#F3F4F6 ;
+         
+        }
+        .buttons_actions{
+            margin-bottom: 20PX;
+            .btn{
+                color: #ffffff;
+                background-color: #498BA6;
+            }
+        }
+    }
+    .image_bg{
+        display: none;
+        background: #498BA6;
+    }
+
+
+    //Register
+    .account {
+        .buttons_actions{
+            margin-bottom: 20PX;
+            .btn{
+                color: #ffffff;
+                background-color: #498BA6;
+            }
+        }
+        .block {
+            background-color: #ffffff;
+            box-shadow: 0 16px 24px rgba(0,0,0,.08);
+            padding:30px;
+            margin:100px 0;
+            .logo_Jobinder img{
+              width: 200px;
+              height: 80px;
+            }
+            h2 {
+              font-weight:600;
+              font-size: 30px;
+              margin-top: 40px;
+            }
+            form {
+              margin-top: 50px;
+              input[type="email"],input[type="password"],input[type="text"]{
+                border-radius:0;
+                box-shadow:none;
+                height:50px;
+              }
+            }
+          }
+      }
+ }

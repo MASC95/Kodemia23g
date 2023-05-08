@@ -1,0 +1,177 @@
+@mixin center-users {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 30px;
+  }
+  
+  @mixin first-cards-containers {
+    width: 50%;
+    height: 50%;
+    font-family: inherit;
+  }
+  
+  @mixin letras {
+    margin-top: 100px;
+    font-family: 'Epilogue';
+    align-items: center;
+    text-indent: 1em;
+    color: #093040;
+  }
+  
+  @mixin second-cards-containers {
+    width: 400px;
+    height: 329px;
+    margin-top: 20px;
+  }
+  
+  .main-container {
+    margin-bottom: 100px;
+  
+    h1 {
+      font-family: 'Epilogue';
+      align-items: center;
+      text-indent: 1em;
+      color: #093040;
+    }
+  
+    .first-card-container {
+      .row {
+        .left-blank-space {}
+  
+        .father-container-1 {
+          .child-container-1 {
+            .card-container-1 {
+              @include first-cards-containers;
+  
+              .recruiter-img {}
+  
+              .card-body {
+                .card-title {}
+                .card-text {}
+              }
+  
+              .access-recruiter {
+                @include center-users;
+  
+                .access-btn-rec {}
+              }
+            }
+  
+            .space {
+              width: 200px;
+            }
+  
+            .card-container-2 {
+              @include first-cards-containers;
+  
+              .candidate-img {}
+  
+              .card-body {
+                .card-title {}
+                .card-text {}
+              }
+  
+              .access-candidate {
+                @include center-users;
+  
+                .access-btn-can {}
+              }
+            }
+          }
+        }
+  
+        .right-blank-space {}
+      }
+    }
+  
+    .second-cards-container {
+      .row {
+        .col-md-12 {
+          .letras {
+            @include letras;
+  
+            h2 {}
+          }
+        }
+      }
+  
+      .second-cards-row {
+        .second-cards-1 {
+          .card-container-3 {
+            @include second-cards-containers;
+            margin-left: 300px;
+  
+            .video {}
+  
+            .card-body {
+              .card-title {}
+              .card-text {}
+              h6 {}
+            }
+          }
+        }
+  
+        .second-cards-2 {
+          .card-container-4 {
+            @include second-cards-containers;
+  
+            .skills {}
+  
+            .card-body {
+              .card-title {}
+              .card-text {}
+              h6 {}
+            }
+          }
+        }
+      }
+    }
+  
+    .last-container {
+      .row {
+        .col-md-12 {
+          .letras {
+            @include letras;
+  
+            h1 {}
+          }
+  
+          .empleo {
+            display: flex;
+            justify-content: center;
+            padding-right: 300px;
+          }
+        }
+      }
+  
+      .col-md-3 {
+        .profile-pic {}
+      }
+  
+      .down-cards {
+        .final-text {
+          font-family: Epilogue;
+          font-size: 28px;
+          line-height: 42px;
+          display: flex;
+          justify-content: start;
+        }
+  
+        .slogan {}
+  
+        .check-list {
+          margin-bottom: 10px;
+  
+          .li-register-1 {
+            .icon-check {}
+          }
+        }
+  
+        .create-account {
+          .btn-create-acc {}
+        }
+      }
+    }
+  }
+  

@@ -1,7 +1,6 @@
 import React from "react";
 import { FaCheck } from "react-icons/fa";
-import "./main.css";
-
+import './main.scss'
 
 const Mains = () => {
   return (
@@ -14,7 +13,7 @@ const Mains = () => {
 
       <div className="container first-card-container">
         <div className="row gx-5 ">
-          <div className="rigth-blank-space col-lg-2 col-sm-1">  </div>
+          <div className="left-blank-space col-lg-2 col-sm-1"> </div>
 
           <div className="father-container-1 col-lg-8 col-sm-12">
             <div className="child-container-1 d-flex justify-content-center align-items-center">
@@ -57,7 +56,10 @@ const Mains = () => {
                   </p>
                 </div>
                 <div className="access-candidate">
-                  <button type="button" className="acces-btn-can btn btn-primary d-flex ">
+                  <button
+                    type="button"
+                    className="acces-btn-can btn btn-primary d-flex "
+                  >
                     Accede como Candidato
                   </button>
                 </div>
@@ -76,9 +78,12 @@ const Mains = () => {
             </div>
           </div>
         </div>
-        <div className="row">
-          <div className="col-md-6 second-cards-1" >
-            <div className="card-container-3 card mb-5 " style={{width: '50%', height: '100%  '}} >
+        <div className="row second-cards-row">
+          <div className="col-md-6 second-cards-1">
+            <div
+              className="card-container-3 card mb-5 "
+              style={{ width: "50%", height: "100%  " }}
+            >
               <img
                 src="https://images.unsplash.com/photo-1543269664-56d93c1b41a6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
                 alt="Video"
@@ -103,7 +108,10 @@ const Mains = () => {
             </div>
           </div>
           <div className="col-md-6 second-cards-2">
-            <div className="card-container-4 card " style={{width: '50%', height: '100%'}}>
+            <div
+              className="card-container-4 card "
+              style={{ width: "50%", height: "100%" }}
+            >
               <img
                 src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
                 alt="skills"
@@ -152,32 +160,31 @@ const Mains = () => {
               style={{ width: "400px", height: "300px" }}
             />
           </div>
-          <div className="col-md-8  cards-abajo ">
-            <div className="texto-final text-start d-sm-text-center">
+          <div className="col-md-8  down-cards ">
+            <div className="final-text text-start d-sm-text-center">
               <strong> Encuentra un mejor empleo con Jobinder.</strong>
             </div>
-            <p style={{ color: "#565E6CFF" }} className="d-sm-text-center slogan">
+            <p
+              style={{ color: "#565E6CFF" }}
+              className="d-sm-text-center slogan"
+            >
               Nuestra aplicación te ayudará a encontrar oportunidades laborales
               acordes a tus habilidades y experiencia.
             </p>
             <ul className="check-list list group mb-100">
-              <li className="list-unstyled ">
-              
-                <FaCheck color="green" />
+              <li className="list-unstyled li-register-1">
+                <FaCheck color="green" className="icon-check" />
                 Registro gratuito. Encuentra tu proximo trabajo hoy
               </li>
               <li className="list-unstyled">
-                
                 <FaCheck color="green" />
                 Disfruta de ofertas diarias que se ajustan a tu perfil
               </li>
               <li className="list-unstyled">
-                
                 <FaCheck color="green" />
                 Personaliza tus alertas de empleo para estar siempre informado
               </li>
               <li className="list-unstyled">
-                
                 <FaCheck color="green" />
                 Completa tu perfil en Jobinder para mostrar tu profesionalismo y
                 ganar visibilidad{" "}

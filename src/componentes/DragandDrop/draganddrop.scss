@@ -13,7 +13,7 @@
 @mixin columnas{
     display: flex;
     flex-direction: column;
-    background-color: #F6F8FC;
+    background-color: #EBFDFF;
     width: 400px;
     min-height: 100px;
     padding: 24px 12px;
@@ -25,14 +25,16 @@
     font-size: 18px;
     background-color: #FFFFFF;
     border-radius: 8px;
-    padding: 26px 20px;
+    display: flex;
+    justify-content: center;
     cursor: pointer;
     color: #5b5b73;
+   padding: 0 12px 15px 12px;
 
 }
 .main{
     h1{
-        color: red;
+       
 
     }
     .drag-and-drop{
@@ -48,9 +50,6 @@
                 @include dzone();
                 .dd-element{
                     @include element();
-                    .title{
-                        color: #FF9E4A;
-                    }
                     .body{
                         @include cuerpo()
 
@@ -70,12 +69,8 @@
                 @include dzone();
                 .elem2{
                     @include element();
-                    .titulo2{
-                        color: #C56BE2;
-
-                    }
                     .body2{
-                        @include cuerpo()
+                        @include cuerpo();
 
                     }
 
@@ -93,17 +88,30 @@
                 @include dzone();
                 .elem3{
                     @include element();
-                    .titulo3{
-                        color: #6FD2AF;
-    
-                    }
                     .body3{
-                        @include cuerpo()
+                        @include cuerpo();
     
                     }
                 }
                 
                 
+            }
+        }
+        .column--4{
+            border-color: #6FD2AF;
+            @include columnas();
+            h3{
+
+            }
+            .zona4{
+                @include dzone();
+                .elem4{
+                    @include element();
+                    .body4{
+                        @include cuerpo();
+                    }
+
+                }
             }
         }
     }

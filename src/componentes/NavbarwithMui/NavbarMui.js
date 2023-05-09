@@ -7,10 +7,11 @@ import {
   InputBase,
   Button,
   Box,
+  
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { Home, Notifications, Person } from '@mui/icons-material';
 
 const theme = createTheme({
   palette: {
@@ -24,7 +25,7 @@ const Navbar = styled(AppBar)(({ theme }) => ({
   position: 'fixed', 
   width: '100%',
   zIndex: theme.zIndex.drawer + 1,
-  marginBottom: theme.spacing(5), // Margen inferior
+  marginBottom: theme.spacing(5), 
 }));
 
 const Logo = styled(Typography)(({ theme }) => ({
@@ -112,10 +113,10 @@ export default function NavbarComponent() {
             />
           </Search>
           <Box sx={{ flexGrow: 1 }} />
-          <IconButton color="inherit">
-            <AccountCircleIcon />
-          </IconButton>
-          <LoginButton>Iniciar sesión</LoginButton>
+          <LoginButton>Iniciar sesión </LoginButton>
+        
+          
+
         </Toolbar>
       </Navbar>
       </AppBar>

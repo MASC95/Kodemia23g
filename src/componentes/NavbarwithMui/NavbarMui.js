@@ -15,13 +15,16 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#FFF', 
+      main: '#FFF',
     },
   },
 });
 
 const Navbar = styled(AppBar)(({ theme }) => ({
+  position: 'fixed', 
+  width: '100%',
   zIndex: theme.zIndex.drawer + 1,
+  marginBottom: theme.spacing(5), // Margen inferior
 }));
 
 const Logo = styled(Typography)(({ theme }) => ({
@@ -30,7 +33,6 @@ const Logo = styled(Typography)(({ theme }) => ({
     display: 'block',
     marginRight: theme.spacing(25),
   },
-  
 }));
 
 const Search = styled('div')(({ theme }) => ({
@@ -74,12 +76,20 @@ const LoginButton = styled(Button)(({ theme }) => ({
     marginLeft: theme.spacing(2),
     backgroundColor: '#498BA6',
     color: theme.palette.common.white,
+    width: '8%',
+    height: '4%',
+    padding: '10px',
+    borderRadius: '7px',
+    '&:hover': {
+      backgroundColor: '#2E676F',
+    },
   },
 }));
 
 export default function NavbarComponent() {
   return (
     <ThemeProvider theme={theme}>
+        <AppBar>
       <Navbar position="static">
         <Toolbar>
           <IconButton
@@ -108,6 +118,7 @@ export default function NavbarComponent() {
           <LoginButton>Iniciar sesión</LoginButton>
         </Toolbar>
       </Navbar>
+      </AppBar>
     </ThemeProvider>
   );
 }

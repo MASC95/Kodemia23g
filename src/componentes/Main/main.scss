@@ -27,6 +27,7 @@
   
   .main-container {
     margin-bottom: 100px;
+    padding-top: 60px;
   
     h1 {
       font-family: 'Epilogue';
@@ -36,10 +37,13 @@
     }
   
     .first-card-container {
+        
       .row {
+        
         .left-blank-space {}
   
         .father-container-1 {
+            
           .child-container-1 {
             .card-container-1 {
               @include first-cards-containers;

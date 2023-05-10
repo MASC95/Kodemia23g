@@ -1,6 +1,6 @@
 import React from "react";
 import { FaCheck } from "react-icons/fa";
-import './main.scss'
+import './scss/style.scss'
 
 const Mains = () => {
   return (
@@ -10,6 +10,10 @@ const Mains = () => {
         con nuestra app de búsqueda de empleo basada en tus <br />
         habilidades de programación
       </h1>
+      <p className="text-mobile d-md-none">
+         Con Jobinder, tu trabajo ideal está a sólo un clic de distancia
+      </p>
+
 
       <div className="container first-card-container">
         <div className="row gx-5 ">
@@ -141,9 +145,10 @@ const Mains = () => {
         <div className="row">
           <div className="col-md-12">
             <div className="letras text-center">
-              <h1>
-                En busca de trabajo? Jobinder es tu mejor aliado en la búsqueda
-                de empleo.
+              <h1 className="last-text">
+                En busca de trabajo? 
+                Jobinder es tu mejor aliado
+                en la búsqueda de empleo.
               </h1>
             </div>
             <div className="empleo">
@@ -172,20 +177,20 @@ const Mains = () => {
               acordes a tus habilidades y experiencia.
             </p>
             <ul className="check-list list group mb-100">
-              <li className="list-unstyled li-register-1">
+              <li className="list-unstyled li-register">
                 <FaCheck color="green" className="icon-check" />
                 Registro gratuito. Encuentra tu proximo trabajo hoy
               </li>
-              <li className="list-unstyled">
-                <FaCheck color="green" />
+              <li className="list-unstyled li-register">
+                <FaCheck color="green" className="icon-check" />
                 Disfruta de ofertas diarias que se ajustan a tu perfil
               </li>
-              <li className="list-unstyled">
-                <FaCheck color="green" />
+              <li className="list-unstyled li-register">
+                <FaCheck color="green" className="icon-check" />
                 Personaliza tus alertas de empleo para estar siempre informado
               </li>
-              <li className="list-unstyled">
-                <FaCheck color="green" />
+              <li className="list-unstyled li-register">
+                <FaCheck color="green" className="icon-check" />
                 Completa tu perfil en Jobinder para mostrar tu profesionalismo y
                 ganar visibilidad{" "}
               </li>

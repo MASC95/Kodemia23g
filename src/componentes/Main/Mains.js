@@ -1,10 +1,14 @@
 import React from "react";
 import { FaCheck } from "react-icons/fa";
 import './scss/style.scss'
+import NavbarMui from '../NavbarwithMui/NavbarMui';
+import { Link } from "react-router-dom";
 
 const Mains = () => {
   return (
-    <div className="main-container">
+    <>
+      <NavbarMui />
+      <div className="main-container">
       <h1 className="match d-flex justify-content-center mx-100px m-md-5 ">
         Haz match con las empresas de tus sueños <br />
         con nuestra app de búsqueda de empleo basada en tus <br />
@@ -64,7 +68,7 @@ const Mains = () => {
                     type="button"
                     className="acces-btn-can btn btn-primary d-flex "
                   >
-                    Accede como Candidato
+                    <Link to="/login-candidato">Accede como Candidato</Link>
                   </button>
                 </div>
               </div>
@@ -208,6 +212,8 @@ const Mains = () => {
         </div>
       </div>
     </div>
+    </>
+    
   );
 };
 

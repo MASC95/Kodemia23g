@@ -113,7 +113,7 @@ export default function NavbarComponent() {
             />
           </Search>
           <Box sx={{ flexGrow: 1 }} />
-          <LoginButton>Iniciar sesión </LoginButton>
+          <LoginButton>Iniciar sesión</LoginButton>
         
           
 

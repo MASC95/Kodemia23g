@@ -5,17 +5,19 @@ import Mains from './componentes/Main/Mains';
 import Navbar from './componentes/Navbar/Navbar';
 import Footer from './componentes/Footer/footer';
 import NavbarMui from './componentes/NavbarwithMui/NavbarMui';
-
-
+import { Routes, Route } from 'react-router-dom'
+import LoginCandidate from './componentes/Candidate/LoginCandidate/LoginCandidate'
 
 
 
 function App() {
   return (
     <div className="App">
-      <NavbarMui/>  
-        <Mains/>
-      <Footer/> 
+        <Routes>
+          <Route path="/" element={<Mains/>}/>
+          <Route path='/login-candidato' element={<LoginCandidate />}/>
+        </Routes>
+      {/* <Footer/>  */}
     </div>
   );
 }

@@ -1,0 +1,15 @@
+@import './_mobile';
+.container_image img{
+    width: 200px;
+    height: 200px;
+}
+
+.options_buttons {
+    a:hover{
+        text-decoration: none;
+    }
+    .buscar:hover{
+        color: #0DCAF0;
+        background-color: transparent;
+    }
+}

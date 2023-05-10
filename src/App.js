@@ -13,13 +13,9 @@ import NavbarMui from './componentes/NavbarwithMui/NavbarMui';
 function App() {
   return (
     <div className="App">
-      <NavbarMui/>
-     
-      <Mains/>
-      <Footer/>
-      
-
-      
+      <NavbarMui/>  
+        <Mains/>
+      <Footer/> 
     </div>
   );
 }

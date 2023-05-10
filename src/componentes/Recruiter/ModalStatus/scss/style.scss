@@ -1,0 +1,45 @@
+@mixin center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .container {
+    margin-top: 50px;
+  
+    .modal {
+      .modal-head {
+          @include center();
+          margin-top: 20px;
+          margin-bottom: 20px;
+        .status {
+          text-align: center;
+          .modal-title {
+          }
+        }
+      }
+      .modal-body {
+          padding: 20px;
+        .dropdown {
+          .drop-toggle {
+              @include center();
+          }
+          .dropdown-menu {
+              width: 100%;
+            .dropdown-items {
+            }
+          }
+        }
+      }
+      .modal-footer {
+          display: flex;
+          justify-content: space-evenly;
+          align-items: center;
+          margin-bottom: 30px;
+        .success-btn {
+        }
+        .cancel-btn {
+        }
+      }
+    }
+  }

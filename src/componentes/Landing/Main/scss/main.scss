@@ -1,58 +1,70 @@
-@mixin center-users {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
-    margin-bottom: 30px;
-  }
-  
-  @mixin first-cards-containers {
-    width: 50%;
-    height: 50%;
-    font-family: inherit;
-  }
-  
-  @mixin letras {
-    margin-top: 100px;
-    font-family: 'Epilogue';
-    align-items: center;
-    text-indent: 1em;
-    color: #093040;
-  }
-  
-  @mixin second-cards-containers {
-    width: 400px;
-    height: 329px;
-    margin-top: 20px;
-  }
-  
-  .main-container {
+main-container {
     margin-bottom: 100px;
     padding-top: 60px;
+    
   
-    h1 {
+    .match {
       font-family: 'Epilogue';
       align-items: center;
       text-indent: 1em;
       color: #093040;
+      @include mobile{
+        font-size: 16px;
+        line-height: 26px;
+        @include text-center-mobile();
+        
+        
+      }
+     
+    }
+    .text-mobile{
+      
+      @include mobile{
+        @include text-center-mobile();
+       
+        font-weight: bold;
+        
+      
+    }
+      
     }
   
     .first-card-container {
+      
         
       .row {
+        
         
         .left-blank-space {}
   
         .father-container-1 {
-            
+         
           .child-container-1 {
+            @include mobile{
+              display: flex;
+              flex-wrap: wrap;
+              gap: 2rem;
+              margin-top: 2rem;
+            }
             .card-container-1 {
               @include first-cards-containers;
-  
-              .recruiter-img {}
+              
+              
+              .recruiter-img {
+
+              }
   
               .card-body {
-                .card-title {}
-                .card-text {}
+                .card-title {
+                  @include mobile{
+                    display: none;
+                  }
+                }
+                .card-text {
+                  @include mobile{
+                    display: none;
+                  }
+                }
               }
   
               .access-recruiter {
@@ -72,8 +84,17 @@
               .candidate-img {}
   
               .card-body {
-                .card-title {}
-                .card-text {}
+                .card-title {
+                  @include mobile{
+                    display: none;
+                  }
+                }
+                .card-text {
+                  @include mobile{
+                    display: none;
+                  }
+
+                }
               }
   
               .access-candidate {
@@ -90,6 +111,9 @@
     }
   
     .second-cards-container {
+      @include mobile{
+        display: none;
+      }
       .row {
         .col-md-12 {
           .letras {
@@ -137,20 +161,45 @@
         .col-md-12 {
           .letras {
             @include letras;
-  
-            h1 {}
+            @include mobile{
+              
+              margin-right: 2rem;
+              
+              
+            }
+            
+            
+            .last-text{
+              @include mobile{
+              
+                font-size: 24px;
+                line-height: 7vw;
+                margin-bottom: 2rem;
+                word-wrap: break-word;
+                
+                
+              }
+              
+            }
           }
   
           .empleo {
             display: flex;
             justify-content: center;
             padding-right: 300px;
+            @include mobile{
+              text-align: center;
+              padding-right: 0;
+              margin-bottom: 2rem;
+            }
           }
         }
       }
   
       .col-md-3 {
-        .profile-pic {}
+        .profile-pic {
+
+        }
       }
   
       .down-cards {
@@ -160,22 +209,44 @@
           line-height: 42px;
           display: flex;
           justify-content: start;
+          @include mobile{
+            display: none;
+          }
         }
   
-        .slogan {}
+        .slogan {
+          @include mobile{
+            display: none;
+          }
+        }
   
         .check-list {
           margin-bottom: 10px;
+          
   
-          .li-register-1 {
-            .icon-check {}
+          .li-register{
+            @include mobile{
+              line-height: 50px;
+              padding: 0;
+            }
+            .icon-check {
+              @include mobile{
+                margin-right: 0.5rem;
+              }
+            }
           }
         }
   
         .create-account {
-          .btn-create-acc {}
+         
+         
+          .btn-create-acc {
+            @include mobile{
+              display: none;
+             }
+            
+          }
         }
       }
     }
   }
-  

@@ -1,14 +1,11 @@
 import './App.scss';
-import Login from './componentes/Login';
-import Dropdownmenu from './componentes/dropdownmenu/Dropdownmenu';
+
 import Mains from './componentes/Main/Mains';
-import Navbar from './componentes/Navbar/Navbar';
-import Footer from './componentes/Footer/footer';
-import NavbarMui from './componentes/NavbarwithMui/NavbarMui';
 import { Routes, Route } from 'react-router-dom'
 import LoginCandidate from './componentes/Candidate/LoginCandidate/LoginCandidate'
 
-
+import LoginRecruiter from './componentes/Recruiter/LoginRecruiter/LoginRecruiter';
+import Dashboard from './componentes/Recruiter/Dashboard/Dashboard';
 
 function App() {
   return (
@@ -16,6 +13,11 @@ function App() {
         <Routes>
           <Route path="/" element={<Mains/>}/>
           <Route path='/login-candidato' element={<LoginCandidate />}/>
+          <Route path='/login-recruiter' element={<LoginRecruiter/>}/>
+            <Route path="/Dashboard-Recruiter" element={<Dashboard />}>
+              {/* <Route path="messages" element={<DashboardMessages />} />
+              <Route path="tasks" element={<DashboardTasks />} /> */}
+            </Route>
         </Routes>
       {/* <Footer/>  */}
     </div>

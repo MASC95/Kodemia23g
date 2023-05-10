@@ -1,0 +1,253 @@
+  
+  .main-container {
+    margin-bottom: 100px;
+    padding-top: 60px;
+    
+  
+    .match {
+      font-family: 'Epilogue';
+      align-items: center;
+      text-indent: 1em;
+      color: #093040;
+      @include mobile{
+        font-size: 16px;
+        line-height: 26px;
+        @include text-center-mobile();
+        
+        
+      }
+     
+    }
+    .text-mobile{
+      
+      @include mobile{
+        @include text-center-mobile();
+       
+        font-weight: bold;
+        
+      
+    }
+      
+    }
+  
+    .first-card-container {
+      
+        
+      .row {
+        
+        
+        .left-blank-space {}
+  
+        .father-container-1 {
+         
+          .child-container-1 {
+            @include mobile{
+              display: flex;
+              flex-wrap: wrap;
+              gap: 2rem;
+              margin-top: 2rem;
+            }
+            .card-container-1 {
+              @include first-cards-containers;
+              
+              
+              .recruiter-img {
+
+              }
+  
+              .card-body {
+                .card-title {
+                  @include mobile{
+                    display: none;
+                  }
+                }
+                .card-text {
+                  @include mobile{
+                    display: none;
+                  }
+                }
+              }
+  
+              .access-recruiter {
+                @include center-users;
+  
+                .access-btn-rec {}
+              }
+            }
+  
+            .space {
+              width: 200px;
+            }
+  
+            .card-container-2 {
+              @include first-cards-containers;
+  
+              .candidate-img {}
+  
+              .card-body {
+                .card-title {
+                  @include mobile{
+                    display: none;
+                  }
+                }
+                .card-text {
+                  @include mobile{
+                    display: none;
+                  }
+
+                }
+              }
+  
+              .access-candidate {
+                @include center-users;
+  
+                .access-btn-can {}
+              }
+            }
+          }
+        }
+  
+        .right-blank-space {}
+      }
+    }
+  
+    .second-cards-container {
+      @include mobile{
+        display: none;
+      }
+      .row {
+        .col-md-12 {
+          .letras {
+            @include letras;
+  
+            h2 {}
+          }
+        }
+      }
+  
+      .second-cards-row {
+        .second-cards-1 {
+          .card-container-3 {
+            @include second-cards-containers;
+            margin-left: 300px;
+  
+            .video {}
+  
+            .card-body {
+              .card-title {}
+              .card-text {}
+              h6 {}
+            }
+          }
+        }
+  
+        .second-cards-2 {
+          .card-container-4 {
+            @include second-cards-containers;
+  
+            .skills {}
+  
+            .card-body {
+              .card-title {}
+              .card-text {}
+              h6 {}
+            }
+          }
+        }
+      }
+    }
+  
+    .last-container {
+      .row {
+        .col-md-12 {
+          .letras {
+            @include letras;
+            @include mobile{
+              
+              margin-right: 2rem;
+              
+              
+            }
+            
+            
+            .last-text{
+              @include mobile{
+              
+                font-size: 24px;
+                line-height: 7vw;
+                margin-bottom: 2rem;
+                word-wrap: break-word;
+                
+                
+              }
+              
+            }
+          }
+  
+          .empleo {
+            display: flex;
+            justify-content: center;
+            padding-right: 300px;
+            @include mobile{
+              text-align: center;
+              padding-right: 0;
+              margin-bottom: 2rem;
+            }
+          }
+        }
+      }
+  
+      .col-md-3 {
+        .profile-pic {
+
+        }
+      }
+  
+      .down-cards {
+        .final-text {
+          font-family: Epilogue;
+          font-size: 28px;
+          line-height: 42px;
+          display: flex;
+          justify-content: start;
+          @include mobile{
+            display: none;
+          }
+        }
+  
+        .slogan {
+          @include mobile{
+            display: none;
+          }
+        }
+  
+        .check-list {
+          margin-bottom: 10px;
+          
+  
+          .li-register{
+            @include mobile{
+              line-height: 50px;
+              padding: 0;
+            }
+            .icon-check {
+              @include mobile{
+                margin-right: 0.5rem;
+              }
+            }
+          }
+        }
+  
+        .create-account {
+         
+         
+          .btn-create-acc {
+            @include mobile{
+              display: none;
+             }
+            
+          }
+        }
+      }
+    }
+  }

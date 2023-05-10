@@ -1,7 +1,7 @@
 import React from "react";
 import { FaCheck } from "react-icons/fa";
-import './scss/style.scss' 
-/* comentario para verificar que todo este bien */
+import './scss/style.scss'
+
 const Mains = () => {
   return (
     <div className="main-container">

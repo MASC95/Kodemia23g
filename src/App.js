@@ -21,10 +21,12 @@ function App() {
         <Routes>
           <Route path="/" element={<Mains/>}/>
           <Route path='login-candidato' element={<LoginCandidate />}/>
+          {/* aqui las rutas de la seccion candidato */}
           <Route path='dashboard-candidato' element={<DashboardCandidate />}>
             <Route path='home' element={<HomeCandidate/>}/>
             <Route path='profile' element={<ProfileCandidate />}/>
           </Route>
+          {/* aqui las rutas de la seccion reclutador */}
           <Route path='dashboard-reclutador' element={<DashboardRecruiter />}>
             <Route path='home' element={<HomeRecruiter />}/>
           </Route>

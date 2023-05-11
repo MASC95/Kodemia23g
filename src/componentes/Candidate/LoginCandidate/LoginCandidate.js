@@ -10,7 +10,8 @@ export const LoginCandidate = ()=>{
 
     const handleLogin = (e)=>{
         e.preventDefault();
-        navigate('/dasboard-candidato')
+        // console.log(e.target)
+        navigate('/dashboard-candidato')
     }
     return(
         <>
@@ -23,7 +24,7 @@ export const LoginCandidate = ()=>{
                         <img src={logo} alt=""/>
                     </a>
                     <h2  class="text-center text-dark">Bienvenido de vuelta!</h2>
-                    <form class="text-left clearfix">
+                    <form class="text-left clearfix" onSubmit={handleLogin} >
                         <div class="form-group">
                         <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email"/>
                         </div>
@@ -32,7 +33,7 @@ export const LoginCandidate = ()=>{
                         </div>
                         <div class="text-center">
                             <div className="buttons_actions d-grid">  
-                                    <button type="submit" className="buttons btn btn-info btn-lg" onClick={handleLogin}>Enviar</button>               
+                                    <button type="submit" className="buttons btn btn-info btn-lg">Enviar</button>               
                                 </div>
                         </div>
                     </form>

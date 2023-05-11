@@ -2,7 +2,6 @@ import React from "react";
 import { useState } from "react";
 import "./draganddrop.scss";
 import { BsThreeDots } from "react-icons/bs";
-
 const DragandDrop = () => {
     
   const [tasks, setTasks] = useState([

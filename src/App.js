@@ -5,6 +5,7 @@ import Mains from './componentes/Main/Mains';
 import Navbar from './componentes/Navbar/Navbar';
 import Footer from './componentes/Footer/footer';
 import NavbarMui from './componentes/NavbarwithMui/NavbarMui';
+import DragandDrop from './componentes/DragandDrop/DragandDrop';
 
 
 
@@ -13,9 +14,7 @@ import NavbarMui from './componentes/NavbarwithMui/NavbarMui';
 function App() {
   return (
     <div className="App">
-      <NavbarMui/>  
-        <Mains/>
-      <Footer/> 
+      <DragandDrop/>
     </div>
   );
 }

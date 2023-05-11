@@ -16,7 +16,7 @@ const SidebarRecruiter= () => {
           </div>
         </header>
         <nav className="dashboard-nav-list">
-          <Link to={`/welcome-recruiter`}>
+          <Link to={`/dashboard-reclutador/home`}>
           <a href="#!" className="dashboard-nav-item"><FaHome/> &nbsp;Home </a>
           </Link>
           <Link to={`/welcome-recruiter/profile`}>

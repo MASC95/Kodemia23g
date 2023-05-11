@@ -33,6 +33,7 @@ export const DashboardCandidate=()=>{
                             </div>
                         </div>
                     </div>
+                    
                 </div>
             </div>
           </div>

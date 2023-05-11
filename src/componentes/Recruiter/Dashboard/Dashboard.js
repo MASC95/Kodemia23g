@@ -2,6 +2,7 @@ import React from "react";
 import SidebarRecruiter from "../SidebarRecruiter/SidebarRecruiter";
 import { FaBars} from 'react-icons/fa';
 import imgProfile from '../assets/img/profile.png'
+import { Outlet } from "react-router-dom";
 
 
 export const Dashboard=()=>{
@@ -25,10 +26,10 @@ export const Dashboard=()=>{
                     <div className='container'>
                         <div className='card'>
                             <div className='card-header'>
-                                <h1>BIENVENIDO A JOBINDER</h1>
+                                {/* <h1>BIENVENIDO A JOBINDER</h1> */}
                             </div>
                             <div className='card-body'>
-                                <p> Sarah Jhonson </p>
+                                <Outlet />
                             </div>
                         </div>
                     </div>

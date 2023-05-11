@@ -10,6 +10,8 @@ import LoginCandidate from './componentes/Candidate/LoginCandidate/LoginCandidat
 import DashboardCandidate from './componentes/Candidate/DashboardCandidate/DashboardCandidate';
 import ProfileCandidate from './componentes/Candidate/ProfileCandidate/ProfileCandidates';
 import HomeCandidate from './componentes/Candidate/HomeCandidate/HomeCandidate';
+import DashboardRecruiter from './componentes/Recruiter/Dashboard/Dashboard';
+import HomeRecruiter from './componentes/Recruiter/Home/Home';
 
 
 
@@ -22,6 +24,9 @@ function App() {
           <Route path='dashboard-candidato' element={<DashboardCandidate />}>
             <Route path='home' element={<HomeCandidate/>}/>
             <Route path='profile' element={<ProfileCandidate />}/>
+          </Route>
+          <Route path='dashboard-reclutador' element={<DashboardRecruiter />}>
+            <Route path='home' element={<HomeRecruiter />}/>
           </Route>
         </Routes>
       {/* <Footer/>  */}

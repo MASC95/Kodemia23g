@@ -7,7 +7,8 @@ import Softskills from "../../Recruiter/SoftSkills/SoftSkills";
 export const ProfileCandidates=()=>{
     return(
         <>
-    <div className='dashboard'>
+            <FormRecruiter />
+    {/* <div className='dashboard'>
         <SidebarCandidate/>
         <div className='dashboard-app'>
            <header className='dashboard-toolbar'>
@@ -39,7 +40,7 @@ export const ProfileCandidates=()=>{
                 </div>
             </div>
         </div>
-      </div>
+      </div> */}
     </>
     )
     

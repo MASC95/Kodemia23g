@@ -6,6 +6,7 @@ import Navbar from './componentes/Navbar/Navbar';
 import Footer from './componentes/Footer/footer';
 import NavbarMui from './componentes/NavbarwithMui/NavbarMui';
 import DragandDrop from './componentes/DragandDrop/DragandDrop';
+import FormRecruiter from './componentes/Candidate/ProfileCandidate/Form/FormRecruiter';
 
 
 
@@ -14,7 +15,7 @@ import DragandDrop from './componentes/DragandDrop/DragandDrop';
 function App() {
   return (
     <div className="App">
-      <DragandDrop/>
+      <FormRecruiter/>
     </div>
   );
 }

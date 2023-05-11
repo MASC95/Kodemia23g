@@ -3,16 +3,22 @@ import { useState } from 'react'
 
 
 export const UseForm = (initialForm, validateForm) => {
-    const [form, setfirst] = useState(initialForm)
+    const [form, setForm] = useState(initialForm)
     const [errors, setErrrors] = useState({})
     const [Loading, setLoading] = useState(false)
     const [Response, setResponse] = useState(null)
 
     const handleChange =(e) =>{
-
+        const {name, value} = e.target
+        setForm({
+            ...form,
+            [name]: value
+        })
     }
-    const handleBlur =(e)=>{
 
+    const handleBlur =(e)=>{
+        handleChange(e);
+        setErrrors(validateForm(form));
     }
     const handleSubmit = (e)=>{
 
@@ -23,7 +29,8 @@ export const UseForm = (initialForm, validateForm) => {
     Loading,
     Response,
     handleChange,
-    handleBlur,
+    handleBlur, 
     handleSubmit,
  }
 ;}
+

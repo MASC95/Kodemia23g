@@ -2,6 +2,7 @@ import React from "react";
 import SidebarCandidate from "../SidebarCandidate/SidebarCandidate";
 import { FaBars } from "react-icons/fa";
 import imgProfile from '../../Recruiter/assets/img/perfil2.jpg'
+import { Outlet } from "react-router-dom";
 
 export const DashboardCandidate=()=>{
     return(
@@ -23,11 +24,12 @@ export const DashboardCandidate=()=>{
                 <div className='dashboard-content'>
                     <div className='container'>
                         <div className='card'>
-                            <div className='card-header'>
+                            {/* <div className='card-header'>
                                 <h1>BIENVENIDO A JOBINDER</h1>
-                            </div>
+                            </div> */}
                             <div className='card-body'>
-                                <p> Usuario Candidato </p>
+                                {/* <p> Usuario Candidato </p> */}
+                                <Outlet />
                             </div>
                         </div>
                     </div>

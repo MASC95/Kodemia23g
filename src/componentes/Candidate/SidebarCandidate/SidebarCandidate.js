@@ -16,10 +16,10 @@ export const SidebarCandidate=()=>{
           </div>
         </header>
         <nav className="dashboard-nav-list">
-          <Link to={`/welcome-candidate`}>
+          <Link to={`/dashboard-candidato/home`}>
           <a href="#!" className="dashboard-nav-item"><FaHome/> &nbsp;Home </a>
           </Link>
-          <Link to={`/welcome-candidate/profile`}>
+          <Link to={`/dashboard-candidato/profile`}>
           <a href="#!" className="dashboard-nav-item"> <FaUser/> &nbsp;Perfil </a>
           </Link>
           <Link to={`/welcome-candidate/search`}>

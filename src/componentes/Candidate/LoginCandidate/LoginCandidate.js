@@ -2,9 +2,16 @@ import React from "react";
 import login from './img/login.png'
 import logo from './img/logo.png'
 import './scss/style.scss'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-export const LoginCandidate=()=>{
+export const LoginCandidate = ()=>{
+
+    const navigate = useNavigate();
+
+    const handleLogin = (e)=>{
+        e.preventDefault();
+        navigate('/dasboard-candidato')
+    }
     return(
         <>
         <section class="Login-page account">
@@ -25,7 +32,7 @@ export const LoginCandidate=()=>{
                         </div>
                         <div class="text-center">
                             <div className="buttons_actions d-grid">  
-                                    <button type="submit" className="buttons btn btn-info btn-lg">Enviar</button>               
+                                    <button type="submit" className="buttons btn btn-info btn-lg" onClick={handleLogin}>Enviar</button>               
                                 </div>
                         </div>
                     </form>

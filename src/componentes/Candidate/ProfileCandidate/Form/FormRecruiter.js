@@ -1,77 +1,45 @@
 import React from "react";
 import imgProfile from "../../../Recruiter/assets/img/perfil2.jpg";
 import "../scss/style.scss";
-import { UseForm } from "../../hooks/useForm";
-
-const initialForm = {
-    name: "",
-    lastName: "",
-    password: "",
-    age: "",
-    exp: "",
-};
-
-const validationsForm = (form) => {
-    let errors = {};
-    let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
-    let regexLastName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
-    let regexEmail = /^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/;
-    let regexAge = /^\d+$/;
-    let regexPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
-    let regexExp = /^.{1,255}$/;
-
-    if (!form.name.trim()) {
-        errors.name = "El campo 'Nombre' es obligatorio";
-    } else if(!regexName.test(form.name.trim())){
-        errors.name = "El campo 'Nombre' debe contener solo letras y espacios en blanco";
-    }
-
-    if (!form.lastname.trim()) {
-        errors.lastName = "El campo 'Apellido' es obligatorio";
-    } else if (!regexLastName.test(form.lastName.trim())){
-        errors.lastName = "El campo 'Apellido' debe contener solo letras y espacios en blanco";
-    }
-
-    if (!form.password.trim()) {
-        errors.password = "El campo 'email' es obligatorio";
-    }
-    else if (!regexPassword.test(form.password.trim())){
-        errors.password = "Las contraseñas no coinciden "
-    }
-
-    if (!form.age.trim()) {
-        errors.age = "El campo 'edad' es obligatorio";
-    }
-    else if (!regexAge.test(form.test.trim())){
-        errors.age = "El campo 'edad' debe contener solo numeros y espacios en blanco";
-    }
-
-    if (!form.exp.trim()) {
-        errors.exp = "El campo 'experiencia' es obligatorio";
-    }
-    else if (!regexExp.test(form.test.trim())){
-        errors.exp = "El campo 'experiencia' debe contener solo numeros y espacios en blanco";
-    }
-    if (!form.email.trim()){
-        errors.email = "El campo 'email' es obligatorio";
-    }
-    else if (!regexEmail.test(form.test.trim())){
-        errors.email = "El campo 'email' debe contener un email valido";
-    }
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup'
+import { useFormik } from "formik";
+import axios from "axios";
 
 
-    return errors
-};
-export const FormRecruiter = () => {
-  const {
-    form,
-    errors,
-    Loading,
-    Response,
-    handleChange,
-    handleBlur,
-    handleSubmit,
-  } = UseForm(initialForm, validationsForm);
+
+const FormRecruiter = () => {
+    const formik = useFormik({
+      initialValues: {
+        nombre: '',
+        apellido: '',
+        email: '',
+        password: '',
+        age: '',
+        exp: '',
+        escolaridad: ''
+      },
+      validationSchema: Yup.object({
+        nombre: Yup.string().required('Requerido'),
+        apellido: Yup.string().required('Requerido'),
+        email: Yup.string().required('Requerido'),
+        password: Yup.string().required('Requerido'),
+        age: Yup.number().required('Requerido'),
+        exp: Yup.string().required('Requerido'),
+      }),
+      onSubmit: (values) => {
+        /* alert(JSON.stringify(values, null, 2)); */
+        axios.post('url', values)
+          .then((response) => {
+            console.log(response.data);
+          })
+          .catch((error) => {
+            console.error(error); // Aquí puedes manejar los errores de la solicitud
+          });
+      }
+    });
+      
+
 
   return (
     <>
@@ -82,162 +50,169 @@ export const FormRecruiter = () => {
           </div>
           <p className="d-flex justify-content-center" >Archivos permitidos .png, .jpg, jpeg</p>
           <div className="buttons_actions d-flex justify-content-center gap-3">
-            <button type="button" className="buttons btn btn-info text-light" style={{width:'15%', height: '3%' }} >
+            <button type="button" className="buttons btn btn-info text-light" style={{width:'18%', height: '3%' }} >
               Subir
             </button>
-            <button type="button" className="buttons btn btn-danger" style={{width:'15%', height: '3%' }}>
+            <button type="button" className="buttons btn btn-danger" style={{width:'18n%', height: '3%' }}>
               Remover
             </button>
           </div>
         </div>
         <div className="col">
-          <form>
+          <Formik {...formik}>
+
+          <Form >
             <div className="row mb-4">
               <div className="col">
-                <form className="form-outline bg-gray" onSubmit={handleSubmit} >
+                <div className="form-outline bg-gray" >
                   <label className="form-label" for="form6Example1">
                     Nombre
                   </label>
-                  <input
+                  <Field
                     type="text"
-                    id="title"
+                    id="name"
                     name="name"
-                    className="form-control"
                     placeholder="Nombre"
-                    onBlur={handleBlur}
-                    onChange={handleChange} 
-                    value={form.name}
-                    required
+                    className={`form-control ${formik.touched.name && formik.errors.name ? 'border border-danger' : 'border border-secondary'}`}
+                    value={formik.values.name}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
                   />
-                </form>
-                {errors.name && <div className="alert alert-warning d-flex justify-content-center" role="alert" style={{fontSize: '12px', fontWeight:'bold'}} >{errors.name}</div>}
+                  {formik.touched.name && formik.errors.name && (<span className='text-danger'>{formik.errors.name}</span>)}
+                </div>
+              
+                
               </div>
               <div className="col">
-                <form className="form-outline">
+                <div className="form-outline">
                   <label className="form-label" for="form6Example1">
                     Apellido
                   </label>
-                  <input
+                  <Field
                     type="text"
-                    id="city"
-                    className="form-control"
+                    id="lastName"
                     placeholder="Apellido"
                     name="lastName"
-                    onBlur={handleBlur}
-                    onChange={handleChange} 
-                    value={form.lastName}
-                    required
+                    className={`form-control ${formik.touched.lastName && formik.errors.lastName ? 'border border-danger' : 'border border-secondary'}`}
+                    value={formik.values.lastName}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
                   />
-                </form>
-                {errors.lastName && <div className="alert alert-warning d-flex justify-content-center" role="alert" style={{fontSize: '12px', fontWeight:'bold'}} >{errors.lastName}</div>}
+                </div>
+               
               </div>
             </div>
             <div className="row mb-4">
               <div className="col">
-                <form className="form-outline bg-gray">
+                <div className="div-outline bg-gray">
                   <label className="form-label" for="form6Example1">
                     Edad:
                   </label>
-                  <input
+                  <Field
                     type="text"
-                    id="edad"
-                    className="form-control"
+                    id="age"
                     placeholder="Edad"
                     name="age"
-                    onBlur={handleBlur}
-                    onChange={handleChange} 
-                    value={form.age}
-                    required
+                    className={`form-control ${formik.touched.age && formik.errors.age ? 'border border-danger' : 'border border-secondary'}`}
+                    value={formik.values.age}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
                   />
-                </form>
-                {errors.age && <div className="alert alert-warning d-flex justify-content-center" role="alert" style={{fontSize: '12px', fontWeight:'bold'}} >{errors.age}</div>}
+                </div>
+          
               </div>
               <div className="col">
-                <form className="form-outline">
+                <div className="form-outline">
                   <label className="form-label" for="form6Example1">
                     Escolaridad
                   </label>
-                  <select id="escolaridad" className="form-control">
+                  <select className={`form-control ${formik.touched.type_work && formik.errors.type_work ? 'border border-danger':'border border-secondary' }`}
+                                name="escolaridad"
+                                id="escolaridad"
+                                value={formik.values.escolaridad}
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}> 
                     <option>Selecciona</option>
                     <option>Maestria</option>
                     <option>Licenciatura</option>
                     <option>Carrera Técnica</option>
                   </select>
-                </form>
+                </div>
               </div>
             </div>
             <div className="row mb-4">
               <div className="col">
-                <form className="form-outline bg-gray">
+                <div className="form-outline bg-gray">
                   <label className="form-label" for="form6Example1">
                     Email
                   </label>
-                  <input
-                    type="text"
+                  <Field
+                    type="email"
                     id="email"
-                    className="form-control"
                     placeholder="Email"
                     name="email"
-                    onBlur={handleBlur}
-                    onChange={handleChange} 
-                    value={form.email}
-                    required
+                    className={`form-control ${formik.touched.email && formik.errors.email ? 'border border-danger' : 'border border-secondary'}`}
+                    value={formik.values.email}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
                   />
-                </form>
-                {errors.email && <div className="alert alert-warning d-flex justify-content-center" role="alert" style={{fontSize: '12px', fontWeight:'bold'}} >{errors.email}</div>}
+                </div>
+              
               </div>
               <div className="col">
-                <form className="form-outline">
+                <div className="form-outline">
                   <label className="form-label" for="form6Example1">
                     Reset Password
                   </label>
-                  <input
+                  <Field
                     type="password"
                     id="password"
-                    className="form-control"
                     placeholder="Reset Password"
                     name="password"
-                    onBlur={handleBlur}
-                    onChange={handleChange} 
-                    value={form.password}
-                    required
+                    className={`form-control ${formik.touched.password && formik.errors.password ? 'border border-danger' : 'border border-secondary'}`}
+                    value={formik.values.password}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
                   />
-                </form>
-                {errors.password && <div className="alert alert-warning d-flex justify-content-center" role="alert" style={{fontSize: '12px', fontWeight:'bold'}} >{errors.password}</div>}
+                  <ErrorMessage name="password"/>
+                </div>
+               
               </div>
             </div>
             <div className="row mb-4">
               <div className="col">
-                <form className="form-outline">
+                <div className="form-outline">
                   <label className="form-label" for="form6Example2">
                     Experiencia
                   </label>
-                  <input
+                  <Field
                     type="text"
-                    id="experencia"
-                    className="form-control"
+                    id="exp"
                     placeholder="Experiencia"
                     name="exp"
-                    onBlur={handleBlur}
-                    onChange={handleChange} 
-                    value={form.exp}
-                    required
+                    className={`form-control ${formik.touched.exp && formik.errors.exp ? 'border border-danger' : 'border border-secondary'}`}
+                    value={formik.values.exp}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
                   />
-                </form>
-                {errors.exp && <div className="alert alert-warning d-flex justify-content-center" role="alert" style={{fontSize: '12px', fontWeight:'bold'}} >{errors.exp}</div>}
+                </div>
+            
               </div>
             </div>
             <div className="buttons_actions d-flex justify-content-center gap-3">
               {/* <button type="button" className="buttons btn btn-info">Cancelar</button> */}
 
-              <button type="button" className="buttons btn btn-info text-light" value='enviar' >
+              <button type="submit" className="buttons btn btn-info text-light" value='enviar' >
                 Guardar
               </button>
             </div>
-          </form>
+          </Form>
+        
+          </Formik>
         </div>
       </div>
     </>
   );
 };
+
 export default FormRecruiter;

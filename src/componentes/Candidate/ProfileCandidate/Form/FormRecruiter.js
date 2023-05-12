@@ -20,16 +20,20 @@ const FormRecruiter = () => {
         escolaridad: ''
       },
       validationSchema: Yup.object({
-        nombre: Yup.string().required('Requerido'),
-        apellido: Yup.string().required('Requerido'),
-        email: Yup.string().required('Requerido'),
-        password: Yup.string().required('Requerido'),
-        age: Yup.number().required('Requerido'),
-        exp: Yup.string().required('Requerido'),
+        nombre: Yup.string().required('El Nombres es Requerido').min(2, 'El nombre debe tener al menos 2 caracteres').max(50, 'El nombre debe tener como máximo 50 caracteres'),
+        apellido: Yup.string().required('El Apellido es Requerido').min(2, 'El apellido debe tener al menos 2 caracteres').max(50, 'El apellido debe tener como máximo 50 caracteres'),
+        email: Yup.string().required('El correo electrónico es requerido').email('ingrese un correo electrónico válido'),
+        password: Yup.string().required('Requerido').min(8, 'La contraseña debe tener al menos 8 caracteres')
+        .matches(
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/,
+          'La contraseña debe contener al menos una letra mayúscula, una letra minúscula, un número y un carácter especial'
+        ),
+        age: Yup.number().required('El campo es requerido').min(18, 'Debe ser mayor de 18 años'),
+        exp: Yup.string().required('Ingrese una experiencia válida'),
       }),
       onSubmit: (values) => {
         /* alert(JSON.stringify(values, null, 2)); */
-        axios.post('url', values)
+        axios.post('http://107.23.237.6/api/v1/users/', values)
           .then((response) => {
             console.log(response.data);
           })

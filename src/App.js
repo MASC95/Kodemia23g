@@ -1,11 +1,42 @@
-import './App.css';
-import Navbar from './componentes/Navbar';
+import './App.scss';
+import Login from './componentes/Login';
+import Dropdownmenu from './componentes/dropdownmenu/Dropdownmenu';
+import Mains from './componentes/Main/Mains';
+import Navbar from './componentes/Navbar/Navbar';
+import Footer from './componentes/Footer/footer';
+import NavbarMui from './componentes/NavbarwithMui/NavbarMui';
+import { Routes, Route } from 'react-router-dom'
+import LoginCandidate from './componentes/Candidate/LoginCandidate/LoginCandidate'
+import DashboardCandidate from './componentes/Candidate/DashboardCandidate/DashboardCandidate';
+import ProfileCandidate from './componentes/Candidate/ProfileCandidate/ProfileCandidates';
+import HomeCandidate from './componentes/Candidate/HomeCandidate/HomeCandidate';
+import DashboardRecruiter from './componentes/Recruiter/Dashboard/Dashboard';
+import HomeRecruiter from './componentes/Recruiter/Home/Home';
+import AppVacancyCandidate from './componentes/Candidate/VacancyCandidate/AppVacancyCandidate';
+import ListMyAppVacancy from './componentes/Candidate/VacancyCandidate/ListMyAppVacancy';
+
+
 
 function App() {
   return (
     <div className="App">
-      <Navbar/>
-    </div>
+    <Routes>
+      <Route path="/" element={<Mains />} />
+      <Route path="/login-candidato" element={<LoginCandidate />} />
+      {/* aquí las rutas de la sección candidato */}
+      <Route path="/dashboard-candidato" element={<DashboardCandidate />}>
+        <Route path="home" element={<HomeCandidate />} />
+        <Route path="profile" element={<ProfileCandidate />} />
+        <Route path="vacancy" element={<AppVacancyCandidate />} />
+        <Route path="list-my-app-vacancy" element={<ListMyAppVacancy />}/>
+      </Route>
+      {/* aquí las rutas de la sección reclutador */}
+      <Route path="/dashboard-reclutador" element={<DashboardRecruiter />}>
+        <Route path="home" element={<HomeRecruiter />} />
+      </Route>
+    </Routes>
+    {/* <Footer/> */}
+  </div>
   );
 }
 

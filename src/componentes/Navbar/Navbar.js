@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaHome, FaBell, FaUser, FaSearch } from 'react-icons/fa';
 import './Navbar.scss';
-
+//borra todo el navbar para que no marque problemas con el railway
 const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">

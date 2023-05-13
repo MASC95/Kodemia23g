@@ -9,6 +9,8 @@ import ProfileCandidate from './componentes/Candidate/ProfileCandidate/ProfileCa
 import HomeCandidate from './componentes/Candidate/HomeCandidate/HomeCandidate';
 import DashboardRecruiter from './componentes/Recruiter/Dashboard/Dashboard';
 import HomeRecruiter from './componentes/Recruiter/Home/Home';
+import AppVacancyCandidate from './componentes/Candidate/VacancyCandidate/AppVacancyCandidate';
+import ListMyAppVacancy from './componentes/Candidate/VacancyCandidate/ListMyAppVacancy';
 
 import LoginRecruiter from './componentes/Recruiter/LoginRecruiter/LoginRecruiter';
 import ProfileRecruiter from './componentes/Recruiter/Profile/ProfileRecruiter';
@@ -19,6 +21,7 @@ import AddVacancy from './componentes/Recruiter/Vacancy/AddVacancy';
 function App() {
   return (
     <div className="App">
+
         <Routes>
           <Route path="/" element={<Mains/>}/>
 
@@ -44,6 +47,7 @@ function App() {
         </Routes>
       {/* <Footer/>  */}
     </div>
+
   );
 }
 

@@ -1,6 +1,7 @@
 import React from "react";
 
 export const PatchVacancy=()=>{
+    
     return(
         <>
            <div className="container mt-2 p-5 w-100 " id="formGral">

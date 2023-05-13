@@ -46,12 +46,12 @@ export const LoginRecruiter=()=>{
               console.log(loginRecruiter.data)
               localStorage.setItem('token',loginRecruiter.data.access_token)
               
-            //   setFormValues(loginRecruiter.data)
-            //   const id=loginRecruiter.data['_id']
-            //   console.log(loginRecruiter.data['_id'])
-            //   setLoading(false)
-            //   resetForm()
-            //   navigate(`/Dashboard-Recruiter/${id}`)
+              setFormValues(loginRecruiter.data)
+              const id=loginRecruiter.data['_id']
+              console.log(loginRecruiter.data['_id'])
+              setLoading(false)
+              resetForm()
+              navigate(`/Dashboard-Recruiter/${id}`)
             }else{
                 alert('Todos los datos son necesarios')
             }

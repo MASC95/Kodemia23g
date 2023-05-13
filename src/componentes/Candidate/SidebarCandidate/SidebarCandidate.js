@@ -22,10 +22,10 @@ export const SidebarCandidate=()=>{
           <Link to={`/dashboard-candidato/profile`}>
           <a href="#!" className="dashboard-nav-item"> <FaUser/> &nbsp;Perfil </a>
           </Link>
-          <Link to={`/welcome-candidate/search`}>
+          <Link to={`/dashboard-candidato/search`}>
           <a href="#!" className="dashboard-nav-item"> <FaSearch/> &nbsp;Buscar </a>
           </Link>
-          <Link to={`/welcome-candidate/my-app-vacancy`}>
+          <Link to={`/dashboard-candidato/app-vacancies`}>
           <a href="#!" className="dashboard-nav-item"><FaSuitcase/> &nbsp;Mis vacantes </a>
           </Link>
           <a href="#!" className="dashboard-nav-item"><FaSignOutAlt/> &nbsp;Logout </a>

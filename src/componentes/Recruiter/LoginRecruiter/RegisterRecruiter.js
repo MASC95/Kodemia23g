@@ -35,9 +35,11 @@ export const RegisterRecruiter=()=>{
                     </div>
                   </div>
                 </form>
-                <Link to={`/loginRecruiter`}>
-                <p className="mt-20">Ya tienes una cuenta?<a href="#"> Accede</a></p>
+                <p className="mt-20 text-black">Ya tienes una cuenta?
+                <Link to={`/login-recruiter`}>
+                <a href="#"> Accede</a>
                 </Link>
+                </p>
                 </div>
               </div>
             <div className="col-md-6 col-md-offset-3">

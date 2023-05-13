@@ -15,35 +15,36 @@ export const LoginCandidate = ()=>{
     }
     return(
         <>
-        <section class="Login-page account">
-            <div class="container">
-                <div class="row">
-                <div class="col-md-6 col-md-offset-3">
-                    <div class="block text-center">
-                    <a class="logo_Jobinder" href="index.html">
+        <section className="Login-page account">
+            <div className="container">
+                <div className="row">
+                <div className="col-md-6 col-md-offset-3">
+                    <div className="block text-center">
+                    <a className="logo_Jobinder" href="index.html">
                         <img src={logo} alt=""/>
                     </a>
                     <h2  class="text-center text-dark">Bienvenido de vuelta!</h2>
                     <form class="text-left clearfix" onSubmit={handleLogin} >
                         <div class="form-group">
                         <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email"/>
+
                         </div>
-                        <div class="form-group">
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"/>
+                        <div className="form-group">
+                        <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password"/>
                         </div>
-                        <div class="text-center">
+                        <div className="text-center">
                             <div className="buttons_actions d-grid">  
                                     <button type="submit" className="buttons btn btn-info btn-lg">Enviar</button>               
                                 </div>
                         </div>
                     </form>
                     <Link to={`/registerCandidate`}>
-                    <p class="mt-20">No tienes una cuenta?<a href="#"> Crea una con nosotros</a></p>
+                    <p className="mt-20">No tienes una cuenta?<a href="#"> Crea una con nosotros</a></p>
                     </Link>
                     </div>
                 </div>
-                <div class="col-md-6 col-md-offset-3">
-                    <div class="block text-center  shadow-none">
+                <div className="col-md-6 col-md-offset-3">
+                    <div className="block text-center  shadow-none">
                     <img className="container w-100 h-50" src={login}/>
                     </div>
                 </div>

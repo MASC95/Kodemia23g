@@ -9,7 +9,7 @@ export const AppVacancyCandidate=()=>
         <>
                         <div className='card-body'>
                            <h1 className="text-start">Vacantes aplicadas</h1>
-                           {/* <ListMyAppVacancy/> */}
+                           <ListMyAppVacancy/>
                         </div>
             
         </>

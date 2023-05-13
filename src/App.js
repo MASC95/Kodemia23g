@@ -8,6 +8,7 @@ import DashboardCandidate from './componentes/Candidate/DashboardCandidate/Dashb
 import ProfileCandidate from './componentes/Candidate/ProfileCandidate/ProfileCandidates';
 import HomeCandidate from './componentes/Candidate/HomeCandidate/HomeCandidate';
 import DashboardRecruiter from './componentes/Recruiter/Dashboard/Dashboard';
+import AppVacancyCandidate from './componentes/Candidate/VacancyCandidate/AppVacancyCandidate';
 import HomeRecruiter from './componentes/Recruiter/Home/Home';
 
 import Buscar from './componentes/Candidate/BuscarCandidate/Buscar';
@@ -34,7 +35,7 @@ function App() {
             <Route path='home' element={<HomeCandidate/>}/>
             <Route path='profile' element={<ProfileCandidate />}/>
             <Route path='search' element={<Buscar/>}/>
-            {/* <Route path='app-vacancies' element={<AppVacancyCandidate/>}/> */}
+            <Route path='app-vacancies' element={<AppVacancyCandidate/>}/>
 
           </Route>
           {/* aqui las rutas de la seccion reclutador */}

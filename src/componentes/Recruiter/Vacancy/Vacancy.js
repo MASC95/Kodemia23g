@@ -1,27 +1,36 @@
-import React from "react";
+import {React, useEffect, useState} from "react";
 import SidebarRecruiter from "../SidebarRecruiter/SidebarRecruiter";
 import ListVacancy from "./ListVacancy";
 import {FaPlus, FaBars} from 'react-icons/fa'
 import imgProfile from '../assets/img/profile.png'
-import {Link} from 'react-router-dom'
+import {Link,Outlet,useParams} from 'react-router-dom'
+import { endpoints } from "../services/endpoints";
+import axios from "axios";
+
 
 export const Vacancy=()=>{
+    const [profileInformation,setProfileInformation]=useState([])
+    const [isLoading,setLoading]=useState(true)
+    const params=useParams();
+    const {id}=params
+    console.log(id)
+    useEffect(()=>{
+        const fetchData=async()=>{
+            try {
+                const endpointURL= `${endpoints.getByUser}/${id}`;
+                const result= await axios.get(endpointURL)
+                setProfileInformation(result.data)
+                console.log(result.data[0])
+            } catch (error) {
+                console.log(error)
+            } finally{
+                setLoading(false)
+            }         
+        };
+        fetchData()
+    },[id]);
     return(
         <>
-        <div className='dashboard'>
-            <SidebarRecruiter/>
-            <div className='dashboard-app'>
-               <header className='dashboard-toolbar'>
-                    <div className="row profile-container">
-                        <div className="col">
-                            <a href="#!" className="menu-toggle"><FaBars/></a>
-                        </div> 
-                    <div className="col image-container">
-                        <p>Sarah Jhonson</p>
-                        <img src={imgProfile}/>
-                    </div>
-                    </div>
-                </header>
                 <div className='dashboard-content'>
                     <div className='container'>
                         <div className='card'>
@@ -30,7 +39,7 @@ export const Vacancy=()=>{
                                 <div className='card-header d-flex gap-5'>
                                     <h1 className="text-start"><b>Vacantes</b></h1>
                                        <div className="d-flex h-100  justify-content-around">
-                                        <Link to={`/recruiter-vacancy/addNew`}>
+                                        <Link to={`/Dashboard-Recruiter/${id}/vacancy-new`}>
                                          <button type="submit" className="text-light buttons btn btn-info btn-lg"> Agregar Nuevo</button>
                                         </Link>
                                        </div> 
@@ -39,12 +48,12 @@ export const Vacancy=()=>{
                             </div>
                             <div className='card-body'>
                                 <ListVacancy/>
+                                <Outlet/>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-          </div>
+       
         </>
     )
 }

@@ -40,9 +40,11 @@ const Mains = () => {
                   </p>
                 </div>
                 <div className="access-recruiter">
+                  <Link to={"/login-recruiter"}>
                   <button type="button" class="access-btn-rec btn btn-primary">
                     Accede como Reclutador
                   </button>
+                  </Link>
                 </div>
               </div>
 
@@ -64,12 +66,11 @@ const Mains = () => {
                   </p>
                 </div>
                 <div className="access-candidate">
-                  <button
-                    type="button"
-                    className="acces-btn-can btn btn-primary d-flex "
-                  >
-                    <Link to="/login-candidato">Accede como Candidato</Link>
+                <Link to="/login-candidato">
+                  <button type="button" className="access-btn-rec btn btn-primary">
+                    Accede como Candidato
                   </button>
+                  </Link>
                 </div>
               </div>
             </div>

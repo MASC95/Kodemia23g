@@ -10,8 +10,7 @@ import {
   
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import SearchIcon from '@mui/icons-material/Search';
-import { Home, Notifications, Person } from '@mui/icons-material';
+import imgLogo from '../../Recruiter/assets/img/logo.png'
 
 const theme = createTheme({
   palette: {
@@ -93,17 +92,17 @@ export default function NavbarComponent() {
         <AppBar>
       <Navbar position="static">
         <Toolbar>
-          <IconButton
+          {/* <IconButton
             edge="start"
             color="inherit"
             aria-label="open drawer"
           >
             <MenuIcon />
-          </IconButton>
+          </IconButton> */}
           <Logo variant="h6" noWrap>
-            Jobinder
+            <img src={imgLogo} style={{width:"150px"}} alt=''/>
           </Logo>
-          <Search>
+          {/* <Search>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -113,8 +112,8 @@ export default function NavbarComponent() {
             />
           </Search>
           <Box sx={{ flexGrow: 1 }} />
-          <LoginButton>Iniciar sesión </LoginButton>
-        
+          <LoginButton>Iniciar sesión</LoginButton>
+         */}
           
 
         </Toolbar>

@@ -27,7 +27,7 @@ export const ListBuscar=()=>{
                     <td>Otto</td>
                     <td className="options_buttons d-flex justify-content-center gap-3">
                           <button type="submit" className="btn btn-outline-info buscar">Aplicar</button>
-                        <Link to="/welcome-candidate/search-vacancy">
+                        <Link to="/Dashboard-candidato/detail-vacancy">
                           <button type="submit" href="" className="btn btn-info text-light">Abrir</button>
                         </Link>
                     </td>

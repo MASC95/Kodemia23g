@@ -40,7 +40,7 @@ export const LoginCandidate = ()=>{
                                 </div>
                         </div>
                     </form>
-                    <p className="mt-20 text-black">No tienes una cuenta?
+                    <p className="mt-20 text-black text-decoration-none">No tienes una cuenta?
                     <Link to={`/register-candidato`}>
                     <a href="#"> Crea una con nosotros</a>
                     </Link>

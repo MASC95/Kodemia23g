@@ -1,6 +1,7 @@
 import React from "react";
 import {FaEye, FaCheck} from 'react-icons/fa'
 import {Link} from 'react-router-dom'
+import Modalstatus from "../ModalStatus/Modalstatus";
 import './style.scss'
 export const Details=()=>{
     return(
@@ -23,10 +24,10 @@ export const Details=()=>{
                     <td>Mark</td>
                     <td>Otto</td>
                     <td className="options_buttons d-flex justify-content-center gap-3">
-                        <Link to={`/recruiter-vacancy/id/candidate`}>
+                        <Link to={`/Dashboard-Recruiter/profile-candidato`}>
                             <a href=""><FaEye className="icon_eye"/></a>
                         </Link>
-                           <a href=""><FaCheck className="icon_check"/></a>
+                        {/* <a href="" onClick={handleOpenModal}><FaCheck className="icon_check"/></a> */}
                     </td>
                     </tr>
                 </tbody>

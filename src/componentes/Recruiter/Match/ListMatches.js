@@ -25,7 +25,7 @@ export const ListMatches=()=>{
                     <td>Otto</td>
                     <td>Mark</td>
                     <td className="options_buttons  d-flex justify-content-center gap-3">
-                      <Link to={`/recruiter-vacancy/matchDetails/id`}>
+                      <Link to={`/Dashboard-Recruiter/details-match`}>
                         <a href=""><FaEye/></a>
                       </Link>
                         <a href=""><FaEdit className="icon_edit"/></a>

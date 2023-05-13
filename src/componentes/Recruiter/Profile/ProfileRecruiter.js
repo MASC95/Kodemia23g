@@ -32,28 +32,11 @@ export const ProfileRecruiter=()=>{
     console.log(profileInformation)
     return(
         <>
-    {/* <div className='dashboard'>
-        <SidebarRecruiter/>
-        <div className='dashboard-app'> */}
-           {/* <Header postdata={profileInformation}/>         */}
-             {/* <div className='dashboard-content'>
-                <div className='container'>
-                    <div className='card'>
-                        <div className="row">
-                           <div className="col">
-                            <div className='card-header d-flex gap-5'>
-                                  </div>
-                            </div> 
-                        </div>
-                        <div className='card-body'>
-                           <h1 className="text-start">Información General</h1> */}
-                            <FormRecruiter/>
-                        {/* </div>
-                    </div>
-                </div>
-            </div>
+        <div className='card-body'>
+           <h1 className="text-start">Información General</h1> 
+            <FormRecruiter/>
         </div>
-      </div> */}
+                   
     </>
     )
     

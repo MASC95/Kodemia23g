@@ -12,27 +12,31 @@ import ProfileCandidate from './componentes/Candidate/ProfileCandidate/ProfileCa
 import HomeCandidate from './componentes/Candidate/HomeCandidate/HomeCandidate';
 import DashboardRecruiter from './componentes/Recruiter/Dashboard/Dashboard';
 import HomeRecruiter from './componentes/Recruiter/Home/Home';
+import AppVacancyCandidate from './componentes/Candidate/VacancyCandidate/AppVacancyCandidate';
+import ListMyAppVacancy from './componentes/Candidate/VacancyCandidate/ListMyAppVacancy';
 
 
 
 function App() {
   return (
     <div className="App">
-        <Routes>
-          <Route path="/" element={<Mains/>}/>
-          <Route path='login-candidato' element={<LoginCandidate />}/>
-          {/* aqui las rutas de la seccion candidato */}
-          <Route path='dashboard-candidato' element={<DashboardCandidate />}>
-            <Route path='home' element={<HomeCandidate/>}/>
-            <Route path='profile' element={<ProfileCandidate />}/>
-          </Route>
-          {/* aqui las rutas de la seccion reclutador */}
-          <Route path='dashboard-reclutador' element={<DashboardRecruiter />}>
-            <Route path='home' element={<HomeRecruiter />}/>
-          </Route>
-        </Routes>
-      {/* <Footer/>  */}
-    </div>
+    <Routes>
+      <Route path="/" element={<Mains />} />
+      <Route path="/login-candidato" element={<LoginCandidate />} />
+      {/* aquí las rutas de la sección candidato */}
+      <Route path="/dashboard-candidato" element={<DashboardCandidate />}>
+        <Route path="home" element={<HomeCandidate />} />
+        <Route path="profile" element={<ProfileCandidate />} />
+        <Route path="vacancy" element={<AppVacancyCandidate />} />
+        <Route path="list-my-app-vacancy" element={<ListMyAppVacancy />}/>
+      </Route>
+      {/* aquí las rutas de la sección reclutador */}
+      <Route path="/dashboard-reclutador" element={<DashboardRecruiter />}>
+        <Route path="home" element={<HomeRecruiter />} />
+      </Route>
+    </Routes>
+    {/* <Footer/> */}
+  </div>
   );
 }
 

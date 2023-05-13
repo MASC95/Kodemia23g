@@ -20,9 +20,11 @@ export const LoginCandidate = ()=>{
                 <div className="row">
                 <div className="col-md-6 col-md-offset-3">
                     <div className="block text-center">
-                    <a className="logo_Jobinder" href="index.html">
+                    <Link to={'/'}>
+                    <a className="logo_Jobinder" href="#!">
                         <img src={logo} alt=""/>
                     </a>
+                     </Link>
                     <h2  class="text-center text-dark">Bienvenido de vuelta!</h2>
                     <form class="text-left clearfix" onSubmit={handleLogin} >
                         <div class="form-group">

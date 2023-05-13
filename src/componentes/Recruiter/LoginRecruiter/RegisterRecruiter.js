@@ -12,9 +12,11 @@ export const RegisterRecruiter=()=>{
             <div className="row">
               <div className="col-md-6 col-md-offset-3">
                 <div className="block text-center">
-                <a className="logo_Jobinder" href="index.html">
+                  <Link to={'/'}>
+                <a className="logo_Jobinder" href="#!">
                     <img src={logo} alt=""/>
                 </a>
+                  </Link>
                 <h2 className="text-center">Bienvenido</h2>
                 <form className="text-left clearfix">
                     <div className="form-group">

@@ -5,13 +5,23 @@
   }
   
   .container {
-    margin-top: 50px;
+   
+    .button-edit{
+      background-color: transparent;
+      border-color: #fff;
+    }
+    
+    .icon_edit{
+      color: #1DD75B;
+      font-size: 20px;
+      
+     }
   
     .modal {
       .modal-head {
           @include center();
-          margin-top: 20px;
-          margin-bottom: 20px;
+          // margin-top: 10px;
+          // margin-bottom: 20px;
         .status {
           text-align: center;
           .modal-title {

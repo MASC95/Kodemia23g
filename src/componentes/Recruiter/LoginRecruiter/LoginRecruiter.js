@@ -1,5 +1,5 @@
 import React from "react";
-import { endpoints } from "../services/endpoints";
+import endpoints from "../services/endpoints";
 import login from './img/login.png'
 import logo from './img/logo.png'
 import './scss/style.scss'
@@ -34,28 +34,28 @@ export const LoginRecruiter=()=>{
 
     const onFormSubmit=(event)=>{
         event.preventDefault();
-        loginCallback()     
-         
+         loginCallback()
     }
 
     const loginCallback=async()=>{
         try {
             if(importantData){
                 console.log(formValues)
-              const loginRecruiter=await axios.post(endpoints.loginRecruiter,formValues);
-              console.log(loginRecruiter.data)
-              localStorage.setItem('token',loginRecruiter.data.access_token)
+              const loginRecruiter= await endpoints.loginAxios(formValues);
+              console.log(loginRecruiter)
+              window.localStorage.setItem('accessToken',JSON.stringify(loginRecruiter))
+              window.localStorage.setItem('token',loginRecruiter.access_token)
+              //   localStorage.setItem('token',loginRecruiter.access_token)
               
-              setFormValues(loginRecruiter.data)
-              const id=loginRecruiter.data['_id']
-              console.log(loginRecruiter.data['_id'])
+              setFormValues(loginRecruiter)
               setLoading(false)
               resetForm()
-              navigate(`/Dashboard-Recruiter/${id}`)
+              navigate(`/Dashboard-Recruiter/`)
             }else{
                 alert('Todos los datos son necesarios')
             }
           } catch (error) {
+              alert('Credenciales invalidas')
               console.log('error')
           }
     }

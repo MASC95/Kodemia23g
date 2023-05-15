@@ -4,12 +4,23 @@ import ListVacancy from "./ListVacancy";
 import {FaPlus, FaBars} from 'react-icons/fa'
 import imgProfile from '../assets/img/profile.png'
 import {Link,Outlet,useParams} from 'react-router-dom'
-import { endpoints } from "../services/endpoints";
 import axios from "axios";
-
+import { endpointsGral } from "../services/vacancy";
 
 export const Vacancy=()=>{
- 
+    const [vacancyAll,setVacancyAll]=useState([])
+    const [isLoading, setIsLoading]=useState(true)
+
+    useEffect(()=>{
+        const fetch=async()=>{
+            const allVacancies=await axios.get(endpointsGral.vacancyURL)
+            const datas=allVacancies.data['item']
+            setVacancyAll(datas['docs'])
+            console.log(datas['docs'])
+        }
+        fetch()
+    },[])
+ console.log(vacancyAll)
     return(
         <>
                 <div className='dashboard-content'>
@@ -28,7 +39,7 @@ export const Vacancy=()=>{
                                 </div> 
                             </div>
                             <div className='card-body'>
-                                <ListVacancy/>
+                                <ListVacancy postdata={vacancyAll}/>
                                 <Outlet/>
                             </div>
                         </div>

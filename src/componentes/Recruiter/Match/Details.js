@@ -27,7 +27,7 @@ export const Details=()=>{
                         <Link to={`/Dashboard-Recruiter/profile-candidato`}>
                             <a href=""><FaEye className="icon_eye"/></a>
                         </Link>
-                        {/* <a href="" onClick={handleOpenModal}><FaCheck className="icon_check"/></a> */}
+                        <a href=""><FaCheck className="icon_check"/></a>
                     </td>
                     </tr>
                 </tbody>

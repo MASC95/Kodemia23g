@@ -21,6 +21,7 @@ import Vacancy from './componentes/Recruiter/Vacancy/Vacancy';
 import Match from './componentes/Recruiter/Match/Match';
 import MatchDetails from './componentes/Recruiter/Match/MatchDetails';
 import AddVacancy from './componentes/Recruiter/Vacancy/AddVacancy';
+import EditVacancy from './componentes/Recruiter/Vacancy/EditVacancy';
 import Candidate from './componentes/Recruiter/Profile/ProfileCandidate';
 
 
@@ -48,6 +49,7 @@ function App() {
                <Route path='profile' element={<ProfileRecruiter />} />
                <Route path='vacancy' element={<Vacancy />}/>
                <Route path='vacancy-new' element={<AddVacancy/>}/>
+               <Route path='vacancy-edit' element={<EditVacancy/>}/>
                <Route path='match' element={<Match />} />
                <Route path='details-match' element={<MatchDetails/>}/>
                <Route path='profile-candidato' element={<Candidate/>}/>

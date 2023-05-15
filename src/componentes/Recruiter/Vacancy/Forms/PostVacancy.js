@@ -1,18 +1,18 @@
 import {React,useEffect,useState} from "react";
 import axios from "axios";
-import { endpoints } from "../../services/endpoints";
+import { endpointsGral } from "../../services/vacancy";
+// import { endpoints } from "../../services/endpoints";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from 'yup'
 export const PostVacancy=()=>{
-    const [formValues,setFormValues]=useState({})
-    const [isLoading,setLoading]=useState(true)
+    
     const formik= useFormik({
         initialValues: {
-            company:'64406a93e56432b37db279d0',
+            companyName:'64406a93e56432b37db279d0',
             title:'',
-            type_work:'',
-            modalidad:'',
+            type:'',
+            mode:'',
             city:'',
             salary:'',
             status:'',
@@ -20,68 +20,29 @@ export const PostVacancy=()=>{
         },
         validationSchema:Yup.object({
             title:Yup.string().required('Requerido'),
-            type_work:Yup.string().required('Requerido'),
-            modalidad:Yup.string().required('Requerido'),
+            type:Yup.string().required('Requerido'),
+            mode:Yup.string().required('Requerido'),
             city:Yup.string().required('Requerido'),
             salary:Yup.number().required('Requerido'),
             status:Yup.string().required('Requerido'),
             activities:Yup.string().required('Requerido'),
         }),
-        onSubmit:values=>{
-            const form=JSON.stringify(values, null, 2)
-            alert(form);
-            guardarCallback(form)
-        }
-   
+        onSubmit:(values) => {
+            setTimeout(() => {
+              axios
+                .post(endpointsGral.vacancyURL, values) 
+                .then(response => {
+                  console.log(response);
+                })
+                .catch(error => {
+                  console.log(error.response);
+                });
+              console.log({ values});
+              alert(JSON.stringify(values, null, 2));
+            }, 400);
+          }
       });
 
-      const guardarCallback=async(form)=>{
-        try {
-            alert(form)
-            const addVacancy= await axios.post(endpoints.postVacancy,form)
-            setFormValues(addVacancy)
-            console.log(addVacancy)
-        } catch (error) {
-            console.log('error')
-        }
-      }
-    //   const Callback=()=>{
-        
-    // useEffect(()=>{
-    //     const fetchData=async()=>{
-    //         try {
-    //             const endpointURL= `${endpoints.getByUser}`;
-    //             const result= await axios.get(endpointURL,
-    //                         {headers:{}})
-    //             setProfileInformation(result.data)
-    //             console.log(result.data[0])
-    //         } catch (error) {
-    //             console.log(error)
-    //         } finally{
-    //             setLoading(false)
-    //         }         
-    //     };
-    //     fetchData()
-    // },[]);
-    //   }
-
-    // const [formValues,setFormValues]= useState({
-    //     title:'',
-    //     type_work:'',
-    //     modalidad:'',
-    //     city:'',
-    //     salary:'',
-    //     activities:''
-    // })
-    // const navigate=useNavigate();
-    // const onFormInputChange=(event)=>{
-    //     const inputID=event.target.id;
-    //     const inputValue=event.target.value
-
-    //     setFormValues({
-    //         ...formValues,[inputID]:inputValue
-    //     })
-    // }
 
     return(
         <div className="container mt-2 p-5 w-100 " id="formGral">
@@ -105,10 +66,10 @@ export const PostVacancy=()=>{
                     <div className="form-outline">
                         <label className="form-label" for="form6Example1">Tipo de trabajo</label>
                         <select 
-                                className={`form-control ${formik.touched.type_work && formik.errors.type_work ? 'border border-danger':'border border-secondary' }`}
-                                name="type_work"
-                                id="type_work"
-                                value={formik.values.type_work}
+                                className={`form-control ${formik.touched.type && formik.errors.type ? 'border border-danger':'border border-secondary' }`}
+                                name="type"
+                                id="type"
+                                value={formik.values.type}
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}>
                             <option> Selecciona</option>
@@ -121,10 +82,10 @@ export const PostVacancy=()=>{
                         <div className="form-outline">
                             <label className="form-label" for="form6Example1">Modalidad</label>
                             <select 
-                                    className={`form-control ${formik.touched.modalidad && formik.errors.modalidad ? 'border border-danger':'border border-secondary'}`}
-                                    id="modalidad"
-                                    name="modalidad"
-                                    value={formik.values.modalidad}
+                                    className={`form-control ${formik.touched.mode && formik.errors.mode ? 'border border-danger':'border border-secondary'}`}
+                                    id="mode"
+                                    name="mode"
+                                    value={formik.values.mode}
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}>
                                 <option> Selecciona</option>

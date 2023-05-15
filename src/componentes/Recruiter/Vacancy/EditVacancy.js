@@ -1,46 +1,38 @@
-import React from "react";
-import SidebarRecruiter from "../SidebarRecruiter/SidebarRecruiter";
+import React, { useEffect, useState } from "react";
 import PatchVancy from "./Forms/PatchVacancy";
 import Softskills from "../SoftSkills/SoftSkills";
-import {FaBars} from 'react-icons/fa'
-import imgProfile from '../assets/img/profile.png'
+import { endpointsGral } from "../services/vacancy";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 
 export const EditVacancy=()=>{
+    const valores = window.location.search;
+    const urlParams = new URLSearchParams(valores);
+    const id = urlParams.get('v');
+    const [editInfo, setEditInfo]=useState([])
+    useEffect(()=>{
+        const fetch =async()=>{
+            try {
+                const endpointURL= `${endpointsGral.vacancyURL}/${id}`;
+                const queryVacancy= await axios.get(endpointURL);
+                setEditInfo(queryVacancy.data)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        fetch()
+
+    },[])
+    
     return(
         <>
-        <div className='dashboard'>
-            <SidebarRecruiter/>
-            <div className='dashboard-app'>
-               <header className='dashboard-toolbar'>
-                    <div className="row profile-container">
-                        <div className="col">
-                            <a href="#!" className="menu-toggle"><FaBars/></a>
-                        </div> 
-                    <div className="col image-container">
-                        <p>Sarah Jhonson</p>
-                        <img src={imgProfile}/>
-                    </div>
-                    </div>
-                </header>
-                <div className='dashboard-content'>
-                    <div className='container'>
-                        <div className='card'>
-                            <div className="row">
-                               <div className="col">
-                                <div className='card-header d-flex gap-5'>
-                                      </div>
-                                </div> 
-                            </div>
-                            <div className='card-body'>
-                               <h1 className="text-start">'Nombre de la vacante'</h1>
-                                <PatchVancy/>
-                                <Softskills/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-          </div>
+   
+         <div className='card-body'>
+            <h1 className="text-start">{editInfo.title}</h1>
+             <PatchVancy editDatas={editInfo}/>
+             <Softskills/>
+         </div>
+                       
         </>
     )
 }

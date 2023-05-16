@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from 'yup'
 export const PostVacancy=()=>{
+    const navigate =useNavigate();
     
     const formik= useFormik({
         initialValues: {
@@ -33,6 +34,8 @@ export const PostVacancy=()=>{
                 .post(endpointsGral.vacancyURL, values) 
                 .then(response => {
                   console.log(response);
+                  navigate(`/Dashboard-Recruiter/vacancy`)
+
                 })
                 .catch(error => {
                   console.log(error.response);

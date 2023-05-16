@@ -17,12 +17,13 @@ import ProfileRecruiter from './componentes/Recruiter/Profile/ProfileRecruiter';
 import Vacancy from './componentes/Recruiter/Vacancy/Vacancy';
 import Match from './componentes/Recruiter/Match/Match';
 import AddVacancy from './componentes/Recruiter/Vacancy/AddVacancy';
-
+import FormRecruiter from './componentes/Candidate/ProfileCandidate/Form/FormRecruiter';
+import ListBuscar from './componentes/Candidate/BuscarCandidate/ListBuscar';
 function App() {
   return (
     <div className="App">
 
-        <Routes>
+<Routes>
           <Route path="/" element={<Mains/>}/>
 
           <Route path='login-candidato' element={<LoginCandidate />}/>
@@ -30,6 +31,7 @@ function App() {
           <Route path='dashboard-candidato' element={<DashboardCandidate />}>
             <Route path='home' element={<HomeCandidate/>}/>
             <Route path='profile' element={<ProfileCandidate />}/>
+		        <Route path ='SearchList' element ={<ListBuscar/>}/>
           </Route>
           {/* aqui las rutas de la seccion reclutador */}
           {/* <Route path='dashboard-reclutador' element={<DashboardRecruiter />}>
@@ -45,7 +47,6 @@ function App() {
             </Route>
 
         </Routes>
-      {/* <Footer/>  */}
     </div>
 
   );

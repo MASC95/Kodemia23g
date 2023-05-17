@@ -3,13 +3,15 @@ import PatchVancy from "./Forms/PatchVacancy";
 import Softskills from "../SoftSkills/SoftSkills";
 import { endpointsGral } from "../services/vacancy";
 import axios from "axios";
-import { useParams } from "react-router-dom";
-
+import { useParams,useNavigate  } from "react-router-dom";
+import swal from "sweetalert";
 export const EditVacancy=()=>{
     const valores = window.location.search;
     const urlParams = new URLSearchParams(valores);
     const id = urlParams.get('v');
     const [editInfo, setEditInfo]=useState([])
+    const navigate= useNavigate()
+
     useEffect(()=>{
         const fetch =async()=>{
             try {
@@ -22,18 +24,25 @@ export const EditVacancy=()=>{
         }
         fetch()
 
-    },[])
+    },[id])
     // -------------------------
     const onFormInputChange=(event)=>{
-    
         const inputID= event.target.id
         const inputValue=event.target.value
-      
         setEditInfo({
           ...editInfo,
           [inputID]:inputValue
         })
       }
+      const validDatas=(
+        editInfo.title!==''&&
+        editInfo.type!==''&&
+        editInfo.mode!==''&&
+        editInfo.city!==''&&
+        editInfo.salary!==''&&
+        editInfo.status!==''&&
+        editInfo.activities!=='')
+
       const onFormSubmit=(event)=>{
         event.preventDefault();
         guardarCallback()
@@ -41,15 +50,26 @@ export const EditVacancy=()=>{
       }
       const guardarCallback=async()=>{
         console.log(editInfo)
-        const token = window.localStorage.getItem('token')
+        try {
+        if(validDatas){
+            const token = window.localStorage.getItem('token')
         console.log(token) 
         const headers = { 
             'Authorization':`Baerer ${token}`
         };
-        try {
-            const addPost=await axios.patch(`${endpointsGral.vacancyURL}${id}`,editInfo,{headers});  
-            setEditInfo(addPost)
-           console.log('listo')
+        const addPost=await axios.patch(`${endpointsGral.vacancyURL}${id}`,editInfo,{headers});  
+        setEditInfo(addPost)
+        console.log('listo')
+        navigate(`/Dashboard-Recruiter/`)
+        }else{
+           swal({
+            title: "Todos los datos son requeridos!",
+            text: "Revisa la información ingresada!",
+            icon: "error",
+            button: "ok!",
+          });
+        }
+        
         } catch (error) {
           console.log("Error in Petition");
         }

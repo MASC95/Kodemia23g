@@ -111,8 +111,8 @@ const FormRecruiter = () => {
                     </label>
                     <Field
                       type="text"
-                      id="name"
-                      name="name"
+                      id="nombre"
+                      name="nombre"
                       placeholder="Nombre"
                       className={`form-control ${
                         formik.touched.name && formik.errors.name
@@ -135,9 +135,9 @@ const FormRecruiter = () => {
                     </label>
                     <Field
                       type="text"
-                      id="lastName"
+                      id="apellido"
                       placeholder="Apellido"
-                      name="lastName"
+                      name="apellido"
                       className={`form-control ${
                         formik.touched.lastName && formik.errors.lastName
                           ? "border border-danger"
@@ -158,9 +158,9 @@ const FormRecruiter = () => {
                     </label>
                     <Field
                       type="text"
-                      id="age"
+                      id="edad"
                       placeholder="Edad"
-                      name="age"
+                      name="edad"
                       className={`form-control ${
                         formik.touched.age && formik.errors.age
                           ? "border border-danger"

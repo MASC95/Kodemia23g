@@ -3,6 +3,7 @@ import './scss/style.scss'
 import { Link } from "react-router-dom";
 import axios from "axios";
 import '../Alerts/Alert'
+
 export const ListBuscar=()=>{
     const data = [{
         id: '23',
@@ -37,6 +38,7 @@ export const ListBuscar=()=>{
     
         fetchVacancies();
       }, []);
+      
     
    /*    const handleApply = () => {
 

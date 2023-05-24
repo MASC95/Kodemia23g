@@ -22,7 +22,6 @@ import ListBuscar from './componentes/Candidate/BuscarCandidate/ListBuscar';
 function App() {
   return (
     <div className="App">
-
 <Routes>
           <Route path="/" element={<Mains/>}/>
 
@@ -31,7 +30,7 @@ function App() {
           <Route path='dashboard-candidato' element={<DashboardCandidate />}>
             <Route path='home' element={<HomeCandidate/>}/>
             <Route path='profile' element={<ProfileCandidate />}/>
-		        <Route path ='SearchList' element ={<ListBuscar/>}/>
+		<Route path ='SearchList' element ={<ListaBuscar/>}/>
           </Route>
           {/* aqui las rutas de la seccion reclutador */}
           {/* <Route path='dashboard-reclutador' element={<DashboardRecruiter />}>

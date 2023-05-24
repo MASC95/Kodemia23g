@@ -12,7 +12,7 @@ const FormRecruiter = () => {
       selectedFile: null
     }
     fileSelectedHandler = event =>{
-      this.state({
+      this.setState({
       selectedFile: event.target.files[0]
     })
     }
@@ -28,8 +28,8 @@ const FormRecruiter = () => {
 
   const formik = useFormik({
     initialValues: {
-      nombre: "",
-      apellido: "",
+      name: "",
+      lastName: "",
       email: "",
       password: "",
       age: "",
@@ -37,11 +37,11 @@ const FormRecruiter = () => {
       escolaridad: "",
     },
     validationSchema: Yup.object({
-      nombre: Yup.string()
+      name: Yup.string()
         .required("El Nombres es Requerido")
         .min(2, "El nombre debe tener al menos 2 caracteres")
         .max(50, "El nombre debe tener como máximo 50 caracteres"),
-      apellido: Yup.string()
+      lastName: Yup.string()
         .required("El Apellido es Requerido")
         .min(2, "El apellido debe tener al menos 2 caracteres")
         .max(50, "El apellido debe tener como máximo 50 caracteres"),
@@ -68,7 +68,7 @@ const FormRecruiter = () => {
           console.log(response.data);
         })
         .catch((error) => {
-          console.error(error); // Aquí puedes manejar los errores de la solicitud
+          console.error(error); 
         });
     },
    
@@ -87,11 +87,11 @@ const FormRecruiter = () => {
             <div className="button">
               <label className="btn btn-primary">
               
-                <input type="file" className="visually-hidden" onChange={ () => this.fileSelectedHandler} />
+                <input type="file" className="visually-hidden" onChange = {this.fileSelectedHandler} />
                 Subir
               </label>
             </div>
-            <button
+            <button   
               type="button"
               className="buttons btn btn-danger"
               style={{ width: "18%", height: "3%" }}
@@ -111,8 +111,8 @@ const FormRecruiter = () => {
                     </label>
                     <Field
                       type="text"
-                      id="nombre"
-                      name="nombre"
+                      id="name"
+                      name="name"
                       placeholder="Nombre"
                       className={`form-control ${
                         formik.touched.name && formik.errors.name
@@ -122,10 +122,11 @@ const FormRecruiter = () => {
                       value={formik.values.name}
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
+                      
                     />
-                    {formik.touched.name && formik.errors.name && (
+                    {formik.touched.name && formik.errors.name ? (
                       <span className="text-danger">{formik.errors.name}</span>
-                    )}
+                    ) : null } 
                   </div>
                 </div>
                 <div className="col">
@@ -135,9 +136,9 @@ const FormRecruiter = () => {
                     </label>
                     <Field
                       type="text"
-                      id="apellido"
+                      id="lastName"
                       placeholder="Apellido"
-                      name="apellido"
+                      name="lastName"
                       className={`form-control ${
                         formik.touched.lastName && formik.errors.lastName
                           ? "border border-danger"
@@ -158,9 +159,9 @@ const FormRecruiter = () => {
                     </label>
                     <Field
                       type="text"
-                      id="edad"
+                      id="age"
                       placeholder="Edad"
-                      name="edad"
+                      name="age"
                       className={`form-control ${
                         formik.touched.age && formik.errors.age
                           ? "border border-danger"
@@ -217,6 +218,9 @@ const FormRecruiter = () => {
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                     />
+                       {formik.touched.email && formik.errors.email ? (
+                      <span className="text-danger">{formik.errors.email}</span>
+                    ) : null } 
                   </div>
                 </div>
                 <div className="col">

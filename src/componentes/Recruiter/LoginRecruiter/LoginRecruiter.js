@@ -50,7 +50,7 @@ export const LoginRecruiter=()=>{
               setFormValues(loginRecruiter)
               setLoading(false)
               resetForm()
-              navigate(`/Dashboard-Recruiter/`)
+              navigate(`/Dashboard-Recruiter/home`)
             }else{
                 alert('Todos los datos son necesarios')
             }

@@ -1,7 +1,7 @@
 import React from "react";
 import SidebarRecruiter from "../SidebarRecruiter/SidebarRecruiter";
 import PostVacancy from "./Forms/PostVacancy";
-import Softskills from "../SoftSkills/SoftSkills";
+import Softskills from "../SoftSkills/Form/SoftSkills";
 import {FaBars} from 'react-icons/fa'
 import imgProfile from '../assets/img/profile.png'
 
@@ -12,7 +12,7 @@ export const AddVacancy=()=>{
                             <h1  className="text-start"><b>Agregar Vacante</b></h1>
 
                                 <PostVacancy/>
-                                <Softskills/>
+                                {/* <Softskills/> */}
                             </div>
         </>
     )

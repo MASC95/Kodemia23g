@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import PatchVancy from "./Forms/PatchVacancy";
-import Softskills from "../SoftSkills/SoftSkills";
+import Softskills from "../SoftSkills/Form/SoftSkills";
 import { endpointsGral } from "../services/vacancy";
 import axios from "axios";
-import { useParams,useNavigate  } from "react-router-dom";
+import { useNavigate  } from "react-router-dom";
 import swal from "sweetalert";
 export const EditVacancy=()=>{
     const valores = window.location.search;
@@ -52,36 +51,32 @@ export const EditVacancy=()=>{
         console.log(editInfo)
         try {
         if(validDatas){
-            const token = window.localStorage.getItem('token')
+        const token = window.localStorage.getItem('token')
         console.log(token) 
         const headers = { 
             'Authorization':`Baerer ${token}`
         };
         const addPost=await axios.patch(`${endpointsGral.vacancyURL}${id}`,editInfo,{headers});  
         setEditInfo(addPost)
-        console.log('listo')
-        navigate(`/Dashboard-Recruiter/`)
+        swal({
+            title: "Vacante Actualizada!",
+            icon: "success",
+            button: "ok!",
+          });
+        navigate(`/Dashboard-Recruiter/vacancy`)
+
         }else{
            swal({
-            title: "Todos los datos son requeridos!",
-            text: "Revisa la información ingresada!",
+            title: "Error al actualizar!",
+            text: "Todos los datos con requeridos!",
             icon: "error",
             button: "ok!",
           });
         }
-        
         } catch (error) {
           console.log("Error in Petition");
         }
       }
-    //   const resetForm = () => {
-    //     setEditPost({
-    //       imageURL: '', // mandatorio
-    //       title: '',// mandatorio
-    //       content: ''
-    //     })
-    //   }
-    
     return(
         <>
    

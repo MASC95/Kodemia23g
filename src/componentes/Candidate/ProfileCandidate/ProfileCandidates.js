@@ -3,7 +3,8 @@ import {FaBars} from 'react-icons/fa'
 import imgProfile from '../../Recruiter/assets/img/perfil2.jpg'
 import SidebarCandidate from "../SidebarCandidate/SidebarCandidate";
 import FormRecruiter from "./Form/FormRecruiter";
-import Softskills from "../../Recruiter/SoftSkills/SoftSkills";
+import Softskills from "../../Recruiter/SoftSkills/Form/SoftSkills";
+// import Softskills from "../../Recruiter/SoftSkills/SoftSkills";
 export const ProfileCandidates=()=>{
     return(
         <>

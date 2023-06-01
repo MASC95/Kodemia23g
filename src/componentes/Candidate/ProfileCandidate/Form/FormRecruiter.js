@@ -5,26 +5,9 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import axios from "axios";
 import { Component, useState } from "react";
+import { endpointsGral } from "../../../Recruiter/services/vacancy";
 
 const FormRecruiter = () => {
-  class App extends Component{
-    state ={
-      selectedFile: null
-    }
-    fileSelectedHandler = event =>{
-      this.setState({
-      selectedFile: event.target.files[0]
-    })
-    }
-    fileUploadHandler = ()=>{
-      const fd = new FormData();
-      fd.append('image', this.state.selectedFile, this.state.selectedFile.name);
-      axios.post('https://apibackendjob-production.up.railway.app/profile/upload-photo', fd)
-      .then(res => {
-        console.log(res);
-      });
-    }
-  }
 
   const formik = useFormik({
     initialValues: {
@@ -63,7 +46,7 @@ const FormRecruiter = () => {
     onSubmit: (values) => {
       /* alert(JSON.stringify(values, null, 2)); */
       axios
-        .post("http://107.23.237.6/api/v1/users/", values)
+        .post(endpointsGral.vacancyURL , values)
         .then((response) => {
           console.log(response.data);
         })

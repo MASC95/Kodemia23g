@@ -1,10 +1,9 @@
 export const endpoints = {
-    profileAddSkills: 'https://apibackendjob-production.up.railway.app/profile/add-skills',
-    profileAddSkillsById: 'https://apibackendjob-production.up.railway.app/profile/add-skills/:id',
-    candidateMyVacancies: 'https://apibackendjob-production.up.railway.app/candidate/my-vacancies',
-    candidateMyVacanciesSearch: 'https://apibackendjob-production.up.railway.app/candidate/my-vacancies/search',
-    candidateApplyToVacancy: 'https://apibackendjob-production.up.railway.app/candidate/my-vacancies/:id_vacancy/apply',
-    candidateVacancyById: 'https://apibackendjob-production.up.railway.app/candidate/my-vacancies/:id_vacancy',
-    candidateUploadProfilePic : 'https://apibackendjob-production.up.railway.app/profile/upload-photo'
+    profileAddSkills: 'http://107.23.237.6/api/v1/profile/add-skills',
+    profileAddSkillsById: 'http://107.23.237.6/api/v1/profile/add-skills/:id',
+    candidateMyVacancies: 'http://107.23.237.6/api/v1/candidate/my-vacancies',
+    candidateMyVacanciesSearch: 'http://107.23.237.6/api/v1/candidate/my-vacancies/search',
+    candidateApplyToVacancy: 'http://107.23.237.6/api/v1/candidate/my-vacancies/:id_vacancy/apply',
+    candidateVacancyById: 'http://107.23.237.6/api/v1/candidate/my-vacancies/:id_vacancy',
+    candidateUploadProfilePic: 'http://107.23.237.6/api/v1/profile/upload-photo'
 };
-  

@@ -12,9 +12,11 @@ export const RegisterCandidate=()=>{
             <div className="row">
               <div className="col-md-6 col-md-offset-3">
                 <div className="block text-center">
-                <a className="logo_Jobinder" href="index.html">
-                    <img src={logo} alt=""/>
-                </a>
+                  <Link to={'/'}>
+                    <a className="logo_Jobinder" href="#!">
+                        <img src={logo} alt=""/>
+                    </a>
+                  </Link>
                 <h2 className="text-center text-dark">Bienvenido</h2>
                 <form className="text-left clearfix">
                     <div className="form-group">
@@ -35,9 +37,11 @@ export const RegisterCandidate=()=>{
                     </div>
                   </div>
                 </form>
-                <Link to={`/loginCandidate`}>
-                <p className="mt-20">Ya tienes una cuenta?<a href="#"> Accede</a></p>
+                <p className="mt-20 text-black">Ya tienes una cuenta?
+                <Link to={`/login-candidato`}>
+                <a href="#!"> Accede</a>
                 </Link>
+                </p>
                 </div>
               </div>
             <div className="col-md-6 col-md-offset-3">

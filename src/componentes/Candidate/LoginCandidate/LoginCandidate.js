@@ -20,9 +20,11 @@ export const LoginCandidate = ()=>{
                 <div className="row">
                 <div className="col-md-6 col-md-offset-3">
                     <div className="block text-center">
-                    <a className="logo_Jobinder" href="index.html">
+                    <Link to={'/'}>
+                    <a className="logo_Jobinder" href="#!">
                         <img src={logo} alt=""/>
                     </a>
+                     </Link>
                     <h2  class="text-center text-dark">Bienvenido de vuelta!</h2>
                     <form class="text-left clearfix" onSubmit={handleLogin} >
                         <div class="form-group">
@@ -38,9 +40,11 @@ export const LoginCandidate = ()=>{
                                 </div>
                         </div>
                     </form>
-                    <Link to={`/registerCandidate`}>
-                    <p className="mt-20">No tienes una cuenta?<a href="#"> Crea una con nosotros</a></p>
+                    <p className="mt-20 text-black text-decoration-none">No tienes una cuenta?
+                    <Link to={`/register-candidato`}>
+                    <a href="#"> Crea una con nosotros</a>
                     </Link>
+                    </p>
                     </div>
                 </div>
                 <div className="col-md-6 col-md-offset-3">

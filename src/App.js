@@ -25,11 +25,12 @@ import EditVacancy from './componentes/Recruiter/Vacancy/EditVacancy';
 import Candidate from './componentes/Recruiter/Profile/ProfileCandidate';
 
 
+import FormRecruiter from './componentes/Candidate/ProfileCandidate/Form/FormRecruiter';
+import ListBuscar from './componentes/Candidate/BuscarCandidate/ListBuscar';
 function App() {
   return (
     <div className="App">
-
-        <Routes>
+<Routes>
           <Route path="/" element={<Mains/>}/>
           {/* aqui las rutas de la seccion candidato */}
           <Route path='login-candidato' element={<LoginCandidate />}/>
@@ -40,6 +41,7 @@ function App() {
             <Route path='search' element={<Buscar/>}/>
             <Route path='detail-vacancy' element={<Details/>}/>
             <Route path='app-vacancies' element={<AppVacancyCandidate/>}/>
+		        <Route path ='SearchList' element ={<ListaBuscar/>}/>
           </Route>
           {/* aqui las rutas de la seccion reclutador */}
           <Route path='/login-recruiter' element={<LoginRecruiter/>}/>
@@ -56,7 +58,6 @@ function App() {
             </Route>
 
         </Routes>
-      {/* <Footer/>  */}
     </div>
 
   );

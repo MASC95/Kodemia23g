@@ -1,7 +1,30 @@
 @import './_mobile';
-.container_image img{
-    width: 200px;
-    height: 200px;
+
+@mixin center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container_image{
+    width: 30%;
+    height: 20%;
+    .ppic-container{
+        @include center();
+    }
+    .allowed-files{
+        @include center();
+    }
+    .buttons-actions{
+        width: 100%;
+        .button{
+            width: 65%;
+            height: 35%;
+            @include center();
+            
+        }
+    }
+
+    
 }
 
 

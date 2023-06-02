@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { endpointsGral } from "../../../Recruiter/services/vacancy"
+import { endpointsGral } from "../../Recruiter/services/vacancy"
 import '../Alerts/Alert'
 import AlertComponent from '../Alerts/Alert';
 export const ListBuscar = () => {

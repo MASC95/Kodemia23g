@@ -41,7 +41,7 @@ function App() {
             <Route path='search' element={<Buscar/>}/>
             <Route path='detail-vacancy' element={<Details/>}/>
             <Route path='app-vacancies' element={<AppVacancyCandidate/>}/>
-		        <Route path ='SearchList' element ={<ListaBuscar/>}/>
+		        <Route path ='SearchList' element ={<ListBuscar/>}/>
           </Route>
           {/* aqui las rutas de la seccion reclutador */}
           <Route path='/login-recruiter' element={<LoginRecruiter/>}/>

@@ -4,31 +4,23 @@ import ListVacancy from "./ListVacancy";
 import {FaPlus, FaBars} from 'react-icons/fa'
 import imgProfile from '../assets/img/profile.png'
 import {Link,Outlet,useParams} from 'react-router-dom'
-import { endpoints } from "../services/endpoints";
 import axios from "axios";
-
+import { endpointsGral } from "../services/vacancy";
 
 export const Vacancy=()=>{
-    const [profileInformation,setProfileInformation]=useState([])
-    const [isLoading,setLoading]=useState(true)
-    const params=useParams();
-    const {id}=params
-    console.log(id)
+    const [vacancyAll,setVacancyAll]=useState([])
+    const [isLoading, setIsLoading]=useState(true)
+
     useEffect(()=>{
-        const fetchData=async()=>{
-            try {
-                const endpointURL= `${endpoints.getByUser}/${id}`;
-                const result= await axios.get(endpointURL)
-                setProfileInformation(result.data)
-                console.log(result.data[0])
-            } catch (error) {
-                console.log(error)
-            } finally{
-                setLoading(false)
-            }         
-        };
-        fetchData()
-    },[id]);
+        const fetch=async()=>{
+            const allVacancies=await axios.get(endpointsGral.vacancyURL)
+            const datas=allVacancies.data['item']
+            setVacancyAll(datas['docs'])
+            console.log(datas['docs'])
+        }
+        fetch()
+    },[])
+ console.log(vacancyAll)
     return(
         <>
                 <div className='dashboard-content'>
@@ -39,7 +31,7 @@ export const Vacancy=()=>{
                                 <div className='card-header d-flex gap-5'>
                                     <h1 className="text-start"><b>Vacantes</b></h1>
                                        <div className="d-flex h-100  justify-content-around">
-                                        <Link to={`/Dashboard-Recruiter/${id}/vacancy-new`}>
+                                        <Link to={`/Dashboard-Recruiter/vacancy-new`}>
                                          <button type="submit" className="text-light buttons btn btn-info btn-lg"> Agregar Nuevo</button>
                                         </Link>
                                        </div> 
@@ -47,7 +39,7 @@ export const Vacancy=()=>{
                                 </div> 
                             </div>
                             <div className='card-body'>
-                                <ListVacancy/>
+                                <ListVacancy postdata={vacancyAll}/>
                                 <Outlet/>
                             </div>
                         </div>

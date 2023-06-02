@@ -1,6 +1,7 @@
 import React from "react";
 import {Link} from 'react-router-dom'
 import {FaEdit, FaEye} from 'react-icons/fa'
+import Modalstatus from "../ModalStatus/Modalstatus";
 import './style.scss'
 export const ListMatches=()=>{
     return(
@@ -25,10 +26,10 @@ export const ListMatches=()=>{
                     <td>Otto</td>
                     <td>Mark</td>
                     <td className="options_buttons  d-flex justify-content-center gap-3">
-                      <Link to={`/recruiter-vacancy/matchDetails/id`}>
+                      <Link to={`/Dashboard-Recruiter/details-match`}>
                         <a href=""><FaEye/></a>
                       </Link>
-                        <a href=""><FaEdit className="icon_edit"/></a>
+                        <Modalstatus/>
                     </td>
                     </tr>
                 </tbody>

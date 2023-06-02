@@ -8,27 +8,27 @@ import axios from 'axios';
 import { endpoints } from '../services/endpoints';
 
 const SidebarRecruiter= () => {
-  const [profileInformation,setProfileInformation]=useState([])
-  const [isLoading,setLoading]=useState(true)
-  const params=useParams();
-  const {id}=params
-  console.log(id)
-  useEffect(()=>{
-      const fetchData=async()=>{
-          try {
-              const endpointURL= `${endpoints.getByUser}/${id}`;
-              const result= await axios.get(endpointURL)
-              setProfileInformation(result.data)
-              console.log(result.data[0])
-          } catch (error) {
-              console.log(error)
-          } finally{
-              setLoading(false)
-          }         
-      };
-      fetchData()
-  },[id]);
-  console.log(profileInformation)
+  // const [profileInformation,setProfileInformation]=useState([])
+  // const [isLoading,setLoading]=useState(true)
+  // const params=useParams();
+  // const {id}=params
+  // console.log(id)
+  // useEffect(()=>{
+  //     const fetchData=async()=>{
+  //         try {
+  //             const endpointURL= `${endpoints.getByUser}/${id}`;
+  //             const result= await axios.get(endpointURL)
+  //             setProfileInformation(result.data)
+  //             console.log(result.data[0])
+  //         } catch (error) {
+  //             console.log(error)
+  //         } finally{
+  //             setLoading(false)
+  //         }         
+  //     };
+  //     fetchData()
+  // },[id]);
+  // console.log(profileInformation)
 
   return (
     <>
@@ -41,18 +41,16 @@ const SidebarRecruiter= () => {
           </div>
         </header>
         <nav className="dashboard-nav-list">
-          {/* <Link to={`/dashboard-reclutador/home`}>
-======= */}
-          <Link to={`/Dashboard-Recruiter/${id}`}>
+          <Link to={`/Dashboard-Recruiter/home`}>
           <a href="#!" className="dashboard-nav-item"><FaHome/> &nbsp;Home </a>
           </Link>
-          <Link to={`/Dashboard-Recruiter/${id}/profile`}>
+          <Link to={`/Dashboard-Recruiter/profile`}>
           <a href="#!" className="dashboard-nav-item"> <FaUser/> &nbsp;Perfil </a>
           </Link>
-          <Link to={`/Dashboard-Recruiter/${id}/vacancy`}>
+          <Link to={`/Dashboard-Recruiter/vacancy`}>
           <a href="#!" className="dashboard-nav-item"><FaSuitcase/> &nbsp;Vacantes </a>
           </Link>
-          <Link to={`/Dashboard-Recruiter/${id}/match`}>
+          <Link to={`/Dashboard-Recruiter/match`}>
           <a href="#!" className="dashboard-nav-item"><FaCheckDouble/> &nbsp;Match </a>
           </Link>
           <a href="#!" className="dashboard-nav-item"><FaSignOutAlt/> &nbsp;Logout </a>

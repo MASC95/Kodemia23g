@@ -2,7 +2,26 @@ import React from "react";
 import './scss/style.scss'
 import {Link} from 'react-router-dom'
 import { FaEdit, FaTrash } from "react-icons/fa";
+import { useState,useEffect } from "react";
+import axios from "axios";
+import { endpointsGral } from "../services/vacancy";
+import Softskills from "./Form/SoftSkills";
 export const TableSkills=()=>{
+    const [getSoftSkills,setSoftSkills]=useState([])
+    const [isLoading, setIsLoading]=useState(true)
+    const valores = window.location.search;
+    const urlParams = new URLSearchParams(valores);
+    const id = urlParams.get('v');
+    useEffect(()=>{
+        const fetch=async()=>{
+            const allSoftSkills=await axios.get(`${endpointsGral.vacancyURL}${id}`, getSoftSkills)
+            const datas=allSoftSkills.data['job_skills']
+            setSoftSkills(datas)
+            // console.log(datas)
+        }
+        fetch()
+    },[id])
+// console.log(getSoftSkills)
     return(
         <>
           <div className="col">
@@ -17,17 +36,23 @@ export const TableSkills=()=>{
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td className="options_buttons d-flex justify-content-center gap-3">
-                        <Link to={`/recruiter-vacancy/edit/id`}>
-                            <a href=""><FaEdit className="icon_edit"/></a>
-                        </Link>
-                           <a href=""><FaTrash className="icon_trash"/></a>
-                    </td>
-                    </tr>
+                    {getSoftSkills.map((skill)=>{
+                        console.log(skill._id)
+                        return (
+                            <tr>
+                            <th scope="row">1</th>
+                            <td>{skill.name}</td>
+                            <td>{skill.level}</td>
+                            <td className="options_buttons d-flex justify-content-center gap-3">
+                                <Link to={`/recruiter-vacancy/edit/id`}>
+                                    <a href=""><FaEdit className="icon_edit"/></a>
+                                </Link>
+                                <a href=""><FaTrash className="icon_trash"/></a>
+                            </td>
+                            </tr>
+                        )
+                    })}
+                   
                 </tbody>
             </table>
             </div>

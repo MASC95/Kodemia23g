@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Modal, Container, Row, Col, Dropdown } from "react-bootstrap";
+import {FaEdit, FaEye} from 'react-icons/fa'
 import "./scss/style.scss"
 const Modalstatus = () => {
   const [showModal, setShowModal] = React.useState(false);
@@ -10,10 +11,10 @@ const Modalstatus = () => {
   return (
     <Container className="container">
       <Row>
-        <Col className="text-center">
-          <h3>Status de la Vacante</h3>
-          <Button variant="danger" size="lg" onClick={handleOpenModal}>
-            Click to open Modal
+        <Col className="text-center d-flex align-content-center">
+          <Button className="button-edit d-flex mt-0" onClick={handleOpenModal}>
+          <FaEdit className="icon_edit"/>
+            {/* Click to open Modal */}
           </Button>
         </Col>
       </Row>

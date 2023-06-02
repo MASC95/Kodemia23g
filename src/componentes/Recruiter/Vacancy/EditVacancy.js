@@ -1,46 +1,198 @@
-import React from "react";
-import SidebarRecruiter from "../SidebarRecruiter/SidebarRecruiter";
-import PatchVancy from "./Forms/PatchVacancy";
-import Softskills from "../SoftSkills/SoftSkills";
-import {FaBars} from 'react-icons/fa'
-import imgProfile from '../assets/img/profile.png'
-
+import React, { useEffect, useState } from "react";
+import Softskills from "../SoftSkills/Form/SoftSkills";
+import { endpointsGral } from "../services/vacancy";
+import axios from "axios";
+import { useNavigate  } from "react-router-dom";
+import swal from "sweetalert";
 export const EditVacancy=()=>{
+    const valores = window.location.search;
+    const urlParams = new URLSearchParams(valores);
+    const id = urlParams.get('v');
+    const [editInfo, setEditInfo]=useState([])
+    const navigate= useNavigate()
+
+    useEffect(()=>{
+        const fetch =async()=>{
+            try {
+                const endpointURL= `${endpointsGral.vacancyURL}${id}`;
+                const queryVacancy= await axios.get(endpointURL);
+                setEditInfo(queryVacancy.data)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        fetch()
+
+    },[id])
+    // -------------------------
+    const onFormInputChange=(event)=>{
+        const inputID= event.target.id
+        const inputValue=event.target.value
+        setEditInfo({
+          ...editInfo,
+          [inputID]:inputValue
+        })
+      }
+      const validDatas=(
+        editInfo.title!==''&&
+        editInfo.type!==''&&
+        editInfo.mode!==''&&
+        editInfo.city!==''&&
+        editInfo.salary!==''&&
+        editInfo.status!==''&&
+        editInfo.activities!=='')
+
+      const onFormSubmit=(event)=>{
+        event.preventDefault();
+        guardarCallback()
+      
+      }
+      const guardarCallback=async()=>{
+        console.log(editInfo)
+        try {
+        if(validDatas){
+        const token = window.localStorage.getItem('token')
+        console.log(token) 
+        const headers = { 
+            'Authorization':`Baerer ${token}`
+        };
+        const addPost=await axios.patch(`${endpointsGral.vacancyURL}${id}`,editInfo,{headers});  
+        setEditInfo(addPost)
+        swal({
+            title: "Vacante Actualizada!",
+            icon: "success",
+            button: "ok!",
+          });
+        navigate(`/Dashboard-Recruiter/vacancy`)
+
+        }else{
+           swal({
+            title: "Error al actualizar!",
+            text: "Todos los datos con requeridos!",
+            icon: "error",
+            button: "ok!",
+          });
+        }
+        } catch (error) {
+          console.log("Error in Petition");
+        }
+      }
     return(
         <>
-        <div className='dashboard'>
-            <SidebarRecruiter/>
-            <div className='dashboard-app'>
-               <header className='dashboard-toolbar'>
-                    <div className="row profile-container">
-                        <div className="col">
-                            <a href="#!" className="menu-toggle"><FaBars/></a>
-                        </div> 
-                    <div className="col image-container">
-                        <p>Sarah Jhonson</p>
-                        <img src={imgProfile}/>
+   
+         <div className='card-body'>
+            <h1 className="text-start">{editInfo.title}</h1>
+            <div className="container mt-2 p-5 w-100 " id="formGral">
+            <form onSubmit={onFormSubmit}>
+                <div className="row mb-4">
+                    <div className="col">
+                    <div className="form-outline bg-gray">
+                        <label className="form-label" for="form6Example1">Título</label>
+                        <input type="text" 
+                               id="title" 
+                               name="title"
+                               className={`form-control`}
+                               value={editInfo.title}
+                               onChange={onFormInputChange}
+                               placeholder="Título"/>
                     </div>
                     </div>
-                </header>
-                <div className='dashboard-content'>
-                    <div className='container'>
-                        <div className='card'>
-                            <div className="row">
-                               <div className="col">
-                                <div className='card-header d-flex gap-5'>
-                                      </div>
-                                </div> 
-                            </div>
-                            <div className='card-body'>
-                               <h1 className="text-start">'Nombre de la vacante'</h1>
-                                <PatchVancy/>
-                                <Softskills/>
-                            </div>
+                    <div className="col">
+                    <div className="form-outline">
+                        <label className="form-label" for="form6Example1">Tipo de trabajo</label>
+                        <select 
+                                className={`form-control`}
+                                name="type"
+                                id="type"
+                                value={editInfo.type}
+                                onChange={onFormInputChange}>
+                            <option> Selecciona</option>
+                            <option> Tiempo Completo</option>
+                            <option> Por proyecto</option>
+                        </select>
+                    </div>
+                    </div>
+                    <div className="col">
+                        <div className="form-outline">
+                            <label className="form-label" for="form6Example1">Modalidad</label>
+                            <select 
+                                    className={`form-control`}
+                                    id="mode"
+                                    name="mode"
+                                    value={editInfo.mode}
+                                    onChange={onFormInputChange}>
+                                <option> Selecciona</option>
+                                <option> Presencial</option>
+                                <option> Remoto</option>
+                                <option> Hibrído</option>
+                            </select>
                         </div>
                     </div>
                 </div>
-            </div>
-          </div>
+                <div className="row mb-4">
+                    <div className="col">
+                    <div className="form-outline">
+                        <label className="form-label" for="form6Example1">Ciudad</label>
+                        <input type="text"
+                                id="city" 
+                                name="city"
+                                value={editInfo.city}
+                                onChange={onFormInputChange}
+                                className={`form-control`}
+                                placeholder="Ciudad"/>
+                    </div>
+                    </div>
+                    <div className="col">
+                    <div className="form-outline">
+                        <label className="form-label" for="form6Example2">Sueldo</label>
+                        <input type="text" 
+                               id="salary" 
+                               name="salary"
+                               value={editInfo.salary}
+                                onChange={onFormInputChange}
+                                className={`form-control`}
+                               placeholder="Sueldo"/>
+                    </div>
+                    </div>
+                    <div className="col">
+                    <div className="form-outline">
+                        <label className="form-label" for="form6Example2">Status</label>
+                        <select 
+                                    className={`form-control`}
+                                    id="status"
+                                    name="status"
+                                    value={editInfo.status}
+                                    onChange={onFormInputChange}>
+                                <option> Selecciona</option>
+                                <option> Iniciado</option>
+                                <option> Cerrado</option>
+                            </select>
+                    </div>
+                    </div>
+                </div>
+                <div className="row mb-4">
+                    <div className="col">
+                    <div className="form-outline">
+                        <label className="form-label" for="form6Example1">Actividades</label>
+                        <input type="text" 
+                               id="actividades" 
+                               name="activities"
+                               value={editInfo.activities}
+                               onChange={onFormInputChange}
+                               className={`form-control`}  
+                               placeholder="Actividades"/>
+                    </div>
+                    </div>
+                </div>
+                <div className="buttons_actions">  
+                    <button type="submit" className="buttons btn btn-info text-light">Guardar</button>               
+                </div>
+            </form>
+        </div>
+             {/* <PatchVancy editDatas={editInfo}/> */}
+             <Softskills/>
+         </div>
+                       
         </>
     )
 }

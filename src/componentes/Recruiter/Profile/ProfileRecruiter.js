@@ -18,7 +18,6 @@ export const ProfileRecruiter=()=>{
         return JSON.parse(window.atob(base64));
     };
     const destroy=parseJwt(token)
-    // console.log(destroy['_id'])
     const id= destroy['_id']
     const [getInformation, setGetInformation]=useState({})
     useEffect(()=>{

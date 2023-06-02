@@ -1,8 +1,5 @@
 import {React, useEffect, useState} from "react";
-import SidebarRecruiter from "../SidebarRecruiter/SidebarRecruiter";
 import ListVacancy from "./ListVacancy";
-import {FaPlus, FaBars} from 'react-icons/fa'
-import imgProfile from '../assets/img/profile.png'
 import {Link,Outlet,useParams} from 'react-router-dom'
 import axios from "axios";
 import { endpointsGral } from "../services/vacancy";

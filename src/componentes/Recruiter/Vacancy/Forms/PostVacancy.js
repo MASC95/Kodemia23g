@@ -46,7 +46,7 @@ export const PostVacancy=()=>{
                 .post(endpointsGral.vacancyURL, values) 
                 .then(response => {
                   console.log(response);
-                  navigate(`/Dashboard-Recruiter/vacancy`)
+                //   navigate(`/Dashboard-Recruiter/vacancy`)
 
                 })
                 .catch(error => {

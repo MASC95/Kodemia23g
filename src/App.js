@@ -30,7 +30,7 @@ function App() {
           <Route path='dashboard-candidato' element={<DashboardCandidate />}>
             <Route path='home' element={<HomeCandidate/>}/>
             <Route path='profile' element={<ProfileCandidate />}/>
-		<Route path ='SearchList' element ={<ListaBuscar/>}/>
+		<Route path ='SearchList' element ={<ListBuscar/>}/>
           </Route>
           {/* aqui las rutas de la seccion reclutador */}
           {/* <Route path='dashboard-reclutador' element={<DashboardRecruiter />}>

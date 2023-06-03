@@ -60,7 +60,7 @@ function App() {
             <Route path='home' element={<HomeCandidate/>}/>
             <Route path='profile' element={<ProfileCandidate />}/>
             <Route path='search' element={<Buscar/>}/>
-            <Route path='detail-vacancy' element={<Details/>}/>
+            <Route path='detail-vacancy/:id' element={<Details/>}/>
             <Route path='app-vacancies' element={<AppVacancyCandidate/>}/>
 		        <Route path ='SearchList' element ={<ListBuscar/>}/>
             

@@ -27,6 +27,7 @@ import FormRecruiter from './componentes/Candidate/ProfileCandidate/Form/FormRec
 import ListBuscar from './componentes/Candidate/BuscarCandidate/ListBuscar';
 import JobContext from './context/JobContext';
 import { useState } from 'react';
+import SendAccessCode from './componentes/SendAccessCode/SendAccessCode';
 
 
 const initDataRecrutier = {
@@ -51,6 +52,7 @@ function App() {
     <div className="App">
 <Routes>
           <Route path="/" element={<Mains/>}/>
+          <Route path ='/SendAccessCode' element ={<SendAccessCode/>}/>
           {/* aqui las rutas de la seccion candidato */}
           <Route path='login-candidato' element={<LoginCandidate />}/>
           <Route path='register-candidato' element={<RegisterCandidate/>}/>
@@ -61,6 +63,7 @@ function App() {
             <Route path='detail-vacancy' element={<Details/>}/>
             <Route path='app-vacancies' element={<AppVacancyCandidate/>}/>
 		        <Route path ='SearchList' element ={<ListBuscar/>}/>
+            
           </Route>
           {/* aqui las rutas de la seccion reclutador */}
           <Route path='/login-recruiter' element={<LoginRecruiter/>}/>
@@ -74,6 +77,7 @@ function App() {
                <Route path='match' element={<Match />} />
                <Route path='details-match' element={<MatchDetails/>}/>
                <Route path='profile-candidato' element={<Candidate/>}/>
+               
             </Route>
 
         </Routes>

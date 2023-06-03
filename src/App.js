@@ -23,12 +23,31 @@ import MatchDetails from './componentes/Recruiter/Match/MatchDetails';
 import AddVacancy from './componentes/Recruiter/Vacancy/AddVacancy';
 import EditVacancy from './componentes/Recruiter/Vacancy/EditVacancy';
 import Candidate from './componentes/Recruiter/Profile/ProfileCandidate';
-
-
 import FormRecruiter from './componentes/Candidate/ProfileCandidate/Form/FormRecruiter';
 import ListBuscar from './componentes/Candidate/BuscarCandidate/ListBuscar';
+import JobContext from './context/JobContext';
+import { useState } from 'react';
+
+
+const initDataRecrutier = {
+  email: '',
+  name: '',
+  token: ''
+}
+
+const initDataCandidate = {
+  email: '',
+  name: '',
+  token: ''
+}
+
+
+
 function App() {
+  const [dataRecruiter, setDataRecruiter] = useState(initDataRecrutier);
+  const [dataCandidate, setDataCandidate] = useState(initDataCandidate);
   return (
+    <JobContext.Provider value={[dataCandidate,setDataCandidate,dataRecruiter,setDataRecruiter]}>
     <div className="App">
 <Routes>
           <Route path="/" element={<Mains/>}/>
@@ -59,7 +78,7 @@ function App() {
 
         </Routes>
     </div>
-
+    </JobContext.Provider>
   );
 }
 

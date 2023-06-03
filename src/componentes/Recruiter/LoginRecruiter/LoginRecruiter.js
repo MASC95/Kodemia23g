@@ -6,13 +6,15 @@ import './scss/style.scss'
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState,useEffect } from "react";
+import useJob from '../../../hooks/useJob';
 
 export const LoginRecruiter=()=>{
     const [formValues,setFormValues]=useState({
         email:'',
         password:''
     })
-    const navigate= useNavigate()
+    const [dataCandidate,setDataCandidate,dataRecruiter,setDataRecruiter]=useJob();
+    const navigate= useNavigate();
     const [isLoading,setLoading]=useState(true)
     const onFormInputChange=(event)=>{
         const inputID=event.target.id;
@@ -43,6 +45,9 @@ export const LoginRecruiter=()=>{
                 console.log(formValues)
               const loginRecruiter= await endpoints.loginAxios(formValues);
               console.log(loginRecruiter)
+              if(loginRecruiter.access_token){
+                setDataRecruiter(loginRecruiter);
+              }
               window.localStorage.setItem('accessToken',JSON.stringify(loginRecruiter))
               window.localStorage.setItem('token',loginRecruiter.access_token)
               //   localStorage.setItem('token',loginRecruiter.access_token)

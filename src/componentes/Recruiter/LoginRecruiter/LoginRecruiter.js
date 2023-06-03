@@ -4,9 +4,9 @@ import login from './img/login.png'
 import logo from './img/logo.png'
 import './scss/style.scss'
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
-import { useState,useEffect } from "react";
+import { useState} from "react";
 import useJob from '../../../hooks/useJob';
+import swal from "sweetalert";
 
 export const LoginRecruiter=()=>{
     const [formValues,setFormValues]=useState({
@@ -19,13 +19,9 @@ export const LoginRecruiter=()=>{
     const onFormInputChange=(event)=>{
         const inputID=event.target.id;
         const inputValue=event.target.value
-
-        setFormValues({
-            ...formValues,
-            [inputID]:inputValue
-        })
+        setFormValues({...formValues,[inputID]:inputValue})
     }
-    console.log(formValues)
+    // console.log(formValues)
     const importantData=(formValues.email!==''&& formValues.password!=='')
     const resetForm=()=>{
         setFormValues({
@@ -42,26 +38,51 @@ export const LoginRecruiter=()=>{
     const loginCallback=async()=>{
         try {
             if(importantData){
-                console.log(formValues)
               const loginRecruiter= await endpoints.loginAxios(formValues);
-              console.log(loginRecruiter)
+              setFormValues(loginRecruiter)
+              window.localStorage.setItem('accessToken',JSON.stringify(loginRecruiter))
               if(loginRecruiter.access_token){
                 setDataRecruiter(loginRecruiter);
               }
-              window.localStorage.setItem('accessToken',JSON.stringify(loginRecruiter))
-              window.localStorage.setItem('token',loginRecruiter.access_token)
-              //   localStorage.setItem('token',loginRecruiter.access_token)
-              
-              setFormValues(loginRecruiter)
-              setLoading(false)
-              resetForm()
-              navigate(`/Dashboard-Recruiter/home`)
+
+              const perfil = JSON.parse(localStorage.getItem('accessToken'))
+                const token=perfil['access_token']
+                function parseJwt (token) {
+                    var base64Url = token.split('.')[1];
+                    var base64 = base64Url.replace('-', '+').replace('_', '/');
+                    return JSON.parse(window.atob(base64));
+                };
+                const destroy=parseJwt(token)
+                const role= destroy['role']
+                    if(role==='empresa'){
+                        swal({
+                            title: "Bienvenido de vuelta!",
+                            icon: "success",
+                            button: "ok!",
+                        });
+                        resetForm()
+                        console.log('dashboard Empresa')
+                        navigate(`/Dashboard-Recruiter/home`)
+                    }else{
+                         swal({
+                            title: "Error al acceder!",
+                            icon: "error",
+                            button: "ok!",
+                        });
+                    }
             }else{
-                alert('Todos los datos son necesarios')
+                swal({
+                    title: "Todos los datos son requeridos!",
+                    icon: "error",
+                    button: "ok!",
+                  });
             }
           } catch (error) {
-              alert('Credenciales invalidas')
-              console.log('error')
+            swal({
+                title: "Credenciales invalidas!",
+                icon: "error",
+                button: "ok!",
+              });
           }
     }
 
@@ -107,9 +128,11 @@ export const LoginRecruiter=()=>{
                                 </div>
                         </div>
                     </form>
+                    <p className="mt-20 text-black text-decoration-none">No tienes una cuenta?
                     <Link to={`/registerRecruiter`}>
-                    <p className="mt-20 text-decoration-none">No tienes una cuenta?<a href="!#"> Crea una con nosotros</a></p>
+                    <a href="!#"> Crea una con nosotros</a>
                     </Link>
+                    </p>
                     </div>
                 </div>
                 <div className="col-md-6 col-md-offset-3">

@@ -3,32 +3,27 @@ import {Link} from 'react-router-dom'
 import { FaBars, FaUser,FaSuitcase, FaCheckDouble, FaSignOutAlt, FaHome} from 'react-icons/fa';
 import logo from '../assets/img/logo.png'
 import './style.scss'
-import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { endpoints } from '../services/endpoints';
+import useJob from '../../../hooks/useJob'
 
 const SidebarRecruiter= () => {
-  // const [profileInformation,setProfileInformation]=useState([])
-  // const [isLoading,setLoading]=useState(true)
-  // const params=useParams();
-  // const {id}=params
-  // console.log(id)
+  const navigate=useNavigate()
+  const [dataCandidate,setDataCandidate,dataRecruiter,setDataRecruiter]= useJob();
   // useEffect(()=>{
-  //     const fetchData=async()=>{
-  //         try {
-  //             const endpointURL= `${endpoints.getByUser}/${id}`;
-  //             const result= await axios.get(endpointURL)
-  //             setProfileInformation(result.data)
-  //             console.log(result.data[0])
-  //         } catch (error) {
-  //             console.log(error)
-  //         } finally{
-  //             setLoading(false)
-  //         }         
-  //     };
-  //     fetchData()
-  // },[id]);
-  // console.log(profileInformation)
+  //     console.log(dataRecruiter)
+  // },[dataRecruiter])
+  const logout=()=>{
+    // localStorage.getItem('accessToken')
+    // const clear=localStorage.clear()
+    const clear=setDataRecruiter({})
+    if(clear){
+      navigate(`/login-recruiter`)
+    }
+    // setDataRecruiter({})
+  }
+ 
 
   return (
     <>
@@ -53,7 +48,7 @@ const SidebarRecruiter= () => {
           <Link to={`/Dashboard-Recruiter/match`}>
           <a href="#!" className="dashboard-nav-item"><FaCheckDouble/> &nbsp;Match </a>
           </Link>
-          <a href="#!" className="dashboard-nav-item"><FaSignOutAlt/> &nbsp;Logout </a>
+          <button type='button' onClick={logout} className="button-logout" ><FaSignOutAlt/> &nbsp;Logout </button>
         </nav>
     </div>
     </>

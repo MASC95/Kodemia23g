@@ -1,13 +1,102 @@
-import React from "react";
+import {useState} from "react";
 import logo from './img/logo.png'
 import register from './img/14.png'
 import './scss/style.scss'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import swal from "sweetalert";
+import { endpointsGral } from "../../Recruiter/services/vacancy";
 
 export const RegisterCandidate=()=>{
+  const navigate =useNavigate()
+  const [formValues, setFormValues]=useState({
+    email:'',
+    password:'',
+    role:''
+  })
+  const onFormInputChange=(event)=>{
+    const Input=event.target.id;
+    const InputValue=event.target.value;
+
+    setFormValues({
+      ...formValues,[Input]:InputValue
+    })
+  }
+
+  const onFormSubmit=(event)=>{
+    event.preventDefault()
+    registerRecruiter()
+  }
+  const importantData= (formValues.email!=='' &&
+                        formValues.role !==''&&
+                        formValues.password!=='')
+  
+  const resetForm=()=>{
+        setFormValues({
+          email:'',
+          password:'',
+          role:''
+          })
+      }
+
+  const registerRecruiter=async()=>{
+    if(formValues.role==='candidato'){
+      try {
+      console.log(formValues)
+      if(importantData){
+        const register=await axios.post(endpointsGral.userURL,formValues);
+        setFormValues(register)
+        swal({
+          title: "Bienvenido!",
+          icon: "success",
+          button: "ok!",
+        });
+        resetForm()
+        console.log('pagina candidato')
+      } else{
+        swal({
+          title: "Todos los campos son requeridos!",
+          icon: "error",
+          button: "ok!",
+        });
+      }
+    } catch (error) {
+      swal({
+        title: "Error al registrar!",
+        icon: "error",
+        button: "ok!",
+      });
+    }
+    }else{
+      try {
+        console.log(formValues)
+        if(importantData){
+          const register=await axios.post(endpointsGral.userURL,formValues);
+          setFormValues(register)
+          swal({
+            title: "Bienvenido!",
+            icon: "success",
+            button: "ok!",
+          });
+          resetForm()
+          console.log('pagina empresa')
+        //  navigate(`/Dashboard-recruiter/home`)
+        } else{
+          swal({
+            title: "Todos los campos son requeridos!",
+            icon: "error",
+            button: "ok!",
+          });
+        }
+      } catch (error) {
+        
+      }
+    }
+  }
+
     return(
         <>
-        <section class="signin-page account">
+        <section className="signin-page account">
           <div className="container">
             <div className="row">
               <div className="col-md-6 col-md-offset-3">
@@ -18,18 +107,39 @@ export const RegisterCandidate=()=>{
                     </a>
                   </Link>
                 <h2 className="text-center text-dark">Bienvenido</h2>
-                <form className="text-left clearfix">
+                <form className="text-left clearfix" onSubmit={onFormSubmit}>
                     <div className="form-group">
-                    <input type="email" className="form-control" id="exampleInputEmail1" placeholder="Email"/>
+                    <input type="email" 
+                           value={formValues.email}
+                           onChange={onFormInputChange}
+                           className="form-control" 
+                           id="email" 
+                           placeholder="Email"/>
+                           
                     </div>
-                    {/* <div className="form-group">
-                    <input type="text" className="form-control" id="exampleInputEmail1" placeholder="RFC"/>
-                    </div> */}
                     <div className="form-group">
-                    <input type="password" className="form-control" id="exampleInputEmail1" placeholder="Password"/>
+                            {/* <label className="form-label" for="form6Example1">Role</label> */}
+                            <select className="form-control" id="role" value={formValues.role} onChange={onFormInputChange} >
+                                <option value="" selected disabled>Rol</option>
+                                <option value='candidato'>candidato</option>
+                                <option value='empresa'>empresa</option>
+                            </select>
+                        </div>
+                    <div className="form-group">
+                    <input type="text" 
+                           value={formValues.rfc}
+                           onChange={onFormInputChange}
+                           className="form-control" 
+                           id="rfc" 
+                           placeholder="RFC"/>
                     </div>
                     <div className="form-group">
-                    <input type="password" className="form-control" id="exampleInputEmail1" placeholder="Confirmar Password"/>
+                    <input type="password" 
+                           value={formValues.password}
+                           onChange={onFormInputChange}
+                           className="form-control" 
+                           id="password" 
+                           placeholder="Password"/>
                     </div>
                     <div className="text-center">
                     <div className="buttons_actions d-grid">  
@@ -46,7 +156,7 @@ export const RegisterCandidate=()=>{
               </div>
             <div className="col-md-6 col-md-offset-3">
                 <div className="block text-center  shadow-none">
-                <img className="container w-100 h-50" src={register}/>
+                <img className="container w-100 h-50" src={register} alt=""/>
                 </div>
             </div>
             </div>

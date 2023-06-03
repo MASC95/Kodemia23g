@@ -10,6 +10,7 @@ import swal from 'sweetalert';
 export const LoginCandidate = ()=>{
     const [formValues, setFormValues]=useState({
         email:'',
+        role:'',
         password:''
     })
 

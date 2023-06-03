@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { endpoints } from '../EndpointsCandidate/endpoints';
+
 const SkillsSection = () => {
   const [selectedSkill, setSelectedSkill] = useState('');
   const [selectedLevel, setSelectedLevel] = useState('');
@@ -26,15 +27,30 @@ const SkillsSection = () => {
   };
 
   const handleDeleteSkill = (index) => {
-    const updatedSkills = [...skills];
-    updatedSkills.splice(index, 1);
-    setSkills(updatedSkills);
+    const skillToDelete = skills[index];
+
+    axios.delete(`${endpoints.profileDeleteSkill}/${skillToDelete.id}`)
+      .then(response => {
+        const updatedSkills = skills.filter((_, i) => i !== index);
+        setSkills(updatedSkills);
+      })
+      .catch(error => {
+        console.error(error);
+      });
   };
 
   const handleEditSkill = (index, newLevel) => {
+    const skillToEdit = skills[index];
     const updatedSkills = [...skills];
     updatedSkills[index].level = newLevel;
-    setSkills(updatedSkills);
+
+    axios.put(`${endpoints.profileEditSkill}/${skillToEdit.id}`, skillToEdit)
+      .then(response => {
+        setSkills(updatedSkills);
+      })
+      .catch(error => {
+        console.error(error);
+      });
   };
 
   const handleSendSkillsToAPI = () => {
@@ -98,3 +114,4 @@ const SkillsSection = () => {
 };
 
 export default SkillsSection;
+

@@ -70,7 +70,7 @@ const FormRecruiter = () => {
             <div className="button">
               <label className="btn btn-primary">
               
-                <input type="file" className="visually-hidden" onChange = {this.fileSelectedHandler} />
+                <input type="file" className="visually-hidden"  />
                 Subir
               </label>
             </div>

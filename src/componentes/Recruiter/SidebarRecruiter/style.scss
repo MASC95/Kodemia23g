@@ -228,6 +228,11 @@ h1, .h1 {
     -ms-flex-direction: column;
     flex-direction: column;
 }
+.button-logout{
+    background-color: transparent;
+    border: 0;
+    color: #fff;
+}
 
 .dashboard-nav-item {
     min-height: 56px;

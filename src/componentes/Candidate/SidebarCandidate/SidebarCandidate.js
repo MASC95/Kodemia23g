@@ -1,10 +1,23 @@
 import React from "react";
-import {Link} from 'react-router-dom'
+import {Link,useNavigate} from 'react-router-dom'
 import './style.scss'
 import logo from '../../Recruiter/assets/img/logo.png'
 import { FaBars, FaUser,FaSuitcase, FaSearch, FaSignOutAlt, FaHome} from 'react-icons/fa';
-
+import useJob from '../../../hooks/useJob'
 export const SidebarCandidate=()=>{
+  const navigate =useNavigate()
+  const [dataCandidate,setDataCandidate,dataRecruiter,setDataRecruiter]= useJob();
+
+  const logout=(e)=>{
+    localStorage.getItem('accessToken')
+    const clear=localStorage.clear()
+    // const clear=setDataRecruiter({})
+    if(clear){
+      navigate(`/login-candidato`)
+    }
+    // setDataRecruiter({})
+  }
+
     return(
         <>
           <div className="dashboard-nav">
@@ -28,7 +41,7 @@ export const SidebarCandidate=()=>{
           <Link to={`/dashboard-candidato/app-vacancies`}>
           <a href="#!" className="dashboard-nav-item"><FaSuitcase/> &nbsp;Mis vacantes </a>
           </Link>
-          <a href="#!" className="dashboard-nav-item"><FaSignOutAlt/> &nbsp;Logout </a>
+          <button type='submit' onClick={logout} className="button-logout" ><FaSignOutAlt/> &nbsp;Logout </button>
         </nav>
     </div>
         </>

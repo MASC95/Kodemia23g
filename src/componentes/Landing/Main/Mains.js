@@ -41,7 +41,7 @@ const Mains = () => {
                 </div>
                 <div className="access-recruiter">
                   <Link to={"/login-recruiter"}>
-                  <button type="button" class="access-btn-rec btn btn-primary">
+                  <button type="button" className="access-btn-rec btn btn-primary">
                     Accede como Reclutador
                   </button>
                   </Link>

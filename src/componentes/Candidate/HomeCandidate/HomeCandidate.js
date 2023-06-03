@@ -7,7 +7,8 @@ import React from "react";
 export const HomeCandidate=()=>{
     return(
         <>
-            <h1>BIENVENIDO A JOBINDER</h1>
+
+            <h1 d-flex justify-content-center>BIENVENIDO A JOBINDER</h1>
         </>
     )
 }

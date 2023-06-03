@@ -33,11 +33,11 @@ export const ListBuscar = () => {
               <thead className="thead-dark bg-body-secondary">
                 <tr>
                   <th scope="col">#</th>
-                  <th scope="col">TITULO</th>
+                  <th scope="col" style={{backgroundColor: '#FAFAFB'}}>TITULO</th>
                   <th scope="col">TIPO DE TRABAJO</th>
-                  <th scope="col">MODALIDAD</th>
+                  <th scope="col" style={{backgroundColor: '#FAFAFB'}}>MODALIDAD</th>
                   <th scope="col">SALARIO</th>
-                  <th scope="col">OPCIONES</th>
+                  <th scope="col" style={{backgroundColor: '#FAFAFB'}}>OPCIONES</th>
                 </tr>
               </thead>
               <tbody>

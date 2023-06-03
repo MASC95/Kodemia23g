@@ -11,7 +11,9 @@ export const ListBuscar = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(endpointsGral.vacancyURL);
-        setVacancies(response.data);
+        const datas=response.data['item']
+                    setVacancies(datas['docs']);
+
       } catch (error) {
         console.log(error);
       }
@@ -41,7 +43,8 @@ export const ListBuscar = () => {
                 </tr>
               </thead>
               <tbody>
-                {vacancies.map(item => (
+                {vacancies && vacancies?.map(item => (
+
                   <tr key={item.id}>
                     <th scope="row">{item.id}</th>
                     <td>{item.title}</td>

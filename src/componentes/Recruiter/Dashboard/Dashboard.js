@@ -7,9 +7,15 @@ import { endpoints } from "../services/endpoints";
 import axios from "axios";
 import Header from "./Header";
 import { Outlet } from "react-router-dom";
+import useJob from "../../../hooks/useJob";
 
 
 export const Dashboard=()=>{
+    const [dataCandidate,setDataCandidate,dataRecruiter,setDataRecruiter]= useJob();
+
+    useEffect(()=>{
+        console.log(dataRecruiter)
+    },[dataRecruiter])
     // const [profileInformation,setProfileInformation]=useState([])
     // const [isLoading,setLoading]=useState(true)
     // const params=useParams();

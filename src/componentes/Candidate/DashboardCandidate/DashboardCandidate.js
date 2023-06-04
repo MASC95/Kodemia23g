@@ -15,12 +15,12 @@ export const DashboardCandidate=()=>{
             {isVisibleSidebar&& <SidebarCandidate/>}
             <div style={isVisibleSidebar?{}:{width:'100vw'}} className={isVisibleSidebar?'dashboard-app':''}>
                 <header style={isVisibleSidebar?{}:{width:'100vw'}} className={isVisibleSidebar?'dashboard-toolbar': 'w-100 navbar border'}>
-                    <div className="row profile-container">
-                        <div className="col">
+                    <div className="row profile-container justify-content-between">
+                        <div className="col my-3">
                             <button onClick={handleIsVisibleSidebar} className="btn btn-light menu-toggle"><FaBars/></button>
                         </div> 
-                    <div className="col image-container">
-                        <p>Candidato</p>
+                    <div className="col-3 image-container my-3">
+                        <p className="text-dark">Candidato</p>
                         <img style={isVisibleSidebar?{}:{width:'50px'}} src={imgProfile}/>
                     </div>
                     </div>

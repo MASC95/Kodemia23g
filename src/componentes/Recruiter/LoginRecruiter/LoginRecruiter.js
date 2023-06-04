@@ -13,7 +13,7 @@ export const LoginRecruiter=()=>{
         email:'',
         password:''
     })
-    const [setDataRecruiter]=useJob();
+    const [dataCandidate,setDataCandidate,dataRecruiter,setDataRecruiter, initDataCandidate, initDataRecrutier]=useJob();
     const navigate= useNavigate();
     // const [isLoading,setLoading]=useState(true)
     const onFormInputChange=(event)=>{

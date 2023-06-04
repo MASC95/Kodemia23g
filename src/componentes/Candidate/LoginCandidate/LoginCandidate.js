@@ -15,7 +15,7 @@ export const LoginCandidate = ()=>{
     })
 
     const navigate = useNavigate();
-    const [setDataCandidate]=useJob();
+    const [dataCandidate,setDataCandidate,dataRecruiter,setDataRecruiter, initDataCandidate, initDataRecrutier]=useJob();
     
     const onFormInputChange=(event)=>{
         const InputID=event.target.id;

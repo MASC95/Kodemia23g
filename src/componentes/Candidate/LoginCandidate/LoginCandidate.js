@@ -15,7 +15,7 @@ export const LoginCandidate = ()=>{
     })
 
     const navigate = useNavigate();
-    const [dataCandidate,setDataCandidate,dataRecruiter,setDataRecruiter]=useJob();
+    const [setDataCandidate]=useJob();
     
     const onFormInputChange=(event)=>{
         const InputID=event.target.id;
@@ -91,16 +91,14 @@ export const LoginCandidate = ()=>{
                 <div className="row">
                 <div className="col-md-6 col-md-offset-3">
                     <div className="block text-center">
-                    <Link to={'/'}>
-                    <a className="logo_Jobinder" href="#!">
+                    <Link to={'/'} className="logo_Jobinder" >
                         <img src={logo} alt=""/>
-                    </a>
                      </Link>
                     <h2  className="text-center text-dark">Bienvenido de vuelta!</h2>
                     <form className="text-left clearfix" 
                           id="formCandidate"
                           onSubmit={onFormSubmit} >
-                        <div class="form-group">
+                        <div className="form-group">
                         <input type="email"
                                value={formValues.email}
                                onChange={onFormInputChange} 
@@ -124,7 +122,7 @@ export const LoginCandidate = ()=>{
                     </form>
                     <p className="mt-20 text-black text-decoration-none">No tienes una cuenta?
                     <Link to={`/register-candidato`}>
-                    <a href="#!"> Crea una con nosotros</a>
+                      Crea una con nosotros
                     </Link>
                     </p>
                     </div>

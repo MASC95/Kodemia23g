@@ -86,20 +86,19 @@ export const RegisterCandidate = () => {
   };
 
   const registerRecruiter = async () => {
-    if (formValues.role === "candidato") {
+    // if (formValues.role === "candidato") {
       try {
-        console.log(formValues);
         if (importantData) {
           const register = await axios.post(endpointsGral.registerUser, formValues);
           setFormValues(register);
-          /* swal({
-            title: "Bienvenido!",
-            icon: "success",
-            button: "ok!",
-          }); */
           resetForm();
-          console.log("pagina candidato");
-          navigate(`/dashboard-candidato/home`)
+          if(formValues.role==="candidato"){
+             console.log("pagina candidato");
+            //  navigate(`/dashboard-candidato/home`)
+          }else{
+             console.log("pagina empresa");
+            //  navigate(`/dashboard-candidato/home`)
+          }
         } else {
           swal({
             title: "Todos los campos son requeridos!",
@@ -114,29 +113,24 @@ export const RegisterCandidate = () => {
           button: "ok!",
         });
       }
-    } else {
-      try {
-        console.log(formValues);
-        if (importantData) {
-          const register = await axios.post(endpointsGral.userURL, formValues);
-          setFormValues(register);
-          /* swal({
-            title: "Bienvenido!",
-            icon: "success",
-            button: "ok!",
-          }); */
-          resetForm();
-          console.log("pagina empresa");
-          navigate(`/Dashboard-recruiter/home`)
-        } else {
-          swal({
-            title: "Todos los campos son requeridos!",
-            icon: "error",
-            button: "ok!",
-          });
-        }
-      } catch (error) {}
-    }
+    // } else {
+    //   try {
+    //     console.log(formValues);
+    //     if (importantData) {
+    //       const register = await axios.post(endpointsGral.userURL, formValues);
+    //       setFormValues(register);
+    //       resetForm();
+    //       console.log("pagina empresa");
+    //       navigate(`/Dashboard-recruiter/home`)
+    //     } else {
+    //       swal({
+    //         title: "Todos los campos son requeridos!",
+    //         icon: "error",
+    //         button: "ok!",
+    //       });
+    //     }
+    //   } catch (error) {}
+    // }
   };
 
   const handleConfirmEmail = () => {

@@ -5,10 +5,10 @@ import { FaEdit, FaTrash } from "react-icons/fa";
 import { useState,useEffect } from "react";
 import axios from "axios";
 import { endpointsGral } from "../services/vacancy";
-import Softskills from "./Form/SoftSkills";
+// import Softskills from "./Form/SoftSkills";
 export const TableSkills=()=>{
     const [getSoftSkills,setSoftSkills]=useState([])
-    const [isLoading, setIsLoading]=useState(true)
+    // const [isLoading, setIsLoading]=useState(true)
     const valores = window.location.search;
     const urlParams = new URLSearchParams(valores);
     const id = urlParams.get('v');
@@ -45,9 +45,9 @@ export const TableSkills=()=>{
                             <td>{skill.level}</td>
                             <td className="options_buttons d-flex justify-content-center gap-3">
                                 <Link to={`/recruiter-vacancy/edit/id`}>
-                                    <a href=""><FaEdit className="icon_edit"/></a>
+                                   <FaEdit className="icon_edit"/>
                                 </Link>
-                                <a href=""><FaTrash className="icon_trash"/></a>
+                                <a href="!#"><FaTrash className="icon_trash"/></a>
                             </td>
                             </tr>
                         )

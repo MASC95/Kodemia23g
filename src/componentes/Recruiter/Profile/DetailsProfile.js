@@ -10,7 +10,7 @@ export const DetailsProfile=()=>{
         <>
      <div className="row container_form_General">
             <div className="col-4 container_image">
-                <img src={imgProfile}/>
+                <img src={imgProfile} alt=""/>
                 <div className="">  
                   <p className="text-justify">Nombre</p>
                   <p className="text-justify">Rol</p>

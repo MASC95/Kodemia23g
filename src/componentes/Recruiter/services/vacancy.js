@@ -8,3 +8,5 @@ export const endpointsGral={
 
 
 //registerUser: 'https://apibackendjob-production.up.railway.app/api/v1/signup',
+
+//aqui esta el endpoint que consulta el detalle del skill

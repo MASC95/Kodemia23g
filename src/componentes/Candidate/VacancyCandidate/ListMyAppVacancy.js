@@ -5,6 +5,9 @@ import { endpoints } from "../EndpointsCandidate/endpoints";
 import axios from "axios";
 import { useState,useEffect } from "react";
 
+
+//Muestra las vacantes a las que ha aplicado el candidato
+
 export const ListMyAppVacancy=()=>{
 
     useEffect(() => {

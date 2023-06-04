@@ -10,7 +10,7 @@ import '../Alerts/Alert'
 import AlertComponent from '../Alerts/Alert';
 
 
-
+// muestra el detalle de la vacante
 export const Details = () => {
   const [dataVacancy, setDataVacancy] = useState("");
   const [dataEntries, setDataEntries] = useState([]);
@@ -73,7 +73,7 @@ export const Details = () => {
             </div>
           </div>
           <h3>Soft Skills Solicitadas</h3>
-          <ViewTableSkills />
+          <ViewTableSkills listSkils={dataVacancy.job_skills} />
         </div>
       </div>
     </>

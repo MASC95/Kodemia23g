@@ -15,17 +15,25 @@ export const ViewTableSkills=({listSkils})=>{
     
     const cargarDatos = async()=>{
         try {
-            for(let i =0; i<listSkils.length; i++){
+            if(listSkils.length>0){
+                const tempArray =[];
+            for(let i =0; i<listSkils?.length; i++){
                 const response = await axios.get(`${endpointsGral.jobSkill}/${listSkils[i]}`);
                 if (response?.data?.infoJobSkill){
+                    console.log('responseDataJobSkill:..',response);
                     const {name,level}= response.data.infoJobSkill;
-                    setDataSkils(
-                        [...dataSkils, {name,level}]
-                    )
+                   tempArray.push({
+                    name,
+                    level
+                   })
                 }
             }
+            setDataSkils(
+                [...tempArray]
+                
+            )
+        }
             
-            //console.log('responseDataJobSkill:..',response);
         } catch (error) {
             console.log(error);
         }
@@ -43,12 +51,20 @@ export const ViewTableSkills=({listSkils})=>{
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
+                    
+                    {dataSkils.map((item,i)=>{
+                        return(<>
+                        <tr>
+                         <th scope="row">{i+1}</th>
+                         <td>{item.name}</td>
+                         <td>{item.level}</td>
+                         </tr>
+                        </>)
+                        
+                    })}    
+                   
                  
-                    </tr>
+                   
                 </tbody>
             </table>
             </div>

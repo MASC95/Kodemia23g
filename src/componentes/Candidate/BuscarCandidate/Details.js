@@ -73,7 +73,7 @@ export const Details = () => {
             </div>
           </div>
           <h3>Soft Skills Solicitadas</h3>
-          <ViewTableSkills listSkils={dataVacancy.job_skills} />
+         {dataVacancy?.job_skills && <ViewTableSkills listSkils={dataVacancy.job_skills} />} 
         </div>
       </div>
     </>

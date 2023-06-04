@@ -8,7 +8,7 @@ export const HomeCandidate=()=>{
     return(
         <>
 
-            <h1 d-flex justify-content-center>BIENVENIDO A JOBINDER</h1>
+            <h1 className="d-flex justify-content-center" >BIENVENIDO A JOBINDER</h1>
         </>
     )
 }

@@ -15,6 +15,7 @@ export const Details = () => {
   const [dataVacancy, setDataVacancy] = useState("");
   const [dataEntries, setDataEntries] = useState([]);
   const [showAlert, setShowAlert] = useState(false);
+
   useEffect(() => {
     cargarDatos();
   }, []);
@@ -24,8 +25,11 @@ export const Details = () => {
       const response = await axios.get(`${endpoints.candidateVacancyById}${myParams.id}`)
       console.log("hola", response);
 
-      const entries = Object.entries(response.data);
-      setDataEntries(entries);
+      //const entries = Object.entries(response.data);
+      const datos = response?.data;
+      if(datos) setDataVacancy(datos);
+      //setDataEntries(ent);
+      console.log('datos:..',datos);
 
      
     }
@@ -48,11 +52,11 @@ export const Details = () => {
           <img src={imgProfile} />
 
           <div className="">
-            <p className="text-justify"><b>Nombre de la empresa:</b> {dataEntries.find(([key, value]) => key === 'companyName')?.[1]}</p>
-            <p className="text-justify"><FaAddressBook /> <b>Ciudad:</b> {dataEntries.find(([key, value]) => key === 'city')?.[1]}</p>
-            <p className="text-justify"><FaBook /> <b>Modalidad:</b> {dataEntries.find(([key, value]) => key === 'mode')?.[1]}</p>
-            <p className="text-justify"><FaCalendarCheck /> <b>Tipo:</b> {dataEntries.find(([key, value]) => key === 'type')?.[1]}</p>
-            <p className="text-justify"><FaDollarSign /> <b>Salario:</b> {dataEntries.find(([key, value]) => key === 'salary')?.[1]}</p>
+            <p className="text-justify"><b>Nombre de la empresa:</b> PENDIENTE</p>
+            <p className="text-justify"><FaAddressBook /> <b>Ciudad:</b> {dataVacancy?.city}</p>
+            <p className="text-justify"><FaBook /> <b>Modalidad:</b> {dataVacancy?.mode}</p>
+            <p className="text-justify"><FaCalendarCheck /> <b>Tipo:</b> {dataVacancy?.type}</p>
+            <p className="text-justify"><FaDollarSign /> <b>Salario:</b> {dataVacancy?.salary}</p>
             <button type="submit" className="btn btn-outline-info buscar"  onClick={handleApply}>Aplicar</button>
             {showAlert && <AlertComponent/>}
 
@@ -64,7 +68,7 @@ export const Details = () => {
             <div className="col">
               <div className="form-outline bg-gray">
                 <p className="text-start"><b>Actividades</b></p>
-                <p className="text-start">{dataEntries.find(([key, value]) => key === 'activities')?.[1]}</p>
+                <p className="text-start">{dataVacancy?.activities}</p>
               </div>
             </div>
           </div>

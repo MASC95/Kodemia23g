@@ -1,8 +1,27 @@
 import React from "react";
 import Badge from "react-bootstrap/Badge"
 import './style.scss'
+import { endpoints } from "../EndpointsCandidate/endpoints";
+import axios from "axios";
+import { useState,useEffect } from "react";
 
 export const ListMyAppVacancy=()=>{
+
+    useEffect(() => {
+      cargarDatos();
+       
+    }, [])
+    
+
+    const cargarDatos = async()=>{
+        try {
+            const response = await axios.get(endpoints.candidateMyVacancies);
+            console.log('responseMyVacancies:..',response);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return(
         <>
             <div className="container mt-2 p-5 w-100 " id="formGral">

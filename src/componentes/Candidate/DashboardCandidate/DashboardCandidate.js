@@ -1,23 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import SidebarCandidate from "../SidebarCandidate/SidebarCandidate";
 import { FaBars } from "react-icons/fa";
 import imgProfile from '../../Recruiter/assets/img/perfil2.jpg'
 import { Outlet } from "react-router-dom";
 
 export const DashboardCandidate=()=>{
+    const [isVisibleSidebar, setIsVisibleSidebar] = useState(false);
+    const handleIsVisibleSidebar = ()=>{
+        setIsVisibleSidebar(prev=>!prev);
+    }
     return(
         <>
-         <div className='dashboard'>
-            <SidebarCandidate/>
-            <div className='dashboard-app'>
-                <header className='dashboard-toolbar'>
+         <div style={isVisibleSidebar?{}:{width:'100vw'}} className={isVisibleSidebar?'dashboard':''}>
+            {isVisibleSidebar&& <SidebarCandidate/>}
+            <div style={isVisibleSidebar?{}:{width:'100vw'}} className={isVisibleSidebar?'dashboard-app':''}>
+                <header style={isVisibleSidebar?{}:{width:'100vw'}} className={isVisibleSidebar?'dashboard-toolbar': 'w-100 navbar border'}>
                     <div className="row profile-container">
                         <div className="col">
-                            <a href="#!" className="menu-toggle"><FaBars/></a>
+                            <button onClick={handleIsVisibleSidebar} className="btn btn-light menu-toggle"><FaBars/></button>
                         </div> 
                     <div className="col image-container">
                         <p>Candidato</p>
-                        <img src={imgProfile}/>
+                        <img style={isVisibleSidebar?{}:{width:'50px'}} src={imgProfile}/>
                     </div>
                     </div>
                 </header>

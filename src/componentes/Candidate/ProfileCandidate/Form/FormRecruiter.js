@@ -4,11 +4,19 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import axios from "axios";
-import { Component, useState } from "react";
+import { Component, useEffect, useState } from "react";
 import { endpointsGral } from "../../../Recruiter/services/vacancy";
+import UploadImage from "../../../UploadImage/UploadImage";
 
 const FormRecruiter = () => {
+  const [imageUser, setImageUser] = useState(null);
 
+  useEffect(() => {
+    if(imageUser) console.log(imageUser);
+  
+    
+  }, [imageUser])
+  
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -62,12 +70,17 @@ const FormRecruiter = () => {
     <>
       <div className="row container_form_General m-5">
         <div className="col-4 container_image ">
-          <div className="ppic-container">
+          {!imageUser&&<>
+            <div className="ppic-container">
             <img src={imgProfile} alt="imgProfile" />
           </div>
           <p className="allowed-files">Archivos permitidos .png, .jpg, jpeg</p>
+          </>}
+          
           <div className="buttons_actions d-flex justify-content-center gap-3">
-            <div className="button">
+
+              <UploadImage setDataImg={setImageUser}/>
+            {/* <div className="button">
               <label className="btn btn-primary">
               
                 <input type="file" className="visually-hidden"  />
@@ -80,7 +93,7 @@ const FormRecruiter = () => {
               style={{ width: "18%", height: "3%" }}
             >
               Remover
-            </button>
+            </button> */}
           </div>
         </div>
         <div className="col">

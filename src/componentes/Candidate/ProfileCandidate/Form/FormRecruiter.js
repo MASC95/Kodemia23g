@@ -12,7 +12,9 @@ const FormRecruiter = () => {
   const [imageUser, setImageUser] = useState(null);
 
   useEffect(() => {
-    if(imageUser) console.log(imageUser);
+    if(imageUser) {
+      console.log(imageUser);
+    }
   
     
   }, [imageUser])
@@ -26,6 +28,7 @@ const FormRecruiter = () => {
       age: "",
       exp: "",
       escolaridad: "",
+      image: ''
     },
     validationSchema: Yup.object({
       name: Yup.string()

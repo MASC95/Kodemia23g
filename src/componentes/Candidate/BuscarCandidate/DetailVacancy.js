@@ -1,10 +1,15 @@
-import React from "react";
-import {Link} from 'react-router-dom'
+
+import {Link, useParams} from 'react-router-dom'
 import {FaBars} from 'react-icons/fa'
 import SidebarCandidate from "../SidebarCandidate/SidebarCandidate";
 import Details from "./Details";
 import imgProfile from '../../Recruiter/assets/img/perfil2.jpg'
+import { useNavigate } from 'react-router-dom';
 export const DetailVacancy=()=>{
+    const myParams = useParams();
+    console.log(myParams);
+    console.log("componente detail vacancy");
+
     return(
         <>
             <div className='dashboard'>

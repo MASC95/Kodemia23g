@@ -13,6 +13,7 @@ export const ListBuscar = () => {
         const response = await axios.get(endpointsGral.vacancyURL);
         const datas=response.data['item']
                     setVacancies(datas['docs']);
+                    console.log(response.data);
 
       } catch (error) {
         console.log(error);
@@ -45,16 +46,16 @@ export const ListBuscar = () => {
               <tbody>
                 {vacancies && vacancies?.map(item => (
 
-                  <tr key={item.id}>
-                    <th scope="row">{item.id}</th>
+                  <tr key={item._id}>
+                    <th scope="row">{item._id}</th>
                     <td>{item.title}</td>
                     <td>{item.type}</td>
                     <td>{item.mode}</td>
                     <td>{item.salary}</td>
                     <td className="options_buttons d-flex justify-content-center gap-3">
                       <button type="submit" className="btn btn-outline-info buscar" onClick={handleApply}>Aplicar</button>
-                      <Link to={`/welcome-candidate/search-vacancy/${item.id}`}>
-                        <button type="submit" className="btn btn-info text-light">Abrir</button>
+                      <Link to={`/dashboard-candidato/detail-vacancy/${item._id}`}>
+                        <button type="submit" className="btn btn-info text-light" >Abrir</button>
                       </Link>
                     </td>
                   </tr>

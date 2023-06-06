@@ -1,4 +1,3 @@
-import {React, useEffect, useState } from "react";
 import {FaEdit, FaTrash} from 'react-icons/fa'
 import {Link} from 'react-router-dom'
 import './style.scss'
@@ -31,9 +30,9 @@ export const ListVacancy=({postdata})=>{
                                     <td>{item.salary}</td>
                                     <td className="options_buttons d-flex justify-content-center gap-3">
                                         <Link to={`/Dashboard-Recruiter/vacancy-edit/?v=${idVacancy}`}>
-                                            <a href="#!"><FaEdit className="icon_edit"/></a>
+                                            <FaEdit className="icon_edit"/>
                                         </Link>
-                                        <a href=""><FaTrash className="icon_trash"/></a>
+                                        <button type='button'className="icon_trash"><FaTrash className="icon_trash"/></button>
                                     </td>
                                     </tr>
                                 )

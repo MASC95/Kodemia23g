@@ -1,31 +1,27 @@
-import React from "react";
 import {Link,useNavigate} from 'react-router-dom'
 import './style.scss'
 import logo from '../../Recruiter/assets/img/logo.png'
-import { FaBars, FaUser,FaSuitcase, FaSearch, FaSignOutAlt, FaHome} from 'react-icons/fa';
+import {FaUser,FaSuitcase, FaSearch, FaSignOutAlt, FaHome} from 'react-icons/fa';
 import useJob from '../../../hooks/useJob'
 export const SidebarCandidate=()=>{
   const navigate =useNavigate()
-  const [dataCandidate,setDataCandidate,dataRecruiter,setDataRecruiter]= useJob();
-
+  const [dataCandidate,setDataCandidate,dataRecruiter,setDataRecruiter, initDataCandidate, initDataRecrutier]= useJob();
   const logout=(e)=>{
-    localStorage.getItem('accessToken')
-    const clear=localStorage.clear()
-    // const clear=setDataRecruiter({})
-    if(clear){
-      navigate(`/login-candidato`)
-    }
-    // setDataRecruiter({})
+   window.localStorage.setItem('accessToken','');
+   setDataCandidate(initDataCandidate)
+   setDataRecruiter(initDataRecrutier)
+   navigate('/')
   }
 
     return(
         <>
           <div className="dashboard-nav">
         <header>
-          <div href="#" className="brand-logo">
-            <a className="logo_Jobinder" href="index.html">
+          <div className="brand-logo">
+            <Link to={'index.html'} className="logo_Jobinder">
                 <img src={logo} className="logo_Jobinder" alt=""/>
-            </a>
+            </Link>
+            {/* <a className="logo_Jobinder" href="index.html"> </a> */}
           </div>
         </header>
         <nav className="dashboard-nav-list">

@@ -6,7 +6,7 @@ import useJob from "../../../hooks/useJob";
 
 
 export const Dashboard=()=>{
-    const [dataRecruiter]= useJob();
+    const [dataCandidate,setDataCandidate,dataRecruiter,setDataRecruiter, initDataCandidate, initDataRecrutier]= useJob();
 
     useEffect(()=>{
         console.log(dataRecruiter)

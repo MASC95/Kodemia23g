@@ -42,6 +42,7 @@ export const LoginCandidate = ()=>{
             window.localStorage.setItem('accessToken',JSON.stringify(loginCandidate))
             if(loginCandidate.access_token){
                setDataCandidate(loginCandidate)
+               console.log('datos', loginCandidate)
             }
                 const perfil = JSON.parse(localStorage.getItem('accessToken'))
                 const token=perfil['access_token']

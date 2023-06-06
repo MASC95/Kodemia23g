@@ -14,29 +14,39 @@ export const TableSkills=()=>{
     const valores = window.location.search;
     const urlParams = new URLSearchParams(valores);
     const id = urlParams.get('v');
+
     useEffect(()=>{
-        const fetch=async()=>{
-            const allSoftSkills=await axios.get(`${endpointsGral.vacancyURL}${id}`, getSoftSkills)
-            const datas=allSoftSkills.data['job_skills']
-            setSoftSkills(datas)
-            console.log(datas)
-        }
         fetch()
-        cargarDatos()
     },[])
 
+    useEffect(()=>{
+        if(getSoftSkills.length>0){
+            // console.log('intentando cargar datos', getSoftSkills)
+            cargarDatos()
+        }
+    },[getSoftSkills])
+
+    const fetch=async()=>{
+        const allSoftSkills=await axios.get(`${endpointsGral.vacancyURL}${id}`)
+        const datas=allSoftSkills.data['job_skills']
+        setSoftSkills(datas)
+        // console.log('job' ,datas)
+    }
 
     const cargarDatos = async()=>{
-        console.log(getSoftSkills)
+        // console.log('intentando cargar datos',getSoftSkills)
         try {
             if(getSoftSkills.length>0){
                 const tempArray =[];
             for(let i =0; i<getSoftSkills?.length; i++){
                 const response = await axios.get(`${endpointsGral.jobSkill}/${getSoftSkills[i]}`);
-                if (response?.data?.infoJobSkill){
-                    console.log('responseDataJobSkill:..',response);
-                    const {name,level}= response.data.infoJobSkill;
+                const datasBySkill=response.data
+                console.log('response', datasBySkill)
+                if (response?.data){
+                    console.log('responseDataJobSkill:..',response.data);
+                    const {_id,name,level}= response.data;
                    tempArray.push({
+                    _id,
                     name,
                     level
                    })

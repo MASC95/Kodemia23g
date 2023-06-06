@@ -5,10 +5,12 @@ import { FaEdit, FaTrash } from "react-icons/fa";
 import { useState,useEffect } from "react";
 import axios from "axios";
 import { endpointsGral } from "../services/vacancy";
-// import Softskills from "./Form/SoftSkills";
+
+
 export const TableSkills=()=>{
     const [getSoftSkills,setSoftSkills]=useState([])
-    // const [isLoading, setIsLoading]=useState(true)
+    const [dataSkils, setDataSkils] = useState([]);
+
     const valores = window.location.search;
     const urlParams = new URLSearchParams(valores);
     const id = urlParams.get('v');
@@ -17,11 +19,37 @@ export const TableSkills=()=>{
             const allSoftSkills=await axios.get(`${endpointsGral.vacancyURL}${id}`, getSoftSkills)
             const datas=allSoftSkills.data['job_skills']
             setSoftSkills(datas)
-            // console.log(datas)
+            console.log(datas)
         }
         fetch()
-    },[id])
-// console.log(getSoftSkills)
+        cargarDatos()
+    },[])
+
+
+    const cargarDatos = async()=>{
+        console.log(getSoftSkills)
+        try {
+            if(getSoftSkills.length>0){
+                const tempArray =[];
+            for(let i =0; i<getSoftSkills?.length; i++){
+                const response = await axios.get(`${endpointsGral.jobSkill}/${getSoftSkills[i]}`);
+                if (response?.data?.infoJobSkill){
+                    console.log('responseDataJobSkill:..',response);
+                    const {name,level}= response.data.infoJobSkill;
+                   tempArray.push({
+                    name,
+                    level
+                   })
+                }
+            }
+            setDataSkils(
+                [...tempArray]
+            )
+        }  
+        } catch (error) {
+            console.log(error);
+        }
+    }
     return(
         <>
           <div className="col">
@@ -36,11 +64,11 @@ export const TableSkills=()=>{
                     </tr>
                 </thead>
                 <tbody>
-                    {getSoftSkills.map((skill)=>{
+                    {dataSkils.map((skill,i)=>{
                         console.log(skill._id)
                         return (
                             <tr>
-                            <th scope="row">1</th>
+                            <th scope="row">{i+1}</th>
                             <td>{skill.name}</td>
                             <td>{skill.level}</td>
                             <td className="options_buttons d-flex justify-content-center gap-3">

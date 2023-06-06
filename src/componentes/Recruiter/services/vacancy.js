@@ -5,8 +5,3 @@ export const endpointsGral={
     jobSkill:'http://107.23.237.6/api/v1/jobSkill',
     confirmEmail: 'http://107.23.237.6/api/v1/signup/sendAccessCode'
 }
-// userURL:'https://apibackendjob-production.up.railway.app/api/v1/users',
-
-//registerUser: 'https://apibackendjob-production.up.railway.app/api/v1/signup',
-
-//aqui esta el endpoint que consulta el detalle del skill

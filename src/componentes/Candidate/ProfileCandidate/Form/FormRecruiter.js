@@ -7,9 +7,16 @@ import axios from "axios";
 import { Component, useEffect, useState } from "react";
 import { endpointsGral } from "../../../Recruiter/services/vacancy";
 import UploadImage from "../../../UploadImage/UploadImage";
+import useJob from "../../../../hooks/useJob";
 
 const FormRecruiter = () => {
   const [imageUser, setImageUser] = useState(null);
+  const [dataCandidate]=useJob();
+
+  useEffect(()=>{
+    console.log('dataCandidate:..',dataCandidate);
+  },[])
+
 
   useEffect(() => {
     if(imageUser) {
@@ -57,7 +64,7 @@ const FormRecruiter = () => {
     onSubmit: (values) => {
       /* alert(JSON.stringify(values, null, 2)); */
       axios
-        .post(endpointsGral.vacancyURL , values)
+        .post(endpointsGral.userURL , values)
         .then((response) => {
           console.log(response.data);
         })

@@ -7,9 +7,16 @@ import axios from "axios";
 import { Component, useEffect, useState } from "react";
 import { endpointsGral } from "../../../Recruiter/services/vacancy";
 import UploadImage from "../../../UploadImage/UploadImage";
+import useJob from "../../../../hooks/useJob";
 
 const FormRecruiter = () => {
   const [imageUser, setImageUser] = useState(null);
+  const [dataCandidate]=useJob();
+
+  useEffect(()=>{
+    console.log('dataCandidate:..',dataCandidate);
+  },[])
+
 
   useEffect(() => {
     if(imageUser) {
@@ -57,7 +64,7 @@ const FormRecruiter = () => {
     onSubmit: (values) => {
       /* alert(JSON.stringify(values, null, 2)); */
       axios
-        .post(endpointsGral.vacancyURL , values)
+        .post(endpointsGral.userURL , values)
         .then((response) => {
           console.log(response.data);
         })
@@ -83,20 +90,7 @@ const FormRecruiter = () => {
           <div className="buttons_actions d-flex justify-content-center gap-3">
 
               <UploadImage setDataImg={setImageUser}/>
-            {/* <div className="button">
-              <label className="btn btn-primary">
-              
-                <input type="file" className="visually-hidden"  />
-                Subir
-              </label>
-            </div>
-            <button   
-              type="button"
-              className="buttons btn btn-danger"
-              style={{ width: "18%", height: "3%" }}
-            >
-              Remover
-            </button> */}
+            
           </div>
         </div>
         <div className="col">
@@ -105,7 +99,7 @@ const FormRecruiter = () => {
               <div className="row mb-4">
                 <div className="col">
                   <div className="form-outline bg-gray">
-                    <label className="form-label" for="form6Example1">
+                    <label className="form-label" htmlFor="form6Example1">
                       Nombre
                     </label>
                     <Field
@@ -130,7 +124,7 @@ const FormRecruiter = () => {
                 </div>
                 <div className="col">
                   <div className="form-outline">
-                    <label className="form-label" for="form6Example1">
+                    <label className="form-label" htmlFor="form6Example1">
                       Apellido
                     </label>
                     <Field
@@ -153,7 +147,7 @@ const FormRecruiter = () => {
               <div className="row mb-4">
                 <div className="col">
                   <div className="div-outline bg-gray">
-                    <label className="form-label" for="form6Example1">
+                    <label className="form-label" htmlFor="form6Example1">
                       Edad:
                     </label>
                     <Field
@@ -174,7 +168,7 @@ const FormRecruiter = () => {
                 </div>
                 <div className="col">
                   <div className="form-outline">
-                    <label className="form-label" for="form6Example1">
+                    <label className="form-label" htmlFor="form6Example1">
                       Escolaridad
                     </label>
                     <select
@@ -200,7 +194,7 @@ const FormRecruiter = () => {
               <div className="row mb-4">
                 <div className="col">
                   <div className="form-outline bg-gray">
-                    <label className="form-label" for="form6Example1">
+                    <label className="form-label" htmlFor="form6Example1">
                       Email
                     </label>
                     <Field
@@ -224,7 +218,7 @@ const FormRecruiter = () => {
                 </div>
                 <div className="col">
                   <div className="form-outline">
-                    <label className="form-label" for="form6Example1">
+                    <label className="form-label" htmlFor="form6Example1">
                       Reset Password
                     </label>
                     <Field
@@ -248,7 +242,7 @@ const FormRecruiter = () => {
               <div className="row mb-4">
                 <div className="col">
                   <div className="form-outline">
-                    <label className="form-label" for="form6Example2">
+                    <label className="form-label" htmlFor="form6Example2">
                       Experiencia
                     </label>
                     <Field

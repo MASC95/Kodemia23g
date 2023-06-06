@@ -19,6 +19,7 @@ export const ViewTableSkills=({listSkils})=>{
                 const tempArray =[];
             for(let i =0; i<listSkils?.length; i++){
                 const response = await axios.get(`${endpointsGral.jobSkill}/${listSkils[i]}`);
+                console.log('responseDataJobSkill:..',response);
                 if (response?.data?.infoJobSkill){
                     console.log('responseDataJobSkill:..',response);
                     const {name,level}= response.data.infoJobSkill;
@@ -34,6 +35,7 @@ export const ViewTableSkills=({listSkils})=>{
             )
         }
             
+            //
         } catch (error) {
             console.log(error);
         }

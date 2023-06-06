@@ -13,9 +13,9 @@ export const LoginRecruiter=()=>{
         email:'',
         password:''
     })
-    const [dataCandidate,setDataCandidate,dataRecruiter,setDataRecruiter]=useJob();
+    const [dataCandidate,setDataCandidate,dataRecruiter,setDataRecruiter, initDataCandidate, initDataRecrutier]=useJob();
     const navigate= useNavigate();
-    const [isLoading,setLoading]=useState(true)
+    // const [isLoading,setLoading]=useState(true)
     const onFormInputChange=(event)=>{
         const inputID=event.target.id;
         const inputValue=event.target.value
@@ -93,10 +93,8 @@ export const LoginRecruiter=()=>{
                 <div className="row">
                 <div className="col-md-6 col-md-offset-3">
                     <div className="block text-center">
-                    <Link to={'/'}>
-                    <a className="logo_Jobinder" href="#!">
+                    <Link to={'/'} className="logo_Jobinder">
                         <img src={logo} alt=""/>
-                    </a>
                     </Link>
                     <h2 className="text-center text-dark">Bienvenido</h2>
                     <form 
@@ -130,7 +128,7 @@ export const LoginRecruiter=()=>{
                     </form>
                     <p className="mt-20 text-black text-decoration-none">No tienes una cuenta?
                     <Link to={`/register-recruiter`}>
-                    <a href="!#"> Crea una con nosotros</a>
+                    Crea una con nosotros
                     </Link>
                     </p>
                     </div>

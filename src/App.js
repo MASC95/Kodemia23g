@@ -48,7 +48,7 @@ function App() {
   const [dataRecruiter, setDataRecruiter] = useState(initDataRecrutier);
   const [dataCandidate, setDataCandidate] = useState(initDataCandidate);
   return (
-    <JobContext.Provider value={[dataCandidate,setDataCandidate,dataRecruiter,setDataRecruiter]}>
+    <JobContext.Provider value={[dataCandidate,setDataCandidate,dataRecruiter,setDataRecruiter, initDataCandidate, initDataRecrutier]}>
     <div className="App">
 <Routes>
           <Route path="/" element={<Mains/>}/>

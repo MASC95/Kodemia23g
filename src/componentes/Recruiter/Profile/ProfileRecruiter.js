@@ -1,5 +1,4 @@
 import {React,useEffect,useState} from "react";
-import FormRecruiter from "./Form/FormRecruiter";
 import axios from "axios";
 import { endpointsGral } from "../services/vacancy";
 import imgProfile from '../assets/img/profile.png'
@@ -11,7 +10,7 @@ export const ProfileRecruiter=()=>{
     const perfil = JSON.parse(localStorage.getItem('accessToken'))
     const token=perfil['access_token']
     const navigate=useNavigate()
-    // console.log('token: '+ token)
+    console.log('token: '+ token)
     function parseJwt (token) {
         var base64Url = token.split('.')[1];
         var base64 = base64Url.replace('-', '+').replace('_', '/');
@@ -46,7 +45,6 @@ export const ProfileRecruiter=()=>{
         })
     }
 
-
     const onFormSubmit=(event)=>{
         event.preventDefault();
         editProfile()
@@ -61,7 +59,8 @@ export const ProfileRecruiter=()=>{
     const editProfile=async()=>{
         try {
         if(validDatas){
-        const token = window.localStorage.getItem('token')
+        const perfil = JSON.parse(localStorage.getItem('accessToken'))
+        const token=perfil['access_token']
         console.log(token) 
         const headers = { 
             'Authorization':`Baerer ${token}`
@@ -94,7 +93,7 @@ export const ProfileRecruiter=()=>{
            <h1 className="text-start">Información General</h1> 
            <div className="row container_form_General">
             <div className="col-4 container_image">
-                <img src={imgProfile}/>
+                <img src={imgProfile} alt=""/>
                 <p>Archivos permitidos .png, .jpg, jpeg</p>
                 <div className="buttons_actions d-flex justify-content-center gap-3">  
                     <button type="button" className="buttons btn btn-info text-light">Subir</button>               

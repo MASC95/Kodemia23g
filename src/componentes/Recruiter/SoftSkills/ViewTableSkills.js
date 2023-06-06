@@ -17,6 +17,7 @@ export const ViewTableSkills=({listSkils})=>{
         try {
             for(let i =0; i<listSkils.length; i++){
                 const response = await axios.get(`${endpointsGral.jobSkill}/${listSkils[i]}`);
+                console.log('responseDataJobSkill:..',response);
                 if (response?.data?.infoJobSkill){
                     const {name,level}= response.data.infoJobSkill;
                     setDataSkils(
@@ -25,7 +26,7 @@ export const ViewTableSkills=({listSkils})=>{
                 }
             }
             
-            //console.log('responseDataJobSkill:..',response);
+            //
         } catch (error) {
             console.log(error);
         }

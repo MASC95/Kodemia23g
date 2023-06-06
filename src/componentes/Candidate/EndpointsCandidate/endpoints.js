@@ -11,4 +11,4 @@ export const endpoints = {
 
 //http://107.23.237.6/api/v1/jobVacancy/646040988844566b57352249
 
-//trabajando my vacancies
+//trabajando my vacancies /api/v1/skillMatch

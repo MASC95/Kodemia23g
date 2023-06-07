@@ -1,8 +1,9 @@
 import imgProfile from "../../../Recruiter/assets/img/perfil2.jpg";
 import "../scss/style.scss";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+//import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Form } from "react-bootstrap";
 import * as Yup from "yup";
-import { useFormik } from "formik";
+//import { useFormik } from "formik";
 import axios from "axios";
 import { Component, useEffect, useState } from "react";
 import { endpointsGral } from "../../../Recruiter/services/vacancy";
@@ -13,12 +14,13 @@ const localEndPoint = "http://localhost:4000/api/v1/users/";
 
 const initDataForm = {
   name: "",
-  lastName: "",
+  last_name: "",
   email: "",
   password: "",
   age: "",
-  exp: "",
-  escolaridad: "",
+  working_experience: "",
+  bachelor: "",
+  avatar_url: "",
 };
 
 const FormRecruiter = () => {
@@ -27,8 +29,22 @@ const FormRecruiter = () => {
   const [dataForm, setDataForm] = useState(initDataForm);
 
   useEffect(() => {
-    console.log("dataCandidate:..", dataCandidate);
-  }, []);
+    
+   
+    if (dataCandidate) {
+      console.log("dataCandidate:..", dataCandidate);
+      setDataForm({
+        name: dataCandidate.name||'',
+        last_name: dataCandidate.last_name||'',
+        email: dataCandidate.email||"",
+        password: dataCandidate.password||"",
+        age: dataCandidate.age||"",
+        working_experience: dataCandidate.working_experience||"",
+        bachelor: dataCandidate.bachelor||"",
+        avatar_url: dataCandidate.avatar_url||"",
+      });
+    }
+  }, [dataCandidate]);
 
   useEffect(() => {
     if (imageUser) {
@@ -36,13 +52,19 @@ const FormRecruiter = () => {
       agregarImagen();
     }
   }, [imageUser]);
+  useEffect(()=>{
+    if(dataForm) console.log('dataForm:..',dataForm);
+  },[dataForm])
 
   const agregarImagen = () => {};
-  /**.matches(
+  /**
+   * .required("Requerido")
+        .min(8, "La contraseña debe tener al menos 8 caracteres")
+   * .matches(
           /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/,
           "La contraseña debe contener al menos una letra mayúscula, una letra minúscula, un número y un carácter especial"
         ) */
-  const formik = useFormik({
+  /* const formik = useFormik({
     initialValues: dataForm,
     validationSchema: Yup.object({
       name: Yup.string()
@@ -56,9 +78,7 @@ const FormRecruiter = () => {
       email: Yup.string()
         .required("El correo electrónico es requerido")
         .email("ingrese un correo electrónico válido"),
-      password: Yup.string()
-        .required("Requerido")
-        .min(8, "La contraseña debe tener al menos 8 caracteres"),
+      password: Yup.string(),
       age: Yup.number()
         .required("El campo es requerido")
         .min(18, "Debe ser mayor de 18 años"),
@@ -67,38 +87,58 @@ const FormRecruiter = () => {
     onSubmit: (values) => {
       //alert(JSON.stringify(values, null, 2));
       //console.log("values:..", values);
+      
+    },
+  }); */
+
+  const handleSubmit = async(e)=>{
+    e.preventDefault();
+    try {
+
       axios.defaults.headers.common[
         "Authorization"
       ] = `Bearer: ${dataCandidate.access_token}`;
       const formData = new FormData();
       if (imageUser) formData.append("image", imageUser);
-      Object.entries(values).forEach(([key, value]) => {
+      Object.entries(dataForm).forEach(([key, value]) => {
         formData.append(key, value);
         //console.log(key,value);
       });
       axios
-        .patch(`${localEndPoint}${dataCandidate.access_token}`, formData,{
+        .patch(`${localEndPoint}${dataCandidate.access_token}`, formData, {
           headers: {
-            "Content-Type": "multipart/form-data"
-          }
+            "Content-Type": "multipart/form-data",
+          },
         })
         .then((response) => {
-          console.log('response.data:..',response.data);
+          console.log("response.data:..", response.data);
         })
         .catch((error) => {
           console.error(error);
         });
-    },
-  });
+
+
+    } catch (error) {
+      console.log('error:..',error);
+    }
+  }
+
+  const handleChange = (e)=>{
+    setDataForm({
+      ...dataForm,
+      [e.target.name]: e.target.value
+    })
+  }
 
   return (
     <>
+    
       <div className="row container_form_General m-5">
         <div className="col-4 container_image ">
           {!imageUser && (
             <>
               <div className="ppic-container">
-                <img src={imgProfile} alt="imgProfile" />
+                <img src={dataForm.avatar_url?dataForm.avatar_url:imgProfile} alt="imgProfile" />
               </div>
               <p className="allowed-files">
                 Archivos permitidos .png, .jpg, jpeg
@@ -111,31 +151,24 @@ const FormRecruiter = () => {
           </div>
         </div>
         <div className="col">
-          <Formik {...formik}>
-            <Form onSubmit={formik.handleSubmit}>
+          
+            <Form onSubmit={handleSubmit}>
               <div className="row mb-4">
                 <div className="col">
                   <div className="form-outline bg-gray">
                     <label className="form-label" htmlFor="form6Example1">
                       Nombre
                     </label>
-                    <Field
+                    <input
                       type="text"
                       id="name"
                       name="name"
                       placeholder="Nombre"
-                      className={`form-control ${
-                        formik.touched.name && formik.errors.name
-                          ? "border border-danger"
-                          : "border border-secondary"
-                      }`}
-                      value={formik.values.name}
-                      onChange={formik.handleChange}
-                      onBlur={formik.handleBlur}
+                      className={`form-control `}
+                      value={dataForm.name||''}
+                      onChange={handleChange}
                     />
-                    {formik.touched.name && formik.errors.name ? (
-                      <span className="text-danger">{formik.errors.name}</span>
-                    ) : null}
+                    
                   </div>
                 </div>
                 <div className="col">
@@ -143,19 +176,15 @@ const FormRecruiter = () => {
                     <label className="form-label" htmlFor="form6Example1">
                       Apellido
                     </label>
-                    <Field
+                    <input
                       type="text"
                       id="lastName"
                       placeholder="Apellido"
-                      name="lastName"
-                      className={`form-control ${
-                        formik.touched.lastName && formik.errors.lastName
-                          ? "border border-danger"
-                          : "border border-secondary"
-                      }`}
-                      value={formik.values.lastName}
-                      onChange={formik.handleChange}
-                      onBlur={formik.handleBlur}
+                      name="last_name"
+                      className={`form-control`}
+                      value={dataForm.last_name||''}
+                      onChange={handleChange}
+                      
                     />
                   </div>
                 </div>
@@ -166,19 +195,15 @@ const FormRecruiter = () => {
                     <label className="form-label" htmlFor="form6Example1">
                       Edad:
                     </label>
-                    <Field
+                    <input
                       type="text"
                       id="age"
                       placeholder="Edad"
                       name="age"
-                      className={`form-control ${
-                        formik.touched.age && formik.errors.age
-                          ? "border border-danger"
-                          : "border border-secondary"
-                      }`}
-                      value={formik.values.age}
-                      onChange={formik.handleChange}
-                      onBlur={formik.handleBlur}
+                      className={`form-control`}
+                      value={dataForm.age||''}
+                      onChange={handleChange}
+                      
                     />
                   </div>
                 </div>
@@ -188,21 +213,17 @@ const FormRecruiter = () => {
                       Escolaridad
                     </label>
                     <select
-                      className={`form-control ${
-                        formik.touched.type_work && formik.errors.type_work
-                          ? "border border-danger"
-                          : "border border-secondary"
-                      }`}
-                      name="escolaridad"
+                      className={`form-control`}
+                      name="bachelor"
                       id="escolaridad"
-                      value={formik.values.escolaridad}
-                      onChange={formik.handleChange}
-                      onBlur={formik.handleBlur}
+                      value={dataForm.bachelor||''}
+                      onChange={handleChange}
+                      
                     >
                       <option>Selecciona</option>
-                      <option>Maestria</option>
-                      <option>Licenciatura</option>
-                      <option>Carrera Técnica</option>
+                      <option value={'Maestria'}>Maestria</option>
+                      <option value={'Licenciatura'}>Licenciatura</option>
+                      <option value={'Carrera Técnica'}>Carrera Técnica</option>
                     </select>
                   </div>
                 </div>
@@ -213,23 +234,17 @@ const FormRecruiter = () => {
                     <label className="form-label" htmlFor="form6Example1">
                       Email
                     </label>
-                    <Field
+                    <input
                       type="email"
                       id="email"
                       placeholder="Email"
                       name="email"
-                      className={`form-control ${
-                        formik.touched.email && formik.errors.email
-                          ? "border border-danger"
-                          : "border border-secondary"
-                      }`}
-                      value={formik.values.email}
-                      onChange={formik.handleChange}
-                      onBlur={formik.handleBlur}
+                      className={`form-control `}
+                      value={dataForm.email||''}
+                      onChange={handleChange}
+                      
                     />
-                    {formik.touched.email && formik.errors.email ? (
-                      <span className="text-danger">{formik.errors.email}</span>
-                    ) : null}
+                    
                   </div>
                 </div>
                 <div className="col">
@@ -237,21 +252,17 @@ const FormRecruiter = () => {
                     <label className="form-label" htmlFor="form6Example1">
                       Reset Password
                     </label>
-                    <Field
+                    <input
                       type="password"
                       id="password"
                       placeholder="Reset Password"
                       name="password"
-                      className={`form-control ${
-                        formik.touched.password && formik.errors.password
-                          ? "border border-danger"
-                          : "border border-secondary"
-                      }`}
-                      value={formik.values.password}
-                      onChange={formik.handleChange}
-                      onBlur={formik.handleBlur}
+                      className={`form-control `}
+                      value={dataForm.password||''}
+                      onChange={handleChange}
+                      
                     />
-                    <ErrorMessage name="password" />
+                    
                   </div>
                 </div>
               </div>
@@ -261,19 +272,15 @@ const FormRecruiter = () => {
                     <label className="form-label" htmlFor="form6Example2">
                       Experiencia
                     </label>
-                    <Field
+                    <input
                       type="text"
                       id="exp"
                       placeholder="Experiencia"
-                      name="exp"
-                      className={`form-control ${
-                        formik.touched.exp && formik.errors.exp
-                          ? "border border-danger"
-                          : "border border-secondary"
-                      }`}
-                      value={formik.values.exp}
-                      onChange={formik.handleChange}
-                      onBlur={formik.handleBlur}
+                      name="working_experience"
+                      className={`form-control `}
+                      value={dataForm.working_experience||''}
+                      onChange={handleChange}
+                      
                     />
                   </div>
                 </div>
@@ -290,9 +297,12 @@ const FormRecruiter = () => {
                 </button>
               </div>
             </Form>
-          </Formik>
+          
         </div>
       </div>
+
+    
+    
     </>
   );
 };

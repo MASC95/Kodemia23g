@@ -9,34 +9,41 @@ import { endpointsGral } from "../../../Recruiter/services/vacancy";
 import UploadImage from "../../../UploadImage/UploadImage";
 import useJob from "../../../../hooks/useJob";
 
+const localEndPoint = "http://localhost:4000/api/v1/users/";
+
+const initDataForm = {
+  name: "",
+  lastName: "",
+  email: "",
+  password: "",
+  age: "",
+  exp: "",
+  escolaridad: "",
+};
+
 const FormRecruiter = () => {
   const [imageUser, setImageUser] = useState(null);
-  const [dataCandidate]=useJob();
-
-  useEffect(()=>{
-    console.log('dataCandidate:..',dataCandidate);
-  },[])
-
+  const [dataCandidate] = useJob();
+  const [dataForm, setDataForm] = useState(initDataForm);
 
   useEffect(() => {
-    if(imageUser) {
+    console.log("dataCandidate:..", dataCandidate);
+  }, []);
+
+  useEffect(() => {
+    if (imageUser) {
       console.log(imageUser);
+      agregarImagen();
     }
-  
-    
-  }, [imageUser])
-  
+  }, [imageUser]);
+
+  const agregarImagen = () => {};
+  /**.matches(
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/,
+          "La contraseña debe contener al menos una letra mayúscula, una letra minúscula, un número y un carácter especial"
+        ) */
   const formik = useFormik({
-    initialValues: {
-      name: "",
-      lastName: "",
-      email: "",
-      password: "",
-      age: "",
-      exp: "",
-      escolaridad: "",
-      image: ''
-    },
+    initialValues: dataForm,
     validationSchema: Yup.object({
       name: Yup.string()
         .required("El Nombres es Requerido")
@@ -51,51 +58,61 @@ const FormRecruiter = () => {
         .email("ingrese un correo electrónico válido"),
       password: Yup.string()
         .required("Requerido")
-        .min(8, "La contraseña debe tener al menos 8 caracteres")
-        .matches(
-          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/,
-          "La contraseña debe contener al menos una letra mayúscula, una letra minúscula, un número y un carácter especial"
-        ),
+        .min(8, "La contraseña debe tener al menos 8 caracteres"),
       age: Yup.number()
         .required("El campo es requerido")
         .min(18, "Debe ser mayor de 18 años"),
       exp: Yup.string().required("Ingrese una experiencia válida"),
     }),
     onSubmit: (values) => {
-      /* alert(JSON.stringify(values, null, 2)); */
+      //alert(JSON.stringify(values, null, 2));
+      //console.log("values:..", values);
+      axios.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer: ${dataCandidate.access_token}`;
+      const formData = new FormData();
+      if (imageUser) formData.append("image", imageUser);
+      Object.entries(values).forEach(([key, value]) => {
+        formData.append(key, value);
+        //console.log(key,value);
+      });
       axios
-        .post(endpointsGral.userURL , values)
+        .patch(`${localEndPoint}${dataCandidate.access_token}`, formData,{
+          headers: {
+            "Content-Type": "multipart/form-data"
+          }
+        })
         .then((response) => {
-          console.log(response.data);
+          console.log('response.data:..',response.data);
         })
         .catch((error) => {
-          console.error(error); 
+          console.error(error);
         });
     },
-   
   });
 
- 
   return (
     <>
       <div className="row container_form_General m-5">
         <div className="col-4 container_image ">
-          {!imageUser&&<>
-            <div className="ppic-container">
-            <img src={imgProfile} alt="imgProfile" />
-          </div>
-          <p className="allowed-files">Archivos permitidos .png, .jpg, jpeg</p>
-          </>}
-          
-          <div className="buttons_actions d-flex justify-content-center gap-3">
+          {!imageUser && (
+            <>
+              <div className="ppic-container">
+                <img src={imgProfile} alt="imgProfile" />
+              </div>
+              <p className="allowed-files">
+                Archivos permitidos .png, .jpg, jpeg
+              </p>
+            </>
+          )}
 
-              <UploadImage setDataImg={setImageUser}/>
-            
+          <div className="buttons_actions d-flex justify-content-center gap-3">
+            <UploadImage setDataImg={setImageUser} />
           </div>
         </div>
         <div className="col">
           <Formik {...formik}>
-            <Form>
+            <Form onSubmit={formik.handleSubmit}>
               <div className="row mb-4">
                 <div className="col">
                   <div className="form-outline bg-gray">
@@ -115,11 +132,10 @@ const FormRecruiter = () => {
                       value={formik.values.name}
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
-                      
                     />
                     {formik.touched.name && formik.errors.name ? (
                       <span className="text-danger">{formik.errors.name}</span>
-                    ) : null } 
+                    ) : null}
                   </div>
                 </div>
                 <div className="col">
@@ -211,9 +227,9 @@ const FormRecruiter = () => {
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                     />
-                       {formik.touched.email && formik.errors.email ? (
+                    {formik.touched.email && formik.errors.email ? (
                       <span className="text-danger">{formik.errors.email}</span>
-                    ) : null } 
+                    ) : null}
                   </div>
                 </div>
                 <div className="col">

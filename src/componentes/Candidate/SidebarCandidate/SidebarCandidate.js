@@ -26,18 +26,27 @@ export const SidebarCandidate=()=>{
         </header>
         <nav className="dashboard-nav-list">
           <Link to={`/dashboard-candidato/home`}>
+            <div className='mb-3'>
          <FaHome/> &nbsp;Home 
+         </div>
           </Link>
           <Link to={`/dashboard-candidato/profile`}>
-         <FaUser/> &nbsp;Perfil 
+            <div className='mb-3'>
+         <FaUser /> &nbsp;Perfil 
+         </div>
           </Link>
           <Link to={`/dashboard-candidato/search`}>
+            <div className='mb-3'>
            <FaSearch/> &nbsp;Buscar 
+           </div>
           </Link>
           <Link to={`/dashboard-candidato/app-vacancies`}>
+            <div className='mb-3'>
           <FaSuitcase/> &nbsp;Mis vacantes 
+          </div>
           </Link>
-          <button type='submit' onClick={logout} className="button-logout" ><FaSignOutAlt/> &nbsp;Logout </button>
+          <div className='mb-3'>
+          <button type='submit' onClick={logout} className="button-logout" ><FaSignOutAlt /> &nbsp;Logout </button> </div>
         </nav>
     </div>
         </>

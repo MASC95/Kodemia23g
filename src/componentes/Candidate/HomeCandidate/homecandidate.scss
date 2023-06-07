@@ -7,13 +7,14 @@ $color: #498BA6;
   display: flex;
   justify-content: center;
   align-items: center;
-  
-  background-image: linear-gradient(120deg, $primary 0%, $secondary 100%);
+  background-image: url('https://images.unsplash.com/photo-1555421689-491a97ff2040?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');
+  background-repeat: no-repeat;
   background-position: center center;
   position: relative;
   width: 1400px;
   height: 1000px;
-  
+  border-radius:3500px 0 3500px ;
+ 
   .wrapper {
     width: 1170px;
     margin: auto;
@@ -26,8 +27,10 @@ $color: #498BA6;
   }
 
   .welcome-text {
+    opacity: 0.7;
     .message {
       text-align: center;
+      margin-bottom: 300px;
      
     }
 
@@ -43,7 +46,7 @@ $color: #498BA6;
       -webkit-text-stroke: 0.3vw $primary;
       text-transform: uppercase; 
       font-size: 5rem;
-   
+      
   
     &::before {
       content: attr(data-text);

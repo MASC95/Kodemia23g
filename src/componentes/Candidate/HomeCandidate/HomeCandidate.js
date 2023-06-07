@@ -9,8 +9,8 @@ export const HomeCandidate=()=>{
 
             </div>
             <div className="welcome-text">
-            <h1></h1>
-            <h2 className="welcome-jobinder d-flex justify-content-center" >Looking for a Job? Find Your Next Opportunity with Us</h2>
+            <h1 className="message"></h1>
+            <h2 className="jobinder-text" data-text='jobinder...' >jobinder...</h2>
             </div>
             </div>
         </header>

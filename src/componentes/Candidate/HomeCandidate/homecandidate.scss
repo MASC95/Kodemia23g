@@ -1,31 +1,119 @@
+$primary: #fdfbfb;
+$secondary: #ebedee;
+$color: #498BA6;
+
+
 .background-image {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');
-    background-size: cover;
-    background-position: center center;
-    position: relative;
-    width: 1400px;
-    height: 1000px;
-    
-
-    .wrapper {
-      width: 1170px;
-      margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   
-      .logo {
-        width: 100px;
-        float: left;
-        height: auto;
-      }
-    }
+  background-image: linear-gradient(120deg, $primary 0%, $secondary 100%);
+  background-position: center center;
+  position: relative;
+  width: 1400px;
+  height: 1000px;
   
-    .welcome-text {
-      .welcome-jobinder {
-       
+  .wrapper {
+    width: 1170px;
+    margin: auto;
 
-      }
+    .logo {
+      width: 100px;
+      float: left;
+      height: auto;
     }
   }
+
+  .welcome-text {
+    .message {
+      text-align: center;
+     
+    }
+
+    &::after {
+      content: "";
+      animation: textChange 8s linear;
+    }
+
+    .jobinder-text {
+      
+      position: relative;
+      color:  $primary;
+      -webkit-text-stroke: 0.3vw $primary;
+      text-transform: uppercase; 
+      font-size: 5rem;
+      opacity: 0;
+   
   
+    &::before {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 100%;
+      color: $color;
+      -webkit-text-stroke: 0vw $secondary;
+      border-right: 2px solid $color;
+      overflow: hidden;
+      animation: animate 9s linear infinite;
+      
+    }
+    
+    }
+
+  }
+}
+
+@keyframes textChange {
+  0% {
+    content: "Welcome";
+    font-size: 18em;
+    background-color: #498BA6;
+    background-image: linear-gradient(45deg, #96c6d9, #498BA6);
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+  }
+
+  30% {
+    content: "to";
+    background-color: #106973;
+    background-image: linear-gradient(45deg, #106973, #093040);
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+  }
+
+  50% {
+    content: "Jobinder";
+   
+    background-color: #498BA6;
+    background-image: linear-gradient(45deg,#96c6d9, #498BA6);
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+  }
+
+  100% {
+    
+    
+   
+  }
+}
+@keyframes animate{
+  0%,10%,100%{
+    width: 0;
+  }
+  70%,90%{
+    width: 100%;
+  }
+
+}

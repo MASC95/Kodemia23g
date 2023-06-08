@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState} from "react";
 import './homecandidate.scss';
 
 const HomeCandidate = () => {
@@ -10,7 +10,8 @@ const HomeCandidate = () => {
         }, 9000);
 
         return () => clearTimeout(timer);
-    }, []);
+    }, []); 
+
 
     return (
         <header className="background-image">

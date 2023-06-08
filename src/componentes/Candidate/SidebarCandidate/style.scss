@@ -1,3 +1,19 @@
+@mixin centrar{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+@mixin color{
+    
+   
+    background: rgba(73, 139, 166, 0.74);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(3.9px);
+    border: 1px solid rgba(73, 139, 166, 0.33);
+}
+
+$JobinderColor: #498Ba6;
 :root {
     --font-family-sans-serif: "Open Sans", -apple-system, BlinkMacSystemFont,
     "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
@@ -107,6 +123,7 @@ h1, .h1 {
     display: -ms-flexbox;
     display: flex;
     min-height: 100vh;
+    
 }
 
 .dashboard-app {
@@ -132,6 +149,7 @@ h1, .h1 {
     -ms-flex-positive: 2;
     flex-grow: 2;
     padding: 25px;
+   
 }
 
 .dashboard-nav {
@@ -141,7 +159,10 @@ h1, .h1 {
     top: 0;
     bottom: 0;
     overflow: auto;
-    background-color: #498BA6;
+     background-color: $JobinderColor; 
+    /* background-color: #d2d1d1; */
+   /*  background-color: black !important; */
+    
 }
 
 .dashboard-compact .dashboard-nav {
@@ -163,12 +184,14 @@ h1, .h1 {
     -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
-    background-color: #498BA6;
+    /* background-color: black !important; */
+   
 }
 
 .dashboard-nav header .menu-toggle {
     display: inline-block;
     margin-right: auto;
+    /* @include color(); */
 }
 
 .dashboard-nav a {
@@ -180,7 +203,7 @@ h1, .h1 {
 }
 
 .dashboard-nav {
-    background-color: #498BA6;
+    background-color: $JobinderColor;
 }
 
 .dashboard-nav a {
@@ -226,7 +249,7 @@ h1, .h1 {
     -webkit-box-direction: normal;
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
-    flex-direction: column;
+    @include centrar();
 }
 .button-logout{
     background-color: transparent;
@@ -282,12 +305,12 @@ h1, .h1 {
     -webkit-justify-content: center;
     -ms-flex-pack: center;
     justify-content: center;
-    color: #498BA6;
+    @include color();
 }
 
 .menu-toggle:hover, .menu-toggle:active, .menu-toggle:focus {
     text-decoration: none;
-    color: #498BA6;
+    
 }
 
 .menu-toggle i {

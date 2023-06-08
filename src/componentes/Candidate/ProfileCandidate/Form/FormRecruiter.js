@@ -10,7 +10,7 @@ import { endpointsGral } from "../../../Recruiter/services/vacancy";
 import UploadImage from "../../../UploadImage/UploadImage";
 import useJob from "../../../../hooks/useJob";
 
-const localEndPoint = "http://localhost:4000/api/v1/users/";
+//const localEndPoint = "http://localhost:4000/api/v1/users/";
 
 const initDataForm = {
   name: "",
@@ -100,7 +100,7 @@ const FormRecruiter = () => {
 
       axios.defaults.headers.common[
         "Authorization"
-      ] = `Bearer: ${dataCandidate.access_token}`;
+      ] = `Bearer: ${dataCandidate.accessToken}`;
       const formData = new FormData();
       if (imageUser) formData.append("image", imageUser);
       Object.entries(values).forEach(([key, value]) => {
@@ -108,7 +108,7 @@ const FormRecruiter = () => {
         //console.log(key,value);
       });
       axios
-        .patch(`${localEndPoint}${dataCandidate.access_token}`, formData, {
+        .patch(`${endpointsGral.userURL}${dataCandidate.accessToken}`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },

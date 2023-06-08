@@ -4,9 +4,13 @@ import { Link } from "react-router-dom";
 import { endpointsGral } from "../../Recruiter/services/vacancy";
 import "../Alerts/Alert";
 import AlertComponent from "../Alerts/Alert";
+import useJob from '../../../hooks/useJob';
+
+
 export const ListBuscar = () => {
   const [vacancies, setVacancies] = useState([]);
   const [showAlert, setShowAlert] = useState(false);
+  const [dataCandidate]=useJob();
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -22,7 +26,25 @@ export const ListBuscar = () => {
     fetchData();
   }, []);
 
-  const handleApply = () => {
+  const handleApply = async(e) => {
+    //alert(e.target.id);
+    const idVacancie= e.target.id;
+    let dataVacancies=[];
+    try {
+      axios.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer: ${dataCandidate?.accessToken}`;
+      if(dataCandidate?.my_vacancies){
+        dataVacancies=[...dataCandidate?.my_vacancies, idVacancie];
+      }else{
+        dataVacancies.push(idVacancie);
+      }
+      const response = await axios.patch(`${endpointsGral.userURL}${dataCandidate.accessToken}`,{my_vacancies:dataVacancies});
+      console.log('Response updateDataVacancies:..',response);
+    } catch (error) {
+      console.log(error);
+    }
+
     setShowAlert(true);
   };
 
@@ -50,9 +72,9 @@ export const ListBuscar = () => {
               </thead>
               <tbody>
                 {vacancies &&
-                  vacancies?.map((item) => (
+                  vacancies?.map((item,index) => (
                     <tr key={item._id}>
-                      <th scope="row">{item._id}</th>
+                      <th scope="row">{index+1}</th>
                       <td>{item.title}</td>
                       <td>{item.type}</td>
                       <td>{item.mode}</td>
@@ -60,6 +82,7 @@ export const ListBuscar = () => {
                       <td className="options_buttons d-flex justify-content-center gap-3">
                         <button
                           type="submit"
+                          id={item._id}
                           className="btn btn-outline-info buscar"
                           onClick={handleApply}
                         >

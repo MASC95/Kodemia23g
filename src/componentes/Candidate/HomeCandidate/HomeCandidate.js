@@ -1,19 +1,15 @@
-import React, { useEffect, useState} from "react";
-import './homecandidate.scss';
+import React, { useEffect, useState } from "react";
+import './homecandidate.scss'
 
-const HomeCandidate = () => {
-    const [showText, setShowText] = useState(false);
-
+export const HomeCandidate=()=>{
+    const [showText, setshowText] = useState(false);
     useEffect(() => {
-        const timer = setTimeout(() => {
-            setShowText(true);
-        }, 9000);
-
-        return () => clearTimeout(timer);
-    }, []); 
-
-
-    return (
+      console.log('componente cargado:..');
+    
+      
+    }, [])
+    
+    return(
         <header className="background-image">
             <div className="wrapper">
                 <div className="logo"></div>

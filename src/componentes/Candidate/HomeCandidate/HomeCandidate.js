@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import './homecandidate.scss'
 
 export const HomeCandidate=()=>{
+    useEffect(() => {
+      console.log('componente cargado:..');
+    
+      
+    }, [])
+    
     return(
         <header className="background-image">
             <div className="wrapper">

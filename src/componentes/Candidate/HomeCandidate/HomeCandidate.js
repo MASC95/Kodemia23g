@@ -12,7 +12,7 @@ const HomeCandidate = () => {
         return () => clearTimeout(timer);
     }, []);
 
-    return (
+    return(
         <header className="background-image">
             <div className="wrapper">
                 <div className="logo"></div>

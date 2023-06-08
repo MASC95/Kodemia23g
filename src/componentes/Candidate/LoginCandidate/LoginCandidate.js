@@ -10,7 +10,6 @@ import swal from 'sweetalert';
 export const LoginCandidate = ()=>{
     const [formValues, setFormValues]=useState({
         email:'',
-        role:'',
         password:''
     })
 
@@ -40,12 +39,12 @@ export const LoginCandidate = ()=>{
             const loginCandidate= await endpoints.loginAxios(formValues);  
             setFormValues(loginCandidate)
             window.localStorage.setItem('accessToken',JSON.stringify(loginCandidate))
-            if(loginCandidate.access_token){
+            if(loginCandidate?.accessToken){
                setDataCandidate(loginCandidate)
-               console.log('datos', loginCandidate)
+               console.log('datos(login):..', loginCandidate)
             }
                 const perfil = JSON.parse(localStorage.getItem('accessToken'))
-                const token=perfil['access_token']
+                const token=perfil['accessToken']
                 function parseJwt (token) {
                     var base64Url = token.split('.')[1];
                     var base64 = base64Url.replace('-', '+').replace('_', '/');

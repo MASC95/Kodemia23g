@@ -159,7 +159,10 @@ h1, .h1 {
     top: 0;
     bottom: 0;
     overflow: auto;
-    background-color: $JobinderColor;
+     background-color: $JobinderColor; 
+    /* background-color: #d2d1d1; */
+   /*  background-color: black !important; */
+    
 }
 
 .dashboard-compact .dashboard-nav {
@@ -181,13 +184,14 @@ h1, .h1 {
     -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
+    /* background-color: black !important; */
    
 }
 
 .dashboard-nav header .menu-toggle {
     display: inline-block;
     margin-right: auto;
-    @include color();
+    /* @include color(); */
 }
 
 .dashboard-nav a {
@@ -199,7 +203,7 @@ h1, .h1 {
 }
 
 .dashboard-nav {
-   background-color: $JobinderColor;
+    background-color: $JobinderColor;
 }
 
 .dashboard-nav a {

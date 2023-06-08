@@ -1,0 +1,23 @@
+@media (min-width: 542px) and (max-width: 768px) {
+  .container_form_General {
+    display: flex;
+    flex-direction: column;
+  }
+  .container_form_General .container_image {
+    width: 100%;
+    align-items: center;
+    margin-bottom: 50px;
+  }
+}
+.container_image img {
+  width: 200px;
+  height: 200px;
+}
+
+.options_buttons a:hover {
+  text-decoration: none;
+}
+.options_buttons .buscar:hover {
+  color: #0DCAF0;
+  background-color: transparent;
+}/*# sourceMappingURL=style.css.map */

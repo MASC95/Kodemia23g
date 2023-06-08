@@ -1,0 +1,169 @@
+.main-container {
+  margin-bottom: 100px;
+  padding-top: 60px;
+}
+.main-container .match {
+  font-family: "Epilogue";
+  align-items: center;
+  text-indent: 1em;
+  color: #093040;
+}
+@media screen and (min-width: 542px) and (max-width: 768px) {
+  .main-container .match {
+    font-size: 16px;
+    line-height: 26px;
+    margin-top: 2rem;
+    text-align: center;
+  }
+}
+@media screen and (min-width: 542px) and (max-width: 768px) {
+  .main-container .text-mobile {
+    margin-top: 2rem;
+    text-align: center;
+    font-weight: bold;
+  }
+}
+@media screen and (min-width: 542px) and (max-width: 768px) {
+  .main-container .first-card-container .row .father-container-1 .child-container-1 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+}
+.main-container .first-card-container .row .father-container-1 .child-container-1 .card-container-1 {
+  width: 50%;
+  height: 50%;
+  font-family: inherit;
+}
+@media screen and (min-width: 542px) and (max-width: 768px) {
+  .main-container .first-card-container .row .father-container-1 .child-container-1 .card-container-1 .card-body .card-title {
+    display: none;
+  }
+}
+@media screen and (min-width: 542px) and (max-width: 768px) {
+  .main-container .first-card-container .row .father-container-1 .child-container-1 .card-container-1 .card-body .card-text {
+    display: none;
+  }
+}
+.main-container .first-card-container .row .father-container-1 .child-container-1 .card-container-1 .access-recruiter {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+.main-container .first-card-container .row .father-container-1 .child-container-1 .space {
+  width: 200px;
+}
+.main-container .first-card-container .row .father-container-1 .child-container-1 .card-container-2 {
+  width: 50%;
+  height: 50%;
+  font-family: inherit;
+}
+@media screen and (min-width: 542px) and (max-width: 768px) {
+  .main-container .first-card-container .row .father-container-1 .child-container-1 .card-container-2 .card-body .card-title {
+    display: none;
+  }
+}
+@media screen and (min-width: 542px) and (max-width: 768px) {
+  .main-container .first-card-container .row .father-container-1 .child-container-1 .card-container-2 .card-body .card-text {
+    display: none;
+  }
+}
+.main-container .first-card-container .row .father-container-1 .child-container-1 .card-container-2 .access-candidate {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+@media screen and (min-width: 542px) and (max-width: 768px) {
+  .main-container .second-cards-container {
+    display: none;
+  }
+}
+.main-container .second-cards-container .row .col-md-12 .letras {
+  margin-top: 100px;
+  font-family: "Epilogue";
+  align-items: center;
+  text-indent: 1em;
+  color: #093040;
+}
+.main-container .second-cards-container .second-cards-row .second-cards-1 .card-container-3 {
+  width: 400px;
+  height: 329px;
+  margin-top: 20px;
+  margin-left: 300px;
+}
+.main-container .second-cards-container .second-cards-row .second-cards-2 .card-container-4 {
+  width: 400px;
+  height: 329px;
+  margin-top: 20px;
+}
+.main-container .last-container .row .col-md-12 .letras {
+  margin-top: 100px;
+  font-family: "Epilogue";
+  align-items: center;
+  text-indent: 1em;
+  color: #093040;
+}
+@media screen and (min-width: 542px) and (max-width: 768px) {
+  .main-container .last-container .row .col-md-12 .letras {
+    margin-right: 2rem;
+  }
+}
+@media screen and (min-width: 542px) and (max-width: 768px) {
+  .main-container .last-container .row .col-md-12 .letras .last-text {
+    font-size: 24px;
+    line-height: 7vw;
+    margin-bottom: 2rem;
+    word-wrap: break-word;
+  }
+}
+.main-container .last-container .row .col-md-12 .empleo {
+  display: flex;
+  justify-content: center;
+  padding-right: 300px;
+}
+@media screen and (min-width: 542px) and (max-width: 768px) {
+  .main-container .last-container .row .col-md-12 .empleo {
+    text-align: center;
+    padding-right: 0;
+    margin-bottom: 2rem;
+  }
+}
+.main-container .last-container .down-cards .final-text {
+  font-family: Epilogue;
+  font-size: 28px;
+  line-height: 42px;
+  display: flex;
+  justify-content: start;
+}
+@media screen and (min-width: 542px) and (max-width: 768px) {
+  .main-container .last-container .down-cards .final-text {
+    display: none;
+  }
+}
+@media screen and (min-width: 542px) and (max-width: 768px) {
+  .main-container .last-container .down-cards .slogan {
+    display: none;
+  }
+}
+.main-container .last-container .down-cards .check-list {
+  margin-bottom: 10px;
+}
+@media screen and (min-width: 542px) and (max-width: 768px) {
+  .main-container .last-container .down-cards .check-list .li-register {
+    line-height: 50px;
+    padding: 0;
+  }
+}
+@media screen and (min-width: 542px) and (max-width: 768px) {
+  .main-container .last-container .down-cards .check-list .li-register .icon-check {
+    margin-right: 0.5rem;
+  }
+}
+@media screen and (min-width: 542px) and (max-width: 768px) {
+  .main-container .last-container .down-cards .create-account .btn-create-acc {
+    display: none;
+  }
+}/*# sourceMappingURL=style.css.map */

@@ -11,8 +11,6 @@ export const DashboardCandidate = () => {
   const {name, last_name, avatar_url} = dataCandidate;
   /* const isUserLoggedIn = !!LoginCandidate.accessToken; */
    const isUserLoggedIn = true;
-
-
   const handleIsVisibleSidebar = () => {
     setIsVisibleSidebar((prev) => !prev);
   };

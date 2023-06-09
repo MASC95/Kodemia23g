@@ -21,7 +21,7 @@ export const ListMyAppVacancy=()=>{
     const {my_vacancies} = dataCandidate
     useEffect(() => {
      /*  cargarDatos(); */
-      console.log("----ListMyAppVacancy---",dataCandidate)
+      console.log(dataCandidate)
     }, [])
 
 
@@ -60,11 +60,11 @@ export const ListMyAppVacancy=()=>{
                     <th scope="row">{index+1}</th>
                     
                     <td>{item.title}</td>
-                    <td>{}</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
+                    <td>{item.type}</td>
+                    <td>{item.mode}</td>
+                    <td>{item.salary}</td>
                     <td className="options_buttons justify-content-center gap-3">
-                    <Badge bg="info" className="badge_state1">APLICANDO </Badge>
+                    <Badge bg="info" className="badge_state1">{item.status}</Badge>
                     </td>
                     </tr>))}
                 </tbody>

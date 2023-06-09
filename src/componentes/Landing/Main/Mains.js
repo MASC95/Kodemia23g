@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 const Mains = () => {
   return (
     <>
-      {/* <NavbarMui /> */}
+      {/* <NavbarMui /> */}-
       <div className="main-container">
       <h1 className="match d-flex justify-content-center mx-100px m-md-5 ">
         Haz match con las empresas de tus sueños <br />

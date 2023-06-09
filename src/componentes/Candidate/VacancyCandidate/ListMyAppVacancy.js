@@ -4,14 +4,20 @@ import './style.scss'
 import { endpoints } from "../EndpointsCandidate/endpoints";
 import axios from "axios";
 import { useState,useEffect } from "react";
+import useJob from '../../../hooks/useJob'
 
 
 //Muestra las vacantes a las que ha aplicado el candidato
+// hacer una destructuración del array 
+// hacer una petición GET a la API
+// hacer un map y llenar la tabla de manera dinámica con los datos del contexto
+// traer del contexto los siguientes datos: Titsulo, Tipo de trabajo, Modalidad, Salario, Estado
 
 export const ListMyAppVacancy=()=>{
-
+    const [dataCandidate]=useJob();
     useEffect(() => {
-      cargarDatos();
+      /* cargarDatos(); */
+      console.log("----ListMyAppVacancy---",dataCandidate)
        
     }, [])
     
@@ -25,6 +31,7 @@ export const ListMyAppVacancy=()=>{
         }
     }
 
+  
     return(
         <>
             <div className="container mt-2 p-5 w-100 " id="formGral">

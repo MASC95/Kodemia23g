@@ -30,6 +30,7 @@ export const ListBuscar = () => {
     //alert(e.target.id);
     const idVacancie= e.target.id;
     let dataVacancies=[];
+    let dataApplicants=[];
     try {
       axios.defaults.headers.common[
         "Authorization"
@@ -39,8 +40,12 @@ export const ListBuscar = () => {
       }else{
         dataVacancies.push(idVacancie);
       }
-      const response = await axios.patch(`${endpointsGral.userURL}${dataCandidate.accessToken}`,{my_vacancies:dataVacancies});
-      console.log('Response updateDataVacancies:..',response);
+      
+      const responseUpdateDataUser = await axios.patch(`${endpointsGral.userURL}${dataCandidate.accessToken}`,{my_vacancies:dataVacancies});
+      const responseUpdateDataVacancie = await axios.patch(`${endpointsGral.vacancyURL}${idVacancie}`,{token:dataCandidate.accessToken});
+
+      console.log('Response updateDataUser:..',responseUpdateDataUser);
+      console.log('Response updateDataVacancie:..',responseUpdateDataVacancie);
     } catch (error) {
       console.log(error);
     }

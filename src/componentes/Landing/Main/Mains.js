@@ -32,9 +32,9 @@ const Mains = () => {
                     alt="recruiter"
                     style={{ maxWidth: "100%", height: "auto" }}
                   />
-                  <div className="card-body text-center">
-                    <h5 className="card-title">¿Eres Reclutador?</h5>
-                    <p className="card-text">
+                  <div className="card-body-1 text-center">
+                    <h5 className="card-title-1">¿Eres Reclutador?</h5>
+                    <p className="card-text-1">
                       Accede a nuestra plataforma para publicar tus vacantes,
                       buscar talentos y gestionar tus procesos de selección.
                     </p>
@@ -60,19 +60,19 @@ const Mains = () => {
                     alt="candidate"
                     style={{ maxWidth: "100%", height: "auto" }}
                   />
-                  <div className="card-body text-center">
-                    <h5 className="card-title">¿Eres Candidato?</h5>
-                    <p className="card-text">
+                  <div className="card-body-2 text-center">
+                    <h5 className="card-title-2">¿Eres Candidato?</h5>
+                    <p className="card-text-2">
                       Encuentra las mejores ofertas de trabajo, aplica a las
                       vacantes de las empresas más importantes y haz crecer tu
                       carrera
                     </p>
                   </div>
                   <div className="access-candidate">
-                    <Link to="/login-candidato" className="link-cand">
+                    <Link to="/login-candidato" className="link-card">
                       <button
                         type="button"
-                        className="access-btn-rec btn btn-primary"
+                        className="access-btn-can btn btn-primary"
                       >
                         Accede como Candidato
                       </button>
@@ -164,7 +164,7 @@ const Mains = () => {
         <div className="container-fluid last-container">
           <div className="row row-last-container">
             <div className="col-md-12 col-last-container">
-              <div className="letters-l text-center">
+              <div className="letters-1 text-center">
                 <h1 className="last-text">
                   En busca de trabajo? Jobinder es tu mejor aliado en la
                   búsqueda de empleo.
@@ -175,8 +175,8 @@ const Mains = () => {
               </div>
             </div>
           </div>
-          <div className="row">
-            <div className="col-md-3">
+          <div className="row row-checkmarks">
+            <div className="col-md-3 col-checkmarks">
               <img
                 className="rounded-circle d-none d-lg-block profile-pic"
                 src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1780&q=80"
@@ -214,7 +214,7 @@ const Mains = () => {
                   y ganar visibilidad{" "}
                 </li>
               </ul>
-              <div className="create-account d-flex justify-content-center">
+              <div className="last-create-account d-flex justify-content-center">
                 <button
                   type="button"
                   className="btn btn-primary btn-create-acc"

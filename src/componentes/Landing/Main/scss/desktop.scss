@@ -1,4 +1,4 @@
-  
+
   .main-container {
     margin-bottom: 100px;
     padding-top: 60px;
@@ -21,9 +21,8 @@
     .text-mobile{
       
       @include mobile{
-        @include text-center-mobile();
-       
-        font-weight: bold;
+      @include text-center-mobile();
+      font-weight: bold;
         
       
     }
@@ -36,7 +35,9 @@
       .row {
         
         
-        .left-blank-space {}
+        .left-blank-space {
+         
+        }
   
         .father-container-1 {
          
@@ -55,13 +56,13 @@
 
               }
   
-              .card-body {
-                .card-title {
+              .card-body-1 {
+                .card-title-1 {
                   @include mobile{
                     display: none;
                   }
                 }
-                .card-text {
+                .card-text-1 {
                   @include mobile{
                     display: none;
                   }
@@ -84,15 +85,15 @@
   
               .candidate-img {}
   
-              .card-body {
-                .card-title {
+              .card-body-2 {
+                .card-title-2 {
                   @include mobile{
                     display: none;
                   }
                 }
-                .card-text {
+                .card-text-2 {
                   @include mobile{
-                    display: none;
+                  display: none;
                   }
 
                 }
@@ -115,12 +116,14 @@
       @include mobile{
         display: none;
       }
-      .row {
+      .second-cards-row {
         .col-md-12 {
           .letras {
             @include letras;
   
-            h2 {}
+            .eleva {
+
+            }
           }
         }
       }
@@ -251,3 +254,82 @@
       }
     }
   }
+  
+  header{
+    .main-container{
+      .match{
+
+      }
+      .text-mobile{
+
+      }
+      .first-card-container{
+        .row-first-card{
+          .left-blank-space{
+
+          }
+          .father-container-1{
+            .child-container-1{
+              .card-container-1{
+                .recruiter-img{
+
+                }
+                .card-body-1{
+                  .card-title-1{
+
+                  }
+                  .card-text-1{
+
+                  }
+                }
+                .access-recruiter{
+                  .link-rec{
+                    .access-btn-rec{
+
+                    }
+                  }
+                }
+              }
+              .space{
+
+              }
+              .card-container-2{
+                .candidate-img{
+
+                }
+                .card-body-2{
+                  .card-title-2{
+
+                  }
+                  .card-text-2{
+
+                  }
+                }
+                .access-candidate{
+                  .link-card{
+                    .access-btn-can{
+
+                    }
+                  }
+                }
+              }
+            }
+          }
+          .right-blank-space{
+
+          }
+        }
+      }
+      .second-cards-container{
+        .second-row{
+          .column{
+            
+          }
+        }
+      }
+    }
+  }
+
+
+
+ 

@@ -6,7 +6,7 @@ import axios from "axios";
 import { useState,useEffect } from "react";
 
 
-//Muestra las vacantes a las que ha aplicado el candidato
+//Muestra las vacantes a las que ha aplicado el candidato aqui trabajando
 
 export const ListMyAppVacancy=()=>{
 

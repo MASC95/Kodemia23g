@@ -33,7 +33,7 @@ export const ProfileRecruiter=()=>{
 
   const [dataForm, setDataForm] = useState(initDataForm);
   const [imageUser, setImageUser] = useState(null);
-  const [dataRecruiter] = useJob();
+  const [dataCandidate,setDataCandidate,dataRecruiter,setDataRecruiter, initDataCandidate, initDataRecrutier] = useJob();
 
   useEffect(() => {
       
@@ -49,6 +49,7 @@ export const ProfileRecruiter=()=>{
     }
   }, [dataRecruiter]);
   const handleSubmit = async(values)=>{
+    alert(values)
     //e.preventDefault();
     try {
 

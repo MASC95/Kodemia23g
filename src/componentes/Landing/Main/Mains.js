@@ -3,11 +3,11 @@ import { FaCheck } from "react-icons/fa";
 import './scss/style.scss'
 // import NavbarMui from '../NavbarwithMui/NavbarMui';
 import { Link } from "react-router-dom";
-
+import Navbar from '../Navbar/Navbar'
 const Mains = () => {
   return (
     <>
-      {/* <NavbarMui /> */}-
+       <Navbar /> 
       <div className="main-container">
       <h1 className="match d-flex justify-content-center mx-100px m-md-5 ">
         Haz match con las empresas de tus sueños <br />

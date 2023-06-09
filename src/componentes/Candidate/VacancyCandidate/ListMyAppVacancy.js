@@ -12,6 +12,7 @@ import useJob from '../../../hooks/useJob'
 // hacer una petición GET a la API
 // hacer un map y llenar la tabla de manera dinámica con los datos del contexto
 // traer del contexto los siguientes datos: Titsulo, Tipo de trabajo, Modalidad, Salario, Estado
+//Muestra las vacantes a las que ha aplicado el candidato aqui trabajando
 
 export const ListMyAppVacancy=()=>{
     const [dataCandidate]=useJob();

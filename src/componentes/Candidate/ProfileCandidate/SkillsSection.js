@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { endpoints } from '../EndpointsCandidate/endpoints';
 
+//agregar al form de candidate
+
 const SkillsSection = () => {
   const [selectedSkill, setSelectedSkill] = useState('');
   const [selectedLevel, setSelectedLevel] = useState('');

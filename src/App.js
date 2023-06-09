@@ -30,17 +30,43 @@ import { useState } from 'react';
 import SendAccessCode from './componentes/SendAccessCode/SendAccessCode';
 
 
-const initDataRecrutier = {
-  email: '',
-  name: '',
-  token: ''
+const dataLocalStorage= window.localStorage.getItem('accessToken');
+
+let initDataCandidate=null;
+let initDataRecrutier=null;
+
+
+
+
+if(!dataLocalStorage?.role){
+
+  if(dataLocalStorage.role==='candidato'){
+    initDataCandidate = {
+      ...dataLocalStorage
+    }
+
+  }else{
+    initDataRecrutier = {
+      ...dataLocalStorage
+    }
+  }
+
+}else{
+
+  initDataRecrutier = {
+    email: '',
+    name: '',
+    token: ''
+  }
+  
+  initDataCandidate = {
+    email: '',
+    name: '',
+    token: ''
+  }
 }
 
-const initDataCandidate = {
-  email: '',
-  name: '',
-  token: ''
-}
+
 
 
 

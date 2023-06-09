@@ -6,7 +6,9 @@ import axios from "axios";
 import { useState,useEffect } from "react";
 
 
+
 //Muestra las vacantes a las que ha aplicado el candidato aqui trabajando
+
 
 export const ListMyAppVacancy=()=>{
 
@@ -41,6 +43,7 @@ export const ListMyAppVacancy=()=>{
                     <th scope="col">ESTADO</th>
                     </tr>
                 </thead>
+                
                 <tbody>
                     <tr>
                     <th scope="row">1</th>

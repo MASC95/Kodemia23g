@@ -295,6 +295,7 @@
               }
               .card-container-1{
                 @include first-cards-containers;
+                @include glassEffect();
                 .recruiter-img{
 
                 }
@@ -325,6 +326,7 @@
               }
               .card-container-2{
                 @include first-cards-containers;
+                @include glassEffect();
                 .candidate-img{
 
                 }
@@ -373,6 +375,7 @@
         .second-cards-row{
           .second-cards-1{
             .card-container-3{
+              @include glassEffect;
               @include second-cards-containers;
               margin-left: 300px;
               .video{
@@ -393,6 +396,7 @@
           }
           .second-cards-2{
             .card-container-4{
+              @include glassEffect;
               @include second-cards-containers;
               .skills{
 
@@ -448,6 +452,7 @@
           }
         }
         .row-checkmarks{
+          @include glassEffect;
           .col-checkmarks{
             .profile-pic{
 

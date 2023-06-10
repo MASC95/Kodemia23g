@@ -9,7 +9,7 @@ import { myId } from "../../../lib/myLib";
 import {FaTrash} from 'react-icons/fa'
 import { Link } from "react-router-dom";
 
-export const Softskills = () => {
+export const Softskills = ({setListSkills}) => {
   const [dataSkill, setDataSkill] = useState([]);
   const [selectSkill, setSelectSkill] = useState("");
   const [skillTemp, setSkillTemp] = useState([]);
@@ -22,6 +22,15 @@ export const Softskills = () => {
   useEffect(() => {
     fetchSkill();
   }, []);
+  useEffect(()=>{
+
+    if(skillTemp.length>0){
+      setListSkills([...skillTemp])
+    }else{
+      setListSkills([])
+    }
+
+  },[skillTemp])
   const handleSkillChange = (event) => {
     const value = event.target.value;
     setSelectSkill(value);
@@ -60,7 +69,7 @@ export const Softskills = () => {
     <>
         <div className="row softskills">
           <div className="col">
-            <form onSubmit={onFormSubmit}>
+            <form >
               <div className="row mb-4">
                 <div className="col">
                   <div className="form-outline">
@@ -84,7 +93,8 @@ export const Softskills = () => {
               </div>
               <div className="buttons_actions d-flex justify-content-end gap-3">
                 <button
-                  type="submit"
+                  type="button"
+                  onClick={onFormSubmit}
                   className="buttons btn btn-info text-light"
                 >
                   Agregar

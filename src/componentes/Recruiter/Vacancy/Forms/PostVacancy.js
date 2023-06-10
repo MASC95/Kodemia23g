@@ -6,7 +6,12 @@ import Softskills from "../../SoftSkills/Form/SoftSkills";
 // import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from 'yup'
+
+
+
+
 export const PostVacancy=()=>{
+    const [listSkills, setListSkills] = useState([]);
     // const perfil = JSON.parse(localStorage.getItem('accessToken'))
     // const token=perfil['accessToken']
     // const navigate=useNavigate()
@@ -44,8 +49,13 @@ export const PostVacancy=()=>{
         }),
         onSubmit:(values) => {
             setTimeout(() => {
+                const idsSkills =  listSkills.map(item=>item.skill);
+                const completeForm = {
+                    ...values,
+                    job_skills:[...idsSkills]
+                }
               axios
-                .post(endpointsGral.vacancyURL, values) 
+                .post(endpointsGral.vacancyURL, completeForm) 
                 .then(response => {
                   console.log(response);
                 //   navigate(`/Dashboard-Recruiter/vacancy`)
@@ -55,7 +65,7 @@ export const PostVacancy=()=>{
                   console.log(error.response);
                 });
               console.log({ values});
-              alert(JSON.stringify(values, null, 2));
+              alert(JSON.stringify(completeForm, null, 2));
             }, 400);
           }
       });
@@ -188,7 +198,7 @@ export const PostVacancy=()=>{
                 </div>
                 </div>
 
-                <Softskills/>
+                <Softskills setListSkills={setListSkills} />
 
                 <div className="buttons_actions d-flex justify-content-end align-content-end">  
                     <button type="submit" className="buttons btn btn-info text-light">Guardar Vacante</button>               

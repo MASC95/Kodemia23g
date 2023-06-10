@@ -256,9 +256,12 @@
   } */
   
   header{
+  
     .main-container{
       margin-bottom: 100px;
       padding-top: 60px;
+      width: 100%;
+      height: 100%s;
       .match{
         font-family: 'Epilogue';
         align-items: center;
@@ -281,12 +284,18 @@
         }
       }
       .first-card-container{
+        width: 100%;
+        height: 100%;
         .row-first-card{
           .left-blank-space{
 
           }
           .father-container-1{
+            margin-right: 150px;
+            width: 80%;
+            height: 100%;
             .child-container-1{
+              
               @include mobile{
                 display: flex;
                 flex-wrap: wrap;
@@ -294,6 +303,7 @@
                 margin-top: 2rem;
               }
               .card-container-1{
+                
                 @include first-cards-containers;
                 @include glassEffect();
                 .recruiter-img{
@@ -301,12 +311,16 @@
                 }
                 .card-body-1{
                   .card-title-1{
+                    @include montserrat();
+                    margin-top: 30px;   
                     @include mobile{
                       display: none;
                     }
 
                   }
                   .card-text-1{
+                    @include poppins();
+                    @include cardsSpacing();
                     @include mobile{
                       display: none;
                     }
@@ -316,7 +330,8 @@
                   @include center-users;
                   .link-rec{
                     .access-btn-rec{
-
+                      @include poppins();
+                      padding: 10px 20px 10px 20px;
                     }
                   }
                 }
@@ -332,11 +347,15 @@
                 }
                 .card-body-2{
                   .card-title-2{
+                    @include montserrat();
+                    margin-top: 30px;  
                     @include mobile{
                       display: none;
                     }
                   }
                   .card-text-2{
+                    @include poppins();
+                    @include cardsSpacing();
                     @include mobile{
                       display: none;
                       }
@@ -346,7 +365,8 @@
                   @include center-users;
                   .link-card{
                     .access-btn-can{
-
+                      @include poppins();
+                      padding: 10px 20px 10px 20px;
                     }
                   }
                 }
@@ -359,6 +379,7 @@
         }
       }
       .second-cards-container{
+        margin-bottom: 40px;
         @include mobile{
           display: none;
         }
@@ -367,7 +388,11 @@
             .letras{
               @include letras;
               .eleva{
-
+                padding: 10px;
+                font-family: 'Epilogue';
+                align-items: center;
+                text-indent: 1em;
+                color: #093040;
               }
             }
           }
@@ -383,13 +408,15 @@
               }
               .video-card-body{
                 .video-card-title{
-
+                  padding-left: 10px;
                 }
                 .unique-skills{
-
+                  @include poppins();
+                  padding: 25px 20px 25px 20px;
                 }
                 .record-video{
-
+                  @include poppins();
+                  padding: 10px; 
                 }
               }
             }
@@ -398,18 +425,21 @@
             .card-container-4{
               @include glassEffect;
               @include second-cards-containers;
+
               .skills{
 
               }
               .card-body-skills{
                 .card-title-skills{
-
+                  padding-left: 10px;
                 }
                 .card-text-skills{
-
+                  @include poppins();
+                  padding: 25px 20px 25px 20px;
                 }
                 .knowledge{
-
+                  @include poppins();
+                  padding: 10px; 
                 }
               }
             }
@@ -465,6 +495,7 @@
               line-height: 42px;
               display: flex;
               justify-content: start;
+              color: black;
             @include mobile{
             display: none;
           }
@@ -486,8 +517,9 @@
                   padding: 0;
                 }
                 .icon-check{
+                  margin-right: 1rem;
                   @include mobile{
-                margin-right: 0.5rem;
+                  margin-right: 0.5rem;
               }
                 }
               }
@@ -514,6 +546,7 @@
                 }
               }
               .li-register{
+                line-height: 40px;
                 @include mobile{
                   line-height: 50px;
                   padding: 0;
@@ -527,6 +560,9 @@
             }
             .last-create-account{
               .btn-create-acc{
+                @include poppins();
+                margin: 20px;
+                padding: 10px 20px 10px 20px;
                 @include mobile{
                   display: none;
                  }

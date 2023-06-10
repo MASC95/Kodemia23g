@@ -3,6 +3,13 @@
       @content;
     }
   }
+
+@mixin tablet{
+  @media screen and (min-width: 768) and (max-width: 1023px)  {
+    @content;
+  }
+}
+
   @mixin center-users {
     display: flex;
     justify-content: center;
@@ -49,4 +56,21 @@
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
   
+   }
+
+   @mixin montserrat{
+    font: 'Montserrat';
+    font-weight: 500;
+   }
+
+   @mixin poppins{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+   }
+
+   @mixin cardsSpacing{
+    text-align: center;
+    margin-top: 20px;
+    padding-right: 30px;
+    padding-left: 30px;
    }

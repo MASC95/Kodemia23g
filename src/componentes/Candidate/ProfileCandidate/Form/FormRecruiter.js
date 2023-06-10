@@ -12,7 +12,7 @@ import useJob from "../../../../hooks/useJob";
 import '../SkillsSection.js'
 import SkillsSection from "../SkillsSection.js";
 
-//const localEndPoint = "http://localhost:4000/api/v1/users/";
+//const localEndPoinst = "http://localhost:4000/api/v1/users/";
 
 const initDataForm = {
   name: "",

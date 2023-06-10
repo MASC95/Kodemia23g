@@ -49,10 +49,10 @@ export const Details = () => {
     <>
       <div className="row container_form_General">
         <div className="col-4 container_image">
-          <img src={imgProfile} />
+          <img src={dataVacancy?.avatar_url? dataVacancy?.avatar_url: imgProfile} />
 
           <div className="">
-            <p className="text-justify"><b>Nombre de la empresa:</b> PENDIENTE</p>
+            <p className="text-justify"><b>Nombre de la empresa:</b> {dataVacancy?.companyName}</p>
             <p className="text-justify"><FaAddressBook /> <b>Ciudad:</b> {dataVacancy?.city}</p>
             <p className="text-justify"><FaBook /> <b>Modalidad:</b> {dataVacancy?.mode}</p>
             <p className="text-justify"><FaCalendarCheck /> <b>Tipo:</b> {dataVacancy?.type}</p>

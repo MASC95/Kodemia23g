@@ -89,7 +89,9 @@ const Mains = () => {
           <div className="row second-row">
             <div className="col-md-12 column">
               <div className="letras text-center">
-                <h2 className="eleva">ELEVA TU CARRERA PROFESIONAL AL SIGUIENTE NIVEL</h2>
+                <h2 className="eleva">
+                  ELEVA TU CARRERA PROFESIONAL AL SIGUIENTE NIVEL
+                </h2>
               </div>
             </div>
           </div>
@@ -120,7 +122,10 @@ const Mains = () => {
                     Destaca tus habilidades únicas y asegura el trabajo que
                     mereces.
                   </p>
-                  <h6 style={{ textAlign: "end", color: "#EA2876FF" }} className="record-video">
+                  <h6
+                    style={{ textAlign: "end", color: "#EA2876FF" }}
+                    className="record-video"
+                  >
                     Grabar Video 🚩
                   </h6>
                 </div>
@@ -153,7 +158,10 @@ const Mains = () => {
                     que los empleadores vean lo que realmente tienes para
                     ofrecer.
                   </p>
-                  <h6 style={{ textAlign: "end", color: "#EA2876FF" }} className="knowledge">
+                  <h6
+                    style={{ textAlign: "end", color: "#EA2876FF" }}
+                    className="knowledge"
+                  >
                     Sumar Conocimientos 🚩
                   </h6>
                 </div>
@@ -195,7 +203,7 @@ const Mains = () => {
                 Nuestra aplicación te ayudará a encontrar oportunidades
                 laborales acordes a tus habilidades y experiencia.
               </p>
-              <ul className="check-list list group mb-100">
+              <ul className="check-list list group mb-2">
                 <li className="list-unstyled li-register">
                   <FaCheck color="green" className="icon-check" />
                   Registro gratuito. Encuentra tu proximo trabajo hoy

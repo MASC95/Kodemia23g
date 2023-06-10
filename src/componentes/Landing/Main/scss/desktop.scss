@@ -475,6 +475,7 @@
             .check-list{
               margin-bottom: 10px;
               .li-register{
+                color: black;
                 @include mobile{
                   line-height: 50px;
                   padding: 0;

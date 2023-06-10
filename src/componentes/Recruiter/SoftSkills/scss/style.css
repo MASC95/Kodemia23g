@@ -1,0 +1,25 @@
+@media (min-width: 768px) and (max-width: 1400px) {
+  .softskills {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: end;
+  }
+}
+@media (min-width: 542px) and (max-width: 768px) {
+  .softskills {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+  .softskills h1, .softskills h2 {
+    text-align: center;
+    margin-bottom: 25px;
+  }
+  .softskills .col {
+    margin-bottom: 50px;
+  }
+  .softskills .table .thead-dark {
+    background-color: #FAFAFB;
+  }
+}/*# sourceMappingURL=style.css.map */

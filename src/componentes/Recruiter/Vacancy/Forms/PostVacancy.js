@@ -2,27 +2,27 @@ import {React,useEffect,useState} from "react";
 import axios from "axios";
 import { endpointsGral } from "../../services/vacancy";
 // import { endpoints } from "../../services/endpoints";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from 'yup'
 export const PostVacancy=()=>{
-    const perfil = JSON.parse(localStorage.getItem('accessToken'))
-    const token=perfil['accessToken']
-    const navigate=useNavigate()
-    // console.log('token: '+ token)
-    function parseJwt (token) {
-        var base64Url = token.split('.')[1];
-        var base64 = base64Url.replace('-', '+').replace('_', '/');
-        return JSON.parse(window.atob(base64));
-    };
-    const destroy=parseJwt(token)
-    console.log(destroy['_id'])
-    const id= destroy['_id']
+    // const perfil = JSON.parse(localStorage.getItem('accessToken'))
+    // const token=perfil['accessToken']
+    // const navigate=useNavigate()
+    // // console.log('token: '+ token)
+    // function parseJwt (token) {
+    //     var base64Url = token.split('.')[1];
+    //     var base64 = base64Url.replace('-', '+').replace('_', '/');
+    //     return JSON.parse(window.atob(base64));
+    // };
+    // const destroy=parseJwt(token)
+    // console.log(destroy['_id'])
+    // const id= destroy['_id']
   
     
     const formik= useFormik({
         initialValues: {
-            companyName:'64406a93e56432b37db279d0',
+            companyName:'',
             title:'',
             type:'',
             mode:'',
@@ -32,6 +32,7 @@ export const PostVacancy=()=>{
             activities:''
         },
         validationSchema:Yup.object({
+            companyName:Yup.string().required('Requerido'),
             title:Yup.string().required('Requerido'),
             type:Yup.string().required('Requerido'),
             mode:Yup.string().required('Requerido'),
@@ -46,7 +47,7 @@ export const PostVacancy=()=>{
                 .post(endpointsGral.vacancyURL, values) 
                 .then(response => {
                   console.log(response);
-                  navigate(`/Dashboard-Recruiter/vacancy`)
+                //   navigate(`/Dashboard-Recruiter/vacancy`)
 
                 })
                 .catch(error => {
@@ -63,6 +64,20 @@ export const PostVacancy=()=>{
         <div className="container mt-2 p-5 w-100 " id="formGral">
             <form onSubmit={formik.handleSubmit}>
                 <div className="row mb-4">
+                    <div className="col">
+                    <div className="form-outline bg-gray">
+                        <label className="form-label" for="form6Example1">Nombre de la Empresa</label>
+                        <input type="text" 
+                               id="comapnyName" 
+                               name="companyName"
+                               className={`form-control ${formik.touched.companyName && formik.errors.companyName ? 'border border-danger' : 'border border-secondary'}`}
+                               value={formik.values.companyName}
+                               onChange={formik.handleChange}
+                               onBlur={formik.handleBlur}
+                               placeholder="Empresa"/>
+                               {formik.touched.companyName && formik.errors.companyName && (<span className='text-danger'>{formik.errors.companyName}</span>)}
+                    </div>
+                    </div>
                     <div className="col">
                     <div className="form-outline bg-gray">
                         <label className="form-label" for="form6Example1">Título</label>
@@ -93,7 +108,9 @@ export const PostVacancy=()=>{
                         </select>
                     </div>
                     </div>
-                    <div className="col">
+                </div>
+                <div className="row mb-4">
+                <div className="col">
                         <div className="form-outline">
                             <label className="form-label" for="form6Example1">Modalidad</label>
                             <select 
@@ -110,8 +127,6 @@ export const PostVacancy=()=>{
                             </select>
                         </div>
                     </div>
-                </div>
-                <div className="row mb-4">
                     <div className="col">
                     <div className="form-outline">
                         <label className="form-label" for="form6Example1">Ciudad</label>
@@ -139,7 +154,9 @@ export const PostVacancy=()=>{
                                {formik.touched.salary && formik.errors.salary && (<span className='text-danger'>{formik.errors.salary}</span>)} 
                     </div>
                     </div>
-                    <div className="col">
+                </div>
+                <div className="row mb-4">
+                <div className="col">
                     <div className="form-outline">
                         <label className="form-label" for="form6Example2">Status</label>
                         <select 
@@ -155,8 +172,6 @@ export const PostVacancy=()=>{
                             </select>
                     </div>
                     </div>
-                </div>
-                <div className="row mb-4">
                     <div className="col">
                     <div className="form-outline">
                         <label className="form-label" for="form6Example1">Actividades</label>

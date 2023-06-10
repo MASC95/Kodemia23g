@@ -1,61 +1,50 @@
-import React from "react";
+import React, { useEffect } from "react";
 import '../scss/style.scss'
 import TableSkills from "../TableSkills";
 import { useState } from "react";
 import swal from "sweetalert";
 import axios from "axios";
 import { endpointsGral } from "../../services/vacancy";
-// import { FaEdit, FaTrash } from "react-icons/fa";
 export const Softskills=()=>{
-    const valores = window.location.search;
-    const urlParams = new URLSearchParams(valores);
-    const id = urlParams.get('v');
 
-    const [formValue,setFormValue]=useState({
-        vacancy:`${id}`,
-        name:'',
-        level:''
-    })
+    const [dataSkill,setDataSkill]=useState([])
+    const [selectSkill, setSelectSkill]=useState('')
+    const [skillTemp,setSkillTemp]=useState([])
 
-    const onFormInputChange=(event)=>{
-        const input=event.target.id
-        const inputValue=event.target.value
-
-        setFormValue({
-            ...formValue,
-            [input]:inputValue
-        })
+    const fetchSkill=async()=>{
+        const response= await axios.get(endpointsGral.jobSkill)
+        const infoSkill=response.data['item']
+        setDataSkill(infoSkill['docs'])
     }
+    useEffect(()=>{
+        fetchSkill()
+    },[])
+    const handleSkillChange = (event) => {
+        const value= event.target.value
+        setSelectSkill(value);
+      };
+
     const onFormSubmit=(event)=>{
         event.preventDefault()
-        saveSkill()
+        const newSkill={
+            skill:selectSkill
+        };
+        console.log("new arr", newSkill)
+        setSkillTemp([...skillTemp,newSkill])
     }
 
-    const saveSkill=async()=>{
-        try {
-            const token = window.localStorage.getItem('token')
-            // console.log(token) 
-            const headers = { 
-                'Authorization':`Baerer ${token}`
-            };
-            const addSkill = await axios.post(endpointsGral.jobSkill,formValue,{headers}) 
-            setFormValue(addSkill)
-            console.log('hecho')
-            swal({
-                title: "Soft Skill agregada!",
-                icon: "success",
-                button: "ok!",
-              });
-        } catch (error) {
-            swal({
-                title: "Se a producido un error!",
-                text: "Revisar los datos ingresados!",
-                icon: "error",
-                button: "ok!",
-              });
+    console.log('arr de skills', skillTemp)
+
+    const handleDeleteSkill = (index) => {
+        const skillToDelete = skillTemp[index];
+        
+        if(skillToDelete){
+            const updatedSkills = skillTemp.filter((_, i) => i !== index);
+                setSkillTemp(updatedSkills);
+        }else{
+            console.log('error al eliminar')
         }
-    }
-
+      };
     return(
         <>
         <div className="container mt-2 p-5 w-100 " id="formGral">
@@ -67,44 +56,56 @@ export const Softskills=()=>{
                         <div className="col">
                         <div className="form-outline">
                             <label className="form-label" for="form6Example1">Skills</label>
-                            <select className="form-control" 
-                                           id="name"
-                                           value={formValue.name}
-                                           onChange={onFormInputChange}>
-                                <option> Selecciona</option>
-                                <option>Python</option>
-                                <option>JavaScript</option>
-                                <option>Java</option>
-                                <option>C#</option>
-                                <option>C++</option>
-                                <option>Go</option>
-                                <option>R</option>
-                                <option>Swift</option>
-
+                                <select className="form-control" 
+                                        id="selectSkill"
+                                        value={selectSkill}
+                                        onChange={handleSkillChange}>
+                                {dataSkill.map((item,index)=>{
+                                    const id=item._id
+                                    const skillComplete=`${item.name} - ${item.level}`;
+                                return(
+                                <option value={`${id}`} > 
+                                           {skillComplete}
+                                </option>
+                                )
+                            })}
                             </select>
-                        </div>
-                        </div>
-                        <div className="col">
-                        <div className="form-outline">
-                            <label className="form-label" for="form6Example2">Nivel</label>
-                            <select className="form-control" 
-                                           id="level"
-                                           value={formValue.level}
-                                           onChange={onFormInputChange}>
-                                <option> Selecciona</option>
-                                <option> Basico</option>
-                                <option> Intermedio</option>
-                                <option> Avanzado</option>
-                            </select>
+                            
                         </div>
                         </div>
                     </div>
                     <div className="buttons_actions">  
-                        <button type="submit" className="buttons btn btn-info text-light">Guardar Skill</button>               
+                        <button type="submit" className="buttons btn btn-info text-light">Agregar Skill</button>               
                     </div>
                 </form>
             </div>
-            <TableSkills/>
+
+            {/* table of skills */}
+            <table className="table">
+        <thead>
+          <tr>
+            <th>Skill</th>
+            <th>Nivel</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {skillTemp.map((skill, index) => (
+            <tr key={index}>
+              <td>{index+1}</td>
+              <td>{skill.skill}</td>
+              <td>{skill.level}</td>
+              <td>
+                <button className="btn btn-sm btn-danger" onClick={() => handleDeleteSkill(index)}>Borrar</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+
+
+            {/* <TableSkills/> */}
         </div>
       
         </div>

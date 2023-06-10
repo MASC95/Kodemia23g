@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Softskills from "../SoftSkills/Form/SoftSkills";
+// import Softskills from "../SoftSkills/Form/SoftSkills";
 import { endpointsGral } from "../services/vacancy";
 import axios from "axios";
 import { useNavigate  } from "react-router-dom";
@@ -13,13 +13,13 @@ export const EditVacancy=()=>{
 
     useEffect(()=>{
         const fetch =async()=>{
-            try {
-                const endpointURL= `${endpointsGral.vacancyURL}${id}`;
-                const queryVacancy= await axios.get(endpointURL);
-                setEditInfo(queryVacancy.data)
-            } catch (error) {
-                console.log(error)
-            }
+            // try {
+            //     const endpointURL= `${endpointsGral.vacancyURL}${id}`;
+            //     const queryVacancy= await axios.get(endpointURL);
+            //     setEditInfo(queryVacancy.data)
+            // } catch (error) {
+            //     console.log(error)
+            // }
         }
         fetch()
 
@@ -50,29 +50,29 @@ export const EditVacancy=()=>{
       const guardarCallback=async()=>{
         console.log(editInfo)
         try {
-        if(validDatas){
-        const token = window.localStorage.getItem('token')
-        console.log(token) 
-        const headers = { 
-            'Authorization':`Baerer ${token}`
-        };
-        const addPost=await axios.patch(`${endpointsGral.vacancyURL}${id}`,editInfo,{headers});  
-        setEditInfo(addPost)
-        swal({
-            title: "Vacante Actualizada!",
-            icon: "success",
-            button: "ok!",
-          });
-        navigate(`/Dashboard-Recruiter/vacancy`)
+        // if(validDatas){
+        // const token = window.localStorage.getItem('token')
+        // console.log(token) 
+        // const headers = { 
+        //     'Authorization':`Baerer ${token}`
+        // };
+        // const addPost=await axios.patch(`${endpointsGral.vacancyURL}${id}`,editInfo,{headers});  
+        // setEditInfo(addPost)
+        // swal({
+        //     title: "Vacante Actualizada!",
+        //     icon: "success",
+        //     button: "ok!",
+        //   });
+        // navigate(`/Dashboard-Recruiter/vacancy`)
 
-        }else{
-           swal({
-            title: "Error al actualizar!",
-            text: "Todos los datos con requeridos!",
-            icon: "error",
-            button: "ok!",
-          });
-        }
+        // }else{
+        //    swal({
+        //     title: "Error al actualizar!",
+        //     text: "Todos los datos con requeridos!",
+        //     icon: "error",
+        //     button: "ok!",
+        //   });
+        // }
         } catch (error) {
           console.log("Error in Petition");
         }
@@ -190,7 +190,7 @@ export const EditVacancy=()=>{
             </form>
         </div>
              {/* <PatchVancy editDatas={editInfo}/> */}
-             <Softskills/>
+             {/* <Softskills/> */}
          </div>
                        
         </>

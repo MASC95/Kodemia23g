@@ -490,12 +490,13 @@
           }
           .down-cards{
             .final-text{
-              font-family: Epilogue;
+              @include montserrat();
               font-size: 28px;
               line-height: 42px;
               display: flex;
               justify-content: start;
               color: black;
+              margin-top: 1rem;
             @include mobile{
             display: none;
           }
@@ -504,6 +505,8 @@
               }
             }
             .slogan{
+              @include poppins();
+              margin-top: 1rem;
               @include mobile{
                 display: none;
               }
@@ -512,6 +515,7 @@
               margin-bottom: 10px;
               .li-register{
                 color: black;
+                @include poppins();
                 @include mobile{
                   line-height: 50px;
                   padding: 0;

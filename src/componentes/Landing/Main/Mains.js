@@ -195,7 +195,7 @@ const Mains = () => {
             </div>
             <div className="col-md-8  down-cards ">
               <div className="final-text text-start d-sm-text-center">
-                <strong> Encuentra un mejor empleo con Jobinder.</strong>
+                <strong> Encuentra el empleo de tus sueños con Jobinder.</strong>
               </div>
               <p
                 style={{ color: "#565E6CFF" }}

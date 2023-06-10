@@ -29,7 +29,6 @@ import JobContext from './context/JobContext';
 import { useState } from 'react';
 import SendAccessCode from './componentes/SendAccessCode/SendAccessCode';
 
-
 const dataLocalStorage= window.localStorage.getItem('accessToken');
 
 let initDataCandidate=null;

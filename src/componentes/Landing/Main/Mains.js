@@ -4,6 +4,7 @@ import "./scss/style.scss";
 // import NavbarMui from '../NavbarwithMui/NavbarMui';
 import { Link } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
+import Footer from "../Footer/Footer";
 
 const Mains = () => {
   return (
@@ -240,6 +241,9 @@ const Mains = () => {
         </div>
       </div>
     </header>
+    
+   
+
   );
 };
 

@@ -11,6 +11,7 @@ export const ListBuscar = () => {
   const [vacancies, setVacancies] = useState([]);
   const [showAlert, setShowAlert] = useState(false);
   const [dataCandidate]=useJob();
+ 
   useEffect(() => {
     const fetchData = async () => {
       try {

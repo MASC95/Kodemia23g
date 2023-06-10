@@ -9,6 +9,8 @@ import { Component, useEffect, useState } from "react";
 import { endpointsGral } from "../../../Recruiter/services/vacancy";
 import UploadImage from "../../../UploadImage/UploadImage";
 import useJob from "../../../../hooks/useJob";
+import '../SkillsSection.js'
+import SkillsSection from "../SkillsSection.js";
 
 //const localEndPoint = "http://localhost:4000/api/v1/users/";
 
@@ -46,6 +48,7 @@ const FormRecruiter = () => {
   const [dataForm, setDataForm] = useState(initDataForm);
   const [imageUser, setImageUser] = useState(null);
   const [dataCandidate] = useJob();
+
 
   useEffect(() => {
       
@@ -307,7 +310,7 @@ return (
                   type="text"
                   id="working_experience"
                   placeholder="Experiencia"
-                  name="working_experience"
+                     name="working_experience"
                   className={`form-control ${props.touched.working_experience && props.errors.working_experience ? 'border border-danger' : 'border border-secondary'}`}
                   value={props.values.working_experience}
                   onChange={props.handleChange}
@@ -323,7 +326,9 @@ return (
             <button type="submit" className="buttons btn btn-info text-light" value='enviar' >
               Guardar
             </button>
+            
           </div>
+          <SkillsSection/>
         </Form>
          )}
         </Formik> 

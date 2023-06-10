@@ -23,7 +23,7 @@ import MatchDetails from './componentes/Recruiter/Match/MatchDetails';
 import AddVacancy from './componentes/Recruiter/Vacancy/AddVacancy';
 import EditVacancy from './componentes/Recruiter/Vacancy/EditVacancy';
 import Candidate from './componentes/Recruiter/Profile/ProfileCandidate';
-import FormRecruiter from './componentes/Candidate/ProfileCandidate/Form/FormRecruiter';
+import Reclutamiento from './componentes/Recruiter/Panel/Reclutamiento';
 import ListBuscar from './componentes/Candidate/BuscarCandidate/ListBuscar';
 import JobContext from './context/JobContext';
 import { useEffect, useState } from 'react';
@@ -83,7 +83,7 @@ function App() {
                <Route path='match' element={<Match />} />
                <Route path='details-match' element={<MatchDetails/>}/>
                <Route path='profile-candidato' element={<Candidate/>}/>
-               
+               <Route path='panel-phases' element={<Reclutamiento/>}/>
             </Route>
 
         </Routes>

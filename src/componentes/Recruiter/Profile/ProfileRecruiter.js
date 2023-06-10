@@ -33,8 +33,7 @@ export const ProfileRecruiter=()=>{
 
   const [dataForm, setDataForm] = useState(initDataForm);
   const [imageUser, setImageUser] = useState(null);
-  const [a,b,dataRecruiter] = useJob();
-  
+  const [dataCandidate,setDataCandidate,dataRecruiter,setDataRecruiter, dataLocalStorage,setDataLocalStorage] = useJob();
 
   useEffect(() => {
       
@@ -51,6 +50,7 @@ export const ProfileRecruiter=()=>{
   }, [dataRecruiter]);
 
   const handleSubmit = async(values)=>{
+    alert(values)
     //e.preventDefault();
     console.log('values:..',values);
     try {
@@ -219,8 +219,6 @@ export const ProfileRecruiter=()=>{
                     </div>
                 </div>
                 <div className="buttons_actions d-flex justify-content-center gap-3">
-                    {/* <button type="button" className="buttons btn btn-info">Cancelar</button> */}
-
                     <button type="submit" onClick={handleSubmit} className="buttons btn btn-info text-light" value='enviar' >
                     Guardar
                     </button>

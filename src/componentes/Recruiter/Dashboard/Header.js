@@ -6,17 +6,8 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import useJob from '../../../hooks/useJob'
 
-const initDataForm = {
-    name: "",
-    last_name: "",
-    avatar_url: "",
-  };
 export const Header=()=>{
-    const perfil = JSON.parse(localStorage.getItem('accessToken'))
-    // console.log('token: ', perfil)
-    const name=perfil['name']
-    const last_name=perfil['last_name']
-
+    const [dataCandidate,setDataCandidate,dataRecruiter,setDataRecruiter, dataLocalStorage, setDataLocalStorage]= useJob();
     return(
         <>
          <header className='dashboard-toolbar'>
@@ -26,8 +17,8 @@ export const Header=()=>{
                             </Link>
                         </div> 
                     <div className="col image-container">
-                        <p>{`${name} ${last_name}`}</p>
-                        <img src={imgProfile} alt=""/>
+                        <p>{`${dataRecruiter.name} ${dataRecruiter.last_name}`}</p>
+                        <img src={dataRecruiter.avatar_url} alt=""/>
                     </div>
                     </div>
                 </header>

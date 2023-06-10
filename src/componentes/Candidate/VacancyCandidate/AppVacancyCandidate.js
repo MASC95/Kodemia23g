@@ -10,10 +10,10 @@ export const AppVacancyCandidate=()=>
 {
     return(
         <>
-                        <div className='card-body'>
-                           <h1 className="text-start">Vacantes aplicadas</h1>
-                           <ListMyAppVacancy/>
-                        </div>
+          <div className='card-body'>
+             <h1 className="text-start">Vacantes aplicadas</h1>
+             <ListMyAppVacancy/>
+          </div>
             
         </>
     )

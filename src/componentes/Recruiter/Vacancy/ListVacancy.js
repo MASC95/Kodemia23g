@@ -34,7 +34,7 @@ export const ListVacancy=({postdata})=>{
                                         <Link to={`/Dashboard-Recruiter/vacancy-edit/?v=${idVacancy}`}>
                                             <FaEdit className="icon_edit"/>
                                         </Link>
-                                        <button type='button'className="icon_trash"><FaTrash className="icon_trash"/></button>
+                                        <button type='button' className="icon_trash"><FaTrash className="icon_trash"/></button>
                                     </td>
                                     </tr>
                                 )

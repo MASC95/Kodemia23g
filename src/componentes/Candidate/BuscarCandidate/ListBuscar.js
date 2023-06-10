@@ -86,7 +86,7 @@ export const ListBuscar = () => {
                   </th>
                   <th scope="col">SALARIO</th>
                   <th scope="col" style={{ backgroundColor: "#FAFAFB" }}>
-                    OPCIONES
+                    OPCION
                   </th>
                 </tr>
               </thead>
@@ -106,7 +106,7 @@ export const ListBuscar = () => {
                           className="btn btn-outline-info buscar"
                           onClick={handleApply}
                         >
-                          {my_vacancies?.find(myVac=>myVac._id===item._id)===undefined?'Aplicar':'Alicando'}
+                          {my_vacancies?.find(myVac=>myVac._id===item._id)===undefined?'Aplicar':'Aplicando'}
                         </button>
                         <Link
                           to={`/dashboard-candidato/detail-vacancy/${item._id}`}

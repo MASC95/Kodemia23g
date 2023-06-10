@@ -263,7 +263,7 @@
       width: 100%;
       height: 100%s;
       .match{
-        font-family: 'Epilogue';
+        @include montserrat;
         align-items: center;
         text-indent: 1em;
         color: #093040;
@@ -386,13 +386,14 @@
         .second-row{
           .column{
             .letras{
-              @include letras;
+             
               .eleva{
-                padding: 10px;
-                font-family: 'Epilogue';
+                @include montserrat();
                 align-items: center;
                 text-indent: 1em;
                 color: #093040;
+                margin-top: 100px;
+                margin-bottom: 50px;
               }
             }
           }
@@ -473,6 +474,7 @@
               display: flex;
               justify-content: center;
               padding-right: 300px;
+              @include montserrat();
               @include mobile{
                 text-align: center;
                 padding-right: 0;
@@ -496,7 +498,7 @@
               display: flex;
               justify-content: start;
               color: black;
-              margin-top: 1rem;
+              margin-top: 3rem;
             @include mobile{
             display: none;
           }

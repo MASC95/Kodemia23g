@@ -6,6 +6,8 @@ import swal from "sweetalert";
 import axios from "axios";
 import { endpointsGral } from "../../services/vacancy";
 import { myId } from "../../../lib/myLib";
+import {FaTrash} from 'react-icons/fa'
+import { Link } from "react-router-dom";
 
 export const Softskills = () => {
   const [dataSkill, setDataSkill] = useState([]);
@@ -30,11 +32,19 @@ export const Softskills = () => {
     const newSkill = {
       skill: selectSkill,
     };
-    console.log("new arr", newSkill);
-    setSkillTemp([...skillTemp, newSkill]);
+    const dataRepet= skillTemp?.find(item=>item.skill===newSkill.skill);
+    if(dataRepet){
+        swal({
+            title: "Ya hemos agregado esa skill!",
+            icon: "error",
+            button: "ok!",
+        });
+    }else{
+        setSkillTemp([...skillTemp, newSkill]);
+    }
   };
 
-  console.log("arr de skills", skillTemp);
+//   console.log("arr de skills", skillTemp);
 
   const handleDeleteSkill = (index) => {
     const skillToDelete = skillTemp[index];
@@ -48,16 +58,14 @@ export const Softskills = () => {
   };
   return (
     <>
-      <div className="container mt-2 p-5 w-100 " id="formGral">
         <div className="row softskills">
           <div className="col">
-            <h2>Agregar skill</h2>
             <form onSubmit={onFormSubmit}>
               <div className="row mb-4">
                 <div className="col">
                   <div className="form-outline">
-                    <label className="form-label" for="form6Example1">
-                      Skills
+                    <label className="form-label" htmlFor="form6Example1">
+                      Elige las SoftSkill de tu vacante:
                     </label>
                     <select
                       className="form-control"
@@ -74,27 +82,37 @@ export const Softskills = () => {
                   </div>
                 </div>
               </div>
-              <div className="buttons_actions">
+              <div className="buttons_actions d-flex justify-content-end gap-3">
                 <button
                   type="submit"
                   className="buttons btn btn-info text-light"
                 >
-                  Agregar Skill
+                  Agregar
                 </button>
+                <button
+                  type="button"
+                  className="buttons btn btn-info text-light"
+                >
+                  Crear nueva SoftSkill
+                </button>
+                
               </div>
             </form>
           </div>
 
           {/* table of skills */}
-          <table className="table">
-            <thead>
-              <tr>
-                <th>Skill</th>
-                <th>Nivel</th>
-                <th>Acciones</th>
-              </tr>
-            </thead>
-            <tbody>
+          <div className="col">
+            <label className="form-label" htmlFor="">Lista de SoftSkill agregadas</label>
+            <table className="table">
+                <thead className="thead-dark bg-body-secondary">
+                    <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Skill</th>
+                    <th scope="col">Nivel</th>
+                    <th scope="col">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
               {skillTemp.map((skill, index) => {
                 const myDataSkill= dataSkill.find(item=>item._id===skill.skill);
                 console.log('myDataSkill:..',myDataSkill,'skill:..',skill);
@@ -104,22 +122,17 @@ export const Softskills = () => {
                     <td>{myDataSkill?.name}</td>
                     <td>{myDataSkill?.level}</td>
                     <td>
-                      <button
-                        className="btn btn-sm btn-danger"
-                        onClick={() => handleDeleteSkill(index)}
-                      >
-                        Borrar
-                      </button>
+                    <FaTrash className="icon_trash"  onClick={() => handleDeleteSkill(index)}/>
                     </td>
                   </tr>
                 );
               })}
-            </tbody>
-          </table>
+              </tbody>
+            </table>
+            </div>
 
           {/* <TableSkills/> */}
         </div>
-      </div>
     </>
   );
 };

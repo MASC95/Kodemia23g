@@ -5,7 +5,7 @@ import { useState } from "react";
 import swal from "sweetalert";
 import axios from "axios";
 import { endpointsGral } from "../../services/vacancy";
-export const JobSkills=()=>{
+export const AddSkills=()=>{
 
     const [dataSkill,setDataSkill]=useState([])
 
@@ -119,4 +119,4 @@ export const JobSkills=()=>{
         </>
     )
 }
-export default JobSkills
+export default AddSkills

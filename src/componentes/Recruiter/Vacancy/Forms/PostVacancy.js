@@ -1,6 +1,7 @@
 import {React,useEffect,useState} from "react";
 import axios from "axios";
 import { endpointsGral } from "../../services/vacancy";
+import Softskills from "../../SoftSkills/Form/SoftSkills";
 // import { endpoints } from "../../services/endpoints";
 // import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
@@ -171,8 +172,8 @@ export const PostVacancy=()=>{
                                 <option> Cerrado</option>
                             </select>
                     </div>
-                    </div>
-                    <div className="col">
+                </div>
+                <div className="col">
                     <div className="form-outline">
                         <label className="form-label" for="form6Example1">Actividades</label>
                         <input type="text" 
@@ -183,13 +184,14 @@ export const PostVacancy=()=>{
                                className={`form-control ${formik.touched.activities && formik.errors.activities ? 'border border-danger':'border border-secondary'}`}  
                                placeholder="Actividades"/>
                                {formik.touched.activities && formik.errors.activities && (<span className='text-danger'>{formik.errors.activities}</span>)} 
-
-                    </div>
                     </div>
                 </div>
-                <div className="buttons_actions">  
-                    {/* <button type="button" className="buttons btn btn-info">Cancelar</button> */}
-                    <button type="submit" className="buttons btn btn-info text-light">Guardar</button>               
+                </div>
+
+                <Softskills/>
+
+                <div className="buttons_actions d-flex justify-content-end align-content-end">  
+                    <button type="submit" className="buttons btn btn-info text-light">Guardar Vacante</button>               
                 </div>
             </form>
         </div>

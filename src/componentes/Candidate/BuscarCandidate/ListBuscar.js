@@ -10,8 +10,9 @@ import useJob from '../../../hooks/useJob';
 export const ListBuscar = () => {
   const [vacancies, setVacancies] = useState([]);
   const [showAlert, setShowAlert] = useState(false);
-  const [dataCandidate]=useJob();
- 
+  const [dataCandidate,setDataCandidate,dataRecruiter,setDataRecruiter,dataLocalStorage,setDataLocalStorage]=useJob();
+  const {my_vacancies}=dataCandidate;
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -27,10 +28,17 @@ export const ListBuscar = () => {
     fetchData();
   }, []);
 
+  useEffect(()=>{
+    console.log('dataLocalStorage:..',dataLocalStorage);
+    console.log('my_vacancies:..',my_vacancies);
+    console.log('dataCandidate:..',dataCandidate);
+  },[dataLocalStorage,dataCandidate,my_vacancies])
+
   const handleApply = async(e) => {
     //alert(e.target.id);
     const idVacancie= e.target.id;
     let dataVacancies=[];
+    let dataApplicants=[];
     try {
       axios.defaults.headers.common[
         "Authorization"
@@ -40,8 +48,19 @@ export const ListBuscar = () => {
       }else{
         dataVacancies.push(idVacancie);
       }
-      const response = await axios.patch(`${endpointsGral.userURL}${dataCandidate.accessToken}`,{my_vacancies:dataVacancies});
-      console.log('Response updateDataVacancies:..',response);
+      
+      const responseUpdateDataUser = await axios.patch(`${endpointsGral.userURL}${dataCandidate.accessToken}`,{my_vacancies:dataVacancies});
+      const responseUpdateDataVacancie = await axios.patch(`${endpointsGral.vacancyURL}${idVacancie}`,{token:dataCandidate.accessToken});
+      if(responseUpdateDataUser&&responseUpdateDataVacancie){
+        const getDataCandidate = await axios.get(`${endpointsGral.userURL}${dataCandidate.accessToken}`);
+        if (getDataCandidate?.data?.user)
+        setDataLocalStorage({
+          ...getDataCandidate?.data?.user,
+          accessToken: dataCandidate.accessToken,
+        });      
+      }
+      console.log('Response updateDataUser:..',responseUpdateDataUser);
+      console.log('Response updateDataVacancie:..',responseUpdateDataVacancie);
     } catch (error) {
       console.log(error);
     }
@@ -87,7 +106,7 @@ export const ListBuscar = () => {
                           className="btn btn-outline-info buscar"
                           onClick={handleApply}
                         >
-                          Aplicar
+                          {my_vacancies?.find(myVac=>myVac._id===item._id)===undefined?'Aplicar':'Alicando'}
                         </button>
                         <Link
                           to={`/dashboard-candidato/detail-vacancy/${item._id}`}

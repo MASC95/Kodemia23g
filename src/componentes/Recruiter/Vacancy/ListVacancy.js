@@ -11,6 +11,7 @@ export const ListVacancy=({postdata})=>{
                 <table className="table">
                     <thead className="thead-dark bg-body-secondary">
                         <tr>
+                        <th scope="col">#</th>
                         <th scope="col">TITULO</th>
                         <th scope="col">TIPO DE TRABAJO</th>
                         <th scope="col">MODALIDAD</th>
@@ -20,10 +21,11 @@ export const ListVacancy=({postdata})=>{
                     </thead>
                     <tbody>
                         
-                        { postdata.map((item)=>{
+                        { postdata.map((item, index)=>{
                             const idVacancy=item._id
                                 return(
                                     <tr>
+                                   <td>{index+1}</td>
                                     <td>{item.title}</td>
                                     <td>{item.type}</td>
                                     <td>{item.mode}</td>

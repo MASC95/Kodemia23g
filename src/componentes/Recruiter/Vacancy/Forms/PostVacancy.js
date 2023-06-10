@@ -7,7 +7,7 @@ import { useFormik } from "formik";
 import * as Yup from 'yup'
 export const PostVacancy=()=>{
     const perfil = JSON.parse(localStorage.getItem('accessToken'))
-    const token=perfil['access_token']
+    const token=perfil['accessToken']
     const navigate=useNavigate()
     // console.log('token: '+ token)
     function parseJwt (token) {

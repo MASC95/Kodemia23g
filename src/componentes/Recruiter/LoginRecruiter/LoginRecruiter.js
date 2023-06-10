@@ -40,13 +40,14 @@ export const LoginRecruiter=()=>{
             if(importantData){
               const loginRecruiter= await endpoints.loginAxios(formValues);
               setFormValues(loginRecruiter)
+              console.log('loginRecrutier:..',loginRecruiter);
               window.localStorage.setItem('accessToken',JSON.stringify(loginRecruiter))
-              if(loginRecruiter.access_token){
+              if(loginRecruiter.accessToken){
                 setDataRecruiter(loginRecruiter);
               }
 
               const perfil = JSON.parse(localStorage.getItem('accessToken'))
-                const token=perfil['access_token']
+                const token=perfil['accessToken']
                 function parseJwt (token) {
                     var base64Url = token.split('.')[1];
                     var base64 = base64Url.replace('-', '+').replace('_', '/');
@@ -61,7 +62,7 @@ export const LoginRecruiter=()=>{
                             button: "ok!",
                         });
                         resetForm()
-                        console.log('dashboard Empresa')
+                        // console.log('dashboard Empresa')
                         navigate(`/Dashboard-Recruiter/home`)
                     }else{
                          swal({

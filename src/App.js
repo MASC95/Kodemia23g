@@ -26,55 +26,35 @@ import Candidate from './componentes/Recruiter/Profile/ProfileCandidate';
 import FormRecruiter from './componentes/Candidate/ProfileCandidate/Form/FormRecruiter';
 import ListBuscar from './componentes/Candidate/BuscarCandidate/ListBuscar';
 import JobContext from './context/JobContext';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import SendAccessCode from './componentes/SendAccessCode/SendAccessCode';
-
-
-const dataLocalStorage= window.localStorage.getItem('accessToken');
-
-let initDataCandidate=null;
-let initDataRecrutier=null;
-
-
-
-
-if(!dataLocalStorage?.role){
-
-  if(dataLocalStorage.role==='candidato'){
-    initDataCandidate = {
-      ...dataLocalStorage
-    }
-
-  }else{
-    initDataRecrutier = {
-      ...dataLocalStorage
-    }
-  }
-
-}else{
-
-  initDataRecrutier = {
-    email: '',
-    name: '',
-    token: ''
-  }
-  
-  initDataCandidate = {
-    email: '',
-    name: '',
-    token: ''
-  }
-}
+import { useLocalStorage } from "usehooks-ts";
 
 
 
 
 
 function App() {
-  const [dataRecruiter, setDataRecruiter] = useState(initDataRecrutier);
-  const [dataCandidate, setDataCandidate] = useState(initDataCandidate);
+  const [dataLocalStorage, setDataLocalStorage]= useLocalStorage('accessToken',true);
+  const [dataRecruiter, setDataRecruiter] = useState(dataLocalStorage);
+  const [dataCandidate, setDataCandidate] = useState(dataLocalStorage);
+  
+
+  useEffect(() => {
+    console.log('Actualizando dataLocalStorage:..')
+
+    if(dataLocalStorage?.role==='candidato'){
+      setDataCandidate(dataLocalStorage)
+    }
+    if(dataLocalStorage?.role==='empresa'){
+      setDataRecruiter(dataLocalStorage)
+    }
+  
+    
+  }, [dataLocalStorage])
+  
   return (
-    <JobContext.Provider value={[dataCandidate,setDataCandidate,dataRecruiter,setDataRecruiter, initDataCandidate, initDataRecrutier]}>
+    <JobContext.Provider value={[dataCandidate,setDataCandidate,dataRecruiter,setDataRecruiter, dataLocalStorage, setDataLocalStorage]}>
     <div className="App">
 <Routes>
           <Route path="/" element={<Mains/>}/>

@@ -1,5 +1,12 @@
 @import '../node_modules/bootstrap/scss/bootstrap';
 
+$jobinderColor :#498BA6;
+$jobinderHover: #649cb3;
+$jobinderColor2: #0b1726;
+$jobinderColor3: #093040;
+$jobinderColor4: #96c6d9;
+$jobinderColor5: #106973;
+
 .btn-primary {
   --bs-btn-color: #fff;
   --bs-btn-bg: #498BA6;
@@ -16,3 +23,16 @@
   --bs-btn-disabled-bg: #498BA6;
   --bs-btn-disabled-border-color: #498BA6;
 }
+
+@mixin glassify{
+
+  background: rgba(73, 139, 166, 0.7);
+  
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(3.9px);
+  -webkit-backdrop-filter: blur(3.9px);
+  border: 1px solid rgba(73, 139, 166, 0.28); 
+  
+  
+  }
+  

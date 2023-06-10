@@ -8,22 +8,11 @@ import useJob from '../../../hooks/useJob'
 
 
 
-//Muestra las vacantes a las que ha aplicado el candidato
-// hacer una destructuración del array 
-// hacer un map y llenar la tabla de manera dinámica con los datos del contexto
-// traer del contexto los siguientes datos: Titulo, Tipo de trabajo, Modalidad, Salario, Estado
-
-//Muestra las vacantes a las que ha aplicado el candidato aqui trabajando
 
 
 export const ListMyAppVacancy=()=>{
     const [dataCandidate]=useJob();
     const {my_vacancies} = dataCandidate
-    useEffect(() => {
-     /*  cargarDatos(); */
-      console.log("----ListMyAppVacancy---",dataCandidate)
-    }, [])
-
 
     
 
@@ -60,11 +49,11 @@ export const ListMyAppVacancy=()=>{
                     <th scope="row">{index+1}</th>
                     
                     <td>{item.title}</td>
-                    <td>{}</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
+                    <td>{item.type}</td>
+                    <td>{item.mode}</td>
+                    <td>{item.salary}</td>
                     <td className="options_buttons justify-content-center gap-3">
-                    <Badge bg="info" className="badge_state1">APLICANDO </Badge>
+                    <Badge bg="info" className="badge_state1">{item.status}</Badge>
                     </td>
                     </tr>))}
                 </tbody>

@@ -40,7 +40,7 @@ export const LoginRecruiter=()=>{
             if(importantData){
               const loginRecruiter= await endpoints.loginAxios(formValues);
               setFormValues(loginRecruiter)
-              
+              console.log('loginRecrutier:..',loginRecruiter);
               window.localStorage.setItem('accessToken',JSON.stringify(loginRecruiter))
               if(loginRecruiter.accessToken){
                 setDataRecruiter(loginRecruiter);

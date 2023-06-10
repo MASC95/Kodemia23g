@@ -4,7 +4,7 @@ import { endpointsGral } from "../services/vacancy";
 import imgProfile from '../assets/img/profile.png'
 import swal from "sweetalert";
 import { useNavigate } from "react-router-dom";
-import { Formik, Field, ErrorMessage, useFormik } from "formik";
+import { Formik, Field, ErrorMessage } from "formik";
 import { Form } from "react-bootstrap";
 import * as Yup from "yup"
 import UploadImage from "../../UploadImage/UploadImage";
@@ -48,9 +48,11 @@ export const ProfileRecruiter=()=>{
       });
     }
   }, [dataRecruiter]);
+
   const handleSubmit = async(values)=>{
     alert(values)
     //e.preventDefault();
+    console.log('values:..',values);
     try {
 
       axios.defaults.headers.common[
@@ -88,19 +90,20 @@ export const ProfileRecruiter=()=>{
         <div className='card-body'>
            <h1 className="text-start">Información General</h1> 
            <div className="row container_form_General">
+
             <div className="col-4 container_image">
-             {!imageUser && (
+              {!imageUser && (
                 <>
                 <div className="ppic-container">
                     <img src={dataForm.avatar_url?dataForm.avatar_url:imgProfile} alt="imgProfile" />
                 </div>
                 <p className="allowed-files"> Archivos permitidos .png, .jpg, jpeg </p>
                 </>
-            )}
+              )}
 
-            <div className="buttons_actions d-flex justify-content-center gap-3">
-                <UploadImage setDataImg={setImageUser} />
-            </div>
+                <div className="buttons_actions d-flex justify-content-center gap-3">
+                    <UploadImage setDataImg={setImageUser} />
+                </div>
             </div>
             <div className="col">
 
@@ -109,7 +112,11 @@ export const ProfileRecruiter=()=>{
                 initialValues={dataForm}
                 enableReinitialize={true}
                 validationSchema={profileSchema}
-                onSubmit={(values)=>handleSubmit(values)}>
+                onSubmit={(values)=>{
+
+                  console.log('values:..',values)
+                }}
+                >
                 {props => (
                 <Form onSubmit={props.handleSubmit} >
                 <div className="row mb-4">
@@ -214,7 +221,7 @@ export const ProfileRecruiter=()=>{
                 <div className="buttons_actions d-flex justify-content-center gap-3">
                     {/* <button type="button" className="buttons btn btn-info">Cancelar</button> */}
 
-                    <button type="submit" className="buttons btn btn-info text-light" value='enviar' >
+                    <button type="submit" onClick={handleSubmit} className="buttons btn btn-info text-light" value='enviar' >
                     Guardar
                     </button>
                 </div>

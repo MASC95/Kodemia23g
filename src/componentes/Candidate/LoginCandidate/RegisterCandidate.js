@@ -150,7 +150,7 @@ export const RegisterCandidate = () => {
           <div className="row">
             <div className="col-md-6 col-md-offset-3">
               <div className="block text-center">
-                <Link to={"/"}>
+                <Link to={"/"} className="logo_Jobinder">
                   <img src={logo} alt="" />
                 </Link>
                 <h2 className="text-center text-dark">Bienvenido</h2>

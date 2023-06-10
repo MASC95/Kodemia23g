@@ -1,0 +1,461 @@
+/* 
+  .main-container {
+    margin-bottom: 100px;
+    padding-top: 60px;
+
+
+    .match {
+      font-family: 'Epilogue';
+      align-items: center;
+      text-indent: 1em;
+      color: #093040;
+      @include mobile{
+        font-size: 16px;
+        line-height: 26px;
+        @include text-center-mobile();
+
+
+      }
+
+    }
+    .text-mobile{
+
+      @include mobile{
+      @include text-center-mobile();
+      font-weight: bold;
+
+
+    }
+
+    }
+
+    .first-card-container {
+
+
+      .row {
+
+
+        .left-blank-space {
+
+        }
+
+        .father-container-1 {
+
+          .child-container-1 {
+            @include mobile{
+              display: flex;
+              flex-wrap: wrap;
+              gap: 2rem;
+              margin-top: 2rem;
+            }
+            .card-container-1 {
+              @include first-cards-containers;
+
+
+              .recruiter-img {
+
+              }
+
+              .card-body-1 {
+                .card-title-1 {
+                  @include mobile{
+                    display: none;
+                  }
+                }
+                .card-text-1 {
+                  @include mobile{
+                    display: none;
+                  }
+                }
+              }
+
+              .access-recruiter {
+                @include center-users;
+
+                .access-btn-rec {}
+              }
+            }
+
+            .space {
+              width: 200px;
+            }
+
+            .card-container-2 {
+              @include first-cards-containers;
+
+              .candidate-img {}
+
+              .card-body-2 {
+                .card-title-2 {
+                  @include mobile{
+                    display: none;
+                  }
+                }
+                .card-text-2 {
+                  @include mobile{
+                  display: none;
+                  }
+
+                }
+              }
+
+              .access-candidate {
+                @include center-users;
+
+                .access-btn-can {}
+              }
+            }
+          }
+        }
+
+        .right-blank-space {}
+      }
+    }
+
+    .second-cards-container {
+      @include mobile{
+        display: none;
+      }
+      .second-cards-row {
+        .col-md-12 {
+          .letras {
+            @include letras;
+
+            .eleva {
+
+            }
+          }
+        }
+      }
+
+      .second-cards-row {
+        .second-cards-1 {
+          .card-container-3 {
+            @include second-cards-containers;
+            margin-left: 300px;
+
+            .video {}
+
+            .card-body {
+              .card-title {}
+              .card-text {}
+              h6 {}
+            }
+          }
+        }
+
+        .second-cards-2 {
+          .card-container-4 {
+            @include second-cards-containers;
+
+            .skills {}
+
+            .card-body {
+              .card-title {}
+              .card-text {}
+              h6 {}
+            }
+          }
+        }
+      }
+    }
+
+    .last-container {
+      .row-last-container {
+        .col-last-container {
+          .letters-1 {
+            @include letras;
+            @include mobile{
+
+              margin-right: 2rem;
+
+
+            }
+
+
+            .last-text{
+              @include mobile{
+
+                font-size: 24px;
+                line-height: 7vw;
+                margin-bottom: 2rem;
+                word-wrap: break-word;
+
+
+              }
+
+            }
+          }
+
+          .jobs {
+            display: flex;
+            justify-content: center;
+            padding-right: 300px;
+            @include mobile{
+              text-align: center;
+              padding-right: 0;
+              margin-bottom: 2rem;
+            }
+          }
+        }
+      }
+
+      .col-md-3 {
+        .profile-pic {
+
+        }
+      }
+
+      .down-cards {
+        .final-text {
+          font-family: Epilogue;
+          font-size: 28px;
+          line-height: 42px;
+          display: flex;
+          justify-content: start;
+          @include mobile{
+            display: none;
+          }
+        }
+
+        .slogan {
+          @include mobile{
+            display: none;
+          }
+        }
+
+        .check-list {
+          margin-bottom: 10px;
+
+
+          .li-register{
+            @include mobile{
+              line-height: 50px;
+              padding: 0;
+            }
+            .icon-check {
+              @include mobile{
+                margin-right: 0.5rem;
+              }
+            }
+          }
+        }
+
+        .last-create-account {
+
+
+          .btn-create-acc {
+            @include mobile{
+              display: none;
+             }
+
+          }
+        }
+      }
+    }
+  } */
+header .main-container {
+  margin-bottom: 100px;
+  padding-top: 60px;
+}
+header .main-container .match {
+  font-family: "Epilogue";
+  align-items: center;
+  text-indent: 1em;
+  color: #093040;
+}
+@media screen and (min-width: 542px) and (max-width: 768px) {
+  header .main-container .match {
+    font-size: 16px;
+    line-height: 26px;
+    margin-top: 2rem;
+    text-align: center;
+  }
+}
+@media screen and (min-width: 542px) and (max-width: 768px) {
+  header .main-container .text-mobile {
+    margin-top: 2rem;
+    text-align: center;
+    font-weight: bold;
+  }
+}
+@media screen and (min-width: 542px) and (max-width: 768px) {
+  header .main-container .first-card-container .row-first-card .father-container-1 .child-container-1 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+}
+header .main-container .first-card-container .row-first-card .father-container-1 .child-container-1 .card-container-1 {
+  width: 50%;
+  height: 50%;
+  font-family: inherit;
+}
+@media screen and (min-width: 542px) and (max-width: 768px) {
+  header .main-container .first-card-container .row-first-card .father-container-1 .child-container-1 .card-container-1 .card-body-1 .card-title-1 {
+    display: none;
+  }
+}
+@media screen and (min-width: 542px) and (max-width: 768px) {
+  header .main-container .first-card-container .row-first-card .father-container-1 .child-container-1 .card-container-1 .card-body-1 .card-text-1 {
+    display: none;
+  }
+}
+header .main-container .first-card-container .row-first-card .father-container-1 .child-container-1 .card-container-1 .access-recruiter {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+header .main-container .first-card-container .row-first-card .father-container-1 .child-container-1 .space {
+  width: 200px;
+}
+header .main-container .first-card-container .row-first-card .father-container-1 .child-container-1 .card-container-2 {
+  width: 50%;
+  height: 50%;
+  font-family: inherit;
+}
+@media screen and (min-width: 542px) and (max-width: 768px) {
+  header .main-container .first-card-container .row-first-card .father-container-1 .child-container-1 .card-container-2 .card-body-2 .card-title-2 {
+    display: none;
+  }
+}
+@media screen and (min-width: 542px) and (max-width: 768px) {
+  header .main-container .first-card-container .row-first-card .father-container-1 .child-container-1 .card-container-2 .card-body-2 .card-text-2 {
+    display: none;
+  }
+}
+header .main-container .first-card-container .row-first-card .father-container-1 .child-container-1 .card-container-2 .access-candidate {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+@media screen and (min-width: 542px) and (max-width: 768px) {
+  header .main-container .second-cards-container {
+    display: none;
+  }
+}
+header .main-container .second-cards-container .second-row .column .letras {
+  margin-top: 100px;
+  font-family: "Epilogue";
+  align-items: center;
+  text-indent: 1em;
+  color: #093040;
+}
+header .main-container .second-cards-container .second-cards-row .second-cards-1 .card-container-3 {
+  width: 400px;
+  height: 329px;
+  margin-top: 20px;
+  margin-left: 300px;
+}
+header .main-container .second-cards-container .second-cards-row .second-cards-2 .card-container-4 {
+  width: 400px;
+  height: 329px;
+  margin-top: 20px;
+}
+header .main-container .last-container .row-last-container .col-last-container .letters-1 {
+  margin-top: 100px;
+  font-family: "Epilogue";
+  align-items: center;
+  text-indent: 1em;
+  color: #093040;
+}
+@media screen and (min-width: 542px) and (max-width: 768px) {
+  header .main-container .last-container .row-last-container .col-last-container .letters-1 {
+    margin-right: 2rem;
+  }
+}
+@media screen and (min-width: 542px) and (max-width: 768px) {
+  header .main-container .last-container .row-last-container .col-last-container .letters-1 .last-text {
+    font-size: 24px;
+    line-height: 7vw;
+    margin-bottom: 2rem;
+    word-wrap: break-word;
+  }
+}
+header .main-container .last-container .row-last-container .col-last-container .jobs {
+  display: flex;
+  justify-content: center;
+  padding-right: 300px;
+}
+@media screen and (min-width: 542px) and (max-width: 768px) {
+  header .main-container .last-container .row-last-container .col-last-container .jobs {
+    text-align: center;
+    padding-right: 0;
+    margin-bottom: 2rem;
+  }
+}
+header .main-container .last-container .row-checkmarks .down-cards .final-text {
+  font-family: Epilogue;
+  font-size: 28px;
+  line-height: 42px;
+  display: flex;
+  justify-content: start;
+}
+@media screen and (min-width: 542px) and (max-width: 768px) {
+  header .main-container .last-container .row-checkmarks .down-cards .final-text {
+    display: none;
+  }
+}
+@media screen and (min-width: 542px) and (max-width: 768px) {
+  header .main-container .last-container .row-checkmarks .down-cards .slogan {
+    display: none;
+  }
+}
+header .main-container .last-container .row-checkmarks .down-cards .check-list {
+  margin-bottom: 10px;
+}
+header .main-container .last-container .row-checkmarks .down-cards .check-list .li-register {
+  color: black;
+}
+@media screen and (min-width: 542px) and (max-width: 768px) {
+  header .main-container .last-container .row-checkmarks .down-cards .check-list .li-register {
+    line-height: 50px;
+    padding: 0;
+  }
+}
+@media screen and (min-width: 542px) and (max-width: 768px) {
+  header .main-container .last-container .row-checkmarks .down-cards .check-list .li-register .icon-check {
+    margin-right: 0.5rem;
+  }
+}
+@media screen and (min-width: 542px) and (max-width: 768px) {
+  header .main-container .last-container .row-checkmarks .down-cards .check-list .li-register {
+    line-height: 50px;
+    padding: 0;
+  }
+}
+@media screen and (min-width: 542px) and (max-width: 768px) {
+  header .main-container .last-container .row-checkmarks .down-cards .check-list .li-register .icon-check {
+    margin-right: 0.5rem;
+  }
+}
+@media screen and (min-width: 542px) and (max-width: 768px) {
+  header .main-container .last-container .row-checkmarks .down-cards .check-list .li-register {
+    line-height: 50px;
+    padding: 0;
+  }
+}
+@media screen and (min-width: 542px) and (max-width: 768px) {
+  header .main-container .last-container .row-checkmarks .down-cards .check-list .li-register .icon-check {
+    margin-right: 0.5rem;
+  }
+}
+@media screen and (min-width: 542px) and (max-width: 768px) {
+  header .main-container .last-container .row-checkmarks .down-cards .check-list .li-register {
+    line-height: 50px;
+    padding: 0;
+  }
+}
+@media screen and (min-width: 542px) and (max-width: 768px) {
+  header .main-container .last-container .row-checkmarks .down-cards .check-list .li-register .icon-check {
+    margin-right: 0.5rem;
+  }
+}
+@media screen and (min-width: 542px) and (max-width: 768px) {
+  header .main-container .last-container .row-checkmarks .down-cards .last-create-account .btn-create-acc {
+    display: none;
+  }
+}/*# sourceMappingURL=style.css.map */

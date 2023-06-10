@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { endpointsGral } from "../services/vacancy";
+import { myId } from "../../lib/myLib";
 
 
 
@@ -10,7 +11,7 @@ export const ViewTableSkills=({listSkils})=>{
 
     useEffect(() => {
       console.log('listSkills:..',listSkils);
-        cargarDatos();
+        //cargarDatos();
     }, [])
     
     const cargarDatos = async()=>{
@@ -54,9 +55,9 @@ export const ViewTableSkills=({listSkils})=>{
                 </thead>
                 <tbody>
                     
-                    {dataSkils.map((item,i)=>{
+                    {listSkils.map((item,i)=>{
                         return(<>
-                        <tr>
+                        <tr key={myId()}>
                          <th scope="row">{i+1}</th>
                          <td>{item.name}</td>
                          <td>{item.level}</td>

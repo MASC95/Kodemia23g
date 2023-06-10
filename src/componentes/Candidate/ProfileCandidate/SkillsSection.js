@@ -103,7 +103,7 @@ const SkillsSection = () => {
               <td>{skill.skill}</td>
               <td>{skill.level}</td>
               <td>
-                <button className="btn btn-sm btn-primary" onClick={() => handleEditSkill(index, 'Nuevo Nivel')}>Editar</button>
+                <button className="btn btn-sm btn-primary mr-3" onClick={() => handleEditSkill(index, 'Nuevo Nivel')}>Editar</button>
                 <button className="btn btn-sm btn-danger" onClick={() => handleDeleteSkill(index)}>Borrar</button>
               </td>
             </tr>

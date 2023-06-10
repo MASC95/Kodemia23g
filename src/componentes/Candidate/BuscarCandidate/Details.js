@@ -8,14 +8,15 @@ import axios from "axios";
 import { endpoints } from "../EndpointsCandidate/endpoints";
 import '../Alerts/Alert'
 import AlertComponent from '../Alerts/Alert';
+import useJob from '../../../hooks/useJob';
 
-
-// muestra el detalle de la vacante
+//hacer un renderizado condicional en el botón aplicar
 export const Details = () => {
   const [dataVacancy, setDataVacancy] = useState("");
   const [dataEntries, setDataEntries] = useState([]);
   const [showAlert, setShowAlert] = useState(false);
-
+  const [dataCandidate,setDataCandidate,dataRecruiter,setDataRecruiter,dataLocalStorage,setDataLocalStorage]=useJob();
+  const {my_vacancies}=dataCandidate;
   useEffect(() => {
     cargarDatos();
   }, []);
@@ -57,7 +58,11 @@ export const Details = () => {
             <p className="text-justify"><FaBook /> <b>Modalidad:</b> {dataVacancy?.mode}</p>
             <p className="text-justify"><FaCalendarCheck /> <b>Tipo:</b> {dataVacancy?.type}</p>
             <p className="text-justify"><FaDollarSign /> <b>Salario:</b> {dataVacancy?.salary}</p>
-            <button type="submit" className="btn btn-outline-info buscar"  onClick={handleApply}>Aplicar</button>
+            
+            <button type="submit" className="btn btn-outline-info buscar"  onClick={handleApply} disabled ={my_vacancies?.find(myVac=>myVac._id===myParams.id)===undefined?false:true} >
+            {my_vacancies?.find(myVac=>myVac._id===myParams.id)===undefined?'Aplicar':'Aplicando'}
+            </button>
+            
             {showAlert && <AlertComponent/>}
 
           </div>
@@ -74,7 +79,7 @@ export const Details = () => {
           </div>
           <h3>Soft Skills Solicitadas</h3>
           {dataVacancy?.job_skills&&<ViewTableSkills listSkils={dataVacancy?.job_skills} />}
-          
+         
         </div>
       </div>
     </>

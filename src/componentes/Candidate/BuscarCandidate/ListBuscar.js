@@ -10,8 +10,9 @@ import useJob from '../../../hooks/useJob';
 export const ListBuscar = () => {
   const [vacancies, setVacancies] = useState([]);
   const [showAlert, setShowAlert] = useState(false);
-  const [dataCandidate,setDataCandidate,dataRecruiter,setDataRecruiter,dataLocalStorage,setDataLocalStorage]=useJob();
-  const {my_vacancies}=dataCandidate;
+  const [dataCandidate, setDataCandidate, dataRecruiter, setDataRecruiter, dataLocalStorage, setDataLocalStorage] = useJob();
+  const { my_vacancies } = dataCandidate;
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,44 +29,57 @@ export const ListBuscar = () => {
     fetchData();
   }, []);
 
-  useEffect(()=>{
-    console.log('dataLocalStorage:..',dataLocalStorage);
-    console.log('my_vacancies:..',my_vacancies);
-    console.log('dataCandidate:..',dataCandidate);
-  },[dataLocalStorage,dataCandidate,my_vacancies])
+  useEffect(() => {
+    if (showAlert === true) {
+      setTimeout(() => {
+        setShowAlert(false);
+      }, 1000);
 
-  const handleApply = async(e) => {
+    }
+  }, [showAlert]);
+  useEffect(() => {
+    console.log('dataLocalStorage:..', dataLocalStorage);
+    console.log('my_vacancies:..', my_vacancies);
+    console.log('dataCandidate:..', dataCandidate);
+  }, [dataLocalStorage, dataCandidate, my_vacancies])
+
+  const handleApply = async (e) => {
     //alert(e.target.id);
-    const idVacancie= e.target.id;
-    let dataVacancies=[];
-    let dataApplicants=[];
+    const idVacancie = e.target.id;
+    let dataVacancies = [];
+    let dataApplicants = [];
     try {
       axios.defaults.headers.common[
         "Authorization"
       ] = `Bearer: ${dataCandidate?.accessToken}`;
-      if(dataCandidate?.my_vacancies){
-        dataVacancies=[...dataCandidate?.my_vacancies, idVacancie];
-      }else{
+      if (dataCandidate?.my_vacancies) {
+        dataVacancies = [...dataCandidate?.my_vacancies, idVacancie];
+      } else {
         dataVacancies.push(idVacancie);
       }
-      
-      const responseUpdateDataUser = await axios.patch(`${endpointsGral.userURL}${dataCandidate.accessToken}`,{my_vacancies:dataVacancies});
-      const responseUpdateDataVacancie = await axios.patch(`${endpointsGral.vacancyURL}${idVacancie}`,{token:dataCandidate.accessToken});
-      if(responseUpdateDataUser&&responseUpdateDataVacancie){
+
+      const responseUpdateDataUser = await axios.patch(`${endpointsGral.userURL}${dataCandidate.accessToken}`, { my_vacancies: dataVacancies });
+      const responseUpdateDataVacancie = await axios.patch(`${endpointsGral.vacancyURL}${idVacancie}`, { token: dataCandidate.accessToken });
+      if (responseUpdateDataUser && responseUpdateDataVacancie) {
         const getDataCandidate = await axios.get(`${endpointsGral.userURL}${dataCandidate.accessToken}`);
         if (getDataCandidate?.data?.user)
-        setDataLocalStorage({
-          ...getDataCandidate?.data?.user,
-          accessToken: dataCandidate.accessToken,
-        });      
+          setDataLocalStorage({
+            ...getDataCandidate?.data?.user,
+            accessToken: dataCandidate.accessToken,
+          });
       }
-      console.log('Response updateDataUser:..',responseUpdateDataUser);
-      console.log('Response updateDataVacancie:..',responseUpdateDataVacancie);
+      console.log('Response updateDataUser:..', responseUpdateDataUser);
+      console.log('Response updateDataVacancie:..', responseUpdateDataVacancie);
     } catch (error) {
       console.log(error);
     }
 
     setShowAlert(true);
+
+  };
+
+  const handleStopApplying = async (e) => {
+    
   };
 
   return (
@@ -92,22 +106,33 @@ export const ListBuscar = () => {
               </thead>
               <tbody>
                 {vacancies &&
-                  vacancies?.map((item,index) => (
+                  vacancies?.map((item, index) => (
                     <tr key={item._id}>
-                      <th scope="row">{index+1}</th>
+                      <th scope="row">{index + 1}</th>
                       <td>{item.title}</td>
                       <td>{item.type}</td>
                       <td>{item.mode}</td>
                       <td>{item.salary}</td>
                       <td className="options_buttons d-flex justify-content-center gap-3">
-                        <button
-                          type="submit"
-                          id={item._id}
-                          className="btn btn-outline-info buscar"
-                          onClick={handleApply}
-                        >
-                          {my_vacancies?.find(myVac=>myVac._id===item._id)===undefined?'Aplicar':'Aplicando'}
-                        </button>
+                        {my_vacancies?.find(myVac => myVac._id === item._id) === undefined ? (
+                          <button
+                            type="submit"
+                            id={item._id}
+                            className="btn btn-outline-info buscar"
+                            onClick={handleApply}
+                            disabled={my_vacancies?.find(myVac => myVac._id === item._id) === undefined ? false : true}
+                          >
+                            {my_vacancies?.find(myVac => myVac._id === item._id) === undefined ? 'Aplicar' : 'Aplicando'}
+                          </button>
+                        ) : (
+                          <button
+                            type="submit"
+                            className="btn btn-outline-danger"
+                            onClick={handleStopApplying}
+                          >
+                            Dejar de aplicar
+                          </button>
+                        )}
                         <Link
                           to={`/dashboard-candidato/detail-vacancy/${item._id}`}
                         >

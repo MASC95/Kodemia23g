@@ -50,6 +50,8 @@ export const AddSkills=()=>{
                 .post(`${endpointsGral.jobSkill}`, values) 
                 .then(response => {
                   console.log(response);
+                  values.name='';
+                  values.level='';
                 })
                 .catch(error => {
                   console.log(error.response);
@@ -57,10 +59,8 @@ export const AddSkills=()=>{
             //   console.log({ values});
               alert(JSON.stringify(values, null, 2));
             }, 200);
-
-            values.name='';
-            values.level='';
-
+            // values.name='';
+            // values.level='';
           }
     })
 

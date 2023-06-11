@@ -44,10 +44,10 @@ export const Details = () => {
   /* const handleApply = () => {
     setShowAlert(true);
   }; */
-
+  
   const handleApply = async (e) => {
     //alert(e.target.id);
-    const idVacancie = e.target.id;
+    const idVacancie = myParams.id;
     let dataVacancies = [];
     let dataApplicants = [];
     try {
@@ -55,10 +55,10 @@ export const Details = () => {
         "Authorization"
       ] = `Bearer: ${dataCandidate?.accessToken}`;
 
-      if (dataCandidate?.my_vacancies) {
-        dataVacancies = [...dataCandidate?.my_vacancies, idVacancie];
+      if (my_vacancies) {
+        dataVacancies = [...my_vacancies, idVacancie];
       } else {
-        dataVacancies.push(myParams.id);
+        dataVacancies.push(idVacancie);
       }
 
       //se actualiza el array de my_vacancies en la entidad user
@@ -68,7 +68,7 @@ export const Details = () => {
       );
       //se actualiza el array de applicants en la entidad vacancie
       const responseUpdateDataVacancie = await axios.patch(
-        `${endpointsGral.vacancyURL}${myParams.id}`,
+        `${endpointsGral.vacancyURL}${idVacancie}`,
         { token: dataCandidate.accessToken }
       );
 
@@ -96,19 +96,21 @@ export const Details = () => {
 
   const handleStopApplying = async ()=> {
     const idVacancie = myParams.id;
+    
     let dataVacancies = [];
-    let dataApplicants=[]; 
+    //let dataApplicants=[]; 
     try {
       axios.defaults.headers.common[
         "Authorization"
       ] = `Bearer: ${dataCandidate?.accessToken}`;
 
       if (my_vacancies) {
-        dataVacancies = my_vacancies.filter(myParams=>myParams.id!==idVacancie);
+        dataVacancies = my_vacancies.filter((item) => item._id !== idVacancie);
       } 
-
+      console.log('Comenzando a dejar de aplicar en la vacante:..',my_vacancies,dataVacancies);
       //se actualiza el array de my_vacancies en la entidad user
       const responseUpdateDataUser = await axios.patch(`${endpointsGral.userURL}${dataCandidate.accessToken}`, { my_vacancies: dataVacancies });
+      
       //se actualiza el array de applicants en la entidad vacancie
       const responseUpdateDataVacancie = await axios.patch(`${endpointsGral.vacancyURL}${idVacancie}`, { token: dataCandidate.accessToken, deleteApplicant:true });
 
@@ -140,19 +142,21 @@ export const Details = () => {
             <p className="text-justify"><FaCalendarCheck /> <b>Tipo:</b> {dataVacancy?.type}</p>
             <p className="text-justify"><FaDollarSign /> <b>Salario:</b> {dataVacancy?.salary}</p>
             {my_vacancies?.find(myVac=>myVac._id===myParams.id)===undefined? (
-            <button type="submit" className="btn btn-outline-info buscar"  onClick={handleApply} disabled ={my_vacancies?.find(myVac=>myVac._id===myParams.id)===undefined?false:true} >
+            <button type="button" className="btn btn-outline-info buscar"  onClick={handleApply} disabled ={my_vacancies?.find(myVac=>myVac._id===myParams.id)===undefined?false:true} >
             {my_vacancies?.find(myVac=>myVac._id===myParams.id)===undefined?'Aplicar':'Aplicando'}
             </button>
-            ):(
+            ):(<>
               <button
-              type="submit"
+              type="button"
               className="btn btn-outline-danger"
               id={myParams.id}
               onClick={handleStopApplying}
             >
               Dejar de aplicar
             </button>
-            )};
+            
+            </>
+            )}
             
             {showAlert && <AlertComponent/>}
 

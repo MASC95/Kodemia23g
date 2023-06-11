@@ -6,7 +6,7 @@ import swal from "sweetalert";
 import axios from "axios";
 import { endpointsGral } from "../../services/vacancy";
 import { myId } from "../../../lib/myLib";
-import {FaTrash} from 'react-icons/fa'
+import {FaTrash, FaPlus} from 'react-icons/fa'
 import { Link } from "react-router-dom";
 
 export const Softskills = ({setListSkills}) => {
@@ -92,20 +92,12 @@ export const Softskills = ({setListSkills}) => {
                 </div>
               </div>
               <div className="buttons_actions d-flex justify-content-end gap-3">
-                <button
-                  type="button"
-                  onClick={onFormSubmit}
-                  className="buttons btn btn-info text-light"
-                >
-                  Agregar
+                <button type="button" onClick={onFormSubmit} className="buttons btn btn-info text-light">
+                  <FaPlus> Agregar </FaPlus>
                 </button>
-                <button
-                  type="button"
-                  className="buttons btn btn-info text-light"
-                >
-                  Crear nueva SoftSkill
-                </button>
-                
+                <Link to={'/Dashboard-Recruiter/softskill-addNew'} className="text-black text-decoration-none fs-6">
+                  <p className="">Crear nueva SoftSkill</p> 
+                </Link>          
               </div>
             </form>
           </div>
@@ -141,7 +133,7 @@ export const Softskills = ({setListSkills}) => {
             </table>
             </div>
 
-          {/* <TableSkills/> */}
+          {/* Table Skills */}
         </div>
     </>
   );

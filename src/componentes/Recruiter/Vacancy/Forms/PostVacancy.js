@@ -2,29 +2,11 @@ import {React,useEffect,useState} from "react";
 import axios from "axios";
 import { endpointsGral } from "../../services/vacancy";
 import Softskills from "../../SoftSkills/Form/SoftSkills";
-// import { endpoints } from "../../services/endpoints";
-// import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from 'yup'
 
-
-
-
 export const PostVacancy=()=>{
     const [listSkills, setListSkills] = useState([]);
-    // const perfil = JSON.parse(localStorage.getItem('accessToken'))
-    // const token=perfil['accessToken']
-    // const navigate=useNavigate()
-    // // console.log('token: '+ token)
-    // function parseJwt (token) {
-    //     var base64Url = token.split('.')[1];
-    //     var base64 = base64Url.replace('-', '+').replace('_', '/');
-    //     return JSON.parse(window.atob(base64));
-    // };
-    // const destroy=parseJwt(token)
-    // console.log(destroy['_id'])
-    // const id= destroy['_id']
-  
     
     const formik= useFormik({
         initialValues: {

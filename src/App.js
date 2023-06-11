@@ -25,6 +25,7 @@ import EditVacancy from './componentes/Recruiter/Vacancy/EditVacancy';
 import Candidate from './componentes/Recruiter/Profile/ProfileCandidate';
 import Reclutamiento from './componentes/Recruiter/Panel/Reclutamiento';
 import ListBuscar from './componentes/Candidate/BuscarCandidate/ListBuscar';
+import AddSkills from './componentes/Recruiter/SoftSkills/Form/AddSkills';
 import JobContext from './context/JobContext';
 import { useEffect, useState } from 'react';
 import SendAccessCode from './componentes/SendAccessCode/SendAccessCode';
@@ -84,6 +85,7 @@ function App() {
                <Route path='details-match' element={<MatchDetails/>}/>
                <Route path='profile-candidato' element={<Candidate/>}/>
                <Route path='panel-phases' element={<Reclutamiento/>}/>
+               <Route path='softskill-addNew' element={<AddSkills/>}/>
             </Route>
 
         </Routes>

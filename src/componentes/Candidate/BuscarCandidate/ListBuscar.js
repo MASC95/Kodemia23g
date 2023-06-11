@@ -83,6 +83,7 @@ export const ListBuscar = () => {
 
   };
 
+  //dejar de aplicar
   const handleStopApplying = async (e) => {
     //console.log('Dejando de aplicar a la vacante:..',e.target.id);
     const idVacancie = e.target.id;

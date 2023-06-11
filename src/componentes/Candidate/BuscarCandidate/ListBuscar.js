@@ -4,15 +4,20 @@ import { Link } from "react-router-dom";
 import { endpointsGral } from "../../Recruiter/services/vacancy";
 import "../Alerts/Alert";
 import AlertComponent from "../Alerts/Alert";
-import useJob from '../../../hooks/useJob';
-
+import useJob from "../../../hooks/useJob";
 
 export const ListBuscar = () => {
   const [vacancies, setVacancies] = useState([]);
   const [showAlert, setShowAlert] = useState(false);
-  const [dataCandidate, setDataCandidate, dataRecruiter, setDataRecruiter, dataLocalStorage, setDataLocalStorage] = useJob();
+  const [
+    dataCandidate,
+    setDataCandidate,
+    dataRecruiter,
+    setDataRecruiter,
+    dataLocalStorage,
+    setDataLocalStorage,
+  ] = useJob();
   const { my_vacancies } = dataCandidate;
-
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,14 +39,13 @@ export const ListBuscar = () => {
       setTimeout(() => {
         setShowAlert(false);
       }, 1000);
-
     }
   }, [showAlert]);
   useEffect(() => {
-    console.log('dataLocalStorage:..', dataLocalStorage);
-    console.log('my_vacancies:..', my_vacancies);
-    console.log('dataCandidate:..', dataCandidate);
-  }, [dataLocalStorage, dataCandidate, my_vacancies])
+    console.log("dataLocalStorage:..", dataLocalStorage);
+    console.log("my_vacancies:..", my_vacancies);
+    console.log("dataCandidate:..", dataCandidate);
+  }, [dataLocalStorage, dataCandidate, my_vacancies]);
 
   const handleApply = async (e) => {
     //alert(e.target.id);
@@ -60,27 +64,34 @@ export const ListBuscar = () => {
       }
 
       //se actualiza el array de my_vacancies en la entidad user
-      const responseUpdateDataUser = await axios.patch(`${endpointsGral.userURL}${dataCandidate.accessToken}`, { my_vacancies: dataVacancies });
+      const responseUpdateDataUser = await axios.patch(
+        `${endpointsGral.userURL}${dataCandidate.accessToken}`,
+        { my_vacancies: dataVacancies }
+      );
       //se actualiza el array de applicants en la entidad vacancie
-      const responseUpdateDataVacancie = await axios.patch(`${endpointsGral.vacancyURL}${idVacancie}`, { token: dataCandidate.accessToken });
+      const responseUpdateDataVacancie = await axios.patch(
+        `${endpointsGral.vacancyURL}${idVacancie}`,
+        { token: dataCandidate.accessToken }
+      );
 
       if (responseUpdateDataUser && responseUpdateDataVacancie) {
-        const getDataCandidate = await axios.get(`${endpointsGral.userURL}${dataCandidate.accessToken}`);
+        const getDataCandidate = await axios.get(
+          `${endpointsGral.userURL}${dataCandidate.accessToken}`
+        );
         if (getDataCandidate?.data?.user)
-        //se actualiza el contexto
+          //se actualiza el contexto
           setDataLocalStorage({
             ...getDataCandidate?.data?.user,
             accessToken: dataCandidate.accessToken,
           });
       }
-      console.log('Response updateDataUser:..', responseUpdateDataUser);
-      console.log('Response updateDataVacancie:..', responseUpdateDataVacancie);
+      console.log("Response updateDataUser:..", responseUpdateDataUser);
+      console.log("Response updateDataVacancie:..", responseUpdateDataVacancie);
     } catch (error) {
       console.log(error);
     }
 
     setShowAlert(true);
-
   };
 
   //dejar de aplicar
@@ -94,24 +105,31 @@ export const ListBuscar = () => {
       ] = `Bearer: ${dataCandidate?.accessToken}`;
 
       if (my_vacancies) {
-        dataVacancies = my_vacancies.filter(item=>item._id!==idVacancie);
-      } 
+        dataVacancies = my_vacancies.filter((item) => item._id !== idVacancie);
+      }
 
       //se actualiza el array de my_vacancies en la entidad user
-      const responseUpdateDataUser = await axios.patch(`${endpointsGral.userURL}${dataCandidate.accessToken}`, { my_vacancies: dataVacancies });
+      const responseUpdateDataUser = await axios.patch(
+        `${endpointsGral.userURL}${dataCandidate.accessToken}`,
+        { my_vacancies: dataVacancies }
+      );
       //se actualiza el array de applicants en la entidad vacancie
-      const responseUpdateDataVacancie = await axios.patch(`${endpointsGral.vacancyURL}${idVacancie}`, { token: dataCandidate.accessToken, deleteApplicant:true });
+      const responseUpdateDataVacancie = await axios.patch(
+        `${endpointsGral.vacancyURL}${idVacancie}`,
+        { token: dataCandidate.accessToken, deleteApplicant: true }
+      );
 
       if (responseUpdateDataUser && responseUpdateDataVacancie) {
-        const getDataCandidate = await axios.get(`${endpointsGral.userURL}${dataCandidate.accessToken}`);
+        const getDataCandidate = await axios.get(
+          `${endpointsGral.userURL}${dataCandidate.accessToken}`
+        );
         if (getDataCandidate?.data?.user)
-        //se actualiza el contexto
+          //se actualiza el contexto
           setDataLocalStorage({
             ...getDataCandidate?.data?.user,
             accessToken: dataCandidate.accessToken,
           });
       }
-
     } catch (error) {
       console.log(error);
     }
@@ -149,15 +167,27 @@ export const ListBuscar = () => {
                       <td>{item.mode}</td>
                       <td>{item.salary}</td>
                       <td className="options_buttons d-flex justify-content-center gap-3">
-                        {my_vacancies?.find(myVac => myVac._id === item._id) === undefined ? (
+                        {my_vacancies?.find(
+                          (myVac) => myVac._id === item._id
+                        ) === undefined ? (
                           <button
                             type="submit"
                             id={item._id}
                             className="btn btn-outline-info buscar"
                             onClick={handleApply}
-                            disabled={my_vacancies?.find(myVac => myVac._id === item._id) === undefined ? false : true}
+                            disabled={
+                              my_vacancies?.find(
+                                (myVac) => myVac._id === item._id
+                              ) === undefined
+                                ? false
+                                : true
+                            }
                           >
-                            {my_vacancies?.find(myVac => myVac._id === item._id) === undefined ? 'Aplicar' : 'Aplicando'}
+                            {my_vacancies?.find(
+                              (myVac) => myVac._id === item._id
+                            ) === undefined
+                              ? "Aplicar"
+                              : "Aplicando"}
                           </button>
                         ) : (
                           <button

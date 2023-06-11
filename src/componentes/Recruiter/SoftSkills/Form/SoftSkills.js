@@ -24,24 +24,24 @@ export const Softskills = ({setListSkills,isCandidate,skillsCandidate}) => {
     
   }, []);
 
-   useEffect(()=>{
-    if(skillTemp.length===0){
-      if(skillsCandidate.length>0){
-        console.log('skillsCandidate:..',skillsCandidate);
-        setSkillTemp([...skillsCandidate])
-      }
-    }
-  },[skillsCandidate]) 
+  //  useEffect(()=>{
+  //   if(skillTemp.length===0){
+  //     if(skillsCandidate.length>0){
+  //       console.log('skillsCandidate:..',skillsCandidate);
+  //       setSkillTemp([...skillsCandidate])
+  //     }
+  //   }
+  // },[skillsCandidate]) 
 
-  useEffect(()=>{
+  // useEffect(()=>{
 
-    if(skillTemp.length>0){
-      setListSkills([...skillTemp])
-    }else{
-      setListSkills([])
-    }
+  //   if(skillTemp.length>0){
+  //     setListSkills([...skillTemp])
+  //   }else{
+  //     setListSkills([])
+  //   }
 
-  },[skillTemp])
+  // },[skillTemp])
   const handleSkillChange = (event) => {
     const value = event.target.value;
     setSelectSkill(value);
@@ -81,12 +81,12 @@ export const Softskills = ({setListSkills,isCandidate,skillsCandidate}) => {
         <div className="row softskills">
           <div className="col">
             <form >
-              <div className="row mb-4">
-                <div className="col">
+              <div className="row d-flex">
+                <label className="form-label" htmlFor="form6Example1">
+                  Elige las SoftSkill de tu {!isCandidate?'vacante':'perfil'}:
+                </label>
+                <div className="col-10">
                   <div className="form-outline">
-                    <label className="form-label" htmlFor="form6Example1">
-                      Elige las SoftSkill de tu {!isCandidate?'vacante':'perfil'}:
-                    </label>
                     <select
                       className="form-control"
                       id="selectSkill"
@@ -101,21 +101,20 @@ export const Softskills = ({setListSkills,isCandidate,skillsCandidate}) => {
                     </select>
                   </div>
                 </div>
+                  <div className="col buttons_actions gap-3">
+                    <button type="button" onClick={onFormSubmit} className="buttons btn btn-info text-light">
+                      <FaPlus> Agregar </FaPlus>
+                    </button>
+                  </div>
               </div>
-              <div className="buttons_actions d-flex justify-content-end gap-3">
-                <button type="button" onClick={onFormSubmit} className="buttons btn btn-info text-light">
-                  <FaPlus> Agregar </FaPlus>
-                </button>
-                {
+            </form>
+            {
                 !isCandidate
                 &&
-                  <Link to={'/Dashboard-Recruiter/softskill-addNew'} className="text-black text-decoration-none fs-6">
+                  <Link to={'/Dashboard-Recruiter/softskill-addNew'} className="text-black d-flex justify-content-end mb-3 fs-6">
                       <p className="">Crear nueva SoftSkill</p> 
                   </Link>          
                 }
-                
-              </div>
-            </form>
           </div>
 
           {/* table of skills */}

@@ -58,8 +58,8 @@ export const AddSkills=()=>{
               alert(JSON.stringify(values, null, 2));
             }, 200);
 
-            // values.name='';
-            // values.level='';
+            values.name='';
+            values.level='';
 
           }
     })
@@ -82,16 +82,6 @@ export const AddSkills=()=>{
           console.error(error);
         });
       };
-
-     
-     
-    // console.log(dataSkill)
-    // const onFormSubmit=(event)=>{
-    //     event.preventDefault()
-    //     saveSkill()
-    // }
-
-    // const saveSkill=async()=>{
 
     return(
         <>

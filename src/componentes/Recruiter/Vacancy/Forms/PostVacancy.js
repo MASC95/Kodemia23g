@@ -49,6 +49,7 @@ export const PostVacancy=()=>{
               console.log({ values});
               alert(JSON.stringify(completeForm, null, 2));
             }, 400);
+            
           }
       });
 

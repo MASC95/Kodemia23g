@@ -36,6 +36,10 @@ export const AddSkills=()=>{
             level:Yup.string().required('Requerido'),
         }),
         onSubmit:(values)=>{
+          let tempDataSkill = [...dataSkill];
+          const tempNewSkil= {...values};
+          tempDataSkill.push(tempNewSkil);
+          setDataSkill([...tempDataSkill]);
             axios.defaults.headers.common[
                 "Authorization"
               ] = `Bearer: ${dataRecruiter.accessToken}`;
@@ -52,6 +56,10 @@ export const AddSkills=()=>{
               console.log({ values});
               alert(JSON.stringify(values, null, 2));
             }, 400);
+
+            values.name='';
+            values.level='';
+
           }
     })
 

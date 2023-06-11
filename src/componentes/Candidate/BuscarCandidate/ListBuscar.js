@@ -52,17 +52,22 @@ export const ListBuscar = () => {
       axios.defaults.headers.common[
         "Authorization"
       ] = `Bearer: ${dataCandidate?.accessToken}`;
+
       if (dataCandidate?.my_vacancies) {
         dataVacancies = [...dataCandidate?.my_vacancies, idVacancie];
       } else {
         dataVacancies.push(idVacancie);
       }
 
+      //se actualiza el array de my_vacancies en la entidad user
       const responseUpdateDataUser = await axios.patch(`${endpointsGral.userURL}${dataCandidate.accessToken}`, { my_vacancies: dataVacancies });
+      //se actualiza el array de applicants en la entidad vacancie
       const responseUpdateDataVacancie = await axios.patch(`${endpointsGral.vacancyURL}${idVacancie}`, { token: dataCandidate.accessToken });
+
       if (responseUpdateDataUser && responseUpdateDataVacancie) {
         const getDataCandidate = await axios.get(`${endpointsGral.userURL}${dataCandidate.accessToken}`);
         if (getDataCandidate?.data?.user)
+        //se actualiza el contexto
           setDataLocalStorage({
             ...getDataCandidate?.data?.user,
             accessToken: dataCandidate.accessToken,
@@ -79,7 +84,36 @@ export const ListBuscar = () => {
   };
 
   const handleStopApplying = async (e) => {
-    
+    //console.log('Dejando de aplicar a la vacante:..',e.target.id);
+    const idVacancie = e.target.id;
+    let dataVacancies = [];
+    try {
+      axios.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer: ${dataCandidate?.accessToken}`;
+
+      if (my_vacancies) {
+        dataVacancies = my_vacancies.filter(item=>item._id!==idVacancie);
+      } 
+
+      //se actualiza el array de my_vacancies en la entidad user
+      const responseUpdateDataUser = await axios.patch(`${endpointsGral.userURL}${dataCandidate.accessToken}`, { my_vacancies: dataVacancies });
+      //se actualiza el array de applicants en la entidad vacancie
+      const responseUpdateDataVacancie = await axios.patch(`${endpointsGral.vacancyURL}${idVacancie}`, { token: dataCandidate.accessToken, deleteApplicant:true });
+
+      if (responseUpdateDataUser && responseUpdateDataVacancie) {
+        const getDataCandidate = await axios.get(`${endpointsGral.userURL}${dataCandidate.accessToken}`);
+        if (getDataCandidate?.data?.user)
+        //se actualiza el contexto
+          setDataLocalStorage({
+            ...getDataCandidate?.data?.user,
+            accessToken: dataCandidate.accessToken,
+          });
+      }
+
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -128,6 +162,7 @@ export const ListBuscar = () => {
                           <button
                             type="submit"
                             className="btn btn-outline-danger"
+                            id={item._id}
                             onClick={handleStopApplying}
                           >
                             Dejar de aplicar

@@ -24,6 +24,13 @@ export const AddSkills=()=>{
         fetchSkill()
     },[])
 
+    useEffect(()=>{
+      //console.log('dataSkill(AddSkills):..',dataSkill)
+      if(dataSkill.length>0){
+        console.log('dataSkill(AddSkills):..',dataSkill)
+      }
+    },[dataSkill])
+
 
 
     const formik=useFormik({
@@ -38,6 +45,7 @@ export const AddSkills=()=>{
         onSubmit:(values)=>{
           let tempDataSkill = [...dataSkill];
           const tempNewSkil= {...values};
+          console.log('values(AddSkills):..',values);
           tempDataSkill.push(tempNewSkil);
           setDataSkill([...tempDataSkill]);
 
@@ -45,7 +53,7 @@ export const AddSkills=()=>{
             axios.defaults.headers.common[
                 "Authorization"
               ] = `Bearer: ${dataRecruiter.accessToken}`;
-            setTimeout(() => {
+            
               axios
                 .post(`${endpointsGral.jobSkill}`, values) 
                 .then(response => {
@@ -58,9 +66,11 @@ export const AddSkills=()=>{
                 });
             //   console.log({ values});
               alert(JSON.stringify(values, null, 2));
-            }, 200);
-            // values.name='';
-            // values.level='';
+          
+
+            values.name='';
+            values.level='';
+
           }
     })
 

@@ -9,8 +9,8 @@ import { endpoints } from "../EndpointsCandidate/endpoints";
 import '../Alerts/Alert'
 import AlertComponent from '../Alerts/Alert';
 import useJob from '../../../hooks/useJob';
-
-//hacer un renderizado condicional en el botón aplicar
+import { endpointsGral } from "../../Recruiter/services/vacancy";
+//hacer un renderizado condicional en el botón aplicarñ
 export const Details = () => {
   const [dataVacancy, setDataVacancy] = useState("");
   const [dataEntries, setDataEntries] = useState([]);
@@ -21,6 +21,9 @@ export const Details = () => {
     cargarDatos();
   }, []);
 
+  const myParams = useParams();
+  console.log(myParams.id);
+  console.log("componente details");
   const cargarDatos = async () => {
     try {
       const response = await axios.get(`${endpoints.candidateVacancyById}${myParams.id}`)
@@ -38,13 +41,93 @@ export const Details = () => {
       console.log(error);
     }
   }
-  const handleApply = () => {
+  /* const handleApply = () => {
+    setShowAlert(true);
+  }; */
+  
+  const handleApply = async (e) => {
+    //alert(e.target.id);
+    const idVacancie = myParams.id;
+    let dataVacancies = [];
+    let dataApplicants = [];
+    try {
+      axios.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer: ${dataCandidate?.accessToken}`;
+
+      if (my_vacancies) {
+        dataVacancies = [...my_vacancies, idVacancie];
+      } else {
+        dataVacancies.push(idVacancie);
+      }
+
+      //se actualiza el array de my_vacancies en la entidad user
+      const responseUpdateDataUser = await axios.patch(
+        `${endpointsGral.userURL}${dataCandidate.accessToken}`,
+        { my_vacancies: dataVacancies }
+      );
+      //se actualiza el array de applicants en la entidad vacancie
+      const responseUpdateDataVacancie = await axios.patch(
+        `${endpointsGral.vacancyURL}${idVacancie}`,
+        { token: dataCandidate.accessToken }
+      );
+
+      if (responseUpdateDataUser && responseUpdateDataVacancie) {
+        const getDataCandidate = await axios.get(
+          `${endpointsGral.userURL}${dataCandidate.accessToken}`
+        );
+        if (getDataCandidate?.data?.user)
+          //se actualiza el contexto
+          setDataLocalStorage({
+            ...getDataCandidate?.data?.user,
+            accessToken: dataCandidate.accessToken,
+          });
+      }
+      console.log("Response updateDataUser:..", responseUpdateDataUser);
+      console.log("Response updateDataVacancie:..", responseUpdateDataVacancie);
+    } catch (error) {
+      console.log(error);
+    }
+
     setShowAlert(true);
   };
 
-  const myParams = useParams();
-  console.log(myParams.id);
-  console.log("componente details");
+
+
+  const handleStopApplying = async ()=> {
+    const idVacancie = myParams.id;
+    
+    let dataVacancies = [];
+    //let dataApplicants=[]; 
+    try {
+      axios.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer: ${dataCandidate?.accessToken}`;
+
+      if (my_vacancies) {
+        dataVacancies = my_vacancies.filter((item) => item._id !== idVacancie);
+      } 
+      console.log('Comenzando a dejar de aplicar en la vacante:..',my_vacancies,dataVacancies);
+      //se actualiza el array de my_vacancies en la entidad user
+      const responseUpdateDataUser = await axios.patch(`${endpointsGral.userURL}${dataCandidate.accessToken}`, { my_vacancies: dataVacancies });
+      
+      //se actualiza el array de applicants en la entidad vacancie
+      const responseUpdateDataVacancie = await axios.patch(`${endpointsGral.vacancyURL}${idVacancie}`, { token: dataCandidate.accessToken, deleteApplicant:true });
+
+      if (responseUpdateDataUser && responseUpdateDataVacancie) {
+        const getDataCandidate = await axios.get(`${endpointsGral.userURL}${dataCandidate.accessToken}`);
+        if (getDataCandidate?.data?.user)
+        //se actualiza el contexto
+          setDataLocalStorage({
+            ...getDataCandidate?.data?.user,
+            accessToken: dataCandidate.accessToken,
+          });
+      }
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <>
@@ -58,10 +141,22 @@ export const Details = () => {
             <p className="text-justify"><FaBook /> <b>Modalidad:</b> {dataVacancy?.mode}</p>
             <p className="text-justify"><FaCalendarCheck /> <b>Tipo:</b> {dataVacancy?.type}</p>
             <p className="text-justify"><FaDollarSign /> <b>Salario:</b> {dataVacancy?.salary}</p>
-            
-            <button type="submit" className="btn btn-outline-info buscar"  onClick={handleApply} disabled ={my_vacancies?.find(myVac=>myVac._id===myParams.id)===undefined?false:true} >
+            {my_vacancies?.find(myVac=>myVac._id===myParams.id)===undefined? (
+            <button type="button" className="btn btn-outline-info buscar"  onClick={handleApply} disabled ={my_vacancies?.find(myVac=>myVac._id===myParams.id)===undefined?false:true} >
             {my_vacancies?.find(myVac=>myVac._id===myParams.id)===undefined?'Aplicar':'Aplicando'}
             </button>
+            ):(<>
+              <button
+              type="button"
+              className="btn btn-outline-danger"
+              id={myParams.id}
+              onClick={handleStopApplying}
+            >
+              Dejar de aplicar
+            </button>
+            
+            </>
+            )}
             
             {showAlert && <AlertComponent/>}
 

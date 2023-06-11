@@ -9,10 +9,10 @@ import { myId } from "../../../lib/myLib";
 import {FaTrash, FaPlus} from 'react-icons/fa'
 import { Link } from "react-router-dom";
 
-export const Softskills = ({setListSkills}) => {
+export const Softskills = ({setListSkills,isCandidate,skillsCandidate}) => {
   const [dataSkill, setDataSkill] = useState([]);
   const [selectSkill, setSelectSkill] = useState("");
-  const [skillTemp, setSkillTemp] = useState([]);
+  const [skillTemp, setSkillTemp] = useState(skillsCandidate?skillsCandidate:[]);
 
   const fetchSkill = async () => {
     const response = await axios.get(endpointsGral.jobSkill);
@@ -21,7 +21,18 @@ export const Softskills = ({setListSkills}) => {
   };
   useEffect(() => {
     fetchSkill();
+    
   }, []);
+
+   useEffect(()=>{
+    if(skillTemp.length===0){
+      if(skillsCandidate.length>0){
+        console.log('skillsCandidate:..',skillsCandidate);
+        setSkillTemp([...skillsCandidate])
+      }
+    }
+  },[skillsCandidate]) 
+
   useEffect(()=>{
 
     if(skillTemp.length>0){
@@ -74,7 +85,7 @@ export const Softskills = ({setListSkills}) => {
                 <div className="col">
                   <div className="form-outline">
                     <label className="form-label" htmlFor="form6Example1">
-                      Elige las SoftSkill de tu vacante:
+                      Elige las SoftSkill de tu {!isCandidate?'vacante':'perfil'}:
                     </label>
                     <select
                       className="form-control"
@@ -95,9 +106,14 @@ export const Softskills = ({setListSkills}) => {
                 <button type="button" onClick={onFormSubmit} className="buttons btn btn-info text-light">
                   <FaPlus> Agregar </FaPlus>
                 </button>
-                <Link to={'/Dashboard-Recruiter/softskill-addNew'} className="text-black text-decoration-none fs-6">
-                  <p className="">Crear nueva SoftSkill</p> 
-                </Link>          
+                {
+                !isCandidate
+                &&
+                  <Link to={'/Dashboard-Recruiter/softskill-addNew'} className="text-black text-decoration-none fs-6">
+                      <p className="">Crear nueva SoftSkill</p> 
+                  </Link>          
+                }
+                
               </div>
             </form>
           </div>
@@ -116,7 +132,13 @@ export const Softskills = ({setListSkills}) => {
                 </thead>
                 <tbody>
               {skillTemp.map((skill, index) => {
-                const myDataSkill= dataSkill.find(item=>item._id===skill.skill);
+                let myDataSkill =null; 
+                if(!isCandidate){
+                  myDataSkill= dataSkill.find(item=>item._id===skill.skill);
+                }else{
+                  myDataSkill=skill
+                }
+                
                 console.log('myDataSkill:..',myDataSkill,'skill:..',skill);
                 return (
                   <tr key={myId()}>

@@ -40,11 +40,12 @@ export const AddSkills=()=>{
           const tempNewSkil= {...values};
           tempDataSkill.push(tempNewSkil);
           setDataSkill([...tempDataSkill]);
+
+
             axios.defaults.headers.common[
                 "Authorization"
               ] = `Bearer: ${dataRecruiter.accessToken}`;
             setTimeout(() => {
-
               axios
                 .post(`${endpointsGral.jobSkill}`, values) 
                 .then(response => {
@@ -53,27 +54,37 @@ export const AddSkills=()=>{
                 .catch(error => {
                   console.log(error.response);
                 });
-              console.log({ values});
+            //   console.log({ values});
               alert(JSON.stringify(values, null, 2));
-            }, 400);
+            }, 200);
 
-            values.name='';
-            values.level='';
+            // values.name='';
+            // values.level='';
 
           }
     })
 
   
     const handleDeleteSkill = (index) => {
-        // const skillToDelete = skillTemp[index];
-    
-        // if (skillToDelete) {
-        //   const updatedSkills = skillTemp.filter((_, i) => i !== index);
-        //   setSkillTemp(updatedSkills);
-        // } else {
-        //   console.log("error al eliminar");
-        // }
+        const skillDelete=dataSkill[index]
+        const id=skillDelete._id
+
+        axios.defaults.headers.common[
+            "Authorization"
+          ] = `Bearer: ${dataRecruiter.accessToken}`;
+          
+        axios.delete(`${endpointsGral.jobSkill}${id}`)
+        .then(response => {
+          const updatedSkills = dataSkill.filter((_, i) => i !== index);
+          setDataSkill(updatedSkills);
+        })
+        .catch(error => {
+          console.error(error);
+        });
       };
+
+     
+     
     // console.log(dataSkill)
     // const onFormSubmit=(event)=>{
     //     event.preventDefault()
@@ -100,7 +111,7 @@ export const AddSkills=()=>{
                                value={formik.values.name}
                                onChange={formik.handleChange}
                                onBlur={formik.handleBlur}
-                               placeholder="Título"/>
+                               placeholder="Nombre skill"/>
                                {formik.touched.name && formik.errors.name && (<span className='text-danger'>{formik.errors.name}</span>)}
 
                         </div>

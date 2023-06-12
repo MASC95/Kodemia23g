@@ -7,27 +7,12 @@
     transform: scale(1.1);
     border: 5px inset #fff;
     
-    background-color: #093040;
+   background-color: #093040;
     color: #fff;
+   
   }
 }
-@mixin glow{
-  overflow: hidden;
-    &::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        transition: .5s;
-        background: linear-gradient(90deg, transparent,rgba(255,255,255,.4),transparent);
-      }
-    
-      &:hover::before {
-        left: 100%;
-      }
-}
+
   header{
     
   
@@ -120,7 +105,7 @@
                   &:hover {
                     animation:  grow 0.3s forwards;
                   }
-                  @include glow
+                  @include glow();
                   
                 }
                 @include desktop{

@@ -37,14 +37,13 @@
   }
   
   @mixin second-cards-containers {
-    width: 400px;
-    height: 329px;
+    width: 50%;
+    height: 100%;
     margin-top: 20px;
    }
    @mixin text-center-mobile{ 
     margin-top: 2rem;
     text-align: center;
-    
    }
 
    @mixin glassEffect{ 

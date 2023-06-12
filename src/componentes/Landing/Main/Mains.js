@@ -14,17 +14,17 @@ const Mains = () => {
         <h1 className="match d-flex justify-content-center mx-100px m-md-5 ">
           Haz match con las empresas de tus sueños <br />
           con nuestra app de búsqueda de empleo basada en tus <br />
-          habilidades de programación
+              habilidades de programación.
         </h1>
         <p className="text-mobile d-md-none">
-          Con Jobinder, tu trabajo ideal está a sólo un clic de distancia
+          Con Jobinder, tu trabajo ideal está a sólo un clic de distancia.
         </p>
 
         <div className="container first-card-container">
           <div className="row gx-5 row-first-card ">
-            <div className="left-blank-space col-lg-2 col-sm-1"> </div>
+            <div className="left-blank-space col-lg-2 "> </div>
 
-            <div className="father-container-1 col-lg-8 col-sm-12">
+            <div className="father-container-1 col-lg-8">
               <div className="child-container-1 d-flex justify-content-center align-items-center">
                 <div className="card-container-1 card h-100 mb-4">
                   <img
@@ -90,7 +90,7 @@ const Mains = () => {
           <div className="row second-row">
             <div className="col-md-12 column">
               <div className="letras text-center">
-                <h2 className="eleva">
+                <h2 className="eleva ">
                   ELEVA TU CARRERA PROFESIONAL AL SIGUIENTE NIVEL
                 </h2>
               </div>
@@ -100,22 +100,17 @@ const Mains = () => {
             <div className="col-md-6 second-cards-1">
               <div
                 className="card-container-3 card mb-5 "
-                style={{ width: "50%", height: "100%  " }}
               >
                 <img
                   src="https://images.unsplash.com/photo-1543269664-56d93c1b41a6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
                   alt="Video"
                   className="card-img-top video"
-                  style={{ width: "100%" }}
+                 
                 />
                 <div className="card-body video-card-body text-center">
                   <div
                     className="card-title video-card-title"
-                    style={{
-                      fontSize: "14px",
-                      textAlign: "left",
-                      color: "gray",
-                    }}
+                    
                   >
                     Video Presentación
                   </div>
@@ -124,7 +119,6 @@ const Mains = () => {
                     mereces.
                   </p>
                   <h6
-                    style={{ textAlign: "end", color: "#EA2876FF" }}
                     className="record-video"
                   >
                     Grabar Video 🚩
@@ -135,22 +129,16 @@ const Mains = () => {
             <div className="col-md-6 second-cards-2">
               <div
                 className="card-container-4 card "
-                style={{ width: "50%", height: "100%" }}
+              
               >
                 <img
                   src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
                   alt="skills"
                   className="card-img-top skills"
-                  style={{ width: "100%" }}
                 />
                 <div className="card-body text-center card-body-skills">
                   <div
                     className="card-title card-title-skills"
-                    style={{
-                      fontSize: "14px",
-                      textAlign: "left",
-                      color: "gray",
-                    }}
                   >
                     Conocimientos y Habilidades
                   </div>
@@ -160,7 +148,6 @@ const Mains = () => {
                     ofrecer.
                   </p>
                   <h6
-                    style={{ textAlign: "end", color: "#EA2876FF" }}
                     className="knowledge"
                   >
                     Sumar Conocimientos 🚩
@@ -190,12 +177,12 @@ const Mains = () => {
                 className="rounded-circle d-none d-lg-block profile-pic"
                 src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1780&q=80"
                 alt="profile-pic"
-                style={{ width: "400px", height: "300px" }}
+                
               />
             </div>
             <div className="col-md-8  down-cards ">
               <div className="final-text text-start d-sm-text-center">
-                <strong> Encuentra el empleo de tus sueños con Jobinder.</strong>
+                <strong> Encuentra el empleo de tus sueños con Jobinder!</strong>
               </div>
               <p
                 style={{ color: "#565E6CFF" }}

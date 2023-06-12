@@ -106,7 +106,7 @@ const FormRecruiter = () => {
    
   const handleSubmit = async(values)=>{
     //e.preventDefault();
-    const idsSkills =  listSkills.map(item=>item.skill);
+    const idsSkills =  listSkills.map(item=>item._id);
                 const completeForm = {
                     ...values,
                     user_skills:[...idsSkills]

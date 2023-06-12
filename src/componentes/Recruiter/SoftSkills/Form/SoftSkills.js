@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 
 export const Softskills = ({setListSkills,isCandidate,skillsCandidate}) => {
   const [dataSkill, setDataSkill] = useState([]);
-  const [selectSkill, setSelectSkill] = useState("");
+  const [selectSkill, setSelectSkill] = useState("select");
   const [skillTemp, setSkillTemp] = useState(skillsCandidate?skillsCandidate:[]);
 
   const fetchSkill = async () => {
@@ -24,28 +24,60 @@ export const Softskills = ({setListSkills,isCandidate,skillsCandidate}) => {
     
   }, []);
 
-  //  useEffect(()=>{
-  //   if(skillTemp.length===0){
-  //     if(skillsCandidate.length>0){
-  //       console.log('skillsCandidate:..',skillsCandidate);
-  //       setSkillTemp([...skillsCandidate])
-  //     }
-  //   }
-  // },[skillsCandidate]) 
+  
 
-  // useEffect(()=>{
+  useEffect(()=>{
+     if(skillTemp.length===0){
+       if(skillsCandidate.length>0){
+         console.log('skillsCandidate:..',skillsCandidate);
+         setSkillTemp([...skillsCandidate])
+       }
+     }
+   },[skillsCandidate]) 
 
-  //   if(skillTemp.length>0){
-  //     setListSkills([...skillTemp])
-  //   }else{
-  //     setListSkills([])
-  //   }
+  
+  
 
-  // },[skillTemp])
+   useEffect(()=>{
+     if(skillTemp.length>0){
+       setListSkills([...skillTemp])
+     }else{
+       setListSkills([])
+     }
+   },[skillTemp])
+
   const handleSkillChange = (event) => {
     const value = event.target.value;
+    console.log('Seleccionando skill:..',value);
     setSelectSkill(value);
   };
+
+  const onFormSubmitCandidate = (e)=>{
+    e.preventDefault();
+    console.log('Agregando skill:',selectSkill);
+    if(selectSkill==='select'){
+      swal({
+        title: "Favor de Seleccionar tu Skill !!",
+        icon: "error",
+        button: "ok!",
+    });
+    return
+    }
+    const isRepeatedSkill= skillTemp.find(item=>item._id===selectSkill);
+
+    if(isRepeatedSkill){
+      swal({
+        title: "Ya hemos agregado esa skill!",
+        icon: "error",
+        button: "ok!",
+    });
+    }else{
+      const skillDB = dataSkill.find(item=>item._id===selectSkill);
+      console.log('Encontramos skill:',skillDB);
+      setSkillTemp([...skillTemp,skillDB])
+    }
+
+  }
 
   const onFormSubmit = (event) => {
     event.preventDefault();
@@ -93,6 +125,7 @@ export const Softskills = ({setListSkills,isCandidate,skillsCandidate}) => {
                       value={selectSkill}
                       onChange={handleSkillChange}
                     >
+                      <option value={'select'}>Select</option>
                       {dataSkill.map((item, index) => {
                         const id = item._id;
                         const skillComplete = `${item.name} - ${item.level}`;
@@ -102,8 +135,8 @@ export const Softskills = ({setListSkills,isCandidate,skillsCandidate}) => {
                   </div>
                 </div>
                   <div className="col buttons_actions gap-3">
-                    <button type="button" onClick={onFormSubmit} className="buttons btn btn-info text-light">
-                      <FaPlus> Agregar </FaPlus>
+                    <button type="button" onClick={isCandidate?onFormSubmitCandidate:onFormSubmit} className="buttons btn btn-info text-light">
+                      <FaPlus> Agregar </FaPlus> 
                     </button>
                   </div>
               </div>
@@ -138,7 +171,7 @@ export const Softskills = ({setListSkills,isCandidate,skillsCandidate}) => {
                   myDataSkill=skill
                 }
                 
-                console.log('myDataSkill:..',myDataSkill,'skill:..',skill);
+                //console.log('myDataSkill:..',myDataSkill,'skill:..',skill);
                 return (
                   <tr key={myId()}>
                     <td>{index + 1}</td>

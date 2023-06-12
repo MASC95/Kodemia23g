@@ -1,259 +1,16 @@
-/* 
-  .main-container {
-    margin-bottom: 100px;
-    padding-top: 60px;
+@keyframes grow {
+  from {
+    transform: scale(1);
     
-  
-    .match {
-      font-family: 'Epilogue';
-      align-items: center;
-      text-indent: 1em;
-      color: #093040;
-      @include mobile{
-        font-size: 16px;
-        line-height: 26px;
-        @include text-center-mobile();
-        
-        
-      }
-     
-    }
-    .text-mobile{
-      
-      @include mobile{
-      @include text-center-mobile();
-      font-weight: bold;
-        
-      
-    }
-      
-    }
-  
-    .first-card-container {
-      
-        
-      .row {
-        
-        
-        .left-blank-space {
-         
-        }
-  
-        .father-container-1 {
-         
-          .child-container-1 {
-            @include mobile{
-              display: flex;
-              flex-wrap: wrap;
-              gap: 2rem;
-              margin-top: 2rem;
-            }
-            .card-container-1 {
-              @include first-cards-containers;
-              
-              
-              .recruiter-img {
-
-              }
-  
-              .card-body-1 {
-                .card-title-1 {
-                  @include mobile{
-                    display: none;
-                  }
-                }
-                .card-text-1 {
-                  @include mobile{
-                    display: none;
-                  }
-                }
-              }
-  
-              .access-recruiter {
-                @include center-users;
-  
-                .access-btn-rec {}
-              }
-            }
-  
-            .space {
-              width: 200px;
-            }
-  
-            .card-container-2 {
-              @include first-cards-containers;
-  
-              .candidate-img {}
-  
-              .card-body-2 {
-                .card-title-2 {
-                  @include mobile{
-                    display: none;
-                  }
-                }
-                .card-text-2 {
-                  @include mobile{
-                  display: none;
-                  }
-
-                }
-              }
-  
-              .access-candidate {
-                @include center-users;
-  
-                .access-btn-can {}
-              }
-            }
-          }
-        }
-  
-        .right-blank-space {}
-      }
-    }
-  
-    .second-cards-container {
-      @include mobile{
-        display: none;
-      }
-      .second-cards-row {
-        .col-md-12 {
-          .letras {
-            @include letras;
-  
-            .eleva {
-
-            }
-          }
-        }
-      }
-  
-      .second-cards-row {
-        .second-cards-1 {
-          .card-container-3 {
-            @include second-cards-containers;
-            margin-left: 300px;
-  
-            .video {}
-  
-            .card-body {
-              .card-title {}
-              .card-text {}
-              h6 {}
-            }
-          }
-        }
-  
-        .second-cards-2 {
-          .card-container-4 {
-            @include second-cards-containers;
-  
-            .skills {}
-  
-            .card-body {
-              .card-title {}
-              .card-text {}
-              h6 {}
-            }
-          }
-        }
-      }
-    }
-  
-    .last-container {
-      .row-last-container {
-        .col-last-container {
-          .letters-1 {
-            @include letras;
-            @include mobile{
-              
-              margin-right: 2rem;
-              
-              
-            }
-            
-            
-            .last-text{
-              @include mobile{
-              
-                font-size: 24px;
-                line-height: 7vw;
-                margin-bottom: 2rem;
-                word-wrap: break-word;
-                
-                
-              }
-              
-            }
-          }
-  
-          .jobs {
-            display: flex;
-            justify-content: center;
-            padding-right: 300px;
-            @include mobile{
-              text-align: center;
-              padding-right: 0;
-              margin-bottom: 2rem;
-            }
-          }
-        }
-      }
-  
-      .col-md-3 {
-        .profile-pic {
-
-        }
-      }
-  
-      .down-cards {
-        .final-text {
-          font-family: Epilogue;
-          font-size: 28px;
-          line-height: 42px;
-          display: flex;
-          justify-content: start;
-          @include mobile{
-            display: none;
-          }
-        }
-  
-        .slogan {
-          @include mobile{
-            display: none;
-          }
-        }
-  
-        .check-list {
-          margin-bottom: 10px;
-          
-  
-          .li-register{
-            @include mobile{
-              line-height: 50px;
-              padding: 0;
-            }
-            .icon-check {
-              @include mobile{
-                margin-right: 0.5rem;
-              }
-            }
-          }
-        }
-  
-        .last-create-account {
-         
-         
-          .btn-create-acc {
-            @include mobile{
-              display: none;
-             }
-            
-          }
-        }
-      }
-    }
-  } */
+  }
+  to{
+    transform: scale(1.1);
+    border: 5px inset #fff;
+    
+    background-color: #093040;
+    color: #fff;
+  }
+}
   
   header{
     
@@ -344,22 +101,27 @@
                   @include glassEffect();
                   width: 100%;
                   margin-left: 100px;
+                  &:hover {
+                    animation:  grow 0.3s forwards;
+                  }
                 }
                 @include desktop{
                   @include first-cards-containers;
                   @include glassEffect();
+                  &:hover {
+                    animation:  grow 0.3s forwards;
+                  }
                   
                 }
                 
                 .recruiter-img{
                   @include mobile{
-
+                    
                   }
                 }
                 .card-body-1{
                   @include mobile{
                     padding: 10px 5px 20px 5px;
-                    
                   }
                   .card-title-1{
                   
@@ -389,7 +151,7 @@
                   @include center-users;
                   .link-rec{
                     .access-btn-rec{
-                      
+                    
                       
                       @include mobile{
                         padding: 10px 20px 10px 20px;
@@ -397,6 +159,8 @@
                         margin-left: 20px;
                         font-family: 'Poppins', sans-serif;
                         font-size: 14px;
+                       
+                        
                       }
                       @include desktop{
                         @include poppins();
@@ -416,11 +180,18 @@
                 @include desktop{
                   @include first-cards-containers;
                    @include glassEffect();
+                   &:hover {
+                    animation:  grow 0.3s forwards;
+                  }
                 }
                 @include mobile{
                   @include glassEffect();
                   width: 100%;
                   margin-left: 100px;
+                  &:hover {
+                    animation:  grow 0.3s forwards;
+                  }
+
                 }
                 .candidate-img{
 
@@ -428,7 +199,7 @@
                 .card-body-2{
                   @include mobile{
                     padding: 10px 5px 20px 5px;
-                    
+                   
                   }
                   .card-title-2{
                     @include mobile{
@@ -701,8 +472,10 @@
                 @include poppins();
                 margin: 20px;
                 padding: 10px 20px 10px 20px;
+               
                 @include mobile{
                   display: none;
+                 
                  }
               }
             }
@@ -712,7 +485,5 @@
       }
     }
   }
-
-
 
  

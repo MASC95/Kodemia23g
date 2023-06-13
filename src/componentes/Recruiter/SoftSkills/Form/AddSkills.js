@@ -46,11 +46,21 @@ export const AddSkills=()=>{
           let tempDataSkill = [...dataSkill];
           const tempNewSkil= {...values};
           console.log('values(AddSkills):..',values);
-          tempDataSkill.push(tempNewSkil);
-          setDataSkill([...tempDataSkill]);
+          // tempDataSkill.push(tempNewSkil);
+          const dataRepet=tempDataSkill.some((item) => item.name ===values.name && item.level===values.level);
+          console.log('datarepet',dataRepet)
+    
+          if(dataRepet){
+            swal({
+                title: "Ya hemos agregado esa skill!",
+                icon: "error",
+                button: "ok!",
+            });
+        }else{
+            tempDataSkill.push(tempNewSkil);
+            setDataSkill([...tempDataSkill]);
 
-
-            axios.defaults.headers.common[
+              axios.defaults.headers.common[
                 "Authorization"
               ] = `Bearer: ${dataRecruiter.accessToken}`;
             
@@ -65,11 +75,12 @@ export const AddSkills=()=>{
                   console.log(error.response);
                 });
             //   console.log({ values});
-              alert(JSON.stringify(values, null, 2));
+              // alert(JSON.stringify(values, null, 2));
           
 
             values.name='';
             values.level='';
+        }
 
           }
     })

@@ -181,7 +181,7 @@ export const PostVacancy=()=>{
                 </div>
                 </div>
 
-                <Softskills setListSkills={setListSkills} />
+                <Softskills setListSkills={setListSkills} skillsCandidate={[]} />
 
                 <div className="buttons_actions d-flex justify-content-end align-content-end">  
                     <button type="submit" className="buttons btn btn-info text-light">Guardar Vacante</button>               

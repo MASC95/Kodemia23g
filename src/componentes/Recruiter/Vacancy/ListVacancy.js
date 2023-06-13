@@ -1,5 +1,6 @@
 import {FaEdit, FaTrash} from 'react-icons/fa'
 import {Link} from 'react-router-dom'
+import { myId } from '../../lib/myLib'
 import './style.scss'
 
 export const ListVacancy=({postdata})=>{
@@ -24,7 +25,7 @@ export const ListVacancy=({postdata})=>{
                         { postdata.map((item, index)=>{
                             const idVacancy=item._id
                                 return(
-                                    <tr>
+                                    <tr key={myId()}>
                                    <td>{index+1}</td>
                                     <td>{item.title}</td>
                                     <td>{item.type}</td>

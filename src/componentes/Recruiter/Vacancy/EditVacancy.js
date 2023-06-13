@@ -7,6 +7,7 @@ import swal from "sweetalert";
 import { useFormik } from "formik";
 import * as Yup from 'yup'
 import useJob from '../../../hooks/useJob'
+import { useParams } from "react-router-dom";
 
 const initDataForm={
     companyName:'',
@@ -32,6 +33,8 @@ const validations=Yup.object().shape({
 
 export const EditVacancy=()=>{
     const valores = window.location.search;
+    const myVacancie= useParams('v');
+    console.log('myVacancie:..',myVacancie);
     const urlParams = new URLSearchParams(valores);
     const idVacancy = urlParams.get('v');    
     
@@ -42,15 +45,19 @@ export const EditVacancy=()=>{
     const [dataCandidate,setDataCandidate,dataRecruiter,setDataRecruiter, dataLocalStorage, setDataLocalStorage]=useJob()
 
 
-    console.log(idVacancy)
+    console.log('idVacancy:..',idVacancy);
 
     const fetchForVacancy=async()=>{
         try {
             const endpointURL=`${endpointsGral.vacancyURL}${idVacancy}`;
             const response= await axios.get(endpointURL)
+            console.log('response:..',response);
             const skills=response.data['infoVacancy']
             setInfoDataVacancy(skills);
-            setListSkills(skills['job_skills'])
+            const retrievedSkills = skills?.job_skills.map(item=>{
+                return {skill:item._id}
+            })
+            setListSkills([...retrievedSkills])
         } catch (error) {
             console.log(error)
         }
@@ -58,8 +65,11 @@ export const EditVacancy=()=>{
     useEffect(()=>{
         fetchForVacancy()
     },[])
+    useEffect(()=>{
+        console.log('cargado datos de las Skills  de  la Vacante:..')
+    },[listSkills])
 
-    console.log('data vancancy bd',infoDataVacancy)
+    console.log('data vancancy bd:..',infoDataVacancy)
     useEffect(()=>{
         if(infoDataVacancy){
             setDataForm({
@@ -92,11 +102,12 @@ export const EditVacancy=()=>{
         onSubmit:(values) => {
             setTimeout(() => {
                 const idsSkills =  listSkills.map(item=>item.skill);
+                
                 const completeForm = {
                     ...values,
                     job_skills:[...idsSkills]
                 }
-                console.log('skills', completeForm)
+                console.log('completeForm:...', completeForm)
 
 
                 axios.defaults.headers.common[
@@ -104,11 +115,7 @@ export const EditVacancy=()=>{
                   ] = `Bearer: ${dataRecruiter.accessToken}`;
               axios
                 // .patch(endpointsGral.vacancyURL, completeForm) 
-                .patch(`${endpointsGral.vacancyURL}${idVacancy}`, values, {
-                    headers: {
-                      "Content-Type": "multipart/form-data",
-                    },
-                  })
+                .patch(`${endpointsGral.vacancyURL}${idVacancy}`, completeForm)
                 .then(response => {
                   console.log(response);
                 })
@@ -122,7 +129,7 @@ export const EditVacancy=()=>{
       });
       return(
         <div className="container mt-2 p-5 w-100 " id="formGral">
-            
+            <h2>Editar Vacante</h2>
             <form onSubmit={formik.handleSubmit}>
                 <div className="row mb-4">
                     <div className="col">
@@ -248,7 +255,7 @@ export const EditVacancy=()=>{
                 </div>
                 </div>
 
-                <EditSkill setListSkills={listSkills}/>
+                <EditSkill listSkills={listSkills} setListSkills={setListSkills}/>
 
                 <div className="buttons_actions d-flex justify-content-end align-content-end">  
                     <button type="submit" className="buttons btn btn-info text-light">Guardar Vacante</button>               

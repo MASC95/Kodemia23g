@@ -5,13 +5,13 @@ import { endpointsGral } from "../../services/vacancy";
 import { myId } from "../../../lib/myLib";
 import {FaTrash, FaPlus} from 'react-icons/fa'
 import { Link } from "react-router-dom";
-export const EditSkill=({setListSkills})=>{
+export const EditSkill=({listSkills,setListSkills})=>{
 
-  console.log('setList',setListSkills)
+  console.log('listSkills',listSkills)
 
   const [dataSkill, setDataSkill] = useState([]);
-  const [selectSkill, setSelectSkill] = useState("");
-  const [skillTemp, setSkillTemp] = useState(setListSkills?setListSkills:[]);
+  const [selectSkill, setSelectSkill] = useState("select");
+  const [skillTemp, setSkillTemp] = useState(listSkills?listSkills:[]);
 
 
   const fetchSkill = async () => {
@@ -25,14 +25,26 @@ export const EditSkill=({setListSkills})=>{
   }, []);
 
   useEffect(()=>{
-    if(skillTemp.lenght===0){
-      console.log('no hay datos')
-    }else{
-      console.log('hy datos')
-      setSkillTemp([...setListSkills])
+    if(skillTemp.length===0){
+      if(listSkills.length>0){
+        console.log('skillsCandidate:..',listSkills);
+        setSkillTemp([...listSkills])
+      }
     }
-  },[setListSkills])
+  },[listSkills]) 
 
+ 
+ 
+
+  useEffect(()=>{
+    if(skillTemp.length>0){
+
+      setListSkills([...skillTemp])
+    }else{
+      setListSkills([])
+    }
+    console.log('skillTemp:..',skillTemp)
+  },[skillTemp])
  
  
 
@@ -43,9 +55,19 @@ export const EditSkill=({setListSkills})=>{
 
   const onFormSubmit = (event) => {
     event.preventDefault();
+    console.log('selectSkill:..',selectSkill);
     const newSkill = {
       skill: selectSkill,
     };
+
+    if(newSkill.skill==='select'){
+      swal({
+        title: "Favor de Seleccionar una Skill !!",
+        icon: "error",
+        button: "ok!",
+    });
+    return
+    }
     const dataRepet= skillTemp?.find(item=>item.skill===newSkill.skill);
     if(dataRepet){
         swal({
@@ -87,10 +109,11 @@ export const EditSkill=({setListSkills})=>{
                       value={selectSkill}
                       onChange={handleSkillChange}
                     >
+                      <option value="select">Select</option>
                       {dataSkill.map((item, index) => {
                         const id = item._id;
                         const skillComplete = `${item.name} - ${item.level}`;
-                        return <option value={`${id}`}>{skillComplete}</option>;
+                        return <option key={myId()}  value={`${id}`}>{skillComplete}</option>;
                       })}
                     </select>
                   </div>
@@ -122,13 +145,17 @@ export const EditSkill=({setListSkills})=>{
                 </thead>
                 <tbody>
               {skillTemp?.map((skill, index) => {
-                // const myDataSkill= dataSkill?.find(item=>item._id===skill.skill);
+                 let myDataSkill=null;
+                 myDataSkill= dataSkill?.find(item=>item._id===skill.skill);
+                 if(!myDataSkill){
+                  myDataSkill= dataSkill?.find(item=>item._id===skill);
+                 }
                 // console.log('myDataSkill:..',myDataSkill,'skill:..',skill);
                 return (
                   <tr key={myId()}>
                     <td>{index + 1}</td>
-                    <td>{skill?.name}</td>
-                    <td>{skill?.level}</td>
+                    <td>{myDataSkill?.name}</td>
+                    <td>{myDataSkill?.level}</td>
                     <td>
                     <FaTrash className="icon_trash"  onClick={() => handleDeleteSkill(index)}/>
                     </td>

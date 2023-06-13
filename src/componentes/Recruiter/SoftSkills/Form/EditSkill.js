@@ -1,16 +1,18 @@
-import React, { useEffect, useState } from "react";
-import "../scss/style.scss";
+import  { useEffect , useState } from "react";
 import swal from "sweetalert";
 import axios from "axios";
 import { endpointsGral } from "../../services/vacancy";
 import { myId } from "../../../lib/myLib";
 import {FaTrash, FaPlus} from 'react-icons/fa'
 import { Link } from "react-router-dom";
+export const EditSkill=({setListSkills})=>{
 
-export const Softskills = ({setListSkills,isCandidate,skillsCandidate}) => {
+  console.log('setList',setListSkills)
+
   const [dataSkill, setDataSkill] = useState([]);
-  const [selectSkill, setSelectSkill] = useState("select");
-  const [skillTemp, setSkillTemp] = useState(skillsCandidate?skillsCandidate:[]);
+  const [selectSkill, setSelectSkill] = useState("");
+  const [skillTemp, setSkillTemp] = useState(setListSkills?setListSkills:[]);
+
 
   const fetchSkill = async () => {
     const response = await axios.get(endpointsGral.jobSkill);
@@ -22,60 +24,22 @@ export const Softskills = ({setListSkills,isCandidate,skillsCandidate}) => {
     
   }, []);
 
-  
-
   useEffect(()=>{
-     if(skillTemp.length===0){
-       if(skillsCandidate.length>0){
-         console.log('skillsCandidate:..',skillsCandidate);
-         setSkillTemp([...skillsCandidate])
-       }
-     }
-   },[skillsCandidate]) 
+    if(skillTemp.lenght===0){
+      console.log('no hay datos')
+    }else{
+      console.log('hy datos')
+      setSkillTemp([...setListSkills])
+    }
+  },[setListSkills])
 
-  
-  
-
-   useEffect(()=>{
-     if(skillTemp.length>0){
-       setListSkills([...skillTemp])
-     }else{
-       setListSkills([])
-     }
-   },[skillTemp])
+ 
+ 
 
   const handleSkillChange = (event) => {
     const value = event.target.value;
-    console.log('Seleccionando skill:..',value);
     setSelectSkill(value);
   };
-
-  const onFormSubmitCandidate = (e)=>{
-    e.preventDefault();
-    console.log('Agregando skill:',selectSkill);
-    if(selectSkill==='select'){
-      swal({
-        title: "Favor de Seleccionar tu Skill !!",
-        icon: "error",
-        button: "ok!",
-    });
-    return
-    }
-    const isRepeatedSkill= skillTemp.find(item=>item._id===selectSkill);
-
-    if(isRepeatedSkill){
-      swal({
-        title: "Ya hemos agregado esa skill!",
-        icon: "error",
-        button: "ok!",
-    });
-    }else{
-      const skillDB = dataSkill.find(item=>item._id===selectSkill);
-      console.log('Encontramos skill:',skillDB);
-      setSkillTemp([...skillTemp,skillDB])
-    }
-
-  }
 
   const onFormSubmit = (event) => {
     event.preventDefault();
@@ -113,7 +77,7 @@ export const Softskills = ({setListSkills,isCandidate,skillsCandidate}) => {
             <form >
               <div className="row d-flex">
                 <label className="form-label" htmlFor="form6Example1">
-                  Elige las SoftSkill de tu {!isCandidate?'vacante':'perfil'}:
+                  Elige las SoftSkill de tu:
                 </label>
                 <div className="col-10">
                   <div className="form-outline">
@@ -123,7 +87,6 @@ export const Softskills = ({setListSkills,isCandidate,skillsCandidate}) => {
                       value={selectSkill}
                       onChange={handleSkillChange}
                     >
-                      <option value={'select'}>Select</option>
                       {dataSkill.map((item, index) => {
                         const id = item._id;
                         const skillComplete = `${item.name} - ${item.level}`;
@@ -133,19 +96,16 @@ export const Softskills = ({setListSkills,isCandidate,skillsCandidate}) => {
                   </div>
                 </div>
                   <div className="col buttons_actions gap-3">
-                    <button type="button" onClick={isCandidate?onFormSubmitCandidate:onFormSubmit} className="buttons btn btn-info text-light">
-                      <FaPlus> Agregar </FaPlus> 
+                    <button type="button" onClick={onFormSubmit} className="buttons btn btn-info text-light">
+                      <FaPlus> Agregar </FaPlus>
                     </button>
                   </div>
               </div>
             </form>
-            {
-                !isCandidate
-                &&
                   <Link to={'/Dashboard-Recruiter/softskill-addNew'} className="text-black d-flex justify-content-end mb-3 fs-6">
                       <p className="">Crear nueva SoftSkill</p> 
                   </Link>          
-                }
+              
           </div>
 
           {/* table of skills */}
@@ -161,20 +121,14 @@ export const Softskills = ({setListSkills,isCandidate,skillsCandidate}) => {
                     </tr>
                 </thead>
                 <tbody>
-              {skillTemp.map((skill, index) => {
-                let myDataSkill =null; 
-                if(!isCandidate){
-                  myDataSkill= dataSkill.find(item=>item._id===skill.skill);
-                }else{
-                  myDataSkill=skill
-                }
-                
-                //console.log('myDataSkill:..',myDataSkill,'skill:..',skill);
+              {skillTemp?.map((skill, index) => {
+                // const myDataSkill= dataSkill?.find(item=>item._id===skill.skill);
+                // console.log('myDataSkill:..',myDataSkill,'skill:..',skill);
                 return (
                   <tr key={myId()}>
                     <td>{index + 1}</td>
-                    <td>{myDataSkill?.name}</td>
-                    <td>{myDataSkill?.level}</td>
+                    <td>{skill?.name}</td>
+                    <td>{skill?.level}</td>
                     <td>
                     <FaTrash className="icon_trash"  onClick={() => handleDeleteSkill(index)}/>
                     </td>
@@ -189,5 +143,6 @@ export const Softskills = ({setListSkills,isCandidate,skillsCandidate}) => {
         </div>
     </>
   );
-};
-export default Softskills;
+
+}
+export default EditSkill

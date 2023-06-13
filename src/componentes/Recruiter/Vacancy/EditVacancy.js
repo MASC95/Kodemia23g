@@ -1,11 +1,34 @@
 import React, { useEffect, useState } from "react";
 import { endpointsGral } from "../services/vacancy";
-// import Softskills from "../../SoftSkills/Form/SoftSkills";
+import EditSkill from "../SoftSkills/Form/EditSkill";
 import axios from "axios";
 import { useNavigate  } from "react-router-dom";
 import swal from "sweetalert";
 import { useFormik } from "formik";
 import * as Yup from 'yup'
+import useJob from '../../../hooks/useJob'
+
+const initDataForm={
+    companyName:'',
+    title:'',
+    type:'',
+    mode:'',
+    city:'',
+    salary:'',
+    status:'',
+    activities:''
+};
+
+const validations=Yup.object().shape({
+    companyName:Yup.string().required('Requerido'),
+    title:Yup.string().required('Requerido'),
+    type:Yup.string().required('Requerido'),
+    mode:Yup.string().required('Requerido'),
+    city:Yup.string().required('Requerido'),
+    salary:Yup.number().required('Requerido'),
+    status:Yup.string().required('Requerido'),
+    activities:Yup.string().required('Requerido'),
+});
 
 export const EditVacancy=()=>{
     const valores = window.location.search;
@@ -15,6 +38,9 @@ export const EditVacancy=()=>{
     
     const [listSkills, setListSkills] = useState([]);
     const [infoDataVacancy,setInfoDataVacancy]=useState({})
+    const [dataForm, setDataForm] = useState(initDataForm);
+    const [dataCandidate,setDataCandidate,dataRecruiter,setDataRecruiter, dataLocalStorage, setDataLocalStorage]=useJob()
+
 
     console.log(idVacancy)
 
@@ -22,8 +48,9 @@ export const EditVacancy=()=>{
         try {
             const endpointURL=`${endpointsGral.vacancyURL}${idVacancy}`;
             const response= await axios.get(endpointURL)
-            setInfoDataVacancy(response.data);
-            
+            const skills=response.data['infoVacancy']
+            setInfoDataVacancy(skills);
+            setListSkills(skills['job_skills'])
         } catch (error) {
             console.log(error)
         }
@@ -32,47 +59,36 @@ export const EditVacancy=()=>{
         fetchForVacancy()
     },[])
 
-    console.log(infoDataVacancy)
-
+    console.log('data vancancy bd',infoDataVacancy)
+    useEffect(()=>{
+        if(infoDataVacancy){
+            setDataForm({
+                companyName:infoDataVacancy.companyName||'',
+                title:infoDataVacancy.title||'',
+                type:infoDataVacancy.type||'',
+                mode:infoDataVacancy.mode||'',
+                city:infoDataVacancy.city||'',
+                salary:infoDataVacancy.salary||'',
+                status:infoDataVacancy.status||'',
+                activities:infoDataVacancy.activities||'',
+                job_skills:infoDataVacancy.job_skills||'',
+            })
+        }
+    },[infoDataVacancy])
     // useEffect(()=>{
-    //     if(infoDataVacancy){
-    //         setInfoDataVacancy({
-    //             companyName:infoDataVacancy.companyName||'',
-    //             title:infoDataVacancy'',
-    //             type:infoDataVacancy'',
-    //             mode:infoDataVacancy'',
-    //             city:infoDataVacancy'',
-    //             salary:infoDataVacancy'',
-    //             status:infoDataVacancy'',
-    //             activities:infoDataVacancy'',
-    //             job_skills:['']
-    //         })
+    //     if(listSkills.length===0){
+    //       console.log('Actualizando :..')
+    //       if(infoDataVacancy?.job_skills?.length>0){
+    //         setListSkills([...infoDataVacancy.job_skills])
+    //       }
     //     }
-    // },[infoDataVacancy])
-
+    //   },[listSkills])
+    console.log('VALUES',dataForm)
     
     const formik= useFormik({
-        initialValues: {
-            companyName:'',
-            title:'',
-            type:'',
-            mode:'',
-            city:'',
-            salary:'',
-            status:'',
-            activities:'',
-            job_skills:['']
-        },
-        validationSchema:Yup.object({
-            companyName:Yup.string().required('Requerido'),
-            title:Yup.string().required('Requerido'),
-            type:Yup.string().required('Requerido'),
-            mode:Yup.string().required('Requerido'),
-            city:Yup.string().required('Requerido'),
-            salary:Yup.number().required('Requerido'),
-            status:Yup.string().required('Requerido'),
-            activities:Yup.string().required('Requerido'),
-        }),
+        initialValues:dataForm,
+        enableReinitialize:true,
+        validationSchema:validations,
         onSubmit:(values) => {
             setTimeout(() => {
                 const idsSkills =  listSkills.map(item=>item.skill);
@@ -80,23 +96,33 @@ export const EditVacancy=()=>{
                     ...values,
                     job_skills:[...idsSkills]
                 }
+                console.log('skills', completeForm)
+
+
+                axios.defaults.headers.common[
+                    "Authorization"
+                  ] = `Bearer: ${dataRecruiter.accessToken}`;
               axios
-                .post(endpointsGral.vacancyURL, completeForm) 
+                // .patch(endpointsGral.vacancyURL, completeForm) 
+                .patch(`${endpointsGral.vacancyURL}${idVacancy}`, values, {
+                    headers: {
+                      "Content-Type": "multipart/form-data",
+                    },
+                  })
                 .then(response => {
                   console.log(response);
-                //   navigate(`/Dashboard-Recruiter/vacancy`)
-
                 })
                 .catch(error => {
                   console.log(error.response);
                 });
-              console.log({ values});
-              alert(JSON.stringify(completeForm, null, 2));
+            //   console.log({ values});
+            //   alert(JSON.stringify(completeForm, null, 2));
             }, 400);
           }
       });
       return(
         <div className="container mt-2 p-5 w-100 " id="formGral">
+            
             <form onSubmit={formik.handleSubmit}>
                 <div className="row mb-4">
                     <div className="col">
@@ -222,7 +248,7 @@ export const EditVacancy=()=>{
                 </div>
                 </div>
 
-                {/* <Softskills setListSkills={setListSkills} /> */}
+                <EditSkill setListSkills={listSkills}/>
 
                 <div className="buttons_actions d-flex justify-content-end align-content-end">  
                     <button type="submit" className="buttons btn btn-info text-light">Guardar Vacante</button>               

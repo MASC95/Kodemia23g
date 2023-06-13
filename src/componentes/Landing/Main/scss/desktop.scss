@@ -1,497 +1,583 @@
 @keyframes grow {
   from {
     transform: scale(1);
-    
   }
-  to{
+  to {
     transform: scale(1.1);
     border: 5px inset #fff;
-    
-   background-color: #093040;
+
+    background-color: #093040;
     color: #fff;
-   
   }
 }
 
-  header{
+header {
+  .main-container {
+    @include desktop {
+      margin-bottom: 100px;
+      padding-top: 60px;
+      width: 100%;
+      height: 100%;
+      background-image: linear-gradient(-225deg, #fffeff 0%, #d7fffe 100%);
+    }
+    @include mobile {
+      background-image: linear-gradient(-225deg, #fffeff 0%, #d7fffe 100%);
+      margin-bottom: 70px;
+      padding-top: 60px;
+      width: 100%;
+      height: 100%;
+    }
+
+    .match {
     
-  
-    .main-container{
-      @include desktop{
-        margin-bottom: 100px;
-        padding-top: 60px;
-        width: 100%;
-        height: 100%;
-        background-image: linear-gradient(-225deg, #FFFEFF 0%, #D7FFFE 100%);
+      @include mobile {
+        @include montserrat;
+        font-size: 22px;
+        color: #093040;
+        padding: 10px 20px 0 20px;
+        text-align: center;
 
       }
+      @include tablet {
+        @include montserrat;
+        font-size: 20px;
+        text-align: center;
+        color: #093040;
+        margin-top: 50px
+      }
+      @include desktop {
+        @include montserrat;
+        align-items: center;
+        text-indent: 100px;
+        line-height: 48px;
+        color: #093040;
+      }
+    }
+    .text-mobile {
+      @include mobile {
+        @include text-center-mobile();
+        font-weight: bold;
+        color: #093040;
+        padding: 10px 20px 0 20px;
+      }
+      @include tablet {
+        @include text-center-mobile();
+        font-weight: bold;
+        color: #093040;
+      }
+    }
+    .first-card-container {
       @include mobile{
-        background-image: linear-gradient(-225deg, #FFFEFF 0%, #D7FFFE 100%);
-        margin-bottom: 70px;
-        padding-top: 60px;
         width: 100%;
         height: 100%;
       }
-     
-      .match{
-        @include mobile{
-          @include montserrat;
-          font-size: 25px;    
-          text-align: center;
-          color: #093040;
-          margin-top: 10px;
-          padding: 10px 20px 0 20px;
-        }
-        @include tablet{
-          @include montserrat;
-          font-size: 20px;
-          text-align: center;
-          color: #093040; 
-        }
-        @include desktop{
-          @include montserrat;
-          align-items: center;
-          text-indent: 100px;
-          line-height: 48px;
-          color: #093040;
-          
-        }
-        
-      }
-      .text-mobile{
-        @include mobile{
-          @include text-center-mobile();
-          font-weight: bold;
-          color: #093040; 
-          padding: 10px 20px 0 20px;
-        }
-        @include tablet{
-          @include text-center-mobile();
-          font-weight: bold;
-          color: #093040; 
-        }
-
-      }
-      .first-card-container{
+      @include tablet{
         width: 100%;
         height: 100%;
-        
-        .row-first-card{
-          .left-blank-space{
+      }
+      @include desktop{
+        width: 100%;
+        height: 100%;
 
-          }
-          .father-container-1{
-            margin-right: 150px;
-            width: 80%;
-            height: 100%;
-            
-            .child-container-1{
-              
-              @include mobile{
-                display: flex;
-                flex-wrap: wrap;
-                gap: 1rem;
-                margin-top: 1rem;
-              }
-              @include desktop{
+      }
+      
+      .row-first-card {
+        .left-blank-space {
+        }
+        .father-container-1 {
+         @include desktop{
+          margin-right: 150px;
+          width: 80%;
+          height: 100%;
+        }
+        @include mobile{
+          margin-right: 150px;
+          width: 80%;
+          height: 100%;
+        
+        }
+        @include tablet{
+          margin-right: 150px;
+          width: 80%;
+          height: 100%;
+        
+        }
+         
+          .child-container-1 {
+            @include mobile {
+              display: flex;
+              flex-wrap: wrap;
+              gap: 1rem;
+              flex-direction: column;
+              margin-top: 1rem;
+            }
+            @include tablet{
+              display: flex;
+              flex-wrap: wrap;
+              gap: 1rem;
+              flex-direction: column;
+              margin-top: 1rem;;
+            }
+            @include desktop {
+              width: 100%;
+              margin-left: 100px;
+            }
+            .card-container-1 {
+              @include mobile {
+                @include glassEffect();
                 width: 100%;
                 margin-left: 100px;
+                &:hover {
+                  animation: grow 0.3s forwards;
+                }
+                @include glow();
               }
-              .card-container-1{
-                @include mobile{
-                  @include glassEffect();
-                  width: 100%;
-                  margin-left: 100px;
-                  &:hover {
-                    animation:  grow 0.3s forwards;
-                  }
-                  @include glow();
-                  
+              @include tablet{
+                @include first-cards-containers;
+                @include glassEffect();
+                &:hover {
+                  animation: grow 0.3s forwards;
                 }
-                @include desktop{
-                  @include first-cards-containers;
-                  @include glassEffect();
-                  &:hover {
-                    animation:  grow 0.3s forwards;
-                  }
-                  
-                  @include glow
-                  
-                }
-                
-                .recruiter-img{
-                  @include mobile{
-                    
-                  }
-                }
-                .card-body-1{
-                  @include mobile{
-                    padding: 10px 5px 20px 5px;
-                  }
-                  .card-title-1{
-                  
-                     
-                    @include mobile{
-                      display: none;
-                    }
-                    @include desktop{
-                      @include montserrat();
-                      margin-top: 30px;  
-                    }
 
-                  }
-                  .card-text-1{
-                    
-                   
-                    @include mobile{
-                      display: none;
-                    }
-                    @include desktop{
-                      @include poppins();
-                      @include cardsSpacing();
-                    }
-                  }
+                @include glow;
+              }
+              @include desktop {
+                @include first-cards-containers;
+                @include glassEffect();
+                &:hover {
+                  animation: grow 0.3s forwards;
                 }
-                .access-recruiter{
-                  @include center-users;
-                  .link-rec{
-                    .access-btn-rec{
-                    
-                      
-                      @include mobile{
-                        padding: 10px 20px 10px 20px;
-                        width: 80%;
-                        margin-left: 20px;
-                        font-family: 'Poppins', sans-serif;
-                        font-size: 14px;
-                       
-                        
-                      }
-                      @include desktop{
-                        @include poppins();
-                        padding: 10px 20px 10px 20px;
-                      }
-                    }
-                  }
+
+                @include glow;
+              }
+
+              
+
+              .recruiter-img {
+                @include mobile {
                 }
               }
-              .space{
+              .card-body-1 {
+                @include mobile {
+                  padding: 10px 5px 20px 5px;
+                }
+                @include tablet{
+                  padding: 10px 5px 20px 5px;
+                }
                 @include desktop{
-                  width: 200px;
+                  padding: 10px 5px 20px 5px;
                 }
-                
-              }
-              .card-container-2{
-                @include desktop{
-                  @include first-cards-containers;
-                   @include glassEffect();
-                   &:hover {
-                    animation:  grow 0.3s forwards;
+                .card-title-1 {
+                  @include mobile {
+                    display: none;
                   }
-                  @include glow
+                  @include tablet{
+                    @include montserrat();
+                    margin-top: 30px;
+                  }
+                  @include desktop {
+                    @include montserrat();
+                    margin-top: 30px;
+                  }
+                 
                 }
-                @include mobile{
-                  @include glassEffect();
-                  width: 100%;
-                  margin-left: 100px;
-                  &:hover {
-                    animation:  grow 0.3s forwards;
+                .card-text-1 {
+                  @include mobile {
+                    display: none;
                   }
-                  
-                  @include glow();
-
-                }
-                .candidate-img{
-
-                }
-                .card-body-2{
-                  @include mobile{
-                    padding: 10px 5px 20px 5px;
-                   
+                  @include tablet{
+                    font-family: 'Poppins', sans-serif, Verdana, Geneva, Tahoma, sans-serif;
+                    font-weight: 200;
+                    @include cardsSpacing();
                   }
-                  .card-title-2{
-                    @include mobile{
-                      display: none;
-                    }
-                    @include desktop{
-                      @include montserrat();
-                      margin-top: 30px;  
-                    }
-                  }
-                  .card-text-2{
+                  @include desktop {
                     @include poppins();
                     @include cardsSpacing();
-                    @include mobile{
-                      display: none;
-                      }
                   }
+                 
                 }
-                .access-candidate{
+              }
+              .access-recruiter {
+                @include desktop{
                   @include center-users;
-                  .link-card{
-                    .access-btn-can{
-                      @include mobile{
-                        padding: 10px 20px 10px 20px;
-                        width: 80%;
-                        margin-left: 20px;
-                        font-family: 'Poppins', sans-serif;
-                        font-size: 14px;
-                      }
-                      @include desktop{
-                        @include poppins();
-                        padding: 10px 20px 10px 20px;
-                      }
-                      
+                }
+                @include tablet{
+                  @include center-users;
+                }
+                @include mobile{
+                  @include center-users;
+                }
+                
+                .link-rec {
+                  .access-btn-rec {
+                    @include mobile {
+                      padding: 10px 20px 10px 20px;
+                      width: 80%;
+                      margin-left: 20px;
+                      font-family: "Poppins", sans-serif;
+                      font-size: 14px;
+                    }
+                    @include tablet{
+                      @include poppins();
+                      padding: 10px 20px 10px 20px;
+                    }
+                    @include desktop {
+                      @include poppins();
+                      padding: 10px 20px 10px 20px;
                     }
                   }
                 }
               }
             }
-          }
-          .right-blank-space{
-
-          }
-        }
-      }
-      .second-cards-container{
-        margin-bottom: 40px;
-        @include mobile{
-          display: none;
-        }
-        .second-row{
-          .column{
-            .letras{
-             
-              .eleva{
-                @include mobile{
-                  @include montserrat();
-                  font-size: 14px; 
-                  line-height: 22px;
-                  color: #093040;
-                  text-indent: 1em;
-                }
-                @include desktop{
-                  @include montserrat();
-                  align-items: center;
-                  text-indent: 1em;
-                  color: #093040;
-                  margin-top: 100px;
-                  margin-bottom: 50px;
-                }
-                
-              }
-            }
-          }
-        }
-        .second-cards-row{
-          .second-cards-1{
-            .card-container-3{
-              @include glassEffect;
-              @include second-cards-containers;
-              margin-left: 300px;
-              .video{
-                width: 100%;
-              }
-              .video-card-body{
-                .video-card-title{
-                  padding-left: 10px;
-                  font-size: 14px;
-                  text-align: left;
-                  color: gray;
-                }
-                .unique-skills{
-                  @include poppins();
-                  padding: 25px 20px 25px 20px;
-                }
-                .record-video{
-                  @include poppins();
-                  padding: 10px; 
-                  text-align: end; 
-                  color: #EA2876FF;
-                }
-              }
-            }
-          }
-          .second-cards-2{
-            .card-container-4{
-              @include glassEffect;
-              @include second-cards-containers;
-
-              .skills{
-                
-              }
-              .card-body-skills{
-                .card-title-skills{
-                
-                  padding-left: 10px;
-                  font-size: 14px;
-                  text-align: left;
-                  color: gray
-                }
-                .card-text-skills{
-                  @include poppins();
-                  padding: 25px 20px 25px 20px;
-                }
-                .knowledge{
-                  @include poppins();
-                  padding: 10px; 
-                  text-align: end; 
-                  color: #EA2876FF;
-                }
-              }
-            }
-          }
-        }
-      }
-      .last-container{
-        .row-last-container{
-          .col-last-container{
-            .letters-1{
-              @include desktop{
-                @include letras;
-                display: flex;
-                align-items: flex-start;
-                margin-left: 20px;
-              }
-              
-              @include mobile{
-                margin-right: 2rem;
-                
-                
-              }
-              .last-text{
-                @include mobile{
-      
-                  font-size: 24px;
-                  line-height: 7vw;
-                  margin-bottom: 2rem;
-                  margin-top: 2rem;
-                  word-wrap: break-word;
-                  color: #093040;
-                  
-                }
-              }
-            }
-            .jobs{
-              @include desktop{
-                display: flex;
-                @include montserrat();
-                margin-left: 440px;
-                font-size: 16px;
-                color: #093040;
-              }
-             
-              
-              @include mobile{
-                @include montserrat();
-                text-align: center;
-                padding-right: 0;
-                margin-bottom: 2rem;
-                color: #093040;
-              }
-            }
-          }
-        }
-        .row-checkmarks{
-          @include glassEffect;
-          .col-checkmarks{
-            .profile-pic{
-              width: 400px;
-              height: 300px;
-              margin-top: 30px;
-            }
-          }
-          .down-cards{
-            .final-text{
-              @include montserrat();
-              font-size: 28px;
-              line-height: 42px;
-              display: flex;
-              justify-content: start;
-              color: black;
-              margin-top: 3rem;
-            @include mobile{
-            display: none;
-          }
-              strong{
-
-              }
-            }
-            .slogan{
-              @include poppins();
-              margin-top: 1rem;
+            .space {
               @include mobile{
                 display: none;
               }
-            }
-            .check-list{
-              margin-bottom: 10px;
-              .li-register{
-                color: black;
-                @include poppins();
-                @include mobile{
-                  line-height: 50px;
-                  padding: 0;
-                }
-                .icon-check{
-                  margin-right: 1rem;
-                  @include mobile{
-                  margin-right: 0.5rem;
+              @include tablet{
+                width: 150px;
               }
-                }
-              }
-              .li-register{
-                @include mobile{
-                  line-height: 50px;
-                  padding: 0;
-                }
-                .icon-check{
-                  @include mobile{
-                    margin-right: 0.5rem;
-                  }
-                }
-              }
-              .li-register{
-                @include mobile{
-                  line-height: 50px;
-                  padding: 0;
-                }
-                .icon-check{
-                  @include mobile{
-                    margin-right: 0.5rem;
-                  }
-                }
-              }
-              .li-register{
-                line-height: 40px;
-                @include mobile{
-                  line-height: 50px;
-                  padding: 0;
-                }
-                .icon-check{
-                  @include mobile{
-                    margin-right: 0.5rem;
-                  }
-                }
+              @include desktop {
+                width: 200px;
               }
             }
-            .last-create-account{
-              .btn-create-acc{
-                @include poppins();
-                margin: 20px;
-                padding: 10px 20px 10px 20px;
-               
+            .card-container-2 {
+              @include mobile {
+                @include glassEffect();
+                width: 100%;
+                margin-left: 100px;
+                &:hover {
+                  animation: grow 0.3s forwards;
+                }
+
+                @include glow();
+              }
+              @include tablet{
+                @include first-cards-containers;
+                @include glassEffect();
+                &:hover {
+                  animation: grow 0.3s forwards;
+                }
+                @include glow;
+              }
+              @include desktop {
+                @include first-cards-containers;
+                @include glassEffect();
+                &:hover {
+                  animation: grow 0.3s forwards;
+                }
+                @include glow;
+              }
+         
+              
+              .candidate-img {
+              }
+              .card-body-2 {
+                @include mobile {
+                  padding: 10px 5px 20px 5px;
+                }
+                @include tablet{
+                  padding: 10px 5px 20px 5px;
+                }
+                @include desktop{
+                  padding: 10px 5px 20px 5px;
+                }
+                .card-title-2 {
+                  @include mobile {
+                    display: none;
+                  }
+                  @include tablet{
+                    @include montserrat();
+                    margin-top: 30px;
+                  }
+                  @include desktop {
+                    @include montserrat();
+                    margin-top: 30px;
+                  }
+                }
+                .card-text-2 {
+                
+                  @include mobile {
+                    display: none;
+                  }
+                  @include tablet{
+                    @include poppins();
+                    @include cardsSpacing();
+
+                  }
+                  @include desktop{
+                    @include poppins();
+                    @include cardsSpacing();
+                  }
+                }
+              }
+              .access-candidate {
                 @include mobile{
-                  display: none;
-                 
-                 }
+                  @include center-users;
+                }
+                @include tablet{
+                  @include center-users;
+                }
+                @include desktop{
+                  @include center-users;
+                }
+                .link-card {
+                  .access-btn-can {
+                    @include mobile {
+                      padding: 10px 20px 10px 20px;
+                      width: 80%;
+                      margin-left: 20px;
+                      font-family: "Poppins", sans-serif;
+                      font-size: 14px;
+                    }
+                    @include tablet{
+                      @include poppins();
+                      padding: 10px 20px 10px 20px;
+                    }
+                    @include desktop {
+                      @include poppins();
+                      padding: 10px 20px 10px 20px;
+                    }
+                  }
+                }
               }
             }
           }
-          
+        }
+        .right-blank-space {
+        }
+      }
+    }
+    .second-cards-container {
+      
+      @include mobile {
+        display: none;
+      }
+      @include tablet{
+        display: none;
+      }
+      @include desktop{
+        margin-bottom: 40px;
+      }
+      .second-row {
+        .column {
+          .letras {
+            .eleva {
+              @include mobile {
+                @include montserrat();
+                font-size: 14px;
+                line-height: 22px;
+                color: #093040;
+                text-indent: 1em;
+              }
+              @include desktop {
+                @include montserrat();
+                align-items: center;
+                text-indent: 1em;
+                color: #093040;
+                margin-top: 100px;
+                margin-bottom: 50px;
+              }
+            }
+          }
+        }
+      }
+      .second-cards-row {
+        .second-cards-1 {
+          .card-container-3 {
+            @include glassEffect;
+            @include second-cards-containers;
+            margin-left: 300px;
+            .video {
+              width: 100%;
+            }
+            .video-card-body {
+              .video-card-title {
+                padding-left: 10px;
+                font-size: 14px;
+                text-align: left;
+                color: gray;
+              }
+              .unique-skills {
+                @include poppins();
+                padding: 25px 20px 25px 20px;
+              }
+              .record-video {
+                @include poppins();
+                padding: 10px;
+                text-align: end;
+                color: #ea2876ff;
+              }
+            }
+          }
+        }
+        .second-cards-2 {
+          .card-container-4 {
+            @include glassEffect;
+            @include second-cards-containers;
+
+            .skills {
+            }
+            .card-body-skills {
+              .card-title-skills {
+                padding-left: 10px;
+                font-size: 14px;
+                text-align: left;
+                color: gray;
+              }
+              .card-text-skills {
+                @include poppins();
+                padding: 25px 20px 25px 20px;
+              }
+              .knowledge {
+                @include poppins();
+                padding: 10px;
+                text-align: end;
+                color: #ea2876ff;
+              }
+            }
+          }
+        }
+      }
+    }
+    .last-container {
+      .row-last-container {
+        .col-last-container {
+          .letters-1 {
+            @include desktop {
+              @include letras;
+              display: flex;
+              align-items: flex-start;
+              margin-left: 20px;
+            }
+
+            @include mobile {
+              margin-right: 2rem;
+            }
+            .last-text {
+              @include mobile {
+                font-size: 24px;
+                line-height: 7vw;
+                margin-bottom: 2rem;
+                margin-top: 2rem;
+                word-wrap: break-word;
+                color: #093040;
+              }
+            }
+          }
+          .jobs {
+            @include desktop {
+              display: flex;
+              @include montserrat();
+              margin-left: 440px;
+              font-size: 16px;
+              color: #093040;
+            }
+
+            @include mobile {
+              @include montserrat();
+              text-align: center;
+              padding-right: 0;
+              margin-bottom: 2rem;
+              color: #093040;
+            }
+          }
+        }
+      }
+      .row-checkmarks {
+        @include glassEffect;
+        .col-checkmarks {
+          .profile-pic {
+            width: 400px;
+            height: 300px;
+            margin-top: 30px;
+          }
+        }
+        .down-cards {
+          .final-text {
+            @include montserrat();
+            font-size: 28px;
+            line-height: 42px;
+            display: flex;
+            justify-content: start;
+            color: black;
+            margin-top: 3rem;
+            @include mobile {
+              display: none;
+            }
+            strong {
+            }
+          }
+          .slogan {
+            @include poppins();
+            margin-top: 1rem;
+            @include mobile {
+              display: none;
+            }
+          }
+          .check-list {
+            margin-bottom: 10px;
+            .li-register {
+              color: black;
+              @include poppins();
+              @include mobile {
+                line-height: 50px;
+                padding: 0;
+              }
+              .icon-check {
+                margin-right: 1rem;
+                @include mobile {
+                  margin-right: 0.5rem;
+                }
+              }
+            }
+            .li-register {
+              @include mobile {
+                line-height: 50px;
+                padding: 0;
+              }
+              .icon-check {
+                @include mobile {
+                  margin-right: 0.5rem;
+                }
+              }
+            }
+            .li-register {
+              @include mobile {
+                line-height: 50px;
+                padding: 0;
+              }
+              .icon-check {
+                @include mobile {
+                  margin-right: 0.5rem;
+                }
+              }
+            }
+            .li-register {
+              line-height: 40px;
+              @include mobile {
+                line-height: 50px;
+                padding: 0;
+              }
+              .icon-check {
+                @include mobile {
+                  margin-right: 0.5rem;
+                }
+              }
+            }
+          }
+          .last-create-account {
+            .btn-create-acc {
+              @include poppins();
+              margin: 20px;
+              padding: 10px 20px 10px 20px;
+
+              @include mobile {
+                display: none;
+              }
+            }
+          }
         }
       }
     }
   }
-
- 
+}

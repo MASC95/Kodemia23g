@@ -27,7 +27,7 @@ const Mains = () => {
 
             <div className="father-container-1 col-lg-8">
               <div className="child-container-1 d-flex justify-content-center align-items-center">
-                <div className="card-container-1 card h-100 mb-4">
+                <div className="card-container-1 card  mb-4">
                   <img
                     src="https://media.licdn.com/dms/image/D4D08AQE0CXu4hnoe7g/croft-frontend-shrinkToFit1024/0/1646754728586?e=2147483647&v=beta&t=ADkOVwOwmP-4rCH4y0g2_OBFlsszl01TpQPhCgt5SSc"
                     className="card-img-top recruiter-img"

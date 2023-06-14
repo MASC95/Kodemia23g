@@ -45,7 +45,7 @@ export const ListMyAppVacancy=()=>{
                 
                 <tbody>
                 {my_vacancies && my_vacancies.map((item,index)=>(
-                    <tr>
+                    <tr key={index}>
                     <th scope="row">{index+1}</th>
                     
                     <td>{item.title}</td>

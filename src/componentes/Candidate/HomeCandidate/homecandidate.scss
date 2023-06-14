@@ -1,121 +1,35 @@
-$primary: #fdfbfb;
-$secondary: #ebedee;
-$color: #498BA6;
+@import "animate.css";
 
+.main-carousel {
 
-.background-image {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-image: url('https://images.unsplash.com/photo-1555421689-491a97ff2040?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');
-  background-repeat: no-repeat;
-  background-position: center center;
-  position: relative;
-  width: 1400px;
-  height: 1000px;
-  border-radius:3500px 0 3500px ;
-  background-position: center top 10px; 
-  .wrapper {
-    width: 1170px;
-    margin: auto;
+  width: 100%;
 
-    .logo {
-      width: 100px;
-      float: left;
-      height: auto;
-    }
+  .carousel-img {
+  
   }
 
-  .welcome-text {
-    opacity: 0.7;
-    .message {
-      text-align: center;
-      margin-bottom: 300px;
+  .carousel-main-img {
+    filter: saturate(0.9);
+  }
+
+  .carousel-text {
+    .welcome-text{
+      font-size: 100px;
+      text-transform: to-upper-case($string: "WELCOME TO JOBINDER");
+    }
+    .carousel-title {
+      font-family: "Poppins";
+      font-size: 50px;
+      font-weight: 50;
+      background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(234,249,249,0.67) 0.1%, rgba(239,249,251,0.63) 90.1% );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+
+    }
+
+    .carousel-content {
      
     }
-
-    &::after {
-      content: "";
-      animation: textChange 8s linear;
-    }
-
-    .jobinder-text {
-      
-      position: relative;
-      color:  $primary;
-      -webkit-text-stroke: 0.3vw $primary;
-      text-transform: uppercase; 
-      font-size: 5rem;
-      
+  }
   
-    &::before {
-      content: attr(data-text);
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 0%;
-      height: 100%;
-      color: $color;
-      -webkit-text-stroke: 0vw $secondary;
-      border-right: 2px solid $color;
-      overflow: hidden;
-      animation: animate 9s linear infinite;
-      
-    }
-    
-    }
-
-  }
-}
-
-@keyframes textChange {
-  0% {
-    content: "Welcome";
-    font-size: 18em;
-    background-color: #498BA6;
-    background-image: linear-gradient(45deg, #96c6d9, #498BA6);
-    background-size: 100%;
-    -webkit-background-clip: text;
-    -moz-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    -moz-text-fill-color: transparent;
-  }
-
-  30% {
-    content: "to";
-    background-color: #106973;
-    background-image: linear-gradient(45deg, #106973, #093040);
-    background-size: 100%;
-    -webkit-background-clip: text;
-    -moz-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    -moz-text-fill-color: transparent;
-  }
-
-  50% {
-    content: "Jobinder";
-   
-    background-color: #498BA6;
-    background-image: linear-gradient(45deg,#96c6d9, #498BA6);
-    background-size: 100%;
-    -webkit-background-clip: text;
-    -moz-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    -moz-text-fill-color: transparent;
-  }
-
-  100% {
-    
-    
-   
-  }
-}
-@keyframes animate{
-  0%,10%,100%{
-    width: 0;
-  }
-  70%,90%{
-    width: 100%;
-  }
-
 }

@@ -18,7 +18,7 @@ export const Dashboard=()=>{
             <SidebarRecruiter/>
             <div className='dashboard-app'>
                <Header/>
-                <div className='dashboard-content'>
+                <div className='dashboard-content w-100'>
                     <div className='container'>
                         <div className='card'>
                             <div className='card-header'>

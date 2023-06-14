@@ -6,17 +6,28 @@ import { useState } from 'react';
 import OffCanvasCandidate from '../OffCanvasCandidate/OffCanvasCandidate';
 import Button from 'react-bootstrap/Button';
 import { FaBars } from 'react-icons/fa';
-
+import logo from '../../../Recruiter/assets/img/logo.png'
 function NavbarCandidate() {
   const [showOffcanvas, setShowOffcanvas] = useState(false);
 
   const handleShowOffCanvas = ()=>{
     setShowOffcanvas(prev=>!prev);
   }
+
+  const logoStyle ={
+    display: 'flex',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    width: '150px',
+    height: '50px'
+  }
+  
   return (
     <Navbar bg="light" expand="lg">
       <Container>
-        <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+        <div style={logoStyle} >
+        <Navbar.Brand href="#home"> <img src={logo} alt="Logo" style={logoStyle}/></Navbar.Brand>
+        </div>
         {/* <Navbar.Toggle onClick={handleShowOffCanvas} aria-controls="basic-navbar-nav" /> */}
         <Button variant="primary" onClick={handleShowOffCanvas}>
         <FaBars/>

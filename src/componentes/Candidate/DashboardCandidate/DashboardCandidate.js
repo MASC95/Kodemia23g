@@ -3,7 +3,9 @@ import SidebarCandidate from "../SidebarCandidate/SidebarCandidate";
 import { FaBars } from "react-icons/fa";
 import imgProfile from "../../Recruiter/assets/img/perfil2.jpg";
 import { Outlet } from "react-router-dom";
-import useJob from '../../../hooks/useJob'
+import useJob from '../../../hooks/useJob';
+import './styleDashboard.css';
+import NavbarCandidate from "./NavbarCandidate/NavbarCandidate";
 
 export const DashboardCandidate = () => {
   const [isVisibleSidebar, setIsVisibleSidebar] = useState(false);
@@ -17,7 +19,8 @@ export const DashboardCandidate = () => {
 
   return (
     <>
-      <div
+    <NavbarCandidate/>
+      {/* <div
         style={isVisibleSidebar ? {} : { width: "100vw" }}
         className={isVisibleSidebar ? "dashboard" : ""}
       >
@@ -33,7 +36,7 @@ export const DashboardCandidate = () => {
                 : { width: "100vw", backgroundColor: "#E9EDF4" }
             }
             className={
-              isVisibleSidebar ? "dashboard-toolbar" : "w-100 navbar border"
+              isVisibleSidebar ? "dashboard-toolbar headerNavbarDashboard" : "w-100 navbar border headerNavbarDashboard"
             }
           >
             <div className="row profile-container w-100">
@@ -84,7 +87,7 @@ export const DashboardCandidate = () => {
                 />
               </div>
             </div>
-          </header>
+          </header> */}
           <div className="dashboard-content">
             <div className="container">
               <div className="card">
@@ -95,11 +98,15 @@ export const DashboardCandidate = () => {
                   {/* <p> Usuario Candidato </p> */}
                   <Outlet />
                 </div>
+
               </div>
+
             </div>
+
           </div>
-        </div>
-      </div>
+
+        {/* </div>
+      </div> */}
     </>
   );
 };

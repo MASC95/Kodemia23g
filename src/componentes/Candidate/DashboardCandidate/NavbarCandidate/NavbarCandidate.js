@@ -24,7 +24,7 @@ function NavbarCandidate() {
   
   
   return (
-    <Navbar  expand="lg">
+    <Navbar expand="lg">
       <Container>
         <div style={logoStyle} >
         <Navbar.Brand href="#home"> <img src={logo} alt="Logo" style={logoStyle}/></Navbar.Brand>

@@ -22,8 +22,9 @@ function NavbarCandidate() {
     height: '50px'
   }
   
+  
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar  expand="lg">
       <Container>
         <div style={logoStyle} >
         <Navbar.Brand href="#home"> <img src={logo} alt="Logo" style={logoStyle}/></Navbar.Brand>
@@ -34,6 +35,7 @@ function NavbarCandidate() {
       </Button>
         
         <OffCanvasCandidate showOffcanvas={showOffcanvas} handleShowOffcanvas={handleShowOffCanvas} />
+
         {/* <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="#home">Home</Nav.Link>
@@ -58,3 +60,4 @@ function NavbarCandidate() {
 }
 
 export default NavbarCandidate;
+

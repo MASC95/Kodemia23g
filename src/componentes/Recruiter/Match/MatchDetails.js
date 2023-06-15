@@ -27,11 +27,27 @@ export const MatchDetails=()=>{
     },[])
     const applicants= dataByUserCandidate.applicants
     const skills= dataByUserCandidate.job_skills
+
+    // let userSkills=[]
+    let jobSkilss=[]
+
+    // const retriveUser=applicants?.map((item)=>{
+    //     return item._id
+    // })
+    // userSkills.push(retriveUser)
+    // console.log('User', userSkills)
+
+    const retriveVacancy=skills?.map((item)=>{
+        return item._id
+    })
+    jobSkilss.push(retriveVacancy)
+    console.log('Job', jobSkilss)
+   
     
     
 
     
-    console.log('dataUser',dataByUserCandidate)
+    // console.log('dataUser',dataByUserCandidate)
     return(
         <>
         <div className='card-body'>
@@ -51,13 +67,40 @@ export const MatchDetails=()=>{
                 </thead>
                 <tbody>
                     {                        
-                        applicants&&applicants?.map((item,index)=>(
+                        applicants&&applicants?.map((item,index)=>{
+                           const retriveUser=item.user_skills
+                             console.log('User', retriveUser)
+                             console.log('job', retriveVacancy)
+                                const conteo = {};
+                                retriveUser.forEach(elemento => {
+                                if (conteo[elemento]) {
+                                    conteo[elemento]++;
+                                } else {
+                                    conteo[elemento] = 1;
+                                }
+                                });
 
+                                let suma=0
+                                const quanty=retriveVacancy.length
+                               retriveVacancy.forEach(elemento => {
+                                   const repeticiones = conteo[elemento] || 0;
+                                   console.log(`El elemento ${elemento} se repite ${repeticiones} veces.`);
+                                   if(repeticiones){
+                                       suma+=repeticiones
+                                   }
+                                });
+                                console.log(`La suma de los valores repetidos es: ${suma}`);
+                                console.log('suma', suma)
+                                const operador = ((suma*100)/quanty)
+                                console.log(quanty)
+                                console.log(operador)
+
+                            return(
                                 <tr key={myId()} className="text-center">
                                 <th scope="row">{index+1}</th>
                                 <td>{`${item.name} ${item.last_name}`}</td>
                                 <td>{item.bachelor}</td>
-                                <td>30 %</td>
+                                <td>{operador} %</td>
                                 <td className="options_buttons d-flex justify-content-center gap-3 text-center">
                                     <Link to={`/Dashboard-Recruiter/profile-candidato/?c=${item._id}`}>
                                     <button type="button" className="buttons btn btn-outline-info"><FaEye className="icon_eye1"/></button> 
@@ -66,7 +109,8 @@ export const MatchDetails=()=>{
                                     <button type="button" className="buttons btn btn-outline-secondary"><FaEyeSlash className="icon_eyeSlash1"/></button>
                                 </td>
                                 </tr> 
-                        ))
+                            )
+                       })
                     }
                 </tbody>
             </table>

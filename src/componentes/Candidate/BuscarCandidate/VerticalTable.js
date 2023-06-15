@@ -16,8 +16,8 @@ const VerticalTable = () => {
     color:'white',
   }
   return (
-<div class="d-block d-sm-none">
-  <table class="table">
+<div className="d-block d-sm-none">
+  <table className="table">
     <tbody>
       <tr>
         <th style={styleTable}>#</th>
@@ -41,7 +41,7 @@ const VerticalTable = () => {
       </tr>
       <tr>
         <th>$2500.00</th>
-        <td><button class="btn btn-primary">Abrir</button></td>
+        <td><button className="btn btn-primary">Abrir</button></td>
       </tr>
     </tbody>
   </table>

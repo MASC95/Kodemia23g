@@ -46,7 +46,7 @@ function OffCanvasCandidate({ showOffcanvas, handleShowOffcanvas }) {
           </Link>
         </Offcanvas.Header>
         <Offcanvas.Body className="canvas-body">
-          <div className="d-flex flex-column columns">
+          <div onClick={handleShowOffcanvas} className="d-flex flex-column columns">
             <Link to={`/dashboard-candidato/home`} className="link">
               <FaHome className="icons" />
               <span className="text">Home</span>

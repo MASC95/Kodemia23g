@@ -1,30 +1,44 @@
 @import './_mobile';
 
-@mixin center{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+@mixin center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.container_image{
-    width: 30%;
-    height: 20%;
-    .ppic-container{
-        @include center();
+
+.container_image {
+  width: 30%;
+  height: 20%;
+
+  .ppic-container {
+    @include center();
+
+    @include mobile {
+      margin-left: 150px;
+      width: 50%;
     }
-    .allowed-files{
-        @include center();
+  }
+
+  .allowed-files {
+    @include center();
+
+    @include mobile {
+      margin-bottom: 50px;
+      width: 50%;
+      margin-left: 150px;
     }
-    .buttons-actions{
-        width: 100%;
-        .button{
-            width: 65%;
-            height: 35%;
-            @include center();
-            
-        }
-    }
+  }
+
+  .buttons-actions {
+    width: 100%;
+
+    .button {
+      width: 65%;
+      height: 35%;
+
+      @include center();
 
     
+    }
+  }
 }
-
-

@@ -1,40 +1,44 @@
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import { useState } from 'react';
-import OffCanvasCandidate from '../OffCanvasCandidate/OffCanvasCandidate';
-import Button from 'react-bootstrap/Button';
-import { FaBars } from 'react-icons/fa';
-import logo from '../../../Recruiter/assets/img/logo.png'
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import { useState } from "react";
+import OffCanvasCandidate from "../OffCanvasCandidate/OffCanvasCandidate";
+import Button from "react-bootstrap/Button";
+import { FaBars } from "react-icons/fa";
+import logo from "../../../Recruiter/assets/img/logo.png";
+import "./navbarcandidate.scss";
 function NavbarCandidate() {
   const [showOffcanvas, setShowOffcanvas] = useState(false);
 
-  const handleShowOffCanvas = ()=>{
-    setShowOffcanvas(prev=>!prev);
-  }
+  const handleShowOffCanvas = () => {
+    setShowOffcanvas((prev) => !prev);
+  };
 
-  const logoStyle ={
-    display: 'flex',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    width: '150px',
-    height: '50px'
-  }
-  
-  
+ 
   return (
-    <Navbar expand="lg">
-      <Container>
-        <div style={logoStyle} >
-        <Navbar.Brand href="#home"> <img src={logo} alt="Logo" style={logoStyle}/></Navbar.Brand>
-        </div>
+    <Navbar expand="lg" className="nav">
+      <Container className="container">
+     
+        <Navbar.Brand href="#home" className="logo">
+          {" "}
+          <img
+            src={logo}
+            alt="Logo"
+            
+            className="logo-img"
+          />{" "}
+        </Navbar.Brand>
+      
         {/* <Navbar.Toggle onClick={handleShowOffCanvas} aria-controls="basic-navbar-nav" /> */}
-        <Button variant="primary" onClick={handleShowOffCanvas}>
-        <FaBars/>
-      </Button>
-        
-        <OffCanvasCandidate showOffcanvas={showOffcanvas} handleShowOffcanvas={handleShowOffCanvas} />
+        <Button variant="primary" onClick={handleShowOffCanvas} className="toggle">
+          <FaBars />
+        </Button>
+
+        <OffCanvasCandidate
+          showOffcanvas={showOffcanvas}
+          handleShowOffcanvas={handleShowOffCanvas}
+        />
 
         {/* <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
@@ -53,11 +57,9 @@ function NavbarCandidate() {
             </NavDropdown>
           </Nav>
         </Navbar.Collapse> */}
-
       </Container>
     </Navbar>
   );
 }
 
 export default NavbarCandidate;
-

@@ -12,10 +12,10 @@ const Modalstatus = () => {
     <Container className="container">
       <Row>
         <Col className="text-center d-flex align-content-center">
-          <Button className="button-edit d-flex mt-0" onClick={handleOpenModal}>
+          {/* <Button className="buttons btn btn-outline-info" onClick={handleOpenModal}>
           <FaEdit className="icon_edit"/>
-            {/* Click to open Modal */}
-          </Button>
+          </Button> */}
+          <button type="button" className="buttons btn btn-outline-success" onClick={handleOpenModal}><FaEdit className="icon_edit"/></button> 
         </Col>
       </Row>
 

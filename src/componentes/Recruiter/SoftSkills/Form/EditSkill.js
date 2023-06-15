@@ -118,9 +118,9 @@ export const EditSkill=({listSkills,setListSkills})=>{
                     </select>
                   </div>
                 </div>
-                  <div className="col buttons_actions gap-3">
+                  <div className="col-2 buttons_actions sm">
                     <button type="button" onClick={onFormSubmit} className="buttons btn btn-info text-light">
-                      <FaPlus> Agregar </FaPlus>
+                      <FaPlus> </FaPlus>
                     </button>
                   </div>
               </div>
@@ -140,7 +140,7 @@ export const EditSkill=({listSkills,setListSkills})=>{
                     <th scope="col">#</th>
                     <th scope="col">Skill</th>
                     <th scope="col">Nivel</th>
-                    <th scope="col">Opciones</th>
+                    <th className="text-center"scope="col">Opciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -156,8 +156,11 @@ export const EditSkill=({listSkills,setListSkills})=>{
                     <td>{index + 1}</td>
                     <td>{myDataSkill?.name}</td>
                     <td>{myDataSkill?.level}</td>
-                    <td>
-                    <FaTrash className="icon_trash"  onClick={() => handleDeleteSkill(index)}/>
+                    <td className="text-center">
+                    <button type="button" className="buttons btn btn-outline-danger">
+                        <FaTrash className="icon_trash" onClick={() => handleDeleteSkill(index)}/>  
+                    </button> 
+                    {/* <FaTrash className="icon_trash"  onClick={() => handleDeleteSkill(index)}/> */}
                     </td>
                   </tr>
                 );

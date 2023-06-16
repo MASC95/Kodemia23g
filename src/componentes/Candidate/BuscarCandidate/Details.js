@@ -31,9 +31,9 @@ export const Details = () => {
 
       //const entries = Object.entries(response.data);
       const datos = response?.data;
-      if(datos) setDataVacancy(datos);
+      if(datos) setDataVacancy(datos.infoVacancy);
       //setDataEntries(ent);
-      console.log('datos:..',datos);
+      console.log('datos (dataVacancie):..',datos);
 
      
     }
@@ -131,13 +131,13 @@ export const Details = () => {
 
   return (
     <>
-      <div className="row container_form_General">
+      <div className="row container_form_General text-dark">
         <div className="col-4 container_image">
           <img src={dataVacancy?.avatar_url? dataVacancy?.avatar_url: imgProfile} />
 
-          <div className="">
+          <div className="text-dark">
             <p className="text-justify"><b>Nombre de la empresa:</b> {dataVacancy?.companyName}</p>
-            <p className="text-justify"><FaAddressBook /> <b>Ciudad:</b> {dataVacancy?.city}</p>
+            <p className="text-justify text-black"><FaAddressBook /> <b>Ciudad:</b> {dataVacancy?.city}</p>
             <p className="text-justify"><FaBook /> <b>Modalidad:</b> {dataVacancy?.mode}</p>
             <p className="text-justify"><FaCalendarCheck /> <b>Tipo:</b> {dataVacancy?.type}</p>
             <p className="text-justify"><FaDollarSign /> <b>Salario:</b> {dataVacancy?.salary}</p>

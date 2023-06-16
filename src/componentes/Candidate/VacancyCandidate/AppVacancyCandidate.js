@@ -3,6 +3,7 @@ import {FaBars} from 'react-icons/fa'
 import SidebarCandidate from "../SidebarCandidate/SidebarCandidate";
 import imgProfile from '../../Recruiter/assets/img/perfil2.jpg'
 import ListMyAppVacancy from "./ListMyAppVacancy";
+//import ResponsiveTable from "./ResponsiveTable";
 
 
 //muestra mis vacantes
@@ -12,7 +13,8 @@ export const AppVacancyCandidate=()=>
         <>
           <div className='card-body'>
              <h1 className="text-start">Vacantes aplicadas</h1>
-             <ListMyAppVacancy/>
+             
+              <ListMyAppVacancy/> 
           </div>
             
         </>

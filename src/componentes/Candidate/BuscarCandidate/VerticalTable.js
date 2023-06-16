@@ -19,32 +19,31 @@ const VerticalTable = ({vacancies, my_vacancies, handleStopApplying, handleApply
 <div class="d-block d-sm-none">
 {vacancies &&
                   vacancies?.map((item, index) => (
-  <table class="table mb-5">
-    <tbody>
-      <tr>
+  <table className="mb-5">
+    <tbody className='' >
+      <tr className='tr-t py-5 px-5'>
         <th style={styleTable}>#</th>
         <td style={styleTable2}>Título</td>
       </tr>
-      <tr>
-        <th>1</th>
-        <td>Jr Fullstack</td>
+      <tr className='tr-2'>
+        <th className='py-4 px-4'>{index + 1}</th>
+        <td className='py-4 px-4'>{item.title}</td>
       </tr>
-      <tr>
-        <th style={styleTable}>Tipo</th>
-        <td style={styleTable2}>Modalidad</td>
+      <tr className='tr-2'>
+        <th style={styleTable} className='py-4 px-4' >Tipo</th>
+        <td style={styleTable2} className='py-4 px-4'>Modalidad</td>
       </tr>
-      <tr>
-        <th>Por proyecto</th>
-        <td>Remoto</td>
+      <tr className='tr-2'>
+        <th className='py-4 px-4'>{item.type}</th>
+        <td className='py-4 px-4'>{item.mode}</td>
       </tr>
-      <tr>
-        <th style={styleTable}>Salario</th>
-        <td style={styleTable2}>Opciones</td>
+      <tr className='tr-2'>
+        <th style={styleTable} className='py-4 px-4'>Salario</th>
+        <td style={styleTable2} className='py-4 px-4'>Opciones</td>
       </tr>
-      <tr>
-        <th>$2500.00</th>
-        <td>
-        {my_vacancies?.find(
+      <tr className='tr-2'>
+        <th className='py-4 px-4'>{item.salary}</th>
+        <td className='py-4 px-4'>{my_vacancies?.find(
                           (myVac) => myVac._id === item._id
                         ) === undefined ? (
                           <button
@@ -69,22 +68,19 @@ const VerticalTable = ({vacancies, my_vacancies, handleStopApplying, handleApply
                         ) : (
                           <button
                             type="submit"
-                            className="btn btn-outline-danger"
+                            className="btn btn-outline-danger "
                             id={item._id}
                             onClick={handleStopApplying}
                           >
                             Dejar de aplicar
                           </button>
-                        )}
-            <button className="btn btn-primary">Abrir</button>
-        </td>
+                        )}<button class="btn btn-primary m-2 ">Abrir</button></td>
       </tr>
     </tbody>
-  </table>
-        ))}
+  </table>))}
 </div>
 
   )
 }
 
-export default VerticalTable
+export default VerticalTable 

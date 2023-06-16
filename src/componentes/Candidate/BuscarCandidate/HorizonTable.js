@@ -1,30 +1,33 @@
 import React from 'react'
 import { Link } from "react-router-dom";
-
+import './scss/horizontal.scss'
 const HorizonTable = ({vacancies, my_vacancies, handleStopApplying, handleApply}) => {
+
+
+
   return (
-    <div className="d-none d-md-flex justify-content-center">
-            <table className="">
-              <thead className="text-dark bg-body-secondary">
-                <tr>
-                  <th className="col border-1 rounded">#</th>
-                  <th className="col border-1 rounded" style={{ backgroundColor: "#FAFAFB" }}>
+    <div className="d-none d-md-flex justify-content-center main-t">
+            <table className="table-1">
+              <thead className="thead-table">
+                <tr className='tr-t'>
+                  <th className="col ">#</th>
+                  <th className="col " >
                     TITULO
                   </th>
-                  <th className="col border-1 rounded">TIPO DE TRABAJO</th>
-                  <th className="col border" style={{ backgroundColor: "#FAFAFB" }}>
+                  <th className="col">TIPO DE TRABAJO</th>
+                  <th className="col " >
                     MODALIDAD
                   </th>
-                  <th className="col border">SALARIO</th>
-                  <th className="col border" style={{ backgroundColor: "#FAFAFB" }}>
-                    OPCION
+                  <th className="col">SALARIO</th>
+                  <th className="col">
+                    OPCIÓN
                   </th>
                 </tr>
               </thead>
               <tbody>
                 {vacancies &&
                   vacancies?.map((item, index) => (
-                    <tr key={item._id} className="text-dark">
+                    <tr key={item._id} className="text-dark tr-2">
                       <th scope="row">{index + 1}</th>
                       <td>{item.title}</td>
                       <td>{item.type}</td>

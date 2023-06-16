@@ -10,7 +10,7 @@ export const DetailVacancy=()=>{
     console.log(myParams);
     console.log("componente detail vacancy");
 
-  /*   {my_vacancies?.find(myVac=>myVac._id===item._id)===undefined?'Aplicar':'Aplicando'} */
+  
 
     return(
         <>

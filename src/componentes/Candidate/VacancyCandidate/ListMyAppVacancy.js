@@ -47,7 +47,7 @@ export const ListMyAppVacancy = () => {
                       <td className="mode-map">{item.mode}</td>
                       <td className="salary-map">{item.salary}</td>
                       <td className="options_buttons justify-content-center gap-3">
-                        <Badge bg="info" className="badge_state1">
+                        <Badge bg="info" className="badge_state1 p-2">
                           {item.status}
                         </Badge>
                       </td>

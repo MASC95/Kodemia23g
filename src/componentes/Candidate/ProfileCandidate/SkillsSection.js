@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { endpoints } from '../EndpointsCandidate/endpoints';
-
+import { myId } from '../../lib/myLib';
 //agregar al form de candidate
 
 const SkillsSection = () => {
@@ -99,7 +99,7 @@ const SkillsSection = () => {
         </thead>
         <tbody>
           {skills.map((skill, index) => (
-            <tr key={index}>
+            <tr key={myId()}>
               <td>{skill.skill}</td>
               <td>{skill.level}</td>
               <td>

@@ -4,10 +4,11 @@ import axios from 'axios';
 import Badge from "react-bootstrap/Badge";
 import useJob from '../../../hooks/useJob'
 import { endpoints } from '../EndpointsCandidate/endpoints';
+import { myId } from '../../lib/myLib';
 
 const VerticalListVacancy = () => {
     const [dataCandidate] = useJob();
-  const { my_vacancies } = dataCandidate;
+    const { my_vacancies } = dataCandidate;
 
   const cargarDatos = async () => {
     try {
@@ -18,10 +19,10 @@ const VerticalListVacancy = () => {
     }
   };
   return (
-    <div class="d-block d-md-none ">
+    <div className="d-block d-md-none ">
     {my_vacancies &&
         my_vacancies.map((item, index) => (
-    <table className='mb-5 table-v'>
+    <table key={myId()} className='mb-5 table-v'>
         <tbody className='body-table-v'>
          <tr className='vertical-table-title-1'>
             <th className='gato'>#</th>
@@ -50,9 +51,9 @@ const VerticalListVacancy = () => {
         <tr className="vertical-table-content-3">
          <td className='salario-1'>{item.salary}</td>   
          <td className="opciones-1 m-2">
-         <Badge bg="info" className="badge_state1">
+         <Badge bg="info" className="badge_state1 p-3">
                           {item.status}
-                        </Badge>
+          </Badge>
          </td>
         </tr>
 

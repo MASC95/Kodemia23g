@@ -183,7 +183,7 @@ return (
           <div className="row mb-4">
             <div className="col">
               <div className="form-outline bg-gray" >
-                <label className="form-label" for="form6Example1">
+                <label className="form-label" htmlFor="form6Example1">
                   Nombre
                 </label>
                 <Field
@@ -203,7 +203,7 @@ return (
             </div>
             <div className="col">
               <div className="form-outline">
-                <label className="form-label" for="form6Example1">
+                <label className="form-label" htmlFor="form6Example1">
                   Apellido
                 </label>
                 <Field
@@ -223,7 +223,7 @@ return (
           <div className="row mb-4">
             <div className="col">
               <div className="div-outline bg-gray">
-                <label className="form-label" for="form6Example1">
+                <label className="form-label" htmlFor="form6Example1">
                   Edad:
                 </label>
                 <Field
@@ -241,7 +241,7 @@ return (
             </div>
             <div className="col">
               <div className="form-outline">
-                <label className="form-label" for="form6Example1">
+                <label className="form-label" htmlFor="form6Example1">
                   Escolaridad
                 </label>
                 <select className={`form-control ${props.touched.bachelor && props.errors.bachelor ? 'border border-danger':'border border-secondary' }`}
@@ -261,7 +261,7 @@ return (
           <div className="row mb-4">
             <div className="col">
               <div className="form-outline bg-gray">
-                <label className="form-label" for="form6Example1">
+                <label className="form-label" htmlFor="form6Example1">
                   Email
                 </label>
                 <Field
@@ -279,7 +279,7 @@ return (
             </div>
             <div className="col">
               <div className="form-outline">
-                <label className="form-label" for="form6Example1">
+                <label className="form-label" htmlFor="form6Example1">
                   Reset Password
                 </label>
                 <Field
@@ -300,7 +300,7 @@ return (
           <div className="row mb-4">
             <div className="col">
               <div className="form-outline">
-                <label className="form-label" for="form6Example2">
+                <label className="form-label" htmlFor="form6Example2">
                   Experiencia
                 </label>
                 <Field

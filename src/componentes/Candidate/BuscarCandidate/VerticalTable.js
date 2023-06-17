@@ -1,5 +1,7 @@
 import React from "react";
 import './scss/verticaltable.scss'
+import { Link } from "react-router-dom";
+import { myId } from "../../lib/myLib";
 //tabla vertical
 //  #               |  Título
 //  1               |  Jr Fullstack
@@ -15,10 +17,10 @@ const VerticalTable = ({
 }) => {
   
   return (
-    <div class="d-block d-md-none ">
+    <div className="d-block d-md-none ">
       {vacancies &&
         vacancies?.map((item, index) => (
-          <table className="mb-5 table-v">
+          <table className="mb-5 table-v" key={myId()}>
             <tbody className="body-table-v">
               <tr className="vertical-table-title-1 ">
                 <th className="gato">#</th>
@@ -81,7 +83,9 @@ const VerticalTable = ({
                       Dejar de aplicar
                     </button>
                   )}
-                  <button class="btn btn-primary m-2 ">Abrir</button>
+                  <Link to={`/dashboard-candidato/detail-vacancy/${item._id}`}>
+                  <button type="submit" className="btn btn-info text-light m-2 ">Abrir</button>
+                  </Link>
                 </td>
               </tr>
             </tbody>

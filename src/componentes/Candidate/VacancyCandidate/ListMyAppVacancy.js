@@ -21,12 +21,12 @@ export const ListMyAppVacancy = () => {
 
   return (
     <>
-      <div className="container mt-2 p-5 w-100 " id="formGral">
+      <div className="d-none d-md-flex justify-content-center main-t " id="formGral">
         <div className="row softskills">
           <div className="col">
-            <table className="table">
-              <thead className="thead-dark bg-body-secondary thead-up">
-                <tr>
+            <table className="table-1">
+              <thead className="thead-table">
+                <tr className="tr-t">
                   <th scope="col number">#</th>
                   <th scope="col title">TITULO</th>
                   <th scope="col type-work">TIPO DE TRABAJO</th>
@@ -39,7 +39,7 @@ export const ListMyAppVacancy = () => {
               <tbody className="t-body">
                 {my_vacancies &&
                   my_vacancies.map((item, index) => (
-                    <tr key={index} className="main-tr">
+                    <tr key={index} className="text-dark tr-2">
                       <th scope="row" className="number">{index + 1}</th>
 
                       <td className="title-map">{item.title}</td>

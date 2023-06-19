@@ -17,7 +17,7 @@
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 
   .thead-table {
-    tr {
+    .tr-t {
       background-color: #498ba6;
       color: #ffff;
       text-align: left;
@@ -25,8 +25,8 @@
     }
   }
 
-  tbody {
-    tr {
+  .t-body-1 {
+    .tr-2 {
       border-bottom: 1px solid #dddd;
 
       &:nth-child(even) {

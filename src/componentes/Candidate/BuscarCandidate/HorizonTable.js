@@ -12,7 +12,7 @@ const HorizonTable = ({vacancies, my_vacancies, handleStopApplying, handleApply}
                 <tr className='tr-t'>
                   <th className="col ">#</th>
                   <th className="col " >
-                    TITULO
+                    TÍTULO
                   </th>
                   <th className="col">TIPO DE TRABAJO</th>
                   <th className="col " >
@@ -24,7 +24,7 @@ const HorizonTable = ({vacancies, my_vacancies, handleStopApplying, handleApply}
                   </th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className='t-body-1'>
                 {vacancies &&
                   vacancies?.map((item, index) => (
                     <tr key={item._id} className="text-dark tr-2">

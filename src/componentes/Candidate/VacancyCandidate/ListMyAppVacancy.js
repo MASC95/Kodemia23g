@@ -36,7 +36,7 @@ export const ListMyAppVacancy = () => {
                 </tr>
               </thead>
 
-              <tbody className="t-body">
+              <tbody className="t-body-1">
                 {my_vacancies &&
                   my_vacancies.map((item, index) => (
                     <tr key={index} className="text-dark tr-2">
@@ -47,7 +47,7 @@ export const ListMyAppVacancy = () => {
                       <td className="mode-map">{item.mode}</td>
                       <td className="salary-map">{item.salary}</td>
                       <td className="options_buttons justify-content-center gap-3">
-                        <Badge bg="info" className="badge_state1 p-2">
+                        <Badge bg="info" className="badge_state1 p-2 buscar">
                           {item.status}
                         </Badge>
                       </td>

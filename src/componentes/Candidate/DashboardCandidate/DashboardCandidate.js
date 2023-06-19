@@ -21,7 +21,7 @@ export const DashboardCandidate = () => {
     <>
     <NavbarCandidate/>
       
-          <Outlet />
+       <Outlet />
           
     </>
   );

@@ -2,13 +2,7 @@ import React from "react";
 import './scss/verticaltable.scss'
 import { Link } from "react-router-dom";
 import { myId } from "../../lib/myLib";
-//tabla vertical
-//  #               |  Título
-//  1               |  Jr Fullstack
-//  Tipo            |  Modalidad
-//  Por proyecto    |  Remoto
-//  Salario         |  Opciones
-// $2500.00         |  Botón
+
 const VerticalTable = ({
   vacancies,
   my_vacancies,

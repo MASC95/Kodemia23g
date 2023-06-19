@@ -10,7 +10,9 @@ import '../Alerts/Alert'
 import AlertComponent from '../Alerts/Alert';
 import useJob from '../../../hooks/useJob';
 import { endpointsGral } from "../../Recruiter/services/vacancy";
-//hacer un renderizado condicional en el botón aplicarñ
+import { FaUserCircle } from "react-icons/fa";
+import './scss/details.scss'
+
 export const Details = () => {
   const [dataVacancy, setDataVacancy] = useState("");
   const [dataEntries, setDataEntries] = useState([]);
@@ -133,14 +135,14 @@ export const Details = () => {
     <>
       <div className="row container_form_General text-dark">
         <div className="col-4 container_image">
-          <img src={dataVacancy?.avatar_url? dataVacancy?.avatar_url: imgProfile} />
-
-          <div className="text-dark">
-            <p className="text-justify"><b>Nombre de la empresa:</b> {dataVacancy?.companyName}</p>
-            <p className="text-justify text-black"><FaAddressBook /> <b>Ciudad:</b> {dataVacancy?.city}</p>
-            <p className="text-justify"><FaBook /> <b>Modalidad:</b> {dataVacancy?.mode}</p>
-            <p className="text-justify"><FaCalendarCheck /> <b>Tipo:</b> {dataVacancy?.type}</p>
-            <p className="text-justify"><FaDollarSign /> <b>Salario:</b> {dataVacancy?.salary}</p>
+          {/* <img src={dataVacancy?.avatar_url? dataVacancy?.avatar_url: imgProfile} alt="profile-pic" /> */}
+          <FaUserCircle className="profile-pic my-5"/>
+          <div className="text-dark text-container">
+            <p className=" text-info-general"><b>Nombre de la empresa:</b> {dataVacancy?.companyName}</p>
+            <p className=" text-info-general"><FaAddressBook className="icons-form-general"/> <b>Ciudad:</b> {dataVacancy?.city}</p>
+            <p className=" text-info-general"><FaBook className="icons-form-general"/> <b>Modalidad:</b> {dataVacancy?.mode}</p>
+            <p className=" text-info-general"><FaCalendarCheck className="icons-form-general" /> <b>Tipo:</b> {dataVacancy?.type}</p>
+            <p className=" text-info-general"><FaDollarSign className="icons-form-general"/> <b>Salario:</b> {dataVacancy?.salary}</p>
             {my_vacancies && my_vacancies?.find(myVac=>myVac._id===myParams.id)===undefined? (
             <button type="button" className="btn btn-outline-info buscar"  onClick={handleApply} disabled ={my_vacancies?.find(myVac=>myVac._id===myParams.id)===undefined?false:true} >
             {my_vacancies && my_vacancies?.find(myVac=>myVac._id===myParams.id)===undefined?'Aplicar':'Aplicando'}
@@ -162,17 +164,17 @@ export const Details = () => {
 
           </div>
         </div>
-        <div className="col">
-          <div className="row mb-4">
-            <h2 className="text-start">Información General</h2>
-            <div className="col">
-              <div className="form-outline bg-gray">
-                <p className="text-start"><b>Actividades</b></p>
-                <p className="text-start">{dataVacancy?.activities}</p>
+        <div className="col columna-actividades-grl">
+          <div className="row mb-4 fila-actividades-grl">
+            <h2 className="text-start texto-inf-grl">Información General</h2>
+            <div className="col columna-2-actividades-grl">
+              <div className="form-outline bg-gray container-actividades-grl">
+                <p className="text-start actividades-text"><b>Actividades</b></p>
+                <p className="text-start actividades-text-dinamico">{dataVacancy?.activities}</p>
               </div>
             </div>
           </div>
-          <h3>Soft Skills Solicitadas</h3>
+          <h3 className="softskills-actividades-grl">Soft Skills Solicitadas</h3>
           {dataVacancy?.job_skills&&<ViewTableSkills listSkils={dataVacancy?.job_skills} />}
          
         </div>

@@ -67,6 +67,16 @@ function OffCanvasCandidate({ showOffcanvas, handleShowOffcanvas }) {
                 type="submit"
                 onClick={logout}
                 className="button-logout link"
+                style={{
+                  border: 'none',
+                  background: 'none',
+                  color: 'inherit',
+                  padding: 0,
+                  font: 'inherit',
+                  cursor: 'pointer',
+                  outline: 'inherit',
+                  
+                }}
               >
                 <FaSignOutAlt className="icons" />
                 <span className="text">Log Out</span>

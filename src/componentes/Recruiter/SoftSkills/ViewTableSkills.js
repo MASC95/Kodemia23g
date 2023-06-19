@@ -56,13 +56,13 @@ export const ViewTableSkills=({listSkils})=>{
                 <tbody>
                     
                     {listSkils.map((item,i)=>{
-                        return(<>
+                        return(
                         <tr key={myId()}>
                          <th scope="row">{i+1}</th>
                          <td>{item.name}</td>
                          <td>{item.level}</td>
                          </tr>
-                        </>)
+                        )
                         
                     })}    
                    

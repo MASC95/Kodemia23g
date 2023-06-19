@@ -1,4 +1,4 @@
-import {Link,useNavigate} from 'react-router-dom'
+/* import {Link,useNavigate} from 'react-router-dom'
 import './style.scss'
 import logo from '../../Recruiter/assets/img/logo.png'
 import {FaUser,FaSuitcase, FaSearch, FaSignOutAlt, FaHome} from 'react-icons/fa';
@@ -21,7 +21,7 @@ export const SidebarCandidate=()=>{
             <Link to={'index.html'} className="logo_Jobinder">
                 <img src={logo} className="logo_Jobinder" alt=""/>
             </Link>
-            {/* <a className="logo_Jobinder" href="index.html"> </a> */}
+            
           </div>
         </header>
         <nav className="dashboard-nav-list">
@@ -52,4 +52,4 @@ export const SidebarCandidate=()=>{
         </>
     )
 }
-export default SidebarCandidate
+export default SidebarCandidate */

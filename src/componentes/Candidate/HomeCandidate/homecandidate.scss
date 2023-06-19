@@ -13,8 +13,14 @@
   }
 
   .carousel-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
     .welcome-text{
       font-size: 100px;
+      text-align: center;
       text-transform: to-upper-case($string: "WELCOME TO JOBINDER");
     }
     .carousel-title {

@@ -1,0 +1,263 @@
+@mixin mobile{
+    @media screen and (min-width: 0px) and (max-width: 600px) {
+      @content;
+    }
+  }
+
+@mixin tablet{
+  @media screen and (min-width: 601px) and (max-width: 1000px)  {
+    @content;
+  }
+}
+@mixin desktop{
+  @media screen and (min-width: 1001px)  {
+    @content;
+  }
+}
+@mixin centrarMobile{
+  font-family: 'Poppins', sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, Arial, Helvetica, sans-serif, 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%
+
+}
+.container_form_General{
+
+  @include mobile{
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    padding: 5%;
+    flex-wrap: wrap;
+    width: 100%;
+    
+  }
+  @include tablet{
+    width: 100%;
+    height: 100%;
+  }
+  @include desktop{
+   width: 100%;
+   height: 100%;
+  }
+
+  
+    
+    
+    .container_image{
+      @include mobile{
+        width: 30%;
+        @include centrarMobile;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      @include tablet{
+        width: 20%;
+      }
+      @include desktop{
+        width: 20%; 
+      }
+     
+           
+        .profile-pic{
+          @include mobile{
+            width: 150px;
+            height: 150px;
+            margin-bottom: 50px;
+            color: #498ba6;
+            opacity: 0.7;
+            
+            } 
+            @include tablet{
+              width: 150px;
+              height: 150px;
+              color: #498ba6;
+              opacity: 0.7;
+              margin-left: 100px;
+            }
+          @include desktop{
+            width: 150px;
+            height: 150px;
+            color: #498ba6;
+            opacity: 0.7;
+            margin-left: 55px;
+          }
+           
+            
+        }
+        .text-container{
+          @include tablet{
+            width: 100%;
+            height: 100%;
+          }
+            .text-info-general{
+              @include mobile{
+                @include centrarMobile();
+                font-size: 16px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 10px;
+               }
+               @include tablet{
+                font-family: 'Poppins', sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, Arial, Helvetica, sans-serif, 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                line-height: 1.9;
+                width: 100%;
+                font-size: 16px;
+                margin-left: 50px;
+                margin-bottom: 10px;
+                width: 400px;
+               }
+              @include desktop{
+                font-family: 'Poppins', sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, Arial, Helvetica, sans-serif, 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                line-height: 2.5;
+                margin-left: 15px;
+                font-size: 16px;
+              }
+             
+            
+             .icons-form-general{
+              @include desktop{
+                color: #498ba6;
+                margin-left: 20px;
+                margin-right: 15px;
+                width: 20px;
+                height: 20px;
+              }
+              @include tablet{
+                color: #498ba6;
+                margin-left: 20px;
+                margin-right: 15px;
+                width: 20px;
+                height: 20px;
+              }
+               
+                @include mobile{
+                 @include centrarMobile;
+                 width: 35px;
+                 height: 35px;
+                 color: #498ba6;
+                 
+              }
+             }
+            }
+            .buscar{
+             
+             @include desktop{
+              margin-left: 70px;
+             }
+             @include tablet(){
+              margin-left: 120px;
+              margin-top: 15px;
+             }
+             @include mobile{
+              margin-left: 60px;
+              margin-top: 10px;
+              margin-bottom: 10px;
+             }
+            }
+        } 
+    }
+    .columna-actividades-grl{
+      @include mobile{
+        width: 100%;
+        height: 100%;
+      }
+      @include tablet{
+        width: 100%;
+        height: 100%;
+      }
+        @include desktop{
+          width: 100%;
+          height: 100%;
+        }
+        
+        .fila-actividades-grl{
+          @include desktop{
+            width: 100%;
+            height: 100%;
+          }
+            
+            .texto-inf-grl{
+              @include mobile{
+                margin-top: 20px;
+                color: #498ba6;
+                display: flex;
+                justify-content: center;
+                font-size: 35px;
+                
+              }
+              @include tablet{
+                display: flex;
+                justify-content: center;
+                color: #498ba6;
+                font-family: 'Poppins', sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, Arial, Helvetica, sans-serif, 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                margin-top: 20px;
+              }
+              @include desktop{
+                display: flex;
+                justify-content: center;
+                color: #498ba6;
+                font-family: 'Poppins', sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, Arial, Helvetica, sans-serif, 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                margin-top: 55px;
+              }
+               
+               
+               
+            }
+            .columna-2-actividades-grl{
+                
+              .container-actividades-grl{
+                .actividades-text{
+                  @include mobile{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                   }
+                   @include tablet(){
+                   font-family: 'Poppins', sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, Arial, Helvetica, sans-serif, 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                   display: flex;
+                    justify-content: center;
+                    align-items: center;
+                   }
+                   @include desktop{
+                    
+                    font-family: 'Poppins', sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, Arial, Helvetica, sans-serif, 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                   }
+                   
+                   
+                }
+                .actividades-text-dinamico{
+                  @include mobile{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-family: 'Poppins', sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, Arial, Helvetica, sans-serif, 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                   }
+                   @include tablet{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-family: 'Poppins', sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, Arial, Helvetica, sans-serif, 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                   }
+                  @include desktop{
+                    font-family: 'Poppins', sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, Arial, Helvetica, sans-serif, 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                   }
+                   
+                }
+              }
+            }
+        }
+        .softskills-actividades-grl{
+          @include desktop{
+            margin-bottom: 20px;
+            font-family: 'Poppins', sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, Arial, Helvetica, sans-serif, 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+           }
+            
+        }
+    }
+}
+

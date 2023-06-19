@@ -5,6 +5,7 @@ import imgProfile from '../../Recruiter/assets/img/perfil2.jpg'
 import ListMyAppVacancy from "./ListMyAppVacancy";
 //import ResponsiveTable from "./ResponsiveTable";
 import VerticalListVacancy from './VerticalListVacancy'
+import Example from "./Example";
 
 //muestra mis vacantes
 export const AppVacancyCandidate=()=>
@@ -12,10 +13,11 @@ export const AppVacancyCandidate=()=>
     return(
         <>
           <div className='card-body'>
-             <h1 className="text-start">Vacantes aplicadas</h1>
+             <h1 className="text-center  my-5" style={{color:'#498ba6'}}>Vacantes aplicadas</h1>
              
               <ListMyAppVacancy/> 
               <VerticalListVacancy/>
+           {/*    <Example/> */}
           </div>
             
         </>

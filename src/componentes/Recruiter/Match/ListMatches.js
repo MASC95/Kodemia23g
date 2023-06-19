@@ -5,6 +5,8 @@ import Modalstatus from "../ModalStatus/Modalstatus";
 import './style.scss'
 import axios from "axios";
 import { endpointsGral } from "../services/vacancy";
+import { myId } from "../../lib/myLib";
+import { red } from "@material-ui/core/colors";
 export const ListMatches=()=>{
 
     const [dataInformation, setDataInformation]=useState([])
@@ -21,15 +23,16 @@ export const ListMatches=()=>{
     useEffect(()=>{
         queryMatch()
     },[])
+
     // console.log('dataInformation',dataInformation)
     return(
         <>
-           <div className="container mt-2 p-5 w-100 " id="formGral">
+           <div className="container mt-2 p-5 w-100 main-t" id="formGral">
         <div className="row softskills">
             <div className="col">
-            <table className="table">
-                <thead className="thead-dark bg-body-secondary">
-                    <tr>
+            <table className="table table-1">
+                <thead className="thead-table">
+                    <tr className="tr-t" style={{backgroundColor: '#498ba6' }}>
                     <th scope="col">#</th>
                     <th scope="col">TITULO</th>
                     <th scope="col">STATUS</th>
@@ -39,7 +42,7 @@ export const ListMatches=()=>{
                 </thead>
                 <tbody>
                     {dataInformation?.map((item,index)=>(         
-                    <tr>
+                    <tr className="tr-2" key={myId()}>
                     <th scope="row">{index+1}</th>
                     <td>{item.title}</td>
                     <td>{item.status}</td>

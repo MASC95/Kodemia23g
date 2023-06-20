@@ -1,10 +1,13 @@
 import {React,useEffect,useState} from "react";
 import {Link} from 'react-router-dom'
 import {FaEdit, FaEye} from 'react-icons/fa'
-import Modalstatus from "../ModalStatus/Modalstatus";
+import "./style.scss"
 import axios from "axios";
 import { endpointsGral } from "../services/vacancy";
 import { myId } from "../../lib/myLib";
+import Swal from 'sweetalert2'
+import Example from "./Example";
+
 
 export const Match=()=>{
     const [dataInformation, setDataInformation]=useState([])
@@ -21,6 +24,36 @@ export const Match=()=>{
     useEffect(()=>{
         queryMatch()
     },[])
+
+   const changeStatus=()=>{
+    Swal.fire({
+        title: 'Cambiar estado: ',
+        input: 'select',
+        inputOptions: {
+          '1': 'Cerrado',
+          '2': 'Abierto',
+        },
+        inputPlaceholder: 'required',
+        showCancelButton: true,
+        inputValidator: function (value) {
+          return new Promise(function (resolve, reject) {
+            if (value !== '') {
+              resolve();
+            } else {
+              resolve('You need to select a Tier');
+            }
+          });
+        }
+      }).then(function (result) {
+        if (result.isConfirmed) {
+          Swal.fire({
+            icon: 'success',
+            html: 'You selected: ' + result.value
+          });
+        }
+      });
+   
+   }
     return(
         <>
          <div className='card-body'>
@@ -40,24 +73,38 @@ export const Match=()=>{
                             </tr>
                         </thead>
                         <tbody>
-                            {dataInformation?.map((item,index)=>(         
-                            <tr className="text-center" key={myId()}>
-                            <th scope="row">{index+1}</th>
-                            <td>{item.title}</td>
-                            <td>{item.status}</td>
-                            <td>{item.applicants.length}</td>
-                            <td className="options_buttons d-flex text-center" >
-                            <Link to={`/Dashboard-Recruiter/details-match/?m=${item._id}`}>
-                            <button type="button" className="buttons btn btn-outline-info"><FaEye className="icon_eye1"/></button>
-                            </Link>
-                                <Modalstatus/>
-                            </td>
-                            </tr>
-                            ))}
+                            {dataInformation?.map((item,index)=>{
+                                const outDataDuplex=item.applicants?.filter((objeto, indice)=>{
+                                    var objetoString = JSON.stringify(objeto);
+                                    return (
+                                      item.applicants.findIndex((obj, i)=>{
+                                        return JSON.stringify(obj) === objetoString;
+                                      }) === indice
+                                    );
+                                  });
+                            
+                                return(
+                                <tr className="text-center" key={myId()}>
+                                <th scope="row">{index+1}</th>
+                                <td>{item.title}</td>
+                                <td>{item.status}</td>
+                                <td>{outDataDuplex.length}</td>
+                                <td className="options_buttons d-flex text-center" >
+                                <Link to={`/Dashboard-Recruiter/details-match/?m=${item._id}`}>
+                                <button type="button" className="buttons btn btn-outline-info"><FaEye className="icon_eye1"/></button>
+                                </Link>
+                                <button type="button" className="buttons btn btn-outline-success" onClick={changeStatus}><FaEdit className="icon_edit1"/></button> 
+
+                                    {/* <Modalstatus/> */}
+                                </td>
+                                </tr>
+                                )  
+                            })}
                         </tbody>
                     </table>
                     </div>
                 </div>
+      <Example/>
       
         {/* </div>   */}
          </div>           

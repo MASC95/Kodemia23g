@@ -44,13 +44,8 @@ const Modalstatus = () => {
             </Dropdown.Toggle>
 
             <Dropdown.Menu className="dropdown-menu">
-              <Dropdown.Item href="#/action-1" className='drop-items' >Aplicando</Dropdown.Item>
-              <Dropdown.Item href="#/action-2" className='drop-items'>Match</Dropdown.Item>
-              <Dropdown.Item href="#/action-3" className='drop-items'>
-                Aceptado 1era Fase
-              </Dropdown.Item>
-              <Dropdown.Item href="#/action-3" className='drop-items'>Aceptado 2da Fase</Dropdown.Item>
-              <Dropdown.Item href="#/action-3" className='drop-items'>Contratado</Dropdown.Item>
+              <Dropdown.Item href="#/action-1" className='drop-items' >Iniciado</Dropdown.Item>
+              <Dropdown.Item href="#/action-2" className='drop-items'>Cerrado</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
         </Modal.Body>

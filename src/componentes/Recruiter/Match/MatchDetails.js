@@ -28,26 +28,23 @@ export const MatchDetails=()=>{
     const applicants= dataByUserCandidate.applicants
     const skills= dataByUserCandidate.job_skills
 
+    const onlyApplicans = applicants?.filter((objeto, indice)=>{
+        var objetoString = JSON.stringify(objeto);
+        return (
+          applicants.findIndex((obj, i)=>{
+            return JSON.stringify(obj) === objetoString;
+          }) === indice
+        );
+      });
+
     // let userSkills=[]
     let jobSkilss=[]
-
-    // const retriveUser=applicants?.map((item)=>{
-    //     return item._id
-    // })
-    // userSkills.push(retriveUser)
-    // console.log('User', userSkills)
-
     const retriveVacancy=skills?.map((item)=>{
         return item._id
     })
     jobSkilss.push(retriveVacancy)
     console.log('Job', jobSkilss)
-   
-    
-    
 
-    
-    // console.log('dataUser',dataByUserCandidate)
     return(
         <>
         <div className='card-body'>
@@ -66,11 +63,11 @@ export const MatchDetails=()=>{
                     </tr>
                 </thead>
                 <tbody>
-                    {                        
-                        applicants&&applicants?.map((item,index)=>{
+                    {        
+                        onlyApplicans&&onlyApplicans?.map((item,index)=>{
                            const retriveUser=item.user_skills
-                             console.log('User', retriveUser)
-                             console.log('job', retriveVacancy)
+                            //  console.log('User', retriveUser)
+                            //  console.log('job', retriveVacancy)
                                 const conteo = {};
                                 retriveUser.forEach(elemento => {
                                 if (conteo[elemento]) {
@@ -79,22 +76,24 @@ export const MatchDetails=()=>{
                                     conteo[elemento] = 1;
                                 }
                                 });
-
                                 let suma=0
                                 const quanty=retriveVacancy.length
                                retriveVacancy.forEach(elemento => {
                                    const repeticiones = conteo[elemento] || 0;
-                                   console.log(`El elemento ${elemento} se repite ${repeticiones} veces.`);
+                                //    console.log(`El elemento ${elemento} se repite ${repeticiones} veces.`);
                                    if(repeticiones){
                                        suma+=repeticiones
                                    }
                                 });
-                                console.log(`La suma de los valores repetidos es: ${suma}`);
-                                console.log('suma', suma)
-                                const operador = ((suma*100)/quanty)
-                                console.log(quanty)
-                                console.log(operador)
+                                // console.log(`La suma de los valores repetidos es: ${suma}`);
+                                // console.log('suma', suma)
+                                const operador = Math.floor((suma*100)/quanty)
+                                // console.log(quanty)
+                                // console.log(operador)
+                                
 
+
+                            
                             return(
                                 <tr key={myId()} className="text-center">
                                 <th scope="row">{index+1}</th>
@@ -121,10 +120,10 @@ export const MatchDetails=()=>{
         </div>
         <div className="d-flex w-100 justify-content-end p-4">
             <Link to={`/Dashboard-Recruiter/panel-phases?v=${idVacancy}`}>
+              <button type="button" className="btn btn-info text-light">Panel de Reclutamiento</button>
             </Link>
         </div>
                         
-              <button type="button" className="btn btn-info text-light">Panel de Reclutamiento</button>
         </>
     )
 }

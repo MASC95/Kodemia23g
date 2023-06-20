@@ -6,11 +6,17 @@ import { endpointsGral } from '../services/vacancy';
 import {FaEdit, FaEye} from 'react-icons/fa'
 import Swal from 'sweetalert2'
 import "react-data-table-component-extensions/dist/index.css";
+import { myId } from '../../lib/myLib';
+import { Link } from 'react-router-dom';
 
 // import 'datatables.net-responsive';
 
 const Example = () => {
-  const [dataInformation, setDataInformation]=useState([])
+  const [dataInformation, setDataInformation]=useState([]);
+  const [dataShow, setDataShow] = useState([]);
+
+
+
   const queryMatch= async()=>{
       try {
           const response= await axios.get(endpointsGral.vacancyURL)
@@ -24,6 +30,33 @@ const Example = () => {
   useEffect(()=>{
       queryMatch()
   },[])
+useEffect(()=>{
+  //console.log('dataInformation:..',dataInformation);
+  if(dataInformation&&(dataShow.length===0)){
+    const tempArray=dataInformation?.map((item, index) => {
+      const outDataDuplex=item.applicants?.filter((objeto, indice)=>{
+        const objetoString = JSON.stringify(objeto);
+        return (
+          item.applicants.findIndex((obj, i)=>{
+            return JSON.stringify(obj) === objetoString;
+          }) === indice
+        );
+      });
+      return(
+        {
+          qty: index+1,
+          title: item.title,
+          status: item.status,
+          candidato: outDataDuplex?.length||''
+        }
+      )
+    })
+    setDataShow([...tempArray])
+
+  }
+  if(dataShow.length>0) console.log('dataShow:..',dataShow);
+},[dataInformation,dataShow])
+
   const handleClick = (title) => {
     console.log(`You clicked me! ${title}`);
   };
@@ -57,62 +90,47 @@ const Example = () => {
    
    }
 
-  const columns = [
+   const columns = [
     {
       name: "#",
-      selector: "qty",
+      selector: (row,i) => i + 1,
       sortable: true
     },
     {
       name: "TITULO",
-      selector: "title",
+      selector: (row, i) => row.title,
       sortable: true
     },
     {
       name: "STATUS",
-      selector: "status",
+      selector: (row, i) => row.status,
       sortable: true
     },
     {
       name: "CANDIDATO",
-      selector: "candidato",
+      selector: (row, i) => row.candidato,
       sortable: true,
     },
     {
       name: "OPCIONES",
       sortable: false,
-      selector: "null",
+      selector: (row, i) => row.null,
       cell: (d) => [
-        <button type="button" className="buttons btn btn-outline-info"><FaEye  className="icon_eye1"/></button>,
+        <Link to={`/Dashboard-Recruiter/details-match/?m=`}>
+        <button typze="button" className="buttons btn btn-outline-info"><FaEye  className="icon_eye1"/></button>
+        </Link>,
         <button type="button" className="buttons btn btn-outline-success" ><FaEdit className="icon_edit1"/></button> 
-      ]
-    }
-  ];
+  ]
+ }
+];
 
 
-  const data = 
-    dataInformation?.map((item, index) => {
-      const outDataDuplex=item.applicants?.filter((objeto, indice)=>{
-        var objetoString = JSON.stringify(objeto);
-        return (
-          item.applicants.findIndex((obj, i)=>{
-            return JSON.stringify(obj) === objetoString;
-          }) === indice
-        );
-      });
-      return(
-        {
-          qty: index+1,
-          title: item.title,
-          status: item.status,
-          candidato: outDataDuplex.length
-        }
-      )
-    })
+  const data = dataShow;
+    
   
 
 
-  console.log(data)
+  //console.log('data:..',data)
 
   const tableData = {
     columns,
@@ -121,8 +139,9 @@ const Example = () => {
   };
   return(
     <div className="main">
-      <DataTableExtensions {...tableData}>
+      <DataTableExtensions  {...tableData}>
         <DataTable
+        key={myId()}
           columns={columns}
           data={data}
           noHeader

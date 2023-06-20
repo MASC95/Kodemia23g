@@ -5,7 +5,8 @@ import axios from 'axios';
 import { endpointsGral } from '../services/vacancy';
 import {FaEdit, FaEye} from 'react-icons/fa'
 import Swal from 'sweetalert2'
-import "react-data-table-component-extensions/dist/index.css";
+import "react-data-table-component-extensions/dist/index";
+import { Link } from 'react-router-dom';
 
 // import 'datatables.net-responsive';
 
@@ -60,30 +61,32 @@ const Example = () => {
   const columns = [
     {
       name: "#",
-      selector: "qty",
+      selector: (row,i) => i + 1,
       sortable: true
     },
     {
       name: "TITULO",
-      selector: "title",
+      selector: (row, i) => row.title,
       sortable: true
     },
     {
       name: "STATUS",
-      selector: "status",
+      selector: (row, i) => row.status,
       sortable: true
     },
     {
       name: "CANDIDATO",
-      selector: "candidato",
+      selector: (row, i) => row.candidato,
       sortable: true,
     },
     {
       name: "OPCIONES",
       sortable: false,
-      selector: "null",
+      selector: (row, i) => row.null,
       cell: (d) => [
-        <button type="button" className="buttons btn btn-outline-info"><FaEye  className="icon_eye1"/></button>,
+        <Link to={`/Dashboard-Recruiter/details-match/?m=`}>
+        <button typze="button" className="buttons btn btn-outline-info"><FaEye  className="icon_eye1"/></button>
+        </Link>,
         <button type="button" className="buttons btn btn-outline-success" ><FaEdit className="icon_edit1"/></button> 
       ]
     }
@@ -93,7 +96,7 @@ const Example = () => {
   const data = 
     dataInformation?.map((item, index) => {
       const outDataDuplex=item.applicants?.filter((objeto, indice)=>{
-        var objetoString = JSON.stringify(objeto);
+        const objetoString = JSON.stringify(objeto);
         return (
           item.applicants.findIndex((obj, i)=>{
             return JSON.stringify(obj) === objetoString;
@@ -139,86 +142,4 @@ const Example = () => {
 };
 
 export default Example;
-
-// import {React, useEffect, useState} from 'react';
-// import axios from 'axios';
-// import { endpointsGral } from '../services/vacancy';
-// const Example = () => {
-
-//     const [dataInformation, setDataInformation]=useState([])
-//     const queryMatch= async()=>{
-//         try {
-//             const response= await axios.get(endpointsGral.vacancyURL)
-//             const datas=response.data['item']
-//             setDataInformation(datas['docs'])
-//             console.log(response.data)
-//         } catch (error) {
-//             console.log(error) 
-//         }
-//     }
-//     useEffect(()=>{
-//         queryMatch()
-//     },[])
-
-
-//   function testClickEvent(param) {
-//     alert('Row Click Event');
-//   }
-  
-//   const data = () => {
-//     const mappedRows = dataInformation.map((item, index) => ({
-//         qty: index+1,
-//         titulo: item.title,
-//         status: item.status,
-//         candidatos: item.applicants.length,
-//         clickEvent: () => testClickEvent(1),
-//       }));
-//     return {
-//       columns: [
-//         {
-//             label: '#',
-//             field: 'qty',
-//             width: 100,
-//           },
-//         {
-//           label: 'titulo',
-//           field: 'titulo',
-//           width: 100,
-//         },
-//         {
-//           label: 'Estado',
-//           field: 'status',
-//           width: 100,
-//         },
-//         {
-//             label: 'Candidatos',
-//             field: 'candidatos',
-//             width: 100,
-//           },
-       
-       
-//       ],
-//       rows: mappedRows,
-//     };
-//   };
-//   return (
-//     <CDBContainer>
-//       <CDBCard>
-//         <CDBCardBody>
-//           <CDBDataTable
-//             bordered
-//             hover
-//             entriesOptions={[5, 20, 25]}
-//             entries={5}
-//             pagesAmount={4}
-//             data={data()}
-//             materialSearch={true}
-//           />
-//         </CDBCardBody>
-//       </CDBCard>
-//     </CDBContainer>
-//   );
-// };
-// export default Example;
-
 

@@ -150,7 +150,7 @@ export const Softskills = ({ setListSkills, isCandidate, skillsCandidate }) => {
                 <th scope="col">Opciones</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="t-body-1">
               {skillTemp.map((skill, index) => {
                 let myDataSkill = null;
                 if (!isCandidate) {

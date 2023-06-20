@@ -153,6 +153,7 @@ export const Details = () => {
               className="btn btn-outline-danger"
               id={myParams.id}
               onClick={handleStopApplying}
+              style={{marginLeft: '50px'}}
             >
               Dejar de aplicar
             </button>

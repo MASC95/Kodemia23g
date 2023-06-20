@@ -6,7 +6,7 @@ import './style.scss'
 import axios from "axios";
 import { endpointsGral } from "../services/vacancy";
 import { myId } from "../../lib/myLib";
-import { red } from "@material-ui/core/colors";
+//import { red } from "@material-ui/core/colors";
 export const ListMatches=()=>{
 
     const [dataInformation, setDataInformation]=useState([])

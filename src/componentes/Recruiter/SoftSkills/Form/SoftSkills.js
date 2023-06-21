@@ -164,8 +164,11 @@ export const Softskills = ({ setListSkills, isCandidate, skillsCandidate }) => {
                     <td>{index + 1}</td>
                     <td>{myDataSkill?.name}</td>
                     <td>{myDataSkill?.level}</td>
-                    <td>
-                      <FaTrash className="icon_trash" onClick={() => handleDeleteSkill(index)} />
+                    <td className="text-center">
+                    <button type="button" className="buttons btn btn-outline-danger">
+                       <FaTrash className="icon_trash" onClick={() => handleDeleteSkill(index)}/>  
+                    </button> 
+                    {/* <FaTrash className="icon_trash"  onClick={() => handleDeleteSkill(index)}/> */}
                     </td>
                   </tr>
                 );

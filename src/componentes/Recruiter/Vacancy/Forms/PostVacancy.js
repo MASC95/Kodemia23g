@@ -4,9 +4,12 @@ import { endpointsGral } from "../../services/vacancy";
 import Softskills from "../../SoftSkills/Form/SoftSkills";
 import { useFormik } from "formik";
 import * as Yup from 'yup'
+import swal from "sweetalert";
+import { useNavigate } from "react-router-dom";
 
 export const PostVacancy=()=>{
     const [listSkills, setListSkills] = useState([]);
+    const navigate=useNavigate()
     
     const formik= useFormik({
         initialValues: {
@@ -40,14 +43,21 @@ export const PostVacancy=()=>{
                 .post(endpointsGral.vacancyURL, completeForm) 
                 .then(response => {
                   console.log(response);
-                //   navigate(`/Dashboard-Recruiter/vacancy`)
+                  swal({
+                    title: "Vacante creada!!",
+                    icon: "success",
+                    button: "ok!",
+                });
+                  navigate(`/Dashboard-Recruiter/vacancy`)
 
                 })
                 .catch(error => {
                   console.log(error.response);
                 });
-              console.log({ values});
-              alert(JSON.stringify(completeForm, null, 2));
+
+            
+            //   console.log({ values});
+            //   alert(JSON.stringify(completeForm, null, 2));
             }, 400);
             
           }
@@ -60,7 +70,7 @@ export const PostVacancy=()=>{
                 <div className="row mb-4">
                     <div className="col">
                     <div className="form-outline bg-gray">
-                        <label className="form-label" for="form6Example1">Nombre de la Empresa</label>
+                        <label className="form-label" htmlFor="form6Example1">Nombre de la Empresa</label>
                         <input type="text" 
                                id="comapnyName" 
                                name="companyName"
@@ -74,7 +84,7 @@ export const PostVacancy=()=>{
                     </div>
                     <div className="col">
                     <div className="form-outline bg-gray">
-                        <label className="form-label" for="form6Example1">Título</label>
+                        <label className="form-label" htmlFor="form6Example1">Título</label>
                         <input type="text" 
                                id="title" 
                                name="title"
@@ -88,7 +98,7 @@ export const PostVacancy=()=>{
                     </div>
                     <div className="col">
                     <div className="form-outline">
-                        <label className="form-label" for="form6Example1">Tipo de trabajo</label>
+                        <label className="form-label" htmlFor="form6Example1">Tipo de trabajo</label>
                         <select 
                                 className={`form-control ${formik.touched.type && formik.errors.type ? 'border border-danger':'border border-secondary' }`}
                                 name="type"
@@ -106,7 +116,7 @@ export const PostVacancy=()=>{
                 <div className="row mb-4">
                 <div className="col">
                         <div className="form-outline">
-                            <label className="form-label" for="form6Example1">Modalidad</label>
+                            <label className="form-label" htmlFor="form6Example1">Modalidad</label>
                             <select 
                                     className={`form-control ${formik.touched.mode && formik.errors.mode ? 'border border-danger':'border border-secondary'}`}
                                     id="mode"
@@ -123,7 +133,7 @@ export const PostVacancy=()=>{
                     </div>
                     <div className="col">
                     <div className="form-outline">
-                        <label className="form-label" for="form6Example1">Ciudad</label>
+                        <label className="form-label" htmlFor="form6Example1">Ciudad</label>
                         <input type="text"
                                 id="city" 
                                 name="city"
@@ -137,7 +147,7 @@ export const PostVacancy=()=>{
                     </div>
                     <div className="col">
                     <div className="form-outline">
-                        <label className="form-label" for="form6Example2">Sueldo</label>
+                        <label className="form-label" htmlFor="form6Example2">Sueldo</label>
                         <input type="text" 
                                id="salary" 
                                name="salary"
@@ -152,7 +162,7 @@ export const PostVacancy=()=>{
                 <div className="row mb-4">
                 <div className="col">
                     <div className="form-outline">
-                        <label className="form-label" for="form6Example2">Status</label>
+                        <label className="form-label" htmlFor="form6Example2">Status</label>
                         <select 
                                     className={`form-control ${formik.touched.status && formik.errors.status ? 'border border-danger':'border border-secondary'}`}
                                     id="status"
@@ -168,7 +178,7 @@ export const PostVacancy=()=>{
                 </div>
                 <div className="col">
                     <div className="form-outline">
-                        <label className="form-label" for="form6Example1">Actividades</label>
+                        <label className="form-label" htmlFor="form6Example1">Actividades</label>
                         <input type="text" 
                                id="actividades" 
                                name="activities"

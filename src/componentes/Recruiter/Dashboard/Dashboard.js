@@ -1,5 +1,6 @@
 import {React, useEffect} from "react";
-import SidebarRecruiter from "../SidebarRecruiter/SidebarRecruiter";
+// import SidebarRecruiter from "../SidebarRecruiter/SidebarRecruiter";
+import NavbarRecruiter from "../SidebarRecruiter/NavbarRecruiter";
 import Header from "./Header";
 import { Outlet } from "react-router-dom";
 import useJob from "../../../hooks/useJob";
@@ -14,23 +15,8 @@ export const Dashboard=()=>{
 
     return(
         <>
-          <div className='dashboard'>
-            <SidebarRecruiter/>
-            <div className='dashboard-app'>
-               <Header/>
-                <div className='dashboard-content w-100'>
-                    <div className='container'>
-                        <div className='card'>
-                            <div className='card-header'>
-                            </div>
-                            <div className='card-body'>
-                                <Outlet/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-          </div>
+            <NavbarRecruiter/>
+            <Outlet/>
         </>
     )
 }

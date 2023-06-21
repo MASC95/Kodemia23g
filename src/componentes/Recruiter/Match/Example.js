@@ -30,34 +30,60 @@ const Example = () => {
   useEffect(()=>{
       queryMatch()
   },[])
-useEffect(()=>{
-  //console.log('dataInformation:..',dataInformation);
-  if(dataInformation&&(dataShow.length===0)){
-    const tempArray=dataInformation?.map((item, index) => {
-      const outDataDuplex=item.applicants?.filter((objeto, indice)=>{
-        const objetoString = JSON.stringify(objeto);
-        return (
-          item.applicants.findIndex((obj, i)=>{
-            return JSON.stringify(obj) === objetoString;
-          }) === indice
-        );
-      });
-      return(
-        {
-          qty: index+1,
-          title: item.title,
-          status: item.status,
-          candidato: outDataDuplex?.length||''
-        }
-      )
-    })
-    setDataShow([...tempArray])
+// useEffect(()=>{
+//   //console.log('dataInformation:..',dataInformation);
+//   if(dataInformation&&(dataShow.length===0)){
+//     const tempArray=dataInformation?.map((item, index) => {
+//       const outDataDuplex=item.applicants?.filter((objeto, indice)=>{
+//         const objetoString = JSON.stringify(objeto);
+//         return (
+//           item.applicants.findIndex((obj, i)=>{
+//             return JSON.stringify(obj) === objetoString;
+//           }) === indice
+//         );
+//       });
+//       return(
+//         {
+//           qty: index+1,
+//           title: item.title,
+//           status: item.status,
+//           candidato: outDataDuplex?.length||''
+//         }
+//       )
+//     })
+//     setDataShow([...tempArray])
 
-  }
-  if(dataShow.length>0) console.log('dataShow:..',dataShow);
-},[dataInformation,dataShow])
+//   }
+//   if(dataShow.length>0) console.log('dataShow:..',dataShow);
+// },[dataInformation,dataShow])
 
   const handleClick = (title) => {
+    Swal.fire({
+      title: 'Cambiar estado: ',
+      input: 'select',
+      inputOptions: {
+        '1': 'Cerrado',
+        '2': 'Abierto',
+      },
+      inputPlaceholder: 'required',
+      showCancelButton: true,
+      inputValidator: function (value) {
+        return new Promise(function (resolve, reject) {
+          if (value !== '') {
+            resolve();
+          } else {
+            resolve('You need to select a Tier');
+          }
+        });
+      }
+    }).then(function (result) {
+      if (result.isConfirmed) {
+        Swal.fire({
+          icon: 'success',
+          html: 'You selected: ' + result.value
+        });
+      }
+    });
     console.log(`You clicked me! ${title}`);
   };
   const changeStatus=()=>{
@@ -87,10 +113,37 @@ useEffect(()=>{
           });
         }
       });
-   
-   }
+    }  
+  
+
+   const data= dataInformation?.map((item, index) => {
+     const outDataDuplex=item.applicants?.filter((objeto, indice)=>{
+       const objetoString = JSON.stringify(objeto);
+       return (
+         item.applicants.findIndex((obj, i)=>{
+           return JSON.stringify(obj) === objetoString;
+         }) === indice
+       );
+     });
+     return(
+       {
+         id:item._id,
+         qty: `${index+1}`,
+         title: item.title,
+         status: item.status,
+         candidato: outDataDuplex?.length||'',
+       }
+     )
+   })
 
    const columns = [
+    {
+      name:'rowId',
+      selector: (row) => row.id,
+      sortable: true, hide:true,
+      omit:true,
+
+    },
     {
       name: "#",
       selector: (row,i) => i + 1,
@@ -98,7 +151,7 @@ useEffect(()=>{
     },
     {
       name: "TITULO",
-      selector: (row, i) => row.title,
+      selector: (row, i) =>`${row.title}`,
       sortable: true
     },
     {
@@ -115,38 +168,36 @@ useEffect(()=>{
       name: "OPCIONES",
       sortable: false,
       selector: (row, i) => row.null,
-      cell: (d) => [
-        <Link to={`/Dashboard-Recruiter/details-match/?m=`}>
-        <button typze="button" className="buttons btn btn-outline-info"><FaEye  className="icon_eye1"/></button>
+      cell: (d) =>[
+        <Link to={`/Dashboard-Recruiter/details-match/?m=${d.id}`}>
+        <button type="button" className="buttons btn btn-outline-info" ><FaEye className="icon_eye1"/></button>
         </Link>,
-        <button type="button" className="buttons btn btn-outline-success" ><FaEdit className="icon_edit1"/></button> 
+        <button type="button" className="buttons btn btn-outline-success" onClick={handleClick.bind(this,d.status)} ><FaEdit className="icon_edit1"/></button> 
   ]
  }
 ];
 
-
-  const data = dataShow;
-    
-  
+  // const data = dataShow;
 
 
-  //console.log('data:..',data)
+const tableData = {
+  columns,
+  data
+};
 
-  const tableData = {
-    columns,
-    data
 
-  };
   return(
     <div className="main">
-      <DataTableExtensions  {...tableData}>
-        <DataTable
+      <DataTableExtensions  
+      export={false}
+      print={false}
+      {...tableData}>
+        <DataTable {...tableData}
         key={myId()}
           columns={columns}
           data={data}
           noHeader
-          defaultSortField="id"
-          // sortIcon={`${<FaEdit />}${<FaEye/>}`}
+          defaultSortField="#"
           defaultSortAsc={true}
           pagination
           highlightOnHover

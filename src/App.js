@@ -30,7 +30,7 @@ import JobContext from './context/JobContext';
 import { useEffect, useState } from 'react';
 import SendAccessCode from './componentes/SendAccessCode/SendAccessCode';
 import { useLocalStorage } from "usehooks-ts";
-import ListResponsive from './componentes/Candidate/BuscarCandidate/ListResponsive';
+//import ListResponsive from './componentes/Candidate/BuscarCandidate/ListResponsive';
 
 
 

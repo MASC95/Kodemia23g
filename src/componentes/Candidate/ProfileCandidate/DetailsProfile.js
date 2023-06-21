@@ -20,7 +20,7 @@ export const DetailsProfile=()=>{
             </div>
             <div className="col">
                 <div className="row mb-4">
-                    <h2 className="text-start text-dark">Información General</h2>
+                    <h2 className="text-start text-dark ">Información General</h2>
                     <div className="col">
                     <div className="form-outline bg-gray">
                         <label className="form-label text-start" for="form6Example1">Nombre</label>
@@ -43,8 +43,8 @@ export const DetailsProfile=()=>{
                     </div>
                 </div>
 
-            <ViewTableSkills/>
-                <div className="buttons_actions d-flex justify-content-end gap-3">  
+            <ViewTableSkills className='table-skills'/>
+                <div className="buttons-actions d-flex justify-content-end gap-3">  
                     <button type="button" className="buttons btn btn-success text-light">Aceptar</button> 
                     <button type="button" className="buttons btn btn-danger text-light">Ignorar</button> 
                 </div>

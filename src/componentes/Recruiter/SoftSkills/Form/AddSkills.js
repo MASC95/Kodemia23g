@@ -172,7 +172,10 @@ export const AddSkills=()=>{
                     <td>{skill?.name}</td>
                     <td>{skill?.level}</td>
                     <td>
-                    <FaTrash className="icon_trash"  onClick={() => handleDeleteSkill(index)}/>
+                    <button type="button" className="buttons btn btn-outline-danger">
+                       <FaTrash className="icon_trash" onClick={() => handleDeleteSkill(index)}/>  
+                    </button> 
+                    {/* <FaTrash className="icon_trash"  onClick={() => handleDeleteSkill(index)}/> */}
                     </td>
                   </tr>
                 );

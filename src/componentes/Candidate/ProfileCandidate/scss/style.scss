@@ -12,10 +12,10 @@
 
   .ppic-container {
     @include center();
-
     @include mobile {
-      margin-left: 150px;
+      
       width: 50%;
+      
     }
   }
 
@@ -25,7 +25,7 @@
     @include mobile {
       margin-bottom: 50px;
       width: 50%;
-      margin-left: 150px;
+      
     }
   }
 

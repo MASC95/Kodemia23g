@@ -1,5 +1,5 @@
 import {Link} from 'react-router-dom'
-import { FaUser,FaSuitcase, FaCheckDouble, FaSignOutAlt, FaHome} from 'react-icons/fa';
+import { FaUser,FaSuitcase, FaCheckDouble, FaSignOutAlt, FaHome, FaCode} from 'react-icons/fa';
 import logo from '../assets/img/logo.png'
 import './style.scss'
 import { useNavigate } from 'react-router-dom';
@@ -30,6 +30,7 @@ const SidebarRecruiter= () => {
         <nav className="dashboard-nav-list">
           <Link to={`/Dashboard-Recruiter/home`} className="dashboard-nav-item"><FaHome/> &nbsp;Home</Link>
           <Link to={`/Dashboard-Recruiter/profile`} className="dashboard-nav-item"><FaUser/> &nbsp;Perfil</Link>
+          <Link to={`/Dashboard-Recruiter/softskill-addNew`} className="dashboard-nav-item"><FaCode/> &nbsp;Skills </Link>
           <Link to={`/Dashboard-Recruiter/vacancy`} className="dashboard-nav-item"><FaSuitcase/> &nbsp;Vacantes</Link>
           <Link to={`/Dashboard-Recruiter/match`} className="dashboard-nav-item"><FaCheckDouble/> &nbsp;Match </Link>
           <button type='button' onClick={logout} className="button-logout" ><FaSignOutAlt/> &nbsp;Logout </button>

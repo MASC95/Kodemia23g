@@ -21,8 +21,9 @@ const validInput=Yup.object().shape({
 });
 export const AddSkills=()=>{
 
-    const [dataSkill,setDataSkill]=useState([])
-    const [infoDataSkill,setInfoDataSkill]=useState({})
+    const [dataSkill,setDataSkill]=useState([]);
+    const [isEditing, setIsEditing] = useState(false);
+    const [dataSkillEditing, setDataSkillEditing] = useState({});
     const [dataForm, setDataForm] = useState(initDataForm);
     const [dataCandidate,setDataCandidate,dataRecruiter,setDataRecruiter, dataLocalStorage, setDataLocalStorage]=useJob()
 
@@ -44,53 +45,107 @@ export const AddSkills=()=>{
       }
     },[dataSkill])
 
+    const insertandoSkill= (values) => {
+      let tempDataSkill = [...dataSkill];
+      const tempNewSkil= {...values};
+      console.log('values(AddSkills):..',values);
+      const dataRepet=tempDataSkill.some((item) => item.name ===values.name && item.level===values.level);
+      console.log('datarepet',dataRepet)
+
+      if(dataRepet){
+        swal({
+            title: "Ya hemos agregado esa skill!",
+            icon: "error",
+            button: "ok!",
+        });
+    }else{
+        tempDataSkill.push(tempNewSkil);
+        setDataSkill([...tempDataSkill]);
+
+          axios.defaults.headers.common[
+            "Authorization"
+          ] = `Bearer: ${dataRecruiter.accessToken}`;
+        
+          axios
+            .post(`${endpointsGral.jobSkill}`, values) 
+            .then(response => {
+              console.log(response);
+              values.name='';
+              values.level='';
+            })
+            .catch(error => {
+              console.log(error.response);
+            });
+      
+
+        
+    }
+    }
+
+    const editandoSkill = (values)=>{
+      
+      let tempDataSkill= [...dataSkill];
+      const tempNewSkil= {...values};
+      //console.log('values(AddSkills):..',values);
+      const dataRepet=tempDataSkill.some((item) => item.name ===values.name && item.level===values.level);
+      //console.log('datarepet',dataRepet)
+
+      if(dataRepet){
+        swal({
+            title: "Ya hemos agregado esa skill!",
+            icon: "error",
+            button: "ok!",
+        });
+    }else{
+        //tempDataSkill.push(tempNewSkil);
+        const arrayEditadoSkills= tempDataSkill.map(item=>{
+          if(item._id===dataSkillEditing._id){
+            item.name= values.name;
+            item.level= values.level;
+          }
+          return item
+        })
+        setDataSkill([...arrayEditadoSkills]);
+        /* let tempDataSkillEditing = {
+          ...dataSkillEditing,
+          name:values.name,
+          level:values.level
+        }; */
+
+          axios.defaults.headers.common[
+            "Authorization"
+          ] = `Bearer: ${dataRecruiter.accessToken}`;
+        
+          axios
+            .patch(`${endpointsGral.jobSkill}${dataSkillEditing._id}`, values) 
+            .then(response => {
+              console.log(response);
+              /* values.name='';
+              values.level=''; */
+            })
+            .catch(error => {
+              console.log(error.response);
+            });   
+        }
+    }
 
 
     const formik=useFormik({
-        initialValues:{
-            name:'',
-            level:''
-        },
+        initialValues:dataForm,
+        enableReinitialize:true,
         validationSchema:Yup.object({
             name:Yup.string().required('Requerido'),
             level:Yup.string().required('Requerido'),
         }),
         onSubmit:(values)=>{
-          let tempDataSkill = [...dataSkill];
-          const tempNewSkil= {...values};
-          console.log('values(AddSkills):..',values);
-          const dataRepet=tempDataSkill.some((item) => item.name ===values.name && item.level===values.level);
-          console.log('datarepet',dataRepet)
-    
-          if(dataRepet){
-            swal({
-                title: "Ya hemos agregado esa skill!",
-                icon: "error",
-                button: "ok!",
-            });
-        }else{
-            tempDataSkill.push(tempNewSkil);
-            setDataSkill([...tempDataSkill]);
+          if(isEditing){
+            editandoSkill(values);
+          }else{
+            insertandoSkill(values);
+          }
 
-              axios.defaults.headers.common[
-                "Authorization"
-              ] = `Bearer: ${dataRecruiter.accessToken}`;
-            
-              axios
-                .post(`${endpointsGral.jobSkill}`, values) 
-                .then(response => {
-                  console.log(response);
-                  values.name='';
-                  values.level='';
-                })
-                .catch(error => {
-                  console.log(error.response);
-                });
-          
-
-            values.name='';
-            values.level='';
-        }
+          values.name='';
+          values.level='';
 
           }
     })
@@ -119,33 +174,22 @@ export const AddSkills=()=>{
   
 // ------------------------------------edit skill
     const handleEdit = (index) => {
-      console.log(index)
-      const skillDelete=dataSkill[index]
-          const id=skillDelete._id
-          console.log(id)
-          axios.defaults.headers.common[
-            "Authorization"
-          ] = `Bearer: ${dataRecruiter.accessToken}`;
-          
-        axios.get(`${endpointsGral.jobSkill}${id}`)
-        .then(response => {
-          console.log('update',response.data)
-          setInfoDataSkill(response.data)
+      //console.log(index)
+      setIsEditing(true);
+      const skillEdit=dataSkill[index];
+          console.log('skillDelete:..',skillEdit);
+          //setInfoDataSkill(skillDelete);
+          setDataSkillEditing({...skillEdit})
+          setDataForm({
+            name:skillEdit.name||'',
+            level:skillEdit.level||'',
         })
-        .catch(error => {
-          console.error(error);
-        });
        
       };
 
       useEffect(()=>{
-        if(infoDataSkill){
-            setDataForm({
-                name:infoDataSkill.name||'',
-                level:infoDataSkill.level||'',
-            })
-        }
-    },[infoDataSkill])
+        if(dataForm) console.log('dataForm:..',dataForm);
+    },[dataForm])
 
 
      
@@ -211,7 +255,7 @@ export const AddSkills=()=>{
         <div className="container mt-2 p-5 w-100 " id="formGral">
         <div className="row softskills">
             <div className="col">
-                  <h2 className='text-dark'>Crear nueva Skill</h2>
+                  <h2 className='text-dark'>{isEditing?'Editando Skill':'Crear nueva Skill'}</h2>
                 <form onSubmit={formik.handleSubmit}>
                     <div className="row mb-4">
                         <div className="col">
@@ -248,7 +292,7 @@ export const AddSkills=()=>{
                         </div>
                     </div>
                     <div className="buttons_actions">  
-                        <button type="submit" className="buttons btn btn-info text-light">Guardar Skill</button>               
+                        <button type="submit" className="buttons btn btn-info text-light">{isEditing?'Editar Skill':'Guardar Skill'}</button>               
                     </div>
                 </form>
             </div>

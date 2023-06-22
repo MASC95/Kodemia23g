@@ -3,7 +3,9 @@ import swal from "sweetalert";
 import axios from "axios";
 import { endpointsGral } from "../../services/vacancy";
 import { myId } from "../../../lib/myLib";
-import {FaTrash, FaPlus} from 'react-icons/fa'
+import {FaTrash, FaPlus, FaEdit} from 'react-icons/fa'
+import DataTable from 'react-data-table-component';
+import DataTableExtensions from 'react-data-table-component-extensions';
 import { Link } from "react-router-dom";
 export const EditSkill=({listSkills,setListSkills})=>{
 
@@ -92,14 +94,74 @@ export const EditSkill=({listSkills,setListSkills})=>{
       console.log("error al eliminar");
     }
   };
+  // ----------------------------table
+
+  const columns = [
+    {
+      name:'rowId',
+      selector: (row) => row.id,
+      sortable: true, hide:true,
+      omit:true,
+
+    },
+    {
+      name: "#",
+      selector: (row,i) => i + 1,
+      sortable: true
+    },
+    {
+      name: "SKILL",
+      selector: (row, i) =>`${row.skill}`,
+      sortable: true
+    },
+    {
+      name: "NIVEL",
+      selector: (row, i) => row.level,
+      sortable: true
+    },
+    {
+      name: "OPCIONES",
+      sortable: false,
+      selector: (row, i) => row.null,
+      cell: (d) =>[
+        <button type="button" className="buttons btn btn-outline-danger"onClick={handleDeleteSkill.bind(this,d.id)}>
+         <FaTrash className="icon_trash" />  
+         </button>,
+
+        // <FaTrash className="icon_trash" onClick={handleDeleteSkill.bind(this,d.id)}/>  
+  ]
+ }
+  ];
+
+  const data= skillTemp?.map((skill, index) => {
+    let myDataSkill=null;
+    myDataSkill= dataSkill?.find(item=>item._id===skill.skill);
+    if(!myDataSkill){
+     myDataSkill= dataSkill?.find(item=>item._id===skill);
+    }
+    return(
+      {
+        id:myDataSkill?._id,
+        qty:index,
+        skill: myDataSkill?.name,
+        level: myDataSkill?.level,
+      }
+    )
+  })
+
+
+  const tableData = {
+    columns,
+    data
+  };
   return (
     <>
         <div className="row softskills">
           <div className="col">
             <form >
               <div className="row d-flex">
-                <label className="form-label" htmlFor="form6Example1">
-                  Elige las SoftSkill de tu:
+                <label className="form-label text-dark" htmlFor="form6Example1">
+                  Elige las SoftSkill de tu preferencia:
                 </label>
                 <div className="col-10">
                   <div className="form-outline">
@@ -133,8 +195,26 @@ export const EditSkill=({listSkills,setListSkills})=>{
 
           {/* table of skills */}
           <div className="col">
-            <label className="form-label" htmlFor="">Lista de SoftSkill agregadas</label>
-            <table className="table">
+            <label className="form-label text-dark" htmlFor="">Lista de SoftSkill agregadas</label>\
+            <div className="main">
+                <DataTableExtensions  
+                    export={false}
+                    print={false}
+                    {...tableData}>
+                    <DataTable {...tableData}
+                    key={myId()}
+                    columns={columns}
+                    data={data}
+                    noHeader
+                    defaultSortField="#"
+                    defaultSortAsc={true}
+                    pagination
+                    highlightOnHover
+                    dense
+                    />
+                </DataTableExtensions>
+            </div>
+            {/* <table className="table">
                 <thead className="thead-dark bg-body-secondary">
                     <tr>
                     <th scope="col">#</th>
@@ -150,7 +230,6 @@ export const EditSkill=({listSkills,setListSkills})=>{
                  if(!myDataSkill){
                   myDataSkill= dataSkill?.find(item=>item._id===skill);
                  }
-                // console.log('myDataSkill:..',myDataSkill,'skill:..',skill);
                 return (
                   <tr key={myId()}>
                     <td>{index + 1}</td>
@@ -160,13 +239,12 @@ export const EditSkill=({listSkills,setListSkills})=>{
                     <button type="button" className="buttons btn btn-outline-danger">
                         <FaTrash className="icon_trash" onClick={() => handleDeleteSkill(index)}/>  
                     </button> 
-                    {/* <FaTrash className="icon_trash"  onClick={() => handleDeleteSkill(index)}/> */}
                     </td>
                   </tr>
                 );
               })}
               </tbody>
-            </table>
+            </table> */}
             </div>
 
           {/* Table Skills */}

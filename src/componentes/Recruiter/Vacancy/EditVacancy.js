@@ -127,12 +127,12 @@ export const EditVacancy=()=>{
       });
       return(
         <div className="container mt-2 p-5 w-100 " id="formGral">
-            <h2>Editar Vacante</h2>
+            <h2 className="text-dark">Editar Vacante</h2>
             <form onSubmit={formik.handleSubmit}>
                 <div className="row mb-4">
                     <div className="col">
                     <div className="form-outline bg-gray">
-                        <label className="form-label" htmlFor="form6Example1">Nombre de la Empresa</label>
+                        <label className="form-label text-dark" htmlFor="form6Example1">Nombre de la Empresa</label>
                         <input type="text" 
                                id="comapnyName" 
                                name="companyName"
@@ -146,7 +146,7 @@ export const EditVacancy=()=>{
                     </div>
                     <div className="col">
                     <div className="form-outline bg-gray">
-                        <label className="form-label" htmlFor="form6Example1">Título</label>
+                        <label className="form-label text-dark" htmlFor="form6Example1">Título</label>
                         <input type="text" 
                                id="title" 
                                name="title"
@@ -160,7 +160,7 @@ export const EditVacancy=()=>{
                     </div>
                     <div className="col">
                     <div className="form-outline">
-                        <label className="form-label" for="form6Example1">Tipo de trabajo</label>
+                        <label className="form-label text-dark" for="form6Example1">Tipo de trabajo</label>
                         <select 
                                 className={`form-control ${formik.touched.type && formik.errors.type ? 'border border-danger':'border border-secondary' }`}
                                 name="type"
@@ -178,7 +178,7 @@ export const EditVacancy=()=>{
                 <div className="row mb-4">
                 <div className="col">
                         <div className="form-outline">
-                            <label className="form-label" htmlFor="form6Example1">Modalidad</label>
+                            <label className="form-label text-dark" htmlFor="form6Example1">Modalidad</label>
                             <select 
                                     className={`form-control ${formik.touched.mode && formik.errors.mode ? 'border border-danger':'border border-secondary'}`}
                                     id="mode"
@@ -195,7 +195,7 @@ export const EditVacancy=()=>{
                     </div>
                     <div className="col">
                     <div className="form-outline">
-                        <label className="form-label" htmlFor="form6Example1">Ciudad</label>
+                        <label className="form-label text-dark" htmlFor="form6Example1">Ciudad</label>
                         <input type="text"
                                 id="city" 
                                 name="city"
@@ -209,7 +209,7 @@ export const EditVacancy=()=>{
                     </div>
                     <div className="col">
                     <div className="form-outline">
-                        <label className="form-label" htmlFor="form6Example2">Sueldo</label>
+                        <label className="form-label text-dark" htmlFor="form6Example2">Sueldo</label>
                         <input type="text" 
                                id="salary" 
                                name="salary"
@@ -224,7 +224,7 @@ export const EditVacancy=()=>{
                 <div className="row mb-4">
                 <div className="col">
                     <div className="form-outline">
-                        <label className="form-label" htmlFor="form6Example2">Status</label>
+                        <label className="form-label text-dark" htmlFor="form6Example2">Status</label>
                         <select 
                                     className={`form-control ${formik.touched.status && formik.errors.status ? 'border border-danger':'border border-secondary'}`}
                                     id="status"
@@ -240,7 +240,7 @@ export const EditVacancy=()=>{
                 </div>
                 <div className="col">
                     <div className="form-outline">
-                        <label className="form-label" htmlFor="form6Example1">Actividades</label>
+                        <label className="form-label text-dark" htmlFor="form6Example1">Actividades</label>
                         <input type="text" 
                                id="actividades" 
                                name="activities"

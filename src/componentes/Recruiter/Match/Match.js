@@ -57,10 +57,10 @@ export const Match=()=>{
     return(
         <>
          <div className='card-body'>
-          <h1 className="text-start"><b>Match's</b></h1>
+          <h1 className="text-center text-dark"><b>Match's</b></h1>
             {/* <ListMatches/> */}
             {/* <div className="container mt-2 p-5 w-100 " id="formGral"> */}
-                <div className="row softskills">
+                {/* <div className="row softskills">
                     <div className="col">
                     <table className="table">
                         <thead className="thead-dark bg-body-secondary">
@@ -95,7 +95,7 @@ export const Match=()=>{
                                 </Link>
                                 <button type="button" className="buttons btn btn-outline-success" onClick={changeStatus}><FaEdit className="icon_edit1"/></button> 
 
-                                    {/* <Modalstatus/> */}
+                                    {/* <Modalstatus/> 
                                 </td>
                                 </tr>
                                 )  
@@ -103,7 +103,7 @@ export const Match=()=>{
                         </tbody>
                     </table>
                     </div>
-                </div>
+                </div> */}
       <Example/>
       
         {/* </div>   */}

@@ -30,32 +30,6 @@ const Example = () => {
   useEffect(()=>{
       queryMatch()
   },[])
-// useEffect(()=>{
-//   //console.log('dataInformation:..',dataInformation);
-//   if(dataInformation&&(dataShow.length===0)){
-//     const tempArray=dataInformation?.map((item, index) => {
-//       const outDataDuplex=item.applicants?.filter((objeto, indice)=>{
-//         const objetoString = JSON.stringify(objeto);
-//         return (
-//           item.applicants.findIndex((obj, i)=>{
-//             return JSON.stringify(obj) === objetoString;
-//           }) === indice
-//         );
-//       });
-//       return(
-//         {
-//           qty: index+1,
-//           title: item.title,
-//           status: item.status,
-//           candidato: outDataDuplex?.length||''
-//         }
-//       )
-//     })
-//     setDataShow([...tempArray])
-
-//   }
-//   if(dataShow.length>0) console.log('dataShow:..',dataShow);
-// },[dataInformation,dataShow])
 
   const handleClick = (title) => {
     Swal.fire({

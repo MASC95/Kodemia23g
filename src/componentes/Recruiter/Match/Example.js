@@ -35,9 +35,13 @@ const Example = () => {
       queryMatch()
   },[])
 
+  useEffect(()=>{
+    if(dataStatusEditing) console.log('dataStatusEditing:..',dataStatusEditing);
+  },[dataStatusEditing])
+
   const handleClick = (index) => {
     const editState= dataInformation[index]
-    setDataStatusEditing({...editState})
+    
     Swal.fire({
       title: 'Cambiar estado: ',
       input: 'select',
@@ -50,12 +54,12 @@ const Example = () => {
       inputValidator: function (value) {
         return new Promise(function (resolve, reject) {
           if (value !== '') {
-            resolve();
+            
             const newValues={
               status:value
             }
-            editStatus(newValues)
-            
+            editStatus(newValues,editState);
+            resolve();
           } else {
             resolve('You need to select a Tier');
           }
@@ -67,15 +71,29 @@ const Example = () => {
           icon: 'success',
           html: 'You selected: ' + result.value
         });
+        if(result.value==='Iniciado'){
+          
+          setDataStatusEditing({
+            ...editState,
+            status:'Iniciado'
+          })
+        }
+        if(result.value==='Cerrado'){
+          setDataStatusEditing({
+            ...editState,
+            status:'Cerrado'
+          })
+        }
       }
     });
     console.log(`You clicked me! ${index}`);
   };  
 
-  const editStatus=(values)=>{
+  const editStatus=(values,editState)=>{
     console.log('value',values)
+    //console.log('dataStatusEditing:..',dataStatusEditing);
     const arrVacancy=dataInformation.map(item=>{
-      if(item._id===dataStatusEditing._id){
+      if(item._id===editState._id){
         item.status=values.status
       }
       return item
@@ -86,8 +104,9 @@ const Example = () => {
     axios.defaults.headers.common[
       "Authorization"
     ] = `Bearer: ${dataRecruiter.accessToken}`;
+    
   
-    axios.patch(`${endpointsGral.vacancyURL}${dataStatusEditing._id}`, values) 
+    axios.patch(`${endpointsGral.vacancyURL}${editState._id}`, values) 
       .then(response => {
         console.log(response);
         // swal({

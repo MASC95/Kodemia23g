@@ -8,12 +8,16 @@ import Swal from 'sweetalert2'
 import "react-data-table-component-extensions/dist/index.css";
 import { myId } from '../../lib/myLib';
 import { Link } from 'react-router-dom';
+import useJob from '../../../hooks/useJob'
+
 
 // import 'datatables.net-responsive';
 
 const Example = () => {
+  const [dataCandidate,setDataCandidate,dataRecruiter,setDataRecruiter, dataLocalStorage, setDataLocalStorage]=useJob()
   const [dataInformation, setDataInformation]=useState([]);
   const [dataShow, setDataShow] = useState([]);
+  const [dataStatusEditing, setDataStatusEditing] = useState({});
 
 
 
@@ -31,13 +35,15 @@ const Example = () => {
       queryMatch()
   },[])
 
-  const handleClick = (title) => {
+  const handleClick = (index) => {
+    const editState= dataInformation[index]
+    setDataStatusEditing({...editState})
     Swal.fire({
       title: 'Cambiar estado: ',
       input: 'select',
       inputOptions: {
-        '1': 'Cerrado',
-        '2': 'Abierto',
+        'Cerrado': 'Cerrado',
+        'Iniciado': 'Iniciado',
       },
       inputPlaceholder: 'required',
       showCancelButton: true,
@@ -45,6 +51,11 @@ const Example = () => {
         return new Promise(function (resolve, reject) {
           if (value !== '') {
             resolve();
+            const newValues={
+              status:value
+            }
+            editStatus(newValues)
+            
           } else {
             resolve('You need to select a Tier');
           }
@@ -58,37 +69,37 @@ const Example = () => {
         });
       }
     });
-    console.log(`You clicked me! ${title}`);
-  };
-  const changeStatus=()=>{
-    Swal.fire({
-        title: 'Cambiar estado: ',
-        input: 'select',
-        inputOptions: {
-          '1': 'Cerrado',
-          '2': 'Abierto',
-        },
-        inputPlaceholder: 'required',
-        showCancelButton: true,
-        inputValidator: function (value) {
-          return new Promise(function (resolve, reject) {
-            if (value !== '') {
-              resolve();
-            } else {
-              resolve('You need to select a Tier');
-            }
-          });
-        }
-      }).then(function (result) {
-        if (result.isConfirmed) {
-          Swal.fire({
-            icon: 'success',
-            html: 'You selected: ' + result.value
-          });
-        }
-      });
-    }  
+    console.log(`You clicked me! ${index}`);
+  };  
+
+  const editStatus=(values)=>{
+    console.log('value',values)
+    const arrVacancy=dataInformation.map(item=>{
+      if(item._id===dataStatusEditing._id){
+        item.status=values.status
+      }
+      return item
+    })
+    setDataInformation([...arrVacancy])
+
+    console.log(arrVacancy)
+    axios.defaults.headers.common[
+      "Authorization"
+    ] = `Bearer: ${dataRecruiter.accessToken}`;
   
+    axios.patch(`${endpointsGral.vacancyURL}${dataStatusEditing._id}`, values) 
+      .then(response => {
+        console.log(response);
+        // swal({
+        //   title: "Skill editada!!",
+        //   icon: "success",
+        //   button: "ok!",
+        //  });
+      })
+      .catch(error => {
+        console.log(error.response);
+      });   
+  }
 
    const data= dataInformation?.map((item, index) => {
      const outDataDuplex=item.applicants?.filter((objeto, indice)=>{
@@ -102,7 +113,7 @@ const Example = () => {
      return(
        {
          id:item._id,
-         qty: `${index+1}`,
+         qty: index,
          title: item.title,
          status: item.status,
          candidato: outDataDuplex?.length||'',
@@ -146,7 +157,7 @@ const Example = () => {
         <Link to={`/Dashboard-Recruiter/details-match/?m=${d.id}`}>
         <button type="button" className="buttons btn btn-outline-info" ><FaEye className="icon_eye1"/></button>
         </Link>,
-        <button type="button" className="buttons btn btn-outline-success" onClick={handleClick.bind(this,d.status)} ><FaEdit className="icon_edit1"/></button> 
+        <button type="button" className="buttons btn btn-outline-success" onClick={handleClick.bind(this,d.qty)} ><FaEdit className="icon_edit1"/></button> 
   ]
  }
 ];

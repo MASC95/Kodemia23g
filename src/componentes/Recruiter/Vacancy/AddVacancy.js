@@ -4,7 +4,7 @@ export const AddVacancy=()=>{
     return(
         <>
           <div className='card-body '>
-            <h1  className="text-start"><b>Agregar Vacante</b></h1>
+            <h1  className="text-start text-dark"><b>Agregar Vacante</b></h1>
                 <PostVacancy/>
                 {/* <Softskills/> */}
             </div>

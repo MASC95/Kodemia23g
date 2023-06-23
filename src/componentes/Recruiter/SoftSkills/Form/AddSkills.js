@@ -10,6 +10,7 @@ import { endpointsGral } from "../../services/vacancy";
 import { useFormik } from "formik";
 import * as Yup from 'yup'
 import useJob from '../../../../hooks/useJob'
+import Swal from 'sweetalert2';
 
 const initDataForm={
   name:'',
@@ -106,22 +107,18 @@ export const AddSkills=()=>{
           return item
         })
         setDataSkill([...arrayEditadoSkills]);
-        /* let tempDataSkillEditing = {
-          ...dataSkillEditing,
-          name:values.name,
-          level:values.level
-        }; */
-
           axios.defaults.headers.common[
             "Authorization"
           ] = `Bearer: ${dataRecruiter.accessToken}`;
         
-          axios
-            .patch(`${endpointsGral.jobSkill}${dataSkillEditing._id}`, values) 
+          axios.patch(`${endpointsGral.jobSkill}${dataSkillEditing._id}`, values) 
             .then(response => {
               console.log(response);
-              /* values.name='';
-              values.level=''; */
+              swal({
+                title: "Skill editada!!",
+                icon: "success",
+                button: "ok!",
+               });
             })
             .catch(error => {
               console.log(error.response);
@@ -151,15 +148,23 @@ export const AddSkills=()=>{
     })
 
      const handleDeleteSkill = (index) => {
-        console.log(index)
+      Swal.fire({
+        title: 'Eliminar Skill',
+        text: "Estas seguro de eliminar esta skill?!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, eliminar!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          console.log(index)
           const skillDelete=dataSkill[index]
           const id=skillDelete._id
           console.log(id)
-  
           axios.defaults.headers.common[
               "Authorization"
             ] = `Bearer: ${dataRecruiter.accessToken}`;
-            
           axios.delete(`${endpointsGral.jobSkill}${id}`)
           .then(response => {
             console.log(response.data)
@@ -169,6 +174,13 @@ export const AddSkills=()=>{
           .catch(error => {
             console.error(error);
           });
+          Swal.fire(
+            'Eliminado!',
+            'Skill eliminada correctamente.',
+            'success'
+          )
+        }
+      })
         };
 
   
@@ -234,12 +246,12 @@ export const AddSkills=()=>{
           sortable: false,
           selector: (row, i) => row.null,
           cell: (d) =>[
-            <button type="button" className="buttons btn btn-outline-danger"onClick={handleDeleteSkill.bind(this,d.index)}>
-             <FaTrash className="icon_trash" />  
-             </button>,
              <button type="button" className="buttons btn btn-outline-success" onClick={handleEdit.bind(this,d.index)}>
-              <FaEdit className="icon_edit2"/></button> 
-
+              <FaEdit className="icon_edit2"/>
+              </button>, 
+             <button type="button" className="buttons btn btn-outline-danger"onClick={handleDeleteSkill.bind(this,d.index)}>
+             <FaTrash className="icon_trash" />  
+             </button>
             // <FaTrash className="icon_trash" onClick={handleDeleteSkill.bind(this,d.id)}/>  
       ]
      }

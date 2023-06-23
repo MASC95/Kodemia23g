@@ -5,12 +5,27 @@ import "./scss/style.scss";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import swal from "sweetalert";
+import Swal from "sweetalert2";
 import { endpointsGral } from "../../Recruiter/services/vacancy";
 
 export const RegisterCandidate = () => {
   const [isResgitering, setIsResgitering] = useState(false);
   const [isConfirmEmail, setIsConfirmEmail] = useState(false);
+  const [isInformationUser,setInformationUser]=useState([])
   const navigate = useNavigate();
+
+  const fetchUser=async()=>{
+    const response = await axios.get(endpointsGral.userURL);
+    const infoSkill = response.data["item"];
+    setInformationUser(infoSkill["docs"]);
+  }
+  useEffect(()=>{
+      // if()
+      fetchUser()
+  },[])
+
+ 
+  
   const [formValues, setFormValues] = useState({
     email: "",
     password: "",
@@ -42,12 +57,20 @@ export const RegisterCandidate = () => {
 
   const onFormSubmit = (event) => {
     event.preventDefault();
+    console.log(formValues.email)
+    const dataRepet=isInformationUser.some((item)=>item.email===formValues.email)
 
-    setIsResgitering(true);
-
+    if(dataRepet){
+      Swal.fire({
+        icon: 'error',
+        title: 'Error al registrar!',
+        text: 'Este correo ya tiene una cuenta, inicia sesión!',
+      })
+    }else{
+      setIsResgitering(true);
     confirmAccesCode();
-
-   
+      // console.log('agregalo')
+    }
   };
   const importantData =
     formValues.email !== "" &&
@@ -94,10 +117,10 @@ export const RegisterCandidate = () => {
           resetForm();
           if(formValues.role==="candidato"){
              console.log("pagina candidato");
-            //  navigate(`/dashboard-candidato/home`)
+             navigate(`/dashboard-candidato/home`)
           }else{
              console.log("pagina empresa");
-            //  navigate(`/dashboard-candidato/home`)
+             navigate(`/Dashboard-recruiter/home`)
           }
         } else {
           swal({
@@ -113,24 +136,7 @@ export const RegisterCandidate = () => {
           button: "ok!",
         });
       }
-    // } else {
-    //   try {
-    //     console.log(formValues);
-    //     if (importantData) {
-    //       const register = await axios.post(endpointsGral.userURL, formValues);
-    //       setFormValues(register);
-    //       resetForm();
-    //       console.log("pagina empresa");
-    //       navigate(`/Dashboard-recruiter/home`)
-    //     } else {
-    //       swal({
-    //         title: "Todos los campos son requeridos!",
-    //         icon: "error",
-    //         button: "ok!",
-    //       });
-    //     }
-    //   } catch (error) {}
-    // }
+
   };
 
   const handleConfirmEmail = () => {
@@ -237,8 +243,9 @@ export const RegisterCandidate = () => {
                   </div>
                 </form>
                 <p className="mt-20 text-black">
-                  Ya tienes una cuenta?
-                  <Link to={`/login-candidato`}>Accede</Link>
+                  Ya tienes una cuenta? Accede como <br></br>
+                  <Link to={`/login-recruiter`}>Reclutador /</Link>
+                  <Link to={`/login-candidato`}> Candidato</Link>
                 </p>
               </div>
             </div>

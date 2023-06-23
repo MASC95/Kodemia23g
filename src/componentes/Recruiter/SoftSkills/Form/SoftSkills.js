@@ -112,7 +112,7 @@ export const Softskills = ({setListSkills,isCandidate,skillsCandidate}) => {
           <div className="col">
             <form >
               <div className="row d-flex">
-                <label className="form-label" htmlFor="form6Example1">
+                <label className="form-label text-dark" htmlFor="form6Example1">
                   Elige las SoftSkill de tu {!isCandidate?'vacante':'perfil'}:
                 </label>
                 <div className="col-10">
@@ -150,7 +150,7 @@ export const Softskills = ({setListSkills,isCandidate,skillsCandidate}) => {
 
           {/* table of skills */}
           <div className="col">
-            <label className="form-label" htmlFor="">Lista de SoftSkill agregadas</label>
+            <label className="form-label text-dark" htmlFor="">Lista de SoftSkill agregadas</label>
             <table className="table">
                 <thead className="thead-dark bg-body-secondary">
                     <tr>

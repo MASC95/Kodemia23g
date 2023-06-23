@@ -160,7 +160,7 @@ export const EditVacancy=()=>{
                     </div>
                     <div className="col">
                     <div className="form-outline">
-                        <label className="form-label text-dark" for="form6Example1">Tipo de trabajo</label>
+                        <label className="form-label text-dark" htmlFor="form6Example1">Tipo de trabajo</label>
                         <select 
                                 className={`form-control ${formik.touched.type && formik.errors.type ? 'border border-danger':'border border-secondary' }`}
                                 name="type"

@@ -1,5 +1,6 @@
 import  { useEffect , useState } from "react";
 import swal from "sweetalert";
+import Swal from "sweetalert2";
 import axios from "axios";
 import { endpointsGral } from "../../services/vacancy";
 import { myId } from "../../../lib/myLib";
@@ -85,21 +86,53 @@ export const EditSkill=({listSkills,setListSkills})=>{
 //   console.log("arr de skills", skillTemp);
 
   const handleDeleteSkill = (index) => {
-    const skillToDelete = skillTemp[index];
-
-    if (skillToDelete) {
-      const updatedSkills = skillTemp.filter((_, i) => i !== index);
-      setSkillTemp(updatedSkills);
-    } else {
-      console.log("error al eliminar");
-    }
+    Swal.fire({
+      title: 'Eliminar Skill',
+      text: "Estas seguro de eliminar esta skill?!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, eliminar!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const skillToDelete = skillTemp[index];
+        if (skillToDelete) {
+          const updatedSkills = skillTemp.filter((_, i) => i !== index);
+          setSkillTemp(updatedSkills);
+        } else {
+          console.log("error al eliminar");
+        }
+        Swal.fire(
+          'Eliminado!',
+          'Skill eliminada correctamente.',
+          'success'
+        )
+      }
+    })
   };
   // ----------------------------table
+
+  const data= skillTemp?.map((skill, index) => {
+    let myDataSkill=null;
+    myDataSkill= dataSkill?.find(item=>item._id===skill.skill);
+    if(!myDataSkill){
+     myDataSkill= dataSkill?.find(item=>item._id===skill);
+    }
+    return(
+      {
+        id:myDataSkill?._id,
+        qty:index,
+        skill: myDataSkill?.name,
+        level: myDataSkill?.level,
+      }
+    )
+  })
 
   const columns = [
     {
       name:'rowId',
-      selector: (row) => row.id,
+      selector: (row) =>`${row.id}${row.qty}`,
       sortable: true, hide:true,
       omit:true,
 
@@ -124,7 +157,7 @@ export const EditSkill=({listSkills,setListSkills})=>{
       sortable: false,
       selector: (row, i) => row.null,
       cell: (d) =>[
-        <button type="button" className="buttons btn btn-outline-danger"onClick={handleDeleteSkill.bind(this,d.id)}>
+        <button type="button" className="buttons btn btn-outline-danger"onClick={handleDeleteSkill.bind(this,d.qty)}>
          <FaTrash className="icon_trash" />  
          </button>,
 
@@ -133,21 +166,7 @@ export const EditSkill=({listSkills,setListSkills})=>{
  }
   ];
 
-  const data= skillTemp?.map((skill, index) => {
-    let myDataSkill=null;
-    myDataSkill= dataSkill?.find(item=>item._id===skill.skill);
-    if(!myDataSkill){
-     myDataSkill= dataSkill?.find(item=>item._id===skill);
-    }
-    return(
-      {
-        id:myDataSkill?._id,
-        qty:index,
-        skill: myDataSkill?.name,
-        level: myDataSkill?.level,
-      }
-    )
-  })
+ 
 
 
   const tableData = {

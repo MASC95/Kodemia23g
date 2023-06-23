@@ -94,10 +94,12 @@ export const RegisterCandidate = () => {
           resetForm();
           if(formValues.role==="candidato"){
              console.log("pagina candidato");
-            //  navigate(`/dashboard-candidato/home`)
+             navigate(`/dashboard-candidato/home`)
+
           }else{
              console.log("pagina empresa");
             //  navigate(`/dashboard-candidato/home`)
+             navigate("/Dashboard-Recruiter/home"); 
           }
         } else {
           swal({

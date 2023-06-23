@@ -139,7 +139,7 @@ export const ListBuscar = () => {
 
   return (
     <>
-      <VerticalTable vacancies={vacancies} my_vacancies={my_vacancies} handleApply={handleApply} handleStopApplying={handleStopApplying}/>
+      {/* <VerticalTable vacancies={vacancies} my_vacancies={my_vacancies} handleApply={handleApply} handleStopApplying={handleStopApplying}/> */}
       <HorizonTable vacancies={vacancies} my_vacancies={my_vacancies} handleApply={handleApply} handleStopApplying={handleStopApplying}/>
       {showAlert && <AlertComponent />}
     </>

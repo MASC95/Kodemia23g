@@ -1,5 +1,6 @@
 //LOGINRECRUITER
-@media (min-width: 768px)  and (max-width:1500px) {
+
+@media (min-width:1001x)  and (max-width:1500px) {
 
 //REGISTER
     
@@ -21,7 +22,7 @@
         width: 200px;
         height: 80px;
       }
-      h2 {
+      .welcome-back {
         font-weight:600;
         font-size: 30px;
         margin-top: 40px;

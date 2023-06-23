@@ -6,10 +6,12 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import swal from "sweetalert";
 import { endpointsGral } from "../../Recruiter/services/vacancy";
+import useJob from '../../../hooks/useJob';
 
 export const RegisterCandidate = () => {
   const [isResgitering, setIsResgitering] = useState(false);
   const [isConfirmEmail, setIsConfirmEmail] = useState(false);
+  const [dataCandidate,setDataCandidate,dataRecruiter,setDataRecruiter,dataLocalStorage,setDataLocalStorage]=useJob();
   const navigate = useNavigate();
   const [formValues, setFormValues] = useState({
     email: "",
@@ -80,9 +82,7 @@ export const RegisterCandidate = () => {
       })
     } catch (error) {
       console.log(error);
-    }
-
-    
+    }  
   };
 
   const registerRecruiter = async () => {
@@ -92,10 +92,11 @@ export const RegisterCandidate = () => {
           const register = await axios.post(endpointsGral.registerUser, formValues);
           setFormValues(register);
           resetForm();
+          console.log('datos de Registro:..',register);
+          setDataLocalStorage({...register?.data});
           if(formValues.role==="candidato"){
              console.log("pagina candidato");
              navigate(`/dashboard-candidato/home`)
-
           }else{
              console.log("pagina empresa");
             //  navigate(`/dashboard-candidato/home`)
@@ -115,28 +116,12 @@ export const RegisterCandidate = () => {
           button: "ok!",
         });
       }
-    // } else {
-    //   try {
-    //     console.log(formValues);
-    //     if (importantData) {
-    //       const register = await axios.post(endpointsGral.userURL, formValues);
-    //       setFormValues(register);
-    //       resetForm();
-    //       console.log("pagina empresa");
-    //       navigate(`/Dashboard-recruiter/home`)
-    //     } else {
-    //       swal({
-    //         title: "Todos los campos son requeridos!",
-    //         icon: "error",
-    //         button: "ok!",
-    //       });
-    //     }
-    //   } catch (error) {}
-    // }
+    
   };
 
   const handleConfirmEmail = () => {
     console.log("codigo:", formValues.code);
+    console.log('codigoBack:..', formValues.backCode);
     if(isConfirmEmail===true){
       registerRecruiter();
       console.log('Email confirmado con Exito:..');

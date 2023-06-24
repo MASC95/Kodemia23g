@@ -1,5 +1,8 @@
+import { backURL } from "../../lib/myLib"
+
+
 export const endpointsGral={
-    vacancyURL:'http://localhost:4000/api/v1/jobVacancy/',
+    vacancyURL:`${backURL}api/v1/jobVacancy/`,
     userURL:'http://localhost:4000/api/v1/users/',
     registerUser: 'http://107.23.237.6/api/v1/signup',
     jobSkill:'http://107.23.237.6/api/v1/jobSkill/',
@@ -8,5 +11,6 @@ export const endpointsGral={
 }
 
 //agregar endpoint
+
 
 //userURL:'http://107.23.237.6/api/v1/users',

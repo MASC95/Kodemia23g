@@ -8,3 +8,7 @@ export const myId = () => {
     }
     return id.join("");
   };
+
+  const nodeEnv = 'DEV';
+
+export const backURL = nodeEnv==='PRD'?'http://107.23.237.6/':'http://localhost:4000/';

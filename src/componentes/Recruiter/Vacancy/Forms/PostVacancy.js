@@ -9,24 +9,27 @@ import { useNavigate } from "react-router-dom";
 import UploadImage from "../../../UploadImage/UploadImage";
 import logo from '../../../Recruiter/assets/img/perfil2.jpg'
 
+const initDataForm={
+    companyName:'',
+    avatar_url:'',
+    title:'',
+    type:'',
+    mode:'',
+    city:'',
+    salary:'',
+    status:'',
+    activities:''
+}
 
 export const PostVacancy=()=>{
     const [listSkills, setListSkills] = useState([]);
     const [imageUser, setImageUser] = useState(null);
+    const [dataForm, setDataForm] = useState(initDataForm);
+
     const navigate=useNavigate()
     
     const formik= useFormik({
-        initialValues: {
-            companyName:'',
-            avatar_url:'',
-            title:'',
-            type:'',
-            mode:'',
-            city:'',
-            salary:'',
-            status:'',
-            activities:''
-        },
+        initialValues: dataForm,
         validationSchema:Yup.object({
             companyName:Yup.string().required('Requerido'),
             title:Yup.string().required('Requerido'),
@@ -44,8 +47,24 @@ export const PostVacancy=()=>{
                     ...values,
                     job_skills:[...idsSkills]
                 }
-              axios
-                .post(endpointsGral.vacancyURL, completeForm) 
+                const formData = new FormData();
+                if (imageUser) formData.append("image", imageUser);
+                if (idsSkills) {
+                    for (let i = 0; i < idsSkills.length; i++) {
+                    formData.append("job_skills", idsSkills[i]);
+                    }
+                }
+                Object.entries(values).forEach(([key, value]) => {
+                    formData.append(key, value);
+                  });
+                  console.log("idsSkills:..", idsSkills);
+                  for (const pair of formData.entries()) {
+                    console.log(`${pair[0]}, ${pair[1]}`);
+                  }
+              axios.post(endpointsGral.vacancyURL, formData, {
+                headers: {
+                  "Content-Type": "multipart/form-data",
+            }})
                 .then(response => {
                   console.log(response);
                   swal({
@@ -71,7 +90,7 @@ export const PostVacancy=()=>{
               {!imageUser && (
                 <>
                 <div className="ppic-container">
-                    <img src={logo} alt="imgProfile" />
+                    <img src={dataForm.avatar_url?dataForm.avatar_url:logo} alt="imgProfile" />
                 </div>
                 <p className="allowed-files text-dark"> Archivos permitidos .png, .jpg, jpeg </p>
                 <p className="allowed-files text-dark"> Imagen empresarial (logo) </p>

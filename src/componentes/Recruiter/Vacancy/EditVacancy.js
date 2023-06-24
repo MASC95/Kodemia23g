@@ -35,6 +35,7 @@ const validations = Yup.object().shape({
 });
 
 export const EditVacancy = () => {
+  const navigate=useNavigate()
   const valores = window.location.search;
   const myVacancie = useParams("v");
   console.log("myVacancie:..", myVacancie);
@@ -108,7 +109,7 @@ export const EditVacancy = () => {
         ...values,
         job_skills: [...idsSkills],
       };
-      console.log("completeForm:...", completeForm);
+    //   console.log("completeForm:...", completeForm);
 
       const formData = new FormData();
       if (imageUser) formData.append("image", imageUser);
@@ -141,6 +142,7 @@ export const EditVacancy = () => {
             icon: "success",
             button: "ok!",
           });
+          navigate(`/Dashboard-Recruiter/vacancy`)
         })
         .catch((error) => {
           console.log(error.response);

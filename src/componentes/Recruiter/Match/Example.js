@@ -69,7 +69,7 @@ const Example = () => {
       if (result.isConfirmed) {
         Swal.fire({
           icon: 'success',
-          html: 'You selected: ' + result.value
+          html: 'Estado: ' + result.value
         });
         if(result.value==='Iniciado'){
           
@@ -91,7 +91,6 @@ const Example = () => {
 
   const editStatus=(values,editState)=>{
     console.log('value',values)
-    //console.log('dataStatusEditing:..',dataStatusEditing);
     const arrVacancy=dataInformation.map(item=>{
       if(item._id===editState._id){
         item.status=values.status
@@ -109,11 +108,6 @@ const Example = () => {
     axios.patch(`${endpointsGral.vacancyURL}${editState._id}`, values) 
       .then(response => {
         console.log(response);
-        // swal({
-        //   title: "Skill editada!!",
-        //   icon: "success",
-        //   button: "ok!",
-        //  });
       })
       .catch(error => {
         console.log(error.response);

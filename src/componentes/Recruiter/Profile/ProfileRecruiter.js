@@ -64,6 +64,7 @@ export const ProfileRecruiter=()=>{
         formData.append(key, value);
         //console.log(key,value);
       });
+      console.log('formData', formData)
       axios
         .patch(`${endpointsGral.userURL}${dataRecruiter.accessToken}`, formData, {
           headers: {

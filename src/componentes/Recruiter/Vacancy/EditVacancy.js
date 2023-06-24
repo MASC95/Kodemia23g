@@ -8,9 +8,13 @@ import { useFormik } from "formik";
 import * as Yup from 'yup'
 import useJob from '../../../hooks/useJob'
 import { useParams } from "react-router-dom";
+import UploadImage from "../../UploadImage/UploadImage";
+import logo from '../../Recruiter/assets/img/perfil2.jpg'
+
 
 const initDataForm={
     companyName:'',
+    avatar_url:'',
     title:'',
     type:'',
     mode:'',
@@ -42,6 +46,7 @@ export const EditVacancy=()=>{
     const [listSkills, setListSkills] = useState([]);
     const [infoDataVacancy,setInfoDataVacancy]=useState({})
     const [dataForm, setDataForm] = useState(initDataForm);
+    const [imageUser, setImageUser] = useState(null);
     const [dataCandidate,setDataCandidate,dataRecruiter,setDataRecruiter, dataLocalStorage, setDataLocalStorage]=useJob()
 
 
@@ -74,6 +79,7 @@ export const EditVacancy=()=>{
         if(infoDataVacancy){
             setDataForm({
                 companyName:infoDataVacancy.companyName||'',
+                avatar_url:infoDataVacancy.avatar_url||'',
                 title:infoDataVacancy.title||'',
                 type:infoDataVacancy.type||'',
                 mode:infoDataVacancy.mode||'',
@@ -93,9 +99,7 @@ export const EditVacancy=()=>{
         enableReinitialize:true,
         validationSchema:validations,
         onSubmit:(values) => {
-            setTimeout(() => {
                 const idsSkills =  listSkills.map(item=>item.skill);
-                
                 const completeForm = {
                     ...values,
                     job_skills:[...idsSkills]
@@ -103,12 +107,25 @@ export const EditVacancy=()=>{
                 console.log('completeForm:...', completeForm)
 
 
+                const formData = new FormData();
+                if (imageUser) formData.append("image", imageUser);
+                if (idsSkills){
+                    for(let i=0; i<idsSkills.length;i++){
+                      formData.append("job_skills",idsSkills[i]);
+                    } 
+                  }
+                console.log('for de jobskill', idsSkills)
+                Object.entries(values).forEach(([key, value]) => {
+                    formData.append(key, value);
+                });
                 axios.defaults.headers.common[
                     "Authorization"
                   ] = `Bearer: ${dataRecruiter.accessToken}`;
-              axios
-                // .patch(endpointsGral.vacancyURL, completeForm) 
-                .patch(`${endpointsGral.vacancyURL}${idVacancy}`, completeForm)
+              axios.patch(`${endpointsGral.vacancyURL}${idVacancy}`, formData,{
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                  },
+              })
                 .then(response => {
                   console.log(response);
                   swal({
@@ -120,14 +137,25 @@ export const EditVacancy=()=>{
                 .catch(error => {
                   console.log(error.response);
                 });
-            //   console.log({ values});
-            //   alert(JSON.stringify(completeForm, null, 2));
-            }, 400);
           }
       });
       return(
-        <div className="container mt-2 p-5 w-100 " id="formGral">
+        <div className="row container_form_General m-5 " id="formGral">
             <h2 className="text-dark">Editar Vacante</h2>
+            <div className="col-4 container_image">
+            {!imageUser && (
+                <>
+                <div className="ppic-container">
+                    <img src={dataForm.avatar_url?dataForm.avatar_url:logo} alt="imgProfile" />
+                </div>
+                <p className="allowed-files text-dark"> Archivos permitidos .png, .jpg, jpeg </p>
+                </>
+              )}
+                <div className="buttons_actions d-flex justify-content-center gap-3">
+                    <UploadImage setDataImg={setImageUser} />
+                </div>
+            </div>
+            <div className="col">
             <form onSubmit={formik.handleSubmit}>
                 <div className="row mb-4">
                     <div className="col">
@@ -259,6 +287,7 @@ export const EditVacancy=()=>{
                     <button type="submit" className="buttons btn btn-info text-light">Guardar Vacante</button>               
                 </div>
             </form>
+            </div>
         </div>
     )
 }

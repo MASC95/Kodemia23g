@@ -88,7 +88,7 @@ export const ProfileRecruiter=()=>{
     return(
         <>
         <div className='card-body'>
-           <h1 className="text-start">Información General</h1> 
+           <h1 className="text-start text-dark">Información General</h1> 
            <div className="row container_form_General">
 
             <div className="col-4 container_image">
@@ -97,7 +97,7 @@ export const ProfileRecruiter=()=>{
                 <div className="ppic-container">
                     <img src={dataForm.avatar_url?dataForm.avatar_url:imgProfile} alt="imgProfile" />
                 </div>
-                <p className="allowed-files"> Archivos permitidos .png, .jpg, jpeg </p>
+                <p className="allowed-files text-dark"> Archivos permitidos .png, .jpg, jpeg </p>
                 </>
               )}
 
@@ -122,7 +122,7 @@ export const ProfileRecruiter=()=>{
                 <div className="row mb-4">
                     <div className="col">
                     <div className="form-outline bg-gray" >
-                        <label className="form-label" htmlFor="form6Example1">
+                        <label className="form-label text-dark" htmlFor="form6Example1">
                         Nombre
                         </label>
                         <Field
@@ -142,7 +142,7 @@ export const ProfileRecruiter=()=>{
                     </div>
                     <div className="col">
                     <div className="form-outline">
-                        <label className="form-label" htmlFor="form6Example1">
+                        <label className="form-label text-dark" htmlFor="form6Example1">
                         Apellido
                         </label>
                         <Field
@@ -162,7 +162,7 @@ export const ProfileRecruiter=()=>{
                 <div className="row mb-4">
                     <div className="col">
                     <div className="form-outline bg-gray">
-                        <label className="form-label" htmlFor="form6Example1">
+                        <label className="form-label text-dark" htmlFor="form6Example1">
                         Email
                         </label>
                         <Field
@@ -180,7 +180,7 @@ export const ProfileRecruiter=()=>{
                     </div>
                     <div className="col">
                     <div className="form-outline">
-                        <label className="form-label" htmlFor="form6Example1">
+                        <label className="form-label text-dark" htmlFor="form6Example1">
                         Reset Password
                         </label>
                         <Field
@@ -201,7 +201,7 @@ export const ProfileRecruiter=()=>{
                 <div className="row mb-4">
                     <div className="col">
                     <div className="form-outline">
-                        <label className="form-label" htmlFor="form6Example2">
+                        <label className="form-label text-dark" htmlFor="form6Example2">
                         RFC
                         </label>
                         <Field

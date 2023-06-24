@@ -5,6 +5,8 @@ import axios from "axios";
 import { endpointsGral } from "../services/vacancy";
 import useJob from '../../../hooks/useJob'
 import { myId } from "../../lib/myLib";
+import DataTable from 'react-data-table-component';
+import DataTableExtensions from 'react-data-table-component-extensions';
 import './scss/style.scss'
 export const Candidate=()=>{
     const valores = window.location.search;
@@ -15,14 +17,11 @@ export const Candidate=()=>{
     console.log(idCandidate)
     const [dataSkill, setDataSkill] = useState([]);
     const [infoCandidate,setInfoCandidate]=useState({}) 
-    // const [infoUserComparative,setInfoUserComparative]=useState({})
     const queryByUsers= async()=>{
         try {
             const response= await axios.get(endpointsGral.userURL)
             const dataUsers=response.data['item']
             const objUsers= dataUsers['docs']
-            // setInfoUserComparative(objUsers)
-
             const userFind=objUsers.find((value) => value._id===idCandidate)
             setInfoCandidate(userFind)
 
@@ -44,19 +43,68 @@ export const Candidate=()=>{
         fetchSkill()
       }, []);
 
-    console.log('userCompartive MAP',infoCandidate)
-    console.log('skills',dataSkill)
+
+      const data= infoCandidate?.user_skills?.map((skill,i) => {
+        let myDataSkill=null;
+            myDataSkill= dataSkill?.find(item=>item._id===skill.skill);
+            if(!myDataSkill){
+            myDataSkill= dataSkill?.find(item=>item._id===skill);
+         }
+        
+        return(
+          {
+            id:myDataSkill?._id,
+            qty: `${i+1}`,
+            skill: myDataSkill?.name,
+            nivel: myDataSkill?.level,
+          }
+        )
+      })
+
+
+
+      const columns = [
+        {
+          name:'rowId',
+          selector: (row) => row.id,
+          sortable: true, hide:true,
+          omit:true,
+    
+        },
+        {
+          name: "#",
+          selector: (row,i) => i + 1,
+          sortable: true
+        },
+        {
+          name: "SKILL",
+          selector: (row, i) =>`${row.skill}`,
+          sortable: true
+        },
+        {
+          name: "NIVEL",
+          selector: (row, i) => row.nivel,
+          sortable: true
+        },
+        
+    ];
+      const tableData = {
+        columns,
+        data
+      };
+    // console.log('userCompartive MAP',infoCandidate)
+    // console.log('skills',dataSkill)
   
     return(
         <>
         <div className='card-body'>
-        <h1  className="text-start">Perfil Profesional</h1>
+        <h1  className="text-start text-dark">Perfil Profesional</h1>
         <div className="row container_form_General">
             <div className="col-4 container_image">
                 <img src={infoCandidate.avatar_url} alt=""/>
                 <div className="">  
-                  <p className="text-justify">{`${infoCandidate.name} ${infoCandidate.last_name}`}</p>
-                  <p className="text-justify"><FaMailBulk/> { infoCandidate.email}</p>
+                  <p className="text-justify text-dark">{`${infoCandidate.name} ${infoCandidate.last_name}`}</p>
+                  <p className="text-justify text-dark"><FaMailBulk/> { infoCandidate.email}</p>
                 </div>
                 <div className="buttons_actions d-flex justify-content-center gap-3">  
                 <button type="button" className="buttons btn btn-outline-success"><FaCheck className="icon_check"/></button> 
@@ -65,71 +113,55 @@ export const Candidate=()=>{
             </div>
             <div className="col">
                 <div className="row mb-4">
-                    <h2 className="text-start">Información General</h2>
+                    <h2 className="text-start text-dark">Información General</h2>
                     <div className="col">
                     <div className="form-outline bg-gray">
-                        <label className="form-label text-start" for="form6Example1">Nombre</label>
-                        <p>{`${infoCandidate.name}`}</p>
+                        <label className="form-label text-start text-dark" for="form6Example1">Nombre</label>
+                        <p className="text-dark">{`${infoCandidate.name}`}</p>
                     </div>
                     </div>
                     <div className="col">
                     <div className="form-outline">
-                        <label className="form-label text-start" for="form6Example1">Apellido</label>
-                        <p>{infoCandidate.last_name}</p>
+                        <label className="form-label text-start text-dark" for="form6Example1">Apellido</label>
+                        <p className="text-dark">{infoCandidate.last_name}</p>
                     </div>
                     </div>
                     <div className="col">
                     <div className="form-outline">
-                        <label className="form-label text-start" for="form6Example1">Edad</label>
-                        <p>{infoCandidate.age}</p>
+                        <label className="form-label text-start text-dark" for="form6Example1">Edad</label>
+                        <p className="text-dark">{infoCandidate.age}</p>
                     </div>
                     </div>
                 </div>
                 <div className="row mb-4">
                     <div className="col">
                         <div className="form-outline">
-                            <label className="form-label" for="form6Example1">Experiencia</label>
-                            <p>{infoCandidate.working_experience}</p>
+                            <label className="form-label text-dark" for="form6Example1">Experiencia</label>
+                            <p className="text-dark">{infoCandidate.working_experience}</p>
                         </div>
                     </div>
                 </div>
-                <h3>Lista de skills agregadas</h3>
+                <h3 className="text-dark">Lista de skills agregadas</h3>
                 <div className="col">
-                  <table className="table">
-                        <thead className="thead-dark bg-body-secondary">
-                            <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Skill</th>
-                            <th scope="col">Nivel</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {infoCandidate?.user_skills?.map((skill,i)=>{
-                                console.log('info can',skill)
-                                let myDataSkill=null;
-                                myDataSkill= dataSkill?.find(item=>item._id===skill.skill);
-                                if(!myDataSkill){
-                                myDataSkill= dataSkill?.find(item=>item._id===skill);
-                                }
-                                
-                                return (
-                                    <tr key={myId()}>
-                                    <th scope="row">{i+1}</th>
-                                    <td>{myDataSkill?.name}</td>
-                                    <td>{myDataSkill?.level}</td>
-                                    </tr>
-                                )
-                            })}
-                        
-                        </tbody>
-                  </table>
+                <div className="main">
+                <DataTableExtensions  
+                export={false}
+                print={false}
+                {...tableData}>
+                    <DataTable {...tableData}
+                    key={myId()}
+                    columns={columns}
+                    data={data}
+                    noHeader
+                    defaultSortField="#"
+                    defaultSortAsc={true}
+                    pagination
+                    highlightOnHover
+                    dense
+                    />
+                </DataTableExtensions>
                 </div>
-                {/* <div className="buttons_actions d-flex justify-content-end gap-3">  
-                    <FaCheck className="icon_check"/>
-                    <FaEyeSlash className="icon_eyeSlash"/>
-                    {/* <button type="button" className="buttons btn btn-success text-light">Aceptar</button> 
-                    <button type="button" className="buttons btn btn-danger text-light">Ignorar</button> }
-                </div> */}
+                </div>
             </div>
         </div>
         </div>            

@@ -8,9 +8,12 @@ import Button from "react-bootstrap/Button";
 import { FaBars } from "react-icons/fa";
 import logo from "../../../Recruiter/assets/img/logo.png";
 import "./navbarcandidate.scss";
-function NavbarCandidate() {
+import useJob from '../../../../hooks/useJob' 
+ const NavbarCandidate = () => {
   const [showOffcanvas, setShowOffcanvas] = useState(false);
-
+  const [dataCandidate,setDataCandidate,dataRecruiter,setDataRecruiter, dataLocalStorage, setDataLocalStorage]= useJob();
+  console.log('dataCandidate...', dataCandidate)
+  console.log('dataRecruiter...', dataRecruiter)
   const handleShowOffCanvas = () => {
     setShowOffcanvas((prev) => !prev);
   };
@@ -41,6 +44,10 @@ function NavbarCandidate() {
             className="logo-img"
           />{" "}
         </Navbar.Brand>
+        <div className="container">
+          <p>{`${dataCandidate.name} ${dataCandidate.last_name}`} </p>
+          <img src={dataCandidate.avatar_url} alt="candidate-profile-pic"/> 
+        </div>
 
      
       </Container>

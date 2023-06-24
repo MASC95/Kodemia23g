@@ -121,12 +121,8 @@ const FormRecruiter = () => {
       if (idsSkills){
         for(let i=0; i<idsSkills.length;i++){
           formData.append("user_skills",idsSkills[i]);
-        }
-          
-        
+        } 
       }
-      
-       
       Object.entries(values).forEach(([key, value]) => {
         formData.append(key, value);
         //console.log(key,value);

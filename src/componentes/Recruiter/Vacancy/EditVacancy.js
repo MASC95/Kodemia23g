@@ -100,6 +100,7 @@ export const EditVacancy=()=>{
         validationSchema:validations,
         onSubmit:(values) => {
                 const idsSkills =  listSkills.map(item=>item.skill);
+                console.log('idsSkill Skills', idsSkills)
                 const completeForm = {
                     ...values,
                     job_skills:[...idsSkills]

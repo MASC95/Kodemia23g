@@ -110,7 +110,7 @@ export const Softskills = ({setListSkills,isCandidate,skillsCandidate}) => {
     <>
         <div className="row softskills">
           <div className="col">
-            <form >
+            < >
               <div className="row d-flex">
                 <label className="form-label text-dark" htmlFor="form6Example1">
                   Elige las SoftSkill de tu {!isCandidate?'vacante':'perfil'}:
@@ -127,7 +127,7 @@ export const Softskills = ({setListSkills,isCandidate,skillsCandidate}) => {
                       {dataSkill.map((item, index) => {
                         const id = item._id;
                         const skillComplete = `${item.name} - ${item.level}`;
-                        return <option value={`${id}`}>{skillComplete}</option>;
+                        return <option key={myId()} value={`${id}`}>{skillComplete}</option>;
                       })}
                     </select>
                   </div>
@@ -138,7 +138,7 @@ export const Softskills = ({setListSkills,isCandidate,skillsCandidate}) => {
                     </button>
                   </div>
               </div>
-            </form>
+            </>
             {
                 !isCandidate
                 &&

@@ -144,7 +144,7 @@ export const Details = () => {
             <p className=" text-info-general"><FaCalendarCheck className="icons-form-general" /> <b>Tipo:</b> {dataVacancy?.type}</p>
             <p className=" text-info-general"><FaDollarSign className="icons-form-general"/> <b>Salario:</b> {dataVacancy?.salary}</p>
             {my_vacancies && my_vacancies?.find(myVac=>myVac._id===myParams.id)===undefined? (
-            <button type="button" className="btn btn-outline-info buscar"  onClick={handleApply} disabled ={my_vacancies?.find(myVac=>myVac._id===myParams.id)===undefined?false:true} >
+            <button type="button" className="btn btn-outline-info buscar " onClick={handleApply} disabled ={my_vacancies?.find(myVac=>myVac._id===myParams.id)===undefined?false:true} >
             {my_vacancies && my_vacancies?.find(myVac=>myVac._id===myParams.id)===undefined?'Aplicar':'Aplicando'}
             </button>
             ):(<>

@@ -125,12 +125,12 @@ const HorizonTable = ({ vacancies, my_vacancies, handleStopApplying, handleApply
       name: 'OPCIÓN',
       sortable: false,
       cell: (row) => (
-        <div className="options-buttons">
+        <div className="options-buttons m-2 " style={{width: '250px'}}>
           {my_vacancies?.find((myVac) => myVac._id === row._id) === undefined ? (
             <button
               type="submit"
               id={row._id}
-              className="btn btn-outline-info buscar"
+              className="btn btn-outline-info buscar "
               onClick={handleApply}
               disabled={my_vacancies?.find((myVac) => myVac._id === row._id) === undefined ? false : true}
             >
@@ -139,7 +139,7 @@ const HorizonTable = ({ vacancies, my_vacancies, handleStopApplying, handleApply
           ) : (
             <button
               type="submit"
-              className="btn btn-outline-danger"
+              className="btn btn-outline-danger mb-2"
               id={row._id}
               onClick={handleStopApplying}
             >
@@ -147,7 +147,7 @@ const HorizonTable = ({ vacancies, my_vacancies, handleStopApplying, handleApply
             </button>
           )}
           <Link to={`/dashboard-candidato/detail-vacancy/${row._id}`}>
-            <button type="submit" className="btn btn-info text-light">
+            <button type="submit" className="btn btn-info text-light mt-2 w-100">
               Abrir
             </button>
           </Link>

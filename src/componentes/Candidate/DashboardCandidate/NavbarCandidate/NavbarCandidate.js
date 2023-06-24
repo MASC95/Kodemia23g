@@ -20,15 +20,7 @@ function NavbarCandidate() {
     <Navbar expand="lg" className="nav w-100">
       <Container className="container-fluid">
      
-        <Navbar.Brand href="#home" className="logo">
-          {" "}
-          <img
-            src={logo}
-            alt="Logo"
-            
-            className="logo-img"
-          />{" "}
-        </Navbar.Brand>
+      
       
         
         <Button variant="primary" onClick={handleShowOffCanvas} className="toggle">
@@ -39,6 +31,16 @@ function NavbarCandidate() {
           showOffcanvas={showOffcanvas}
           handleShowOffcanvas={handleShowOffCanvas}
         />
+
+<Navbar.Brand href="#home" className="logo">
+          {" "}
+          <img
+            src={logo}
+            alt="Logo"
+            
+            className="logo-img"
+          />{" "}
+        </Navbar.Brand>
 
      
       </Container>

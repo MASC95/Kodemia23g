@@ -142,8 +142,8 @@ export const Vacancy=()=>{
           <div className='card-header d-flex gap-3'>
               <h1 className="text-start text-dark"><b>Vacantes</b></h1>
                  <div className="d-flex h-100  justify-content-around">
-                   <Link to={`/Dashboard-Recruiter/vacancy-new`} className="text-light buttons btn btn-info btn-lg">
-                     Agregar Nuevo
+                   <Link to={`/Dashboard-Recruiter/vacancy-new`} className="text-light buttons btn btn-info btn-lg text-decoration-none">
+                     Crear vacante
                       </Link>
                   </div> 
           </div>

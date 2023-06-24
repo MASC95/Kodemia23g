@@ -17,7 +17,11 @@ export const RegisterCandidate = () => {
   const fetchUser=async()=>{
     const response = await axios.get(endpointsGral.userURL);
     const infoSkill = response.data["item"];
-    setInformationUser(infoSkill["docs"]);
+    if(infoSkill){
+      setInformationUser(infoSkill["docs"]);
+    }else{
+      console.log('error infoSkill')
+    }
   }
   useEffect(()=>{
       // if()

@@ -85,6 +85,8 @@ export const ListMyAppVacancy = () => {
     }
   };
 
+ 
+
   const columns = [
     {
       name: "#",
@@ -134,24 +136,22 @@ export const ListMyAppVacancy = () => {
   };
 
   return (
-    <div className="d-none d-md-flex justify-content-center main-t" id="formGral">
-      <div className="row softskills">
-        <div className="col">
-          <DataTableExtensions filter={true} {...tableData} export={false} print={false}>
-            <DataTable
+    <div className="d-flex flex-columns align-items-center m-5 p-3" id="formGral" style={{ fontFamily: 'Poppins, sans-serif, Verdana, Geneva, Tahoma' }}>
+        
+          <DataTableExtensions {...tableData} export={false} print={false}>
+            <DataTable {...tableData}
               columns={columns}
               data={data}
-              noHeader
               defaultSortField="#"
               defaultSortAsc
               pagination
               highlightOnHover
               dense
+              
             />
           </DataTableExtensions>
         </div>
-      </div>
-    </div>
+     
   );
 };
 

@@ -1,3 +1,4 @@
+
 @keyframes grow {
   from {
     transform: scale(1);
@@ -38,7 +39,7 @@ header {
     .match {
     
       @include mobile {
-        @include montserrat;
+        @include poppins;
         font-size: 22px;
         color: #093040;
         padding: 10px 20px 0 20px;
@@ -46,7 +47,7 @@ header {
 
       }
       @include tablet {
-        @include montserrat;
+        @include poppins;
         font-size: 20px;
         text-align: center;
         color: #093040;
@@ -54,7 +55,7 @@ header {
         
       }
       @include desktop {
-        @include montserrat;
+        @include poppins;
         align-items: center;
         text-indent: 100px;
         line-height: 48px;

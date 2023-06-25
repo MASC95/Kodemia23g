@@ -63,12 +63,12 @@
    }
 
    @mixin montserrat{
-    font: 'Montserrat', sans-serif, Verdana;
+    font: 'Montserrat', sans-serif, Verdana, Geneva, Tahoma, ;
     font-weight: 500;
    }
 
    @mixin poppins{
-    font-family: 'Poppins', sans-serif, Verdana, Geneva, Tahoma, sans-serif;;
+    font-family: 'Poppins', sans-serif, Verdana, Geneva, Tahoma,;
     font-weight: 400;
    }
 

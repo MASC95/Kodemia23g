@@ -6,7 +6,7 @@ import FormRecruiter from "./Form/FormRecruiter";
 import Softskills from "../../Recruiter/SoftSkills/Form/SoftSkills";
 // import Softskills from "../../Recruiter/SoftSkills/SoftSkills";
 export const ProfileCandidates=()=>{
-    console.log('ProfileCandidates:...');
+    // console.log('ProfileCandidates:...');
     return(
         <>
             <FormRecruiter />

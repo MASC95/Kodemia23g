@@ -22,7 +22,7 @@
   width: 100%
 
 }
-.container_form_General{
+.container-form-General{
 
   @include mobile{
     display: flex;
@@ -47,7 +47,7 @@
   
     
     
-    .container_image{
+    .container-image{
       @include mobile{
         width: 30%;
         @include centrarMobile;
@@ -58,7 +58,7 @@
       @include tablet{
         width: 50%;
         height: 100%;
-        border: 1px solid red;
+        
         display: inline-block;
       }
       @include desktop{

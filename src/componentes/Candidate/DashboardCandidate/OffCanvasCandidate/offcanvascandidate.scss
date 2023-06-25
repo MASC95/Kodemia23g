@@ -1,21 +1,20 @@
-@mixin color {
+ @mixin color {
   background: rgba(73, 139, 166, 0.74);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(3.9px);
 }
 
-.offcanvas-container {
-  
-}
 
 .offcanvas-header {
   @include color();
 
-  .logo_Jobinder {
+  .logo-jobinder {
     .img-jobinder {
       margin-bottom: 25px;
       height: 50px;
       width: 150px;
+      transition: transform 0.3s ease-in-out;
+     
     }
   }
 }
@@ -26,18 +25,23 @@
   @include color();
 
   .link {
-    margin-bottom: 60px;
-    text-decoration: none;
-
-    &:hover {
-      opacity: 0.5;
-    }
-
     .icons {
       width: 35px;
       height: 35px;
       color: white;
+     
     }
+    font-family: 'Poppins';
+    margin-bottom: 60px;
+    text-decoration: none;
+   
+    &:hover {
+      opacity: 0.7;
+      
+    }
+   
+
+   
 
     .text {
       font-size: 20px;
@@ -45,4 +49,7 @@
       color: white;
     }
   }
-}
+}  
+
+
+

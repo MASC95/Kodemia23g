@@ -130,13 +130,17 @@ export const Details = () => {
       console.log(error);
     }
   }
-
+  console.log("dataaaaaaaa vacany",dataVacancy)
   return (
     <>
-      <div className="row container_form_General text-dark">
-        <div className="col-4 container_image">
-          {/* <img src={dataVacancy?.avatar_url? dataVacancy?.avatar_url: imgProfile} alt="profile-pic" /> */}
-          <FaUserCircle className="profile-pic my-5"/>
+      <div className="row container-form-General text-dark">
+        <div className="col-4 container-image">
+        {dataVacancy && dataVacancy.avatar_url ? (
+  <img src={dataVacancy.avatar_url} alt="profile-pic"  className="profile-pic my-5"/>
+) : (
+  <FaUserCircle className="profile-pic my-5" />
+)}
+
           <div className="text-dark text-container">
             <p className=" text-info-general"><b>Nombre de la empresa:</b> {dataVacancy?.companyName}</p>
             <p className=" text-info-general"><FaAddressBook className="icons-form-general"/> <b>Ciudad:</b> {dataVacancy?.city}</p>

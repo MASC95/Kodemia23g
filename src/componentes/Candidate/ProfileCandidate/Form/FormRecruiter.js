@@ -55,7 +55,7 @@ const FormRecruiter = () => {
   useEffect(() => {
       
     if (dataCandidate) {
-      console.log("dataCandidate:..", dataCandidate);
+      // console.log("dataCandidate:..", dataCandidate);
       
       setDataForm({
         name: dataCandidate.name||'',
@@ -73,7 +73,7 @@ const FormRecruiter = () => {
   useEffect(()=>{
     
     if(listSkills.length===0){
-      console.log('Actualizando skillsCandidate:..')
+      // console.log('Actualizando skillsCandidate:..')
       if(dataCandidate?.user_skills?.length>0){
         setListSkills([...dataCandidate.user_skills])
       }
@@ -99,7 +99,7 @@ const FormRecruiter = () => {
     }),
     onSubmit: (values) => {
       /* alert(JSON.stringify(values, null, 2)); */
-      console.log('values:..',values);
+      // console.log('values:..',values);
       
     }
   });
@@ -138,7 +138,7 @@ const FormRecruiter = () => {
           },
         })
         .then((response) => {
-          console.log("response.data:..", response.data);
+          // console.log("response.data:..", response.data);
         })
         .catch((error) => {
           console.error(error);
@@ -146,21 +146,24 @@ const FormRecruiter = () => {
 
 
     } catch (error) {
-      console.log('error:..',error);
+      // console.log('error:..',error);
     }
   }
 
 
 return (
   <>
-    <div className="row container_form_General m-5">
-      <div className="col-4 container_image ">
+  <div className="card-body ">
+    <h1 className="text-start text-dark d-sm-flex h2 mt-2"> Perfil </h1>
+    <div className="row container_form_General1 mr-5 ml-5 ">
+    
+      <div className="col-4 container_image justify-content-center">
       {!imageUser && (
             <>
-              <div className="ppic-container">
-                <img src={dataForm.avatar_url?dataForm.avatar_url:imgProfile} alt="imgProfile" />
-              </div>
-              <p className="allowed-files">
+             
+                <img src={dataForm.avatar_url?dataForm.avatar_url:imgProfile} alt="imgProfile" className="perfil-C" />
+              
+              <p className="allowed-files text-center mt-2 ">
                 Archivos permitidos .png, .jpg, jpeg
               </p>
             </>
@@ -171,7 +174,7 @@ return (
           </div>
           
       </div>
-      <div className="col">
+      <div className="col init-form">
          <Formik 
          initialValues={dataForm} 
          enableReinitialize={true}// solo para formularios que sirven para editar informacion
@@ -335,6 +338,7 @@ return (
          )}
         </Formik> 
       </div>
+    </div>
     </div>
   </>
 );

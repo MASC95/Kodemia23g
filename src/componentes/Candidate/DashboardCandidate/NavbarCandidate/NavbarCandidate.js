@@ -50,7 +50,7 @@ const NavbarCandidate = () => {
         <div className="container-m1 d-flex justify-content-end">
           <p className="user-data ">
             {" "}
-            <p className="d-none d-sm-none">
+            <p className="d-none d-sm-block ">
               {dataCandidate.name && dataCandidate.last_name
                 ? `${dataCandidate.name} ${dataCandidate.last_name}`
                 : dataCandidate.name || dataCandidate.last_name

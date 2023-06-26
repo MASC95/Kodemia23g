@@ -1,4 +1,19 @@
+@mixin mobile{
+    @media screen and (min-width: 0px) and (max-width: 600px) {
+      @content;
+    }
+  }
 
+@mixin tablet{
+  @media screen and (min-width: 601px) and (max-width: 1000px)  {
+    @content;
+  }
+}
+@mixin desktop{
+  @media screen and (min-width: 1001px)  {
+    @content;
+  }
+}
 .nav {
     .container-fluid {
       
@@ -30,7 +45,8 @@
           }
   
           .candidate-profile-pic {
-            width: 40px;
+            @include mobile(){
+              width: 40px;
             height: 40px;
             border-radius: 50px;
             margin-left: 30px;
@@ -39,6 +55,31 @@
             &:hover{
               box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
               filter: brightness(110%);
+            }
+            }
+            @include tablet(){
+              width: 40px;
+              height: 40px;
+              border-radius: 50px;
+              margin-left: 30px;
+              box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+              transition: filter 0.3s ease;
+              &:hover{
+                box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+                filter: brightness(110%);
+              }
+            }
+            @include desktop(){
+              width: 40px;
+            height: 40px;
+            border-radius: 50px;
+            margin-left: 30px;
+            box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+            transition: filter 0.3s ease;
+            &:hover{
+              box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+              filter: brightness(110%);
+            }
             }
           }
         

@@ -60,6 +60,7 @@ header {
         text-indent: 100px;
         line-height: 48px;
         color: #093040;
+        
       }
     }
     .text-mobile {
@@ -73,6 +74,7 @@ header {
         @include text-center-mobile();
         font-weight: bold;
         color: #093040;
+
       }
     }
     .first-card-container {
@@ -167,17 +169,37 @@ header {
 
               .recruiter-img {
                 @include mobile {
+                  margin-left: 20%;
+                  margin-top: 8%;
+                  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+                  border-radius: 30px;
+                }
+                @include tablet{
+                  margin-left: 20%;
+                  margin-top: 8%;
+                  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+                  border-radius: 30px;
+                }
+                @include desktop{
+                  margin-left: 20%;
+                  margin-top: 8%;
+                  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+                  border-radius: 30px;
+                  
                 }
               }
               .card-body-1 {
                 @include mobile {
                   padding: 10px 5px 20px 5px;
+                  
                 }
                 @include tablet{
                   padding: 10px 5px 20px 5px;
+                  
                 }
                 @include desktop{
                   padding: 10px 5px 20px 5px;
+                 
                 }
                 .card-title-1 {
                   @include mobile {
@@ -282,6 +304,26 @@ header {
          
               
               .candidate-img {
+                @include mobile{
+                  margin-left: 20%;
+                  margin-top: 8%;
+                  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+                  border-radius: 30px;
+                }
+                @include tablet{
+                  margin-left: 20%;
+                  margin-top: 8%;
+                  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+                  border-radius: 30px;
+                  
+                }
+                @include desktop{
+                  margin-left: 20%;
+                  margin-top: 8%;
+                  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+                  border-radius: 30px;
+                  height: 20%;
+                }
               }
               .card-body-2 {
                 @include mobile {
@@ -375,14 +417,14 @@ header {
           .letras {
             .eleva {
               @include mobile {
-                @include montserrat();
+                @include poppins();
                 font-size: 14px;
                 line-height: 22px;
                 color: #093040;
                 text-indent: 1em;
               }
               @include desktop {
-                @include montserrat();
+                @include poppins();
                 align-items: center;
                 text-indent: 1em;
                 color: #093040;
@@ -394,16 +436,27 @@ header {
         }
       }
       .second-cards-row {
+        width: 100%;
+        height: 100%;
         .second-cards-1 {
+          width: 50%;
+          height: 100%;
           .card-container-3 {
             @include glassEffect;
             @include second-cards-containers;
             margin-left: 300px;
             .video {
-              width: 100%;
+              width: 60%;
+              height: 35%;
+              margin-left: 20%;
+              margin-top: 8%;
+              box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+              border-radius: 30px;
             }
             .video-card-body {
+             
               .video-card-title {
+                margin-top: 10%;
                 padding-left: 10px;
                 font-size: 14px;
                 text-align: left;
@@ -411,11 +464,12 @@ header {
               }
               .unique-skills {
                 @include poppins();
-                padding: 25px 20px 25px 20px;
+                text-align: center;
+                padding: 25px 0px 25px 0px;
+                margin-left: 10px
               }
               .record-video {
                 @include poppins();
-                padding: 10px;
                 text-align: end;
                 color: #ea2876ff;
               }
@@ -423,26 +477,39 @@ header {
           }
         }
         .second-cards-2 {
+          height: 100%;
           .card-container-4 {
+            height: 100%;
             @include glassEffect;
             @include second-cards-containers;
 
             .skills {
+              width: 60%;
+              height: 35%;
+              margin-left: 20%;
+              margin-top: 8%;
+              box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+              border-radius: 30px;
+              
             }
             .card-body-skills {
+              height: 100%;
               .card-title-skills {
                 padding-left: 10px;
                 font-size: 14px;
                 text-align: left;
                 color: gray;
+                margin-top: 10%;
               }
               .card-text-skills {
                 @include poppins();
-                padding: 25px 20px 25px 20px;
+                padding: 25px 0px 25px 0px;
+                margin-left: 10px;
+                text-align: center;
+                color: #000;
               }
               .knowledge {
                 @include poppins();
-                padding: 10px;
                 text-align: end;
                 color: #ea2876ff;
               }
@@ -530,9 +597,10 @@ header {
               display: none;
             }
             @include desktop{
-              width: 400px;
-               height: 300px;
-              margin-top: 30px;
+              width: 341px;
+              height: 316px;
+              margin-top: 10px;
+              
             }
             
           }

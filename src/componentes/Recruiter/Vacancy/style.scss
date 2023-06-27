@@ -5,3 +5,21 @@
 .icon_trash{
     color: rgb(248, 121, 121);
 }
+@media (min-width: 359px) and (max-width:576px){
+    .container_form_General1{
+        display: flex;
+        flex-direction: column;
+        form {
+            .row{
+                display: grid;
+                width: 100%;
+                justify-items: stretch;
+            }
+        }
+    }
+    #container_image{
+        width: 100%;
+            display: grid;
+            justify-content: center;
+    }
+}

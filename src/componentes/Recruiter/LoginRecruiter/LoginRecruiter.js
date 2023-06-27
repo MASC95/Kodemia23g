@@ -134,7 +134,7 @@ export const LoginRecruiter=()=>{
                     </p>
                     </div>
                 </div>
-                <div className="col-md-6 col-md-offset-3">
+                <div className="col-md-6 col-md-offset-3 d-none d-sm-block">
                     <div className="block text-center  shadow-none">
                     <img className="container w-100 h-50" src={login} alt=""/>
                     </div>

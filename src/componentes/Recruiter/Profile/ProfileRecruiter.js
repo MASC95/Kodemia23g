@@ -89,16 +89,15 @@ export const ProfileRecruiter=()=>{
     return(
         <>
         <div className='card-body'>
-           <h1 className="text-start text-dark">Información General</h1> 
+           <h1 className="text-start text-dark d-sm-flex h2 mt-2">Información General</h1> 
            <div className="row container_form_General">
-
-            <div className="col-4 container_image">
+            <div className="col-4 container_image justify-content-center">
               {!imageUser && (
                 <>
-                <div className="ppic-container">
+                {/* <div className="ppic-container"> */}
                     <img src={dataForm.avatar_url?dataForm.avatar_url:imgProfile} alt="imgProfile" />
-                </div>
-                <p className="allowed-files text-dark"> Archivos permitidos .png, .jpg, jpeg </p>
+                {/* </div> */}
+                <p className="text-dark"> Archivos permitidos .png, .jpg, jpeg </p>
                 </>
               )}
 

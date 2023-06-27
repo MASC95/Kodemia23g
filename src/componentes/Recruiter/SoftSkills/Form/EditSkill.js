@@ -58,7 +58,7 @@ export const EditSkill=({listSkills,setListSkills})=>{
 
   const onFormSubmit = (event) => {
     event.preventDefault();
-    console.log('selectSkill:..',selectSkill);
+    // console.log('selectSkill:..',selectSkill);
     const newSkill = {
       skill: selectSkill,
     };
@@ -206,7 +206,7 @@ export const EditSkill=({listSkills,setListSkills})=>{
                   </div>
               </div>
             </form>
-                  <Link to={'/Dashboard-Recruiter/softskill-addNew'} className="text-black d-flex justify-content-end mb-3 fs-6">
+                  <Link to={'/Dashboard-Recruiter/softskill-addNew'} className="text-black d-flex justify-content-start mt-2 mb-3 fs-6">
                       <p className="">Crear nueva SoftSkill</p> 
                   </Link>          
               

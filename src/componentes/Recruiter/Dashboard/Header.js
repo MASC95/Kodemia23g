@@ -8,6 +8,9 @@ import useJob from '../../../hooks/useJob'
 
 export const Header=()=>{
     const [dataCandidate,setDataCandidate,dataRecruiter,setDataRecruiter, dataLocalStorage, setDataLocalStorage]= useJob();
+    useEffect(()=>{
+        
+    },[dataRecruiter])
     return(
         <>
          <header className='dashboard-toolbar'>
@@ -17,7 +20,7 @@ export const Header=()=>{
                             </Link>
                         </div> 
                     <div className="col image-container">
-                        <p>{`${dataRecruiter.name} ${dataRecruiter.last_name}`}</p>
+                        <p className="sm">{`${dataRecruiter.name ? dataRecruiter.name: dataRecruiter.email}`}</p>
                         <img src={dataRecruiter.avatar_url} alt=""/>
                     </div>
                     </div>

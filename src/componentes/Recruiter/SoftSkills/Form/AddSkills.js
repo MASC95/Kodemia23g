@@ -272,7 +272,7 @@ export const AddSkills=()=>{
                     <div className="row mb-4">
                         <div className="col">
                         <div className="form-outline">
-                        <label className="form-label text-dark" htmlFor="form6Example2">Nombre de la Skill:</label>
+                        <label className="form-label text-dark" htmlFor="form6Example2">Nombre:</label>
                              <input type="text" 
                                id="name" 
                                name="name"

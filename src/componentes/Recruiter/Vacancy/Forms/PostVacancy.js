@@ -8,6 +8,7 @@ import swal from "sweetalert";
 import { useNavigate } from "react-router-dom";
 import UploadImage from "../../../UploadImage/UploadImage";
 import logo from '../../../Recruiter/assets/img/perfil2.jpg'
+import '../style.scss'
 
 const initDataForm={
     companyName:'',
@@ -59,14 +60,14 @@ export const PostVacancy=()=>{
                   });
                   console.log("idsSkills:..", idsSkills);
                   for (const pair of formData.entries()) {
-                    console.log(`${pair[0]}, ${pair[1]}`);
+                    // console.log(`${pair[0]}, ${pair[1]}`);
                   }
               axios.post(endpointsGral.vacancyURL, formData, {
                 headers: {
                   "Content-Type": "multipart/form-data",
             }})
                 .then(response => {
-                  console.log(response);
+                //   console.log(response);
                   swal({
                     title: "Vacante creada!!",
                     icon: "success",
@@ -76,7 +77,7 @@ export const PostVacancy=()=>{
 
                 })
                 .catch(error => {
-                  console.log(error.response);
+                //   console.log(error.response);
                 });
             }, 400);
             
@@ -85,18 +86,18 @@ export const PostVacancy=()=>{
 
 
     return(
-        <div className="row container_form_General m-5">
-             <div className="col-4 container_image">
+        <div className="row container_form_General1 m-5" id="formGral">
+          <h1  className="text-start d-sm-flex text-center h2 mt-2 text-dark">Crear Vacante</h1>
+             <div className="col-4 container_image" id="container_image">
               {!imageUser && (
                 <>
-                <div className="ppic-container">
+                {/* <div className="ppic-container"> */}
                     <img src={dataForm.avatar_url?dataForm.avatar_url:logo} alt="imgProfile" />
-                </div>
-                <p className="allowed-files text-dark"> Archivos permitidos .png, .jpg, jpeg </p>
-                <p className="allowed-files text-dark"> Imagen empresarial (logo) </p>
+                {/* </div> */}
+                <p className="text-dark"> Archivos permitidos .png, .jpg, jpeg </p>
                 </>
               )}
-                <div className="buttons_actions d-flex justify-content-center gap-3">
+                <div className="buttons_actions d-flex justify-content-center">
                     <UploadImage setDataImg={setImageUser} />
                 </div>
             </div>

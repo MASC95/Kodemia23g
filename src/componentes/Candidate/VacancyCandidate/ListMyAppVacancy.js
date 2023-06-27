@@ -66,12 +66,13 @@ export default ListMyAppVacancy; */
 import React from "react";
 import DataTable from "react-data-table-component";
 import DataTableExtensions from "react-data-table-component-extensions";
+import "react-data-table-component-extensions/dist/index.css";
 import Badge from "react-bootstrap/Badge";
 import { endpoints } from "../EndpointsCandidate/endpoints";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import useJob from "../../../hooks/useJob";
-
+import { myId } from "../../lib/myLib";
 export const ListMyAppVacancy = () => {
   const [dataCandidate] = useJob();
   const { my_vacancies } = dataCandidate;
@@ -84,10 +85,25 @@ export const ListMyAppVacancy = () => {
       console.log(error);
     }
   };
+  const data = my_vacancies?.map((item, index) => ({
+    ...item,
+    id: index + 1,
+    title: item.title,
+    type: item.type,
+    mode: item.mode,
+    salary: item.salary,
+  }));
 
  
 
   const columns = [
+    {
+      name:'rowId',
+      selector: (row) => row._id,
+      sortable: true, 
+      omit:true,
+
+    },
     {
       name: "#",
       selector: (row, index) => index + 1,
@@ -95,28 +111,29 @@ export const ListMyAppVacancy = () => {
     },
     {
       name: "TITULO",
-      selector: "title",
+      selector: (row) => `${row.title}`,
       sortable: true,
     },
     {
       name: "TIPO DE TRABAJO",
-      selector: "type",
+      selector: (row) => `${row.type}`,
       sortable: true,
     },
     {
       name: "MODALIDAD",
-      selector: "mode",
+      selector: (row) => `${row.mode}`,
       sortable: true,
     },
     {
       name: "SALARIO",
-      selector: "salary",
+      selector: (row) => `${row.salary}`,
       sortable: true,
     },
     {
       name: "ESTADO",
-      selector: "status",
+      selector: (row) => row.null,
       sortable: true,
+      
       cell: (row) => (
         <Badge bg="info" className="badge_state1 p-2 buscar">
           {row.status}
@@ -125,10 +142,6 @@ export const ListMyAppVacancy = () => {
     },
   ];
 
-  const data = my_vacancies?.map((item, index) => ({
-    ...item,
-    id: index + 1,
-  }));
 
   const tableData = {
     columns,
@@ -136,7 +149,7 @@ export const ListMyAppVacancy = () => {
   };
 
   return (
-    <div className="d-flex flex-columns align-items-center m-5 p-3" id="formGral" style={{ fontFamily: 'Poppins, sans-serif, Verdana, Geneva, Tahoma' }}>
+    <div className="m-5 p-3" id="formGral" style={{ fontFamily: 'Poppins, sans-serif, Verdana, Geneva, Tahoma' }}>
         
           <DataTableExtensions {...tableData} export={false} print={false}>
             <DataTable {...tableData}
@@ -147,7 +160,7 @@ export const ListMyAppVacancy = () => {
               pagination
               highlightOnHover
               dense
-              
+              key={myId()}
             />
           </DataTableExtensions>
         </div>

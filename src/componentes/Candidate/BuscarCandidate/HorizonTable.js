@@ -94,6 +94,7 @@ import DataTableExtensions from 'react-data-table-component-extensions';
 import "react-data-table-component-extensions/dist/index.css";
 import { Link } from 'react-router-dom';
 import { myId } from '../../lib/myLib';
+import useJob from '../../../hooks/useJob'
 
 const HorizonTable = ({ vacancies, my_vacancies, handleStopApplying, handleApply }) => {
   const data = vacancies?.map((item, index) => ({
@@ -188,7 +189,7 @@ const HorizonTable = ({ vacancies, my_vacancies, handleStopApplying, handleApply
   return (
      <div className="d-flex flex-column align-items-center m-5 p-3" style={{fontFamily: 'Poppins, sans-serif, Verdana, Geneva, Tahoma'}}>
       
-        <DataTableExtensions filter={true} {...tableData} export={false}
+        <DataTableExtensions {...tableData} export={false}
       print={false}>
           <DataTable
           {... tableData}
@@ -201,6 +202,7 @@ const HorizonTable = ({ vacancies, my_vacancies, handleStopApplying, handleApply
             pagination
             highlightOnHover
             dense
+            
           />
         </DataTableExtensions>
       </div>

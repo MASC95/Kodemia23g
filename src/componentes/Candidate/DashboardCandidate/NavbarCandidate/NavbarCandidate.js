@@ -50,13 +50,13 @@ const NavbarCandidate = () => {
         <div className="container-m1 d-flex justify-content-end">
           <p className="user-data ">
             {" "}
-            <p className="d-none d-sm-block ">
+            <span className="d-none d-sm-block ">
               {dataCandidate.name && dataCandidate.last_name
                 ? `${dataCandidate.name} ${dataCandidate.last_name}`
                 : dataCandidate.name || dataCandidate.last_name
                 ? dataCandidate.name || dataCandidate.last_name
                 : `${dataCandidate.email}`}
-            </p>
+            </span>
           </p>
           
           {dataCandidate.avatar_url ? (

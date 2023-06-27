@@ -215,7 +215,7 @@ const Mains = () => {
               <div className="last-create-account d-flex justify-content-center">
                 <button
                   type="button"
-                  className="btn btn-primary btn-create-acc"
+                  className="d-none btn btn-primary btn-create-acc"
                   style={{
                     width: "243px",
                     height: "46px",

@@ -8,6 +8,15 @@ import img3 from '../../Candidate/img/img-3.jpg'
 
 const HomeCandidate = () => {
 
+  const [anchoVW, setAnchoVW] = useState(window.innerWidth)
+    
+    useEffect(() => {
+      setAnchoVW(window.innerWidth)
+    console.log('anchoVW:..',anchoVW);
+      
+    }, [window.innerWidth,anchoVW])
+    
+
 
     return(
         <Carousel className="w-100 main-carousel">
@@ -18,9 +27,9 @@ const HomeCandidate = () => {
             alt="First slide"
           />
           <Carousel.Caption className="carousel-text">
-            <h2 className="welcome-text animate__animated animate__heartBeat animate__delay-2s">Welcome to Jobinder </h2>
-            <h3 className="carousel-title animate__animated animate__fadeInLeft">Desbloquea tu potencial profesional con Jobinder</h3>
-            <p className="carousel-content animate__animated animate__fadeInLeft">Encuentra tu trabajo ideal y da el siguiente paso hacia el éxito con Jobinder.</p>
+            <h2 style={{fontSize:'7vw'}} className="welcome-text animate__animated animate__heartBeat animate__delay-2s">Welcome to Jobinder </h2>
+            <h3 style={{fontSize:'4vw'}} className="carousel-title animate__animated animate__fadeInLeft">Desbloquea tu potencial profesional con Jobinder</h3>
+            <p style={{fontSize:'2vw'}} className="carousel-content animate__animated animate__fadeInLeft">Encuentra tu trabajo ideal y da el siguiente paso hacia el éxito con Jobinder.</p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item className="carousel-img">
@@ -31,8 +40,8 @@ const HomeCandidate = () => {
           />
   
           <Carousel.Caption className="carousel-text">
-            <h3 className="carousel-title  animate__animated animate__fadeInLeft">Explora un mundo de oportunidades con Jobinder</h3>
-            <p className="carousel-content animate__animated animate__fadeInLeft">Encuentra oportunidades laborales emocionantes y alcanza tus metas profesionales con Jobinder.</p>
+            <h3 style={{fontSize:'4vw'}} className="carousel-title  animate__animated animate__fadeInLeft">Explora un mundo de oportunidades con Jobinder</h3>
+            <p style={{fontSize:'2vw'}} className="carousel-content animate__animated animate__fadeInLeft">Encuentra oportunidades laborales emocionantes y alcanza tus metas profesionales con Jobinder.</p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item className="carousel-img">
@@ -43,8 +52,8 @@ const HomeCandidate = () => {
           />
   
           <Carousel.Caption className="carousel-text">
-            <h3 className="carousel-title  animate__animated animate__fadeInLeft">Descubre tu camino al éxito con Jobinder</h3>
-            <p className="carousel-content animate__animated animate__fadeInLeft">
+            <h3 style={{fontSize:'4vw'}} className="carousel-title  animate__animated animate__fadeInLeft">Descubre tu camino al éxito con Jobinder</h3>
+            <p style={{fontSize:'2vw'}} className="carousel-content animate__animated animate__fadeInLeft">
             Desplázate por un mar de oportunidades laborales con Jobinder, tu guía en el mundo del empleo.
             </p>
           </Carousel.Caption>

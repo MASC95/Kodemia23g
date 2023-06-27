@@ -10,6 +10,7 @@ import useJob from "../../../hooks/useJob";
 import { useParams } from "react-router-dom";
 import UploadImage from "../../UploadImage/UploadImage";
 import logo from "../../Recruiter/assets/img/perfil2.jpg";
+import './style.scss'
 
 const initDataForm = {
   companyName: "",
@@ -38,7 +39,7 @@ export const EditVacancy = () => {
   const navigate=useNavigate()
   const valores = window.location.search;
   const myVacancie = useParams("v");
-  console.log("myVacancie:..", myVacancie);
+  // console.log("myVacancie:..", myVacancie);
   const urlParams = new URLSearchParams(valores);
   const idVacancy = urlParams.get("v");
 
@@ -61,7 +62,7 @@ export const EditVacancy = () => {
     try {
       const endpointURL = `${endpointsGral.vacancyURL}${idVacancy}`;
       const response = await axios.get(endpointURL);
-      console.log("response:..", response);
+      // console.log("response:..", response);
       const skills = response.data["infoVacancy"];
       setInfoDataVacancy(skills);
       const retrievedSkills = skills?.job_skills.map((item) => {
@@ -69,7 +70,7 @@ export const EditVacancy = () => {
       });
       setListSkills([...retrievedSkills]);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
   useEffect(() => {
@@ -97,7 +98,7 @@ export const EditVacancy = () => {
     }
   }, [infoDataVacancy]);
 
-  console.log("VALUES", dataForm);
+  // console.log("VALUES", dataForm);
 
   const formik = useFormik({
     initialValues: dataForm,
@@ -122,9 +123,9 @@ export const EditVacancy = () => {
       Object.entries(values).forEach(([key, value]) => {
         formData.append(key, value);
       });
-      console.log("idsSkills:..", idsSkills);
+      // console.log("idsSkills:..", idsSkills);
       for (const pair of formData.entries()) {
-        console.log(`${pair[0]}, ${pair[1]}`);
+        // console.log(`${pair[0]}, ${pair[1]}`);
       }
       axios.defaults.headers.common[
         "Authorization"
@@ -136,7 +137,7 @@ export const EditVacancy = () => {
           },
         })
         .then((response) => {
-          console.log(response);
+          // console.log(response);
           swal({
             title: "Vacante editada!!",
             icon: "success",
@@ -145,23 +146,23 @@ export const EditVacancy = () => {
           navigate(`/Dashboard-Recruiter/vacancy`)
         })
         .catch((error) => {
-          console.log(error.response);
+          // console.log(error.response);
         });
     },
   });
   return (
-    <div className="row container_form_General m-5 " id="formGral">
-      <h2 className="text-dark">Editar Vacante</h2>
-      <div className="col-4 container_image">
+    <div className="row container_form_General1 m-5 " id="formGral">
+      <h2 className="text-dark d-sm-block h2">Editar Vacante</h2>
+      <div className="col-4 container_image" id="container_image">
         {!imageUser && (
           <>
-            <div className="ppic-container">
+            {/* <div className="ppic-container"> */}
               <img
                 src={dataForm.avatar_url ? dataForm.avatar_url : logo}
                 alt="imgProfile"
               />
-            </div>
-            <p className="allowed-files text-dark">
+            {/* </div> */}
+            <p className=" text-dark">
               {" "}
               Archivos permitidos .png, .jpg, jpeg{" "}
             </p>

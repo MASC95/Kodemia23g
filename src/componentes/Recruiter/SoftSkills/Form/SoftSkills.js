@@ -46,13 +46,13 @@ export const Softskills = ({setListSkills,isCandidate,skillsCandidate}) => {
 
   const handleSkillChange = (event) => {
     const value = event.target.value;
-    console.log('Seleccionando skill:..',value);
+    // console.log('Seleccionando skill:..',value);
     setSelectSkill(value);
   };
 
   const onFormSubmitCandidate = (e)=>{
     e.preventDefault();
-    console.log('Agregando skill:',selectSkill);
+    // console.log('Agregando skill:',selectSkill);
     if(selectSkill==='select'){
       swal({
         title: "Favor de Seleccionar tu Skill !!",
@@ -71,7 +71,7 @@ export const Softskills = ({setListSkills,isCandidate,skillsCandidate}) => {
     });
     }else{
       const skillDB = dataSkill.find(item=>item._id===selectSkill);
-      console.log('Encontramos skill:',skillDB);
+      // console.log('Encontramos skill:',skillDB);
       setSkillTemp([...skillTemp,skillDB])
     }
 
@@ -103,7 +103,7 @@ export const Softskills = ({setListSkills,isCandidate,skillsCandidate}) => {
       const updatedSkills = skillTemp.filter((_, i) => i !== index);
       setSkillTemp(updatedSkills);
     } else {
-      console.log("error al eliminar");
+      // console.log("error al eliminar");
     }
   };
   return (
@@ -142,7 +142,7 @@ export const Softskills = ({setListSkills,isCandidate,skillsCandidate}) => {
             {
                 !isCandidate
                 &&
-                  <Link to={'/Dashboard-Recruiter/softskill-addNew'} className="text-black d-flex justify-content-end mb-3 fs-6">
+                  <Link to={'/Dashboard-Recruiter/softskill-addNew'} className="text-black d-flex justify-content-start mb-3 mt-2 fs-6">
                       <p className="">Crear nueva SoftSkill</p> 
                   </Link>          
                 }

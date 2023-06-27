@@ -3,11 +3,10 @@ import PostVacancy from "./Forms/PostVacancy";
 export const AddVacancy=()=>{
     return(
         <>
-          <div className='card-body '>
-            <h1  className="text-start text-dark"><b>Crear Vacante</b></h1>
+          {/* <div className='card-body '> */}
                 <PostVacancy/>
                 {/* <Softskills/> */}
-            </div>
+            {/* </div> */}
         </>
     )
 }

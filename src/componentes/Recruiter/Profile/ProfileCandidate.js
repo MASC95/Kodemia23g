@@ -98,13 +98,13 @@ export const Candidate=()=>{
     return(
         <>
         <div className='card-body'>
-        <h1  className="text-start text-dark">Perfil Profesional</h1>
+        <h1  className="text-start text-dark d-sm-block h2">Perfil Profesional</h1>
         <div className="row container_form_General">
-            <div className="col-4 container_image">
+            <div className="col-4 container_image justify-content-center">
                 <img src={infoCandidate.avatar_url} alt=""/>
                 <div className="">  
-                  <p className="text-justify text-dark">{`${infoCandidate.name} ${infoCandidate.last_name}`}</p>
-                  <p className="text-justify text-dark"><FaMailBulk/> { infoCandidate.email}</p>
+                  <p className="text-center text-dark">{`${infoCandidate.name} ${infoCandidate.last_name}`}</p>
+                  <p className="text-center text-dark"><FaMailBulk/> { infoCandidate.email}</p>
                 </div>
                 <div className="buttons_actions d-flex justify-content-center gap-3">  
                 <button type="button" className="buttons btn btn-outline-success"><FaCheck className="icon_check"/></button> 
@@ -129,7 +129,7 @@ export const Candidate=()=>{
                     <div className="col">
                     <div className="form-outline">
                         <label className="form-label text-start text-dark" for="form6Example1">Edad</label>
-                        <p className="text-dark">{infoCandidate.age}</p>
+                        <p className="text-dark">{infoCandidate.age} años</p>
                     </div>
                     </div>
                 </div>

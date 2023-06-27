@@ -21,9 +21,10 @@ function NavbarRecruiter() {
   return (
     <Navbar expand="lg" className="nav">
       <Container className="container">
-      <Button variant="primary" onClick={handleShowOffCanvas} className="toggle">
+      <Button variant="primary" onClick={handleShowOffCanvas} className="toggle bg-transparent border-0">
           <FaBars />
-          <Navbar.Brand href="#home" className="logo ">
+        </Button>
+        <Navbar.Brand href="#home" className="logo ">
           {" "}
           <img 
             style={style}
@@ -32,24 +33,11 @@ function NavbarRecruiter() {
             className="logo-img"
           />{" "}
         </Navbar.Brand>
-        </Button>
-        <div className="col image-container d-flex justify-content-end">
-            <p>{`${dataRecruiter.name} ${dataRecruiter.last_name}`}</p>
-             <img src={dataRecruiter.avatar_url} className="rounded-5" style={{width:'50px'}} alt=""/>
+        <div className="col image-container d-flex justify-content-end g-5">
+            <p className="d-none d-sm-block mt-2 g-5">{`${dataRecruiter.name ? dataRecruiter.name: dataRecruiter.email}`}</p>
+             <img src={dataRecruiter.avatar_url} className="rounded-5" style={{width:'50px',height:'50px'}} alt=""/>
         </div>
-        {/* <Navbar.Brand href="#home" className="logo ">
-          {" "}
-          <img 
-            style={style}
-            src={logo}
-            alt="Logo"
-            className="logo-img"
-          />{" "}
-        </Navbar.Brand> */}
-            
-        {/* <Button variant="primary" onClick={handleShowOffCanvas} className="toggle">
-          <FaBars />
-        </Button> */}
+
         <OffCanvasRecruiter
           showOffcanvas={showOffcanvas}
           handleShowOffcanvas={handleShowOffCanvas}

@@ -1,18 +1,21 @@
 import React from "react";
 import { FaCheck } from "react-icons/fa";
 import "./scss/style.scss";
-// import NavbarMui from '../NavbarwithMui/NavbarMui';
 import { Link } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
-
-
+import recruiter from '../../Candidate/img/Recruiter.jpg'
+import candidate from '../../Candidate/img/Candidate.jpg'
+import knowledge from '../../Candidate/img/KnowledgeBackendDev.jpg'
+import video from '../../Candidate/img/VideoBlondeGirl.jpg'
+import profile from '../../Candidate/img/profile-pic.png'
+import 'animate.css';
 const Mains = () => {
   return (
     <header>
       <Navbar />
-      <div className="main-container">
-        <h1 className="match d-flex justify-content-center mx-100px m-md-5 ">
+      <div className="main-container ">
+        <h1 className="match d-flex justify-content-center mx-100px m-md-5 animate__animated animate__flipInX " style={{textShadow: '0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px rgba(60, 64, 67, 0.15)'}}>
           Haz match con las empresas de tus sueños <br />
           con nuestra app de búsqueda de empleo basada en tus <br />
               habilidades de programación.
@@ -29,14 +32,14 @@ const Mains = () => {
               <div className="child-container-1 d-flex justify-content-center align-items-center">
                 <div className="card-container-1 card  mb-4">
                   <img
-                    src="https://media.licdn.com/dms/image/D4D08AQE0CXu4hnoe7g/croft-frontend-shrinkToFit1024/0/1646754728586?e=2147483647&v=beta&t=ADkOVwOwmP-4rCH4y0g2_OBFlsszl01TpQPhCgt5SSc"
-                    className="card-img-top recruiter-img"
+                    src={recruiter}
+                    className="card-img-top recruiter-img "
                     alt="recruiter"
-                    style={{ maxWidth: "100%", height: "auto" }}
+                    style={{ maxWidth: "65%", height: "100%" }}
                   />
                   <div className="card-body-1 text-center">
                     <h5 className="card-title-1">¿Eres Reclutador?</h5>
-                    <p className="card-text-1">
+                    <p className="card-text-1" >
                       Accede a nuestra plataforma para publicar tus vacantes,
                       buscar talentos y gestionar tus procesos de selección.
                     </p>
@@ -57,10 +60,10 @@ const Mains = () => {
 
                 <div className="card-container-2 card h-100 mb-4">
                   <img
-                    src="https://plus.unsplash.com/premium_photo-1671581559476-10b8a92ffb77?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZmlsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=1200&q=60"
+                    src={candidate}
                     className="card-img-top candidate-img"
                     alt="candidate"
-                    style={{ maxWidth: "100%", height: "auto" }}
+                    style={{ maxWidth: "65%", height: "100%" }}
                   />
                   <div className="card-body-2 text-center">
                     <h5 className="card-title-2">¿Eres Candidato?</h5>
@@ -91,7 +94,7 @@ const Mains = () => {
           <div className="row second-row">
             <div className="col-md-12 column">
               <div className="letras text-center">
-                <h2 className="eleva ">
+                <h2 className="eleva " style={{textShadow: '0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px rgba(60, 64, 67, 0.15)'}}>
                   ELEVA TU CARRERA PROFESIONAL AL SIGUIENTE NIVEL
                 </h2>
               </div>
@@ -103,10 +106,10 @@ const Mains = () => {
                 className="card-container-3 card mb-5 "
               >
                 <img
-                  src="https://images.unsplash.com/photo-1543269664-56d93c1b41a6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+                  src={video}
                   alt="Video"
                   className="card-img-top video"
-                 
+
                 />
                 <div className="card-body video-card-body text-center">
                   <div
@@ -133,7 +136,7 @@ const Mains = () => {
               
               >
                 <img
-                  src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+                  src={knowledge}
                   alt="skills"
                   className="card-img-top skills"
                 />
@@ -144,9 +147,7 @@ const Mains = () => {
                     Conocimientos y Habilidades
                   </div>
                   <p className="card-text card-text-skills">
-                    Haz que tu CV resalte tus conocimientos y habilidades, para
-                    que los empleadores vean lo que realmente tienes para
-                    ofrecer.
+                    Sube tu CV para obtener mejores ofertas laborales.
                   </p>
                   <h6
                     className="knowledge"
@@ -162,12 +163,12 @@ const Mains = () => {
           <div className="row row-last-container">
             <div className="col-md-12 col-last-container">
               <div className="letters-1 text-center">
-                <h1 className="last-text">
+                <h1 className="last-text" style={{textShadow: '0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px rgba(60, 64, 67, 0.15)'}}>
                   En busca de trabajo? Jobinder es tu mejor aliado en la
                   búsqueda de empleo.
                 </h1>
               </div>
-              <div className="jobs">
+              <div className="jobs" style={{textShadow: '0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px rgba(60, 64, 67, 0.15)'}}>
                 Miles de ofertas laborales están esperandote.
               </div>
             </div>
@@ -176,13 +177,13 @@ const Mains = () => {
             <div className="col-md-3 col-checkmarks">
               <img
                 className="rounded-circle d-none d-lg-block profile-pic"
-                src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1780&q=80"
+                src={profile}
                 alt="profile-pic"
                 
               />
             </div>
             <div className="col-md-8  down-cards ">
-              <div className="final-text text-start d-sm-text-center">
+              <div className="final-text text-start d-sm-text-center" style={{textShadow: '0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px rgba(60, 64, 67, 0.15)'}}>
                 <strong> Encuentra el empleo de tus sueños con Jobinder!</strong>
               </div>
               <p

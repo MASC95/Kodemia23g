@@ -94,7 +94,7 @@ export const LoginCandidate = ()=>{
                     <Link to={'/'} className="logo_Jobinder" >
                         <img src={logo} alt=""/>
                      </Link>
-                    <h2  className="text-center text-dark">Bienvenido de vuelta!</h2>
+                    <h2  className="text-center text-dark welcome-back">Bienvenido de vuelta!</h2>
                     <form className="text-left clearfix" 
                           id="formCandidate"
                           onSubmit={onFormSubmit} >

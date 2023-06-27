@@ -7,12 +7,14 @@ import axios from "axios";
 import swal from "sweetalert";
 import Swal from "sweetalert2";
 import { endpointsGral } from "../../Recruiter/services/vacancy";
+import useJob from '../../../hooks/useJob';
 
 export const RegisterCandidate = () => {
   const [isResgitering, setIsResgitering] = useState(false);
   const [isConfirmEmail, setIsConfirmEmail] = useState(false);
   const [isInformationUser,setInformationUser]=useState([])
   const navigate = useNavigate();
+  const [dataCandidate, setDataCandidate, dataRecruiter, setDataRecruiter, dataLocalStorage, setDataLocalStorage]= useJob();
 
   const fetchUser=async()=>{
     const response = await axios.get(endpointsGral.userURL);
@@ -107,9 +109,7 @@ export const RegisterCandidate = () => {
       })
     } catch (error) {
       console.log(error);
-    }
-
-    
+    }  
   };
 
   const registerRecruiter = async () => {
@@ -119,6 +119,8 @@ export const RegisterCandidate = () => {
           const register = await axios.post(endpointsGral.registerUser, formValues);
           setFormValues(register);
           resetForm();
+          console.log('datos de Registro:..',register);
+          setDataLocalStorage({...register?.data});
           if(formValues.role==="candidato"){
              console.log("pagina candidato");
              navigate(`/dashboard-candidato/home`)
@@ -140,11 +142,11 @@ export const RegisterCandidate = () => {
           button: "ok!",
         });
       }
-
   };
 
   const handleConfirmEmail = () => {
     console.log("codigo:", formValues.code);
+    console.log('codigoBack:..', formValues.backCode);
     if(isConfirmEmail===true){
       registerRecruiter();
       console.log('Email confirmado con Exito:..');

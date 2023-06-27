@@ -8,58 +8,66 @@ import Button from "react-bootstrap/Button";
 import { FaBars } from "react-icons/fa";
 import logo from "../../../Recruiter/assets/img/logo.png";
 import "./navbarcandidate.scss";
-function NavbarCandidate() {
+import { FaUserCircle } from "react-icons/fa";
+import useJob from "../../../../hooks/useJob";
+const NavbarCandidate = () => {
   const [showOffcanvas, setShowOffcanvas] = useState(false);
-
+  const [
+    dataCandidate,
+    setDataCandidate,
+    dataRecruiter,
+    setDataRecruiter,
+    dataLocalStorage,
+    setDataLocalStorage,
+  ] = useJob();
+  // console.log("dataCandidate...", dataCandidate);
+  // console.log("dataRecruiter...", dataRecruiter);
   const handleShowOffCanvas = () => {
     setShowOffcanvas((prev) => !prev);
   };
 
- 
   return (
-    <Navbar expand="lg" className="nav">
-      <Container className="container">
-     
-        <Navbar.Brand href="#home" className="logo">
+    <Navbar expand="lg" className="nav w-100">
+      <Container className="container-fluid contenedor">
+       
+        <Navbar.Brand href="#home" className="logo d-flex gap-2">
           {" "}
-          <img
-            src={logo}
-            alt="Logo"
-            
-            className="logo-img"
-          />{" "}
-        </Navbar.Brand>
-      
-        {/* <Navbar.Toggle onClick={handleShowOffCanvas} aria-controls="basic-navbar-nav" /> */}
-        <Button variant="primary" onClick={handleShowOffCanvas} className="toggle">
+          <Button
+          variant="primary"
+          onClick={handleShowOffCanvas}
+          className="toggle d-flex justify-content-center align-items-center "
+        >
           <FaBars />
         </Button>
-
+          <img src={logo} alt="Logo" className="logo-img d-flex justify-content-start" />{" "}
+        </Navbar.Brand>
         <OffCanvasCandidate
           showOffcanvas={showOffcanvas}
           handleShowOffcanvas={handleShowOffCanvas}
         />
 
-        {/* <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#link">Link</Nav.Link>
-            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
-            </NavDropdown>
-          </Nav>
-        </Navbar.Collapse> */}
+        
+        <div className="container-m1 d-flex justify-content-end">
+          <p className="user-data ">
+            {" "}
+            <p className="d-none d-sm-block ">
+              {dataCandidate.name && dataCandidate.last_name
+                ? `${dataCandidate.name} ${dataCandidate.last_name}`
+                : dataCandidate.name || dataCandidate.last_name
+                ? dataCandidate.name || dataCandidate.last_name
+                : `${dataCandidate.email}`}
+            </p>
+          </p>
+          
+          {dataCandidate.avatar_url ? (
+              <img src={dataCandidate.avatar_url} alt="candidate-profile-pic" className="candidate-profile-pic " />
+            ) : (
+              <FaUserCircle className="candidate-profile-icon" style={{width: '40px', height: '40px', color: '#FFF', marginLeft:'30px', boxShadow: 'rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;'}} />
+            )}
+        </div>
       </Container>
     </Navbar>
   );
-}
+};
 
 export default NavbarCandidate;

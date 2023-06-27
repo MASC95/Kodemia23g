@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@coreui/coreui": "^4.2.6",
+    "@coreui/icons": "^3.0.1",
     "@uidotdev/usehooks": "^2.0.1",
     "animate.css": "^4.1.1",
     "axios": "^1.4.0",
@@ -17,6 +19,7 @@
     "react-icons": "^4.8.0",
     "react-router-dom": "^6.11.2",
     "react-scripts": "^5.0.1",
+    "react-super-responsive-data-table": "^1.0.1",
     "styled-components": "^5.3.11",
     "sweetalert": "^2.1.2",
     "sweetalert2": "^11.7.12",

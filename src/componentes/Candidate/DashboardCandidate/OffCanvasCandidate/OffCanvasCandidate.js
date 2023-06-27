@@ -35,7 +35,7 @@ function OffCanvasCandidate({ showOffcanvas, handleShowOffcanvas }) {
         onHide={handleShowOffcanvas}
         className="off-canvas"
       >
-        <Offcanvas.Header className="d-flex justify-content-center align-items-center canvas-header">
+        <Offcanvas.Header className="d-flex justify-content-center align-items-center offcanvas-header">
           <Link to={"index.html"} className="logo-jobinder">
             <img
               src={logo}
@@ -45,8 +45,11 @@ function OffCanvasCandidate({ showOffcanvas, handleShowOffcanvas }) {
             />
           </Link>
         </Offcanvas.Header>
-        <Offcanvas.Body className="canvas-body">
-          <div onClick={handleShowOffcanvas} className="d-flex flex-column columns">
+        <Offcanvas.Body className="offcanvas-body">
+          <div
+            onClick={handleShowOffcanvas}
+            className="d-flex flex-column columns"
+          >
             <Link to={`/dashboard-candidato/home`} className="link">
               <FaHome className="icons" />
               <span className="text">Home</span>
@@ -67,6 +70,15 @@ function OffCanvasCandidate({ showOffcanvas, handleShowOffcanvas }) {
                 type="submit"
                 onClick={logout}
                 className="button-logout link"
+                style={{
+                  border: "none",
+                  background: "none",
+                  color: "inherit",
+                  padding: 0,
+                  font: "inherit",
+                  cursor: "pointer",
+                  outline: "inherit",
+                }}
               >
                 <FaSignOutAlt className="icons" />
                 <span className="text">Log Out</span>

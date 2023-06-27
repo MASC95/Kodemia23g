@@ -30,6 +30,7 @@ import JobContext from './context/JobContext';
 import { useEffect, useState } from 'react';
 import SendAccessCode from './componentes/SendAccessCode/SendAccessCode';
 import { useLocalStorage } from "usehooks-ts";
+//import ListResponsive from './componentes/Candidate/BuscarCandidate/ListResponsive';
 
 
 
@@ -60,6 +61,7 @@ function App() {
 <Routes>
           <Route path="/" element={<Mains/>}/>
           <Route path ='/SendAccessCode' element ={<SendAccessCode/>}/>
+          {/* <Route path ='/pruebas' element ={<ListResponsive/>}/> */}
           {/* aqui las rutas de la seccion candidato */}
           <Route path='login-candidato' element={<LoginCandidate />}/>
           <Route path='register' element={<RegisterCandidate/>}/>

@@ -12,19 +12,19 @@ export const DetailsProfile=()=>{
             <div className="col-4 container_image">
                 <img src={imgProfile} alt="img-profile"/>
                 <div className="">  
-                  <p className="text-justify">Nombre</p>
-                  <p className="text-justify">Rol</p>
-                  <p className="text-justify"><FaPhone/>Tel</p>
-                  <p className="text-justify"><FaMailBulk/>Correo</p>
+                  <p className="text-justify text-dark">Nombre</p>
+                  <p className="text-justify text-dark">Rol</p>
+                  <p className="text-justify text-dark"><FaPhone/>Tel</p>
+                  <p className="text-justify text-primary"><FaMailBulk/>Correo</p>
                 </div>
             </div>
             <div className="col">
                 <div className="row mb-4">
-                    <h2 className="text-start">Información General</h2>
+                    <h2 className="text-start text-dark ">Información General</h2>
                     <div className="col">
                     <div className="form-outline bg-gray">
                         <label className="form-label text-start" for="form6Example1">Nombre</label>
-                        <p>JIM</p>
+                        <p className="">JIM</p>
                     </div>
                     </div>
                     <div className="col">
@@ -43,8 +43,8 @@ export const DetailsProfile=()=>{
                     </div>
                 </div>
 
-            <ViewTableSkills/>
-                <div className="buttons_actions d-flex justify-content-end gap-3">  
+            <ViewTableSkills className='table-skills'/>
+                <div className="buttons-actions d-flex justify-content-end gap-3">  
                     <button type="button" className="buttons btn btn-success text-light">Aceptar</button> 
                     <button type="button" className="buttons btn btn-danger text-light">Ignorar</button> 
                 </div>

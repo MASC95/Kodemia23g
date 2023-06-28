@@ -147,7 +147,7 @@ const Mains = () => {
                     Conocimientos y Habilidades
                   </div>
                   <p className="card-text card-text-skills">
-                    Sube tu CV para obtener mejores ofertas laborales.
+                    Sube tu CV para obtener mejores ofertas laborales y obtener el empleo de tus sueños!.
                   </p>
                   <h6
                     className="knowledge"

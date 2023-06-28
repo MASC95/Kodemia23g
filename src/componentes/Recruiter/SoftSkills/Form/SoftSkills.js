@@ -112,7 +112,7 @@ export const Softskills = ({setListSkills,isCandidate,skillsCandidate}) => {
           <div className="col">
             < >
               <div className="row d-flex">
-                <label className="form-label text-dark" htmlFor="form6Example1">
+                <label className="form-label " htmlFor="form6Example1"  style={{ color: '#498BA6', fontFamily: 'Poppins, sans-serif, Verdana, Geneva, Tahoma' }}>
                   Elige las SoftSkill de tu {!isCandidate?'vacante':'perfil'}:
                 </label>
                 <div className="col-10">

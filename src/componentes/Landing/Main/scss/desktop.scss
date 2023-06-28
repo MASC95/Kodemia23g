@@ -15,8 +15,7 @@
 
 header {
   background-image: linear-gradient(to right, #0acffe 0%, #495aff 100%);
-      
-  .main-container {
+        .main-container {
     
     @include mobile {
       background-image: linear-gradient(-225deg, #fffeff 0%, #d7fffe 100%);
@@ -96,6 +95,9 @@ header {
       }
       
       .row-first-card {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         .left-blank-space {
         }
         .father-container-1 {
@@ -105,13 +107,13 @@ header {
           height: 100%;
         }
         @include mobile{
-          margin-right: 150px;
+          
           width: 80%;
           height: 100%;
         
         }
         @include tablet{
-          margin-right: 150px;
+          
           width: 100%;
           height: 100%;
         
@@ -124,7 +126,7 @@ header {
               gap: 1rem;
               flex-direction: column;
               margin-top: 1rem;
-              width: 80%;
+              width: 100%;
             }
             @include tablet{
               width: 100%;
@@ -137,12 +139,13 @@ header {
             @include desktop {
               width: 100%;
               margin-left: 100px;
+              
             }
             .card-container-1 {
               @include mobile {
                 @include glassEffect();
                 width: 100%;
-                margin-left: 100px;
+                
                 &:hover {
                   animation: grow 0.3s forwards;
                 }
@@ -250,6 +253,12 @@ header {
                 }
                 
                 .link-rec {
+                  @include tablet{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    text-decoration: none;
+                  }
                   .access-btn-rec {
                     @include mobile {
                       padding: 10px 20px 10px 20px;
@@ -261,10 +270,13 @@ header {
                     @include tablet{
                       @include poppins();
                       padding: 10px 20px 10px 20px;
+                      width: 100%;
+                     
                     }
                     @include desktop {
                       @include poppins();
                       padding: 10px 20px 10px 20px;
+                      width: 100%;
                     }
                   }
                 }
@@ -285,7 +297,7 @@ header {
               @include mobile {
                 @include glassEffect();
                 width: 100%;
-                margin-left: 100px;
+                
                 &:hover {
                   animation: grow 0.3s forwards;
                 }
@@ -299,6 +311,7 @@ header {
                   animation: grow 0.3s forwards;
                 }
                 @include glow;
+                
               }
               @include desktop {
                 @include first-cards-containers;
@@ -385,6 +398,12 @@ header {
                   @include center-users;
                 }
                 .link-card {
+                  @include tablet{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    text-decoration: none;
+                  }
                   .access-btn-can {
                     @include mobile {
                       padding: 10px 20px 10px 20px;
@@ -396,6 +415,7 @@ header {
                     @include tablet{
                       @include poppins();
                       padding: 10px 20px 10px 20px;
+                      width: 100%;
                     }
                     @include desktop {
                       @include poppins();
@@ -408,6 +428,7 @@ header {
           }
         }
         .right-blank-space {
+          
         }
       }
     }
@@ -420,9 +441,11 @@ header {
         display: none;
       }
       @include desktop{
-        margin-bottom: 40px;
+       width: 100%;
+       
       }
       .second-row {
+      width: 100%;
         .column {
           .letras {
             .eleva {
@@ -456,7 +479,7 @@ header {
           .card-container-3 {
             @include glassEffect;
             @include second-cards-containers;
-            margin-left: 300px;
+            margin-left: 100px;
             
             .video {
               width: 60%;
@@ -479,7 +502,7 @@ header {
                 @include poppins();
                 text-align: center;
                 padding: 25px 0px 25px 0px;
-                margin-left: 10px
+                margin-left: 10px;
               }
               .record-video {
                 @include poppins();
@@ -490,6 +513,7 @@ header {
           }
         }
         .second-cards-2 {
+          width: 50%;
           height: 100%;
           .card-container-4 {
             height: 100%;

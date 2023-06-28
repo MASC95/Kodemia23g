@@ -30,10 +30,12 @@
       background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(234,249,249,0.67) 0.1%, rgba(239,249,251,0.63) 90.1% );
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      background-clip: border-box;
 
     }
 
     .carousel-content {
+     font-family: 'Poppins', sans-serif, 'Times New Roman', Times, serif;
      
     }
   }

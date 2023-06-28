@@ -63,7 +63,7 @@ export const TableSkills=()=>{
     return(
         <>
           <div className="col">
-                <h2>Lista de skills agregadas</h2>
+                <h2 >Lista de skills agregadas</h2>
             <table className="table">
                 <thead className="thead-dark bg-body-secondary">
                     <tr>

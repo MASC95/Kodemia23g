@@ -30,10 +30,11 @@
   
   @mixin letras {
     margin-top: 100px;
-    font-family: 'Epilogue','Poppins', sans-serif, Verdana, Geneva, Tahoma,;
+    font-family: 'Epilogue', sans-serif, Verdana, Geneva, Tahoma,;
     align-items: center;
     text-indent: 1em;
     color: #093040;
+    
   }
   
   @mixin second-cards-containers {

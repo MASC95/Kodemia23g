@@ -267,7 +267,7 @@ export const AddSkills=()=>{
         <div className="container mt-2 p-5 w-100 " id="formGral">
         <div className="row softskills">
             <div className="col">
-                  <h2 className='text-dark'>{isEditing?'Editando Skill':'Crear nueva Skill'}</h2>
+                  <h2 className='text-dark '>{isEditing?'Editando Skill':'Crear Skill'}</h2>
                 <form onSubmit={formik.handleSubmit}>
                     <div className="row mb-4">
                         <div className="col">
@@ -326,32 +326,6 @@ export const AddSkills=()=>{
                 dense
               />
             </DataTableExtensions>
-            {/* <table className="table">
-                <thead className="thead-dark bg-body-secondary">
-                    <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Skill</th>
-                    <th scope="col">Nivel</th>
-                    <th scope="col">Opciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-              {dataSkill?.map((skill, index) => {
-                return (
-                  <tr>
-                    <td>{index + 1}</td>
-                    <td>{skill?.name}</td>
-                    <td>{skill?.level}</td>
-                    <td>
-                    <button type="button" className="buttons btn btn-outline-danger">
-                       <FaTrash className="icon_trash" onClick={() => handleDeleteSkill(index)}/>  
-                    </button> 
-                    </td>
-                  </tr>
-                );
-              })}
-              </tbody>
-            </table>  */}
             </div>
 
           {/* Table Skills */}

@@ -33,7 +33,15 @@ const SidebarRecruiter= () => {
           <Link to={`/Dashboard-Recruiter/softskill-addNew`} className="dashboard-nav-item"><FaCode/> &nbsp;Skills </Link>
           <Link to={`/Dashboard-Recruiter/vacancy`} className="dashboard-nav-item"><FaSuitcase/> &nbsp;Vacantes</Link>
           <Link to={`/Dashboard-Recruiter/match`} className="dashboard-nav-item"><FaCheckDouble/> &nbsp;Match </Link>
-          <button type='button' onClick={logout} className="button-logout" ><FaSignOutAlt/> &nbsp;Logout </button>
+          <button type='button' onClick={logout} className="button-logout bg-black" style={{
+                  border: "none",
+                  background: "none",
+                  color: "inherit",
+                  padding: 0,
+                  font: "inherit",
+                  cursor: "pointer",
+                  outline: "inherit",
+                }}><FaSignOutAlt className='bg-black'/> &nbsp;Logout </button>
         </nav>
     </div>
     </>

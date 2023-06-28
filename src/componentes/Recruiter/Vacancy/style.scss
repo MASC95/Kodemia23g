@@ -7,19 +7,60 @@
 }
 @media (min-width: 359px) and (max-width:576px){
     .container_form_General1{
+        // background-color: #1DD75B;
         display: flex;
         flex-direction: column;
+        .container_image {
+            // background-color: red;
+            width: 1000px;
+        }
         form {
             .row{
                 display: grid;
                 width: 100%;
                 justify-items: stretch;
             }
+            .softskills-tableEdit{
+
+                width: 100px;
+                .col{
+                    width: 280px;
+                }
+            }
         }
     }
-    #container_image{
-        width: 100%;
-            display: grid;
-            justify-content: center;
+    .container_form_ForVacancy{
+        .content-principal{
+            display: flex;
+            height: 40px;
+            gap: 30px;
+            h1{
+                margin-left: 10px;
+                text-align: start;
+            }
+        }
+
+    }
+   
+}
+
+@media (min-width: 577px) and (max-width:800px){
+    .container_form_ForVacancy{
+        .content-principal{
+            display: flex;
+            height: 40px;
+            gap: 30px;
+        }
+        
+    }
+}
+@media (min-width: 801px) and (max-width:1800px){
+    .container_form_ForVacancy{
+        .content-principal{
+            display: flex;
+            height: 40px;
+            gap: 30px;
+        }
+        
     }
 }

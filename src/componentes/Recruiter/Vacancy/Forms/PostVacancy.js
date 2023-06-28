@@ -87,8 +87,7 @@ export const PostVacancy=()=>{
 
     return(
         <div className="row container_form_General1 m-5" id="formGral">
-          <h1  className="text-start d-sm-flex text-center h2 mt-2 text-dark">Crear Vacante</h1>
-             <div className="col-4 container_image" id="container_image">
+             <div className="col-4 container_image " id="container_image">
               {!imageUser && (
                 <>
                 {/* <div className="ppic-container"> */}

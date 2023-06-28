@@ -33,9 +33,9 @@ function NavbarRecruiter() {
             className="logo-img"
           />{" "}
         </Navbar.Brand>
-        <div className="col image-container d-flex justify-content-end g-5">
-            <p className="d-none d-sm-block mt-2 g-5">{`${dataRecruiter.name ? dataRecruiter.name: dataRecruiter.email}`}</p>
-             <img src={dataRecruiter.avatar_url} className="rounded-5" style={{width:'50px',height:'50px'}} alt=""/>
+        <div className="col image-container d-flex justify-content-end g-4">
+            <p className="d-none d-sm-block mt-3 text-light" >{`${dataRecruiter.name ? dataRecruiter.name: dataRecruiter.email}`}</p>
+             <img src={dataRecruiter.avatar_url} className="rounded-5 m-2" style={{width:'50px',height:'50px'}} alt=""/>
         </div>
 
         <OffCanvasRecruiter

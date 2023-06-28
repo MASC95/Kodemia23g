@@ -8,6 +8,7 @@ import {FaTrash, FaPlus, FaEdit} from 'react-icons/fa'
 import DataTable from 'react-data-table-component';
 import DataTableExtensions from 'react-data-table-component-extensions';
 import { Link } from "react-router-dom";
+import '../scss/style.scss'
 export const EditSkill=({listSkills,setListSkills})=>{
 
   console.log('listSkills',listSkills)
@@ -175,14 +176,13 @@ export const EditSkill=({listSkills,setListSkills})=>{
   };
   return (
     <>
-        <div className="row softskills">
+        <div className="row softskills-tableEdit ">
           <div className="col">
-            <form >
               <div className="row d-flex">
                 <label className="form-label text-dark" htmlFor="form6Example1">
                   Elige las SoftSkill de tu preferencia:
                 </label>
-                <div className="col-10">
+                <div className="col">
                   <div className="form-outline">
                     <select
                       className="form-control"
@@ -205,17 +205,15 @@ export const EditSkill=({listSkills,setListSkills})=>{
                     </button>
                   </div>
               </div>
-            </form>
-                  <Link to={'/Dashboard-Recruiter/softskill-addNew'} className="text-black d-flex justify-content-start mt-2 mb-3 fs-6">
+                  <Link to={'/Dashboard-Recruiter/softskill-addNew'} className="text-black d-flex justify-content-start mb-3 mt-2 fs-6">
                       <p className="">Crear nueva SoftSkill</p> 
                   </Link>          
               
           </div>
-
           {/* table of skills */}
           <div className="col">
             <label className="form-label text-dark" htmlFor="">Lista de SoftSkill agregadas</label>\
-            <div className="main">
+            <div className="main-table">
                 <DataTableExtensions  
                     export={false}
                     print={false}
@@ -233,37 +231,6 @@ export const EditSkill=({listSkills,setListSkills})=>{
                     />
                 </DataTableExtensions>
             </div>
-            {/* <table className="table">
-                <thead className="thead-dark bg-body-secondary">
-                    <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Skill</th>
-                    <th scope="col">Nivel</th>
-                    <th className="text-center"scope="col">Opciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-              {skillTemp?.map((skill, index) => {
-                 let myDataSkill=null;
-                 myDataSkill= dataSkill?.find(item=>item._id===skill.skill);
-                 if(!myDataSkill){
-                  myDataSkill= dataSkill?.find(item=>item._id===skill);
-                 }
-                return (
-                  <tr key={myId()}>
-                    <td>{index + 1}</td>
-                    <td>{myDataSkill?.name}</td>
-                    <td>{myDataSkill?.level}</td>
-                    <td className="text-center">
-                    <button type="button" className="buttons btn btn-outline-danger">
-                        <FaTrash className="icon_trash" onClick={() => handleDeleteSkill(index)}/>  
-                    </button> 
-                    </td>
-                  </tr>
-                );
-              })}
-              </tbody>
-            </table> */}
             </div>
 
           {/* Table Skills */}

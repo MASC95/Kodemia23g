@@ -58,52 +58,6 @@ export const Match=()=>{
         <>
          <div className='card-body'>
           <h1 className="text-center text-dark"><b>Match's</b></h1>
-            {/* <ListMatches/> */}
-            {/* <div className="container mt-2 p-5 w-100 " id="formGral"> */}
-                {/* <div className="row softskills">
-                    <div className="col">
-                    <table className="table">
-                        <thead className="thead-dark bg-body-secondary">
-                            <tr>
-                            <th scope="col">#</th>
-                            <th className=" text-center" scope="col">TITULO</th>
-                            <th className=" text-center" scope="col">STATUS</th>
-                            <th className=" text-center" scope="col">CANDIDATOS</th>
-                            <th scope="col">OPCIONES</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {dataInformation?.map((item,index)=>{
-                                const outDataDuplex=item.applicants?.filter((objeto, indice)=>{
-                                    var objetoString = JSON.stringify(objeto);
-                                    return (
-                                      item.applicants.findIndex((obj, i)=>{
-                                        return JSON.stringify(obj) === objetoString;
-                                      }) === indice
-                                    );
-                                  });
-                            
-                                return(
-                                <tr className="text-center" key={myId()}>
-                                <th scope="row">{index+1}</th>
-                                <td>{item.title}</td>
-                                <td>{item.status}</td>
-                                <td>{outDataDuplex.length}</td>
-                                <td className="options_buttons d-flex text-center" >
-                                <Link to={`/Dashboard-Recruiter/details-match/?m=${item._id}`}>
-                                <button type="button" className="buttons btn btn-outline-info"><FaEye className="icon_eye1"/></button>
-                                </Link>
-                                <button type="button" className="buttons btn btn-outline-success" onClick={changeStatus}><FaEdit className="icon_edit1"/></button> 
-
-                                    {/* <Modalstatus/> 
-                                </td>
-                                </tr>
-                                )  
-                            })}
-                        </tbody>
-                    </table>
-                    </div>
-                </div> */}
       <Example/>
       
         {/* </div>   */}

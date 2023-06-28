@@ -88,14 +88,14 @@ export const ProfileRecruiter=()=>{
 
     return(
         <>
-        <div className='card-body'>
-           <h1 className="text-start text-dark d-sm-flex h2 mt-2">Información General</h1> 
-           <div className="row container_form_General">
-            <div className="col-4 container_image justify-content-center">
+        {/* <div className='card-body mt-4'> */}
+           <div className="row container_profile m-5">
+           <h1 className="text-start text-dark d-sm-flex text-center h2 mt-2 mb-4">Información General</h1> 
+            <div className="col-4 container_image">
               {!imageUser && (
                 <>
                 {/* <div className="ppic-container"> */}
-                    <img src={dataForm.avatar_url?dataForm.avatar_url:imgProfile} alt="imgProfile" />
+                    <img src={dataForm.avatar_url?dataForm.avatar_url:imgProfile} alt="imgProfile" className="profile-image" />
                 {/* </div> */}
                 <p className="text-dark"> Archivos permitidos .png, .jpg, jpeg </p>
                 </>
@@ -106,8 +106,6 @@ export const ProfileRecruiter=()=>{
                 </div>
             </div>
             <div className="col">
-
-
                 <Formik
                 initialValues={dataForm}
                 enableReinitialize={true}
@@ -226,9 +224,9 @@ export const ProfileRecruiter=()=>{
                 </Form>
                 )}
                 </Formik> 
-                </div>
+            </div>
         </div>
-        </div>
+        {/* </div> */}
                    
     </>
     )

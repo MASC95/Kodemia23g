@@ -138,16 +138,18 @@ export const Vacancy=()=>{
       };
 
     return(
-        <>        
-          <div className='card-header d-flex gap-3'>
-              <h1 className="text-start text-dark"><b>Vacantes</b></h1>
-                 <div className="d-flex h-100  justify-content-around">
-                   <Link to={`/Dashboard-Recruiter/vacancy-new`} className="text-light buttons btn btn-info btn-lg text-decoration-none d-sm-block btn-sm">
+        <>     
+          <div className='row container_form_ForVacancy m-3'>
+            <div className="content-principal">
+              <h1 className="text-start">Vacantes</h1>
+              <div className="">
+                   <Link to={`/Dashboard-Recruiter/vacancy-new`} className="text-light buttons btn btn-info btn-lg text-decoration-none d-sm-block btn-sm h-100">
                      Crear vacante
                       </Link>
-                  </div> 
-          </div>
-          <div className='card-body'>
+              </div>
+            </div> 
+          {/* </div> */}
+          {/* <div className='card-body'> */}
           <div className="row softskills">
                 <div className="col">
                 <DataTableExtensions  

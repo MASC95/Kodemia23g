@@ -153,7 +153,7 @@ export const EditVacancy = () => {
   return (
     <div className="row container_form_General1 m-5 " id="formGral">
       <h2 className="text-dark d-sm-block h2">Editar Vacante</h2>
-      <div className="col-4 container_image" id="container_image">
+      <div className="col-4 container_image d-sm-block-w-100" id="container_image">
         {!imageUser && (
           <>
             {/* <div className="ppic-container"> */}
@@ -162,7 +162,7 @@ export const EditVacancy = () => {
                 alt="imgProfile"
               />
             {/* </div> */}
-            <p className=" text-dark">
+            <p className="text-dark">
               {" "}
               Archivos permitidos .png, .jpg, jpeg{" "}
             </p>
@@ -372,9 +372,9 @@ export const EditVacancy = () => {
               </div>
             </div>
           </div>
-
+          <div className="row mb-4">
           <EditSkill listSkills={listSkills} setListSkills={setListSkills} />
-
+          </div>
           <div className="buttons_actions d-flex justify-content-end align-content-end">
             <button type="submit" className="buttons btn btn-info text-light">
               Guardar Vacante

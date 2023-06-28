@@ -1,15 +1,4 @@
-/* 
-@media (min-width: 542px) and (max-width:768px){
-    .container_form_General{
-        display: flex;
-        flex-direction: column;
-        .container_image{
-            width: 100%;
-            align-items: center;
-            margin-bottom: 50px;
-        }
-    }
-} */
+
 
 @mixin mobile{
   @media screen and (min-width: 0px) and (max-width: 600px) {

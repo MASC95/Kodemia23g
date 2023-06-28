@@ -164,43 +164,72 @@ const FormRecruiter = () => {
   return (
     <>
       <div className="card-body ">
-        <h1 className="text-start d-sm-flex mt-2 perfil-text" style={{ color: '#498BA6', textShadow: '0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px rgba(60, 64, 67, 0.15)', fontFamily: 'Poppins, sans-serif, Verdana, Geneva, Tahoma' }}>
-          
+        <h1
+          className="text-start d-sm-flex mt-2 perfil-text"
+          style={{
+            color: "#498BA6",
+            textShadow:
+              "0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px rgba(60, 64, 67, 0.15)",
+            fontFamily: "Poppins, sans-serif, Verdana, Geneva, Tahoma",
+          }}
+        >
           Perfil
         </h1>
         <div className="row container_form_General1 mr-5 ml-5 ">
-          <div className="col-4 container_image justify-content-center">
-            {!imageUser ? (
-               <img
-               src={dataForm.avatar_url }
-               alt="imgProfile"
-               className="perfil-C d-flex justify-content-center "
-             /> ):(
-               
-              <FaUserCircle className="profile-pic my-5" style={{width:'300px', height:'auto'}} /> 
+          <div className="col-4 container_image  ms-auto me-auto ">
+            {dataForm.avatar_url && !imageUser && (
+              <img
+                src={dataForm.avatar_url}
+                alt="imgProfile"
+                className="perfil-C d-flex justify-content-center "
+              />
             )}
+            {imageUser&&<img
+                src={imageUser}
+                alt="imgProfile"
+                className="perfil-C d-flex justify-content-center "
+              />}
+            {!imageUser&&!dataForm.avatar_url&&
+              <FaUserCircle className="profile-pic my-5 d-block ms-auto me-auto" style={{width:'20vw', height:'auto'}} />
+            }
 
-            <p className="allowed-files w-100 text-center mt-3 " style={{color:'#106973', fontFamily: 'Poppins, sans-serif, Verdana, Geneva, Tahoma'}}>
+            
+
+            <p
+              className="allowed-files w-100 text-center mt-3 "
+              style={{
+                color: "#106973",
+                fontFamily: "Poppins, sans-serif, Verdana, Geneva, Tahoma",
+              }}
+            >
               Archivos permitidos .png, .jpg, jpeg
             </p>
             <div className="buttons_actions d-flex justify-content-center gap-3">
               <UploadImage setDataImg={setImageUser} />
             </div>
           </div>
+
           <div className="col init-form">
             <Formik
               initialValues={dataForm}
               enableReinitialize={true} // solo para formularios que sirven para editar informacion
               validationSchema={profileSchema}
               onSubmit={(values) => handleSubmit(values)}
-              
             >
               {(props) => (
                 <Form onSubmit={props.handleSubmit}>
                   <div className="row mb-4">
                     <div className="col">
                       <div className="form-outline bg-gray">
-                        <label className="form-label" htmlFor="form6Example1" style={{color:'#498BA6', fontFamily: 'Poppins, sans-serif, Verdana, Geneva, Tahoma' }} > 
+                        <label
+                          className="form-label"
+                          htmlFor="form6Example1"
+                          style={{
+                            color: "#498BA6",
+                            fontFamily:
+                              "Poppins, sans-serif, Verdana, Geneva, Tahoma",
+                          }}
+                        >
                           Nombre:
                         </label>
                         <Field
@@ -216,7 +245,6 @@ const FormRecruiter = () => {
                           value={props.values.name}
                           onChange={props.handleChange}
                           onBlur={props.handleBlur}
-                          
                         />
                         {props.touched.name && props.errors.name && (
                           <span className="text-danger">
@@ -227,7 +255,15 @@ const FormRecruiter = () => {
                     </div>
                     <div className="col">
                       <div className="form-outline">
-                        <label className="form-label" htmlFor="form6Example1" style={{color:'#498BA6', fontFamily: 'Poppins, sans-serif, Verdana, Geneva, Tahoma'}}>
+                        <label
+                          className="form-label"
+                          htmlFor="form6Example1"
+                          style={{
+                            color: "#498BA6",
+                            fontFamily:
+                              "Poppins, sans-serif, Verdana, Geneva, Tahoma",
+                          }}
+                        >
                           Apellido:
                         </label>
                         <Field
@@ -250,7 +286,15 @@ const FormRecruiter = () => {
                   <div className="row mb-4">
                     <div className="col">
                       <div className="div-outline bg-gray">
-                        <label className="form-label" htmlFor="form6Example1" style={{color:'#498BA6', fontFamily: 'Poppins, sans-serif, Verdana, Geneva, Tahoma'}}>
+                        <label
+                          className="form-label"
+                          htmlFor="form6Example1"
+                          style={{
+                            color: "#498BA6",
+                            fontFamily:
+                              "Poppins, sans-serif, Verdana, Geneva, Tahoma",
+                          }}
+                        >
                           Edad:
                         </label>
                         <Field
@@ -271,7 +315,15 @@ const FormRecruiter = () => {
                     </div>
                     <div className="col">
                       <div className="form-outline">
-                        <label className="form-label" htmlFor="form6Example1" style={{color:'#498BA6', fontFamily: 'Poppins, sans-serif, Verdana, Geneva, Tahoma'}}>
+                        <label
+                          className="form-label"
+                          htmlFor="form6Example1"
+                          style={{
+                            color: "#498BA6",
+                            fontFamily:
+                              "Poppins, sans-serif, Verdana, Geneva, Tahoma",
+                          }}
+                        >
                           Escolaridad:
                         </label>
                         <select
@@ -297,7 +349,15 @@ const FormRecruiter = () => {
                   <div className="row mb-4">
                     <div className="col">
                       <div className="form-outline bg-gray">
-                        <label className="form-label" htmlFor="form6Example1" style={{color:'#498BA6', fontFamily: 'Poppins, sans-serif, Verdana, Geneva, Tahoma'}}>
+                        <label
+                          className="form-label"
+                          htmlFor="form6Example1"
+                          style={{
+                            color: "#498BA6",
+                            fontFamily:
+                              "Poppins, sans-serif, Verdana, Geneva, Tahoma",
+                          }}
+                        >
                           Email:
                         </label>
                         <Field
@@ -318,7 +378,15 @@ const FormRecruiter = () => {
                     </div>
                     <div className="col">
                       <div className="form-outline">
-                        <label className="form-label" htmlFor="form6Example1" style={{color:'#498BA6',  fontFamily: 'Poppins, sans-serif, Verdana, Geneva, Tahoma'}}>
+                        <label
+                          className="form-label"
+                          htmlFor="form6Example1"
+                          style={{
+                            color: "#498BA6",
+                            fontFamily:
+                              "Poppins, sans-serif, Verdana, Geneva, Tahoma",
+                          }}
+                        >
                           Reset Password:
                         </label>
                         <Field
@@ -342,7 +410,15 @@ const FormRecruiter = () => {
                   <div className="row mb-4">
                     <div className="col">
                       <div className="form-outline">
-                        <label className="form-label" htmlFor="form6Example2" style={{color:'#498BA6', fontFamily: 'Poppins, sans-serif, Verdana, Geneva, Tahoma'}}>
+                        <label
+                          className="form-label"
+                          htmlFor="form6Example2"
+                          style={{
+                            color: "#498BA6",
+                            fontFamily:
+                              "Poppins, sans-serif, Verdana, Geneva, Tahoma",
+                          }}
+                        >
                           Experiencia
                         </label>
                         <Field
@@ -368,7 +444,6 @@ const FormRecruiter = () => {
                     setListSkills={setListSkills}
                     isCandidate={true}
                     skillsCandidate={listSkills}
-                   
                   />
 
                   <div className="buttons_actions d-flex justify-content-center gap-3">

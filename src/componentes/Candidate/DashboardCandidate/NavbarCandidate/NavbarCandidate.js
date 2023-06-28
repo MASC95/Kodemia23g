@@ -62,7 +62,7 @@ const NavbarCandidate = () => {
           {dataCandidate.avatar_url ? (
               <img src={dataCandidate.avatar_url} alt="candidate-profile-pic" className="candidate-profile-pic " />
             ) : (
-              <FaUserCircle className="candidate-profile-icon" style={{width: '40px', height: '40px', color: '#FFF', marginLeft:'30px', boxShadow: 'rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;'}} />
+              <FaUserCircle className="candidate-profile-icon" style={{width: '40px', height: '40px', color: '#FFF', marginLeft:'30px'}} />
             )}
         </div>
       </Container>

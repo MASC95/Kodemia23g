@@ -13,6 +13,8 @@
 }
 
 
+
+
 header {
   background-image: linear-gradient(to right, #0acffe 0%, #495aff 100%);
         .main-container {
@@ -564,6 +566,7 @@ header {
               display: flex;
               align-items: flex-start;
               margin-left: 20px;
+              
             }
 
             @include mobile {

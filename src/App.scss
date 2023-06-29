@@ -1,4 +1,5 @@
 @import '../node_modules/bootstrap/scss/bootstrap';
+// Importar el archivo SCSS de configuración de Bootstrap
 
 $jobinderColor :#498BA6;
 $jobinderHover: #649cb3;
@@ -7,32 +8,67 @@ $jobinderColor3: #093040;
 $jobinderColor4: #96c6d9;
 $jobinderColor5: #106973;
 
+
+// Resto de importaciones y definiciones de estilos personalizados
+
+
 .btn-primary {
   --bs-btn-color: #fff;
   --bs-btn-bg: #498BA6;
   --bs-btn-border-color: #498BA6;
   --bs-btn-hover-color: #fff;
-  --bs-btn-hover-bg: #649cb3;
-  --bs-btn-hover-border-color: #5b97af;
-  --bs-btn-focus-shadow: 0 0 0 0.25rem rgba(62, 118, 141, 0.5);
-  --bs-btn-active-color: gray;
-  --bs-btn-active-bg: #6da2b8;
+  --bs-btn-hover-bg: #72acc6;
+  --bs-btn-hover-border-color: #72acc6;
+  --bs-btn-focus-shadow: 0 0 0 0.25rem #175f7e;
+  --bs-btn-active-color: #175f7e;
+  --bs-btn-active-bg: #72acc6;
   --bs-btn-active-border-color: #5b97af;
   --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   --bs-btn-disabled-color: #000;
   --bs-btn-disabled-bg: #498BA6;
   --bs-btn-disabled-border-color: #498BA6;
-}
+  border-radius: 15px 5px 15px 5px;
 
-@mixin glassify{
+  background: var(--bs-btn-bg); /* color de fondo */
+  color: var(--bs-btn-color); /* color de fuente */
+  border: 2px solid var(--bs-btn-border-color); /* tamaño y color de borde */
+  padding: 8px 15px;
+  
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  display: inline-block;
 
-  background: rgba(73, 139, 166, 0.7);
-  
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(3.9px);
-  -webkit-backdrop-filter: blur(3.9px);
-  border: 1px solid rgba(73, 139, 166, 0.28); 
-  
-  
+  &:hover {
+    color: #fff; /* color de fuente hover */
   }
+
+  &::after {
+    content: "";
+    background: var(--bs-btn-hover-bg); /* color de fondo hover */
+    position: absolute;
+    z-index: -1;
+    padding: 16px 20px;
+    display: block;
+    left: -20%;
+    right: -20%;
+    top: 0;
+    bottom: 0;
+    transform: skewX(-45deg) scale(0, 1);
+    transition: all 0.3s ease;
+  }
+
+  &:hover::after {
+    transition: all 0.3s ease-out;
+    transform: skewX(-45deg) scale(1, 1);
+  }
+
+  &:active {
+    color: var(--bs-btn-active-color); /* color de fuente al hacer click */
+    background: var(--bs-btn-active-bg); /* color de fondo al hacer click */
+    border-color: var(--bs-btn-active-border-color); /* color de borde al hacer click */
+    box-shadow: var(--bs-btn-active-shadow); /* sombra al hacer click */
+  }
+}
   
+

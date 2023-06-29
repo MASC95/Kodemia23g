@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { FaFacebookF, FaTwitter, FaGoogle, FaInstagram, FaGithub } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -8,60 +9,60 @@ const Footer = () => {
       <Container>
         <Row>
           <Col>
-            <section className="mb-4">
-              <a
+            <section className="mb-4 mt-4">
+              <Link
                 className="btn btn-link btn-floating btn-lg text-white m-1"
-                href="#!"
+                to="/facebook"
                 role="button"
               >
                 <FaFacebookF />
-              </a>
-              <a
+              </Link>
+              <Link
                 className="btn btn-link btn-floating btn-lg text-white m-1"
-                href="#!"
+                to="/twitter"
                 role="button"
               >
                 <FaTwitter />
-              </a>
-              <a
+              </Link>
+              <Link
                 className="btn btn-link btn-floating btn-lg text-white m-1"
-                href="#!"
+                to="/google"
                 role="button"
               >
                 <FaGoogle />
-              </a>
-              <a
+              </Link>
+              <Link
                 className="btn btn-link btn-floating btn-lg text-white m-1"
-                href="#!"
+                to="/instagram"
                 role="button"
               >
                 <FaInstagram />
-              </a>
-              <a
+              </Link>
+              <Link
                 className="btn btn-link btn-floating btn-lg text-white m-1"
-                href="#!"
+                to="/github"
                 role="button"
               >
                 <FaGithub />
-              </a>
+              </Link>
             </section>
           </Col>
         </Row>
         <Row className="text-white" style={{ color: "black", fontSize: "24px" }}>
-          <Col classname= ''>
-            <ul className="d-flex justify-content-around list-unstyled">
-              <li>Institucional</li>
-              <li>Candidatos</li>
-              <li>Reclutadores</li>
+          <Col >
+            <ul className="d-flex justify-content-around flex-wrap list-unstyled col-md-12">
+              <li className=" col-sm-12 col-md-4 col-lg-4 col-xl-4 mb-3 mt-2">Institucional</li>
+              <li className=" col-sm-12 col-md-4 col-lg-4 col-xl-4 mb-3 mt-2" >Candidatos</li>
+              <li className=" col-sm-12 col-md-4 col-lg-4 col-xl-4 mb-3 mt-2">Reclutadores</li>
             </ul>
           </Col>
         </Row>
         <Row className="text-white" style={{ color: "black", fontSize: "24px" }}>
           <Col>
-            <ul className="d-flex justify-content-around list-unstyled">
-              <li>Terminos y Condiciones</li>
-              <li>Políticas de Privacidad</li>
-              <li>Preguntas Frecuentes</li>
+            <ul className="d-flex justify-content-around flex-wrap list-unstyled col-md-12">
+              <li className="col-sm-12  col-md-4 col-lg-4 col-xl-4 mb-3 mt-2">Terminos y Condiciones</li>
+              <li className="col-sm-12  col-md-4 col-lg-4 col-xl-4 mb-3 mt-2">Políticas de Privacidad</li>
+              <li className="col-sm-12  col-md-4 col-lg-4 col-xl-4 mb-3 mt-2">Preguntas Frecuentes</li>
             </ul>
           </Col>
         </Row>
@@ -78,4 +79,3 @@ const Footer = () => {
 };
 
 export default Footer;
-

@@ -106,5 +106,29 @@
                 
             }
         }
+
+        .column--4{
+            border-color: #f7ff67;
+            @include columnas();
+            h3{
+            
+            }
+            .zona4{
+                @include dzone();
+                .elem4{
+                    @include element();
+                    .titulo4{
+                        color: #6FD2AF;
+    
+                    }
+                    .body4{
+                        @include cuerpo()
+    
+                    }
+                }
+                
+                
+            }
+        }
     }
 }

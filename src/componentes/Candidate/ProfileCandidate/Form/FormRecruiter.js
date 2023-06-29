@@ -201,7 +201,7 @@ const FormRecruiter = () => {
                 src={dataForm.avatar_url}
                 alt="imgProfile"
                
-                className="perfil-C d-flex justify-content-center ms-auto me-auto"
+                className="perfil-C d-flex justify-content-center d-block ms-auto me-auto"
               />
             )}
             {/* {imageUser&&<img

@@ -3,7 +3,7 @@ import { FaCheck } from "react-icons/fa";
 import "./scss/style.scss";
 import { Link } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
-import Footer from "../Footer/Footer";
+
 import recruiter from '../../Candidate/img/Recruiter.jpg'
 import candidate from '../../Candidate/img/Candidate.jpg'
 import knowledge from '../../Candidate/img/KnowledgeBackendDev.jpg'
@@ -228,7 +228,9 @@ const Mains = () => {
             </div>
           </div>
         </div>
+        
       </div>
+   
     </header>
     
    

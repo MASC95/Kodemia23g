@@ -4,7 +4,7 @@ import { FaFacebookF, FaTwitter, FaGoogle, FaInstagram, FaGithub } from 'react-i
 
 const Footer = () => {
   return (
-    <footer className="text-center" style={{ backgroundColor: "#498ba6" }}>
+    <footer className="text-center" style={{ backgroundColor: "#498ba6", fontFamily: 'Poppins'}}>
       <Container>
         <Row>
           <Col>
@@ -48,26 +48,26 @@ const Footer = () => {
           </Col>
         </Row>
         <Row className="text-white" style={{ color: "black", fontSize: "24px" }}>
-          <Col>
-            <ul className="list-unstyled">
-              <li className="d-md-block mb-3">Institucional</li>
-              <li className="d-md-block mb-3">Candidatos</li>
-              <li className="d-md-block mb-3">Reclutadores</li>
+          <Col classname= ''>
+            <ul className="d-flex justify-content-around list-unstyled">
+              <li>Institucional</li>
+              <li>Candidatos</li>
+              <li>Reclutadores</li>
             </ul>
           </Col>
         </Row>
         <Row className="text-white" style={{ color: "black", fontSize: "24px" }}>
           <Col>
-            <ul className="list-unstyled">
-              <li className="d-md-block mb-3">Terminos y Condiciones</li>
-              <li className="d-md-block mb-3">Políticas de Privacidad</li>
-              <li className="d-md-block mb-3">Preguntas Frecuentes</li>
+            <ul className="d-flex justify-content-around list-unstyled">
+              <li>Terminos y Condiciones</li>
+              <li>Políticas de Privacidad</li>
+              <li>Preguntas Frecuentes</li>
             </ul>
           </Col>
         </Row>
         <Row>
           <Col>
-            <div className="text-center text-white p-3" style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}>
+            <div className="text-center text-white p-3" >
               © Jobinder 2023. All Rights Reserved.
             </div>
           </Col>
@@ -78,3 +78,4 @@ const Footer = () => {
 };
 
 export default Footer;
+

@@ -10,6 +10,7 @@ import knowledge from '../../Candidate/img/KnowledgeBackendDev.jpg'
 import video from '../../Candidate/img/VideoBlondeGirl.jpg'
 import profile from '../../Candidate/img/profile-pic.png'
 import 'animate.css';
+import Footer from "../Footer/Footer";
 const Mains = () => {
   return (
     <header>
@@ -230,7 +231,7 @@ const Mains = () => {
         </div>
         
       </div>
-   
+ 
     </header>
     
    

@@ -15,7 +15,7 @@ const Mains = () => {
     <header>
       <Navbar />
       <div className="main-container ">
-        <h1 className="match d-flex justify-content-center mx-100px m-md-5 animate__animated animate__flipInX " style={{textShadow: '0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px rgba(60, 64, 67, 0.15)'}}>
+        <h1 className="match d-flex justify-content-center mx-100px m-md-5 animate__animated animate__pulse " style={{textShadow: '0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px rgba(60, 64, 67, 0.15)'}}>
           Haz match con las empresas de tus sueños <br />
           con nuestra app de búsqueda de empleo basada en tus <br />
               habilidades de programación.

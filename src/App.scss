@@ -1,4 +1,5 @@
 @import '../node_modules/bootstrap/scss/bootstrap';
+// Importar el archivo SCSS de configuración de Bootstrap
 
 $jobinderColor :#498BA6;
 $jobinderHover: #649cb3;
@@ -6,6 +7,10 @@ $jobinderColor2: #0b1726;
 $jobinderColor3: #093040;
 $jobinderColor4: #96c6d9;
 $jobinderColor5: #106973;
+
+
+// Resto de importaciones y definiciones de estilos personalizados
+
 
 .btn-primary {
   --bs-btn-color: #fff;
@@ -66,3 +71,4 @@ $jobinderColor5: #106973;
   }
 }
   
+

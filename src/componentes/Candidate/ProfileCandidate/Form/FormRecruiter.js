@@ -181,6 +181,7 @@ const FormRecruiter = () => {
               <img
                 src={dataForm.avatar_url}
                 alt="imgProfile"
+               
                 className="perfil-C d-flex justify-content-center "
               />
             )}
@@ -188,6 +189,7 @@ const FormRecruiter = () => {
                 src={imageUser}
                 alt="imgProfile"
                 className="perfil-C d-flex justify-content-center "
+                
               />}
             {!imageUser&&!dataForm.avatar_url&&
               <FaUserCircle className="profile-pic my-5 d-block ms-auto me-auto" style={{width:'20vw', height:'auto'}} />

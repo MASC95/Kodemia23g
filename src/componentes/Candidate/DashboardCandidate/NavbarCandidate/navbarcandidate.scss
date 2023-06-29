@@ -1,3 +1,4 @@
+
 @mixin mobile{
     @media screen and (min-width: 0px) and (max-width: 600px) {
       @content;
@@ -38,7 +39,7 @@
           align-items: center;
           .user-data {
             font-family: 'Poppins';
-            color: aliceblue;
+            color: #fff;
             margin-bottom: 0px !important;
             margin-top: 10px;
             
@@ -82,6 +83,7 @@
             }
             }
           }
+          
         
       }
     }

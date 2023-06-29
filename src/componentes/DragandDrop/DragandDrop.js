@@ -3,6 +3,7 @@ import { useState } from "react";
 import "./draganddrop.scss";
 import { BsThreeDots } from "react-icons/bs";
 
+//terminado, se usa en reclutador.
 const DragandDrop = () => {
     
   const [tasks, setTasks] = useState([

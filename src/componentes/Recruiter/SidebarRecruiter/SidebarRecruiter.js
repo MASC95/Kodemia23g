@@ -1,59 +1,47 @@
-import {React,useEffect,useState} from 'react'
 import {Link} from 'react-router-dom'
-import { FaBars, FaUser,FaSuitcase, FaCheckDouble, FaSignOutAlt, FaHome} from 'react-icons/fa';
+import { FaUser,FaSuitcase, FaCheckDouble, FaSignOutAlt, FaHome, FaCode} from 'react-icons/fa';
 import logo from '../assets/img/logo.png'
 import './style.scss'
-import { useParams } from 'react-router-dom';
-import axios from 'axios';
-import { endpoints } from '../services/endpoints';
+import { useNavigate } from 'react-router-dom';
+import useJob from '../../../hooks/useJob'
 
 const SidebarRecruiter= () => {
-  // const [profileInformation,setProfileInformation]=useState([])
-  // const [isLoading,setLoading]=useState(true)
-  // const params=useParams();
-  // const {id}=params
-  // console.log(id)
-  // useEffect(()=>{
-  //     const fetchData=async()=>{
-  //         try {
-  //             const endpointURL= `${endpoints.getByUser}/${id}`;
-  //             const result= await axios.get(endpointURL)
-  //             setProfileInformation(result.data)
-  //             console.log(result.data[0])
-  //         } catch (error) {
-  //             console.log(error)
-  //         } finally{
-  //             setLoading(false)
-  //         }         
-  //     };
-  //     fetchData()
-  // },[id]);
-  // console.log(profileInformation)
+  const navigate=useNavigate()
+  const [dataCandidate,setDataCandidate,dataRecruiter,setDataRecruiter, initDataCandidate, initDataRecrutier]= useJob();
+
+  const logout=()=>{
+    window.localStorage.setItem('accessToken','')
+    setDataRecruiter(initDataRecrutier)
+    setDataCandidate(initDataCandidate)
+    navigate('/')
+  }
+ 
 
   return (
     <>
     <div className="dashboard-nav">
         <header>
-          <div href="#" className="brand-logo">
-            <a className="logo_Jobinder" href="index.html">
-                <img src={logo} className="logo_Jobinder" alt=""/>
-            </a>
+          <div className="brand-logo">
+            <Link to={'index.html'} className="logo_Jobinder">
+                  <img src={logo} className="logo_Jobinder" alt=""/>
+              </Link>
           </div>
         </header>
         <nav className="dashboard-nav-list">
-          <Link to={`/Dashboard-Recruiter/home`}>
-          <a href="#!" className="dashboard-nav-item"><FaHome/> &nbsp;Home </a>
-          </Link>
-          <Link to={`/Dashboard-Recruiter/profile`}>
-          <a href="#!" className="dashboard-nav-item"> <FaUser/> &nbsp;Perfil </a>
-          </Link>
-          <Link to={`/Dashboard-Recruiter/vacancy`}>
-          <a href="#!" className="dashboard-nav-item"><FaSuitcase/> &nbsp;Vacantes </a>
-          </Link>
-          <Link to={`/Dashboard-Recruiter/match`}>
-          <a href="#!" className="dashboard-nav-item"><FaCheckDouble/> &nbsp;Match </a>
-          </Link>
-          <a href="#!" className="dashboard-nav-item"><FaSignOutAlt/> &nbsp;Logout </a>
+          <Link to={`/Dashboard-Recruiter/home`} className="dashboard-nav-item"><FaHome/> &nbsp;Home</Link>
+          <Link to={`/Dashboard-Recruiter/profile`} className="dashboard-nav-item"><FaUser/> &nbsp;Perfil</Link>
+          <Link to={`/Dashboard-Recruiter/softskill-addNew`} className="dashboard-nav-item"><FaCode/> &nbsp;Skills </Link>
+          <Link to={`/Dashboard-Recruiter/vacancy`} className="dashboard-nav-item"><FaSuitcase/> &nbsp;Vacantes</Link>
+          <Link to={`/Dashboard-Recruiter/match`} className="dashboard-nav-item"><FaCheckDouble/> &nbsp;Match </Link>
+          <button type='button' onClick={logout} className="button-logout bg-black" style={{
+                  border: "none",
+                  background: "none",
+                  color: "inherit",
+                  padding: 0,
+                  font: "inherit",
+                  cursor: "pointer",
+                  outline: "inherit",
+                }}><FaSignOutAlt className='bg-black'/> &nbsp;Logout </button>
         </nav>
     </div>
     </>

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import {React, useState} from "react";
 import axios from "axios";
 import { endpointsGral } from "../services/vacancy";
@@ -6,6 +7,10 @@ import { useFormik } from "formik";
 import * as Yup from 'yup';
 import AddSoftSkills from "../SoftSkills/Form/AddSoftSkills";
 
+=======
+import PostVacancy from "./Forms/PostVacancy";
+// import Softskills from "../SoftSkills/Form/SoftSkills";
+>>>>>>> devR
 export const AddVacancy=()=>{
     const [valueIdVacancy, setValueIdVacancy]=useState()
     const perfil = JSON.parse(localStorage.getItem('accessToken'))
@@ -69,6 +74,7 @@ export const AddVacancy=()=>{
 
     return(
         <>
+<<<<<<< HEAD
           <div className='card-body '>
              <h1  className="text-start"><b>Agregar Vacante</b></h1>
              <div className="container mt-2 p-5 w-100 " id="formGral">
@@ -191,6 +197,13 @@ export const AddVacancy=()=>{
         </div>
              <AddSoftSkills/>
           </div>
+=======
+          {/* <div className='card-body '> */}
+          <h1  className="text-start d-sm-flex-text-center h2 mt-2 text-dark">Crear Vacante</h1>
+                <PostVacancy/>
+                {/* <Softskills/> */}
+            {/* </div> */}
+>>>>>>> devR
         </>
     )
 }

@@ -4,40 +4,56 @@ import axios from "axios";
 import Panel from "./Panel";
 import { BsThreeDots } from "react-icons/bs";
 import { endpointsGral } from "../services/vacancy";
+import { useSearchParams } from "react-router-dom";
 
 export const Reclutamiento=()=>{
-  const [tasks, setTasks] = useState([
-    {
-      id: 1,
-      body: "Candidato 1",
-      list: 1,
-    },
-    {
-      id: 2,
-      body: "Candidato 2",
-      list: 1,
-    },
-    {
-      id: 3,
-      body: "Candidato 3",
-      list: 3,
-    },
-    {
-      id: 4,
-      body: "Candidato 4",
-      list: 2,
-    },
-    {
-      id: 5,
-      body: "Candidato 5",
-      list: 2,
-    },
-  ]);
+
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [candidatos, setCandidatos] = useState([]);
+  const [dataApplicants, setDataApplicants] = useState([]);
+  const idVacancy = searchParams.get('v');
+
+  //console.log('searchParams:..',searchParams.get('v'));
+
+  useEffect(() => {
+    
+    cargarDatos();
+    
+  }, [])
+
+  useEffect(()=>{
+    console.log('state candidatos:..',candidatos);
+  },[candidatos])
+  
+  const cargarDatos= async()=>{
+    try {
+      const result= await axios.get(`${endpointsGral.vacancyURL}${idVacancy}`);
+      console.log('dataApplicants:..',result?.data?.infoVacancy?.applicants);
+      const tempDataApplicants = [];
+
+      result?.data?.infoVacancy?.applicants?.forEach((applicant)=>{
+        const findApplicant = tempDataApplicants.find((item)=>item._id===applicant._id);
+        if(!findApplicant){
+          return tempDataApplicants.push({
+            ...applicant,
+            list:1,
+            body: `${applicant.name} ${applicant.last_name}`
+          })
+        }
+      })
+      setCandidatos([...tempDataApplicants])
+      
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  
   const getList = (list) => {
-    return tasks.filter(item => item.list === list)
+    return candidatos.filter(item => item.list === list)
 }
 const startDrag = (evt, item) => {
-    evt.dataTransfer.setData('itemID', item.id)
+    evt.dataTransfer.setData('itemID', item._id)
     console.log(item);
 }
 const draggingOver = (evt) => {
@@ -45,13 +61,13 @@ const draggingOver = (evt) => {
 }
 const onDrop = (evt, list) => {
     const itemID = evt.dataTransfer.getData('itemID');
-    const item = tasks.find(item => item.id == itemID);
+    const item = candidatos.find(item => item._id == itemID);
     item.list = list;
-    const newState = tasks.map(task => {
-        if(task.id === itemID) return item;
+    const newState = candidatos.map(task => {
+        if(task._id === itemID) return item;
         return task
     })
-    setTasks(newState);
+    setCandidatos(newState);
 }
   return (
     <div className="main">

@@ -13,6 +13,8 @@ import "../SkillsSection.js";
 //import SkillsSection from "../SkillsSection.js";
 import Softskills from "../../../Recruiter/SoftSkills/Form/SoftSkills";
 import { FaUserCircle } from "react-icons/fa";
+import swal from "sweetalert2";
+import 'sweetalert2/dist/sweetalert2.css';
 //const localEndPoinst = "http://localhost:4000/api/v1/users/";
 
 const initDataForm = {
@@ -24,6 +26,23 @@ const initDataForm = {
   working_experience: "",
   bachelor: "",
   avatar_url: "",
+};
+
+const saveChanges = () => {
+  swal.fire({
+    title: 'Mensaje de confirmación',
+    text: '¿Estás seguro de que quieres guardar los cambios?',
+    icon: 'question',
+    showCancelButton: true,
+    confirmButtonColor: '#0CF574',
+    cancelButtonColor: '#FF2F2F',
+    confirmButtonText: 'Guardar',
+    cancelButtonText: 'Cancelar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      swal.fire('Los cambios han sido guardados correctamente!');
+    }
+  });
 };
 
 /*
@@ -182,7 +201,7 @@ const FormRecruiter = () => {
                 src={dataForm.avatar_url}
                 alt="imgProfile"
                
-                className="perfil-C d-flex justify-content-center "
+                className="perfil-C d-flex justify-content-center ms-auto me-auto"
               />
             )}
             {/* {imageUser&&<img
@@ -456,9 +475,13 @@ const FormRecruiter = () => {
                       type="submit"
                       className="buttons btn btn-info text-light d-block ms-auto"
                       value="enviar"
+                      id="save-changes"
+                      onClick={saveChanges}
                     >
                       Guardar
                     </button>
+                    
+                    
                   </div>
                   {/* <SkillsSection/> */}
                 </Form>

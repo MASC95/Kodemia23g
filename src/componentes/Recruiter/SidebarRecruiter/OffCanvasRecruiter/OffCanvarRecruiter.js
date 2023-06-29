@@ -67,14 +67,14 @@ function OffCanvasRecruiter({ showOffcanvas, handleShowOffcanvas }) {
               <span className="text">Match</span>
             </Link>
             <div className="link">
-              <button
+              <span
                 type="submit"
                 onClick={logout}
-                className="button-logout link"
+                className=" link"
               >
                 <FaSignOutAlt className="icons" />
                 <span className="text">Log Out</span>
-              </button>
+              </span>
             </div>
           </div>
         </Offcanvas.Body>

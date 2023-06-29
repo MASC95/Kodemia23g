@@ -185,7 +185,7 @@ const tableData = {
 
 
   return(
-    <div className="main">
+    <div className="row m-3">
       <DataTableExtensions  
       export={false}
       print={false}

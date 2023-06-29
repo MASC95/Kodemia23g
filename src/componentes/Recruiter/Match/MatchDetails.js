@@ -1,171 +1,123 @@
-import {useState,useEffect} from "react";
-import {FaEye, FaCheck, FaEyeSlash} from 'react-icons/fa'
-import DataTable from 'react-data-table-component';
-import DataTableExtensions from 'react-data-table-component-extensions';
+import { useState, useEffect } from "react";
 
 
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { endpointsGral } from "../services/vacancy";
-import { myId } from "../../lib/myLib";
-import './style.scss'
-export const MatchDetails=()=>{
-    const valores = window.location.search;
-    const urlParams = new URLSearchParams(valores);
-    const idVacancy = urlParams.get('m');
-    const [dataByUserCandidate,setDataByUserCandidate]=useState([])
 
-    const fetchForMatch=async()=>{
-        try {
-            const endpointURL=`${endpointsGral.vacancyURL}${idVacancy}`;
-            const response= await axios.get(endpointURL)
-            const datasVacancy=response.data['infoVacancy']
-            setDataByUserCandidate(datasVacancy);
-            
-        } catch (error) {
-            console.log(error)
-        }
+import Swal from "sweetalert2";
+import useJob from "../../../hooks/useJob";
+import "./style.scss";
+import MyTable from "./MyTable";
+
+
+
+export const MatchDetails = () => {
+  
+  const valores = window.location.search;
+  const urlParams = new URLSearchParams(valores);
+  const idVacancy = urlParams.get("m");
+  const [
+    dataCandidate,
+    setDataCandidate,
+    dataRecruiter,
+    setDataRecruiter,
+    dataLocalStorage,
+    setDataLocalStorage,
+  ] = useJob();
+  const [dataByUserCandidate, setDataByUserCandidate] = useState([]);
+  const [dataJobSkills, setDataJobSkills]= useState([]);
+  const [nuevoListado, setNuevoListado] = useState(false);
+
+  const fetchForMatch = async () => {
+    try {
+      const endpointURL = `${endpointsGral.vacancyURL}${idVacancy}`;
+      const response = await axios.get(endpointURL);
+      const datasVacancy = response.data["infoVacancy"];
+      setDataJobSkills(datasVacancy?.job_skills);
+      setDataByUserCandidate(datasVacancy?.applicants);
+    } catch (error) {
+      console.log(error);
     }
-    useEffect(()=>{
-        fetchForMatch()
-    },[])
-    const applicants= dataByUserCandidate.applicants
-    const skills= dataByUserCandidate.job_skills
+  };
+  useEffect(() => {
+    fetchForMatch();
+    listadoApplicants();
+  }, []);
 
-    const onlyApplicans = applicants?.filter((objeto, indice)=>{
-        var objetoString = JSON.stringify(objeto);
-        return (
-          applicants.findIndex((obj, i)=>{
-            return JSON.stringify(obj) === objetoString;
-          }) === indice
-        );
-      });
-
-    // let userSkills=[]
-    let jobSkilss=[]
-    const retriveVacancy=skills?.map((item)=>{
-        return item._id
-    })
-    jobSkilss.push(retriveVacancy)
-    console.log('Job', jobSkilss)
-
-
-      const data= onlyApplicans&&onlyApplicans?.map((item,index)=>{
-        const retriveUser=item.user_skills
-             const conteo = {};
-             retriveUser.forEach(elemento => {
-             if (conteo[elemento]) {
-                 conteo[elemento]++;
-             } else {
-                 conteo[elemento] = 1;
-             }
-             });
-             let suma=0
-             const quanty=retriveVacancy.length
-            retriveVacancy.forEach(elemento => {
-                const repeticiones = conteo[elemento] || 0;
-                if(repeticiones){
-                    suma+=repeticiones
-                }
-             });
-             const operador = Math.floor((suma*100)/quanty)
-
-             return(
-                {
-                    id:item._id,
-                    qty: `${index+1}`,
-                    name: item.name,
-                    bachelor: `${item.name} ${item.last_name}`,
-                    match: `${operador} %`||'',
-                }
-             )
-        })
-        
-
-    // let userSkills=[]
-
-
-
-    const columns = [
-        {
-          name:'rowId',
-          selector: (row) => row.id,
-          sortable: true, hide:true,
-          omit:true,
-    
-        },
-        {
-          name: "#",
-          selector: (row,i) => i + 1,
-          sortable: true
-        },
-        {
-          name: "NOMBRE",
-          selector: (row, i) =>`${row.name}`,
-          sortable: true
-        },
-        {
-          name: "ESCOLARIDAD",
-          selector: (row, i) => row.bachelor,
-          sortable: true
-        },
-        {
-          name: "COMPATIBILIDAD",
-          selector: (row, i) => row.match,
-          sortable: true,
-        },
-        {
-          name: "OPCIONES",
-          sortable: false,
-          selector: (row, i) => row.null,
-          cell: (d) =>[
-            <Link to={`/Dashboard-Recruiter/profile-candidato/?c=${d.id}`}>
-            <button type="button" className="buttons btn btn-outline-info" ><FaEye className="icon_eye1"/></button>
-            </Link>,
-           <button type="button" className="buttons btn btn-outline-success"><FaCheck className="icon_check1"/></button>,
-           <button type="button" className="buttons btn btn-outline-secondary"><FaEyeSlash className="icon_eyeSlash1"/></button>
-      ]
-     }
-    ];
-    
-      // const data = dataShow;
+  useEffect(() => {
+    console.log("nueva lista de candidatos:..",dataByUserCandidate);
+    if(dataByUserCandidate?.applicants){
+      listadoApplicants();
+    }
     
     
-    const tableData = {
-      columns,
-      data
-    };
+  }, [dataByUserCandidate]);
 
-    return(
-        <>
-        <div className='card-body'>
+  const listadoApplicants = ()=>{
+    
+    setNuevoListado(true)
+  }
+  
+  
+  //console.log("Job", jobSkilss);
+
+  const handleAddPanel = (id) => {};
+
+  const dadHandleHideofPanel = (index) => {
+      console.log('En el papa(index):',index);
+     Swal.fire({
+      title: "Ocultar candidato",
+      text: "Estas seguro de ocultar esta candidato?!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si, ocultar!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        console.log('indice a borrar:..',index);
+        const hideCandidate = dataByUserCandidate[index];
+        const id = hideCandidate._id;
+        console.log('candidato a ocultar:..',id);
+        if (hideCandidate) {
+          const deleteOnList = dataByUserCandidate.filter(
+            (_, i) => i !== index
+          );
+          setDataByUserCandidate(deleteOnList);
+          console.log('lista de candidatos sin el oculto:..',deleteOnList);
+        } else {
+          console.log("error al ocultar");
+        }
+      }
+    }); 
+  };
+  
+
+  // const data = dataShow;
+
+  
+
+  return (
+    <>
+      <div className="row m-3">
         <h2 className="text-dark">Lista de aplicantes</h2>
-         <div className="main">
-            <DataTableExtensions  
-            export={false}
-            print={false}
-            {...tableData}>
-                <DataTable {...tableData}
-                key={myId()}
-                columns={columns}
-                data={data}
-                noHeader
-                defaultSortField="#"
-                defaultSortAsc={true}
-                pagination
-                highlightOnHover
-                dense
-                />
-            </DataTableExtensions>
-         </div>
+        <div className="col">
+          {dataByUserCandidate?.length>0&&
+          <MyTable dadHandleHideofPanel={dadHandleHideofPanel} job_skills={dataJobSkills} dataByUserCandidate={dataByUserCandidate}/>
+          }
+          
+          
         </div>
-        <div className="d-flex w-100 justify-content-end p-4">
-            <Link to={`/Dashboard-Recruiter/panel-phases?v=${idVacancy}`}>
-              <button type="button" className="btn btn-info text-light">Panel de Reclutamiento</button>
-            </Link>
-        </div>
-                        
-        </>
-    )
-}
-export default MatchDetails
+      </div>
+      <div className="d-flex w-100 justify-content-end p-4">
+        <Link to={`/Dashboard-Recruiter/panel-phases?v=${idVacancy}`}>
+          <button type="button" className="btn btn-info text-light">
+            Panel de Reclutamiento
+          </button>
+        </Link>
+      </div>
+    </>
+  );
+};
+export default MatchDetails;

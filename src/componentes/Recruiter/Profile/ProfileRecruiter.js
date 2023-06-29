@@ -1,184 +1,232 @@
 import {React,useEffect,useState} from "react";
-import FormRecruiter from "./Form/FormRecruiter";
 import axios from "axios";
 import { endpointsGral } from "../services/vacancy";
 import imgProfile from '../assets/img/profile.png'
 import swal from "sweetalert";
 import { useNavigate } from "react-router-dom";
+import { Formik, Field, ErrorMessage } from "formik";
+import { Form } from "react-bootstrap";
+import * as Yup from "yup"
+import UploadImage from "../../UploadImage/UploadImage";
+import useJob from "../../../hooks/useJob"
+
+
+const initDataForm = {
+    name: "",
+    last_name: "",
+    email: "",
+    rfc:'',
+    avatar_url:''
+  };
+
+  const profileSchema = Yup.object().shape({
+    name: Yup.string().required('El Nombres es Requerido').min(2, 'El nombre debe tener al menos 2 caracteres').max(50, 'El nombre debe tener como máximo 50 caracteres'),
+    last_name: Yup.string().required('El Apellido es Requerido').min(2, 'El apellido debe tener al menos 2 caracteres').max(50, 'El apellido debe tener como máximo 50 caracteres'),
+    email: Yup.string().required('El correo electrónico es requerido').email('ingrese un correo electrónico válido'),
+    age: Yup.number().required('El campo es requerido').min(18, 'Debe ser mayor de 18 años'),
+    rfc: Yup.string().required('Ingrese una experiencia válida'),
+  })
+  
 
 
 export const ProfileRecruiter=()=>{
-    const perfil = JSON.parse(localStorage.getItem('accessToken'))
-    const token=perfil['access_token']
-    const navigate=useNavigate()
-    // console.log('token: '+ token)
-    function parseJwt (token) {
-        var base64Url = token.split('.')[1];
-        var base64 = base64Url.replace('-', '+').replace('_', '/');
-        return JSON.parse(window.atob(base64));
-    };
-    const destroy=parseJwt(token)
-    // console.log(destroy['_id'])
-    const id= destroy['_id']
-    const [getInformation, setGetInformation]=useState({})
-    useEffect(()=>{
-        const fetch =async()=>{
-            try {
-                const endpointURL= `${endpointsGral.userURL}/${id}`;
-                const queryUser= await axios.get(endpointURL);
-                setGetInformation(queryUser.data)
-                // console.log(queryUser)
-            } catch (error) {
-                console.log(error)
-            }
-        }
-        fetch()
-    },[id])
-    // console.log(getInformation)
-    // --------------------------------------edit
-    const onFormInputChange=(event)=>{
-        const inputID=event.target.id
-        const InputValue=event.target.value
 
-        setGetInformation({
-            ...getInformation,
-            [inputID]:InputValue
+  const [dataForm, setDataForm] = useState(initDataForm);
+  const [imageUser, setImageUser] = useState(null);
+  const [dataCandidate,setDataCandidate,dataRecruiter,setDataRecruiter, dataLocalStorage,setDataLocalStorage] = useJob();
+
+  useEffect(() => {
+      
+    if (dataRecruiter) {
+      console.log("dataRecruiter:..", dataRecruiter);
+      setDataForm({
+        name: dataRecruiter?.name||'',
+        last_name: dataRecruiter.last_name||'',
+        email: dataRecruiter.email||"",
+        rfc: dataRecruiter.rfc||"",
+        avatar_url: dataRecruiter.avatar_url||"",
+      });
+    }
+  }, [dataRecruiter]);
+
+  const handleSubmit = async(values)=>{
+    alert(values)
+    //e.preventDefault();
+    console.log('values:..',values);
+    try {
+
+      axios.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer: ${dataRecruiter.accessToken}`;
+      const formData = new FormData();
+      if (imageUser) formData.append("image", imageUser);
+      Object.entries(values).forEach(([key, value]) => {
+        formData.append(key, value);
+        //console.log(key,value);
+      });
+      console.log('formData', formData)
+      axios
+        .patch(`${endpointsGral.userURL}${dataRecruiter.accessToken}`, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
         })
+        .then((response) => {
+          console.log("response.data:..", response.data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+
+
+    } catch (error) {
+      console.log('error:..',error);
     }
+  }
 
 
-    const onFormSubmit=(event)=>{
-        event.preventDefault();
-        editProfile()
-        
-    }
-    const validDatas=(
-        getInformation.name!==''&&
-        getInformation.last_name!==''&&
-        getInformation.rfc!==''&&
-        getInformation.email!=='')
 
-    const editProfile=async()=>{
-        try {
-        if(validDatas){
-        const token = window.localStorage.getItem('token')
-        console.log(token) 
-        const headers = { 
-            'Authorization':`Baerer ${token}`
-        };
-        const addPost=await axios.patch(`${endpointsGral.userURL}/${id}`,getInformation,{headers});  
-        setGetInformation(addPost)
-        swal({
-            title: "Perfil Actualizado!",
-            icon: "success",
-            button: "ok!",
-          });
-        // navigate(`/Dashboard-Recruiter/vacancy`)
-
-        }else{
-           swal({
-            title: "Error al actualizar!",
-            text: "Todos los datos con requeridos!",
-            icon: "error",
-            button: "ok!",
-          });
-        }
-        } catch (error) {
-          console.log("Error in Petition");
-        }
-
-    }
     return(
         <>
-        <div className='card-body'>
-           <h1 className="text-start">Información General</h1> 
-           <div className="row container_form_General">
+        {/* <div className='card-body mt-4'> */}
+           <div className="row container_profile m-5">
+           <h1 className="text-start text-dark d-sm-flex text-center h2 mt-2 mb-4">Información General</h1> 
             <div className="col-4 container_image">
-                <img src={imgProfile}/>
-                <p>Archivos permitidos .png, .jpg, jpeg</p>
-                <div className="buttons_actions d-flex justify-content-center gap-3">  
-                    <button type="button" className="buttons btn btn-info text-light">Subir</button>               
-                    <button type="button" className="buttons btn btn-danger">Remover</button>
+              {!imageUser && (
+                <>
+                {/* <div className="ppic-container"> */}
+                    <img src={dataForm.avatar_url?dataForm.avatar_url:imgProfile} alt="imgProfile" className="profile-image" />
+                {/* </div> */}
+                <p className="text-dark"> Archivos permitidos .png, .jpg, jpeg </p>
+                </>
+              )}
+
+                <div className="buttons_actions d-flex justify-content-center gap-3">
+                    <UploadImage setDataImg={setImageUser} />
                 </div>
             </div>
             <div className="col">
-            <form onSubmit={onFormSubmit}>
+                <Formik
+                initialValues={dataForm}
+                enableReinitialize={true}
+                validationSchema={profileSchema}
+                onSubmit={(values)=>{
+
+                  console.log('values:..',values)
+                }}
+                >
+                {props => (
+                <Form onSubmit={props.handleSubmit} >
+                <div className="row mb-4">
+                    <div className="col">
+                    <div className="form-outline bg-gray" >
+                        <label className="form-label text-dark" htmlFor="form6Example1">
+                        Nombre
+                        </label>
+                        <Field
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Nombre"
+                        className={`form-control ${props.touched.name && props.errors.name ? 'border border-danger' : 'border border-secondary'}`}
+                        value={props.values.name}
+                        onChange={props.handleChange}
+                        onBlur={props.handleBlur}
+                        />
+                        {props.touched.name && props.errors.name && (<span className='text-danger'>{props.errors.name}</span>)}
+                    </div>
+                    
+                    
+                    </div>
+                    <div className="col">
+                    <div className="form-outline">
+                        <label className="form-label text-dark" htmlFor="form6Example1">
+                        Apellido
+                        </label>
+                        <Field
+                        type="text"
+                        id="last_name"
+                        placeholder="Apellido"
+                        name="last_name"
+                        className={`form-control ${props.touched.last_name && props.errors.last_name ? 'border border-danger' : 'border border-secondary'}`}
+                        value={props.values.last_name}
+                        onChange={props.handleChange}
+                        onBlur={props.handleBlur}
+                        />
+                    </div>
+                    
+                    </div>
+                </div>
                 <div className="row mb-4">
                     <div className="col">
                     <div className="form-outline bg-gray">
-                        <label className="form-label" for="form6Example1">Nombre</label>
-                        <input 
-                        type="text" 
-                        id="name" 
-                        name="name"
-                        value={getInformation.name}
-                        onChange={onFormInputChange}
-                        className="form-control" 
-                        placeholder="Nombre"/>
+                        <label className="form-label text-dark" htmlFor="form6Example1">
+                        Email
+                        </label>
+                        <Field
+                        type="email"
+                        id="email"
+                        placeholder="Email"
+                        name="email"
+                        className={`form-control ${props.touched.email && props.errors.email ? 'border border-danger' : 'border border-secondary'}`}
+                        value={props.values.email}
+                        onChange={props.handleChange}
+                        onBlur={props.handleBlur}
+                        />
                     </div>
-                    </div>
-                    <div className="col">
-                    <div className="form-outline">
-                        <label className="form-label" for="form6Example1">Apellido</label>
-                        <input type="text" 
-                               id="last_name" 
-                               name="last_name"
-                               value={getInformation.last_name}
-                               onChange={onFormInputChange}
-                               className="form-control" 
-                               placeholder="Apellido"/>
-                    </div>
-                    </div>
-                </div>
-                <div className="row mb-4">
-                    <div className="col">
-                        <div className="form-outline">
-                            <label className="form-label" for="form6Example1">RFC</label>
-                            <input type="text" 
-                                   id="rfc" 
-                                   name="rfc"
-                                   value={getInformation.rfc}
-                                   onChange={onFormInputChange}
-                                   className="form-control" 
-                                   placeholder="RFC"/>
-                        </div>
-                    </div>
-                    <div className="col">
-                    <div className="form-outline">
-                        <label className="form-label" for="form6Example1">Email</label>
-                        <input type="email" 
-                               id="email" 
-                               name="email"
-                               value={getInformation.email}
-                               onChange={onFormInputChange}
-                               className="form-control" 
-                               placeholder="Email"/>
-                    </div>
-                    </div>
-                </div>
-                <div className="row mb-4">
-                    <div className="col">
-                    <div className="form-outline">
-                        <label className="form-label" for="form6Example2">Reset Password</label>
-                        <input type="password" 
-                               id="password" 
-                               className="form-control"  
-                            //    value={getInformation.password}
-                            //    onChange={onFormInputChange}
-                               placeholder="Reset Password"/>
-                    </div>
-                    </div>
-                </div>
-                <div className="buttons_actions d-flex justify-content-center gap-3">  
-                    {/* <button type="button" className="buttons btn btn-info">Cancelar</button> */}
                     
-                    <button type="submit" className="buttons btn btn-info text-light">Guardar</button> 
-
+                    </div>
+                    <div className="col">
+                    <div className="form-outline">
+                        <label className="form-label text-dark" htmlFor="form6Example1">
+                        Reset Password
+                        </label>
+                        <Field
+                        type="password"
+                        id="password"
+                        placeholder="Reset Password"
+                        name="password"
+                        className={`form-control ${props.touched.password && props.errors.password ? 'border border-danger' : 'border border-secondary'}`}
+                        value={props.values.password}
+                        onChange={props.handleChange}
+                        onBlur={props.handleBlur}
+                        />
+                        <ErrorMessage name="password"/>
+                    </div>
+                    
+                    </div>
                 </div>
-            </form>
+                <div className="row mb-4">
+                    <div className="col">
+                    <div className="form-outline">
+                        <label className="form-label text-dark" htmlFor="form6Example2">
+                        RFC
+                        </label>
+                        <Field
+                        type="text"
+                        id="rfc"
+                        placeholder="RFC"
+                        name="rfc"
+                        className={`form-control ${props.touched.rfc && props.errors.rfc ? 'border border-danger' : 'border border-secondary'}`}
+                        value={props.values.rfc}
+                        onChange={props.handleChange}
+                        onBlur={props.handleBlur}
+                        />
+                    </div>
+                
+                    </div>
+                </div>
+                <div className="buttons_actions d-flex justify-content-center gap-3">
+                    <button type="submit" onClick={handleSubmit} className="buttons btn btn-info text-light" value='enviar' >
+                    Guardar
+                    </button>
+                </div>
+                </Form>
+                )}
+                </Formik> 
             </div>
         </div>
-        </div>
+        {/* </div> */}
                    
     </>
     )

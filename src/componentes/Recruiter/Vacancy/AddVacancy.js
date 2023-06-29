@@ -1,19 +1,209 @@
-import React from "react";
-import SidebarRecruiter from "../SidebarRecruiter/SidebarRecruiter";
-import PostVacancy from "./Forms/PostVacancy";
-import Softskills from "../SoftSkills/Form/SoftSkills";
-import {FaBars} from 'react-icons/fa'
-import imgProfile from '../assets/img/profile.png'
+<<<<<<< HEAD
+import {React, useState} from "react";
+import axios from "axios";
+import { endpointsGral } from "../services/vacancy";
+import { useNavigate} from "react-router-dom";
+import { useFormik } from "formik";
+import * as Yup from 'yup';
+import AddSoftSkills from "../SoftSkills/Form/AddSoftSkills";
 
+=======
+import PostVacancy from "./Forms/PostVacancy";
+// import Softskills from "../SoftSkills/Form/SoftSkills";
+>>>>>>> devR
 export const AddVacancy=()=>{
+    const [valueIdVacancy, setValueIdVacancy]=useState()
+    const perfil = JSON.parse(localStorage.getItem('accessToken'))
+    const token=perfil['access_token']
+    const navigate=useNavigate()
+    // console.log('token: '+ token)
+    function parseJwt (token) {
+        var base64Url = token.split('.')[1];
+        var base64 = base64Url.replace('-', '+').replace('_', '/');
+        return JSON.parse(window.atob(base64));
+    };
+    const destroy=parseJwt(token)
+    console.log(destroy['_id'])
+    const id= destroy['_id']
+    
+  
+    
+    const formik= useFormik({
+        initialValues: {
+            companyName:`64406a93e56432b37db279d0`,
+            title:'',
+            type:'',
+            mode:'',
+            city:'',
+            salary:'',
+            status:'',
+            activities:''
+        },
+        validationSchema:Yup.object({
+            title:Yup.string().required('Requerido'),
+            type:Yup.string().required('Requerido'),
+            mode:Yup.string().required('Requerido'),
+            city:Yup.string().required('Requerido'),
+            salary:Yup.number().required('Requerido'),
+            status:Yup.string().required('Requerido'),
+            activities:Yup.string().required('Requerido'),
+        }),
+        onSubmit:(values) => {
+            setTimeout(() => {
+              axios
+                .post(endpointsGral.vacancyURL, values) 
+                .then(response => {
+                    console.log(response)
+                    setValueIdVacancy(response.data)
+                    // setValueIdVacancy(dataObj)
+                })
+                
+                .catch(error => {
+                  console.log(error.response);
+                });
+              console.log({ values});
+              alert(JSON.stringify(values, null, 2));
+            }, 400);
+          }
+      });
+
+      console.log(valueIdVacancy)
+    //   const idVacante=()=>{
+    //     alert('hola')
+    //   }
+
     return(
         <>
+<<<<<<< HEAD
           <div className='card-body '>
-                            <h1  className="text-start"><b>Agregar Vacante</b></h1>
+             <h1  className="text-start"><b>Agregar Vacante</b></h1>
+             <div className="container mt-2 p-5 w-100 " id="formGral">
+            <form onSubmit={formik.handleSubmit}>
+                <div className="row mb-4">
+                    <div className="col">
+                    <div className="form-outline bg-gray">
+                        <label className="form-label" for="form6Example1">Título</label>
+                        <input type="text" 
+                               id="title" 
+                               name="title"
+                               className={`form-control ${formik.touched.title && formik.errors.title ? 'border border-danger' : 'border border-secondary'}`}
+                               value={formik.values.title}
+                               onChange={formik.handleChange}
+                               onBlur={formik.handleBlur}
+                               placeholder="Título"/>
+                               {formik.touched.title && formik.errors.title && (<span className='text-danger'>{formik.errors.title}</span>)}
+                    </div>
+                    </div>
+                    <div className="col">
+                    <div className="form-outline">
+                        <label className="form-label" for="form6Example1">Tipo de trabajo</label>
+                        <select 
+                                className={`form-control ${formik.touched.type && formik.errors.type ? 'border border-danger':'border border-secondary' }`}
+                                name="type"
+                                id="type"
+                                value={formik.values.type}
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}>
+                            <option> Selecciona</option>
+                            <option> Tiempo Completo</option>
+                            <option> Por proyecto</option>
+                        </select>
+                    </div>
+                    </div>
+                    <div className="col">
+                        <div className="form-outline">
+                            <label className="form-label" for="form6Example1">Modalidad</label>
+                            <select 
+                                    className={`form-control ${formik.touched.mode && formik.errors.mode ? 'border border-danger':'border border-secondary'}`}
+                                    id="mode"
+                                    name="mode"
+                                    value={formik.values.mode}
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}>
+                                <option> Selecciona</option>
+                                <option> Presencial</option>
+                                <option> Remoto</option>
+                                <option> Hibrído</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div className="row mb-4">
+                    <div className="col">
+                    <div className="form-outline">
+                        <label className="form-label" for="form6Example1">Ciudad</label>
+                        <input type="text"
+                                id="city" 
+                                name="city"
+                                value={formik.values.city}
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                className={`form-control ${formik.touched.city && formik.errors.city ? 'border border-danger':'border border-secondary'}`}
+                                placeholder="Ciudad"/>
+                                {formik.touched.city && formik.errors.city && (<span className='text-danger'>{formik.errors.city}</span>)}
+                    </div>
+                    </div>
+                    <div className="col">
+                    <div className="form-outline">
+                        <label className="form-label" for="form6Example2">Sueldo</label>
+                        <input type="text" 
+                               id="salary" 
+                               name="salary"
+                               value={formik.values.salary}
+                                onChange={formik.handleChange}
+                                className={`form-control ${formik.touched.salary && formik.errors.salary ? 'border border-danger':'border border-secondary'}`}
+                               placeholder="Sueldo"/>
+                               {formik.touched.salary && formik.errors.salary && (<span className='text-danger'>{formik.errors.salary}</span>)} 
+                    </div>
+                    </div>
+                    <div className="col">
+                    <div className="form-outline">
+                        <label className="form-label" for="form6Example2">Status</label>
+                        <select 
+                                    className={`form-control ${formik.touched.status && formik.errors.status ? 'border border-danger':'border border-secondary'}`}
+                                    id="status"
+                                    name="status"
+                                    value={formik.values.status}
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}>
+                                <option> Selecciona</option>
+                                <option> Iniciado</option>
+                                <option> Cerrado</option>
+                            </select>
+                    </div>
+                    </div>
+                </div>
+                <div className="row mb-4">
+                    <div className="col">
+                    <div className="form-outline">
+                        <label className="form-label" for="form6Example1">Actividades</label>
+                        <input type="text" 
+                               id="actividades" 
+                               name="activities"
+                               value={formik.values.activities}
+                               onChange={formik.handleChange}
+                               className={`form-control ${formik.touched.activities && formik.errors.activities ? 'border border-danger':'border border-secondary'}`}  
+                               placeholder="Actividades"/>
+                               {formik.touched.activities && formik.errors.activities && (<span className='text-danger'>{formik.errors.activities}</span>)} 
 
-                                <PostVacancy/>
-                                {/* <Softskills/> */}
-                            </div>
+                    </div>
+                    </div>
+                </div>
+                <div className="buttons_actions">  
+                    {/* <button type="button" className="buttons btn btn-info">Cancelar</button> */}
+                    <button type="submit" className="buttons btn btn-info text-light">Guardar</button>               
+                </div>
+            </form>
+        </div>
+             <AddSoftSkills/>
+          </div>
+=======
+          {/* <div className='card-body '> */}
+          <h1  className="text-start d-sm-flex-text-center h2 mt-2 text-dark">Crear Vacante</h1>
+                <PostVacancy/>
+                {/* <Softskills/> */}
+            {/* </div> */}
+>>>>>>> devR
         </>
     )
 }

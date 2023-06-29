@@ -1,0 +1,43 @@
+@import "animate.css";
+
+.main-carousel {
+
+  width: 100%;
+
+  .carousel-img {
+  
+  }
+
+  .carousel-main-img {
+    filter: saturate(0.9);
+  }
+
+  .carousel-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    .welcome-text{
+      font-size: 100px;
+      text-align: center;
+      text-transform: to-upper-case($string: "WELCOME TO JOBINDER");
+    }
+    .carousel-title {
+      font-family: "Poppins";
+      font-size: 50px;
+      font-weight: 50;
+      background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(234,249,249,0.67) 0.1%, rgba(239,249,251,0.63) 90.1% );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: border-box;
+
+    }
+
+    .carousel-content {
+     font-family: 'Poppins', sans-serif, 'Times New Roman', Times, serif;
+     
+    }
+  }
+  
+}

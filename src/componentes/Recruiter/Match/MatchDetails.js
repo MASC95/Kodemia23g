@@ -1,21 +1,123 @@
-import React from "react";
-import {FaBars} from 'react-icons/fa'
-import SidebarRecruiter from "../SidebarRecruiter/SidebarRecruiter";
-import Details from "./Details";
-import imgProfile from '../assets/img/profile.png'
-import Header from "../Dashboard/Header";
-export const MatchDetails=()=>{
-    return(
-        <>
-        <div className='card-body'>
-            <h1 className="text-start">Match's 'Nombre de la vacante'</h1>
-            <Details/>
+import { useState, useEffect } from "react";
+
+
+import { Link } from "react-router-dom";
+import axios from "axios";
+import { endpointsGral } from "../services/vacancy";
+
+import Swal from "sweetalert2";
+import useJob from "../../../hooks/useJob";
+import "./style.scss";
+import MyTable from "./MyTable";
+
+
+
+export const MatchDetails = () => {
+  
+  const valores = window.location.search;
+  const urlParams = new URLSearchParams(valores);
+  const idVacancy = urlParams.get("m");
+  const [
+    dataCandidate,
+    setDataCandidate,
+    dataRecruiter,
+    setDataRecruiter,
+    dataLocalStorage,
+    setDataLocalStorage,
+  ] = useJob();
+  const [dataByUserCandidate, setDataByUserCandidate] = useState([]);
+  const [dataJobSkills, setDataJobSkills]= useState([]);
+  const [nuevoListado, setNuevoListado] = useState(false);
+
+  const fetchForMatch = async () => {
+    try {
+      const endpointURL = `${endpointsGral.vacancyURL}${idVacancy}`;
+      const response = await axios.get(endpointURL);
+      const datasVacancy = response.data["infoVacancy"];
+      setDataJobSkills(datasVacancy?.job_skills);
+      setDataByUserCandidate(datasVacancy?.applicants);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    fetchForMatch();
+    listadoApplicants();
+  }, []);
+
+  useEffect(() => {
+    console.log("nueva lista de candidatos:..",dataByUserCandidate);
+    if(dataByUserCandidate?.applicants){
+      listadoApplicants();
+    }
+    
+    
+  }, [dataByUserCandidate]);
+
+  const listadoApplicants = ()=>{
+    
+    setNuevoListado(true)
+  }
+  
+  
+  //console.log("Job", jobSkilss);
+
+  const handleAddPanel = (id) => {};
+
+  const dadHandleHideofPanel = (index) => {
+      console.log('En el papa(index):',index);
+     Swal.fire({
+      title: "Ocultar candidato",
+      text: "Estas seguro de ocultar esta candidato?!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si, ocultar!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        console.log('indice a borrar:..',index);
+        const hideCandidate = dataByUserCandidate[index];
+        const id = hideCandidate._id;
+        console.log('candidato a ocultar:..',id);
+        if (hideCandidate) {
+          const deleteOnList = dataByUserCandidate.filter(
+            (_, i) => i !== index
+          );
+          setDataByUserCandidate(deleteOnList);
+          console.log('lista de candidatos sin el oculto:..',deleteOnList);
+        } else {
+          console.log("error al ocultar");
+        }
+      }
+    }); 
+  };
+  
+
+  // const data = dataShow;
+
+  
+
+  return (
+    <>
+      <div className="row m-3">
+        <h2 className="text-dark">Lista de aplicantes</h2>
+        <div className="col">
+          {dataByUserCandidate?.length>0&&
+          <MyTable dadHandleHideofPanel={dadHandleHideofPanel} job_skills={dataJobSkills} dataByUserCandidate={dataByUserCandidate}/>
+          }
+          
+          
         </div>
-        <div className="d-flex w-100 justify-content-end p-4">
-          <button type="button" class="btn btn-info text-light">Panel de Reclutamiento</button>
-        </div>
-                        
-        </>
-    )
-}
-export default MatchDetails
+      </div>
+      <div className="d-flex w-100 justify-content-end p-4">
+        <Link to={`/Dashboard-Recruiter/panel-phases?v=${idVacancy}`}>
+          <button type="button" className="btn btn-info text-light">
+            Panel de Reclutamiento
+          </button>
+        </Link>
+      </div>
+    </>
+  );
+};
+export default MatchDetails;

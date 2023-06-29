@@ -1,12 +1,34 @@
 
-@media (min-width: 542px) and (max-width:768px){
-    .container_form_General{
+@media (min-width: 359px) and (max-width:756px){
+    .container_profile{
         display: flex;
         flex-direction: column;
         .container_image{
+            // height: 200px;
             width: 100%;
-            align-items: center;
-            margin-bottom: 50px;
+            margin: 10px;
+            img{
+                height: 150px;
+                width: 100%;
+                margin-left: 10px;
+            }
         }
+        form {
+            .row{
+                display: grid;
+                width: 100%;
+                justify-items: stretch;
+            }
     }
 }
+}
+
+// @media (min-width: 757px) and (max-width:1000px){
+
+//             .profile-image{
+//                 width: 200px;
+//                 height: 130px;
+//                 margin-left: 50px;
+//             }
+      
+// }

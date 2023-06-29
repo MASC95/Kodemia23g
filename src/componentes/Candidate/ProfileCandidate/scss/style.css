@@ -1,0 +1,35 @@
+@media (min-width: 542px) and (max-width: 768px) {
+  .container_form_General {
+    display: flex;
+    flex-direction: column;
+  }
+  .container_form_General .container_image {
+    width: 100%;
+    align-items: center;
+    margin-bottom: 50px;
+  }
+}
+.container_image {
+  width: 30%;
+  height: 20%;
+}
+.container_image .ppic-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container_image .allowed-files {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container_image .buttons-actions {
+  width: 100%;
+}
+.container_image .buttons-actions .button {
+  width: 65%;
+  height: 35%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}/*# sourceMappingURL=style.css.map */

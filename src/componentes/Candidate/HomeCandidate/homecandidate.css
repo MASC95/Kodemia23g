@@ -1,0 +1,95 @@
+.background-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("https://images.unsplash.com/photo-1555421689-491a97ff2040?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80");
+  background-repeat: no-repeat;
+  background-position: center center;
+  position: relative;
+  width: 1400px;
+  height: 1000px;
+  border-radius: 3500px 0 3500px;
+  background-position: center top 10px;
+}
+.background-image .wrapper {
+  width: 1170px;
+  margin: auto;
+}
+.background-image .wrapper .logo {
+  width: 100px;
+  float: left;
+  height: auto;
+}
+.background-image .welcome-text {
+  opacity: 0.7;
+}
+.background-image .welcome-text .message {
+  text-align: center;
+  margin-bottom: 300px;
+}
+.background-image .welcome-text::after {
+  content: "";
+  animation: textChange 8s linear;
+}
+.background-image .welcome-text .jobinder-text {
+  position: relative;
+  color: #fdfbfb;
+  -webkit-text-stroke: 0.3vw #fdfbfb;
+  text-transform: uppercase;
+  font-size: 5rem;
+}
+.background-image .welcome-text .jobinder-text::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  color: #498BA6;
+  -webkit-text-stroke: 0vw #ebedee;
+  border-right: 2px solid #498BA6;
+  overflow: hidden;
+  animation: animate 9s linear infinite;
+}
+
+@keyframes textChange {
+  0% {
+    content: "Welcome";
+    font-size: 18em;
+    background-color: #498BA6;
+    background-image: linear-gradient(45deg, #96c6d9, #498BA6);
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+  }
+  30% {
+    content: "to";
+    background-color: #106973;
+    background-image: linear-gradient(45deg, #106973, #093040);
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+  }
+  50% {
+    content: "Jobinder";
+    background-color: #498BA6;
+    background-image: linear-gradient(45deg, #96c6d9, #498BA6);
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+  }
+}
+@keyframes animate {
+  0%, 10%, 100% {
+    width: 0;
+  }
+  70%, 90% {
+    width: 100%;
+  }
+}/*# sourceMappingURL=homecandidate.css.map */

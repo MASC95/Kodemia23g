@@ -23,25 +23,56 @@ import MatchDetails from './componentes/Recruiter/Match/MatchDetails';
 import AddVacancy from './componentes/Recruiter/Vacancy/AddVacancy';
 import EditVacancy from './componentes/Recruiter/Vacancy/EditVacancy';
 import Candidate from './componentes/Recruiter/Profile/ProfileCandidate';
-
-
-import FormRecruiter from './componentes/Candidate/ProfileCandidate/Form/FormRecruiter';
+import Reclutamiento from './componentes/Recruiter/Panel/Reclutamiento';
 import ListBuscar from './componentes/Candidate/BuscarCandidate/ListBuscar';
+import AddSkills from './componentes/Recruiter/SoftSkills/Form/AddSkills';
+import JobContext from './context/JobContext';
+import { useEffect, useState } from 'react';
+import SendAccessCode from './componentes/SendAccessCode/SendAccessCode';
+import { useLocalStorage } from "usehooks-ts";
+//import ListResponsive from './componentes/Candidate/BuscarCandidate/ListResponsive';
+
+
+
+
+
 function App() {
+  const [dataLocalStorage, setDataLocalStorage]= useLocalStorage('accessToken',true);
+  const [dataRecruiter, setDataRecruiter] = useState(dataLocalStorage);
+  const [dataCandidate, setDataCandidate] = useState(dataLocalStorage);
+  
+
+  useEffect(() => {
+    console.log('Actualizando dataLocalStorage:..')
+
+    if(dataLocalStorage?.role==='candidato'){
+      setDataCandidate(dataLocalStorage)
+    }
+    if(dataLocalStorage?.role==='empresa'){
+      setDataRecruiter(dataLocalStorage)
+    }
+  
+    
+  }, [dataLocalStorage])
+  
   return (
+    <JobContext.Provider value={[dataCandidate,setDataCandidate,dataRecruiter,setDataRecruiter, dataLocalStorage, setDataLocalStorage]}>
     <div className="App">
 <Routes>
           <Route path="/" element={<Mains/>}/>
+          <Route path ='/SendAccessCode' element ={<SendAccessCode/>}/>
+          {/* <Route path ='/pruebas' element ={<ListResponsive/>}/> */}
           {/* aqui las rutas de la seccion candidato */}
           <Route path='login-candidato' element={<LoginCandidate />}/>
-          <Route path='register-candidato' element={<RegisterCandidate/>}/>
+          <Route path='register' element={<RegisterCandidate/>}/>
           <Route path='dashboard-candidato' element={<DashboardCandidate />}>
             <Route path='home' element={<HomeCandidate/>}/>
             <Route path='profile' element={<ProfileCandidate />}/>
             <Route path='search' element={<Buscar/>}/>
-            <Route path='detail-vacancy' element={<Details/>}/>
+            <Route path='detail-vacancy/:id' element={<Details/>}/>
             <Route path='app-vacancies' element={<AppVacancyCandidate/>}/>
 		        <Route path ='SearchList' element ={<ListBuscar/>}/>
+            
           </Route>
           {/* aqui las rutas de la seccion reclutador */}
           <Route path='/login-recruiter' element={<LoginRecruiter/>}/>
@@ -55,11 +86,13 @@ function App() {
                <Route path='match' element={<Match />} />
                <Route path='details-match' element={<MatchDetails/>}/>
                <Route path='profile-candidato' element={<Candidate/>}/>
+               <Route path='panel-phases' element={<Reclutamiento/>}/>
+               <Route path='softskill-addNew' element={<AddSkills/>}/>
             </Route>
 
         </Routes>
     </div>
-
+    </JobContext.Provider>
   );
 }
 

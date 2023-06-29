@@ -12,10 +12,10 @@ const Modalstatus = () => {
     <Container className="container">
       <Row>
         <Col className="text-center d-flex align-content-center">
-          <Button className="button-edit d-flex mt-0" onClick={handleOpenModal}>
+          {/* <Button className="buttons btn btn-outline-info" onClick={handleOpenModal}>
           <FaEdit className="icon_edit"/>
-            {/* Click to open Modal */}
-          </Button>
+          </Button> */}
+          <button type="button" className="buttons btn btn-outline-success" onClick={handleOpenModal}><FaEdit className="icon_edit"/></button> 
         </Col>
       </Row>
 
@@ -44,13 +44,8 @@ const Modalstatus = () => {
             </Dropdown.Toggle>
 
             <Dropdown.Menu className="dropdown-menu">
-              <Dropdown.Item href="#/action-1" className='drop-items' >Aplicando</Dropdown.Item>
-              <Dropdown.Item href="#/action-2" className='drop-items'>Match</Dropdown.Item>
-              <Dropdown.Item href="#/action-3" className='drop-items'>
-                Aceptado 1era Fase
-              </Dropdown.Item>
-              <Dropdown.Item href="#/action-3" className='drop-items'>Aceptado 2da Fase</Dropdown.Item>
-              <Dropdown.Item href="#/action-3" className='drop-items'>Contratado</Dropdown.Item>
+              <Dropdown.Item href="#/action-1" className='drop-items' >Iniciado</Dropdown.Item>
+              <Dropdown.Item href="#/action-2" className='drop-items'>Cerrado</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
         </Modal.Body>

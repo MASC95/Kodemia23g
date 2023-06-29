@@ -185,18 +185,22 @@ const FormRecruiter = () => {
                 className="perfil-C d-flex justify-content-center "
               />
             )}
-            {imageUser&&<img
+            {/* {imageUser&&<img
                 src={imageUser}
                 alt="imgProfile"
-                className="perfil-C d-flex justify-content-center "
+                className="perfil-C d-flex justify-content-center border "
                 
-              />}
+              />} */}
             {!imageUser&&!dataForm.avatar_url&&
               <FaUserCircle className="profile-pic my-5 d-block ms-auto me-auto" style={{width:'20vw', height:'auto'}} />
             }
 
             
 
+            
+            <div className="buttons_actions d-flex justify-content-center gap-3">
+              <UploadImage setDataImg={setImageUser} />
+            </div>
             <p
               className="allowed-files w-100 text-center mt-3 "
               style={{
@@ -206,9 +210,6 @@ const FormRecruiter = () => {
             >
               Archivos permitidos .png, .jpg, jpeg
             </p>
-            <div className="buttons_actions d-flex justify-content-center gap-3">
-              <UploadImage setDataImg={setImageUser} />
-            </div>
           </div>
 
           <div className="col init-form">

@@ -3,18 +3,19 @@ import { FaCheck } from "react-icons/fa";
 import "./scss/style.scss";
 import { Link } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
-import Footer from "../Footer/Footer";
+
 import recruiter from '../../Candidate/img/Recruiter.jpg'
 import candidate from '../../Candidate/img/Candidate.jpg'
 import knowledge from '../../Candidate/img/KnowledgeBackendDev.jpg'
 import video from '../../Candidate/img/VideoBlondeGirl.jpg'
 import profile from '../../Candidate/img/profile-pic.png'
 import 'animate.css';
+import Footer from "../Footer/Footer";
 const Mains = () => {
   return (
     <header>
       <Navbar />
-      <div className="main-container ">
+      <div className="primary-container">
         <h1 className="match d-flex justify-content-center mx-100px m-md-5 animate__animated animate__pulse " style={{textShadow: '0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px rgba(60, 64, 67, 0.15)'}}>
           Haz match con las empresas de tus sueños <br />
           con nuestra app de búsqueda de empleo basada en tus <br />
@@ -174,9 +175,9 @@ const Mains = () => {
             </div>
           </div>
           <div className="row row-checkmarks">
-            <div className="col-md-3 col-checkmarks">
+            <div className="col-md-4 col-checkmarks">
               <img
-                className="rounded-circle d-none d-lg-block profile-pic"
+                className=" rounded-circle d-none d-lg-block profile-pic"
                 src={profile}
                 alt="profile-pic"
                 
@@ -188,12 +189,12 @@ const Mains = () => {
               </div>
               <p
                 style={{ color: "#565E6CFF" }}
-                className="d-sm-text-center slogan"
+                className="d-sm-text-center slogan "
               >
                 Nuestra aplicación te ayudará a encontrar oportunidades
                 laborales acordes a tus habilidades y experiencia.
               </p>
-              <ul className="check-list list group mb-2">
+              <ul className="check-list list group ">
                 <li className="list-unstyled li-register">
                   <FaCheck color="green" className="icon-check" />
                   Registro gratuito. Encuentra tu proximo trabajo hoy
@@ -228,7 +229,9 @@ const Mains = () => {
             </div>
           </div>
         </div>
+        
       </div>
+      <Footer/>
     </header>
     
    

@@ -16,8 +16,8 @@
 
 
 header {
-  background-image: linear-gradient(to right, #0acffe 0%, #495aff 100%);
-        .main-container {
+  
+        .primary-container {
     
     @include mobile {
       background-image: linear-gradient(-225deg, #fffeff 0%, #d7fffe 100%);
@@ -34,7 +34,7 @@ header {
       background-image: linear-gradient(-225deg, #fffeff 0%, #d7fffe 100%);
     }
     @include desktop {
-      margin-bottom: 100px;
+      margin-bottom: 100px; // el margen es lo que se vea lo azúl
       padding-top: 60px;
       width: 100%;
       height: 100%;
@@ -60,8 +60,10 @@ header {
       }
       @include desktop {
         @include poppins;
+        text-align: center;
         align-items: center;
         text-indent: 100px;
+        font-size: 31px;
         line-height: 48px;
         color: #093040;
         
@@ -147,6 +149,7 @@ header {
               @include mobile {
                 @include glassEffect();
                 width: 100%;
+                height: auto;
                 
                 &:hover {
                   animation: grow 0.3s forwards;
@@ -292,14 +295,14 @@ header {
                 width: 150px;
               }
               @include desktop {
-                width: 200px;
+                width: 200px; 
               }
             }
             .card-container-2 {
               @include mobile {
                 @include glassEffect();
                 width: 100%;
-                
+                height: auto;
                 &:hover {
                   animation: grow 0.3s forwards;
                 }
@@ -678,11 +681,12 @@ header {
             @include desktop{
               @include poppins();
               margin-top: 1rem;
+              
             }
            
           }
           .check-list {
-            margin-bottom: 10px;
+            
             .li-register {
              
               @include mobile{

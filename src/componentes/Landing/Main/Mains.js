@@ -39,7 +39,7 @@ const Mains = () => {
                     style={{ maxWidth: "65%", height: "100%" }}
                   />
                   <div className="card-body-1 text-center">
-                    <h5 className="card-title-1">¿Eres Reclutador?</h5>
+                    <h5 className="card-title-1 ">¿Eres Reclutador?</h5>
                     <p className="card-text-1" >
                       Accede a nuestra plataforma para publicar tus vacantes,
                       buscar talentos y gestionar tus procesos de selección.

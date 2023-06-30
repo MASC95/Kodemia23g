@@ -643,6 +643,8 @@ header {
               width: 341px;
               height: 316px;
               margin-top: 10px;
+             padding: 10px;
+             
               
             }
             
@@ -686,7 +688,7 @@ header {
            
           }
           .check-list {
-            
+            padding: 20px;
             .li-register {
              
               @include mobile{

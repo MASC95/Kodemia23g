@@ -9,7 +9,7 @@ const Footer = () => {
       <Container>
         <Row>
           <Col>
-            <section className="mb-4 mt-4">
+            <section className="mb-4 mt-5">
               <Link
                 className="btn btn-link btn-floating btn-lg text-white m-1 iconsSocialMedia"
                 to="/facebook"

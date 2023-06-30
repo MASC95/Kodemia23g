@@ -1,68 +1,74 @@
-import React from "react";
-import { FaFacebookF, FaTwitter, FaGoogle, FaInstagram, FaLinkedin, FaGithub } from 'react-icons/fa';
-
+import React from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
+import { FaFacebookF, FaTwitter, FaGoogle, FaInstagram, FaGithub } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import '../Footer/footer.scss'
 const Footer = () => {
   return (
+    <footer className="text-center" style={{ backgroundColor: "#498ba6", fontFamily: 'Poppins'}}>
+      <Container>
+        <Row>
+          <Col>
+            <section className="mb-4 mt-4">
+              <Link
+                className="btn btn-link btn-floating btn-lg text-white m-1 iconsSocialMedia"
+                to="/facebook"
+                role="button"
+              >
+                <FaFacebookF />
+              </Link>
+              <Link
+                className="btn btn-link btn-floating btn-lg text-white m-1 iconsSocialMedia"
+                to="/twitter"
+                role="button"
+              >
+                <FaTwitter />
+              </Link>
+              <Link
+                className="btn btn-link btn-floating btn-lg text-white m-1 iconsSocialMedia"
+                to="/google"
+                role="button"
+              >
+                <FaGoogle />
+              </Link>
+              <Link
+                className="btn btn-link btn-floating btn-lg text-white m-1 iconsSocialMedia"
+                to="/instagram"
+                role="button"
+              >
+                <FaInstagram />
+              </Link>
 
-    <footer className="text-center text-white" style={{backgroundColor: "#f1f1f1"}}>
-      <div className="row">
-        <div className="col-sm-md-12">
-    <div className="container pt-4">
-      <section className="mb-4">
-        <a className="btn btn-link btn-floating btn-lg text-dark m-1"
-          href="#!"
-          role="button"
-          data-mdb-ripple-color="dark"
-        >
-          <FaFacebookF />
-        </a>
-        <a className="btn btn-link btn-floating btn-lg text-dark m-1"
-          href="#!"
-          role="button"
-          data-mdb-ripple-color="dark"
-        >
-          <FaTwitter />
-        </a>
-        <a className="btn btn-link btn-floating btn-lg text-dark m-1"
-          href="#!"
-          role="button"
-          data-mdb-ripple-color="dark"
-        >
-          <FaGoogle />
-        </a>
-        <a className="btn btn-link btn-floating btn-lg text-dark m-1"
-          href="#!"
-          role="button"
-          data-mdb-ripple-color="dark"
-        >
-          <FaInstagram />
-        </a>
-      
-        <a className="btn btn-link btn-floating btn-lg text-dark m-1"
-          href="#!"
-          role="button"
-          data-mdb-ripple-color="dark"
-        >
-          <FaGithub />
-        </a>
-      </section>
-      </div>
-    </div>
-    <ul className="d-flex justify-content-around list-unstyled" style={{color:"black", fontSize: "24px" }}>
-      <li>Institucional</li>
-      <li>Candidatos</li>
-      <li>Reclutadores</li>
-    </ul>
-    <ul className='d-flex justify-content-around list-unstyled' style={{color:"black", fontSize: "24px" }}>
-    <li>Terminos y Condiciones</li>
-      <li>Políticas de Privacidad</li>
-      <li>Preguntas Frecuentes</li>
-    </ul>
-    <div className="text-center text-dark p-3" style={{backgroundColor: "rgba(0, 0, 0, 0.2)"}}>
-      © Jobinder 2023. All Rights Reserved.
-    </div>
-    </div>
-  </footer>
+            </section>
+          </Col>
+        </Row>
+        <Row className="text-white fs-5" >
+          <Col >
+            <ul className="d-flex justify-content-around flex-wrap list-unstyled col-md-12">
+              <li className="text-footer col-sm-12 col-md-4 col-lg-4 col-xl-4 mb-3 mt-2">Institucional</li>
+              <li className="text-footer col-sm-12 col-md-4 col-lg-4 col-xl-4 mb-3 mt-2" >Trabaja con Nosotros</li>
+              <li className="text-footer col-sm-12 col-md-4 col-lg-4 col-xl-4 mb-3 mt-2">Cookies</li>
+            </ul>
+          </Col>
+        </Row>
+        <Row className="text-white fs-5" >
+          <Col>
+            <ul className="d-flex justify-content-around flex-wrap list-unstyled col-md-12">
+              <li className="text-footer col-sm-12  col-md-4 col-lg-4 col-xl-4 mb-3 mt-2">Terminos y Condiciones</li>
+              <li className="text-footer col-sm-12  col-md-4 col-lg-4 col-xl-4 mb-3 mt-2">Políticas de Privacidad</li>
+              <li className="text-footer col-sm-12  col-md-4 col-lg-4 col-xl-4 mb-3 mt-2">Preguntas Frecuentes</li>
+            </ul>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <div className="text-footer text-center text-white p-3" >
+              © Jobinder 2023. All Rights Reserved.
+            </div>
+          </Col>
+        </Row>
+      </Container>
+    </footer>
   );
 };
 

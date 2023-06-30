@@ -67,10 +67,6 @@ export const PostVacancy=()=>{
                   "Content-Type": "multipart/form-data",
             }})
                 .then(response => {
-<<<<<<< HEAD
-                  console.log(response);
-                //   navigate(`/Dashboard-Recruiter/vacancy`)
-=======
                 //   console.log(response);
                   swal({
                     title: "Vacante creada!!",
@@ -78,7 +74,6 @@ export const PostVacancy=()=>{
                     button: "ok!",
                 });
                   navigate(`/Dashboard-Recruiter/vacancy`)
->>>>>>> devR
 
                 })
                 .catch(error => {

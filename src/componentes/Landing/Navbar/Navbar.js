@@ -14,26 +14,9 @@ const Navbar = () => {
           </Link>
         </div>
 
-        <ul className="navbar-nav d-flex flex-row justify-content-end col-lg-3">
-          <button type='button' className='loginB btn btn-primary ' style={{width: '200px', height: '42px' }}> Iniciar Sesión</button>
-          <li className="nav-item-1 me-3 me-lg-1 mb-2">
-            <Link className="nav-link d-none" to="/">
-              <span className='home'><FaHome size={18} /></span>
-              <span className="badge-home badge rounded-pill badge-notification bg-danger">1</span>
-            </Link>
-          </li>
-          <li className="nav-item-2 me-3 me-lg-1 mb-2">
-            <Link className="nav-link-2 d-none" to="/">
-              <span className='bell'><FaBell size={18} /></span>
-              <span className="badge-bell badge rounded-pill badge-notification bg-danger">12</span>
-            </Link>
-          </li>
-          <li className="nav-item-3 me-3 me-lg-1 mb-2">
-            <Link className="nav-link d-none" to="/">
-              <span className='user'><FaUser size={18} /></span>
-            </Link>
-          </li>
-        </ul>
+
+
+        
       </div>
     </nav>
     </div>

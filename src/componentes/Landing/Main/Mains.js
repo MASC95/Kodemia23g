@@ -36,7 +36,7 @@ const Mains = () => {
 
             <div className="father-container-1 col-lg-8 ">
               <div className="child-container-1 d-flex justify-content-center align-items-center">
-                {/*    <Link to={"/login-recruiter"} className="link-rec text-decoration-none"> */}
+                <Link to={"/login-recruiter"} className="link-rec text-decoration-none"> 
                 <div className="card-container-1 card  mb-4">
                   <img
                     src={recruiter}
@@ -62,10 +62,10 @@ const Mains = () => {
                     </Link>
                   </div>
                 </div>
-                {/* </Link> */}
+                 </Link> 
 
                 <div className="space d-none d-lg-block "> </div>
-                {/*  <Link to="/login-candidato" className="link-card text-decoration-none">  */}
+                <Link to="/login-candidato" className="link-card text-decoration-none">  
                 <div className="card-container-2 card h-100 mb-4">
                   <img
                     src={candidate}
@@ -92,7 +92,7 @@ const Mains = () => {
                     </Link>
                   </div>
                 </div>
-                {/*  </Link> */}
+                 </Link> 
               </div>
             </div>
 

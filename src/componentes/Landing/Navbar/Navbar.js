@@ -1,8 +1,9 @@
 import React from 'react';
 import { FaHome, FaBell, FaUser, FaSearch } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import './navbar.scss'
+//import './navbar.scss'
 import logo from '../../Recruiter/assets/img/logo.png'
+import CustomDropDown from './CustomDropDown/CustomDropDown';
 const Navbar = () => {
   return (
     <div className='father-container'>
@@ -14,7 +15,7 @@ const Navbar = () => {
           </Link>
         </div>
 
-
+        <CustomDropDown/>
 
         
       </div>

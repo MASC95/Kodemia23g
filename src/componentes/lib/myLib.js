@@ -11,4 +11,5 @@ export const myId = () => {
 
   const nodeEnv = 'PRD';
 
-export const backURL = nodeEnv==='PRD'?'https://apiback.jobinder.org/':'http://localhost:4000/';
+// export const backURL = nodeEnv==='PRD'?'https://apiback.jobinder.org/':'http://localhost:4000/';
+export const backURL = 'http://localhost:4000/';

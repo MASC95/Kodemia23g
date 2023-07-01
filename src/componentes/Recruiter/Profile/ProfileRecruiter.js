@@ -48,13 +48,13 @@ export const ProfileRecruiter=()=>{
       });
     }
   }, [dataRecruiter]);
+  
 
   const handleSubmit = async(values)=>{
     alert(values)
     //e.preventDefault();
     console.log('values:..',values);
     try {
-
       axios.defaults.headers.common[
         "Authorization"
       ] = `Bearer: ${dataRecruiter.accessToken}`;

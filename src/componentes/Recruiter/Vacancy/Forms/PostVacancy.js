@@ -44,10 +44,11 @@ export const PostVacancy=()=>{
         onSubmit:(values) => {
             setTimeout(() => {
                 const idsSkills =  listSkills.map(item=>item.skill);
-                const completeForm = {
-                    ...values,
-                    job_skills:[...idsSkills]
-                }
+                // const completeForm = {
+                //     ...values,
+                //     job_skills:[...idsSkills]
+                // }
+                console.log('imageUser',imageUser)
                 const formData = new FormData();
                 if (imageUser) formData.append("image", imageUser);
                 if (idsSkills) {
@@ -131,6 +132,9 @@ export const PostVacancy=()=>{
                                 {formik.touched.title && formik.errors.title && (<span className='text-danger'>{formik.errors.title}</span>)}
                         </div>
                         </div>
+                    </div>
+
+                    <div className="row mb-4">
                         <div className="col">
                         <div className="form-outline">
                             <label className="form-label text-dark" htmlFor="form6Example1">Tipo de trabajo</label>
@@ -147,9 +151,7 @@ export const PostVacancy=()=>{
                             </select>
                         </div>
                         </div>
-                    </div>
-                    <div className="row mb-4">
-                    <div className="col">
+                        <div className="col">
                             <div className="form-outline">
                                 <label className="form-label text-dark" htmlFor="form6Example1">Modalidad</label>
                                 <select 
@@ -166,6 +168,8 @@ export const PostVacancy=()=>{
                                 </select>
                             </div>
                         </div>
+                    </div>
+                    <div className="row mb-4">
                         <div className="col">
                         <div className="form-outline">
                             <label className="form-label text-dark" htmlFor="form6Example1">Ciudad</label>
@@ -195,35 +199,35 @@ export const PostVacancy=()=>{
                         </div>
                     </div>
                     <div className="row mb-4">
-                    <div className="col">
-                        <div className="form-outline">
-                            <label className="form-label text-dark" htmlFor="form6Example2">Status</label>
-                            <select 
-                                        className={`form-control ${formik.touched.status && formik.errors.status ? 'border border-danger':'border border-secondary'}`}
-                                        id="status"
-                                        name="status"
-                                        value={formik.values.status}
-                                        onChange={formik.handleChange}
-                                        onBlur={formik.handleBlur}>
-                                    <option> Selecciona</option>
-                                    <option> Iniciado</option>
-                                    <option> Cerrado</option>
-                                </select>
+                        <div className="col">
+                            <div className="form-outline">
+                                <label className="form-label text-dark" htmlFor="form6Example2">Status</label>
+                                <select 
+                                            className={`form-control ${formik.touched.status && formik.errors.status ? 'border border-danger':'border border-secondary'}`}
+                                            id="status"
+                                            name="status"
+                                            value={formik.values.status}
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}>
+                                        <option> Selecciona</option>
+                                        <option> Iniciado</option>
+                                        <option> Cerrado</option>
+                                    </select>
+                            </div>
                         </div>
-                    </div>
-                    <div className="col">
-                        <div className="form-outline">
-                            <label className="form-label text-dark" htmlFor="form6Example1">Actividades</label>
-                            <input type="text" 
-                                id="actividades" 
-                                name="activities"
-                                value={formik.values.activities}
-                                onChange={formik.handleChange}
-                                className={`form-control ${formik.touched.activities && formik.errors.activities ? 'border border-danger':'border border-secondary'}`}  
-                                placeholder="Actividades"/>
-                                {formik.touched.activities && formik.errors.activities && (<span className='text-danger'>{formik.errors.activities}</span>)} 
+                        <div className="col">
+                            <div className="form-outline">
+                                <label className="form-label text-dark" htmlFor="form6Example1">Actividades</label>
+                                <input type="text" 
+                                    id="actividades" 
+                                    name="activities"
+                                    value={formik.values.activities}
+                                    onChange={formik.handleChange}
+                                    className={`form-control ${formik.touched.activities && formik.errors.activities ? 'border border-danger':'border border-secondary'}`}  
+                                    placeholder="Actividades"/>
+                                    {formik.touched.activities && formik.errors.activities && (<span className='text-danger'>{formik.errors.activities}</span>)} 
+                            </div>
                         </div>
-                    </div>
                     </div>
 
                     <Softskills setListSkills={setListSkills} skillsCandidate={[]} />

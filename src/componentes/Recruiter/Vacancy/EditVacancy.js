@@ -225,6 +225,9 @@ export const EditVacancy = () => {
                 )}
               </div>
             </div>
+          </div>
+
+          <div className="row mb-4">
             <div className="col">
               <div className="form-outline">
                 <label className="form-label text-dark" htmlFor="form6Example1">
@@ -248,8 +251,6 @@ export const EditVacancy = () => {
                 </select>
               </div>
             </div>
-          </div>
-          <div className="row mb-4">
             <div className="col">
               <div className="form-outline">
                 <label className="form-label text-dark" htmlFor="form6Example1">
@@ -274,6 +275,8 @@ export const EditVacancy = () => {
                 </select>
               </div>
             </div>
+          </div>
+          <div className="row mb-4">
             <div className="col">
               <div className="form-outline">
                 <label className="form-label text-dark" htmlFor="form6Example1">

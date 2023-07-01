@@ -72,3 +72,13 @@ $jobinderColor5: #106973;
 }
   
 
+
+@mixin glassEffect{ 
+  
+  background: rgba(0, 189, 214, 0.18);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  
+   }

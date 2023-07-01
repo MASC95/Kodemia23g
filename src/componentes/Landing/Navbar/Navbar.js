@@ -1,24 +1,11 @@
-import React from 'react';
-import { FaHome, FaBell, FaUser, FaSearch } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { FaHome, FaBell, FaUser, FaSearch } from "react-icons/fa";
+import { Link } from "react-router-dom";
 //import './navbar.scss'
-import logo from '../../Recruiter/assets/img/logo.png'
-import CustomDropDown from './CustomDropDown/CustomDropDown';
-import { Dropdown } from '@coreui/coreui';
-const Navbar = () => {
- /*  const [selectedRole, setSelectedRole] = useState(null);
-  //const cambiar = useNavigate();
-  const roleSelection = (role) => {
-    console.log("Selected Role", selectedRole);
-    //SI seleccionas candidato entonces te manda al login para candidato si seleccionas reclutador te manda al login de reclutador
-    if (role === "candidato") {
-      //Cambio de ruta a login candidatos
-      cambiar("/login-candidato");
-    } else if (role === "reclutador") {
-      cambiar("/login-recruiter");
-    }
-  }; */
+import logo from "../../Recruiter/assets/img/logo.png";
+import CustomDropDown from "./CustomDropDown/CustomDropDown";
 
+const Navbar = () => {
   return (
     <div className="father-container">
       <nav className="navbar navbar-expand-lg ">
@@ -37,13 +24,9 @@ const Navbar = () => {
             </Link>
           </div>
         </div>
-        
 
-        <CustomDropDown/>
-        
-        
-      
-    </nav>
+        <CustomDropDown />
+      </nav>
     </div>
   );
 };

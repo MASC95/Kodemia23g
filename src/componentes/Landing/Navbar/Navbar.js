@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 //import './navbar.scss'
 import logo from '../../Recruiter/assets/img/logo.png'
 import CustomDropDown from './CustomDropDown/CustomDropDown';
-import { Dropdown } from '@coreui/coreui';
+// import { Dropdown } from '@coreui/coreui';
 const Navbar = () => {
  /*  const [selectedRole, setSelectedRole] = useState(null);
   //const cambiar = useNavigate();
@@ -20,8 +20,8 @@ const Navbar = () => {
   }; */
 
   return (
-    <div className="father-container">
-      <nav className="navbar navbar-expand-lg ">
+    <div className="father-container" style={{backgroundColor:"#498BA6"}}>
+      <nav className="navbar navbar-expand-lg">
         <div className="nav-container container-fluid justify-content-between">
           <div className="column-logo col-lg-3">
             <Link

@@ -108,22 +108,23 @@ export const ProfileRecruiter=()=>{
 
     return(
         <>
-        <div className='card-body'>
-           <h1 className="text-start d-sm-flex mt-2 perfil-text m-2"
+        <div className=''>
+           <h1 className="text-start ms-2"
           style={{
             color: "#498BA6",
             textShadow:
               "0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px rgba(60, 64, 67, 0.15)",
             fontFamily: "Poppins, sans-serif, Verdana, Geneva, Tahoma",
-          }}>Información General</h1> 
+          }}>Perfil</h1> 
            <div className="row"  style={{color: "#106973",fontFamily: "Poppins, sans-serif, Verdana, Geneva, Tahoma"}}>
             <div className="col-12 col-md-4">
               {!imageUser && (
                 <>
                     <img 
+                    style={{ width: "20vw", height: "auto" }}
                     src={dataForm.avatar_url
                     ?dataForm.avatar_url
-                    :imgProfile} alt="imgProfile" className="perfil-C d-flex justify-content-center d-block ms-auto me-auto" />
+                    :imgProfile} alt="imgProfile" className="d-block ms-auto me-auto my-2 rounded" />
                 <p className="allowed-files w-100 text-center mt-3 "
                   style={{
                     color: "#106973",
@@ -132,11 +133,11 @@ export const ProfileRecruiter=()=>{
                 </>
               )}
 
-                <div className="buttons_actions d-flex justify-content-center gap-3">
+                <div className="buttons_actions d-flex justify-content-center ">
                     <UploadImage setDataImg={setImageUser} />
                 </div>
             </div>
-            <div className="col-12 col-md-8">
+            <div className="col-12 col-md-8 px-5">
               <form onSubmit={formik.handleSubmit}>
                 <div className="row mb-4">
                     <div className="col">

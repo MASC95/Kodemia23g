@@ -36,63 +36,69 @@ const Mains = () => {
 
             <div className="father-container-1 col-lg-8 ">
               <div className="child-container-1 d-flex justify-content-center align-items-center">
-                <Link to={"/login-recruiter"} className="link-rec text-decoration-none"> 
-                <div className="card-container-1 card  mb-4">
-                  <img
-                    src={recruiter}
-                    className="card-img-top recruiter-img "
-                    alt="recruiter"
-                    style={{ maxWidth: "65%", height: "100%" }}
-                  />
-                  <div className="card-body-1 text-center">
-                    <h5 className="card-title-1 ">¿Eres Reclutador?</h5>
-                    <p className="card-text-1">
-                      Accede a nuestra plataforma para publicar tus vacantes,
-                      buscar talentos y gestionar tus procesos de selección.
-                    </p>
-                  </div>
-                  <div className="access-recruiter">
-                    <Link to={"/login-recruiter"} className="link-rec">
+                <Link
+                  to={"/login-recruiter"}
+                  className="link-rec text-decoration-none"
+                >
+                  <div className="card-container-1 card  mb-4">
+                    <img
+                      src={recruiter}
+                      className="card-img-top recruiter-img "
+                      alt="recruiter"
+                      style={{ maxWidth: "65%", height: "100%" }}
+                    />
+                    <div className="card-body-1 text-center">
+                      <h5 className="card-title-1 ">¿Eres Reclutador?</h5>
+                      <p className="card-text-1">
+                        Accede a nuestra plataforma para publicar tus vacantes,
+                        buscar talentos y gestionar tus procesos de selección.
+                      </p>
+                    </div>
+                    <div className="access-recruiter">
+                      {/*  <Link to={"/login-recruiter"} className="link-rec"> */}
                       <button
                         type="button"
                         className="access-btn-rec btn btn-primary "
                       >
                         Accede como Reclutador
                       </button>
-                    </Link>
+                      {/* </Link> */}
+                    </div>
                   </div>
-                </div>
-                 </Link> 
+                </Link>
 
                 <div className="space d-none d-lg-block "> </div>
-                <Link to="/login-candidato" className="link-card text-decoration-none">  
-                <div className="card-container-2 card h-100 mb-4">
-                  <img
-                    src={candidate}
-                    className="card-img-top candidate-img"
-                    alt="candidate"
-                    style={{ maxWidth: "65%", height: "100%" }}
-                  />
-                  <div className="card-body-2 text-center">
-                    <h5 className="card-title-2">¿Eres Candidato?</h5>
-                    <p className="card-text-2">
-                      Encuentra las mejores ofertas de trabajo, aplica a las
-                      vacantes de las empresas más importantes y haz crecer tu
-                      carrera
-                    </p>
-                  </div>
-                  <div className="access-candidate">
-                    <Link to="/login-candidato" className="link-card">
+                <Link
+                  to="/login-candidato"
+                  className="link-card text-decoration-none"
+                >
+                  <div className="card-container-2 card h-100 mb-4">
+                    <img
+                      src={candidate}
+                      className="card-img-top candidate-img"
+                      alt="candidate"
+                      style={{ maxWidth: "65%", height: "100%" }}
+                    />
+                    <div className="card-body-2 text-center">
+                      <h5 className="card-title-2">¿Eres Candidato?</h5>
+                      <p className="card-text-2">
+                        Encuentra las mejores ofertas de trabajo, aplica a las
+                        vacantes de las empresas más importantes y haz crecer tu
+                        carrera
+                      </p>
+                    </div>
+                    <div className="access-candidate">
+                      {/* <Link to="/login-candidato" className="link-card"> */}
                       <button
                         type="button"
                         className="access-btn-can btn btn-primary "
                       >
                         Accede como Candidato
                       </button>
-                    </Link>
+                      {/* </Link> */}
+                    </div>
                   </div>
-                </div>
-                 </Link> 
+                </Link>
               </div>
             </div>
 

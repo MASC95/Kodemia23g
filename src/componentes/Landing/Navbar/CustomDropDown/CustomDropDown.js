@@ -10,8 +10,8 @@ const CustomDropDown = () => {
       </Dropdown.Toggle>
 
       <Dropdown.Menu >
-        <Dropdown.Item href="#/action-1">Soy Reclutador</Dropdown.Item>
-        <Dropdown.Item href="#/action-2">Soy Candidato</Dropdown.Item>
+        <Dropdown.Item href="/login-recruiter">Soy Reclutador</Dropdown.Item>
+        <Dropdown.Item href="/login-candidato">Soy Candidato</Dropdown.Item>
         
       </Dropdown.Menu>
     </Dropdown>

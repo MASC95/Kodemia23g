@@ -31,7 +31,6 @@ header {
     @include desktop {
       margin-bottom: 100px;
       padding-top: 60px;
-
       background-image: linear-gradient(-225deg, #fffeff 0%, #d7fffe 100%);
     }
     .match {
@@ -165,7 +164,6 @@ header {
 
               .recruiter-img {
                 @include mobile {
-                  margin-left: 20%;
                   margin-top: 8%;
                   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
                     rgba(0, 0, 0, 0.12) 0px -12px 30px,

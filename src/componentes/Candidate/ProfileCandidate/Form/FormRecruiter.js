@@ -14,7 +14,7 @@ import "../SkillsSection.js";
 import Softskills from "../../../Recruiter/SoftSkills/Form/SoftSkills";
 import { FaUserCircle } from "react-icons/fa";
 import swal from "sweetalert2";
-import 'sweetalert2/dist/sweetalert2.css';
+import "sweetalert2/dist/sweetalert2.css";
 //const localEndPoinst = "http://localhost:4000/api/v1/users/";
 
 const initDataForm = {
@@ -29,20 +29,22 @@ const initDataForm = {
 };
 
 const saveChanges = () => {
-  swal.fire({
-    title: 'Mensaje de confirmación',
-    text: '¿Estás seguro de que quieres guardar los cambios?',
-    icon: 'question',
-    showCancelButton: true,
-    confirmButtonColor: '#0CF574',
-    cancelButtonColor: '#FF2F2F',
-    confirmButtonText: 'Guardar',
-    cancelButtonText: 'Cancelar'
-  }).then((result) => {
-    if (result.isConfirmed) {
-      swal.fire('Los cambios han sido guardados correctamente!');
-    }
-  });
+  swal
+    .fire({
+      title: "Mensaje de confirmación",
+      text: "¿Estás seguro de que quieres guardar los cambios?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonColor: "#0CF574",
+      cancelButtonColor: "#FF2F2F",
+      confirmButtonText: "Guardar",
+      cancelButtonText: "Cancelar",
+    })
+    .then((result) => {
+      if (result.isConfirmed) {
+        swal.fire("Los cambios han sido guardados correctamente!");
+      }
+    });
 };
 
 /*
@@ -195,12 +197,11 @@ const FormRecruiter = () => {
           Perfil
         </h1>
         <div className="row container_form_General1 mr-5 ml-5 ">
-          <div className="col-4 container_image  ms-auto me-auto ">
+          <div className="col-4 container_image  m-3  ">
             {dataForm.avatar_url && !imageUser && (
               <img
                 src={dataForm.avatar_url}
                 alt="imgProfile"
-               
                 className="perfil-C d-flex justify-content-center d-block ms-auto me-auto"
               />
             )}
@@ -210,13 +211,13 @@ const FormRecruiter = () => {
                 className="perfil-C d-flex justify-content-center border "
                 
               />} */}
-            {!imageUser&&!dataForm.avatar_url&&
-              <FaUserCircle className="profile-pic my-5 d-block ms-auto me-auto" style={{width:'20vw', height:'auto'}} />
-            }
+            {!imageUser && !dataForm.avatar_url && (
+              <FaUserCircle
+                className="profile-pic my-5 d-block ms-auto me-auto"
+                style={{ width: "20vw", height: "auto" }}
+              />
+            )}
 
-            
-
-            
             <div className="buttons_actions d-flex justify-content-center gap-3">
               <UploadImage setDataImg={setImageUser} />
             </div>
@@ -480,8 +481,6 @@ const FormRecruiter = () => {
                     >
                       Guardar
                     </button>
-                    
-                    
                   </div>
                   {/* <SkillsSection/> */}
                 </Form>

@@ -14,7 +14,7 @@ import "../SkillsSection.js";
 import Softskills from "../../../Recruiter/SoftSkills/Form/SoftSkills";
 import { FaUserCircle } from "react-icons/fa";
 import swal from "sweetalert2";
-import "sweetalert2/dist/sweetalert2.css";
+import 'sweetalert2/dist/sweetalert2.css';
 //const localEndPoinst = "http://localhost:4000/api/v1/users/";
 
 const initDataForm = {
@@ -199,7 +199,7 @@ const FormRecruiter = () => {
         <div className="col-12 col-md-4">
           {dataForm.avatar_url && !imageUser && (
             <img
-            style={{ width: "20vw", height: "auto" }}
+              style={{ width: "20vw", height: "auto" }}
               src={dataForm.avatar_url}
               alt="imgProfile"
               className="d-block ms-auto me-auto my-2 rounded"
@@ -461,13 +461,11 @@ const FormRecruiter = () => {
                   </div>
                 </div>
 
-                
-                  <Softskills
-                    setListSkills={setListSkills}
-                    isCandidate={true}
-                    skillsCandidate={listSkills}
-                  />
-                
+                <Softskills
+                  setListSkills={setListSkills}
+                  isCandidate={true}
+                  skillsCandidate={listSkills}
+                />
 
                 <div className="buttons_actions d-flex justify-content-center gap-3">
                   {/* <button type="button" className="buttons btn btn-info">Cancelar</button> */}
@@ -487,8 +485,6 @@ const FormRecruiter = () => {
             )}
           </Formik>
         </div>
-
-
       </div>
     </div>
   );

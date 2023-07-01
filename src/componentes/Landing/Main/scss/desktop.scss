@@ -1,4 +1,3 @@
-
 @keyframes grow {
   from {
     transform: scale(1);
@@ -12,13 +11,9 @@
   }
 }
 
-
-
-
 header {
-  
-        .primary-container {
-    
+  .primary-container {
+    width: 100%;
     @include mobile {
       background-image: linear-gradient(-225deg, #fffeff 0%, #d7fffe 100%);
       margin-bottom: 70px;
@@ -34,21 +29,18 @@ header {
       background-image: linear-gradient(-225deg, #fffeff 0%, #d7fffe 100%);
     }
     @include desktop {
-      margin-bottom: 100px; // el margen es lo que se vea lo azúl
+      margin-bottom: 100px;
       padding-top: 60px;
-      width: 100%;
-      height: 100%;
+
       background-image: linear-gradient(-225deg, #fffeff 0%, #d7fffe 100%);
     }
     .match {
-    
       @include mobile {
         @include poppins;
         font-size: 22px;
         color: #093040;
         padding: 10px 20px 0 20px;
         text-align: center;
-
       }
       @include tablet {
         @include poppins;
@@ -56,7 +48,6 @@ header {
         text-align: center;
         color: #093040;
         margin-top: 50px;
-        
       }
       @include desktop {
         @include poppins;
@@ -66,7 +57,6 @@ header {
         font-size: 31px;
         line-height: 48px;
         color: #093040;
-        
       }
     }
     .text-mobile {
@@ -80,49 +70,46 @@ header {
         @include text-center-mobile();
         font-weight: bold;
         color: #093040;
-
       }
     }
     .first-card-container {
-      @include mobile{
+      @include mobile {
         width: 100%;
         height: 100%;
       }
-      @include tablet{
+      @include tablet {
         width: 100%;
         height: 100%;
       }
-      @include desktop{
+      @include desktop {
         width: 100%;
         height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
 
-      }
-      
       .row-first-card {
         display: flex;
         justify-content: center;
         align-items: center;
+        width: 100%;
         .left-blank-space {
+          width: 100%;
         }
         .father-container-1 {
-         @include desktop{
-          margin-right: 150px;
-          width: 80%;
-          height: 100%;
-        }
-        @include mobile{
-          
-          width: 80%;
-          height: 100%;
-        
-        }
-        @include tablet{
-          
-          width: 100%;
-          height: 100%;
-        
-        }
-         
+          @include mobile {
+            width: 80%;
+            height: 100%;
+          }
+          @include tablet {
+            width: 100%;
+            height: 100%;
+          }
+          @include desktop {
+            margin-right: 150px;
+          }
+
           .child-container-1 {
             @include mobile {
               display: flex;
@@ -132,7 +119,7 @@ header {
               margin-top: 1rem;
               width: 100%;
             }
-            @include tablet{
+            @include tablet {
               width: 100%;
               display: flex;
               flex-wrap: wrap;
@@ -143,20 +130,19 @@ header {
             @include desktop {
               width: 100%;
               margin-left: 100px;
-              
             }
             .card-container-1 {
               @include mobile {
                 @include glassEffect();
                 width: 100%;
                 height: auto;
-                
+
                 &:hover {
                   animation: grow 0.3s forwards;
                 }
                 @include glow();
               }
-              @include tablet{
+              @include tablet {
                 width: 100%;
                 @include first-cards-containers;
                 @include glassEffect();
@@ -168,6 +154,7 @@ header {
               }
               @include desktop {
                 @include first-cards-containers;
+
                 @include glassEffect();
                 &:hover {
                   animation: grow 0.3s forwards;
@@ -176,66 +163,72 @@ header {
                 @include glow;
               }
 
-              
-
               .recruiter-img {
                 @include mobile {
                   margin-left: 20%;
                   margin-top: 8%;
-                  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+                  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+                    rgba(0, 0, 0, 0.12) 0px -12px 30px,
+                    rgba(0, 0, 0, 0.12) 0px 4px 6px,
+                    rgba(0, 0, 0, 0.17) 0px 12px 13px,
+                    rgba(0, 0, 0, 0.09) 0px -3px 5px;
                   border-radius: 30px;
                 }
-                @include tablet{
+                @include tablet {
                   margin-left: 20%;
                   margin-top: 8%;
-                  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+                  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+                    rgba(0, 0, 0, 0.12) 0px -12px 30px,
+                    rgba(0, 0, 0, 0.12) 0px 4px 6px,
+                    rgba(0, 0, 0, 0.17) 0px 12px 13px,
+                    rgba(0, 0, 0, 0.09) 0px -3px 5px;
                   border-radius: 30px;
                 }
-                @include desktop{
+                @include desktop {
                   margin-left: 20%;
                   margin-top: 8%;
-                  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+                  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+                    rgba(0, 0, 0, 0.12) 0px -12px 30px,
+                    rgba(0, 0, 0, 0.12) 0px 4px 6px,
+                    rgba(0, 0, 0, 0.17) 0px 12px 13px,
+                    rgba(0, 0, 0, 0.09) 0px -3px 5px;
                   border-radius: 30px;
-                  
                 }
               }
               .card-body-1 {
                 @include mobile {
                   padding: 10px 5px 20px 5px;
-                  
                 }
-                @include tablet{
+                @include tablet {
                   padding: 10px 5px 20px 5px;
-                  
                 }
-                @include desktop{
+                @include desktop {
                   padding: 10px 5px 20px 5px;
-                 
                 }
                 .card-title-1 {
                   @include mobile {
                     display: none;
                   }
-                  @include tablet{
+                  @include tablet {
                     @include montserrat();
                     margin-top: 30px;
-                    text-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px rgba(60, 64, 67, 0.15);
-
+                    text-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3),
+                      0px 1px 3px rgba(60, 64, 67, 0.15);
                   }
                   @include desktop {
                     @include montserrat();
                     margin-top: 30px;
-                    text-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px rgba(60, 64, 67, 0.15);
-
+                    text-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3),
+                      0px 1px 3px rgba(60, 64, 67, 0.15);
                   }
-                 
                 }
                 .card-text-1 {
                   @include mobile {
                     display: none;
                   }
-                  @include tablet{
-                    font-family: 'Poppins', sans-serif, Verdana, Geneva, Tahoma, sans-serif;
+                  @include tablet {
+                    font-family: "Poppins", sans-serif, Verdana, Geneva, Tahoma,
+                      sans-serif;
                     font-weight: 200;
                     @include cardsSpacing();
                   }
@@ -243,22 +236,21 @@ header {
                     @include poppins();
                     @include cardsSpacing();
                   }
-                 
                 }
               }
               .access-recruiter {
-                @include desktop{
+                @include desktop {
                   @include center-users;
                 }
-                @include tablet{
+                @include tablet {
                   @include center-users;
                 }
-                @include mobile{
+                @include mobile {
                   @include center-users;
                 }
-                
+
                 .link-rec {
-                  @include tablet{
+                  @include tablet {
                     display: flex;
                     justify-content: center;
                     align-items: center;
@@ -272,11 +264,10 @@ header {
                       font-family: "Poppins", sans-serif;
                       font-size: 14px;
                     }
-                    @include tablet{
+                    @include tablet {
                       @include poppins();
                       padding: 10px 20px 10px 20px;
                       width: 100%;
-                     
                     }
                     @include desktop {
                       @include poppins();
@@ -288,14 +279,14 @@ header {
               }
             }
             .space {
-              @include mobile{
+              @include mobile {
                 display: none;
               }
-              @include tablet{
+              @include tablet {
                 width: 150px;
               }
               @include desktop {
-                width: 200px; 
+                width: 200px;
               }
             }
             .card-container-2 {
@@ -309,14 +300,13 @@ header {
 
                 @include glow();
               }
-              @include tablet{
+              @include tablet {
                 @include first-cards-containers;
                 @include glassEffect();
                 &:hover {
                   animation: grow 0.3s forwards;
                 }
                 @include glow;
-                
               }
               @include desktop {
                 @include first-cards-containers;
@@ -326,26 +316,36 @@ header {
                 }
                 @include glow;
               }
-         
-              
+
               .candidate-img {
-                @include mobile{
+                @include mobile {
                   margin-left: 20%;
                   margin-top: 8%;
-                  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+                  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+                    rgba(0, 0, 0, 0.12) 0px -12px 30px,
+                    rgba(0, 0, 0, 0.12) 0px 4px 6px,
+                    rgba(0, 0, 0, 0.17) 0px 12px 13px,
+                    rgba(0, 0, 0, 0.09) 0px -3px 5px;
                   border-radius: 30px;
                 }
-                @include tablet{
+                @include tablet {
                   margin-left: 20%;
                   margin-top: 8%;
-                  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+                  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+                    rgba(0, 0, 0, 0.12) 0px -12px 30px,
+                    rgba(0, 0, 0, 0.12) 0px 4px 6px,
+                    rgba(0, 0, 0, 0.17) 0px 12px 13px,
+                    rgba(0, 0, 0, 0.09) 0px -3px 5px;
                   border-radius: 30px;
-                  
                 }
-                @include desktop{
+                @include desktop {
                   margin-left: 20%;
                   margin-top: 8%;
-                  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+                  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+                    rgba(0, 0, 0, 0.12) 0px -12px 30px,
+                    rgba(0, 0, 0, 0.12) 0px 4px 6px,
+                    rgba(0, 0, 0, 0.17) 0px 12px 13px,
+                    rgba(0, 0, 0, 0.09) 0px -3px 5px;
                   border-radius: 30px;
                   height: 20%;
                 }
@@ -354,56 +354,55 @@ header {
                 @include mobile {
                   padding: 10px 5px 20px 5px;
                 }
-                @include tablet{
+                @include tablet {
                   padding: 10px 5px 20px 5px;
                 }
-                @include desktop{
+                @include desktop {
                   padding: 10px 5px 20px 5px;
                 }
                 .card-title-2 {
                   @include mobile {
                     display: none;
                   }
-                  @include tablet{
+                  @include tablet {
                     @include montserrat();
                     margin-top: 30px;
-                    text-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px rgba(60, 64, 67, 0.15);
+                    text-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3),
+                      0px 1px 3px rgba(60, 64, 67, 0.15);
                   }
                   @include desktop {
                     @include montserrat();
                     margin-top: 30px;
-                    text-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px rgba(60, 64, 67, 0.15);
-
+                    text-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3),
+                      0px 1px 3px rgba(60, 64, 67, 0.15);
                   }
                 }
                 .card-text-2 {
-                
                   @include mobile {
                     display: none;
                   }
-                  @include tablet{
+                  @include tablet {
                     @include poppins();
                     @include cardsSpacing();
-
                   }
-                  @include desktop{
+                  @include desktop {
                     @include poppins();
                     @include cardsSpacing();
                   }
                 }
               }
               .access-candidate {
-                @include mobile{
+                @include mobile {
                   @include center-users;
                 }
-                @include tablet{
+                @include tablet {
                   @include center-users;
                 }
-                @include desktop{
+                @include desktop {
                   @include center-users;
                 }
                 .link-card {
-                  @include tablet{
+                  @include tablet {
                     display: flex;
                     justify-content: center;
                     align-items: center;
@@ -417,7 +416,7 @@ header {
                       font-family: "Poppins", sans-serif;
                       font-size: 14px;
                     }
-                    @include tablet{
+                    @include tablet {
                       @include poppins();
                       padding: 10px 20px 10px 20px;
                       width: 100%;
@@ -433,24 +432,21 @@ header {
           }
         }
         .right-blank-space {
-          
         }
       }
     }
     .second-cards-container {
-      
       @include mobile {
         display: none;
       }
-      @include tablet{
+      @include tablet {
         display: none;
       }
-      @include desktop{
-       width: 100%;
-       
+      @include desktop {
+        width: 100%;
       }
       .second-row {
-      width: 100%;
+        width: 100%;
         .column {
           .letras {
             .eleva {
@@ -476,26 +472,29 @@ header {
       .second-cards-row {
         width: 100%;
         height: 100%;
-        
+
         .second-cards-1 {
           width: 50%;
           height: 100%;
-          
+
           .card-container-3 {
             @include glassEffect;
             @include second-cards-containers;
             margin-left: 100px;
-            
+
             .video {
               width: 60%;
               height: 35%;
               margin-left: 20%;
               margin-top: 8%;
-              box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+              box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+                rgba(0, 0, 0, 0.12) 0px -12px 30px,
+                rgba(0, 0, 0, 0.12) 0px 4px 6px,
+                rgba(0, 0, 0, 0.17) 0px 12px 13px,
+                rgba(0, 0, 0, 0.09) 0px -3px 5px;
               border-radius: 30px;
             }
             .video-card-body {
-             
               .video-card-title {
                 margin-top: 10%;
                 padding-left: 10px;
@@ -530,9 +529,12 @@ header {
               height: 35%;
               margin-left: 20%;
               margin-top: 8%;
-              box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+              box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+                rgba(0, 0, 0, 0.12) 0px -12px 30px,
+                rgba(0, 0, 0, 0.12) 0px 4px 6px,
+                rgba(0, 0, 0, 0.17) 0px 12px 13px,
+                rgba(0, 0, 0, 0.09) 0px -3px 5px;
               border-radius: 30px;
-              
             }
             .card-body-skills {
               height: 100%;
@@ -569,7 +571,6 @@ header {
               display: flex;
               align-items: flex-start;
               margin-left: 20px;
-              
             }
 
             @include mobile {
@@ -584,7 +585,7 @@ header {
                 word-wrap: break-word;
                 color: #093040;
               }
-              @include tablet{
+              @include tablet {
                 font-size: 24px;
                 line-height: 7vw;
                 margin-bottom: 2rem;
@@ -595,9 +596,6 @@ header {
             }
           }
           .jobs {
-            
-            
-
             @include mobile {
               @include montserrat();
               text-align: center;
@@ -605,8 +603,8 @@ header {
               margin-bottom: 2rem;
               color: #093040;
             }
-            @include tablet{
-                @include montserrat();
+            @include tablet {
+              @include montserrat();
               text-align: center;
               padding-right: 0;
               margin-bottom: 2rem;
@@ -619,35 +617,31 @@ header {
               font-size: 16px;
               color: #093040;
             }
-          
           }
         }
       }
       .row-checkmarks {
         @include glassEffect;
         .col-checkmarks {
-          @include mobile{
+          @include mobile {
             display: none;
           }
-          @include tablet{
+          @include tablet {
             display: none;
           }
           .profile-pic {
-            @include mobile{
+            @include mobile {
               display: none;
             }
-            @include tablet{
+            @include tablet {
               display: none;
             }
-            @include desktop{
+            @include desktop {
               width: 341px;
               height: 316px;
               margin-top: 10px;
-             padding: 10px;
-             
-              
+              padding: 10px;
             }
-            
           }
         }
         .down-cards {
@@ -655,55 +649,50 @@ header {
             @include mobile {
               display: none;
             }
-            @include tablet{
-              display: none
+            @include tablet {
+              display: none;
             }
-            @include desktop{
+            @include desktop {
               @include montserrat();
-            font-size: 28px;
-            line-height: 42px;
-            display: flex;
-            justify-content: start;
-            color: black;
-            margin-top: 3rem;
+              font-size: 28px;
+              line-height: 42px;
+              display: flex;
+              justify-content: start;
+              color: black;
+              margin-top: 3rem;
             }
-      
-            
+
             strong {
             }
           }
           .slogan {
-           
             @include mobile {
               display: none;
             }
-            @include tablet{
-              display: none
+            @include tablet {
+              display: none;
             }
-            @include desktop{
+            @include desktop {
               @include poppins();
               margin-top: 1rem;
-              
             }
-           
           }
           .check-list {
             padding: 20px;
             .li-register {
-             
-              @include mobile{
+              @include mobile {
                 color: black;
                 @include poppins();
               }
-              @include tablet{
+              @include tablet {
                 color: black;
                 @include poppins();
               }
-              @include desktop{
+              @include desktop {
                 color: black;
-              @include poppins();
+                @include poppins();
               }
-              
+
               @include mobile {
                 line-height: 50px;
                 padding: 0;
@@ -735,22 +724,21 @@ header {
                 @include mobile {
                   margin-right: 0.5rem;
                 }
-                @include tablet{
+                @include tablet {
                   margin-right: 0.5rem;
                 }
               }
             }
             .li-register {
-            
               @include mobile {
                 line-height: 50px;
                 padding: 0;
               }
-              @include tablet{
+              @include tablet {
                 line-height: 50px;
                 padding: 0;
               }
-              @include desktop{
+              @include desktop {
                 line-height: 40px;
               }
               .icon-check {
@@ -762,20 +750,18 @@ header {
           }
           .last-create-account {
             .btn-create-acc {
-              
-             @include mobile {
+              @include mobile {
                 display: none;
               }
 
-              @include tablet{
-                display: none
+              @include tablet {
+                display: none;
               }
 
-              @include desktop{
+              @include desktop {
                 @include poppins();
                 margin: 20px;
                 padding: 10px 20px 10px 20px;
-  
               }
             }
           }

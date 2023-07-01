@@ -1,20 +1,22 @@
-@import '../../../App.scss';
-.iconsSocialMedia{
-    border-radius: 10vw;
-    background-color: $jobinderHover;
-    
-    &:hover{
+@import "../../../App.scss";
+.iconsSocialMedia {
+  border-radius: 10vw;
+  background-color: $jobinderHover;
+  margin-left: 44px;
+  &:hover {
     background-color: $jobinderColor2;
-    
-    }
+  }
 }
-.text-footer{
-    padding: 1vw;
-   &:hover{
-    color:$jobinderColor3;
+.text-footer {
+  padding: 1vw;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  &:hover {
+    color: $jobinderColor3;
     opacity: 0.7;
     transition: transform 0.5s ease;
     transform: scale(1.2);
-   
-   }
+  }
 }

@@ -47,9 +47,11 @@ function App() {
 
     if(dataLocalStorage?.role==='candidato'){
       setDataCandidate(dataLocalStorage)
+      
     }
     if(dataLocalStorage?.role==='empresa'){
       setDataRecruiter(dataLocalStorage)
+      
     }
   
     

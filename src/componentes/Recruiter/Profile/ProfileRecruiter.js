@@ -1,7 +1,7 @@
 import {React,useEffect,useState} from "react";
 import axios from "axios";
 import { endpointsGral } from "../services/vacancy";
-import imgProfile from '../assets/img/profile.png'
+import imgProfile from '../assets/img/perfil2.jpg'
 import swal from "sweetalert";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
@@ -93,6 +93,14 @@ export const ProfileRecruiter=()=>{
                 })
                 .then((response) => {
                   console.log("response.data:..", response.data);
+                  if(response?.data?.message==="Update User Ok"){
+                    if(response?.data?.updateUser){
+                        setDataLocalStorage({
+                          ...response?.data?.updateUser,
+                          accessToken: dataRecruiter.accessToken
+                        })
+                    }
+                  }
                 })
                 .catch((error) => {
                   console.error(error);
@@ -107,6 +115,8 @@ export const ProfileRecruiter=()=>{
  
     }
   })
+
+  
 
     return(
         <>

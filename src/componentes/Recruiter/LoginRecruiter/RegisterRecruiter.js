@@ -12,7 +12,7 @@ export const RegisterRecruiter=()=>{
   const [formValues, setFormValues]=useState({
     email:'',
     password:'',
-    role:''
+    role:'empresa'
   })
   const onFormInputChange=(event)=>{
     const Input=event.target.id;
@@ -28,14 +28,14 @@ export const RegisterRecruiter=()=>{
     registerRecruiter()
   }
   const importantData= (formValues.email!=='' &&
-                        formValues.rfc !==''&&
+                        // formValues.rfc !==''&&
                         formValues.password!=='')
 
   const resetForm=()=>{
         setFormValues({
           email:'',
           password:'',
-          role:''
+          role:'empresa'
          })
         }
   const registerRecruiter=async()=>{
@@ -106,7 +106,7 @@ export const RegisterRecruiter=()=>{
                     <img src={logo} alt=""/>
                 </a>
                   </Link>
-                <h2 className="text-center">Bienvenido</h2>
+                <h2 className="text-center">Crear cuenta</h2>
                 <form className="text-left clearfix" onSubmit={onFormSubmit}>
                     <div className="form-group">
                     <input type="email" 
@@ -117,21 +117,21 @@ export const RegisterRecruiter=()=>{
                            placeholder="Email"/>
                            
                     </div>
-                    <div className="form-group">
+                    {/* <div className="form-group">
                             <select className="form-control" id="role" value={formValues.role} onChange={onFormInputChange} >
                                 <option value="" selected disabled>Rol</option>
                                 <option value='candidato'>candidato</option>
                                 <option value='empresa'>empresa</option>
                             </select>
-                        </div>
-                    <div className="form-group">
+                        </div> */}
+                    {/* <div className="form-group">
                     <input type="text" 
                            value={formValues.rfc}
                            onChange={onFormInputChange}
                            className="form-control" 
                            id="rfc" 
                            placeholder="RFC"/>
-                    </div>
+                    </div> */}
                     <div className="form-group">
                     <input type="password" 
                            value={formValues.password}

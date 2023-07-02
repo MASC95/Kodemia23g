@@ -17,6 +17,7 @@ const initDataForm = {
     last_name: "",
     email: "",
     rfc:'',
+    age:'',
     avatar_url:''
   };
 
@@ -43,6 +44,7 @@ export const ProfileRecruiter=()=>{
         name: dataRecruiter.name||'',
         last_name: dataRecruiter.last_name||'',
         email: dataRecruiter.email||"",
+        age:dataRecruiter.age||"",
         rfc: dataRecruiter.rfc||"",
         avatar_url: dataRecruiter.avatar_url||"",
       });
@@ -56,7 +58,7 @@ export const ProfileRecruiter=()=>{
       name: Yup.string().required('El Nombres es Requerido'),
       last_name: Yup.string().required('El Apellido es Requerido'),
       email: Yup.string().required('El correo electrónico es requerido'),
-      // age: Yup.number().required('El campo es requerido'),
+      age: Yup.number().required('El campo es requerido'),
       rfc: Yup.string().required('Ingrese una experiencia válida')
     }),
     onSubmit:(values)=>{
@@ -162,8 +164,6 @@ export const ProfileRecruiter=()=>{
                             </span>
                           )}
                     </div>
-                    
-                    
                     </div>
                     <div className="col">
                     <div className="form-outline">
@@ -248,6 +248,30 @@ export const ProfileRecruiter=()=>{
                     <div className="col">
                     <div className="form-outline">
                         <label className="form-label" htmlFor="form6Example2">
+                        Edad
+                        </label>
+                        <input
+                        type="text"
+                        id="age"
+                        placeholder="age"
+                        name="age"
+                        className={`form-control ${formik.touched.age && formik.errors.age 
+                          ? 'border border-danger' 
+                          : 'border border-secondary'}`}
+                        value={formik.values.age}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        />
+                         {formik.touched.age && formik.errors.age && (
+                            <span className="text-danger">
+                              {formik.errors.age}
+                            </span>
+                          )}
+                    </div>
+                    </div>
+                    <div className="col">
+                    <div className="form-outline">
+                        <label className="form-label" htmlFor="form6Example2">
                         RFC
                         </label>
                         <input
@@ -268,7 +292,6 @@ export const ProfileRecruiter=()=>{
                             </span>
                           )}
                     </div>
-                
                     </div>
                 </div>
                 <div className="buttons_actions d-flex justify-content-center gap-3">

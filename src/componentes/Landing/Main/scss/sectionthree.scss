@@ -1,0 +1,132 @@
+@import "../scss/mixins.scss";
+
+.sectionThree {
+  .last-text {
+    @include mobile {
+      padding-right: 50px;
+      padding-left: 50px;
+      margin-top: 50px;
+      margin-bottom: 50px;
+    }
+
+    @include tablet {
+      padding: 50px;
+    }
+
+    @include desktop {
+      @include letras;
+      display: flex;
+      align-items: flex-start;
+      padding: 30px;
+    }
+  }
+  .main-container {
+    .row-main-container {
+      .contenedor-imagen {
+        @include mobile {
+          display: none;
+        }
+        @include tablet {
+          display: none;
+        }
+        @include desktop {
+          margin-top: 70px;
+
+          justify-content: space-evenly;
+        }
+        .profile-pic-1 {
+          @include mobile {
+          }
+
+          @include tablet {
+          }
+          @include desktop {
+            width: 350px;
+            height: 350px;
+          }
+        }
+      }
+      .container-ul {
+        @include mobile {
+        }
+        @include tablet {
+          width: 100% !important;
+        }
+        @include desktop {
+        }
+
+        .final-text {
+          @include mobile {
+            display: none;
+          }
+          @include tablet {
+            display: none;
+          }
+          @include desktop {
+            @include montserrat();
+            font-size: 28px;
+            line-height: 42px;
+            display: flex;
+            justify-content: start;
+            color: black;
+            margin-top: 3rem;
+          }
+        }
+        .slogan {
+          @include mobile {
+            display: none;
+          }
+          @include tablet {
+            display: none;
+          }
+          @include desktop {
+            @include poppins();
+            margin-top: 1rem;
+          }
+        }
+        .check-list {
+          @include mobile {
+            padding: 20px;
+          }
+          @include tablet {
+            padding: 30px;
+            width: 100%;
+          }
+          @include desktop {
+            padding: 40px;
+            width: 100%;
+          }
+
+          .li-register {
+            @include mobile {
+              color: #000;
+              @include poppins();
+              width: 100%;
+              display: block;
+              line-height: 50px;
+              margin-right: 10px;
+              margin-left: 10px;
+            }
+            @include tablet {
+              color: black;
+              @include poppins();
+              line-height: 40px;
+              display: block;
+            }
+            @include desktop {
+              color: black;
+              @include poppins();
+              line-height: 50px;
+            }
+            .icon-check {
+              margin-right: 1rem;
+              @include mobile {
+                margin-right: 0.5rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -21,11 +21,21 @@ const NavbarCandidate = () => {
     setDataLocalStorage,
   ] = useJob();
   // console.log("dataCandidate...", dataCandidate);
-  // console.log("dataRecruiter...", dataRecruiter);
+  // console.log("dataRecruiter...", dataRecruiter);}
+  const [isErrorImg, setIsErrorImg] = useState(false);
   const handleShowOffCanvas = () => {
     setShowOffcanvas((prev) => !prev);
   };
 
+  const handleError = () => {
+    console.log("Error al cargar la Imagen:...");
+    setIsErrorImg(true);
+  };
+
+  const handleLoad = () => {
+    console.log("Imagen cargada con exito:...");
+    setIsErrorImg(false);
+  };
   return (
     <Navbar expand="lg" className="nav w-100 c-navbar">
       <Container className="container-fluid contenedor">
@@ -66,6 +76,8 @@ const NavbarCandidate = () => {
               src={dataCandidate.avatar_url}
               alt="candidate-profile-pic"
               className="candidate-profile-pic "
+              onError={handleError}
+              onLoad={handleLoad}
             />
           ) : (
             <FaUserCircle

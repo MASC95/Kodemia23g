@@ -4,57 +4,16 @@
   backdrop-filter: blur(3.9px);
   -webkit-backdrop-filter: blur(3.9px);
   border: 1px solid rgba(73, 139, 166, 0.28);
-
-  /* background: rgba(73, 139, 166, 0.38);
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(2.7px);
--webkit-backdrop-filter: blur(2.7px);
-border: 1px solid rgba(73, 139, 166, 0.22); */
 }
 
-.c-navbar {
+.main-navbar-color {
   @include glassify();
-
-  .nav-container {
-    height: 8vh;
-
-    .column-logo {
-      .link-job {
-        .jobinder-logo {
-          margin-left: 7%;
-          opacity: 0.7;
-        }
-        & :hover {
-          opacity: 1;
-        }
-      }
-    }
-    ul {
-      .loginB {
-        display: none;
-      }
-      .nav-item1 {
-        .nav-link {
-          .home {
-          }
-          .badge-home {
-          }
-        }
-        .nav-item2 {
-          .nav-link-2 {
-            .bell {
-            }
-            .badge-bell {
-            }
-          }
-          .nav-item3 {
-            .nav-link {
-              .user {
-              }
-            }
-          }
-        }
-      }
+  height: 8vh;
+  .jobinder-logo {
+    margin-left: 0.7%;
+    opacity: 0.7;
+    &:hover {
+      opacity: 1;
     }
   }
 }

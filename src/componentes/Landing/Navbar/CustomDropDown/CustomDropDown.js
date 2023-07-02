@@ -3,9 +3,9 @@ import Dropdown from "react-bootstrap/Dropdown";
 
 const CustomDropDown = () => {
   return (
-    <Dropdown className="px-5">
-      <Dropdown.Toggle id="dropdown-basic" variant="success">
-        Iniciar Sesion
+    <Dropdown className="px-5 mt-2">
+      <Dropdown.Toggle id="dropdown-basic" className="boton-inicio">
+        Iniciar Sesión
       </Dropdown.Toggle>
 
       <Dropdown.Menu>

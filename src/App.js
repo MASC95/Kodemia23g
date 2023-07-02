@@ -64,7 +64,7 @@ function App() {
           {/* <Route path ='/pruebas' element ={<ListResponsive/>}/> */}
           {/* aqui las rutas de la seccion candidato */}
           <Route path='/login-candidato' element={<LoginCandidate />}/>
-          <Route path='/register' element={<RegisterCandidate/>}/>
+          <Route path='/register-candidato' element={<RegisterCandidate/>}/>
           <Route path='/dashboard-candidato' element={<DashboardCandidate />}>
             <Route path='home' element={<HomeCandidate/>}/>
             <Route path='profile' element={<ProfileCandidate />}/>

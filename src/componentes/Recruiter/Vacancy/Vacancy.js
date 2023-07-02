@@ -12,20 +12,34 @@ import useJob from '../../../hooks/useJob'
 import Swal from "sweetalert2";
 
 export const Vacancy=()=>{
-    const [dataCandidate,setDataCandidate,dataRecruiter,setDataRecruiter, dataLocalStorage, setDataLocalStorage]=useJob()
-    const [vacancyAll,setVacancyAll]=useState([])
+  const [dataCandidate,setDataCandidate,dataRecruiter,setDataRecruiter, dataLocalStorage, setDataLocalStorage]=useJob()
+  const [vacancyAll,setVacancyAll]=useState([])
+  const [loading, setLoading] = useState(false);
+  const [totalRows, setTotalRows] = useState(0);
+  const [perPage, setPerPage] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1);
 
 
-    const fetch=async()=>{
-        const allVacancies=await axios.get(endpointsGral.vacancyURL)
-        const datas=allVacancies.data['item']
-        setVacancyAll(datas['docs'])
-        console.log(datas['docs'])
+    const fetch=async (page,perPage) =>{
+      setLoading(true)
+        const allVacancies=await axios.get(`http://localhost:4000/api/v1/jobVacancy?page=${page}&per_page=${perPage}&delay=1`)
+        const datas=allVacancies.data
+        setVacancyAll(datas)
+        console.log('PAGINATION',datas.length)
+        setTotalRows(datas.length)
+        setLoading(false)
+        // const allVacancies=await axios.get(endpointsGral.vacancyURL)
+        // const datas=allVacancies.data['item']
+        // setVacancyAll(datas['docs'])
+        // console.log('PAGINATION',datas["totalDocs"])
+        // setTotalRows(datas["totalDocs"])
+        // setLoading(false)
     }
     useEffect(()=>{
-        fetch()
+        fetch(1)
     },[])
     console.log(vacancyAll)
+    console.log(totalRows)
 
     useEffect(()=>{
         if(vacancyAll.length>0){
@@ -34,7 +48,17 @@ export const Vacancy=()=>{
         }
     },[])
 
+    // pagination
+    const handlePageChange = page => {
+      fetch(page);
+      setCurrentPage(page)
+    };
 
+    const handlePerRowsChange = async (newPerPage, page) => {
+      fetch(page,newPerPage)
+      setPerPage(newPerPage)
+    };
+    // pagination
   const handleDeleteSkill = (index) => {
     Swal.fire({
         title: 'Eliminar Vacante?',
@@ -160,10 +184,16 @@ export const Vacancy=()=>{
                     key={myId()}
                     columns={columns}
                     data={data}
-                    noHeader
-                    defaultSortField="#"
-                    defaultSortAsc={true}
+                    // noHeader
+                    // defaultSortField="#"
+                    // defaultSortAsc={true}
+                    progressPending={loading}
                     pagination
+                    paginationServer
+                    paginationTotalRows={totalRows}
+                    paginationDefaultPage={currentPage}
+                    onChangeRowsPerPage={handlePerRowsChange}
+                    onChangePage={handlePageChange}
                     highlightOnHover
                     dense
                     />

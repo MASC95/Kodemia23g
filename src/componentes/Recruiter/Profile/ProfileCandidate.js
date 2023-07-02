@@ -97,11 +97,20 @@ export const Candidate=()=>{
   
     return(
         <>
-        <div className='card-body'>
-        <h1  className="text-start text-dark d-sm-block h2">Perfil Profesional</h1>
-        <div className="row container_form_General">
-            <div className="col-4 container_image justify-content-center">
-                <img src={infoCandidate.avatar_url} alt=""/>
+        <div className=''>
+        <h1 className="text-start ms-2 mt-3"
+            style={{
+            color: "#498BA6",
+            textShadow:
+            "0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px rgba(60, 64, 67, 0.15)",
+            fontFamily: "Poppins, sans-serif, Verdana, Geneva, Tahoma",}}
+            >Perfil Profesional</h1>
+        <div className="row"  style={{color: "#106973",fontFamily: "Poppins, sans-serif, Verdana, Geneva, Tahoma"}}>
+            <div className="col-12 col-md-4">
+                <img 
+                style={{ width: "20vw", height: "auto" }}
+                src={infoCandidate.avatar_url} alt="" 
+                className="d-block ms-auto me-auto my-2 rounded"/>
                 <div className="">  
                   <p className="text-center text-dark">{`${infoCandidate.name} ${infoCandidate.last_name}`}</p>
                   <p className="text-center text-dark"><FaMailBulk/> { infoCandidate.email}</p>
@@ -111,7 +120,7 @@ export const Candidate=()=>{
                 <button type="button" className="buttons btn btn-outline-secondary"><FaEyeSlash className="icon_eyeSlash"/></button>
                 </div>
             </div>
-            <div className="col">
+            <div className="col-12 col-md-8 px-5">
                 <div className="row mb-4">
                     <h2 className="text-start text-dark">Información General</h2>
                     <div className="col">

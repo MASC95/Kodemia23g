@@ -145,7 +145,7 @@ export const LoginCandidate = () => {
                 </form>
                 <p className="mt-20 text-black text-decoration-none">
                   No tienes una cuenta?
-                  <Link to={`/register`}>Crea una con nosotros</Link>
+                  <Link to={`/register-candidato`}>Crea una con nosotros</Link>
                 </p>
               </div>
             </div>

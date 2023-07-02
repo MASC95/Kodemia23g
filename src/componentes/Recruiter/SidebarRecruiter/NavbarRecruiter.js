@@ -19,7 +19,7 @@ function NavbarRecruiter() {
     setShowOffcanvas((prev) => !prev);
   };
   return (
-    <Navbar expand="lg" className="nav">
+    <Navbar expand="lg" className="nav" style={{backgroundColor:"#78A9BD"}}>
       <Container className="container">
       <Button variant="primary" onClick={handleShowOffCanvas} className="toggle bg-transparent border-0">
           <FaBars />

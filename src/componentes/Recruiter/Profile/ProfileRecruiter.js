@@ -1,292 +1,312 @@
-import { React, useEffect, useState } from "react";
+import {React,useEffect,useState} from "react";
 import axios from "axios";
 import { endpointsGral } from "../services/vacancy";
-import imgProfile from "../assets/img/profile.png";
+import imgProfile from '../assets/img/profile.png'
 import swal from "sweetalert";
+import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-import { Formik, Field, ErrorMessage } from "formik";
-import { Form } from "react-bootstrap";
-import * as Yup from "yup";
+// import { Formik, Field, ErrorMessage } from "formik";
+import { useFormik } from "formik";
+import * as Yup from "yup"
 import UploadImage from "../../UploadImage/UploadImage";
-import useJob from "../../../hooks/useJob";
+import useJob from "../../../hooks/useJob"
+
 
 const initDataForm = {
-  name: "",
-  last_name: "",
-  email: "",
-  rfc: "",
-  avatar_url: "",
-};
+    name: "",
+    last_name: "",
+    email: "",
+    rfc:'',
+    age:'',
+    avatar_url:''
+  };
 
-const profileSchema = Yup.object().shape({
-  name: Yup.string()
-    .required("El Nombres es Requerido")
-    .min(2, "El nombre debe tener al menos 2 caracteres")
-    .max(50, "El nombre debe tener como máximo 50 caracteres"),
-  last_name: Yup.string()
-    .required("El Apellido es Requerido")
-    .min(2, "El apellido debe tener al menos 2 caracteres")
-    .max(50, "El apellido debe tener como máximo 50 caracteres"),
-  email: Yup.string()
-    .required("El correo electrónico es requerido")
-    .email("ingrese un correo electrónico válido"),
-  age: Yup.number()
-    .required("El campo es requerido")
-    .min(18, "Debe ser mayor de 18 años"),
-  rfc: Yup.string().required("Ingrese una experiencia válida"),
-});
+  const profileSchema = Yup.object().shape({
+    name: Yup.string().required('El Nombres es Requerido'),
+    last_name: Yup.string().required('El Apellido es Requerido'),
+    email: Yup.string().required('El correo electrónico es requerido'),
+    age: Yup.number().required('El campo es requerido'),
+    rfc: Yup.string().required('Ingrese una experiencia válida'),
+  })
+  
 
-export const ProfileRecruiter = () => {
+
+export const ProfileRecruiter=()=>{
+
   const [dataForm, setDataForm] = useState(initDataForm);
   const [imageUser, setImageUser] = useState(null);
-  const [
-    dataCandidate,
-    setDataCandidate,
-    dataRecruiter,
-    setDataRecruiter,
-    dataLocalStorage,
-    setDataLocalStorage,
-  ] = useJob();
-
+  const [dataCandidate,setDataCandidate,dataRecruiter,setDataRecruiter, dataLocalStorage,setDataLocalStorage] = useJob();
+  const navigate =useNavigate()
   useEffect(() => {
     if (dataRecruiter) {
-      console.log("dataRecruiter:..", dataRecruiter);
+      // console.log("dataRecruiter ********:..", dataRecruiter);
       setDataForm({
-        name: dataRecruiter?.name || "",
-        last_name: dataRecruiter.last_name || "",
-        email: dataRecruiter.email || "",
-        rfc: dataRecruiter.rfc || "",
-        avatar_url: dataRecruiter.avatar_url || "",
+        name: dataRecruiter.name||'',
+        last_name: dataRecruiter.last_name||'',
+        email: dataRecruiter.email||"",
+        age:dataRecruiter.age||"",
+        rfc: dataRecruiter.rfc||"",
+        avatar_url: dataRecruiter.avatar_url||"",
       });
     }
   }, [dataRecruiter]);
 
-  const handleSubmit = async (e) => {
-    //alert(values);
-    e.preventDefault();
-    console.log("valuesAfuera:..", e.target);
-    return
-    /*
-    try {
-      axios.defaults.headers.common[
-        "Authorization"
-      ] = `Bearer: ${dataRecruiter.accessToken}`;
-      const formData = new FormData();
-      if (imageUser) formData.append("image", imageUser);
-      Object.entries(values).forEach(([key, value]) => {
-        formData.append(key, value);
-        //console.log(key,value);
+  const formik=useFormik({
+    initialValues:dataForm,
+    enableReinitialize:true,
+    validationSchema:Yup.object({
+      name: Yup.string().required('El Nombres es Requerido'),
+      last_name: Yup.string().required('El Apellido es Requerido'),
+      email: Yup.string().required('El correo electrónico es requerido'),
+      age: Yup.number().required('El campo es requerido'),
+      rfc: Yup.string().required('Ingrese una experiencia válida')
+    }),
+    onSubmit:(values)=>{
+      console.log('values', values)
+      Swal.fire({
+        title: 'Mensaje de confirmación',
+        text: '¿Estás seguro de que quieres guardar los cambios?',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#0CF574',
+        cancelButtonColor: '#FF2F2F',
+        confirmButtonText: 'Guardar',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            try {
+              axios.defaults.headers.common[
+                "Authorization"
+              ] = `Bearer: ${dataRecruiter.accessToken}`;
+              const formData = new FormData();
+              if (imageUser) formData.append("image", imageUser);
+              Object.entries(values).forEach(([key, value]) => {
+                formData.append(key, value);
+                //console.log(key,value);
+              });
+              console.log('formData', formData)
+              axios
+                .patch(`${endpointsGral.userURL}${dataRecruiter.accessToken}`, formData, {
+                  headers: {
+                    "Content-Type": "multipart/form-data",
+                  },
+                })
+                .then((response) => {
+                  console.log("response.data:..", response.data);
+                })
+                .catch((error) => {
+                  console.error(error);
+                });
+            } catch (error) {
+              console.log('error:..',error);
+            }
+          Swal.fire('Los cambios han sido guardados correctamente!');
+          navigate(`/Dashboard-Recruiter/vacancy`)
+        }
       });
-      console.log("formData", formData);
-      axios
-        .patch(
-          `${endpointsGral.userURL}${dataRecruiter.accessToken}`,
-          formData,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        )
-        .then((response) => {
-          console.log("response.data:..", response.data);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    } catch (error) {
-      console.log("error:..", error);
-    }*/
-  };
+ 
+    }
+  })
 
-  return (
-    <>
-      {/* <div className='card-body mt-4'> */}
-      <div className="row container_profile m-5">
-        <h1 className="text-start text-dark d-sm-flex text-center h2 mt-2 mb-4">
-          Información General
-        </h1>
-        <div className="col-4 container_image">
-          {!imageUser && (
-            <>
-              {/* <div className="ppic-container"> */}
-              <img
-                src={dataForm.avatar_url ? dataForm.avatar_url : imgProfile}
-                alt="imgProfile"
-                className="profile-image"
-              />
-              {/* </div> */}
-              <p className="text-dark">
-                {" "}
-                Archivos permitidos .png, .jpg, jpeg{" "}
-              </p>
-            </>
-          )}
+    return(
+        <>
+        <div className=''>
+           <h1 className="text-start ms-2"
+          style={{
+            color: "#498BA6",
+            textShadow:
+              "0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px rgba(60, 64, 67, 0.15)",
+            fontFamily: "Poppins, sans-serif, Verdana, Geneva, Tahoma",
+          }}>Perfil</h1> 
+           <div className="row"  style={{color: "#106973",fontFamily: "Poppins, sans-serif, Verdana, Geneva, Tahoma"}}>
+            <div className="col-12 col-md-4">
+              {!imageUser && (
+                <>
+                    <img 
+                    style={{ width: "20vw", height: "auto" }}
+                    src={dataForm.avatar_url
+                    ?dataForm.avatar_url
+                    :imgProfile} alt="imgProfile" className="d-block ms-auto me-auto my-2 rounded" />
+                <p className="allowed-files w-100 text-center mt-3 "
+                  style={{
+                    color: "#106973",
+                    fontFamily: "Poppins, sans-serif, Verdana, Geneva, Tahoma",
+                  }}> Archivos permitidos .png, .jpg, jpeg </p>
+                </>
+              )}
 
-          <div className="buttons_actions d-flex justify-content-center gap-3">
-            <UploadImage setDataImg={setImageUser} />
-          </div>
-        </div>
-        <div className="col">
-          <Formik
-            initialValues={dataForm}
-            enableReinitialize={true}
-            validationSchema={profileSchema}
-            onSubmit={(values,{setSubmitting}) => {
-              console.log("valuesFormik:..", values);
-              setSubmitting(false);
-            }}
-          >
-            {(props) => (
-              <Form onSubmit={props.handleSubmit}>
+                <div className="buttons_actions d-flex justify-content-center ">
+                    <UploadImage setDataImg={setImageUser} />
+                </div>
+            </div>
+            <div className="col-12 col-md-8 px-5">
+              <form onSubmit={formik.handleSubmit}>
                 <div className="row mb-4">
-                  <div className="col">
-                    <div className="form-outline bg-gray">
-                      <label
-                        className="form-label text-dark"
-                        htmlFor="form6Example1"
-                      >
+                    <div className="col">
+                    <div className="form-outline bg-gray" >
+                        <label className="form-label" htmlFor="form6Example1" >
                         Nombre
-                      </label>
-                      <Field
+                        </label>
+                        <input
                         type="text"
                         id="name"
                         name="name"
                         placeholder="Nombre"
                         className={`form-control ${
-                          props.touched.name && props.errors.name
-                            ? "border border-danger"
-                            : "border border-secondary"
-                        }`}
-                        value={props.values.name}
-                        onChange={props.handleChange}
-                        onBlur={props.handleBlur}
-                      />
-                      {props.touched.name && props.errors.name && (
-                        <span className="text-danger">{props.errors.name}</span>
-                      )}
+                          formik.touched.name && formik.errors.name ? 'border border-danger' : 'border border-secondary'}`}
+                        value={formik.values.name}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        />
+                         {formik.touched.name && formik.errors.name&& (
+                            <span className="text-danger">
+                              {formik.errors.name}
+                            </span>
+                          )}
                     </div>
-                  </div>
-                  <div className="col">
+                    </div>
+                    <div className="col">
                     <div className="form-outline">
-                      <label
-                        className="form-label text-dark"
-                        htmlFor="form6Example1"
-                      >
+                        <label className="form-label" htmlFor="form6Example1">
                         Apellido
-                      </label>
-                      <Field
+                        </label>
+                        <input
                         type="text"
                         id="last_name"
                         placeholder="Apellido"
                         name="last_name"
                         className={`form-control ${
-                          props.touched.last_name && props.errors.last_name
-                            ? "border border-danger"
-                            : "border border-secondary"
-                        }`}
-                        value={props.values.last_name}
-                        onChange={props.handleChange}
-                        onBlur={props.handleBlur}
-                      />
+                          formik.touched.last_name && formik.errors.last_name 
+                          ? 'border border-danger' 
+                          : 'border border-secondary'}`}
+                        value={formik.values.last_name}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        />
+                         {formik.touched.last_name && formik.errors.last_name && (
+                            <span className="text-danger">
+                              {formik.errors.last_name}
+                            </span>
+                          )}
                     </div>
-                  </div>
+                    
+                    </div>
                 </div>
                 <div className="row mb-4">
-                  <div className="col">
+                    <div className="col">
                     <div className="form-outline bg-gray">
-                      <label
-                        className="form-label text-dark"
-                        htmlFor="form6Example1"
-                      >
+                        <label className="form-label " htmlFor="form6Example1">
                         Email
-                      </label>
-                      <Field
+                        </label>
+                        <input
                         type="email"
                         id="email"
                         placeholder="Email"
                         name="email"
-                        className={`form-control ${
-                          props.touched.email && props.errors.email
-                            ? "border border-danger"
-                            : "border border-secondary"
-                        }`}
-                        value={props.values.email}
-                        onChange={props.handleChange}
-                        onBlur={props.handleBlur}
-                      />
+                        className={`form-control ${formik.touched.email && formik.errors.email 
+                          ? 'border border-danger' 
+                          : 'border border-secondary'}`}
+                        value={formik.values.email}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        />
+                         {formik.touched.email && formik.errors.email && (
+                            <span className="text-danger">
+                              {formik.errors.email}
+                            </span>
+                          )}
                     </div>
-                  </div>
-                  <div className="col">
+                    
+                    </div>
+                    <div className="col">
                     <div className="form-outline">
-                      <label
-                        className="form-label text-dark"
-                        htmlFor="form6Example1"
-                      >
+                        <label className="form-label" htmlFor="form6Example1">
                         Reset Password
-                      </label>
-                      <Field
+                        </label>
+                        <input
                         type="password"
                         id="password"
                         placeholder="Reset Password"
                         name="password"
-                        className={`form-control ${
-                          props.touched.password && props.errors.password
-                            ? "border border-danger"
-                            : "border border-secondary"
-                        }`}
-                        value={props.values.password}
-                        onChange={props.handleChange}
-                        onBlur={props.handleBlur}
-                      />
-                      <ErrorMessage name="password" />
+                        className={`form-control ${formik.touched.password && formik.errors.password 
+                          ? 'border border-danger' 
+                          : 'border border-secondary'}`}
+                        value={formik.values.password}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        />
+                         {formik.touched.password && formik.errors.password && (
+                            <span className="text-danger">
+                              {formik.errors.password}
+                            </span>
+                          )}
                     </div>
-                  </div>
+                    
+                    </div>
                 </div>
                 <div className="row mb-4">
-                  <div className="col">
+                    <div className="col">
                     <div className="form-outline">
-                      <label
-                        className="form-label text-dark"
-                        htmlFor="form6Example2"
-                      >
+                        <label className="form-label" htmlFor="form6Example2">
+                        Edad
+                        </label>
+                        <input
+                        type="text"
+                        id="age"
+                        placeholder="age"
+                        name="age"
+                        className={`form-control ${formik.touched.age && formik.errors.age 
+                          ? 'border border-danger' 
+                          : 'border border-secondary'}`}
+                        value={formik.values.age}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        />
+                         {formik.touched.age && formik.errors.age && (
+                            <span className="text-danger">
+                              {formik.errors.age}
+                            </span>
+                          )}
+                    </div>
+                    </div>
+                    <div className="col">
+                    <div className="form-outline">
+                        <label className="form-label" htmlFor="form6Example2">
                         RFC
-                      </label>
-                      <Field
+                        </label>
+                        <input
                         type="text"
                         id="rfc"
                         placeholder="RFC"
                         name="rfc"
-                        className={`form-control ${
-                          props.touched.rfc && props.errors.rfc
-                            ? "border border-danger"
-                            : "border border-secondary"
-                        }`}
-                        value={props.values.rfc}
-                        onChange={props.handleChange}
-                        onBlur={props.handleBlur}
-                      />
+                        className={`form-control ${formik.touched.rfc && formik.errors.rfc 
+                          ? 'border border-danger' 
+                          : 'border border-secondary'}`}
+                        value={formik.values.rfc}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        />
+                         {formik.touched.rfc && formik.errors.rfc && (
+                            <span className="text-danger">
+                              {formik.errors.rfc}
+                            </span>
+                          )}
                     </div>
-                  </div>
+                    </div>
                 </div>
                 <div className="buttons_actions d-flex justify-content-center gap-3">
-                  <button
-                    type="submit"
-                    
-                    className="buttons btn btn-info text-light"
-                    value="enviar"
-                    disabled={props.isSubmitting}
-                  >
+                   <button type="submit" className="buttons btn btn-info text-light">
                     Guardar
-                  </button>
+                    </button>
                 </div>
-              </Form>
-            )}
-          </Formik>
+              </form>
+                
+            </div>
         </div>
-      </div>
-      {/* </div> */}
+        </div>
+                   
     </>
-  );
-};
-export default ProfileRecruiter;
+    )
+    
+}
+export default ProfileRecruiter

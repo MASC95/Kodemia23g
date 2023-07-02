@@ -33,7 +33,7 @@ function NavbarRecruiter() {
           onClick={handleShowOffCanvas}
           className="toggle bg-transparent border-0"
         >
-          <FaBars />
+          <FaBars className="d-flex justify-content-start" />
         </Button>
         <Navbar.Brand href="#home" className="logo ">
           {" "}

@@ -1,0 +1,202 @@
+@import "./mixins.scss";
+
+.sectionOne {
+  width: 100%;
+  .first-card-container {
+    @include mobile {
+      width: 100%;
+      height: 100%;
+    }
+    @include tablet {
+      width: 100%;
+      height: 100%;
+    }
+    @include desktop {
+      width: 100%;
+      height: 100%;
+      margin-top: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .row-first-card {
+      @include mobile {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        gap: 50px;
+        margin-top: 50px;
+      }
+      @include tablet {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin-top: 50px;
+        gap: 50px;
+      }
+      @include desktop {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin-top: 20px;
+      }
+      .columna {
+        @include mobile {
+          width: 80%;
+          height: 100%;
+        }
+        @include tablet {
+          width: 90%;
+          height: 100%;
+        }
+        @include desktop {
+          width: 38%;
+          height: 100%;
+        }
+        .card {
+          @include mobile {
+            @include glassEffect();
+            width: 100%;
+            height: auto;
+
+            &:hover {
+              animation: grow 0.3s forwards;
+            }
+            @include glow();
+          }
+          @include tablet {
+            width: 100%;
+            @include first-cards-containers;
+            @include glassEffect();
+            &:hover {
+              animation: grow 0.3s forwards;
+            }
+
+            @include glow;
+          }
+          @include desktop {
+            @include first-cards-containers;
+
+            @include glassEffect();
+            &:hover {
+              animation: grow 0.3s forwards;
+            }
+
+            @include glow;
+          }
+          .img-div {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .card-img-top {
+              @include mobile {
+                width: 50%;
+                border-radius: 14%;
+                margin-top: 30px;
+                box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+                  rgba(0, 0, 0, 0.12) 0px -12px 30px,
+                  rgba(0, 0, 0, 0.12) 0px 4px 6px,
+                  rgba(0, 0, 0, 0.17) 0px 12px 13px,
+                  rgba(0, 0, 0, 0.09) 0px -3px 5px;
+                border-radius: 30px;
+              }
+              @include tablet {
+                width: 40%;
+                border-radius: 14%;
+                margin-top: 30px;
+                box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+                  rgba(0, 0, 0, 0.12) 0px -12px 30px,
+                  rgba(0, 0, 0, 0.12) 0px 4px 6px,
+                  rgba(0, 0, 0, 0.17) 0px 12px 13px,
+                  rgba(0, 0, 0, 0.09) 0px -3px 5px;
+                border-radius: 30px;
+              }
+              @include desktop {
+                width: 80%;
+                border-radius: 14%;
+
+                margin: 20px;
+                box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+                  rgba(0, 0, 0, 0.12) 0px -12px 30px,
+                  rgba(0, 0, 0, 0.12) 0px 4px 6px,
+                  rgba(0, 0, 0, 0.17) 0px 12px 13px,
+                  rgba(0, 0, 0, 0.09) 0px -3px 5px;
+                border-radius: 30px;
+                border-width: 2px;
+                border-style: solid;
+                border-image: radial-gradient(
+                  circle 588px at 31.7% 40.2%,
+                  rgba(225, 200, 239, 1) 21.4%,
+                  rgba(163, 225, 233, 1) 57.1%
+                );
+              }
+            }
+          }
+          .card-body {
+            @include mobile {
+              padding: 10px 5px 20px 5px;
+            }
+            @include tablet {
+              padding: 10px 5px 20px 5px;
+            }
+            @include desktop {
+              padding: 10px 5px 20px 5px;
+            }
+            .card-title {
+              @include mobile {
+                display: none;
+              }
+              @include tablet {
+                @include montserrat();
+                margin-top: 30px;
+                text-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3),
+                  0px 1px 3px rgba(60, 64, 67, 0.15);
+              }
+              @include desktop {
+                @include montserrat();
+                margin-top: 30px;
+                text-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3),
+                  0px 1px 3px rgba(60, 64, 67, 0.15);
+              }
+            }
+            .card-text {
+              @include mobile {
+                font-family: "Poppins", sans-serif, Verdana, Geneva, Tahoma,
+                  sans-serif;
+                font-weight: 200;
+                @include cardsSpacing();
+              }
+              @include tablet {
+                font-family: "Poppins", sans-serif, Verdana, Geneva, Tahoma,
+                  sans-serif;
+                font-weight: 200;
+                @include cardsSpacing();
+              }
+              @include desktop {
+                @include poppins();
+
+                @include cardsSpacing();
+              }
+            }
+            .btn-link {
+              width: 50%;
+              background-color: #12bcff;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              text-decoration: none;
+              margin: auto;
+              .access-btn {
+                text-decoration: none;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

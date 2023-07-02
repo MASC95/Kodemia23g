@@ -1,0 +1,118 @@
+@import "../scss/mixins.scss";
+
+.sectionTwo {
+  width: 100%;
+  .letras {
+    .eleva {
+      @include mobile {
+        @include poppins();
+        align-items: center;
+        text-indent: 1em;
+        color: #093040;
+        margin-top: 10px;
+        margin-bottom: 50px;
+        padding-left: 50px;
+        padding-right: 50px;
+      }
+      @include tablet {
+        @include poppins();
+        align-items: center;
+        text-indent: 1em;
+        color: #093040;
+        margin-top: 20px;
+        margin-bottom: 50px;
+      }
+      @include desktop {
+        @include poppins();
+        align-items: center;
+        text-indent: 1em;
+        color: #093040;
+        margin-top: 100px;
+        margin-bottom: 50px;
+        font-size: 4rem;
+        text-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3),
+          0px 1px 3px rgba(60, 64, 67, 0.15);
+      }
+    }
+  }
+  .second-card-container {
+    width: 100%;
+    height: 100%;
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .row-second-card {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      margin-top: 20px;
+      .columna-2 {
+        width: 38%;
+        height: 100%;
+        .card-2 {
+          @include mobile {
+            display: none;
+          }
+          @include tablet {
+            display: none;
+          }
+          @include desktop {
+            @include first-cards-containers;
+
+            @include glassEffect();
+
+            @include glow;
+          }
+          .img-div-2 {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .video-img {
+              width: 80%;
+              border-radius: 14%;
+
+              margin: 20px;
+              box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+                rgba(0, 0, 0, 0.12) 0px -12px 30px,
+                rgba(0, 0, 0, 0.12) 0px 4px 6px,
+                rgba(0, 0, 0, 0.17) 0px 12px 13px,
+                rgba(0, 0, 0, 0.09) 0px -3px 5px;
+              border-radius: 30px;
+              border-width: 2px;
+              border-style: solid;
+              border-image: radial-gradient(
+                circle 588px at 31.7% 40.2%,
+                rgba(225, 200, 239, 1) 21.4%,
+                rgba(163, 225, 233, 1) 57.1%
+              );
+            }
+          }
+          .card-body-2 {
+            padding: 10px 5px 20px 5px;
+            .video {
+              margin-top: 10%;
+              padding-left: 10px;
+              font-size: 14px;
+              text-align: left;
+              color: gray;
+            }
+            .card-title-2 {
+              @include poppins();
+              text-align: center;
+              padding: 25px 0px 25px 0px;
+              margin-left: 10px;
+            }
+            .card-text-2 {
+              @include poppins();
+              text-align: end;
+              color: #ea2876ff;
+            }
+          }
+        }
+      }
+    }
+  }
+}

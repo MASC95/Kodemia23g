@@ -6,7 +6,7 @@ export const endpoints = {
     candidateMyVacancies: `${backURL}/api/v1/candidate/my-vacancies`,
     candidateMyVacanciesSearch: `${backURL}api/v1/candidate/my-vacancies/search`,
     candidateApplyToVacancy: `${backURL}/api/v1/candidate/my-vacancies/:id_vacancy/apply`,
-    candidateVacancyById: `${backURL}/api/v1/jobVacancy/`,
+    candidateVacancyById: `${backURL}api/v1/jobVacancy/`,
     
     candidateUploadProfilePic: `${backURL}/api/v1/profile/upload-photo`
 };

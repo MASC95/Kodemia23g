@@ -17,31 +17,31 @@ const Footer = () => {
     >
       <Container>
         <Row>
-          <Col>
-            <section className="mb-4 mt-5">
+          <Col className="d-flex justify-content-center align-items-center">
+            <section className="mb-4 mt-5 d-flex justify-content-evenly w-50">
               <Link
-                className="btn btn-link btn-floating btn-lg text-white m-1 iconsSocialMedia  "
+                className="btn btn-link btn-floating btn-lg text-white m-1 iconsSocialMedia-F"
                 to="/facebook"
                 role="button"
               >
                 <FaFacebookF />
               </Link>
               <Link
-                className="btn btn-link btn-floating btn-lg text-white m-1 iconsSocialMedia"
+                className="btn btn-link btn-floating btn-lg text-white m-1 iconsSocialMedia-TW"
                 to="/twitter"
                 role="button"
               >
                 <FaTwitter />
               </Link>
               <Link
-                className="btn btn-link btn-floating btn-lg text-white m-1 iconsSocialMedia"
+                className="btn btn-link btn-floating btn-lg text-white m-1 iconsSocialMedia-GO"
                 to="/google"
                 role="button"
               >
                 <FaGoogle />
               </Link>
               <Link
-                className="btn btn-link btn-floating btn-lg text-white m-1 iconsSocialMedia"
+                className="btn btn-link btn-floating btn-lg text-white m-1 iconsSocialMedia-IG"
                 to="/instagram"
                 role="button"
               >

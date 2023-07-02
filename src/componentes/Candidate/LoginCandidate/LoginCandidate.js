@@ -19,8 +19,8 @@ export const LoginCandidate = () => {
     setDataCandidate,
     dataRecruiter,
     setDataRecruiter,
-    initDataCandidate,
-    initDataRecrutier,
+    dataLocalStorage,
+    setDataLocalStorage
   ] = useJob();
 
   const onFormInputChange = (event) => {
@@ -45,23 +45,28 @@ export const LoginCandidate = () => {
       if (importantData) {
         const loginCandidate = await endpoints.loginAxios(formValues);
         setFormValues(loginCandidate);
-        window.localStorage.setItem(
+
+        console.log('loginCandidate:..',loginCandidate);
+
+        setDataLocalStorage({...loginCandidate});
+
+        /* window.localStorage.setItem(
           "accessToken",
           JSON.stringify(loginCandidate)
         );
         if (loginCandidate?.accessToken) {
           setDataCandidate(loginCandidate);
           console.log("datos(login):..", loginCandidate);
-        }
-        const perfil = JSON.parse(localStorage.getItem("accessToken"));
+        } */
+        /* const perfil = JSON.parse(localStorage.getItem("accessToken"));
         const token = perfil["accessToken"];
         function parseJwt(token) {
           var base64Url = token.split(".")[1];
           var base64 = base64Url.replace("-", "+").replace("_", "/");
           return JSON.parse(window.atob(base64));
         }
-        const destroy = parseJwt(token);
-        const role = destroy["role"];
+        const destroy = parseJwt(token); */
+        const role = dataCandidate.role;
         if (role === "candidato") {
           swal({
             title: "Bienvenido de vuelta!",

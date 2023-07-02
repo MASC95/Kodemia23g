@@ -1,6 +1,6 @@
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import OffCanvasRecruiter from "./OffCanvasRecruiter/OffCanvarRecruiter";
 import Button from "react-bootstrap/Button";
 import { FaBars } from "react-icons/fa";
@@ -20,13 +20,10 @@ function NavbarRecruiter() {
 
   const [isErrorImg, setIsErrorImg] = useState(false);
 
-
   useEffect(() => {
-    
-  console.log('Reloading Navbar:...')
-    
-  }, [isErrorImg])
-  
+    console.log("Reloading Navbar:...");
+  }, [isErrorImg]);
+
   const style = {
     width: "150px",
     height: "50px",

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import swal from "sweetalert";
 
 const UploadImage = ({ setDataImg }) => {
   const [images, setImages] = useState([]);
@@ -16,6 +17,7 @@ const UploadImage = ({ setDataImg }) => {
   };
 
   useEffect(() => {
+   
     console.log("images:..", images);
     //setDataImg(images)
   }, [images]);

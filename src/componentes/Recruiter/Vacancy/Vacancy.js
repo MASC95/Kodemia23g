@@ -19,14 +19,8 @@ export const Vacancy=()=>{
   const [currentPage, setCurrentPage] = useState(1);
 
 
-    const fetch=async (page,perPage) =>{
+    const fetch=async (page,limit=perPage) =>{
       setLoading(true)
-        /* const allVacancies=await axios.get(`http://localhost:4000/api/v1/jobVacancy?page=${page}&per_page=${perPage}&delay=1`)
-        const datas=allVacancies.data
-        setVacancyAll(datas)
-        console.log('PAGINATION',datas.length)
-        setTotalRows(datas.length)
-        setLoading(false) */
          const allVacancies=await axios.get(`${endpointsGral.vacancyURL}?page=${page}&limit=${perPage}`)
          const datas=allVacancies.data['item']
          console.log('backend Response:..',datas);

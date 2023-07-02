@@ -1,15 +1,14 @@
 import {React, useEffect, useState} from "react";
-import DataTable from 'react-data-table-component';
-import DataTableExtensions from 'react-data-table-component-extensions';
+
 import {Link} from 'react-router-dom'
 import axios from "axios";
 import './style.scss'
 import { myId } from '../../lib/myLib'
 import { endpointsGral } from "../services/vacancy";
-import {FaEdit, FaTrash} from 'react-icons/fa'
-import swal from "sweetalert";
+
 import useJob from '../../../hooks/useJob'
 import Swal from "sweetalert2";
+import ListVacancies from "./ListVacancies";
 
 export const Vacancy=()=>{
   const [dataCandidate,setDataCandidate,dataRecruiter,setDataRecruiter, dataLocalStorage, setDataLocalStorage]=useJob()
@@ -22,21 +21,22 @@ export const Vacancy=()=>{
 
     const fetch=async (page,perPage) =>{
       setLoading(true)
-        const allVacancies=await axios.get(`http://localhost:4000/api/v1/jobVacancy?page=${page}&per_page=${perPage}&delay=1`)
+        /* const allVacancies=await axios.get(`http://localhost:4000/api/v1/jobVacancy?page=${page}&per_page=${perPage}&delay=1`)
         const datas=allVacancies.data
         setVacancyAll(datas)
         console.log('PAGINATION',datas.length)
         setTotalRows(datas.length)
-        setLoading(false)
-        // const allVacancies=await axios.get(endpointsGral.vacancyURL)
-        // const datas=allVacancies.data['item']
-        // setVacancyAll(datas['docs'])
-        // console.log('PAGINATION',datas["totalDocs"])
-        // setTotalRows(datas["totalDocs"])
-        // setLoading(false)
+        setLoading(false) */
+         const allVacancies=await axios.get(`${endpointsGral.vacancyURL}?page=${page}&limit=${perPage}`)
+         const datas=allVacancies.data['item']
+         console.log('backend Response:..',datas);
+         setVacancyAll(datas['docs'])
+         console.log('PAGINATION',datas["totalDocs"])
+         setTotalRows(datas["totalDocs"])
+         setLoading(false)
     }
     useEffect(()=>{
-        fetch(1)
+        fetch(1,10)
     },[])
     console.log(vacancyAll)
     console.log(totalRows)
@@ -50,7 +50,7 @@ export const Vacancy=()=>{
 
     // pagination
     const handlePageChange = page => {
-      fetch(page);
+      fetch(page,perPage);
       setCurrentPage(page)
     };
 
@@ -96,70 +96,7 @@ export const Vacancy=()=>{
   
       };
 // ----------------------------------- table
-  const data= vacancyAll?.map((item, index) => {
-            return(
-            {
-                id:item._id,
-                qty: index,
-                title: item.title,
-                type: item.type,
-                mode: item.mode,
-                salary: item.salary,
-            }
-            )
-     })
-
-   const columns = [
-        {
-            name:'rowId',
-            selector: (row) => `${row.id}${row.qty}`,
-            sortable: true, hide:true,
-            omit:true,
-
-        },
-        {
-            name: "#",
-            selector: (row,i) => i+1,
-            sortable: true
-        },
-        {
-            name: "TITULO",
-            selector: (row, i) =>row.title,
-            sortable: true
-        },
-        {
-            name: "TIPO DE TRABAJO",
-            selector: (row, i) => row.type,
-            sortable: true
-        },
-        {
-            name: "MODALIDAD",
-            selector: (row, i) => row.mode,
-            sortable: true,
-        },
-        {
-            name: "SALARIO",
-            selector: (row, i) => row.salary,
-            sortable: true,
-        },
-        {
-            name: "OPCIONES",
-            sortable: false,
-            selector: (row, i) => row.null,
-            cell: (d) =>[
-                <Link to={`/Dashboard-Recruiter/vacancy-edit/?v=${d.id}`}>
-                 <button type="button" className="buttons btn btn-outline-success"><FaEdit className="icon_edit1"/></button> 
-                </Link>,
-                <button type="button" className="buttons btn btn-outline-danger" onClick={handleDeleteSkill.bind(this,d.qty)}>
-                 <FaTrash className="icon_trash"/>  
-                </button> 
-        ]
-        }
-        ];
-    const tableData = {
-        columns,
-        data
-      };
+  
 
     return(
         <>     
@@ -176,28 +113,15 @@ export const Vacancy=()=>{
           {/* <div className='card-body'> */}
           <div className="row softskills">
                 <div className="col">
-                <DataTableExtensions  
-                    export={false}
-                    print={false}
-                    {...tableData}>
-                    <DataTable {...tableData}
-                    key={myId()}
-                    columns={columns}
-                    data={data}
-                    // noHeader
-                    // defaultSortField="#"
-                    // defaultSortAsc={true}
-                    progressPending={loading}
-                    pagination
-                    paginationServer
-                    paginationTotalRows={totalRows}
-                    paginationDefaultPage={currentPage}
-                    onChangeRowsPerPage={handlePerRowsChange}
-                    onChangePage={handlePageChange}
-                    highlightOnHover
-                    dense
-                    />
-                </DataTableExtensions>
+                <ListVacancies 
+                vacancyAll={vacancyAll} 
+                handleDeleteSkill={handleDeleteSkill}
+                handlePageChange={handlePageChange}
+                handlePerRowsChange={handlePerRowsChange}
+                totalRows={totalRows}
+                loading={loading}
+                currentPage={currentPage}
+                />
                 </div>
             </div>
               {/* <ListVacancy postdata={vacancyAll}/>

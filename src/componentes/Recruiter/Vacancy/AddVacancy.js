@@ -40,17 +40,16 @@ export const AddVacancy=()=>{
             salary:Yup.number().required('Requerido'),
             status:Yup.string().required('Requerido'),
             activities:Yup.string().required('Requerido'),
+
         }),
         onSubmit:(values) => {
             setTimeout(() => {
+                console.log('...........',imageUser)
+                
+
                 const idsSkills =  listSkills.map(item=>item.skill);
-                // const completeForm = {
-                //     ...values,
-                //     job_skills:[...idsSkills]
-                // }
-                console.log('imageUser',imageUser)
                 const formData = new FormData();
-                if (imageUser) formData.append("image", imageUser);
+                if (imageUser) formData.append("image", imageUser);              
                 if (idsSkills) {
                     for (let i = 0; i < idsSkills.length; i++) {
                     formData.append("job_skills", idsSkills[i]);
@@ -60,13 +59,16 @@ export const AddVacancy=()=>{
                     formData.append(key, value);
                   });
                   console.log("idsSkills:..", idsSkills);
+                  
                   for (const pair of formData.entries()) {
                     // console.log(`${pair[0]}, ${pair[1]}`);
                   }
+                  console.log('...........',formData)
+
               axios.post(endpointsGral.vacancyURL, formData, {
                 headers: {
                   "Content-Type": "multipart/form-data",
-            }})
+                }})
                 .then(response => {
                 //   console.log(response);
                   swal({

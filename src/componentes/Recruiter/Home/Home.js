@@ -9,7 +9,8 @@ export const HomeRecruiter=()=>{
             <Carousel className="w-100 main-carousel d-sm-block h-100">
         <Carousel.Item className="carousel-img">
           <img
-            className="d-block w-100 carousel-main-img d-sm-block h-100 carousel-main-img"
+            style={{width:'100vw', height:'90vh',backgroundSize:'cover'}}
+            className="d-block w-100 carousel-main-img carousel-main-img"
             src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80"
             alt="First slide"
           />

@@ -19,9 +19,9 @@ export const Vacancy=()=>{
   const [currentPage, setCurrentPage] = useState(1);
 
 
-    const fetch=async (page,limit=perPage) =>{
+    const fetch=async (page,newPerPage) =>{
       setLoading(true)
-         const allVacancies=await axios.get(`${endpointsGral.vacancyURL}?page=${page}&limit=${perPage}`)
+         const allVacancies=await axios.get(`${endpointsGral.vacancyURL}?page=${page}&limit=${newPerPage}`)
          const datas=allVacancies.data['item']
          console.log('backend Response:..',datas);
          setVacancyAll(datas['docs'])
@@ -42,6 +42,11 @@ export const Vacancy=()=>{
         }
     },[])
 
+    useEffect(()=>{
+      console.log('Nuevo valor de limit:..',perPage)
+    },[perPage])
+    
+
     // pagination
     const handlePageChange = page => {
       fetch(page,perPage);
@@ -49,6 +54,7 @@ export const Vacancy=()=>{
     };
 
     const handlePerRowsChange = async (newPerPage, page) => {
+      console.log('Cambiando limit:...',newPerPage);
       fetch(page,newPerPage)
       setPerPage(newPerPage)
     };

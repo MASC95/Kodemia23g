@@ -9,35 +9,57 @@ import "react-data-table-component-extensions/dist/index.css";
 import { myId } from '../../lib/myLib';
 import { Link } from 'react-router-dom';
 import useJob from '../../../hooks/useJob'
-
+import MyTable from './MyTable';
 
 // import 'datatables.net-responsive';
 
 const Example = () => {
   const [dataCandidate,setDataCandidate,dataRecruiter,setDataRecruiter, dataLocalStorage, setDataLocalStorage]=useJob()
   const [dataInformation, setDataInformation]=useState([]);
-  const [dataShow, setDataShow] = useState([]);
   const [dataStatusEditing, setDataStatusEditing] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [totalRows, setTotalRows] = useState(0);
+  const [perPage, setPerPage] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1);
 
 
-
-  const queryMatch= async()=>{
+  const queryMatch= async(page,newPerPage)=>{
       try {
-          const response= await axios.get(endpointsGral.vacancyURL)
-          const datas=response.data['item']
+        setLoading(true)
+        const allVacancies=await axios.get(`${endpointsGral.vacancyURL}?page=${page}&limit=${newPerPage}`)
+        const datas=allVacancies.data['item']
+        console.log('backend Response:..',datas);
           setDataInformation(datas['docs'])
-          console.log(response.data)
+          console.log('PAGINATION',datas["totalDocs"])
+         setTotalRows(datas["totalDocs"])
+         setLoading(false)
       } catch (error) {
           console.log(error) 
       }
   }
   useEffect(()=>{
-      queryMatch()
+      queryMatch(1,10)
   },[])
+  useEffect(()=>{
+    console.log('Nuevo valor de limit:..',perPage)
+  },[perPage])
 
   useEffect(()=>{
     if(dataStatusEditing) console.log('dataStatusEditing:..',dataStatusEditing);
   },[dataStatusEditing])
+
+    // pagination
+    const handlePageChange = page => {
+      queryMatch(page,perPage);
+      setCurrentPage(page)
+    };
+
+    const handlePerRowsChange = async (newPerPage, page) => {
+      console.log('Cambiando limit:...',newPerPage);
+      queryMatch(page,newPerPage)
+      setPerPage(newPerPage)
+    };
+    // pagination
 
   const handleClick = (index) => {
     const editState= dataInformation[index]
@@ -186,18 +208,21 @@ const tableData = {
 
   return(
     <div className="row m-3">
+      {/* <MyTable/> */}
       <DataTableExtensions  
       export={false}
       print={false}
       {...tableData}>
         <DataTable {...tableData}
-        key={myId()}
           columns={columns}
           data={data}
-          noHeader
-          defaultSortField="#"
-          defaultSortAsc={true}
+          progressPending={loading}
           pagination
+          paginationServer
+          paginationTotalRows={totalRows}
+          paginationDefaultPage={currentPage}
+          onChangeRowsPerPage={handlePerRowsChange}
+          onChangePage={handlePageChange}
           highlightOnHover
           dense
         />

@@ -29,9 +29,14 @@ export const MatchDetails = () => {
   const [dataJobSkills, setDataJobSkills]= useState([]);
   const [nuevoListado, setNuevoListado] = useState(false);
 
-  const fetchForMatch = async () => {
+  const [loading, setLoading] = useState(false);
+  const [totalRows, setTotalRows] = useState(0);
+  const [perPage, setPerPage] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const fetchForMatch = async (page,newPerPage) => {
     try {
-      const endpointURL = `${endpointsGral.vacancyURL}${idVacancy}`;
+      const endpointURL = `${endpointsGral.vacancyURL}${idVacancy}?page=${page}&limit=${newPerPage}`;
       const response = await axios.get(endpointURL);
       const datasVacancy = response.data["infoVacancy"];
       setDataJobSkills(datasVacancy?.job_skills);
@@ -106,8 +111,6 @@ export const MatchDetails = () => {
           {dataByUserCandidate?.length>0&&
           <MyTable dadHandleHideofPanel={dadHandleHideofPanel} job_skills={dataJobSkills} dataByUserCandidate={dataByUserCandidate}/>
           }
-          
-          
         </div>
       </div>
       <div className="d-flex w-100 justify-content-end p-4">

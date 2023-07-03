@@ -36,17 +36,18 @@ export const MatchDetails = () => {
 
   const fetchForMatch = async (page,newPerPage) => {
     try {
-      const endpointURL = `${endpointsGral.vacancyURL}${idVacancy}?page=${page}&limit=${newPerPage}`;
+      const endpointURL = `${endpointsGral.usersInVacancy}${idVacancy}?page=${page}&limit=${newPerPage}`;
       const response = await axios.get(endpointURL);
-      const datasVacancy = response.data["infoVacancy"];
-      setDataJobSkills(datasVacancy?.job_skills);
-      setDataByUserCandidate(datasVacancy?.applicants);
+      console.log('responseBackend:..',response);
+      const datasVacancy = response?.data?.item?.docs||[];
+      //setDataJobSkills(datasVacancy?.job_skills);
+      setDataByUserCandidate(datasVacancy);
     } catch (error) {
       console.log(error);
     }
   };
   useEffect(() => {
-    fetchForMatch();
+    fetchForMatch(1,10);
     listadoApplicants();
   }, []);
 

@@ -136,22 +136,40 @@ const Example = () => {
       });   
   }
 
-   const data= dataInformation?.map((item, index) => {
-     const outDataDuplex=item.applicants?.filter((objeto, indice)=>{
-       const objetoString = JSON.stringify(objeto);
+  
+
+  
+   const data= dataInformation?.map((vacante, index) => {
+     
+
+    /* const outDataDuplex=vacante.applicants?.filter((idUserAplicant, indice)=>{
+       const objetoString = JSON.stringify(idUserAplicant);
        return (
-         item.applicants.findIndex((obj, i)=>{
-           return JSON.stringify(obj) === objetoString;
+         vacante.applicants.findIndex((aplicante, i)=>{
+           return JSON.stringify(aplicante) === objetoString;
          }) === indice
-       );
-     });
+       ); 
+
+
+     });*/
+     const tempArray=[];
+     const aplicantes= [...vacante.applicants];
+     aplicantes.forEach((idAplicante)=>{
+        const isFounded = tempArray.find((id)=>id===idAplicante);
+        if(!isFounded){
+          tempArray.push(idAplicante);
+        }
+     })
+
+
+
      return(
        {
-         id:item._id,
+         id:vacante._id,
          qty: index,
-         title: item.title,
-         status: item.status,
-         candidato: outDataDuplex?.length||'',
+         title: vacante.title,
+         status: vacante.status,
+         candidato: tempArray?.length||0,
        }
      )
    })
@@ -180,7 +198,7 @@ const Example = () => {
       sortable: true
     },
     {
-      name: "CANDIDATO",
+      name: "APLICANTES",
       selector: (row, i) => row.candidato,
       sortable: true,
     },

@@ -9,83 +9,75 @@ import useJob from '../../../hooks/useJob';
 import swal from "sweetalert";
 
 export const LoginRecruiter=()=>{
-    const [formValues,setFormValues]=useState({
-        email:'',
-        password:''
-    })
-    const [dataCandidate,setDataCandidate,dataRecruiter,setDataRecruiter, initDataCandidate, initDataRecrutier]=useJob();
-    const navigate= useNavigate();
-    // const [isLoading,setLoading]=useState(true)
-    const onFormInputChange=(event)=>{
-        const inputID=event.target.id;
-        const inputValue=event.target.value
-        setFormValues({...formValues,[inputID]:inputValue})
-    }
-    // console.log(formValues)
-    const importantData=(formValues.email!==''&& formValues.password!=='')
-    const resetForm=()=>{
+    const [formValues, setFormValues] = useState({
+        email: "",
+        password: "",
+      });
+      const navigate = useNavigate();
+      const [
+        dataCandidate,
+        setDataCandidate,
+        dataRecruiter,
+        setDataRecruiter,
+        dataLocalStorage,
+        setDataLocalStorage
+      ] = useJob();
+      const onFormInputChange = (event) => {
+        const InputID = event.target.id;
+        const InputValue = event.target.value;
+        setFormValues({ ...formValues, [InputID]: InputValue });
+      };
+      const importantData = formValues.email !== "" && formValues.password !== "";
+      const resetForm = () => {
         setFormValues({
-            email:'',
-            password:''
-        })
-    }
-
-    const onFormSubmit=(event)=>{
-        event.preventDefault();
-         loginCallback()
-    }
-
-    const loginCallback=async()=>{
+          email: "",
+          password: "",
+        });
+      };
+      const onFormSubmit = (e) => {
+        e.preventDefault();
+        initLogin();
+      };
+      const initLogin = async () => {
         try {
-            if(importantData){
-              const loginRecruiter= await endpoints.loginAxios(formValues);
-              setFormValues(loginRecruiter)
-            //   console.log('loginRecrutier:..',loginRecruiter);
-              window.localStorage.setItem('accessToken',JSON.stringify(loginRecruiter))
-              if(loginRecruiter.accessToken){
-                setDataRecruiter(loginRecruiter);
-              }
-
-              const perfil = JSON.parse(localStorage.getItem('accessToken'))
-                const token=perfil['accessToken']
-                function parseJwt (token) {
-                    var base64Url = token.split('.')[1];
-                    var base64 = base64Url.replace('-', '+').replace('_', '/');
-                    return JSON.parse(window.atob(base64));
-                };
-                const destroy=parseJwt(token)
-                const role= destroy['role']
-                    if(role==='empresa'){
-                        swal({
-                            title: "Bienvenido de vuelta!",
-                            icon: "success",
-                            button: "ok!",
-                        });
-                        resetForm()
-                        // console.log('dashboard Empresa')
-                        navigate(`/Dashboard-Recruiter/home`)
-                    }else{
-                         swal({
-                            title: "Error al acceder!",
-                            icon: "error",
-                            button: "ok!",
-                        });
-                    }
-            }else{
-                swal({
-                    title: "Todos los datos son requeridos!",
-                    icon: "error",
-                    button: "ok!",
-                  });
-            }
-          } catch (error) {
-            swal({
-                title: "Credenciales invalidas!",
+          if (importantData) {
+            const loginRecruiter = await endpoints.loginAxios(formValues);
+            setFormValues(loginRecruiter);
+            console.log('loginRecruiter:..',loginRecruiter);
+            setDataLocalStorage({...loginRecruiter});
+            const role = dataRecruiter.role;
+            if (role === "empresa") {
+              swal({
+                title: "Bienvenido de vuelta!",
+                icon: "success",
+                button: "ok!",
+              });
+              resetForm();
+              console.log("dashboard Recruiter");
+              navigate("/Dashboard-Recruiter/home");
+            } else {
+              swal({
+                title: "Error al acceder!",
                 icon: "error",
                 button: "ok!",
               });
+            }
+          } else {
+            swal({
+              title: "Todos los datos son requeridos!",
+              icon: "error",
+              button: "ok!",
+            });
           }
-    }
+        } catch (error) {
+          swal({
+            title: "Credenciales invalidas!",
+            icon: "error",
+            button: "ok!",
+          });
+        }
+        // navigate('/dashboard-candidato')
+      };
 
     return(
         <>

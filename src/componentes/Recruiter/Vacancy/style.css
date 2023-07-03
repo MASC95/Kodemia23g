@@ -4,5 +4,49 @@
 }
 
 .icon_trash {
-  color: red;
+  color: rgb(248, 121, 121);
+}
+
+@media (min-width: 359px) and (max-width: 576px) {
+  .container_form_General1 {
+    display: flex;
+    flex-direction: column;
+  }
+  .container_form_General1 .container_image {
+    width: 1000px;
+  }
+  .container_form_General1 form .row {
+    display: grid;
+    width: 100%;
+    justify-items: stretch;
+  }
+  .container_form_General1 form .softskills-tableEdit {
+    width: 100px;
+  }
+  .container_form_General1 form .softskills-tableEdit .col {
+    width: 280px;
+  }
+  .container_form_ForVacancy .content-principal {
+    display: flex;
+    height: 40px;
+    gap: 30px;
+  }
+  .container_form_ForVacancy .content-principal h1 {
+    margin-left: 10px;
+    text-align: start;
+  }
+}
+@media (min-width: 577px) and (max-width: 800px) {
+  .container_form_ForVacancy .content-principal {
+    display: flex;
+    height: 40px;
+    gap: 30px;
+  }
+}
+@media (min-width: 801px) and (max-width: 1800px) {
+  .container_form_ForVacancy .content-principal {
+    display: flex;
+    height: 40px;
+    gap: 30px;
+  }
 }/*# sourceMappingURL=style.css.map */

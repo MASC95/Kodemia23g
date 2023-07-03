@@ -12087,4 +12087,61 @@ textarea.form-control-lg {
   background: var(--bs-btn-active-bg);
   border-color: var(--bs-btn-active-border-color);
   box-shadow: var(--bs-btn-active-shadow);
-}/*# sourceMappingURL=App.css.map */
+}
+
+.iconsSocialMedia-F {
+  border-radius: 10vw;
+  background-color: #649cb3;
+  margin-left: 44px;
+}
+.iconsSocialMedia-F:hover {
+  background-color: #3b5999;
+  scale: 1.3;
+  filter: brightness(1.7);
+}
+
+.iconsSocialMedia-TW {
+  border-radius: 10vw;
+  background-color: #649cb3;
+  margin-left: 44px;
+}
+.iconsSocialMedia-TW:hover {
+  background-color: #0077b5;
+  scale: 1.3;
+  filter: brightness(1.7);
+}
+
+.iconsSocialMedia-GO {
+  border-radius: 10vw;
+  background-color: #649cb3;
+  margin-left: 44px;
+}
+.iconsSocialMedia-GO:hover {
+  background-color: #ff4131;
+  scale: 1.3;
+  filter: brightness(1.7);
+}
+
+.iconsSocialMedia-IG {
+  border-radius: 10vw;
+  background-color: #649cb3;
+  margin-left: 44px;
+}
+.iconsSocialMedia-IG:hover {
+  background-color: #e4405f;
+  scale: 1.3;
+  filter: brightness(1.3);
+}
+
+.text-footer {
+  padding: 1vw;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.text-footer:hover {
+  color: #093040;
+  opacity: 0.7;
+  transition: transform 0.5s ease;
+  transform: scale(1.2);
+}/*# sourceMappingURL=footer.css.map */

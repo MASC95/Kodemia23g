@@ -1,15 +1,34 @@
-@media (min-width: 542px) and (max-width: 768px) {
-  .container_form_General {
+@media (min-width: 359px) and (max-width: 756px) {
+  .container_profile {
     display: flex;
     flex-direction: column;
   }
-  .container_form_General .container_image {
+  .container_profile .container_image {
     width: 100%;
-    align-items: center;
-    margin-bottom: 50px;
+    margin: 10px;
+  }
+  .container_profile .container_image img {
+    height: 150px;
+    width: 100%;
+    margin-left: 10px;
+  }
+  .container_profile form .row {
+    display: grid;
+    width: 100%;
+    justify-items: stretch;
   }
 }
 .container_image img {
   width: 200px;
   height: 200px;
+}
+
+.icon_edit, .icon_check {
+  color: #1DD75B;
+  font-size: 30px;
+}
+
+.icon_eyeSlash {
+  font-size: 30px;
+  color: grey;
 }/*# sourceMappingURL=style.css.map */

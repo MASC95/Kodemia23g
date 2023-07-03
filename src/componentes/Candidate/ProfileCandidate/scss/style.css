@@ -1,35 +1,42 @@
-@media (min-width: 542px) and (max-width: 768px) {
-  .container_form_General {
+@media screen and (min-width: 0px) and (max-width: 600px) {
+  .card-body {
+    margin-right: 50px !important;
+  }
+}
+@media screen and (min-width: 601px) and (max-width: 1000px) {
+  .card-body {
+    margin-right: 50px !important;
     display: flex;
     flex-direction: column;
   }
-  .container_form_General .container_image {
-    width: 100%;
-    align-items: center;
-    margin-bottom: 50px;
+}
+@media screen and (min-width: 1001px) {
+  .card-body {
+    margin-right: 50px !important;
   }
 }
-.container_image {
-  width: 30%;
-  height: 20%;
+@media screen and (min-width: 0px) and (max-width: 600px) {
+  .card-body .container_form_General1 .container_image .perfil-C {
+    width: 50%;
+    height: 50%;
+    border-radius: 50%;
+  }
 }
-.container_image .ppic-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+@media screen and (min-width: 601px) and (max-width: 1000px) {
+  .card-body .container_form_General1 .container_image .perfil-C {
+    width: 30%;
+    height: 30%;
+    border-radius: 50%;
+  }
 }
-.container_image .allowed-files {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+@media screen and (min-width: 1001px) {
+  .card-body .container_form_General1 .container_image .perfil-C {
+    border-radius: 10vw;
+    margin-left: 100px;
+  }
 }
-.container_image .buttons-actions {
-  width: 100%;
-}
-.container_image .buttons-actions .button {
-  width: 65%;
-  height: 35%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+@media screen and (min-width: 0px) and (max-width: 600px) {
+  .card-body .container_form_General1 .init-form {
+    margin-left: 35px;
+  }
 }/*# sourceMappingURL=style.css.map */

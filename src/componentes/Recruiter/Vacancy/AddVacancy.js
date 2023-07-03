@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import UploadImage from "../../UploadImage/UploadImage";
 import logo from "../../Recruiter/assets/img/perfil2.jpg";
 import "./style.scss";
+import useJob from '../../../hooks/useJob'
 
 const initDataForm = {
   companyName: "",
@@ -23,6 +24,7 @@ const initDataForm = {
   activities: "",
 };
 export const AddVacancy = () => {
+  const [dataCandidate,setDataCandidate,dataRecruiter,setDataRecruiter, dataLocalStorage, setDataLocalStorage]=useJob()
   const [listSkills, setListSkills] = useState([]);
   const [imageUser, setImageUser] = useState(null);
   const [dataForm, setDataForm] = useState(initDataForm);
@@ -71,9 +73,12 @@ export const AddVacancy = () => {
           // console.log(`${pair[0]}, ${pair[1]}`);
         }
         console.log("...........", formData);
+        axios.defaults.headers.common[
+          "Authorization"
+      ] = `Bearer: ${dataRecruiter.accessToken}`;
 
         axios
-          .post(endpointsGral.vacancyURL, formData, {
+          .post(`${endpointsGral.vacancyURL}${dataRecruiter.accessToken}`, formData, {
             headers: {
               "Content-Type": "multipart/form-data",
             },

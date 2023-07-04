@@ -42,7 +42,11 @@ const Section = () => {
             </div>
             {/*  </Link> */}
           </div>
-          <div style={{cursor:'pointer'}} className="col-5 columna " onClick={handleClickCandidate}>
+          <div
+            style={{ cursor: "pointer" }}
+            className="col-5 columna "
+            onClick={handleClickCandidate}
+          >
             <div className="cartas">
               <div className=" img-div">
                 <img src={recruiter} alt="Imagen" className="card-img-top" />

@@ -20,7 +20,7 @@ export const LoginCandidate = () => {
     dataRecruiter,
     setDataRecruiter,
     dataLocalStorage,
-    setDataLocalStorage
+    setDataLocalStorage,
   ] = useJob();
 
   const onFormInputChange = (event) => {
@@ -46,9 +46,9 @@ export const LoginCandidate = () => {
         const loginCandidate = await endpoints.loginAxios(formValues);
         setFormValues(loginCandidate);
 
-        console.log('loginCandidate:..',loginCandidate);
+        console.log("loginCandidate:..", loginCandidate);
 
-        setDataLocalStorage({...loginCandidate});
+        setDataLocalStorage({ ...loginCandidate });
 
         /* window.localStorage.setItem(
           "accessToken",

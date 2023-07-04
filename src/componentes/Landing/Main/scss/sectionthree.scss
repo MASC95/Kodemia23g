@@ -21,6 +21,7 @@
     }
   }
   .main-container {
+    @include glassEffect();
     .row-main-container {
       .contenedor-imagen {
         @include mobile {

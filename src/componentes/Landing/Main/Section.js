@@ -1,9 +1,9 @@
 import React from "react";
 import "./scss/style.scss";
-import candidate from "../../Candidate/img/Candidate.jpg";
-import recruiter from "../../Candidate/img/Recruiter.jpg";
+import candidate from "../../Candidate/img/Candidate.avif";
+import recruiter from "../../Candidate/img/Recruiter.avif";
 import "./scss/section.scss";
-import { Link } from "react-router-dom";
+
 const Section = () => {
   const handleClickCandidate = () => {
     window.location.href = "/login-candidato";

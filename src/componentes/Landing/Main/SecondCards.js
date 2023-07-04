@@ -1,6 +1,6 @@
 import React from "react";
-import video from "../../Candidate/img/VideoBlondeGirl.jpg";
-import knowldege from "../../Candidate/img/KnowledgeBackendDev.jpg";
+import video from "../../Candidate/img/VideoBlondeGirl.avif";
+import knowldege from "../../Candidate/img/KnowledgeBackendDev.avif";
 import "./scss/card2.scss";
 const SecondCards = () => {
   return (

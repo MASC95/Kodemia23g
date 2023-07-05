@@ -17,6 +17,7 @@ export const Softskills = ({ setListSkills, isCandidate, skillsCandidate }) => {
   const fetchSkill = async () => {
     const response = await axios.get(endpointsGral.jobSkill);
     const infoSkill = response.data["item"];
+    console.log('infoSkill:...',infoSkill);
     setDataSkill(infoSkill["docs"]);
   };
   useEffect(() => {

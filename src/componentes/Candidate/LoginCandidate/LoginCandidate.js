@@ -7,11 +7,15 @@ import useJob from "../../../hooks/useJob";
 import endpoints from "../../Recruiter/services/endpoints";
 import swal from "sweetalert";
 
+
+const initFormValues= {
+  email: "",
+  password: "",
+}
+
+
 export const LoginCandidate = () => {
-  const [formValues, setFormValues] = useState({
-    email: "",
-    password: "",
-  });
+  const [formValues, setFormValues] = useState({...initFormValues});
 
   const navigate = useNavigate();
   const [
@@ -28,11 +32,11 @@ export const LoginCandidate = () => {
     const InputValue = event.target.value;
     setFormValues({ ...formValues, [InputID]: InputValue });
   };
+
   const importantData = formValues.email !== "" && formValues.password !== "";
   const resetForm = () => {
     setFormValues({
-      email: "",
-      password: "",
+      ...initFormValues
     });
   };
 
@@ -42,7 +46,8 @@ export const LoginCandidate = () => {
   };
   const initLogin = async () => {
     try {
-      if (importantData) {
+      if (formValues.email!==''&&formValues.password!=='') {
+        console.log('formValues:..',formValues);
         const loginCandidate = await endpoints.loginAxios(formValues);
         setFormValues(loginCandidate);
 
@@ -50,22 +55,7 @@ export const LoginCandidate = () => {
 
         setDataLocalStorage({ ...loginCandidate });
 
-        /* window.localStorage.setItem(
-          "accessToken",
-          JSON.stringify(loginCandidate)
-        );
-        if (loginCandidate?.accessToken) {
-          setDataCandidate(loginCandidate);
-          console.log("datos(login):..", loginCandidate);
-        } */
-        /* const perfil = JSON.parse(localStorage.getItem("accessToken"));
-        const token = perfil["accessToken"];
-        function parseJwt(token) {
-          var base64Url = token.split(".")[1];
-          var base64 = base64Url.replace("-", "+").replace("_", "/");
-          return JSON.parse(window.atob(base64));
-        }
-        const destroy = parseJwt(token); */
+        
         const role = dataCandidate.role;
         if (role === "candidato") {
           swal({

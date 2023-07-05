@@ -1,36 +1,15 @@
-.navbar {
+.main-navbar-color {
   background: rgba(73, 139, 166, 0.7);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(3.9px);
   -webkit-backdrop-filter: blur(3.9px);
   border: 1px solid rgba(73, 139, 166, 0.28);
-  /* background: rgba(73, 139, 166, 0.38);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(2.7px);
-  -webkit-backdrop-filter: blur(2.7px);
-  border: 1px solid rgba(73, 139, 166, 0.22); */
-}
-.navbar::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  transition: 0.5s;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-}
-.navbar:hover::before {
-  left: 100%;
-}
-.navbar .nav-container {
   height: 8vh;
-  width: 100%;
 }
-.navbar .nav-container .column-logo .link-job .jobinder-logo {
-  margin-left: 7%;
+.main-navbar-color .jobinder-logo {
+  margin-left: 0.7%;
   opacity: 0.7;
 }
-.navbar .nav-container .column-logo .link-job :hover {
+.main-navbar-color .jobinder-logo:hover {
   opacity: 1;
 }/*# sourceMappingURL=navbar.css.map */

@@ -9,35 +9,57 @@ import "react-data-table-component-extensions/dist/index.css";
 import { myId } from '../../lib/myLib';
 import { Link } from 'react-router-dom';
 import useJob from '../../../hooks/useJob'
-
+import MyTable from './MyTable';
 
 // import 'datatables.net-responsive';
 
 const Example = () => {
   const [dataCandidate,setDataCandidate,dataRecruiter,setDataRecruiter, dataLocalStorage, setDataLocalStorage]=useJob()
   const [dataInformation, setDataInformation]=useState([]);
-  const [dataShow, setDataShow] = useState([]);
   const [dataStatusEditing, setDataStatusEditing] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [totalRows, setTotalRows] = useState(0);
+  const [perPage, setPerPage] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1);
 
 
-
-  const queryMatch= async()=>{
+  const queryMatch= async(page,newPerPage)=>{
       try {
-          const response= await axios.get(endpointsGral.vacancyURL)
-          const datas=response.data['item']
+        setLoading(true)
+        const allVacancies=await axios.get(`${endpointsGral.vacancyURL}?page=${page}&limit=${newPerPage}`)
+        const datas=allVacancies.data['item']
+        console.log('backend Response:..',datas);
           setDataInformation(datas['docs'])
-          console.log(response.data)
+          console.log('PAGINATION',datas["totalDocs"])
+         setTotalRows(datas["totalDocs"])
+         setLoading(false)
       } catch (error) {
           console.log(error) 
       }
   }
   useEffect(()=>{
-      queryMatch()
+      queryMatch(1,10)
   },[])
+  useEffect(()=>{
+    console.log('Nuevo valor de limit:..',perPage)
+  },[perPage])
 
   useEffect(()=>{
     if(dataStatusEditing) console.log('dataStatusEditing:..',dataStatusEditing);
   },[dataStatusEditing])
+
+    // pagination
+    const handlePageChange = page => {
+      queryMatch(page,perPage);
+      setCurrentPage(page)
+    };
+
+    const handlePerRowsChange = async (newPerPage, page) => {
+      console.log('Cambiando limit:...',newPerPage);
+      queryMatch(page,newPerPage)
+      setPerPage(newPerPage)
+    };
+    // pagination
 
   const handleClick = (index) => {
     const editState= dataInformation[index]
@@ -114,22 +136,40 @@ const Example = () => {
       });   
   }
 
-   const data= dataInformation?.map((item, index) => {
-     const outDataDuplex=item.applicants?.filter((objeto, indice)=>{
-       const objetoString = JSON.stringify(objeto);
+  
+
+  
+   const data= dataInformation?.map((vacante, index) => {
+     
+
+    /* const outDataDuplex=vacante.applicants?.filter((idUserAplicant, indice)=>{
+       const objetoString = JSON.stringify(idUserAplicant);
        return (
-         item.applicants.findIndex((obj, i)=>{
-           return JSON.stringify(obj) === objetoString;
+         vacante.applicants.findIndex((aplicante, i)=>{
+           return JSON.stringify(aplicante) === objetoString;
          }) === indice
-       );
-     });
+       ); 
+
+
+     });*/
+     const tempArray=[];
+     const aplicantes= [...vacante.applicants];
+     aplicantes.forEach((idAplicante)=>{
+        const isFounded = tempArray.find((id)=>id===idAplicante);
+        if(!isFounded){
+          tempArray.push(idAplicante);
+        }
+     })
+
+
+
      return(
        {
-         id:item._id,
+         id:vacante._id,
          qty: index,
-         title: item.title,
-         status: item.status,
-         candidato: outDataDuplex?.length||'',
+         title: vacante.title,
+         status: vacante.status,
+         candidato: tempArray?.length||0,
        }
      )
    })
@@ -158,7 +198,7 @@ const Example = () => {
       sortable: true
     },
     {
-      name: "CANDIDATO",
+      name: "APLICANTES",
       selector: (row, i) => row.candidato,
       sortable: true,
     },
@@ -186,18 +226,21 @@ const tableData = {
 
   return(
     <div className="row m-3">
+      {/* <MyTable/> */}
       <DataTableExtensions  
       export={false}
       print={false}
       {...tableData}>
         <DataTable {...tableData}
-        key={myId()}
           columns={columns}
           data={data}
-          noHeader
-          defaultSortField="#"
-          defaultSortAsc={true}
+          progressPending={loading}
           pagination
+          paginationServer
+          paginationTotalRows={totalRows}
+          paginationDefaultPage={currentPage}
+          onChangeRowsPerPage={handlePerRowsChange}
+          onChangePage={handlePageChange}
           highlightOnHover
           dense
         />

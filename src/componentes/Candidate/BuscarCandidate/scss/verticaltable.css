@@ -1,0 +1,66 @@
+.table-v {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+.table-v .body-table-v .vertical-table-title-1, .table-v .body-table-v .vertical-table-title-1 .titulo, .table-v .body-table-v .vertical-table-title-1 .gato {
+  background-color: #498BA6;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  width: 50%;
+  height: 50%;
+  padding: 22px 0 22px 15px;
+  font-family: "Poppins", sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+.table-v .body-table-v .vertical-table-content-1, .table-v .body-table-v .vertical-table-content-1 .titulo-contenido, .table-v .body-table-v .vertical-table-content-1 .numeros {
+  font-family: "Poppins", sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 18px;
+  padding: 22px 0 22px 15px;
+  color: black;
+  border-right: 1px solid rgb(197, 193, 193);
+  width: 50%;
+  height: 50%;
+}
+.table-v .body-table-v .vertical-table-title-2, .table-v .body-table-v .vertical-table-title-2 .modalidad, .table-v .body-table-v .vertical-table-title-2 .tipo {
+  background-color: #498BA6;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  width: 50%;
+  height: 50%;
+  padding: 22px 0 22px 15px;
+  font-family: "Poppins", sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+.table-v .body-table-v .vertical-table-content-2, .table-v .body-table-v .vertical-table-content-2 .modo, .table-v .body-table-v .vertical-table-content-2 .tipo {
+  font-family: "Poppins", sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 18px;
+  padding: 22px 0 22px 15px;
+  color: black;
+  border-right: 1px solid rgb(197, 193, 193);
+  width: 50%;
+  height: 50%;
+}
+.table-v .body-table-v .vertical-table-title-3, .table-v .body-table-v .vertical-table-title-3 .opciones, .table-v .body-table-v .vertical-table-title-3 .salario {
+  background-color: #498BA6;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  width: 50%;
+  height: 50%;
+  padding: 22px 0 22px 15px;
+  font-family: "Poppins", sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+.table-v .body-table-v .vertical-table-content-3, .table-v .body-table-v .vertical-table-content-3 .opciones-1, .table-v .body-table-v .vertical-table-content-3 .salario-1 {
+  font-family: "Poppins", sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 18px;
+  padding: 22px 0 22px 15px;
+  color: black;
+  border-right: 1px solid rgb(197, 193, 193);
+  width: 50%;
+  height: 50%;
+}/*# sourceMappingURL=verticaltable.css.map */

@@ -6,6 +6,7 @@ import "../Alerts/Alert";
 import AlertComponent from "../Alerts/Alert";
 import useJob from "../../../hooks/useJob";
 import HorizonTable from "./HorizonTable";
+import VerticalTable from "./VerticalTable";
 
 export const ListBuscar = () => {
   const [vacancies, setVacancies] = useState([]);
@@ -21,19 +22,21 @@ export const ListBuscar = () => {
   const { my_vacancies } = dataCandidate;
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(endpointsGral.vacancyURL);
-        const datas = response.data["item"];
-        setVacancies(datas["docs"]);
-        console.log(response.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
     fetchData();
   }, []);
+
+  const fetchData = async (page, limit) => {
+    try {
+      const response = await axios.get(
+        `${endpointsGral.vacancyURL}?page=1&limit=10`
+      );
+      const datas = response.data["item"];
+      setVacancies(datas["docs"]);
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     if (showAlert === true) {

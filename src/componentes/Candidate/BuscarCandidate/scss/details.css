@@ -1,0 +1,286 @@
+@media screen and (min-width: 0px) and (max-width: 600px) {
+  .container-form-General {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5%;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+}
+@media screen and (min-width: 601px) and (max-width: 1000px) {
+  .container-form-General {
+    width: 100%;
+    height: 100%;
+  }
+}
+@media screen and (min-width: 1001px) {
+  .container-form-General {
+    width: 100%;
+    height: 100%;
+  }
+}
+@media screen and (min-width: 0px) and (max-width: 600px) {
+  .container-form-General .container-image {
+    width: 30%;
+    font-family: "Poppins", sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif, Arial, Helvetica, sans-serif, "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+@media screen and (min-width: 601px) and (max-width: 1000px) {
+  .container-form-General .container-image {
+    width: 50%;
+    height: 100%;
+    display: inline-block;
+  }
+}
+@media screen and (min-width: 1001px) {
+  .container-form-General .container-image {
+    width: 20%;
+  }
+}
+@media screen and (min-width: 0px) and (max-width: 600px) {
+  .container-form-General .container-image .profile-pic {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 50px;
+    color: #498ba6;
+    opacity: 0.7;
+  }
+}
+@media screen and (min-width: 601px) and (max-width: 1000px) {
+  .container-form-General .container-image .profile-pic {
+    width: 150px;
+    height: 150px;
+    color: #498ba6;
+    opacity: 0.7;
+    margin-left: 55px;
+  }
+}
+@media screen and (min-width: 1001px) {
+  .container-form-General .container-image .profile-pic {
+    width: 150px;
+    height: 150px;
+    color: #498ba6;
+    opacity: 0.7;
+    margin-left: 55px;
+  }
+}
+@media screen and (min-width: 0px) and (max-width: 600px) {
+  .container-form-General .container-image .text-container {
+    width: 100%;
+    height: 100%;
+  }
+}
+@media screen and (min-width: 601px) and (max-width: 1000px) {
+  .container-form-General .container-image .text-container {
+    width: 100%;
+    height: 100%;
+  }
+}
+@media screen and (min-width: 1001px) {
+  .container-form-General .container-image .text-container {
+    width: 100%;
+    height: 100%;
+  }
+}
+@media screen and (min-width: 0px) and (max-width: 600px) {
+  .container-form-General .container-image .text-container .text-info-general {
+    font-family: "Poppins", sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif, Arial, Helvetica, sans-serif, "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+  }
+}
+@media screen and (min-width: 601px) and (max-width: 1000px) {
+  .container-form-General .container-image .text-container .text-info-general {
+    font-family: "Poppins", sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif, Arial, Helvetica, sans-serif, "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    width: 250px;
+    margin-left: 15px;
+    font-size: 14px;
+  }
+}
+@media screen and (min-width: 1001px) {
+  .container-form-General .container-image .text-container .text-info-general {
+    font-family: "Poppins", sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif, Arial, Helvetica, sans-serif, "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    line-height: 1.5;
+    margin-left: 15px;
+    font-size: 13px;
+    width: 100%;
+  }
+}
+@media screen and (min-width: 0px) and (max-width: 600px) {
+  .container-form-General .container-image .text-container .text-info-general .icons-form-general {
+    font-family: "Poppins", sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif, Arial, Helvetica, sans-serif, "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    width: 35px;
+    height: 35px;
+    color: #498ba6;
+  }
+}
+@media screen and (min-width: 601px) and (max-width: 1000px) {
+  .container-form-General .container-image .text-container .text-info-general .icons-form-general {
+    color: #498ba6;
+    margin-left: 20px;
+    margin-right: 15px;
+    width: 20px;
+    height: 20px;
+  }
+}
+@media screen and (min-width: 1001px) {
+  .container-form-General .container-image .text-container .text-info-general .icons-form-general {
+    color: #498ba6;
+    margin-left: 20px;
+    margin-right: 15px;
+    width: 20px;
+    height: 20px;
+  }
+}
+@media screen and (min-width: 0px) and (max-width: 600px) {
+  .container-form-General .container-image .text-container .buscar {
+    margin-left: 200px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}
+@media screen and (min-width: 601px) and (max-width: 1000px) {
+  .container-form-General .container-image .text-container .buscar {
+    margin-left: 80px;
+  }
+}
+@media screen and (min-width: 1001px) {
+  .container-form-General .container-image .text-container .buscar {
+    margin-left: 80px;
+  }
+}
+@media screen and (min-width: 0px) and (max-width: 600px) {
+  .container-form-General .columna-actividades-grl {
+    width: 100%;
+    height: 100%;
+  }
+}
+@media screen and (min-width: 601px) and (max-width: 1000px) {
+  .container-form-General .columna-actividades-grl {
+    width: 60%;
+    height: 100%;
+    border: 1px solid red;
+    margin-left: 30px;
+    display: inline-block;
+  }
+}
+@media screen and (min-width: 1001px) {
+  .container-form-General .columna-actividades-grl {
+    width: 100%;
+    height: 100%;
+  }
+}
+@media screen and (min-width: 1001px) {
+  .container-form-General .columna-actividades-grl .fila-actividades-grl {
+    width: 100%;
+    height: 100%;
+  }
+}
+@media screen and (min-width: 601px) and (max-width: 1000px) {
+  .container-form-General .columna-actividades-grl .fila-actividades-grl {
+    width: 100%;
+    height: 100%;
+  }
+}
+@media screen and (min-width: 0px) and (max-width: 600px) {
+  .container-form-General .columna-actividades-grl .fila-actividades-grl .texto-inf-grl {
+    margin-top: 20px;
+    color: #498ba6;
+    display: flex;
+    justify-content: center;
+    font-size: 35px;
+    margin-bottom: 20px;
+  }
+}
+@media screen and (min-width: 601px) and (max-width: 1000px) {
+  .container-form-General .columna-actividades-grl .fila-actividades-grl .texto-inf-grl {
+    display: flex;
+    justify-content: center;
+    color: #498ba6;
+    font-family: "Poppins", sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif, Arial, Helvetica, sans-serif, "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    margin-top: 55px;
+  }
+}
+@media screen and (min-width: 1001px) {
+  .container-form-General .columna-actividades-grl .fila-actividades-grl .texto-inf-grl {
+    display: flex;
+    justify-content: center;
+    color: #498ba6;
+    font-family: "Poppins", sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif, Arial, Helvetica, sans-serif, "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    margin-top: 55px;
+  }
+}
+@media screen and (min-width: 0px) and (max-width: 600px) {
+  .container-form-General .columna-actividades-grl .fila-actividades-grl .columna-2-actividades-grl .container-actividades-grl .actividades-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+}
+@media screen and (min-width: 601px) and (max-width: 1000px) {
+  .container-form-General .columna-actividades-grl .fila-actividades-grl .columna-2-actividades-grl .container-actividades-grl .actividades-text {
+    font-family: "Poppins", sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif, Arial, Helvetica, sans-serif, "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+@media screen and (min-width: 1001px) {
+  .container-form-General .columna-actividades-grl .fila-actividades-grl .columna-2-actividades-grl .container-actividades-grl .actividades-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Poppins", sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif, Arial, Helvetica, sans-serif, "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  }
+}
+@media screen and (min-width: 0px) and (max-width: 600px) {
+  .container-form-General .columna-actividades-grl .fila-actividades-grl .columna-2-actividades-grl .container-actividades-grl .actividades-text-dinamico {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    font-family: "Poppins", sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif, Arial, Helvetica, sans-serif, "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  }
+}
+@media screen and (min-width: 601px) and (max-width: 1000px) {
+  .container-form-General .columna-actividades-grl .fila-actividades-grl .columna-2-actividades-grl .container-actividades-grl .actividades-text-dinamico {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Poppins", sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif, Arial, Helvetica, sans-serif, "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  }
+}
+@media screen and (min-width: 1001px) {
+  .container-form-General .columna-actividades-grl .fila-actividades-grl .columna-2-actividades-grl .container-actividades-grl .actividades-text-dinamico {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Poppins", sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif, Arial, Helvetica, sans-serif, "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  }
+}
+@media screen and (min-width: 1001px) {
+  .container-form-General .columna-actividades-grl .softskills-actividades-grl {
+    margin-bottom: 20px;
+    font-family: "Poppins", sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif, Arial, Helvetica, sans-serif, "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  }
+}/*# sourceMappingURL=details.css.map */

@@ -68,15 +68,16 @@ function App() {
           <Route path="/SendAccessCode" element={<SendAccessCode />} />
           {/* <Route path ='/pruebas' element ={<ListResponsive/>}/> */}
           {/* aqui las rutas de la seccion candidato */}
-          <Route path="/login-candidato" element={<LoginCandidate />} />
-          <Route path="/register" element={<RegisterCandidate />} />
-          <Route path="/dashboard-candidato" element={<DashboardCandidate />}>
-            <Route path="home" element={<HomeCandidate />} />
-            <Route path="profile" element={<ProfileCandidate />} />
-            <Route path="search" element={<Buscar />} />
-            <Route path="detail-vacancy/:id" element={<Details />} />
-            <Route path="app-vacancies" element={<AppVacancyCandidate />} />
-            <Route path="SearchList" element={<ListBuscar />} />
+          <Route path='/login-candidato' element={<LoginCandidate />}/>
+          <Route path='/register-candidato' element={<RegisterCandidate/>}/>
+          <Route path='/dashboard-candidato' element={<DashboardCandidate />}>
+            <Route path='home' element={<HomeCandidate/>}/>
+            <Route path='profile' element={<ProfileCandidate />}/>
+            <Route path='search' element={<Buscar/>}/>
+            <Route path='detail-vacancy/:id' element={<Details/>}/>
+            <Route path='app-vacancies' element={<AppVacancyCandidate/>}/>
+		        <Route path ='SearchList' element ={<ListBuscar/>}/>
+            
           </Route>
           {/* aqui las rutas de la seccion reclutador */}
           <Route path="/login-recruiter" element={<LoginRecruiter />} />

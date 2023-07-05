@@ -1,0 +1,145 @@
+@media screen and (min-width: 0px) and (max-width: 600px) {
+  .sectionThree .last-text {
+    padding-right: 50px;
+    padding-left: 50px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+}
+@media screen and (min-width: 601px) and (max-width: 1000px) {
+  .sectionThree .last-text {
+    padding: 50px;
+  }
+}
+@media screen and (min-width: 1001px) {
+  .sectionThree .last-text {
+    margin-top: 100px;
+    font-family: "Epilogue", sans-serif, Verdana, Geneva, Tahoma;
+    align-items: center;
+    text-indent: 1em;
+    color: #093040;
+    display: flex;
+    align-items: flex-start;
+    padding: 30px;
+  }
+}
+@media screen and (min-width: 0px) and (max-width: 600px) {
+  .sectionThree .main-container .row-main-container .contenedor-imagen {
+    display: none;
+  }
+}
+@media screen and (min-width: 601px) and (max-width: 1000px) {
+  .sectionThree .main-container .row-main-container .contenedor-imagen {
+    display: none;
+  }
+}
+@media screen and (min-width: 1001px) {
+  .sectionThree .main-container .row-main-container .contenedor-imagen {
+    margin-top: 70px;
+    justify-content: space-evenly;
+  }
+}
+@media screen and (min-width: 1001px) {
+  .sectionThree .main-container .row-main-container .contenedor-imagen .profile-pic-1 {
+    width: 350px;
+    height: 350px;
+  }
+}
+@media screen and (min-width: 601px) and (max-width: 1000px) {
+  .sectionThree .main-container .row-main-container .container-ul {
+    width: 100% !important;
+  }
+}
+@media screen and (min-width: 0px) and (max-width: 600px) {
+  .sectionThree .main-container .row-main-container .container-ul .final-text {
+    display: none;
+  }
+}
+@media screen and (min-width: 601px) and (max-width: 1000px) {
+  .sectionThree .main-container .row-main-container .container-ul .final-text {
+    display: none;
+  }
+}
+@media screen and (min-width: 1001px) {
+  .sectionThree .main-container .row-main-container .container-ul .final-text {
+    font: "Montserrat", sans-serif, Verdana, Geneva, Tahoma;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 42px;
+    display: flex;
+    justify-content: start;
+    color: black;
+    margin-top: 3rem;
+  }
+}
+@media screen and (min-width: 0px) and (max-width: 600px) {
+  .sectionThree .main-container .row-main-container .container-ul .slogan {
+    display: none;
+  }
+}
+@media screen and (min-width: 601px) and (max-width: 1000px) {
+  .sectionThree .main-container .row-main-container .container-ul .slogan {
+    display: none;
+  }
+}
+@media screen and (min-width: 1001px) {
+  .sectionThree .main-container .row-main-container .container-ul .slogan {
+    font-family: "Poppins", sans-serif, Verdana, Geneva, Tahoma;
+    font-weight: 400;
+    margin-top: 1rem;
+  }
+}
+@media screen and (min-width: 0px) and (max-width: 600px) {
+  .sectionThree .main-container .row-main-container .container-ul .check-list {
+    padding: 20px;
+  }
+}
+@media screen and (min-width: 601px) and (max-width: 1000px) {
+  .sectionThree .main-container .row-main-container .container-ul .check-list {
+    padding: 30px;
+    width: 100%;
+  }
+}
+@media screen and (min-width: 1001px) {
+  .sectionThree .main-container .row-main-container .container-ul .check-list {
+    padding: 40px;
+    width: 100%;
+  }
+}
+@media screen and (min-width: 0px) and (max-width: 600px) {
+  .sectionThree .main-container .row-main-container .container-ul .check-list .li-register {
+    color: #000;
+    font-family: "Poppins", sans-serif, Verdana, Geneva, Tahoma;
+    font-weight: 400;
+    width: 100%;
+    display: block;
+    line-height: 50px;
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+}
+@media screen and (min-width: 601px) and (max-width: 1000px) {
+  .sectionThree .main-container .row-main-container .container-ul .check-list .li-register {
+    color: black;
+    font-family: "Poppins", sans-serif, Verdana, Geneva, Tahoma;
+    font-weight: 400;
+    line-height: 40px;
+    display: block;
+  }
+}
+@media screen and (min-width: 1001px) {
+  .sectionThree .main-container .row-main-container .container-ul .check-list .li-register {
+    color: black;
+    font-family: "Poppins", sans-serif, Verdana, Geneva, Tahoma;
+    font-weight: 400;
+    line-height: 50px;
+  }
+}
+.sectionThree .main-container .row-main-container .container-ul .check-list .li-register .icon-check {
+  margin-right: 1rem;
+}
+@media screen and (min-width: 0px) and (max-width: 600px) {
+  .sectionThree .main-container .row-main-container .container-ul .check-list .li-register .icon-check {
+    margin-right: 0.5rem;
+  }
+}/*# sourceMappingURL=sectionthree.css.map */

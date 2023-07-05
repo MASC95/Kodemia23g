@@ -117,7 +117,8 @@ export const RegisterRecruiter=()=>{
                            placeholder="Email"/>
                            
                     </div>
-                    {/* <div className="form-group">
+                    {/* <div className="form-group">git status
+                    
                             <select className="form-control" id="role" value={formValues.role} onChange={onFormInputChange} >
                                 <option value="" selected disabled>Rol</option>
                                 <option value='candidato'>candidato</option>

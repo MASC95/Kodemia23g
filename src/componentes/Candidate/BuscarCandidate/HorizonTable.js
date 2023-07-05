@@ -11,6 +11,12 @@ const HorizonTable = ({
   my_vacancies,
   handleStopApplying,
   handleApply,
+  handlePageChange,
+  handlePerRowsChange,
+  loading,
+  totalRows,
+  currentPage,
+  perPage,
 }) => {
   const data = vacancies?.map((item, index) => ({
     ...item,
@@ -124,6 +130,11 @@ const HorizonTable = ({
           defaultSortField="#"
           defaultSortAsc={true}
           pagination
+          paginationServer
+          paginationTotalRows={totalRows}
+          paginationDefaultPage={currentPage}
+          onChangeRowsPerPage={handlePerRowsChange}
+          onChangePage={handlePageChange}
           highlightOnHover
           dense
         />

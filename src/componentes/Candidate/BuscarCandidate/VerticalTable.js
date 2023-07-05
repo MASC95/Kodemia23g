@@ -1,5 +1,5 @@
 import React from "react";
-import './scss/verticaltable.scss'
+import "./scss/verticaltable.scss";
 import { Link } from "react-router-dom";
 import { myId } from "../../lib/myLib";
 
@@ -9,7 +9,6 @@ const VerticalTable = ({
   handleStopApplying,
   handleApply,
 }) => {
-  
   return (
     <div className="d-block d-md-none ">
       {vacancies &&
@@ -18,31 +17,23 @@ const VerticalTable = ({
             <tbody className="body-table-v">
               <tr className="vertical-table-title-1 ">
                 <th className="gato">#</th>
-                <td className="titulo" >Título</td>
+                <td className="titulo">Título</td>
               </tr>
               <tr className="vertical-table-content-1">
                 <th className="numeros">{index + 1}</th>
                 <td className="titulo-contenido">{item.title}</td>
               </tr>
               <tr className="vertical-table-title-2">
-                <th  className="tipo">
-                  Tipo
-                </th>
-                <td  className="modalidad">
-                  Modalidad
-                </td>
+                <th className="tipo">Tipo</th>
+                <td className="modalidad">Modalidad</td>
               </tr>
               <tr className="vertical-table-content-2">
                 <th className="tipo">{item.type}</th>
                 <td className="modo">{item.mode}</td>
               </tr>
               <tr className="vertical-table-title-3">
-                <th  className="salario">
-                  Salario
-                </th>
-                <td  className="opciones">
-                  Opciones
-                </td>
+                <th className="salario">Salario</th>
+                <td className="opciones">Opciones</td>
               </tr>
               <tr className="vertical-table-content-3">
                 <th className="salario-1">{item.salary}</th>
@@ -78,7 +69,12 @@ const VerticalTable = ({
                     </button>
                   )}
                   <Link to={`/dashboard-candidato/detail-vacancy/${item._id}`}>
-                  <button type="submit" className="btn btn-info text-light m-2 ">Abrir</button>
+                    <button
+                      type="submit"
+                      className="btn btn-info text-light m-2 "
+                    >
+                      Abrir
+                    </button>
                   </Link>
                 </td>
               </tr>

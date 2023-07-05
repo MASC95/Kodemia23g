@@ -4,6 +4,7 @@ import {
   FaBook,
   FaCalendarCheck,
   FaDollarSign,
+  FaHandsHelping,
 } from "react-icons/fa";
 import ViewTableSkills from "../../Recruiter/SoftSkills/ViewTableSkills";
 import imgProfile from "../../Recruiter/assets/img/perfil2.jpg";
@@ -150,105 +151,101 @@ export const Details = () => {
       console.log(error);
     }
   };
-  console.log("dataaaaaaaa vacany", dataVacancy);
+
   return (
-  
-      <div className="row text-dark">
+    <div className="row">
+      <div className="col-sm-12 col-md-4 col-lg-4 d-flex flex-column justify-content-center align-items-center first-column">
+        {dataVacancy && dataVacancy.avatar_url ? (
+          <img
+            src={dataVacancy.avatar_url}
+            style={{ width: "30vw" }}
+            alt="profile-pic"
+            className=" my-5 rounded avatar-url"
+          />
+        ) : (
+          <FaUserCircle style={{ width: "30vw" }} className=" my-5" />
+        )}
 
-        <div className="col-12 col-md-4 d-flex flex-column justify-content-center align-items-center">
-          {dataVacancy && dataVacancy.avatar_url ? (
-            <img
-              src={dataVacancy.avatar_url}
-              style={{width:'30vw'}}
-              alt="profile-pic"
-              className=" my-5 rounded"
-            />
+        <div className="text-container">
+          <p className=" text-info-general">
+            <b>Nombre de la empresa:</b> {dataVacancy?.companyName}
+          </p>
+          <p className=" text-info-general">
+            <FaAddressBook className="icons-form-general" /> <b>Ciudad:</b>{" "}
+            {dataVacancy?.city}
+          </p>
+          <p className=" text-info-general">
+            <FaBook className="icons-form-general" /> <b>Modalidad:</b>{" "}
+            {dataVacancy?.mode}
+          </p>
+          <p className=" text-info-general">
+            <FaCalendarCheck className="icons-form-general" /> <b>Tipo:</b>{" "}
+            {dataVacancy?.type}
+          </p>
+          <p className=" text-info-general">
+            <FaDollarSign className="icons-form-general" /> <b>Salario:</b>{" "}
+            {dataVacancy?.salary}
+          </p>
+          {my_vacancies &&
+          my_vacancies?.find((myVac) => myVac._id === myParams.id) ===
+            undefined ? (
+            <button
+              type="button"
+              className="btn btn-outline-info buscar "
+              onClick={handleApply}
+              disabled={
+                my_vacancies?.find((myVac) => myVac._id === myParams.id) ===
+                undefined
+                  ? false
+                  : true
+              }
+            >
+              {my_vacancies &&
+              my_vacancies?.find((myVac) => myVac._id === myParams.id) ===
+                undefined
+                ? "Aplicar"
+                : "Aplicando"}
+            </button>
           ) : (
-            <FaUserCircle style={{width:'30vw'}} className=" my-5" />
-          )}
-
-          <div className="text-dark text-container">
-            <p className=" text-info-general">
-              <b>Nombre de la empresa:</b> {dataVacancy?.companyName}
-            </p>
-            <p className=" text-info-general">
-              <FaAddressBook className="icons-form-general" /> <b>Ciudad:</b>{" "}
-              {dataVacancy?.city}
-            </p>
-            <p className=" text-info-general">
-              <FaBook className="icons-form-general" /> <b>Modalidad:</b>{" "}
-              {dataVacancy?.mode}
-            </p>
-            <p className=" text-info-general">
-              <FaCalendarCheck className="icons-form-general" /> <b>Tipo:</b>{" "}
-              {dataVacancy?.type}
-            </p>
-            <p className=" text-info-general">
-              <FaDollarSign className="icons-form-general" /> <b>Salario:</b>{" "}
-              {dataVacancy?.salary}
-            </p>
-            {my_vacancies &&
-            my_vacancies?.find((myVac) => myVac._id === myParams.id) ===
-              undefined ? (
+            <>
               <button
                 type="button"
-                className="btn btn-outline-info buscar "
-                onClick={handleApply}
-                disabled={
-                  my_vacancies?.find((myVac) => myVac._id === myParams.id) ===
-                  undefined
-                    ? false
-                    : true
-                }
+                className="btn btn-outline-danger"
+                id={myParams.id}
+                onClick={handleStopApplying}
+                style={{ marginLeft: "50px" }}
               >
-                {my_vacancies &&
-                my_vacancies?.find((myVac) => myVac._id === myParams.id) ===
-                  undefined
-                  ? "Aplicar"
-                  : "Aplicando"}
+                Dejar de aplicar
               </button>
-            ) : (
-              <>
-                <button
-                  type="button"
-                  className="btn btn-outline-danger"
-                  id={myParams.id}
-                  onClick={handleStopApplying}
-                  style={{ marginLeft: "50px" }}
-                >
-                  Dejar de aplicar
-                </button>
-              </>
-            )}
+            </>
+          )}
 
-            {showAlert && <AlertComponent />}
-          </div>
+          {showAlert && <AlertComponent />}
         </div>
+      </div>
 
-        <div className="col-12 col-md-8 px-3">
-          <div className="row mb-4 fila-actividades-grl">
-            <h2 className="text-start texto-inf-grl">Información General</h2>
-            <div className="col columna-2-actividades-grl">
-              <div className="form-outline bg-gray container-actividades-grl">
-                <p className="text-start actividades-text">
-                  <b>Actividades</b>
-                </p>
-                <p className="text-start actividades-text-dinamico">
-                  {dataVacancy?.activities}
-                </p>
-              </div>
+      <div className="col-sm-12 col-md-8 col-lg-8 px-3 second-column">
+        <div className="row mb-4 fila-actividades-grl">
+          <h2 className="texto-inf-grl">Información General</h2>
+          <div className="col columna-2-actividades-grl">
+            <div className="form-outline  container-actividades-grl">
+              <p className="actividad">Actividades</p>
+              <p className=" actividades-text-dinamico">
+                {dataVacancy?.activities}
+              </p>
             </div>
           </div>
-          <h3 className="softskills-actividades-grl">
-            Soft Skills Solicitadas
-          </h3>
-          {dataVacancy?.job_skills && (
-            <ViewTableSkills listSkils={dataVacancy?.job_skills} />
-          )}
         </div>
-
+        <h3 className="softskills-solicitadas">
+          {" "}
+          <FaHandsHelping className="dev" />
+          Soft Skills Solicitadas
+        </h3>
+        {dataVacancy?.job_skills && (
+          <ViewTableSkills listSkils={dataVacancy?.job_skills} />
+        )}
       </div>
-  
+    </div>
   );
 };
 

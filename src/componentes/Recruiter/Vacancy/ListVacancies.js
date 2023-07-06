@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import DataTable from "react-data-table-component";
 import DataTableExtensions from "react-data-table-component-extensions";
 import { Link } from "react-router-dom";
@@ -13,18 +13,15 @@ const ListVacancies = ({
   loading,
   totalRows,
   currentPage,
-  perPage
+  perPage,
 }) => {
+  useEffect(() => {
+    console.log("Nuevo valor de limit:..", perPage);
+  }, [perPage]);
 
-
-    useEffect(()=>{
-        console.log('Nuevo valor de limit:..',perPage)
-      },[perPage])
-
-const childHandleDeleteSkill = (index)=>{
+  const childHandleDeleteSkill = (index) => {
     handleDeleteSkill(index);
-}
-
+  };
 
   const data = vacancyAll?.map((item, index) => {
     return {

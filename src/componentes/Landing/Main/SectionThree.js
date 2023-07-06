@@ -18,8 +18,8 @@ const SectionThree = () => {
         empleo.
       </h1>
 
-      <div class="container-fluid main-container">
-        <div class="row gx-1 row-main-container">
+      <div className="container-fluid main-container">
+        <div className="row gx-1 row-main-container">
           <div className="col-md-3 contenedor-imagen d-flex justify-contenr-end">
             <img
               className=" rounded-circle d-none d-lg-block profile-pic-1"
@@ -27,7 +27,7 @@ const SectionThree = () => {
               alt="profile-pic-1"
             />
           </div>
-          <div class="col-xs-12 col-sm-12 col-md-9  container-ul">
+          <div className="col-xs-12 col-sm-12 col-md-9  container-ul">
             <h2
               className="final-text text-start d-sm-text-center"
               style={{

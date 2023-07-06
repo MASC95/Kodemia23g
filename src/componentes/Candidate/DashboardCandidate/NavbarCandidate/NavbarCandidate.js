@@ -37,7 +37,7 @@ const NavbarCandidate = () => {
     setIsErrorImg(false);
   };
   return (
-    <Navbar expand="lg" className="nav w-100 c-navbar">
+    <Navbar expand="lg" className="nav w-100 main-navbar-color">
       <Container className="container-fluid contenedor">
         <Navbar.Brand href="#home" className="logo d-flex gap-2">
           {" "}

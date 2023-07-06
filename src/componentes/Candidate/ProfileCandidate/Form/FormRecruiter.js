@@ -14,7 +14,9 @@ import "../SkillsSection.js";
 import Softskills from "../../../Recruiter/SoftSkills/Form/SoftSkills";
 import { FaUserCircle } from "react-icons/fa";
 import swal from "sweetalert2";
-import 'sweetalert2/dist/sweetalert2.css';
+import "sweetalert2/dist/sweetalert2.css";
+import TableSkillsCandidate from "../TableSkillsCandidate/TableSkillsCandidate";
+
 //const localEndPoinst = "http://localhost:4000/api/v1/users/";
 
 const initDataForm = {
@@ -255,6 +257,7 @@ const FormRecruiter = () => {
                       >
                         Nombre:
                       </label>
+
                       <Field
                         type="text"
                         id="name"
@@ -461,11 +464,13 @@ const FormRecruiter = () => {
                   </div>
                 </div>
 
-                <Softskills
+                <TableSkillsCandidate setDataListSkills={setListSkills} />
+
+                {/* <Softskills
                   setListSkills={setListSkills}
                   isCandidate={true}
                   skillsCandidate={listSkills}
-                />
+                /> */}
 
                 <div className="buttons_actions d-flex justify-content-center gap-3">
                   {/* <button type="button" className="buttons btn btn-info">Cancelar</button> */}

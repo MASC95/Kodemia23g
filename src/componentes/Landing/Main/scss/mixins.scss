@@ -93,3 +93,11 @@
     left: 100%;
   }
 }
+
+@mixin styles($padding, $color, $margin-top) {
+  padding: $padding;
+  color: $color;
+  margin-top: $margin-top;
+  font-family: "Popins", sans-serif, "Lucida Sans", "Lucida Sans Regular",
+    "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}

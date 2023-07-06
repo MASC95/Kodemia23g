@@ -1,9 +1,9 @@
 import React from "react";
 import "./scss/style.scss";
-import candidate from "../../Candidate/img/Candidate.jpg";
-import recruiter from "../../Candidate/img/Recruiter.jpg";
+import candidate from "../../Candidate/img/Candidate.avif";
+import recruiter from "../../Candidate/img/Recruiter.avif";
 import "./scss/section.scss";
-import { Link } from "react-router-dom";
+
 const Section = () => {
   const handleClickCandidate = () => {
     window.location.href = "/login-candidato";
@@ -42,7 +42,11 @@ const Section = () => {
             </div>
             {/*  </Link> */}
           </div>
-          <div style={{cursor:'pointer'}} className="col-5 columna " onClick={handleClickCandidate}>
+          <div
+            style={{ cursor: "pointer" }}
+            className="col-5 columna "
+            onClick={handleClickCandidate}
+          >
             <div className="cartas">
               <div className=" img-div">
                 <img src={recruiter} alt="Imagen" className="card-img-top" />

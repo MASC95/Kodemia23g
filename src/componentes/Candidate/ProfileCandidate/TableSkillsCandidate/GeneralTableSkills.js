@@ -11,11 +11,13 @@ const GeneralTableSkills = ({
   handlePageChangeGeneralSkills,
   handlePerRowsChangeGeneralSkills,
   currentPageGeneralSkills,
+  handleAddSkill,
 }) => {
   
 
-  const childHandleAddSkill = (index) => {
-    console.log("Agregando Skill:..",index);
+  const childHandleAddSkill = (id) => {
+    //console.log("Agregando Skill:..",id);
+    handleAddSkill(id);
   };
   /* {
     name: "#",

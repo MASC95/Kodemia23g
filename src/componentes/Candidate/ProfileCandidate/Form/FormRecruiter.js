@@ -464,7 +464,7 @@ const FormRecruiter = () => {
                   </div>
                 </div>
 
-                <TableSkillsCandidate />
+                <TableSkillsCandidate setDataListSkills={setListSkills} />
 
                 {/* <Softskills
                   setListSkills={setListSkills}

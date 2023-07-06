@@ -14,8 +14,9 @@ import "../SkillsSection.js";
 import Softskills from "../../../Recruiter/SoftSkills/Form/SoftSkills";
 import { FaUserCircle } from "react-icons/fa";
 import swal from "sweetalert2";
-import 'sweetalert2/dist/sweetalert2.css';
+import "sweetalert2/dist/sweetalert2.css";
 import TableSkillsCandidate from "../TableSkillsCandidate/TableSkillsCandidate";
+
 //const localEndPoinst = "http://localhost:4000/api/v1/users/";
 
 const initDataForm = {
@@ -256,6 +257,7 @@ const FormRecruiter = () => {
                       >
                         Nombre:
                       </label>
+
                       <Field
                         type="text"
                         id="name"
@@ -462,7 +464,7 @@ const FormRecruiter = () => {
                   </div>
                 </div>
 
-                <TableSkillsCandidate/>
+                <TableSkillsCandidate />
 
                 {/* <Softskills
                   setListSkills={setListSkills}

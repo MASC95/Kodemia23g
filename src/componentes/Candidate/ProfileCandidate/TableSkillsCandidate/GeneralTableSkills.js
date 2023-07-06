@@ -58,7 +58,7 @@ const GeneralTableSkills = ({
       cell: (d) => [
         <button
           type="button"
-          className=" btn btn-outline-primary"
+          className=" btn btn-outline-primary my-1"
           onClick={childHandleAddSkill.bind(this, d.id)}
         >
           <FaPlus className="" />

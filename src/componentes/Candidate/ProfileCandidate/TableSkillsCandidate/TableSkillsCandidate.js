@@ -4,6 +4,7 @@ import SkillsCandidate from "./SkillsCandidate";
 import axios from "axios";
 import { endpointsGral } from "../../../Recruiter/services/vacancy";
 import useJob from "../../../../hooks/useJob.js";
+import swal from "sweetalert2";
 
 const TableSkillsCandidate = ({ setDataListSkills }) => {
   //datos de GeneralSkills
@@ -76,6 +77,13 @@ const TableSkillsCandidate = ({ setDataListSkills }) => {
   };
 
   const handleAddSkill = (id) => {
+
+    const duplicated = dataSkillsInUser.find((item) => item._id === id);
+    if(duplicated){
+      swal.fire("La Skill ya esta en tu perfil !!!");
+      return
+    }
+
     const selectedSkill = dataGeneralSkills.find((item) => item._id === id);
     //en el front podemos incluir el skill a user_skills de dataCandidate(en el LocalStorage)
     if (selectedSkill) {
@@ -83,18 +91,37 @@ const TableSkillsCandidate = ({ setDataListSkills }) => {
         ...dataLocalStorage,
         user_skills: [...user_skills, selectedSkill],
       });
+      swal.fire("La Skill fue agregada con exito, recuerda guardar tus cambios !!!");
     }
   };
 
   const handleDeleteSkill = (id) => {
     console.log("Eliminando Skill(papa):..", id);
-    const selectedSkill = dataSkillsInUser.find((item) => item._id === id);
-    if (selectedSkill) {
-      setDataLocalStorage({
-        ...dataLocalStorage,
-        user_skills: dataSkillsInUser.filter((item)=>item._id!==id),
-      });
-    }
+    swal
+    .fire({
+      title: "Mensaje de confirmación",
+      text: "¿Estás seguro de que quieres eliminar esta Skill?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonColor: "#0CF574",
+      cancelButtonColor: "#FF2F2F",
+      confirmButtonText: "Eliminar",
+      cancelButtonText: "Cancelar",
+    })
+    .then((result) => {
+      if (result.isConfirmed) {
+        const selectedSkill = dataSkillsInUser.find((item) => item._id === id);
+        if (selectedSkill) {
+          setDataLocalStorage({
+            ...dataLocalStorage,
+            user_skills: dataSkillsInUser.filter((item)=>item._id!==id),
+          });
+          swal.fire("La Skill fue eliminada correctamente, recuerda guardar tus cambios !!!");
+        }    
+      }
+    });
+
+    
   };
   return (
     <div>

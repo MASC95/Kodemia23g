@@ -2,7 +2,7 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import OffCanvasCandidate from "../OffCanvasCandidate/OffCanvasCandidate";
 import Button from "react-bootstrap/Button";
 import { FaBars } from "react-icons/fa";
@@ -30,6 +30,20 @@ const NavbarCandidate = () => {
     setDataLocalStorage,
   ] = useJob();
 
+  const [isErrorImg, setIsErrorImg] = useState(false);
+  useEffect(() => {
+    console.log("Reloading Navbar:...");
+  }, [isErrorImg]);
+
+  const handleError = () => {
+    console.log("Error al cargar la Imagen:...");
+    setIsErrorImg(true);
+  };
+
+  const handleLoad = () => {
+    console.log("Imagen cargada con exito:...");
+    setIsErrorImg(false);
+  };
   const placement = "bottom";
   const [showDropdown, setShowDropdown] = useState(false);
 
@@ -42,20 +56,11 @@ const NavbarCandidate = () => {
   };
   // console.log("dataCandidate...", dataCandidate);
   // console.log("dataRecruiter...", dataRecruiter);}
-  const [isErrorImg, setIsErrorImg] = useState(false);
+
   const handleShowOffCanvas = () => {
     setShowOffcanvas((prev) => !prev);
   };
 
-  const handleError = () => {
-    console.log("Error al cargar la Imagen:...");
-    setIsErrorImg(true);
-  };
-
-  const handleLoad = () => {
-    console.log("Imagen cargada con exito:...");
-    setIsErrorImg(false);
-  };
   return (
     <Navbar expand="lg" className="nav w-100 main-navbar-color">
       <Container className="container-fluid contenedor">

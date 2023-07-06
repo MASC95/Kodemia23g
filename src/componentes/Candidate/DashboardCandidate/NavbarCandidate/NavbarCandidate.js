@@ -8,8 +8,17 @@ import Button from "react-bootstrap/Button";
 import { FaBars } from "react-icons/fa";
 import logo from "../../../Recruiter/assets/img/logo.png";
 import "./navbarcandidate.scss";
-import { FaUserCircle } from "react-icons/fa";
+import { FaUserCircle, FaBell, FaSignOutAlt, FaUser } from "react-icons/fa";
+import { Link } from "react-router-dom";
+
 import useJob from "../../../../hooks/useJob";
+import {
+  OverlayTrigger,
+  Tooltip,
+  DropdownButton,
+  Dropdown,
+} from "react-bootstrap";
+
 const NavbarCandidate = () => {
   const [showOffcanvas, setShowOffcanvas] = useState(false);
   const [
@@ -20,6 +29,17 @@ const NavbarCandidate = () => {
     dataLocalStorage,
     setDataLocalStorage,
   ] = useJob();
+
+  const placement = "bottom";
+  const [showDropdown, setShowDropdown] = useState(false);
+
+  const handleDropdownToggle = () => {
+    setShowDropdown(!showDropdown);
+  };
+
+  const handleDropdownSelect = (eventKey) => {
+    console.log("opción seleccionada:", eventKey);
+  };
   // console.log("dataCandidate...", dataCandidate);
   // console.log("dataRecruiter...", dataRecruiter);}
   const [isErrorImg, setIsErrorImg] = useState(false);
@@ -72,23 +92,123 @@ const NavbarCandidate = () => {
           </p>
 
           {dataCandidate.avatar_url ? (
-            <img
-              src={dataCandidate.avatar_url}
-              alt="candidate-profile-pic"
-              className="candidate-profile-pic "
-              onError={handleError}
-              onLoad={handleLoad}
-            />
+            <OverlayTrigger
+              placement={placement}
+              overlay={
+                <Tooltip id={`tooltip-${placement}`}>
+                  Welcome Back! {dataCandidate.email}
+                </Tooltip>
+              }
+            >
+              <div>
+                <img
+                  src={dataCandidate.avatar_url}
+                  alt="candidate-profile-pic"
+                  className="candidate-profile-pic "
+                  onError={handleError}
+                  onLoad={handleLoad}
+                  onClick={handleDropdownToggle}
+                />
+                {showDropdown && (
+                  <Dropdown.Menu
+                    show={showDropdown}
+                    align="end"
+                    onSelect={handleDropdownSelect}
+                    style={{
+                      background: "rgba(119, 197, 229, 0.13)",
+                      boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+                      backdropFilter: "blur(5px)",
+                      WebkitBackdropFilter: "blur(5px)",
+                      border: "1px solid rgba(119, 197, 229, 0.3)",
+                    }}
+                  >
+                    <Dropdown.Item
+                      eventKey="opcion1"
+                      style={{
+                        color: "#498BA6",
+                        fontFamily:
+                          "Poppins, sans-serif, Verdana, Geneva, Tahoma",
+                      }}
+                      as={Link}
+                      to="/dashboard-candidato/profile"
+                    >
+                      <FaUser /> Mi Cuenta
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                      eventKey="opcion2"
+                      style={{
+                        color: "#498BA6",
+                        fontFamily:
+                          "Poppins, sans-serif, Verdana, Geneva, Tahoma",
+                      }}
+                      as={Link}
+                      to="/"
+                    >
+                      <FaSignOutAlt /> Cerrar Sesión
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                      eventKey="opcion3"
+                      style={{
+                        color: "#498BA6",
+                        fontFamily:
+                          "Poppins, sans-serif, Verdana, Geneva, Tahoma",
+                      }}
+                    >
+                      <FaBell className="animate__animated animate__headShake" />{" "}
+                      Notificaciones
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                )}
+              </div>
+            </OverlayTrigger>
           ) : (
-            <FaUserCircle
-              className="candidate-profile-icon"
-              style={{
-                width: "40px",
-                height: "40px",
-                color: "#FFF",
-                marginLeft: "30px",
-              }}
-            />
+            <OverlayTrigger
+              placement={placement}
+              overlay={
+                <Tooltip id={`tooltip-${placement}`}>
+                  Welcome Back! {dataCandidate.email}
+                </Tooltip>
+              }
+            >
+              <div>
+                <FaUserCircle
+                  className="candidate-profile-icon"
+                  style={{
+                    width: "40px",
+                    height: "40px",
+                    color: "#FFF",
+                    marginLeft: "30px",
+                  }}
+                />
+                {showDropdown && (
+                  <Dropdown.Menu
+                    show={showDropdown}
+                    align="end"
+                    onSelect={handleDropdownSelect}
+                    style={{
+                      background: "rgba(119, 197, 229, 0.13)",
+                      boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+                      backdropFilter: "blur(5px)",
+                      WebkitBackdropFilter: "blur(5px)",
+                      border: "1px solid rgba(119, 197, 229, 0.3)",
+                    }}
+                  >
+                    <Dropdown.Item eventKey="opcion1">
+                      <FaSignOutAlt />
+                      Cerrar Sesión
+                    </Dropdown.Item>
+                    <Dropdown.Item eventKey="opcion2">
+                      <FaUser />
+                      Mi Cuenta
+                    </Dropdown.Item>
+                    <Dropdown.Item eventKey="opcion3">
+                      <FaBell className="animate__animated animate__headShake" />
+                      Notificaciones
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                )}
+              </div>
+            </OverlayTrigger>
           )}
         </div>
       </Container>

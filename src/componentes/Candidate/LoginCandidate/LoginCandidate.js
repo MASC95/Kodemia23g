@@ -50,13 +50,9 @@ export const LoginCandidate = () => {
         console.log('formValues:..',formValues);
         const loginCandidate = await endpoints.loginAxios(formValues);
         setFormValues(loginCandidate);
-
         console.log("loginCandidate:..", loginCandidate);
-
         setDataLocalStorage({ ...loginCandidate });
-
-        
-        const role = dataCandidate.role;
+        const role = loginCandidate?.role;
         if (role === "candidato") {
           swal({
             title: "Bienvenido de vuelta!",

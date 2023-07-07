@@ -40,7 +40,9 @@ const TableSkillsCandidate = ({ setDataListSkills }) => {
 
   const fetchSkillsInUser = async () => {
     //recuperar los datos(skills) del candidato
+
     setLoadingSkillsInUser(true);
+
     setDataSkillsInUser([...user_skills]);
     //setTotalRowsSkillsInUser(user_skills.length);
     //console.log('Buscando Skilllsss',user_skills)
@@ -77,11 +79,10 @@ const TableSkillsCandidate = ({ setDataListSkills }) => {
   };
 
   const handleAddSkill = (id) => {
-
     const duplicated = dataSkillsInUser.find((item) => item._id === id);
-    if(duplicated){
+    if (duplicated) {
       swal.fire("La Skill ya esta en tu perfil !!!");
-      return
+      return;
     }
 
     const selectedSkill = dataGeneralSkills.find((item) => item._id === id);
@@ -91,37 +92,41 @@ const TableSkillsCandidate = ({ setDataListSkills }) => {
         ...dataLocalStorage,
         user_skills: [...user_skills, selectedSkill],
       });
-      swal.fire("La Skill fue agregada con exito, recuerda guardar tus cambios !!!");
+      swal.fire(
+        "La Skill fue agregada con exito, recuerda guardar tus cambios !!!"
+      );
     }
   };
 
   const handleDeleteSkill = (id) => {
     console.log("Eliminando Skill(papa):..", id);
     swal
-    .fire({
-      title: "Mensaje de confirmación",
-      text: "¿Estás seguro de que quieres eliminar esta Skill?",
-      icon: "question",
-      showCancelButton: true,
-      confirmButtonColor: "#0CF574",
-      cancelButtonColor: "#FF2F2F",
-      confirmButtonText: "Eliminar",
-      cancelButtonText: "Cancelar",
-    })
-    .then((result) => {
-      if (result.isConfirmed) {
-        const selectedSkill = dataSkillsInUser.find((item) => item._id === id);
-        if (selectedSkill) {
-          setDataLocalStorage({
-            ...dataLocalStorage,
-            user_skills: dataSkillsInUser.filter((item)=>item._id!==id),
-          });
-          swal.fire("La Skill fue eliminada correctamente, recuerda guardar tus cambios !!!");
-        }    
-      }
-    });
-
-    
+      .fire({
+        title: "Mensaje de confirmación",
+        text: "¿Estás seguro de que quieres eliminar esta Skill?",
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonColor: "#0CF574",
+        cancelButtonColor: "#FF2F2F",
+        confirmButtonText: "Eliminar",
+        cancelButtonText: "Cancelar",
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          const selectedSkill = dataSkillsInUser.find(
+            (item) => item._id === id
+          );
+          if (selectedSkill) {
+            setDataLocalStorage({
+              ...dataLocalStorage,
+              user_skills: dataSkillsInUser.filter((item) => item._id !== id),
+            });
+            swal.fire(
+              "La Skill fue eliminada correctamente, recuerda guardar tus cambios !!!"
+            );
+          }
+        }
+      });
   };
   return (
     <div>

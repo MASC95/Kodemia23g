@@ -45,7 +45,7 @@ export const LoginRecruiter=()=>{
             setFormValues(loginRecruiter);
             console.log('loginRecruiter:..',loginRecruiter);
             setDataLocalStorage({...loginRecruiter});
-            const role = dataRecruiter.role;
+            const role = loginRecruiter?.role;
             if (role === "empresa") {
               swal({
                 title: "Bienvenido de vuelta!",

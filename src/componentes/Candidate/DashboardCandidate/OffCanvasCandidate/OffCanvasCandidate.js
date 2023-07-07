@@ -16,15 +16,15 @@ function OffCanvasCandidate({ showOffcanvas, handleShowOffcanvas }) {
     setDataCandidate,
     dataRecruiter,
     setDataRecruiter,
-    initDataCandidate,
-    initDataRecrutier,
+    dataLocalStorage,
+    setDataLocalStorage,
   ] = useJob();
   const navigate = useNavigate();
 
   const logout = (e) => {
-    window.localStorage.setItem("accessToken", "");
-    setDataCandidate(initDataCandidate);
-    setDataRecruiter(initDataRecrutier);
+    setDataLocalStorage({});
+    setDataCandidate({});
+    setDataRecruiter({});
     navigate("/");
   };
 

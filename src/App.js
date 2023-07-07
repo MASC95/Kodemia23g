@@ -30,6 +30,7 @@ import JobContext from "./context/JobContext";
 import { useEffect, useState } from "react";
 import SendAccessCode from "./componentes/SendAccessCode/SendAccessCode";
 import { useLocalStorage } from "usehooks-ts";
+import { useNavigate } from "react-router-dom";
 //import ListResponsive from './componentes/Candidate/BuscarCandidate/ListResponsive';
 
 function App() {
@@ -37,8 +38,20 @@ function App() {
     "accessToken",
     true
   );
-  const [dataRecruiter, setDataRecruiter] = useState(dataLocalStorage);
-  const [dataCandidate, setDataCandidate] = useState(dataLocalStorage);
+  const [dataRecruiter, setDataRecruiter] = useState({});
+  const [dataCandidate, setDataCandidate] = useState({});
+  const navigate=useNavigate();
+
+  useEffect(()=>{
+    if (dataLocalStorage?.role === "candidato") {
+      setDataCandidate(dataLocalStorage);
+      navigate('/dashboard-candidato/home');
+    }
+    if (dataLocalStorage?.role === "empresa") {
+      setDataRecruiter(dataLocalStorage);
+      navigate('/dashboard-recruiter/home');
+    }
+  },[])
 
   useEffect(() => {
     console.log("Actualizando dataLocalStorage:..");
@@ -50,6 +63,10 @@ function App() {
       setDataRecruiter(dataLocalStorage);
     }
   }, [dataLocalStorage]);
+
+  useEffect(()=>{
+
+  },[dataCandidate,dataRecruiter])
 
   return (
     <JobContext.Provider
@@ -82,7 +99,7 @@ function App() {
           {/* aqui las rutas de la seccion reclutador */}
           <Route path="/login-recruiter" element={<LoginRecruiter />} />
           <Route path="/register-recruiter" element={<RegisterRecruiter />} />
-          <Route path="Dashboard-Recruiter" element={<DashboardRecruiter />}>
+          <Route path="/dashboard-recruiter" element={<DashboardRecruiter />}>
             <Route path="home" element={<HomeRecruiter />} />
             <Route path="profile" element={<ProfileRecruiter />} />
             <Route path="vacancy" element={<Vacancy />} />

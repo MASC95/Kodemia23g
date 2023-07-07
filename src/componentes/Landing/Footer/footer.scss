@@ -1,10 +1,12 @@
 @import "../../../App.scss";
+@import "../../Landing//Main//scss/mixins.scss";
 $color-icon: #535c68;
 $social-icon1: #e4405f;
 $social-icon2: #3b5999;
 $social-icon3: #e4405f;
 $social-icon4: #cd201f;
 $social-icon5: #0077b5;
+
 .iconsSocialMedia-F {
   border-radius: 10vw;
   background-color: $jobinderHover;
@@ -47,10 +49,27 @@ $social-icon5: #0077b5;
 }
 
 .text-footer {
-  padding: 1vw;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  @include mobile {
+    padding: 1vw;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+  }
+  @include tablet {
+    padding: 1vw;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    width: 100%;
+  }
+  @include desktop {
+    padding: 1vw;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
   &:hover {
     color: $jobinderColor3;

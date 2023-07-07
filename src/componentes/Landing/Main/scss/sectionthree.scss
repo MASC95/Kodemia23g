@@ -5,12 +5,15 @@
     @include mobile {
       padding-right: 50px;
       padding-left: 50px;
-      margin-top: 50px;
       margin-bottom: 50px;
+      text-align: center;
     }
 
     @include tablet {
       padding: 50px;
+      padding-right: 50px;
+      padding-left: 50px;
+      text-align: center;
     }
 
     @include desktop {

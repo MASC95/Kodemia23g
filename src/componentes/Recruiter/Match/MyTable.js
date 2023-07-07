@@ -6,8 +6,20 @@ import { myId } from "../../lib/myLib";
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 
-const MyTable = ({ dataByUserCandidate,job_skills, dadHandleHideofPanel  }) => {
-    
+const MyTable = ({ 
+  dataByUserCandidate,
+  dataInfoVacancy, 
+  dadHandleHideofPanel,
+  handlePageChange,
+  handlePerRowsChange,
+  loading,
+  totalRows,
+  currentPage,
+  dadHandleofPanel,
+  isButtonDisabled,
+  buttonState
+  }) => {
+
     useEffect(()=>{
         console.log('MyTable datos:..',dataByUserCandidate);
     },[])
@@ -17,37 +29,23 @@ const MyTable = ({ dataByUserCandidate,job_skills, dadHandleHideofPanel  }) => {
         dadHandleHideofPanel(index);
     } 
     
-    const handleAddPanel= ()=>{
-
+    const handleAddPanel= (index)=>{
+      console.log('Agregando usuario a panel (MyTable):..',index);
+      dadHandleofPanel(index);
     }
 
-
-
-    const applicants = dataByUserCandidate;
-    const onlyApplicans = applicants?.filter((objeto, indice) => {
-      var objetoString = JSON.stringify(objeto);
-      return (
-        applicants.findIndex((obj, i) => {
-          return JSON.stringify(obj) === objetoString;
-        }) === indice
-      );
-    });
-
-    const skills = job_skills;
-
-   
-
-  // let userSkills=[]
-  let jobSkilss = [];
-  const retriveVacancy = skills?.map((item) => {
+  const retriveVacancy = dataInfoVacancy.job_skills?.map((item) => {
     return item._id;
   });
-  jobSkilss.push(retriveVacancy);
 
-    const data =
-    onlyApplicans &&
-    onlyApplicans?.map((item, index) => {
-      const retriveUser = item.user_skills;
+    const data = dataByUserCandidate.map((item, index) => {
+      // const retriveUser = item.user_skills;
+      const retriveUser=item.user_skills.map((idSkills)=>{
+        return idSkills._id
+      })
+      // console.log('skills usuario', retriveUser)
+      // console.log('skills vacante', retriveVacancy)
+
       const conteo = {};
       retriveUser.forEach((elemento) => {
         if (conteo[elemento]) {
@@ -57,13 +55,14 @@ const MyTable = ({ dataByUserCandidate,job_skills, dadHandleHideofPanel  }) => {
         }
       });
       let suma = 0;
-      const quanty = retriveVacancy.length;
-      retriveVacancy.forEach((elemento) => {
-        const repeticiones = conteo[elemento] || 0;
-        if (repeticiones) {
-          suma += repeticiones;
+      const quanty = retriveVacancy?.length;
+      retriveVacancy?.forEach((elemento) => {
+        if (conteo[elemento]) {
+          suma += conteo[elemento];
         }
       });
+      // console.log(`La suma de los valores repetidos es: ${suma}`);
+      // console.log(((suma*100)/quanty))
       const operador = Math.floor((suma * 100) / quanty);
 
       return {
@@ -80,15 +79,17 @@ const MyTable = ({ dataByUserCandidate,job_skills, dadHandleHideofPanel  }) => {
   const columns = [
     {
       name: "rowId",
-      selector: (row) => row.id,
+      selector: (row,i) => row.id + row.i,
       sortable: true,
       hide: true,
       omit: true,
     },
     {
       name: "#",
-      selector: (row, i) => i + 1,
+      selector: (row, i) => i+1,
       sortable: true,
+      // hide: true,
+      // omit: true,
     },
     {
       name: "NOMBRE",
@@ -115,13 +116,19 @@ const MyTable = ({ dataByUserCandidate,job_skills, dadHandleHideofPanel  }) => {
             <FaEye className="icon_eye1" />
           </button>
         </Link>,
+        
         <button
+          disabled={isButtonDisabled===true}
+          
           type="button"
-          className="buttons btn btn-outline-success"
-          onClick={handleAddPanel.bind(this, d.id)}
+          className={`buttons btn ${buttonState}`}
+          // className="buttons btn btn-outline-success"
+          onClick={handleAddPanel.bind(this, d.qty)}
         >
+          {/* {buttonState==="btn btn-outline-success"?"btn btn-outline-success":"btn-outline-secondary"} */}
           <FaCheck className="icon_check1" />
         </button>,
+        
         <button
           type="button"
           className="buttons btn btn-outline-secondary"
@@ -145,10 +152,17 @@ const MyTable = ({ dataByUserCandidate,job_skills, dadHandleHideofPanel  }) => {
             key={myId()}
             columns={columns}
             data={data}
-            noHeader
-            defaultSortField="#"
-            defaultSortAsc={true}
+            // noHeader
+            // defaultSortField="#"
+            // defaultSortAsc={true}
+            // pagination
+            progressPending={loading}
             pagination
+            paginationServer
+            paginationTotalRows={totalRows}
+            paginationDefaultPage={currentPage}
+            onChangeRowsPerPage={handlePerRowsChange}
+            onChangePage={handlePageChange}
             highlightOnHover
             dense
           />

@@ -28,15 +28,23 @@ export const AddSkills=()=>{
     const [dataForm, setDataForm] = useState(initDataForm);
     const [dataCandidate,setDataCandidate,dataRecruiter,setDataRecruiter, dataLocalStorage, setDataLocalStorage]=useJob()
 
+    const [loading, setLoading] = useState(false);
+    const [totalRows, setTotalRows] = useState(0);
+    const [perPage, setPerPage] = useState(10);
+    const [currentPage, setCurrentPage] = useState(1);
 
-      const fetchSkill=async()=>{
-        const response = await axios.get(endpointsGral.jobSkill);
+      const fetchSkill=async(page,newPerPage)=>{
+        setLoading(true)
+        const response = await axios.get(`${endpointsGral.jobSkill}?page=${page}&limit=${newPerPage}`);
         const infoSkill = response.data["item"];
         setDataSkill(infoSkill["docs"]);
+        console.log('PAGINATION',infoSkill["totalDocs"])
+         setTotalRows(infoSkill["totalDocs"])
+         setLoading(false)
     }
     useEffect(()=>{
         // if()
-        fetchSkill()
+        fetchSkill(1,10)
     },[])
 
     useEffect(()=>{
@@ -45,6 +53,24 @@ export const AddSkills=()=>{
         console.log('dataSkill(AddSkills):..',dataSkill)
       }
     },[dataSkill])
+
+    useEffect(()=>{
+      console.log('Nuevo valor de limit:..',perPage)
+    },[perPage])
+    
+
+    // pagination
+    const handlePageChange = page => {
+      fetchSkill(page,perPage);
+      setCurrentPage(page)
+    };
+
+    const handlePerRowsChange = async (newPerPage, page) => {
+      console.log('Cambiando limit:...',newPerPage);
+      fetchSkill(page,newPerPage)
+      setPerPage(newPerPage)
+    };
+    // pagination
 
     const insertandoSkill= (values) => {
       let tempDataSkill = [...dataSkill];
@@ -318,10 +344,13 @@ export const AddSkills=()=>{
               <DataTable {...tableData}
                 columns={columns}
                 data={data}
-                noHeader
-                defaultSortField="#"
-                defaultSortAsc={true}
+                progressPending={loading}
                 pagination
+                paginationServer
+                paginationTotalRows={totalRows}
+                paginationDefaultPage={currentPage}
+                onChangeRowsPerPage={handlePerRowsChange}
+                onChangePage={handlePageChange}
                 highlightOnHover
                 dense
               />

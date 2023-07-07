@@ -161,8 +161,6 @@ export const EditSkill=({listSkills,setListSkills})=>{
         <button type="button" className="buttons btn btn-outline-danger"onClick={handleDeleteSkill.bind(this,d.qty)}>
          <FaTrash className="icon_trash" />  
          </button>,
-
-        // <FaTrash className="icon_trash" onClick={handleDeleteSkill.bind(this,d.id)}/>  
   ]
  }
   ];
@@ -212,7 +210,7 @@ export const EditSkill=({listSkills,setListSkills})=>{
           </div>
           {/* table of skills */}
           <div className="col">
-            <label className="form-label text-dark" htmlFor="">Lista de SoftSkill agregadas</label>\
+            <label className="form-label text-dark" htmlFor="">Lista de SoftSkill agregadas</label>
             <div className="main-table">
                 <DataTableExtensions  
                     export={false}

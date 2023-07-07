@@ -40,7 +40,6 @@ const TableSkillsCandidate = ({ setDataListSkills }) => {
 
   const fetchSkillsInUser = async () => {
     //recuperar los datos(skills) del candidato
-
     setLoadingSkillsInUser(true);
     if (user_skills) setDataSkillsInUser([...user_skills]);
     //setTotalRowsSkillsInUser(user_skills.length);

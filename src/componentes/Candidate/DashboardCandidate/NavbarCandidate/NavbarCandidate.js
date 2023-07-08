@@ -31,18 +31,23 @@ const NavbarCandidate = () => {
   ] = useJob();
 
   const [isErrorImg, setIsErrorImg] = useState(false);
-  useEffect(() => {
-    console.log("Reloading Navbar:...");
-  }, [isErrorImg]);
+
+    useEffect(() => {
+      console.log("Reloading Navbar:...");
+    }, [isErrorImg]);
+  
+  const toggleErrorImg = ()=>{
+    setIsErrorImg(prev=>!prev)
+  }
 
   const handleError = () => {
     console.log("Error al cargar la Imagen:...");
-    setIsErrorImg(true);
+    toggleErrorImg();
   };
 
   const handleLoad = () => {
     console.log("Imagen cargada con exito:...");
-    setIsErrorImg(false);
+    //toggleErrorImg();
   };
   const placement = "bottom";
   const [showDropdown, setShowDropdown] = useState(false);
@@ -107,7 +112,7 @@ const NavbarCandidate = () => {
             >
               <div>
                 <img
-                  src={dataCandidate.avatar_url}
+                  src={dataCandidate.avatar_url?dataCandidate.avatar_url:logo}
                   alt="candidate-profile-pic"
                   className="candidate-profile-pic "
                   onError={handleError}

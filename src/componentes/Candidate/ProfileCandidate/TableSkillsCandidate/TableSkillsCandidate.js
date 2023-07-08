@@ -41,7 +41,10 @@ const TableSkillsCandidate = ({ setDataListSkills }) => {
   const fetchSkillsInUser = async () => {
     //recuperar los datos(skills) del candidato
     setLoadingSkillsInUser(true);
-    if (user_skills) setDataSkillsInUser([...user_skills]);
+    if (user_skills){
+      setDataSkillsInUser([...user_skills]);
+      console.log('dataCandidate:..',dataCandidate);
+    } 
     //setTotalRowsSkillsInUser(user_skills.length);
     //console.log('Buscando Skilllsss',user_skills)
     setLoadingSkillsInUser(false);

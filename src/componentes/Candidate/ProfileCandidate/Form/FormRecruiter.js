@@ -80,7 +80,14 @@ const FormRecruiter = () => {
   const [listSkills, setListSkills] = useState([]);
   const [dataForm, setDataForm] = useState(initDataForm);
   const [imageUser, setImageUser] = useState(null);
-  const [dataCandidate] = useJob();
+  const [
+    dataCandidate,
+    setDataCandidate,
+    dataRecruiter,
+    setDataRecruiter,
+    dataLocalStorage,
+    setDataLocalStorage,
+  ] = useJob();
 
   useEffect(() => {
     if (dataCandidate) {
@@ -143,45 +150,72 @@ const FormRecruiter = () => {
 
   const handleSubmit = async (values) => {
     //e.preventDefault();
-    const idsSkills = listSkills.map((item) => item._id);
-    const completeForm = {
-      ...values,
-      user_skills: [...idsSkills],
-    };
-    try {
-      axios.defaults.headers.common[
-        "Authorization"
-      ] = `Bearer: ${dataCandidate.accessToken}`;
-      const formData = new FormData();
-      if (imageUser) formData.append("image", imageUser);
-      if (idsSkills) {
-        for (let i = 0; i < idsSkills.length; i++) {
-          formData.append("user_skills", idsSkills[i]);
-        }
-      }
-      Object.entries(values).forEach(([key, value]) => {
-        formData.append(key, value);
-        //console.log(key,value);
-      });
-      axios
-        .patch(
-          `${endpointsGral.userURL}${dataCandidate.accessToken}`,
-          formData,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
+
+    swal
+      .fire({
+        title: "Mensaje de confirmación",
+        text: "¿Estás seguro de que quieres guardar los cambios?",
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonColor: "#0CF574",
+        cancelButtonColor: "#FF2F2F",
+        confirmButtonText: "Guardar",
+        cancelButtonText: "Cancelar",
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          const idsSkills = listSkills.map((item) => item._id);
+          const completeForm = {
+            ...values,
+            user_skills: [...idsSkills],
+          };
+          try {
+            axios.defaults.headers.common[
+              "Authorization"
+            ] = `Bearer: ${dataCandidate.accessToken}`;
+            const formData = new FormData();
+            if (imageUser) formData.append("image", imageUser);
+            if (idsSkills) {
+              for (let i = 0; i < idsSkills.length; i++) {
+                formData.append("user_skills", idsSkills[i]);
+              }
+            }
+            Object.entries(values).forEach(([key, value]) => {
+              formData.append(key, value);
+              //console.log(key,value);
+            });
+            axios
+              .patch(
+                `${endpointsGral.userURL}${dataCandidate.accessToken}`,
+                formData,
+                {
+                  headers: {
+                    "Content-Type": "multipart/form-data",
+                  },
+                }
+              )
+              .then((response) => {
+                console.log("response.data:..", response.data);
+
+                if (response?.data?.message === "Update User Ok") {
+                  if (response?.data?.updateUser) {
+                    setDataLocalStorage({
+                      ...response?.data?.updateUser,
+                      accessToken: dataCandidate.accessToken,
+                    });
+                  }
+                }
+              })
+              .catch((error) => {
+                console.error(error);
+              });
+          } catch (error) {
+             console.log('error:..',error);
           }
-        )
-        .then((response) => {
-          // console.log("response.data:..", response.data);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    } catch (error) {
-      // console.log('error:..',error);
-    }
+
+          swal.fire("Los cambios han sido guardados correctamente!");
+        }
+      });
   };
 
   return (
@@ -480,7 +514,6 @@ const FormRecruiter = () => {
                     className="buttons btn btn-info text-light d-block ms-auto"
                     value="enviar"
                     id="save-changes"
-                    onClick={saveChanges}
                   >
                     Guardar
                   </button>

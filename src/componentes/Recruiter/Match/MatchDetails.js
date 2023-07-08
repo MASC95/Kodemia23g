@@ -6,11 +6,13 @@ import Swal from "sweetalert2";
 import useJob from "../../../hooks/useJob";
 import "./style.scss";
 import MyTable from "./MyTable";
+import { idPhaseOne } from "../../lib/myLib";
 
 export const MatchDetails = () => {
   const valores = window.location.search;
   const urlParams = new URLSearchParams(valores);
   const idVacancy = urlParams.get("m");
+  
   const [
     dataCandidate,
     setDataCandidate,
@@ -25,6 +27,7 @@ export const MatchDetails = () => {
   const [isButtonDisabled, setButtonDisabled] = useState(false);
   const [buttonState, setButtonState] = useState("btn-outline-success");
   const [tempListUser, setListDataUser] = useState([]);
+  const [listApplicantsPhaseOne, setListApplicantsPhaseOne]=useState([])
 
   const [loading, setLoading] = useState(false);
   const [totalRows, setTotalRows] = useState(0);
@@ -61,7 +64,27 @@ export const MatchDetails = () => {
   };
   useEffect(() => {
     queryVacancy();
+    queryPhase()
   }, []);
+
+  // Phase
+
+  const queryPhase= async()=>{
+    const endpointPhase= `${endpointsGral.phaseURL}${idPhaseOne}`
+    try {
+      const response = await axios.get (endpointPhase)
+      const result= response?.data?.infoPhase?.vacancies
+      console.log('Phase One, backend',result)
+
+      const dataInformationVacancy= result.find((item) => String(item.idVacancie)===idVacancy)
+      console.log('dataInformationVacancy', dataInformationVacancy)
+      setListApplicantsPhaseOne(dataInformationVacancy?.applicants)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  
 
   useEffect(() => {
     //console.log('dataSkill(AddSkills):..',dataSkill)

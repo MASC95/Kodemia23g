@@ -15,14 +15,14 @@ const SecondCards = () => {
       <div className="second-card-container" style={{ marginLeft: "130px" }}>
         <div className="row row-second-card">
           <div className="col-5 columna-2">
-            <div class="card-2">
+            <div className="card-2">
               <div className="img-div-2">
                 <img src={video} className="video-img" alt="Imagen" />
               </div>
 
               <div className="card-body-2">
                 <p className="video"> Video Presentación </p>
-                <h5 class="card-title-2 text-center">
+                <h5 className="card-title-2 text-center">
                   Destaca tus habilidades únicas y asegura el trabajo que
                   mereces.
                 </h5>

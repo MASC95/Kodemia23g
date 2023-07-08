@@ -6,6 +6,11 @@ import { myId } from "../../lib/myLib";
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 
+
+const MyFaCheck =({text})=>{
+return <div><FaCheck/> <span className='ms-1'>{text}</span>{text}</div>
+}
+
 const MyTable = ({ 
   dataByUserCandidate,
   dataInfoVacancy, 
@@ -17,7 +22,8 @@ const MyTable = ({
   currentPage,
   dadHandleofPanel,
   isButtonDisabled,
-  buttonState
+  buttonState,
+  listApplicantsPhaseOne
   }) => {
 
     useEffect(()=>{
@@ -32,6 +38,15 @@ const MyTable = ({
     const handleAddPanel= (index)=>{
       console.log('Agregando usuario a panel (MyTable):..',index);
       dadHandleofPanel(index);
+    }
+
+    const isFoundedUser= (idToFind)=>{
+      const findIdUser = listApplicantsPhaseOne.find(idUser=>String(idUser)===idToFind);
+      if(findIdUser){
+        return true
+      }else{
+        return false
+      }
     }
 
   const retriveVacancy = dataInfoVacancy.job_skills?.map((item) => {
@@ -64,11 +79,13 @@ const MyTable = ({
       // console.log(`La suma de los valores repetidos es: ${suma}`);
       // console.log(((suma*100)/quanty))
       const operador = Math.floor((suma * 100) / quanty);
+      
+      const nameUser = `${item.name} ${item.last_name}`;
 
       return {
         id: item._id,
         qty: index,
-        name: `${item.name} ${item.last_name}`,
+        name: isFoundedUser(item._id)?<MyFaCheck text={nameUser}/>:nameUser,
         bachelor: `${item.bachelor} `,
         match: `${operador} %` || "",
       };
@@ -118,15 +135,15 @@ const MyTable = ({
         </Link>,
         
         <button
-          disabled={isButtonDisabled===true}
-          
+          disabled={isFoundedUser(d.id)}
           type="button"
           className={`buttons btn ${buttonState}`}
           // className="buttons btn btn-outline-success"
           onClick={handleAddPanel.bind(this, d.qty)}
+
         >
           {/* {buttonState==="btn btn-outline-success"?"btn btn-outline-success":"btn-outline-secondary"} */}
-          <FaCheck className="icon_check1" />
+          <FaCheck className={isFoundedUser(d.id)?"icon_check1 text-secondary":"icon_check1"} />
         </button>,
         
         <button
@@ -134,7 +151,7 @@ const MyTable = ({
           className="buttons btn btn-outline-secondary"
           onClick={handleHideofPanel.bind(this, d.qty)}
         >
-          <FaEyeSlash className="icon_eyeSlash1" />
+          <FaEyeSlash className="icon_eyeSlash1 text-danger opacity-50" />
         </button>,
       ],
     },

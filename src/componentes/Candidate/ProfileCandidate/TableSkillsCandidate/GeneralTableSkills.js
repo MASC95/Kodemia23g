@@ -3,6 +3,7 @@ import DataTable from "react-data-table-component";
 import DataTableExtensions from "react-data-table-component-extensions";
 import { Link } from "react-router-dom";
 import { FaHammer, FaPlus } from "react-icons/fa";
+import { myId } from "../../../lib/myLib";
 
 const GeneralTableSkills = ({
   generalSkills,
@@ -56,6 +57,7 @@ const GeneralTableSkills = ({
       cell: (d) => [
         <button
           type="button"
+          key={myId()}
           className=" btn btn-outline-primary my-1"
           onClick={childHandleAddSkill.bind(this, d.id)}
         >

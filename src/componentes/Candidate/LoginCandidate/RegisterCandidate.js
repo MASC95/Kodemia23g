@@ -7,50 +7,58 @@ import axios from "axios";
 import swal from "sweetalert";
 import Swal from "sweetalert2";
 import { endpointsGral } from "../../Recruiter/services/vacancy";
-import useJob from '../../../hooks/useJob';
+import useJob from "../../../hooks/useJob";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 export const RegisterCandidate = () => {
   const [isResgitering, setIsResgitering] = useState(false);
   const [isConfirmEmail, setIsConfirmEmail] = useState(false);
-  const [isInformationUser,setInformationUser]=useState([])
+  const [isInformationUser, setInformationUser] = useState([]);
   const navigate = useNavigate();
-  const [dataCandidate, setDataCandidate, dataRecruiter, setDataRecruiter, dataLocalStorage, setDataLocalStorage]= useJob();
+  const [
+    dataCandidate,
+    setDataCandidate,
+    dataRecruiter,
+    setDataRecruiter,
+    dataLocalStorage,
+    setDataLocalStorage,
+  ] = useJob();
+  const [showPassword, setShowPassword] = useState(false);
 
-  const fetchUser=async()=>{
+  const fetchUser = async () => {
     const response = await axios.get(endpointsGral.userURL);
     const infoSkill = response.data["item"];
-    if(infoSkill){
+    if (infoSkill) {
       setInformationUser(infoSkill["docs"]);
-    }else{
-      console.log('error infoSkill')
+    } else {
+      console.log("error infoSkill");
     }
-  }
-  useEffect(()=>{
-      // if()
-      fetchUser()
-  },[])
+  };
+  useEffect(() => {
+    // if()
+    fetchUser();
+  }, []);
 
- 
-  
   const [formValues, setFormValues] = useState({
     email: "",
     password: "",
     role: "",
     code: "",
-    backCode:'',
+    backCode: "",
     rfc: "",
   });
 
   useEffect(() => {
-    if(formValues.code!==''&&(formValues.code===String(formValues.backCode))){
+    if (
+      formValues.code !== "" &&
+      formValues.code === String(formValues.backCode)
+    ) {
       setIsConfirmEmail(true);
-      
-    }else{
+    } else {
       setIsConfirmEmail(false);
     }
-    
-  }, [formValues.code,formValues.backCode])
-  
+  }, [formValues.code, formValues.backCode]);
+
   const onFormInputChange = (event) => {
     const Input = event.target.id;
     const InputValue = event.target.value;
@@ -63,18 +71,20 @@ export const RegisterCandidate = () => {
 
   const onFormSubmit = (event) => {
     event.preventDefault();
-    console.log(formValues.email)
-    const dataRepet=isInformationUser.some((item)=>item.email===formValues.email)
+    console.log(formValues.email);
+    const dataRepet = isInformationUser.some(
+      (item) => item.email === formValues.email
+    );
 
-    if(dataRepet){
+    if (dataRepet) {
       Swal.fire({
-        icon: 'error',
-        title: 'Error al registrar!',
-        text: 'Este correo ya tiene una cuenta, inicia sesión!',
-      })
-    }else{
+        icon: "error",
+        title: "Error al registrar!",
+        text: "Este correo ya tiene una cuenta, inicia sesión!",
+      });
+    } else {
       setIsResgitering(true);
-    confirmAccesCode();
+      confirmAccesCode();
       // console.log('agregalo')
     }
   };
@@ -86,11 +96,11 @@ export const RegisterCandidate = () => {
   const resetForm = () => {
     setFormValues({
       email: "",
-    password: "",
-    role: "",
-    code: "",
-    backCode:'',
-    rfc: "",
+      password: "",
+      role: "",
+      code: "",
+      backCode: "",
+      rfc: "",
     });
   };
 
@@ -105,53 +115,66 @@ export const RegisterCandidate = () => {
       console.log("responseConfirmEmail:..", response);
       setFormValues({
         ...formValues,
-        backCode:response?.data?.code
-      })
+        backCode: response?.data?.code,
+      });
     } catch (error) {
       console.log(error);
-    }  
+    }
   };
 
   const registerRecruiter = async () => {
     // if (formValues.role === "candidato") {
-      try {
-        if (importantData) {
-          const register = await axios.post(endpointsGral.registerUser, formValues);
-          setFormValues(register);
-          resetForm();
-          console.log('datos de Registro:..',register);
-          setDataLocalStorage({...register?.data});
-          if(formValues.role==="candidato"){
-             console.log("pagina candidato");
-             navigate(`/dashboard-candidato/home`)
-          }else{
-             console.log("pagina empresa");
-             navigate(`/Dashboard-recruiter/home`)
-          }
+    try {
+      if (importantData) {
+        const register = await axios.post(
+          endpointsGral.registerUser,
+          formValues
+        );
+        setFormValues(register);
+        resetForm();
+        console.log("datos de Registro:..", register);
+        setDataLocalStorage({ ...register?.data });
+        if (formValues.role === "candidato") {
+          console.log("pagina candidato");
+          navigate(`/dashboard-candidato/home`);
         } else {
-          swal({
-            title: "Todos los campos son requeridos!",
-            icon: "error",
-            button: "ok!",
-          });
+          console.log("pagina empresa");
+          navigate(`/Dashboard-recruiter/home`);
         }
-      } catch (error) {
+      } else {
         swal({
-          title: "Error al registrar!",
+          title: "Todos los campos son requeridos!",
           icon: "error",
-          button: "ok!",
+          button: "Aceptar",
         });
       }
+    } catch (error) {
+      swal({
+        title: "Error al registrar!",
+        icon: "error",
+        button: "Aceptar",
+      });
+    }
   };
 
   const handleConfirmEmail = () => {
     console.log("codigo:", formValues.code);
-    console.log('codigoBack:..', formValues.backCode);
-    if(isConfirmEmail===true){
+    console.log("codigoBack:..", formValues.backCode);
+    if (isConfirmEmail === true) {
       registerRecruiter();
-      console.log('Email confirmado con Exito:..');
-    }else{
-      console.log('Codigo de acceso Erroneo:..');
+      console.log("Email confirmado con Exito:..");
+    } else {
+      console.log("Codigo de acceso Erroneo:..");
+      Swal.fire({
+        title: "Error!",
+        text: "Ingrese el código que se le envió a su correo",
+        titleText: "Código de Acceso Incorrecto!",
+        icon: "error",
+        confirmButtonText: "Aceptar",
+        target: "Ingrese un nuevo código",
+
+        confirmButtonColor: "#04F06A",
+      });
     }
   };
 
@@ -165,22 +188,36 @@ export const RegisterCandidate = () => {
                 <Link to={"/"} className="logo_Jobinder">
                   <img src={logo} alt="" />
                 </Link>
-                <h2 className="text-center text-dark">Bienvenido</h2>
+                <h2 className="text-center text-dark">
+                  Crea tu cuenta y empieza a Aplicar!
+                </h2>
                 <form className="text-left clearfix" onSubmit={onFormSubmit}>
-                  <div className="form-group">
+                  <div
+                    className={`form-group ${
+                      formValues.email === "" ? "has-error" : ""
+                    }`}
+                  >
                     <input
                       type="email"
                       value={formValues.email}
                       onChange={onFormInputChange}
-                      className="form-control"
+                      className={`form-control ${
+                        formValues.email === "" ? "is-invalid" : ""
+                      }`}
                       id="email"
                       placeholder="Email"
                     />
+                    {formValues.email === "" && (
+                      <div className="invalid-feedback">
+                        Por favor, completa este campo.
+                      </div>
+                    )}
                   </div>
+
                   <div className="form-group">
                     {/* <label className="form-label" for="form6Example1">Role</label> */}
                     <select
-                      className="form-control"
+                      className="form-control d-none"
                       id="role"
                       value={formValues.role}
                       onChange={onFormInputChange}
@@ -195,21 +232,51 @@ export const RegisterCandidate = () => {
                       type="text"
                       value={formValues.rfc}
                       onChange={onFormInputChange}
-                      className="form-control"
+                      className="form-control d-none"
                       id="rfc"
                       placeholder="RFC"
                     />
                   </div>
-                  <div className="form-group">
-                    <input
-                      type="password"
-                      value={formValues.password}
-                      onChange={onFormInputChange}
-                      className="form-control"
-                      id="password"
-                      placeholder="Password"
-                    />
+                  <div
+                    className={`form-group ${
+                      formValues.password === "" ? "has-error" : ""
+                    }`}
+                  >
+                    <div className="input-group mb-3">
+                      <input
+                        type={showPassword ? "text" : "password"}
+                        value={formValues.password}
+                        onChange={onFormInputChange}
+                        className={`form-control ${
+                          formValues.password === "" ? "is-invalid" : ""
+                        }`}
+                        id="password"
+                        placeholder="Password"
+                      />
+                      <span
+                        className="input-group-text "
+                        style={{
+                          color: "#f2f2f2",
+                          backgroundColor: "#0093E9",
+                          backgroundImage:
+                            "linear-gradient(160deg, #0093E9 0%, #80D0C7 100%)",
+                        }}
+                        onClick={() => setShowPassword(!showPassword)}
+                      >
+                        {showPassword ? (
+                          <FaEyeSlash style={{ width: "30px" }} />
+                        ) : (
+                          <FaEye style={{ width: "30px" }} />
+                        )}
+                      </span>
+                    </div>
+                    {formValues.password === "" && (
+                      <div className="invalid-feedback">
+                        Por favor, completa este campo.
+                      </div>
+                    )}
                   </div>
+
                   <div className="text-center">
                     {!isResgitering && (
                       <div className="buttons_actions d-grid">

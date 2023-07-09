@@ -94,15 +94,12 @@ export const ListMyAppVacancy = () => {
     salary: item.salary,
   }));
 
- 
-
   const columns = [
     {
-      name:'rowId',
+      name: "rowId",
       selector: (row) => row._id,
-      sortable: true, 
-      omit:true,
-
+      sortable: true,
+      omit: true,
     },
     {
       name: "#",
@@ -133,7 +130,7 @@ export const ListMyAppVacancy = () => {
       name: "ESTADO",
       selector: (row) => row.null,
       sortable: true,
-      
+
       cell: (row) => (
         <Badge bg="info" className="badge_state1 p-2 buscar">
           {row.status}
@@ -142,29 +139,31 @@ export const ListMyAppVacancy = () => {
     },
   ];
 
-
   const tableData = {
     columns,
     data,
   };
 
   return (
-    <div className="m-5 p-3" id="formGral" style={{ fontFamily: 'Poppins, sans-serif, Verdana, Geneva, Tahoma' }}>
-        
-          <DataTableExtensions {...tableData} export={false} print={false}>
-            <DataTable {...tableData}
-              columns={columns}
-              data={data}
-              defaultSortField="#"
-              defaultSortAsc
-              pagination
-              highlightOnHover
-              dense
-              key={myId()}
-            />
-          </DataTableExtensions>
-        </div>
-     
+    <div
+      className="m-5 p-3"
+      id="formGral"
+      style={{ fontFamily: "Poppins, sans-serif, Verdana, Geneva, Tahoma" }}
+    >
+      <DataTableExtensions {...tableData} export={false} print={false}>
+        <DataTable
+          {...tableData}
+          columns={columns}
+          data={data}
+          defaultSortField="#"
+          defaultSortAsc
+          pagination
+          highlightOnHover
+          dense
+          key={myId()}
+        />
+      </DataTableExtensions>
+    </div>
   );
 };
 

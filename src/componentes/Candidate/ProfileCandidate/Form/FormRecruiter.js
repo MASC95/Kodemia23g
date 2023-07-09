@@ -23,7 +23,7 @@ const initDataForm = {
   name: "",
   last_name: "",
   email: "",
-  password: "",
+  resetPassword: "",
   age: "",
   working_experience: "",
   bachelor: "",
@@ -97,7 +97,7 @@ const FormRecruiter = () => {
         name: dataCandidate.name || "",
         last_name: dataCandidate.last_name || "",
         email: dataCandidate.email || "",
-        password: dataCandidate.password || "",
+        resetPassword: dataCandidate.resetPassword || "",
         age: dataCandidate.age || "",
         working_experience: dataCandidate.working_experience || "",
         bachelor: dataCandidate.bachelor || "",
@@ -130,7 +130,7 @@ const FormRecruiter = () => {
       email: Yup.string()
         .required("El correo electrónico es requerido")
         .email("ingrese un correo electrónico válido"),
-      password: Yup.string()
+      resetPassword: Yup.string()
         .required("Requerido")
         .min(8, "La contraseña debe tener al menos 8 caracteres")
         .matches(
@@ -143,7 +143,7 @@ const FormRecruiter = () => {
       exp: Yup.string().required("Ingrese una experiencia válida"),
     }),
     onSubmit: (values) => {
-      /* alert(JSON.stringify(values, null, 2)); */
+      /*  alert(JSON.stringify(values, null, 2)); */
       // console.log('values:..',values);
     },
   });
@@ -210,7 +210,7 @@ const FormRecruiter = () => {
                 console.error(error);
               });
           } catch (error) {
-             console.log('error:..',error);
+            console.log("error:..", error);
           }
 
           swal.fire("Los cambios han sido guardados correctamente!");
@@ -449,15 +449,16 @@ const FormRecruiter = () => {
                       </label>
                       <Field
                         type="password"
-                        id="password"
+                        id="resetPassword"
                         placeholder="Reset Password"
-                        name="password"
+                        name="resetPassword"
                         className={`form-control ${
-                          props.touched.password && props.errors.password
+                          props.touched.resetPassword &&
+                          props.errors.resetPassword
                             ? "border border-danger"
                             : "border border-secondary"
                         }`}
-                        value={props.values.password}
+                        value={props.values.resetPassword}
                         onChange={props.handleChange}
                         onBlur={props.handleBlur}
                       />

@@ -6,17 +6,16 @@ import { Link, useNavigate } from "react-router-dom";
 import useJob from "../../../hooks/useJob";
 import endpoints from "../../Recruiter/services/endpoints";
 import swal from "sweetalert";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
-
-const initFormValues= {
+const initFormValues = {
   email: "",
   password: "",
-}
-
+};
 
 export const LoginCandidate = () => {
-  const [formValues, setFormValues] = useState({...initFormValues});
-
+  const [formValues, setFormValues] = useState({ ...initFormValues });
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const [
     dataCandidate,
@@ -36,7 +35,7 @@ export const LoginCandidate = () => {
   const importantData = formValues.email !== "" && formValues.password !== "";
   const resetForm = () => {
     setFormValues({
-      ...initFormValues
+      ...initFormValues,
     });
   };
 
@@ -46,8 +45,8 @@ export const LoginCandidate = () => {
   };
   const initLogin = async () => {
     try {
-      if (formValues.email!==''&&formValues.password!=='') {
-        console.log('formValues:..',formValues);
+      if (formValues.email !== "" && formValues.password !== "") {
+        console.log("formValues:..", formValues);
         const loginCandidate = await endpoints.loginAxios(formValues);
         setFormValues(loginCandidate);
         console.log("loginCandidate(checando user_skills):..", loginCandidate);
@@ -113,15 +112,33 @@ export const LoginCandidate = () => {
                       placeholder="Email"
                     />
                   </div>
-                  <div className="form-group">
+                  <div className="input-group mb-3">
                     <input
-                      type="password"
+                      type={showPassword ? "text" : "password"}
                       value={formValues.password}
                       onChange={onFormInputChange}
-                      className="form-control"
+                      className={`form-control ${
+                        formValues.password === "" ? "is-invalid" : ""
+                      }`}
                       id="password"
                       placeholder="Password"
                     />
+                    <span
+                      className="input-group-text "
+                      style={{
+                        color: "#f2f2f2",
+                        backgroundColor: "#0093E9",
+                        backgroundImage:
+                          "linear-gradient(160deg, #0093E9 0%, #80D0C7 100%)",
+                      }}
+                      onClick={() => setShowPassword(!showPassword)}
+                    >
+                      {showPassword ? (
+                        <FaEyeSlash style={{ width: "30px" }} />
+                      ) : (
+                        <FaEye style={{ width: "30px" }} />
+                      )}
+                    </span>
                   </div>
                   <div className="text-center">
                     <div className="buttons_actions d-grid">
@@ -136,7 +153,9 @@ export const LoginCandidate = () => {
                 </form>
                 <p className="mt-20 text-black text-decoration-none">
                   No tienes una cuenta?
-                  <Link to={`/register-candidato`}>Crea una con nosotros</Link>
+                  <Link to={`/register-candidato`}>
+                    Crea una cuenta con nosotros.
+                  </Link>
                 </p>
               </div>
             </div>

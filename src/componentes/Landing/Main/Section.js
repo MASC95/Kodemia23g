@@ -1,7 +1,7 @@
 import React from "react";
 import "./scss/style.scss";
-import candidate from "../../Candidate/img/Candidate.avif";
-import recruiter from "../../Candidate/img/Recruiter.avif";
+/* import candidate from "../../Candidate/img/Candidate.avif"; */
+/* import recruiter from "../../Candidate/img/Recruiter.avif"; */
 import "./scss/section.scss";
 
 const Section = () => {
@@ -25,7 +25,13 @@ const Section = () => {
             > */}
             <div className="cartas">
               <div className="img-div">
-                <img src={candidate} className="card-img-top " alt="Imagen" />
+                <img
+                  src={
+                    "https://frontjobinderimg.s3.amazonaws.com/Candidate.avif"
+                  }
+                  className="card-img-top "
+                  alt="Imagen"
+                />
               </div>
               <div className="card-body-1 ">
                 <h5 className="card-title text-center">¿Eres Reclutador?</h5>
@@ -49,7 +55,11 @@ const Section = () => {
           >
             <div className="cartas">
               <div className=" img-div">
-                <img src={recruiter} alt="Imagen" className="card-img-top" />
+                <img
+                  src="https://frontjobinderimg.s3.amazonaws.com/Recruiter.avif"
+                  alt="Imagen"
+                  className="card-img-top"
+                />
               </div>
               <div className="card-body-1 ">
                 <h5 className="card-title text-center">¿Eres Candidato?</h5>

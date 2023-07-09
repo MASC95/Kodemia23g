@@ -1,6 +1,6 @@
 import React from "react";
-import video from "../../Candidate/img/VideoBlondeGirl.avif";
-import knowldege from "../../Candidate/img/KnowledgeBackendDev.avif";
+/* import video from "../../Candidate/img/VideoBlondeGirl.avif";
+import knowldege from "../../Candidate/img/KnowledgeBackendDev.avif"; */
 import "./scss/card2.scss";
 const SecondCards = () => {
   return (
@@ -17,7 +17,11 @@ const SecondCards = () => {
           <div className="col-5 columna-2">
             <div className="card-2">
               <div className="img-div-2">
-                <img src={video} className="video-img" alt="Imagen" />
+                <img
+                  src="https://frontjobinderimg.s3.amazonaws.com/VideoBlondeGirl.avif"
+                  className="video-img"
+                  alt="Imagen"
+                />
               </div>
 
               <div className="card-body-2">
@@ -34,7 +38,11 @@ const SecondCards = () => {
           <div className="col-5 columna-2">
             <div className="card-2">
               <div className=" img-div-2">
-                <img src={knowldege} alt="Imagen" className=" video-img" />
+                <img
+                  src="https://frontjobinderimg.s3.amazonaws.com/KnowledgeBackendDev.avif"
+                  alt="knowledg-img"
+                  className=" video-img"
+                />
               </div>
               <div className="card-body-2 ">
                 <p className="video ms-3">Conocimientos y Habilidades</p>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
 import DataTableExtensions from "react-data-table-component-extensions";
 import "react-data-table-component-extensions/dist/index.css";
@@ -18,7 +18,39 @@ const HorizonTable = ({
   currentPage,
   perPage,
 }) => {
-  const data = vacancies?.map((item, index) => ({
+  const [tempArrayVancies, setTempArrayVancies] = useState([]);
+  const [dataCandidate] = useJob();
+  useEffect(() => {
+    initDataMyVacancies();
+    console.log('vancacies:...',vacancies);
+  }, []);
+
+  function parseJwt(token) {
+    var base64Url = token.split(".")[1];
+    var base64 = base64Url.replace("-", "+").replace("_", "/");
+    return JSON.parse(window.atob(base64));
+  }
+
+  const initDataMyVacancies = () => {
+    let idUser = "";
+    if (dataCandidate?.accessToken) {
+      const result = parseJwt(dataCandidate?.accessToken);
+      console.log("data Token(jwt):...", result);
+      idUser = result._id;
+    }
+    let innerArray=[];
+    vacancies.forEach((element) => {
+      const isFoudedUser = element?.rejecteds?.find(
+        (item) => String(item) === idUser
+      );
+      if (!isFoudedUser) {
+        innerArray.push(element);
+      }
+    });
+    setTempArrayVancies([...innerArray]);
+  };
+
+  const data = tempArrayVancies?.map((item, index) => ({
     ...item,
     id: myId(),
     _id: item._id,

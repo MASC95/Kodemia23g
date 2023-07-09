@@ -41,7 +41,7 @@ const MyTable = ({
     }
 
     const isFoundedUser= (idToFind)=>{
-      const findIdUser = listApplicantsPhaseOne.find(idUser=>String(idUser)===idToFind);
+      const findIdUser = listApplicantsPhaseOne?.find(idUser=>String(idUser)===idToFind);
       if(findIdUser){
         return true
       }else{
@@ -128,7 +128,7 @@ const MyTable = ({
       sortable: false,
       selector: (row, i) => row.null,
       cell: (d) => [
-        <Link to={`/Dashboard-Recruiter/profile-candidato/?c=${d.id}`}>
+        <Link to={`/dashboard-recruiter/profile-candidato/?c=${d.id}`}>
           <button type="button" className="buttons btn btn-outline-info">
             <FaEye className="icon_eye1" />
           </button>

@@ -9,6 +9,7 @@ export const endpointsGral = {
     registerUser: `${backURL}api/v1/signup`,
     jobSkill: `${backURL}api/v1/jobSkill/`,
     phaseURL: `${backURL}api/v1/phase/`,
+    phaseUrlGetPhase: `${backURL}api/v1/phase/getPhase`,
     confirmEmail: `${backURL}api/v1/signup/sendAccessCode`,
     getSkillsInUser:`${backURL}api/v1/users/getSkillsInUser/`,
   };

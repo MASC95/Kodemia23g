@@ -6,11 +6,13 @@ import Swal from "sweetalert2";
 import useJob from "../../../hooks/useJob";
 import "./style.scss";
 import MyTable from "./MyTable";
+import { idPhaseOne } from "../../lib/myLib";
 
 export const MatchDetails = () => {
   const valores = window.location.search;
   const urlParams = new URLSearchParams(valores);
   const idVacancy = urlParams.get("m");
+
   const [
     dataCandidate,
     setDataCandidate,
@@ -25,6 +27,8 @@ export const MatchDetails = () => {
   const [isButtonDisabled, setButtonDisabled] = useState(false);
   const [buttonState, setButtonState] = useState("btn-outline-success");
   const [tempListUser, setListDataUser] = useState([]);
+  const [listApplicantsPhaseOne, setListApplicantsPhaseOne] = useState([]);
+  
 
   const [loading, setLoading] = useState(false);
   const [totalRows, setTotalRows] = useState(0);
@@ -55,13 +59,47 @@ export const MatchDetails = () => {
       const endpointVacancy = `${endpointsGral.vacancyURL}${idVacancy}`;
       const response = await axios.get(endpointVacancy);
       const dataVacancy = response?.data?.infoVacancy;
-      // console.log('datos vacante', dataVacancy)
+      console.log("datos vacante", dataVacancy);
       setDataInfoVacancy(dataVacancy);
     } catch (error) {}
   };
   useEffect(() => {
     queryVacancy();
+    queryPhase();
   }, []);
+
+  useEffect(() => {
+    console.log("lista de aplicantes Fase1:..", listApplicantsPhaseOne);
+  }, [listApplicantsPhaseOne]);
+
+  // Phase
+
+  const queryPhase = async () => {
+
+    const phases= ['Llamada','Entrevista','Pruebas','Contratado'];
+    let tempData=[];
+    for (const phase of phases) {
+      const endpointPhase = `${endpointsGral.phaseUrlGetPhase}?phase=${phase}`;
+      try {
+        const response = await axios.get(endpointPhase);
+        console.log("Phase One, backend", response);
+        const result = response?.data?.infoPhase?.vacancies;
+  
+        const dataInformationVacancy = result.find(
+          (item) => String(item.idVacancie) === idVacancy
+        );
+        console.log(`dataInformationVacancy:..${phase}`, dataInformationVacancy);
+        tempData=[...tempData,...dataInformationVacancy?.applicants];
+        
+      } catch (error) {
+        console.log(error);
+      }  
+    }
+    console.log('todos los applicantes en las 4 fases:..',tempData);
+    setListApplicantsPhaseOne([...tempData]);
+
+    
+  };
 
   useEffect(() => {
     //console.log('dataSkill(AddSkills):..',dataSkill)
@@ -104,7 +142,7 @@ export const MatchDetails = () => {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Si, ocultar!",
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
         console.log("indice a borrar:..", index);
         const hideCandidate = dataByUserCandidate[index];
@@ -114,6 +152,22 @@ export const MatchDetails = () => {
           const deleteOnList = dataByUserCandidate.filter(
             (_, i) => i !== index
           );
+          try {
+            axios.defaults.headers.common[
+              "Authorization"
+            ] = `Bearer: ${dataRecruiter.accessToken}`;
+            console.log(
+              "dataRecruiter.accessToken ",
+              dataRecruiter.accessToken
+            );
+            const responseBack = await axios.post(
+              `${endpointsGral.hideUserInVacancy}`,
+              { idVacancy, idCandidate: id, emailUser: hideCandidate.email }
+            );
+            console.log("responseBack HideUser:..", responseBack);
+          } catch (error) {
+            console.log(error);
+          }
           setDataByUserCandidate(deleteOnList);
           console.log("lista de candidatos sin el oculto:..", deleteOnList);
         } else {
@@ -158,7 +212,10 @@ export const MatchDetails = () => {
             const response = await axios.patch(
               `${endpointsGral.phaseURL}?phase=Llamada&idVacancie=${idVacancy}&idCandidate=${selectUser._id}`
             );
-            console.log('responseBackend:..',response);
+            console.log("responseBackend (candidato Agregado):..", response);
+            if (response) {
+              queryPhase();
+            }
           } catch (error) {
             console.log(error);
           }
@@ -174,6 +231,7 @@ export const MatchDetails = () => {
   return (
     <>
       <div className="row m-3">
+        <h2 className="fs-1 text-center my-2">{dataInfoVacancy.title}</h2>
         <h2 className="text-dark">Lista de aplicantes</h2>
         <div className="col">
           {dataByUserCandidate?.length > 0 && (
@@ -189,6 +247,7 @@ export const MatchDetails = () => {
               currentPage={currentPage}
               isButtonDisabled={isButtonDisabled}
               buttonState={buttonState}
+              listApplicantsPhaseOne={listApplicantsPhaseOne}
             />
           )}
         </div>

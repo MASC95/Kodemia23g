@@ -3,11 +3,13 @@ import { backURL } from "../../lib/myLib"
 //cambie los endponts para poder acceder a producción y a local
 export const endpointsGral = {
     vacancyURL: `${backURL}api/v1/jobVacancy/`,
+    hideUserInVacancy: `${backURL}api/v1/jobVacancy/updateListApplicantsInVacancie`,
     usersInVacancy: `${backURL}api/v1/users/getAllUsersInVacancy/`,
     userURL: `${backURL}api/v1/users/`,
     registerUser: `${backURL}api/v1/signup`,
     jobSkill: `${backURL}api/v1/jobSkill/`,
     phaseURL: `${backURL}api/v1/phase/`,
+    phaseUrlGetPhase: `${backURL}api/v1/phase/getPhase`,
     confirmEmail: `${backURL}api/v1/signup/sendAccessCode`,
     getSkillsInUser:`${backURL}api/v1/users/getSkillsInUser/`,
   };

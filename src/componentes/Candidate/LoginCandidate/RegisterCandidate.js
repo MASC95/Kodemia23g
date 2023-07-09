@@ -88,9 +88,7 @@ export const RegisterCandidate = () => {
       // console.log('agregalo')
     }
   };
-  const importantData =
-    formValues.email !== "" &&
-    formValues.password !== "";
+  const importantData = formValues.email !== "" && formValues.password !== "";
 
   const resetForm = () => {
     setFormValues({

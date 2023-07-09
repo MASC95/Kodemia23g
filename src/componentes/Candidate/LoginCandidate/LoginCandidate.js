@@ -7,12 +7,27 @@ import useJob from "../../../hooks/useJob";
 import endpoints from "../../Recruiter/services/endpoints";
 import swal from "sweetalert";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-
+import { Formik, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
 const initFormValues = {
   email: "",
   password: "",
 };
 
+const profileSchema = Yup.object().shape({
+  user: Yup.string()
+    .required("Favor de ingresar el Usuario")
+    .min(4, "El usuario debe tener al menos 4 caracteres")
+    .max(16, "El usuario debe tener como máximo 16 caracteres"),
+  password: Yup.string()
+    .required("Ingresar el password")
+    .min(8, "El password debe tener al menos 8 caracteres")
+    .max(16, "El apellido debe tener como máximo 16 caracteres")
+    .matches(
+      /^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,16}$/,
+      "La contraseña debe tener al entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula, al menos una mayúscula y al menos un caracter no alfanumérico."
+    ),
+});
 export const LoginCandidate = () => {
   const [formValues, setFormValues] = useState({ ...initFormValues });
   const [showPassword, setShowPassword] = useState(false);
@@ -97,11 +112,15 @@ export const LoginCandidate = () => {
                 <h2 className="text-center text-dark welcome-back">
                   Bienvenido de vuelta!
                 </h2>
-                <form
+                <Formik
                   className="text-left clearfix"
                   id="formCandidate"
+                  initialValues={formValues}
                   onSubmit={onFormSubmit}
+                  validationSchema={profileSchema}
+                  enableReinitialize={true}
                 >
+                    {(props) => (
                   <div className="form-group">
                     <input
                       type="email"
@@ -150,7 +169,9 @@ export const LoginCandidate = () => {
                       </button>
                     </div>
                   </div>
-                </form>
+                       )}
+
+                </Formik>
                 <p className="mt-20 text-black text-decoration-none">
                   No tienes una cuenta?
                   <Link to={`/register-candidato`}>

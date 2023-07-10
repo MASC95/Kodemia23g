@@ -1,29 +1,33 @@
-import imgProfile from "../../../Recruiter/assets/img/perfil2.jpg";
+//import imgProfile from "../../../Recruiter/assets/img/perfil2.jpg";
 import "../scss/style.scss";
 import { Formik, Field, ErrorMessage } from "formik";
 import { Form } from "react-bootstrap";
 import * as Yup from "yup";
-import { useFormik } from "formik";
+//import { useFormik } from "formik";
 import axios from "axios";
-import { Component, useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import { endpointsGral } from "../../../Recruiter/services/vacancy";
 import UploadImage from "../../../UploadImage/UploadImage";
 import useJob from "../../../../hooks/useJob";
 import "../SkillsSection.js";
 //import SkillsSection from "../SkillsSection.js";
-import Softskills from "../../../Recruiter/SoftSkills/Form/SoftSkills";
+//import Softskills from "../../../Recruiter/SoftSkills/Form/SoftSkills";
 import { FaUserCircle } from "react-icons/fa";
 import swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.css";
 import TableSkillsCandidate from "../TableSkillsCandidate/TableSkillsCandidate";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 //const localEndPoinst = "http://localhost:4000/api/v1/users/";
+
+const defaultPassword= "";
 
 const initDataForm = {
   name: "",
   last_name: "",
   email: "",
-  resetPassword: "",
+  resetPassword: defaultPassword,
+  password:'',
   age: "",
   working_experience: "",
   bachelor: "",
@@ -69,7 +73,7 @@ const profileSchema = Yup.object().shape({
   email: Yup.string()
     .required("El correo electrónico es requerido")
     .email("ingrese un correo electrónico válido"),
-
+  resetPassword:Yup.string(),
   age: Yup.number()
     .required("El campo es requerido")
     .min(18, "Debe ser mayor de 18 años"),
@@ -80,6 +84,10 @@ const FormRecruiter = () => {
   const [listSkills, setListSkills] = useState([]);
   const [dataForm, setDataForm] = useState(initDataForm);
   const [imageUser, setImageUser] = useState(null);
+  const [noPassword, setNoPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [isResetPassword, setIsResetPassword] = useState(false);
+  
   const [
     dataCandidate,
     setDataCandidate,
@@ -97,7 +105,8 @@ const FormRecruiter = () => {
         name: dataCandidate.name || "",
         last_name: dataCandidate.last_name || "",
         email: dataCandidate.email || "",
-        resetPassword: dataCandidate.resetPassword || "",
+        password:"",
+        resetPassword: noPassword,
         age: dataCandidate.age || "",
         working_experience: dataCandidate.working_experience || "",
         bachelor: dataCandidate.bachelor || "",
@@ -105,6 +114,10 @@ const FormRecruiter = () => {
       });
     }
   }, [dataCandidate]);
+
+  useEffect(()=>{
+    console.log('datos en dataForm:..',dataForm)
+  },[dataForm])
 
   useEffect(() => {
     if (listSkills.length === 0) {
@@ -115,7 +128,7 @@ const FormRecruiter = () => {
     }
   }, [listSkills]);
 
-  const formik = useFormik({
+ /*  const formik = useFormik({
     initialValues: dataForm,
     enableReinitialize: true,
     validationSchema: Yup.object({
@@ -145,8 +158,8 @@ const FormRecruiter = () => {
     onSubmit: (values) => {
       /*  alert(JSON.stringify(values, null, 2)); */
       // console.log('values:..',values);
-    },
-  });
+    /*   },
+  }); */
 
   const handleSubmit = async (values) => {
     //e.preventDefault();
@@ -218,6 +231,10 @@ const FormRecruiter = () => {
       });
   };
 
+  const handleResetPassword =()=>{
+    setIsResetPassword(prev=>!prev);
+  }
+
   return (
     <div className="">
       <h1
@@ -273,10 +290,13 @@ const FormRecruiter = () => {
             initialValues={dataForm}
             enableReinitialize={true} // solo para formularios que sirven para editar informacion
             validationSchema={profileSchema}
-            onSubmit={(values) => handleSubmit(values)}
+            onSubmit={(values) => 
+              console.log('values form:..',values)
+              //handleSubmit(values)
+            }
           >
             {(props) => (
-              <Form onSubmit={props.handleSubmit}>
+              <Form onSubmit={props.handleSubmit} autoComplete="off">
                 <div className="row mb-4">
                   <div className="col">
                     <div className="form-outline bg-gray">
@@ -410,6 +430,7 @@ const FormRecruiter = () => {
                       <label
                         className="form-label"
                         htmlFor="form6Example1"
+                        
                         style={{
                           color: "#498BA6",
                           fontFamily:
@@ -418,7 +439,8 @@ const FormRecruiter = () => {
                       >
                         Email:
                       </label>
-                      <Field
+                      <input
+                      autoComplete="false"
                         type="email"
                         id="email"
                         placeholder="Email"
@@ -437,20 +459,26 @@ const FormRecruiter = () => {
                   <div className="col">
                     <div className="form-outline">
                       <label
+                      
                         className="form-label"
-                        htmlFor="form6Example1"
+                        htmlFor="resetPasswordProfile"
+                        onClick={handleResetPassword}
                         style={{
                           color: "#498BA6",
+                          cursor:"pointer",
                           fontFamily:
                             "Poppins, sans-serif, Verdana, Geneva, Tahoma",
                         }}
                       >
                         Reset Password:
                       </label>
-                      <Field
-                        type="password"
-                        id="resetPassword"
-                        placeholder="Reset Password"
+                      <div className={isResetPassword?"d-flex":"d-none"}>
+                        
+                      <input
+                        type={showPassword ? "text" : "password"}
+                        id="resetPasswordProfile"
+                        autoComplete="false"
+                        placeholder={noPassword}
                         name="resetPassword"
                         className={`form-control ${
                           props.touched.resetPassword &&
@@ -462,7 +490,24 @@ const FormRecruiter = () => {
                         onChange={props.handleChange}
                         onBlur={props.handleBlur}
                       />
-                      <ErrorMessage name="password" />
+                      <span
+                          className="input-group-text "
+                          style={{
+                            color: "#f2f2f2",
+                            backgroundColor: "#0093E9",
+                            backgroundImage:
+                              "linear-gradient(160deg, #0093E9 0%, #80D0C7 100%)",
+                          }}
+                          onClick={() => setShowPassword(!showPassword)}
+                        >
+                          {showPassword ? (
+                            <FaEyeSlash style={{ width: "30px" }} />
+                          ) : (
+                            <FaEye style={{ width: "30px" }} />
+                          )}
+                        </span>
+                        </div>
+                      <ErrorMessage name="resetPassword" />
                     </div>
                   </div>
                 </div>

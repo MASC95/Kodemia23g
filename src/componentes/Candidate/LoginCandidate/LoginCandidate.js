@@ -14,19 +14,22 @@ const initFormValues = {
   password: "",
 };
 
-const profileSchema = Yup.object().shape({
-  user: Yup.string()
-    .required("Favor de ingresar el Usuario")
-    .min(4, "El usuario debe tener al menos 4 caracteres")
-    .max(16, "El usuario debe tener como máximo 16 caracteres"),
-  password: Yup.string()
-    .required("Ingresar el password")
-    .min(8, "El password debe tener al menos 8 caracteres")
-    .max(16, "El apellido debe tener como máximo 16 caracteres")
+/*
+.min(8, "El password debe tener al menos 8 caracteres")
     .matches(
       /^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,16}$/,
-      "La contraseña debe tener al entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula, al menos una mayúscula y al menos un caracter no alfanumérico."
+      "La contraseña debe tener entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula, al menos una mayúscula y al menos un caracter no alfanumérico."
+    )*/
+
+const profileSchema = Yup.object().shape({
+  email: Yup.string()
+    .required("Favor de ingresar el email")
+    .matches(
+      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+      "Favor de Ingresar un email valido"
     ),
+  password: Yup.string()
+    .required("Favor de Ingresar el password"),
 });
 export const LoginCandidate = () => {
   const [formValues, setFormValues] = useState({ ...initFormValues });
@@ -54,15 +57,18 @@ export const LoginCandidate = () => {
     });
   };
 
-  const onFormSubmit = (e) => {
-    e.preventDefault();
-    initLogin();
+  const onFormSubmit = (values) => {
+    //e.preventDefault();
+
+    //console.log("velues del Form:..", values);
+
+    initLogin(values);
   };
-  const initLogin = async () => {
+  const initLogin = async (values) => {
     try {
-      if (formValues.email !== "" && formValues.password !== "") {
-        console.log("formValues:..", formValues);
-        const loginCandidate = await endpoints.loginAxios(formValues);
+      if (values.email !== "" && values.password !== "") {
+        //console.log("formValues:..", formValues);
+        const loginCandidate = await endpoints.loginAxios(values);
         setFormValues(loginCandidate);
         console.log("loginCandidate(checando user_skills):..", loginCandidate);
         setDataLocalStorage({ ...loginCandidate });
@@ -116,62 +122,86 @@ export const LoginCandidate = () => {
                   className="text-left clearfix"
                   id="formCandidate"
                   initialValues={formValues}
-                  onSubmit={onFormSubmit}
+                  onSubmit={(values)=>{
+                    onFormSubmit(values)
+                    values={}
+                    }
+                  }
                   validationSchema={profileSchema}
                   enableReinitialize={true}
                 >
-                    {(props) => (
-                  <div className="form-group">
-                    <input
-                      type="email"
-                      value={formValues.email}
-                      onChange={onFormInputChange}
-                      className="form-control"
-                      id="email"
-                      placeholder="Email"
-                    />
-                  </div>
-                  <div className="input-group mb-3">
-                    <input
-                      type={showPassword ? "text" : "password"}
-                      value={formValues.password}
-                      onChange={onFormInputChange}
-                      className={`form-control ${
-                        formValues.password === "" ? "is-invalid" : ""
-                      }`}
-                      id="password"
-                      placeholder="Password"
-                    />
-                    <span
-                      className="input-group-text "
-                      style={{
-                        color: "#f2f2f2",
-                        backgroundColor: "#0093E9",
-                        backgroundImage:
-                          "linear-gradient(160deg, #0093E9 0%, #80D0C7 100%)",
-                      }}
-                      onClick={() => setShowPassword(!showPassword)}
-                    >
-                      {showPassword ? (
-                        <FaEyeSlash style={{ width: "30px" }} />
-                      ) : (
-                        <FaEye style={{ width: "30px" }} />
-                      )}
-                    </span>
-                  </div>
-                  <div className="text-center">
-                    <div className="buttons_actions d-grid">
-                      <button
-                        type="submit"
-                        className="buttons btn btn-info btn-lg"
-                      >
-                        Enviar
-                      </button>
-                    </div>
-                  </div>
-                       )}
+                  {(props) => (
+                    <form onSubmit={props.handleSubmit}>
+                      <div className="form-group">
+                        <input
+                          type="email"
+                          id="email"
+                          placeholder="Email"
+                          name="email"
+                          className={`form-control ${
+                            props.touched.email && props.errors.email
+                              ? "border border-danger"
+                              : "border border-secondary"
+                          }`}
+                          value={props.values.email}
+                          onChange={props.handleChange}
+                          onBlur={props.handleBlur}
+                        />
+                        <span className="text-danger">
+                          <ErrorMessage name="email" />
+                        </span>
+                      </div>
 
+                      <div className="input-group mb-3">
+                        <input
+                          type={showPassword ? "text" : "password"}
+                          id="password"
+                          placeholder="Password"
+                          name="password"
+                          className={`form-control ${
+                            props.touched.password && props.errors.password
+                              ? "border border-danger"
+                              : "border border-secondary"
+                          }`}
+                          value={props.values.password}
+                          onChange={props.handleChange}
+                          onBlur={props.handleBlur}
+                        />
+                        <span
+                          className="input-group-text "
+                          style={{
+                            color: "#f2f2f2",
+                            backgroundColor: "#0093E9",
+                            backgroundImage:
+                              "linear-gradient(160deg, #0093E9 0%, #80D0C7 100%)",
+                          }}
+                          onClick={() => setShowPassword(!showPassword)}
+                        >
+                          {showPassword ? (
+                            <FaEyeSlash style={{ width: "30px" }} />
+                          ) : (
+                            <FaEye style={{ width: "30px" }} />
+                          )}
+                        </span>
+                      </div>
+                      <span className="text-danger">
+                        <ErrorMessage name="password" />
+                      </span>
+
+                      <div className="text-center">
+                        <div className="buttons_actions d-grid">
+                          <button
+                            type="submit"
+                            className="buttons btn btn-info btn-lg"
+                          >
+                            Enviar
+                          </button>
+                        </div>
+                      </div>
+                    </form>
+                  )}
                 </Formik>
+
                 <p className="mt-20 text-black text-decoration-none">
                   No tienes una cuenta?
                   <Link to={`/register-candidato`}>

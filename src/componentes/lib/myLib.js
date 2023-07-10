@@ -9,10 +9,10 @@ export const myId = () => {
   return id.join("");
 };
 
-const nodeEnv = "DEV";
+const nodeEnv = "PRD";
 
-// export const backURL = nodeEnv==='PRD'?'https://apiback.jobinder.org/':'http://localhost:4000/';
-export const backURL = "http://localhost:4000/";
+ export const backURL = nodeEnv==='PRD'?'https://apiback.jobinder.org/':'http://localhost:4000/';
+//export const backURL = "http://localhost:4000/";
 export const idPhaseOne='6488fc0ecce145783bdc67fa'
 export const idPhaseTwo= '6488fc23cce145783bdc67fc'
 export const idPhaseTree= '6488fc28cce145783bdc67fe'

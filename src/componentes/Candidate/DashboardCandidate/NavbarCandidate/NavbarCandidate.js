@@ -32,13 +32,13 @@ const NavbarCandidate = () => {
 
   const [isErrorImg, setIsErrorImg] = useState(false);
 
-    useEffect(() => {
-      console.log("Reloading Navbar:...");
-    }, [isErrorImg]);
-  
-  const toggleErrorImg = ()=>{
-    setIsErrorImg(prev=>!prev)
-  }
+  useEffect(() => {
+    console.log("Reloading Navbar:...");
+  }, [isErrorImg]);
+
+  const toggleErrorImg = () => {
+    setIsErrorImg((prev) => !prev);
+  };
 
   const handleError = () => {
     console.log("Error al cargar la Imagen:...");
@@ -112,7 +112,9 @@ const NavbarCandidate = () => {
             >
               <div>
                 <img
-                  src={dataCandidate.avatar_url?dataCandidate.avatar_url:logo}
+                  src={
+                    dataCandidate.avatar_url ? dataCandidate.avatar_url : logo
+                  }
                   alt="candidate-profile-pic"
                   className="candidate-profile-pic "
                   onError={handleError}

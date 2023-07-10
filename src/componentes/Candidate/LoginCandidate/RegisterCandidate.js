@@ -42,7 +42,7 @@ export const RegisterCandidate = () => {
   const [formValues, setFormValues] = useState({
     email: "",
     password: "",
-    role: "",
+    role: "candidato",
     code: "",
     backCode: "",
     rfc: "",
@@ -51,7 +51,7 @@ export const RegisterCandidate = () => {
   useEffect(() => {
     if (
       formValues.code !== "" &&
-      formValues.code === String(formValues.backCode)
+      formValues.code.trim() === String(formValues.backCode)
     ) {
       setIsConfirmEmail(true);
     } else {
@@ -88,10 +88,7 @@ export const RegisterCandidate = () => {
       // console.log('agregalo')
     }
   };
-  const importantData =
-    formValues.email !== "" &&
-    formValues.role !== "" &&
-    formValues.password !== "";
+  const importantData = formValues.email !== "" && formValues.password !== "";
 
   const resetForm = () => {
     setFormValues({

@@ -74,7 +74,7 @@ const HorizonTable = ({
       sortable: true,
     },
     {
-      name: "TÍTULO",
+      name: "TÍTULO ",
       selector: (row) => row.title,
       sortable: true,
     },
@@ -101,6 +101,7 @@ const HorizonTable = ({
       cell: (d) => (
         <div
           className="options-buttons mt-3 mb-3 bg-light  d-flex flex-column gap-1"
+          key={myId()}
           style={{
             width: "350px",
             fontFamily: "Poppins, sans-serif, Verdana, Geneva, Tahoma",
@@ -110,6 +111,7 @@ const HorizonTable = ({
             <button
               type="submit"
               id={d._id}
+              key={myId()}
               className="btn btn-outline-success buscar w-100"
               onClick={handleApply}
               disabled={
@@ -127,13 +129,18 @@ const HorizonTable = ({
               type="submit"
               className="btn btn-outline-danger w-100"
               id={d._id}
+              key={myId()}
               onClick={handleStopApplying}
             >
               No Aplicar
             </button>
           )}
           <Link to={`/dashboard-candidato/detail-vacancy/${d._id}`}>
-            <button type="submit" className="btn btn-outline-info w-100">
+            <button
+              type="submit"
+              className="btn btn-outline-info w-100"
+              key={myId()}
+            >
               Abrir
             </button>
           </Link>

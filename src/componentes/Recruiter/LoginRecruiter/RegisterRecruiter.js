@@ -31,7 +31,7 @@ const profileSchema = Yup.object().shape({
     .min(8, "El password debe tener al menos 8 caracteres")
     .max(10, "El password debe tener al maximo 10 caracteres")
     .matches(
-      /^(?=.\d)(?=.[\u0021-\u002b\u003c-\u0040])(?=.[A-Z])(?=.[a-z])\S{8,10}$/,
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/,
       "La contraseña debe tener al entre 8 y 10 caracteres, al menos un dígito, al menos una minúscula, al menos una mayúscula y al menos un caracter no alfanumérico."
     ),
     code: Yup.string()

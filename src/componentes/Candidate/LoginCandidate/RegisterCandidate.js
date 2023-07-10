@@ -186,7 +186,7 @@ export const RegisterCandidate = () => {
                   <img src={logo} alt="" />
                 </Link>
                 <h2 className="text-center text-dark">
-                  Crea tu cuenta y empieza a Aplicar! MIGUEL
+                  Crea tu cuenta y empieza a Aplicar!
                 </h2>
                 <form className="text-left clearfix" onSubmit={onFormSubmit}>
                   <div

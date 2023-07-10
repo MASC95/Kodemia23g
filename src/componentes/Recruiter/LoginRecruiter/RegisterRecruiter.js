@@ -25,14 +25,17 @@ const initDataForm={
 
 const profileSchema = Yup.object().shape({
   email: Yup.string()
-    .required("Favor de ingresar correo"),
+    .required("Favor de ingresar correo")
+    .matches(
+      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+      "Favor de Ingresar un email valido"
+    ),
   password: Yup.string()
     .required("Ingresar el password")
     .min(8, "El password debe tener al menos 8 caracteres")
-    .max(10, "El password debe tener al maximo 10 caracteres")
     .matches(
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/,
-      "La contraseña debe tener al entre 8 y 10 caracteres, al menos un dígito, al menos una minúscula, al menos una mayúscula y al menos un caracter no alfanumérico."
+      "La contraseña debe tener entre 8 y 10 caracteres, al menos un dígito, al menos una minúscula, al menos una mayúscula y al menos un caracter no alfanumérico."
     ),
     code: Yup.string()
     .required("Ingresar el código de verificación")

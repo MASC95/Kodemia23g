@@ -17,7 +17,7 @@ import * as Yup from "yup";
 const profileSchema = Yup.object({
     email: Yup.string()
       .required("Favor de ingresar el Usuario")
-      .min(4, "El usuario debe tener al menos 4 caracteres"),
+      ,
     password: Yup.string()
       .required("Ingresar el password")
       .min(8, "El password debe tener al menos 8 caracteres"),

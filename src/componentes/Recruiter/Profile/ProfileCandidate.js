@@ -7,6 +7,7 @@ import useJob from "../../../hooks/useJob";
 import { myId } from "../../lib/myLib";
 import DataTable from "react-data-table-component";
 import DataTableExtensions from "react-data-table-component-extensions";
+import Swal from "sweetalert2";
 import "./scss/style.scss";
 export const Candidate = () => {
   const valores = window.location.search;
@@ -48,8 +49,106 @@ export const Candidate = () => {
     if(infoCandidate?.user_skills){
       setDataSkill([...infoCandidate?.user_skills]);
     }
-    
   };
+
+  // const handleOfPanel=(id)=>{
+   
+  // Swal.fire({
+  //   title: "Panel de reclutamiento",
+  //   text: "Estas seguro de agregar al candidato?!",
+  //   icon: "warning",
+  //   showCancelButton: true,
+  //   confirmButtonColor: "#3085d6",
+  //   cancelButtonColor: "#d33",
+  //   confirmButtonText: "Si, agregar!",
+  // }).then(async (result) => {
+  //   if (result.isConfirmed) {
+  //     const selectUser = dataByUserCandidate[index];
+
+  //     let tempDataUser = [...tempListUser];
+  //     const dataRepet = tempDataUser.some(
+  //       (item) => item._id === selectUser._id
+  //     );
+  //     console.log("data repet", dataRepet);
+  //     if (dataRepet) {
+  //       console.log("ya esta agregado");
+  //       Swal.fire(
+  //         "Acción rechazada!",
+  //         "Este usuario ya esta agregado al panel!",
+  //         "error"
+  //       );
+  //     } else {
+  //       const selectUser = dataByUserCandidate[index];
+  //       console.log("agregando usuario a primera fase:..", selectUser._id);
+  //       console.log("dentro de la vacante:..", idVacancy);
+  //       try {
+  //         axios.defaults.headers.common[
+  //           "Authorization"
+  //         ] = `Bearer: ${dataRecruiter.accessToken}`;
+  //         const response = await axios.patch(
+  //           `${endpointsGral.phaseURL}?phase=Llamada&idVacancie=${idVacancy}&idCandidate=${selectUser._id}`
+  //         );
+  //         console.log("responseBackend (candidato Agregado):..", response);
+  //         if (response) {
+  //           queryPhase();
+  //         }
+  //       } catch (error) {
+  //         console.log(error);
+  //       }
+  //       tempDataUser.push(selectUser);
+  //       setListDataUser([...tempDataUser]);
+  //     }
+  //     // console.log('lista de usuarios para reclutamiento',tempDataUser)
+  //     setButtonDisabled(true);
+  //     // setButtonState("btn-outline-secondary")
+  //   }
+  // });
+  // }
+
+  // const handleOfHidePanel=(id)=>{
+  //   console.log("En el papa(index):", index);
+  //   Swal.fire({
+  //     title: "Ocultar candidato",
+  //     text: "Estas seguro de ocultar esta candidato?!",
+  //     icon: "warning",
+  //     showCancelButton: true,
+  //     confirmButtonColor: "#3085d6",
+  //     cancelButtonColor: "#d33",
+  //     confirmButtonText: "Si, ocultar!",
+  //   }).then(async (result) => {
+  //     if (result.isConfirmed) {
+  //       console.log("indice a borrar:..", index);
+  //       const hideCandidate = dataByUserCandidate[index];
+  //       const id = hideCandidate._id;
+  //       console.log("candidato a ocultar:..", id);
+  //       if (hideCandidate) {
+  //         const deleteOnList = dataByUserCandidate.filter(
+  //           (_, i) => i !== index
+  //         );
+  //         try {
+  //           axios.defaults.headers.common[
+  //             "Authorization"
+  //           ] = `Bearer: ${dataRecruiter.accessToken}`;
+  //           console.log(
+  //             "dataRecruiter.accessToken ",
+  //             dataRecruiter.accessToken
+  //           );
+  //           const responseBack = await axios.post(
+  //             `${endpointsGral.hideUserInVacancy}`,
+  //             { idVacancy, idCandidate: id, emailUser: hideCandidate.email }
+  //           );
+  //           console.log("responseBack HideUser:..", responseBack);
+  //         } catch (error) {
+  //           console.log(error);
+  //         }
+  //         setDataByUserCandidate(deleteOnList);
+  //         console.log("lista de candidatos sin el oculto:..", deleteOnList);
+  //       } else {
+  //         console.log("error al ocultar");
+  //       }
+  //     }
+  //   });
+  // }
 
   useEffect(() => {
     console.log('infoCandidate:...',infoCandidate);
@@ -57,12 +156,6 @@ export const Candidate = () => {
   }, [infoCandidate]);
 
   const data = dataSkill?.map((skill, i) => {
-    /* let myDataSkill = null;
-    myDataSkill = dataSkill?.find((item) => item._id === skill.skill);
-    if (!myDataSkill) {
-      myDataSkill = dataSkill?.find((item) => item._id === skill);
-    } */
-
     return {
       id: skill._id,
       qty: `${i + 1}`,
@@ -142,14 +235,16 @@ export const Candidate = () => {
                 <button
                   type="button"
                   className="buttons btn btn-outline-success"
-                >
-                  <FaCheck className="icon_check" />
+                  // onClick={handleOfPanel.bind(this,infoCandidate._id)}
+                 >
+                  <FaCheck className="icon_check"/>
                 </button>
                 <button
                   type="button"
                   className="buttons btn btn-outline-secondary"
+                  //  onClick={handleOfHidePanel.bind(this,infoCandidate._id)}
                 >
-                  <FaEyeSlash className="icon_eyeSlash" />
+                  <FaEyeSlash className="icon_eyeSlash"/>
                 </button>
               </div>
             </div>

@@ -14,13 +14,19 @@ import Form from "react-bootstrap/Form";
 import { Formik, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
-const profileSchema = Yup.object({
+const profileSchema = Yup.object().shape({
     email: Yup.string()
       .required("Favor de ingresar el Usuario")
-      .min(4, "El usuario debe tener al menos 4 caracteres"),
+      .min(4, "El usuario debe tener al menos 4 caracteres")
+      .max(16, "El usuario debe tener como máximo 16 caracteres"),
     password: Yup.string()
       .required("Ingresar el password")
-      .min(8, "El password debe tener al menos 8 caracteres"),
+      .min(8, "El password debe tener al menos 8 caracteres")
+      .max(16, "El apellido debe tener como máximo 16 caracteres")
+      .matches(
+        /^(?=.\d)(?=.[\u0021-\u002b\u003c-\u0040])(?=.[A-Z])(?=.[a-z])\S{8,16}$/,
+        "La contraseña debe tener al entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula, al menos una mayúscula y al menos un caracter no alfanumérico."
+      ),
   });
   
   const initialDataForm = {
@@ -117,11 +123,11 @@ export const LoginRecruiter=()=>{
                             <Form  
                                className="text-left clearfix" 
                                onSubmit={props.handleSubmit}>
-                            <Form.Group className="form-group">
-                                {/* <Form.Label>Email</Form.Label> */}
+                            <Form.Group controlId="formLoginRecruiter" className="form-group">
+                                <Form.Label>Email</Form.Label>
                                 <Form.Control
                                    type="email" 
-                                   className={`form-control rounded ${
+                                   className={`form-control ${
                                     props.touched.email && props.errors.email
                                       ? "border border-danger"
                                       : "border border-secondary"
@@ -133,16 +139,14 @@ export const LoginRecruiter=()=>{
                                    onChange={props.handleChange}
                                    onBlur={props.handleBlur}
                                 />
-                                  <span className="text-danger">
-                                      <ErrorMessage name='email'/>
-                                  </span>
+                                    <ErrorMessage name='email'/>
                             </Form.Group>
 
-                            <Form.Group  className="form-group">
-                                {/* <Form.Label>Password</Form.Label> */}
+                            <Form.Group controlId="formpassword" className="form-group">
+                                <Form.Label>Password</Form.Label>
                                 <Form.Control
                                    type="password" 
-                                   className={`form-control rounded ${
+                                   className={`form-control ${
                                     props.touched.email && props.errors.email
                                       ? "border border-danger"
                                       : "border border-secondary"
@@ -154,12 +158,9 @@ export const LoginRecruiter=()=>{
                                    onChange={props.handleChange}
                                    onBlur={props.handleBlur}
                                 />
-                                <span className="text-danger">
                                     <ErrorMessage name='password'/>
-                                </span>
                             </Form.Group>
-
-                            <Button type="submit" className="buttons btn btn-info btn-lg m-3">
+                            <Button type="submit" className="buttons btn btn-info btn-lg">
                             Enviar
                             </Button>
                             </Form>

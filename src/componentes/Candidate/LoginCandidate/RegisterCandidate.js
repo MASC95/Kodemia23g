@@ -8,7 +8,6 @@ import swal from "sweetalert";
 import Swal from "sweetalert2";
 import { endpointsGral } from "../../Recruiter/services/vacancy";
 import useJob from "../../../hooks/useJob";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 export const RegisterCandidate = () => {
   const [isResgitering, setIsResgitering] = useState(false);
@@ -23,7 +22,6 @@ export const RegisterCandidate = () => {
     dataLocalStorage,
     setDataLocalStorage,
   ] = useJob();
-  const [showPassword, setShowPassword] = useState(false);
 
   const fetchUser = async () => {
     const response = await axios.get(endpointsGral.userURL);
@@ -42,7 +40,7 @@ export const RegisterCandidate = () => {
   const [formValues, setFormValues] = useState({
     email: "",
     password: "",
-    role: "candidato",
+    role: "",
     code: "",
     backCode: "",
     rfc: "",
@@ -51,7 +49,7 @@ export const RegisterCandidate = () => {
   useEffect(() => {
     if (
       formValues.code !== "" &&
-      formValues.code.trim() === String(formValues.backCode)
+      formValues.code === String(formValues.backCode)
     ) {
       setIsConfirmEmail(true);
     } else {
@@ -88,7 +86,10 @@ export const RegisterCandidate = () => {
       // console.log('agregalo')
     }
   };
-  const importantData = formValues.email !== "" && formValues.password !== "";
+  const importantData =
+    formValues.email !== "" &&
+    formValues.role !== "" &&
+    formValues.password !== "";
 
   const resetForm = () => {
     setFormValues({
@@ -140,16 +141,16 @@ export const RegisterCandidate = () => {
         }
       } else {
         swal({
-          title: "Todos aqui esta lo malo los campos son requeridos!",
+          title: "Todos los campos son requeridos!",
           icon: "error",
-          button: "Aceptar",
+          button: "ok!",
         });
       }
     } catch (error) {
       swal({
         title: "Error al registrar!",
         icon: "error",
-        button: "Aceptar",
+        button: "ok!",
       });
     }
   };
@@ -162,16 +163,6 @@ export const RegisterCandidate = () => {
       console.log("Email confirmado con Exito:..");
     } else {
       console.log("Codigo de acceso Erroneo:..");
-      Swal.fire({
-        title: "Error!",
-        text: "Ingrese el código que se le envió a su correo",
-        titleText: "Código de Acceso Incorrecto!",
-        icon: "error",
-        confirmButtonText: "Aceptar",
-        target: "Ingrese un nuevo código",
-
-        confirmButtonColor: "#04F06A",
-      });
     }
   };
 
@@ -185,36 +176,22 @@ export const RegisterCandidate = () => {
                 <Link to={"/"} className="logo_Jobinder">
                   <img src={logo} alt="" />
                 </Link>
-                <h2 className="text-center text-dark">
-                  Crea tu cuenta y empieza a Aplicar! MIGUEL
-                </h2>
+                <h2 className="text-center text-dark">Bienvenido</h2>
                 <form className="text-left clearfix" onSubmit={onFormSubmit}>
-                  <div
-                    className={`form-group ${
-                      formValues.email === "" ? "has-error" : ""
-                    }`}
-                  >
+                  <div className="form-group">
                     <input
                       type="email"
                       value={formValues.email}
                       onChange={onFormInputChange}
-                      className={`form-control ${
-                        formValues.email === "" ? "is-invalid" : ""
-                      }`}
+                      className="form-control"
                       id="email"
                       placeholder="Email"
                     />
-                    {formValues.email === "" && (
-                      <div className="invalid-feedback">
-                        Por favor, completa este campo.
-                      </div>
-                    )}
                   </div>
-
                   <div className="form-group">
                     {/* <label className="form-label" for="form6Example1">Role</label> */}
                     <select
-                      className="form-control d-none"
+                      className="form-control"
                       id="role"
                       value={formValues.role}
                       onChange={onFormInputChange}
@@ -229,51 +206,21 @@ export const RegisterCandidate = () => {
                       type="text"
                       value={formValues.rfc}
                       onChange={onFormInputChange}
-                      className="form-control d-none"
+                      className="form-control"
                       id="rfc"
                       placeholder="RFC"
                     />
                   </div>
-                  <div
-                    className={`form-group ${
-                      formValues.password === "" ? "has-error" : ""
-                    }`}
-                  >
-                    <div className="input-group mb-3">
-                      <input
-                        type={showPassword ? "text" : "password"}
-                        value={formValues.password}
-                        onChange={onFormInputChange}
-                        className={`form-control ${
-                          formValues.password === "" ? "is-invalid" : ""
-                        }`}
-                        id="password"
-                        placeholder="Password"
-                      />
-                      <span
-                        className="input-group-text "
-                        style={{
-                          color: "#f2f2f2",
-                          backgroundColor: "#0093E9",
-                          backgroundImage:
-                            "linear-gradient(160deg, #0093E9 0%, #80D0C7 100%)",
-                        }}
-                        onClick={() => setShowPassword(!showPassword)}
-                      >
-                        {showPassword ? (
-                          <FaEyeSlash style={{ width: "30px" }} />
-                        ) : (
-                          <FaEye style={{ width: "30px" }} />
-                        )}
-                      </span>
-                    </div>
-                    {formValues.password === "" && (
-                      <div className="invalid-feedback">
-                        Por favor, completa este campo.
-                      </div>
-                    )}
+                  <div className="form-group">
+                    <input
+                      type="password"
+                      value={formValues.password}
+                      onChange={onFormInputChange}
+                      className="form-control"
+                      id="password"
+                      placeholder="Password"
+                    />
                   </div>
-
                   <div className="text-center">
                     {!isResgitering && (
                       <div className="buttons_actions d-grid">

@@ -42,7 +42,7 @@ export const RegisterCandidate = () => {
   const [formValues, setFormValues] = useState({
     email: "",
     password: "",
-    role: "",
+    role: "candidato",
     code: "",
     backCode: "",
     rfc: "",
@@ -51,7 +51,7 @@ export const RegisterCandidate = () => {
   useEffect(() => {
     if (
       formValues.code !== "" &&
-      formValues.code === String(formValues.backCode)
+      formValues.code.trim() === String(formValues.backCode)
     ) {
       setIsConfirmEmail(true);
     } else {
@@ -88,10 +88,7 @@ export const RegisterCandidate = () => {
       // console.log('agregalo')
     }
   };
-  const importantData =
-    formValues.email !== "" &&
-    formValues.role !== "" &&
-    formValues.password !== "";
+  const importantData = formValues.email !== "" && formValues.password !== "";
 
   const resetForm = () => {
     setFormValues({
@@ -143,7 +140,7 @@ export const RegisterCandidate = () => {
         }
       } else {
         swal({
-          title: "Todos los campos son requeridos!",
+          title: "Todos aqui esta lo malo los campos son requeridos!",
           icon: "error",
           button: "Aceptar",
         });
@@ -189,7 +186,7 @@ export const RegisterCandidate = () => {
                   <img src={logo} alt="" />
                 </Link>
                 <h2 className="text-center text-dark">
-                  Crea tu cuenta y empieza a Aplicar!
+                  Crea tu cuenta y empieza a Aplicar! MIGUEL
                 </h2>
                 <form className="text-left clearfix" onSubmit={onFormSubmit}>
                   <div

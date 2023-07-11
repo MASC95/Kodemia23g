@@ -15,13 +15,15 @@ export const Softskills = ({ setListSkills, isCandidate, skillsCandidate }) => {
   );
 
   const fetchSkill = async () => {
-    const response = await axios.get(endpointsGral.jobSkill);
-    const infoSkill = response.data["item"];
+    const response = await axios.get(`${endpointsGral.jobSkill}/getAllSkillsForVacancy`);
+    const infoSkill = response.data.getAllSkills;
     console.log('infoSkill:...',infoSkill);
-    setDataSkill(infoSkill["docs"]);
+    let arrShort=infoSkill.sort((x, y) => x.name.localeCompare(y.name));
+    console.log(arrShort);
+    setDataSkill(infoSkill);
   };
   useEffect(() => {
-    fetchSkill();
+    fetchSkill(1,10);
   }, []);
 
   useEffect(() => {

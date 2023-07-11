@@ -4,7 +4,6 @@ import candidate from "../../Candidate/img/Candidate.avif";
 import recruiter from "../../Candidate/img/Recruiter.avif";
 import "./scss/section.scss";
 
-
 const Section = () => {
   const [isErorImgCadidate, setIsErorImgCandidate] = useState(false);
   const [isErorImgRecrutier, setIsErorImgRecrutier] = useState(false);
@@ -16,25 +15,23 @@ const Section = () => {
   };
 
   useEffect(() => {
-    console.log('Recargando por falla de Imagen:..');
+    console.log("Recargando por falla de Imagen:..");
     //console.log(isErorImg);
-  }, [isErorImgCadidate,isErorImgRecrutier])
+  }, [isErorImgCadidate, isErorImgRecrutier]);
 
-  const handleErrorImg=(e)=>{
-    console.log('Error al cargar img:..',e.target.name);
+  const handleErrorImg = (e) => {
+    console.log("Error al cargar img:..", e.target.name);
     const failImg = e.target.name;
-    if(failImg==='candidateImg'){
-      setIsErorImgCandidate(prev=>!prev);
-    }else{
-      setIsErorImgRecrutier(prev=>!prev);
+    if (failImg === "candidateImg") {
+      setIsErorImgCandidate((prev) => !prev);
+    } else {
+      setIsErorImgRecrutier((prev) => !prev);
     }
-  }
+  };
 
-  const handleLoadImg=(e)=>{
-    console.log('Success al cargar img:..',e.target.name);
-  }
-  
-
+  const handleLoadImg = (e) => {
+    console.log("Success al cargar img:..", e.target.name);
+  };
 
   return (
     <section className="sectionOne">

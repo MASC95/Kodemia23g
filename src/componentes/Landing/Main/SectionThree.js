@@ -1,7 +1,7 @@
 import React from "react";
 import "./scss/sectionthree.scss";
 import "../../Candidate/img/profile-pic.png";
-import profile from "../../Candidate/img/profile-pic.png";
+/* import profile from "../../Candidate/img/profile-pic.png"; */
 import { FaCheck } from "react-icons/fa";
 
 const SectionThree = () => {
@@ -23,7 +23,7 @@ const SectionThree = () => {
           <div className="col-md-3 contenedor-imagen d-flex justify-contenr-end">
             <img
               className=" rounded-circle d-none d-lg-block profile-pic-1"
-              src={profile}
+              src="https://frontjobinderimg.s3.amazonaws.com/profile-pic.png"
               alt="profile-pic-1"
             />
           </div>

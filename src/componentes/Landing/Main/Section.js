@@ -1,16 +1,38 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./scss/style.scss";
-/* import candidate from "../../Candidate/img/Candidate.avif"; */
-/* import recruiter from "../../Candidate/img/Recruiter.avif"; */
+import candidate from "../../Candidate/img/Candidate.avif";
+import recruiter from "../../Candidate/img/Recruiter.avif";
 import "./scss/section.scss";
 
 const Section = () => {
+  const [isErorImgCadidate, setIsErorImgCandidate] = useState(false);
+  const [isErorImgRecrutier, setIsErorImgRecrutier] = useState(false);
   const handleClickCandidate = () => {
     window.location.href = "/login-candidato";
   };
   const handleClickRecruiter = () => {
     window.location.href = "/login-recruiter";
   };
+
+  useEffect(() => {
+    console.log("Recargando por falla de Imagen:..");
+    //console.log(isErorImg);
+  }, [isErorImgCadidate, isErorImgRecrutier]);
+
+  const handleErrorImg = (e) => {
+    console.log("Error al cargar img:..", e.target.name);
+    const failImg = e.target.name;
+    if (failImg === "candidateImg") {
+      setIsErorImgCandidate((prev) => !prev);
+    } else {
+      setIsErorImgRecrutier((prev) => !prev);
+    }
+  };
+
+  const handleLoadImg = (e) => {
+    console.log("Success al cargar img:..", e.target.name);
+  };
+
   return (
     <section className="sectionOne">
       <div className="first-card-container">
@@ -29,6 +51,9 @@ const Section = () => {
                   src={
                     "https://frontjobinderimg.s3.amazonaws.com/Candidate.avif"
                   }
+                  name="candidateImg"
+                  onError={handleErrorImg}
+                  onLoad={handleLoadImg}
                   className="card-img-top "
                   alt="Imagen"
                 />
@@ -56,7 +81,12 @@ const Section = () => {
             <div className="cartas">
               <div className=" img-div">
                 <img
-                  src="https://frontjobinderimg.s3.amazonaws.com/Recruiter.avif"
+                  src={
+                    "https://frontjobinderimg.s3.amazonaws.com/Recruiter.avif"
+                  }
+                  name="recrutierImg"
+                  onError={handleErrorImg}
+                  onLoad={handleLoadImg}
                   alt="Imagen"
                   className="card-img-top"
                 />

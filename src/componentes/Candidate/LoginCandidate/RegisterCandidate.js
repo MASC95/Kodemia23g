@@ -40,7 +40,7 @@ export const RegisterCandidate = () => {
   const [formValues, setFormValues] = useState({
     email: "",
     password: "",
-    role: "",
+    role: "candidato",
     code: "",
     backCode: "",
     rfc: "",
@@ -95,7 +95,7 @@ export const RegisterCandidate = () => {
     setFormValues({
       email: "",
       password: "",
-      role: "",
+      role: "candidato",
       code: "",
       backCode: "",
       rfc: "",
@@ -176,7 +176,9 @@ export const RegisterCandidate = () => {
                 <Link to={"/"} className="logo_Jobinder">
                   <img src={logo} alt="" />
                 </Link>
-                <h2 className="text-center text-dark">Bienvenido</h2>
+                <h2 className="text-center text-dark">
+                  Aplica al trabajo de tus sueños!
+                </h2>
                 <form className="text-left clearfix" onSubmit={onFormSubmit}>
                   <div className="form-group">
                     <input
@@ -191,7 +193,7 @@ export const RegisterCandidate = () => {
                   <div className="form-group">
                     {/* <label className="form-label" for="form6Example1">Role</label> */}
                     <select
-                      className="form-control"
+                      className="form-control d-none"
                       id="role"
                       value={formValues.role}
                       onChange={onFormInputChange}
@@ -206,7 +208,7 @@ export const RegisterCandidate = () => {
                       type="text"
                       value={formValues.rfc}
                       onChange={onFormInputChange}
-                      className="form-control"
+                      className="form-control d-none"
                       id="rfc"
                       placeholder="RFC"
                     />

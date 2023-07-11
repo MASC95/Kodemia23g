@@ -54,10 +54,10 @@ function OffCanvasRecruiter({ showOffcanvas, handleShowOffcanvas }) {
             <Link to={`/Dashboard-Recruiter/profile`} className="link">
               <FaUser className="icons" /> <span className="text">Perfil</span>
             </Link>
-            <Link to={`/Dashboard-Recruiter/softskill-addNew`} className="link">
+            {/* <Link to={`/Dashboard-Recruiter/softskill-addNew`} className="link">
               <FaCode className="icons" />{" "}
               <span className="text">Skills</span>
-            </Link>
+            </Link> */}
             <Link to={`/Dashboard-Recruiter/vacancy`} className="link">
               <FaSuitcase className="icons" />{" "}
               <span className="text">Vacantes</span>

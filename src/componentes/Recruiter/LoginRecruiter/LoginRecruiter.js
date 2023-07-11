@@ -11,13 +11,16 @@ import swal from "sweetalert";
 
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { Formik, Field, ErrorMessage } from "formik";
+import { Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
 const profileSchema = Yup.object({
     email: Yup.string()
       .required("Favor de ingresar el Usuario")
-      ,
+      .matches(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+        "Favor de Ingresar un email valido"
+      ),
     password: Yup.string()
       .required("Ingresar el password")
       .min(8, "El password debe tener al menos 8 caracteres"),
@@ -46,22 +49,7 @@ export const LoginRecruiter=()=>{
         dataLocalStorage,
         setDataLocalStorage
       ] = useJob();
-    //   const onFormInputChange = (event) => {
-    //     const InputID = event.target.id;
-    //     const InputValue = event.target.value;
-    //     setFormValues({ ...formValues, [InputID]: InputValue });
-    //   };
-    //   const importantData = formValues.email !== "" && formValues.password !== "";
-    //   const resetForm = () => {
-    //     setFormValues({
-    //       email: "",
-    //       password: "",
-    //     });
-    //   };
-    //   const onFormSubmit = (e) => {
-    //     e.preventDefault();
-    //     initLogin();
-    //   };
+
       const handleSubmit = async (values) => {
         try {
           

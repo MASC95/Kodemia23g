@@ -1,16 +1,38 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./scss/style.scss";
 import candidate from "../../Candidate/img/Candidate.avif";
 import recruiter from "../../Candidate/img/Recruiter.avif";
 import "./scss/section.scss";
 
 const Section = () => {
+  const [isErorImgCadidate, setIsErorImgCandidate] = useState(false);
+  const [isErorImgRecrutier, setIsErorImgRecrutier] = useState(false);
   const handleClickCandidate = () => {
     window.location.href = "/login-candidato";
   };
   const handleClickRecruiter = () => {
     window.location.href = "/login-recruiter";
   };
+
+  useEffect(() => {
+    console.log("Recargando por falla de Imagen:..");
+    //console.log(isErorImg);
+  }, [isErorImgCadidate, isErorImgRecrutier]);
+
+  const handleErrorImg = (e) => {
+    console.log("Error al cargar img:..", e.target.name);
+    const failImg = e.target.name;
+    if (failImg === "candidateImg") {
+      setIsErorImgCandidate((prev) => !prev);
+    } else {
+      setIsErorImgRecrutier((prev) => !prev);
+    }
+  };
+
+  const handleLoadImg = (e) => {
+    console.log("Success al cargar img:..", e.target.name);
+  };
+
   return (
     <section className="sectionOne">
       <div className="first-card-container">
@@ -25,7 +47,16 @@ const Section = () => {
             > */}
             <div className="cartas">
               <div className="img-div">
-                <img src={candidate} className="card-img-top " alt="Imagen" />
+                <img
+                  src={
+                    "https://frontjobinderimg.s3.amazonaws.com/Candidate.avif"
+                  }
+                  name="candidateImg"
+                  onError={handleErrorImg}
+                  onLoad={handleLoadImg}
+                  className="card-img-top "
+                  alt="Imagen"
+                />
               </div>
               <div className="card-body-1 ">
                 <h5 className="card-title text-center">¿Eres Reclutador?</h5>
@@ -49,7 +80,16 @@ const Section = () => {
           >
             <div className="cartas">
               <div className=" img-div">
-                <img src={recruiter} alt="Imagen" className="card-img-top" />
+                <img
+                  src={
+                    "https://frontjobinderimg.s3.amazonaws.com/Recruiter.avif"
+                  }
+                  name="recrutierImg"
+                  onError={handleErrorImg}
+                  onLoad={handleLoadImg}
+                  alt="Imagen"
+                  className="card-img-top"
+                />
               </div>
               <div className="card-body-1 ">
                 <h5 className="card-title text-center">¿Eres Candidato?</h5>

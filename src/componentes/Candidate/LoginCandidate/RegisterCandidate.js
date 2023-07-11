@@ -2,14 +2,15 @@ import { useEffect, useState } from "react";
 import logo from "./img/logo.png";
 import register from "./img/14.png";
 import "./scss/style.scss";
-import { Link, useNavigate } from "react-router-dom";
+import { Form, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import swal from "sweetalert";
 import Swal from "sweetalert2";
 import { endpointsGral } from "../../Recruiter/services/vacancy";
 import useJob from "../../../hooks/useJob";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-
+import { Formik } from "formik";
+import * as Yup from "yup";
 export const RegisterCandidate = () => {
   const [isResgitering, setIsResgitering] = useState(false);
   const [isConfirmEmail, setIsConfirmEmail] = useState(false);
@@ -48,6 +49,30 @@ export const RegisterCandidate = () => {
     rfc: "",
   });
 
+  //begins validation schema
+  const profileSchema = Yup.object().shape({
+    email: Yup.string()
+      .required("Favor de ingresar un correo electrónico")
+      .matches(
+        /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+        "Favor de Ingresar un email valido"
+      ),
+    password: Yup.string()
+      .required("Ingresar el password")
+      .min(8, "El password debe tener al menos 8 caracteres")
+      .matches(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/,
+        "La contraseña debe tener entre 8 y 10 caracteres, al menos un dígito, al menos una minúscula, al menos una mayúscula y al menos un caracter no alfanumérico."
+      ),
+    confirmPassword: Yup.string()
+      .required("Confirma Password")
+      .min(8, "El password debe tener al menos 8 caracteres")
+      .matches(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/,
+        "La contraseña debe tener entre 8 y 10 caracteres, al menos un dígito, al menos una minúscula, al menos una mayúscula y al menos un caracter no alfanumérico."
+      )
+      .oneOf([Yup.ref("password"), null], "El password no coincide"),
+  });
   useEffect(() => {
     if (
       formValues.code !== "" &&
@@ -69,7 +94,7 @@ export const RegisterCandidate = () => {
     });
   };
 
-  const onFormSubmit = (event) => {
+  const onFormSubmit = async (event) => {
     event.preventDefault();
     console.log(formValues.email);
     const dataRepet = isInformationUser.some(
@@ -140,7 +165,7 @@ export const RegisterCandidate = () => {
         }
       } else {
         swal({
-          title: "Todos aqui esta lo malo los campos son requeridos!",
+          title: "Todos los campos son requeridos!",
           icon: "error",
           button: "Aceptar",
         });
@@ -188,11 +213,17 @@ export const RegisterCandidate = () => {
                 <h2 className="text-center text-dark">
                   Crea tu cuenta y empieza a Aplicar!
                 </h2>
-                <form className="text-left clearfix" onSubmit={onFormSubmit}>
-                  <div
-                    className={`form-group ${
-                      formValues.email === "" ? "has-error" : ""
-                    }`}
+
+                <Formik
+                  className="text-left clearfix"
+                  onSubmit={onFormSubmit}
+                  initialValues={formValues}
+                  enableReinitialize={true}
+                  validationSchema={profileSchema}
+                >
+                  <Form
+                    className="text-left-clearfix"
+                    onSubmit={props.handleSubmit}
                   >
                     <input
                       type="email"
@@ -209,7 +240,7 @@ export const RegisterCandidate = () => {
                         Por favor, completa este campo.
                       </div>
                     )}
-                  </div>
+                  </Form>
 
                   <div className="form-group">
                     {/* <label className="form-label" for="form6Example1">Role</label> */}
@@ -311,7 +342,7 @@ export const RegisterCandidate = () => {
                       </>
                     )}
                   </div>
-                </form>
+                </Formik>
                 <p className="mt-20 text-black">
                   Ya tienes una cuenta? Accede como <br></br>
                   <Link to={`/login-recruiter`}>Reclutador /</Link>
@@ -321,7 +352,11 @@ export const RegisterCandidate = () => {
             </div>
             <div className="col-md-6 col-md-offset-3">
               <div className="block text-center  shadow-none">
-                <img className="container w-100 h-50" src={register} alt="" />
+                <img
+                  className="container w-100 h-50"
+                  src={register}
+                  alt="register-candidate"
+                />
               </div>
             </div>
           </div>

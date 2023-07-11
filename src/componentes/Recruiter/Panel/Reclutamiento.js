@@ -268,7 +268,7 @@ export const Reclutamiento = () => {
         </div>
       </div>
       <button
-        className="btn btn-info mt-4 ms-auto d-block me-1"
+        className="btn btn-info text-light mt-4 ms-auto d-block me-1"
         onClick={handleSave}
       >
         Guardar Cambios

@@ -19,9 +19,11 @@ export const EditSkill=({listSkills,setListSkills})=>{
 
 
   const fetchSkill = async () => {
-    const response = await axios.get(endpointsGral.jobSkill);
-    const infoSkill = response.data["item"];
-    setDataSkill(infoSkill["docs"]);
+    const response = await axios.get(`${endpointsGral.jobSkill}/getAllSkillsForVacancy`);
+    const infoSkill = response.data.getAllSkills;
+    let arrShort=infoSkill.sort((x, y) => x.name.localeCompare(y.name));
+    console.log(arrShort);
+    setDataSkill(arrShort);
   };
   useEffect(() => {
     fetchSkill();

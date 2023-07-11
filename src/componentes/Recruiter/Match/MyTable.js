@@ -53,6 +53,8 @@ const MyTable = ({
     return item._id;
   });
 
+
+
     const data = dataByUserCandidate.map((item, index) => {
       // const retriveUser = item.user_skills;
       const retriveUser=item.user_skills.map((idSkills)=>{
@@ -79,8 +81,9 @@ const MyTable = ({
       // console.log(`La suma de los valores repetidos es: ${suma}`);
       // console.log(((suma*100)/quanty))
       const operador = Math.floor((suma * 100) / quanty);
-      
-      const nameUser = `${item.name} ${item.last_name}`;
+      console.log(operador)
+      const nameUser = `${item.name} ${item.last_name}`;    
+      console.log('nuevo map para iterar', )
 
       return {
         id: item._id,

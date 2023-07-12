@@ -10,7 +10,6 @@ import { myId } from "../../lib/myLib";
 import { Spinner } from "react-bootstrap";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-import './scss/style.scss'
 
 export const Reclutamiento = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -172,22 +171,14 @@ export const Reclutamiento = () => {
     
   };
 
-  const estilo = {
-    background: "rgba(0, 189, 214, 0.18)",
-    borderRadius: "16px",
-    boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
-    backdropFilter: "blur(2px)",
-    WebkitBackdropFilter: "blur(2px)"
-  };
-
   return (
-    <div className="main m-5">
+    <div className="main">
       <h1 className="text-dark">Panel de reclutamiento</h1>
       {showSpinner&& <span className="d-flex justify-content-center"><Spinner/></span> }
       
       <br />
-      <div className="drag-and-drop row">
-        <div className="column column--1 col-sm-5 col-md-5 col-lg-3" style={estilo}>
+      <div className="drag-and-drop">
+        <div className="column column--1">
           <h3 className="text-dark">
             Primer Contacto <BsThreeDots className="mx-3" />
           </h3>
@@ -209,7 +200,7 @@ export const Reclutamiento = () => {
             ))}
           </div>
         </div>
-        <div className="column column--2 col-sm-5 col-md-5 col-lg-3" style={estilo}>
+        <div className="column column--2">
           <h3 className="text-dark">
             Entrevista <BsThreeDots className="mx-3" />
           </h3>
@@ -231,7 +222,7 @@ export const Reclutamiento = () => {
             ))}
           </div>
         </div>
-        <div className="column column--3 col-sm-5 col-md-5 col-lg-3" style={estilo}>
+        <div className="column column--3">
           <h3 className="text-dark">
             Pruebas <BsThreeDots className="mx-3" />
           </h3>
@@ -253,7 +244,7 @@ export const Reclutamiento = () => {
             ))}
           </div>
         </div>
-        <div className="column column--4 col-sm-5 col-md-5 col-lg-3" style={estilo}>
+        <div className="column column--4">
           <h3 className="text-dark">
             Contratado <BsThreeDots className="mx-3" />
           </h3>

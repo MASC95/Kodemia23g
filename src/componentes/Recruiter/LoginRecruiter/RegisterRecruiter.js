@@ -13,6 +13,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 
 const initDataForm={
@@ -54,6 +55,8 @@ const profileSchema = Yup.object().shape({
 export const RegisterRecruiter=()=>{
   const navigate =useNavigate()
   const [dataForm, setDataForm] = useState(initDataForm);
+  const [showPassword, setShowPassword] = useState(false);
+    
 
 
   const [isResgitering, setIsResgitering] = useState(false);
@@ -232,14 +235,14 @@ export const RegisterRecruiter=()=>{
                                    onChange={props.handleChange}
                                    onBlur={props.handleBlur}
                                 />
-                                    <span className="text-danger">
+                                    <span className="text-danger input-group">
                                       <ErrorMessage name='email'/>
                                   </span>
                             </Form.Group>
 
-                            <Form.Group  className="form-group">
+                            <Form.Group  className="input-group">
                                 <Form.Control
-                                   type="password" 
+                                   type={showPassword ? "text" : "password"}
                                    className={`form-control rounded ${
                                     props.touched.password && props.errors.password
                                       ? "border border-danger"
@@ -252,14 +255,30 @@ export const RegisterRecruiter=()=>{
                                    onChange={props.handleChange}
                                    onBlur={props.handleBlur}
                                 />
-                                    <span className="text-danger">
+                                  <span
+                                  className="input-group-text "
+                                  style={{
+                                    color: "#f2f2f2",
+                                    backgroundColor: "#0093E9",
+                                    backgroundImage:
+                                      "linear-gradient(160deg, #0093E9 0%, #80D0C7 100%)",
+                                  }}
+                                  onClick={() => setShowPassword(!showPassword)}
+                                >
+                                  {showPassword ? (
+                                    <FaEyeSlash style={{ width: "30px" }} />
+                                  ) : (
+                                    <FaEye style={{ width: "30px" }} />
+                                  )}
+                                </span>
+                                    <span className="text-danger input-group">
                                       <ErrorMessage name='password'/>
                                   </span>
                             </Form.Group>
 
-                            <Form.Group  className="form-group">
+                            <Form.Group  className="input-group">
                                 <Form.Control
-                                   type="password" 
+                                   type={showPassword ? "text" : "password"}
                                    className={`form-control rounded ${
                                     props.touched.confirmPassword && props.errors.confirmPassword
                                       ? "border border-danger"
@@ -272,7 +291,23 @@ export const RegisterRecruiter=()=>{
                                    onChange={props.handleChange}
                                    onBlur={props.handleBlur}
                                 />
-                                    <span className="text-danger">
+                                  <span
+                                  className="input-group-text "
+                                  style={{
+                                    color: "#f2f2f2",
+                                    backgroundColor: "#0093E9",
+                                    backgroundImage:
+                                      "linear-gradient(160deg, #0093E9 0%, #80D0C7 100%)",
+                                  }}
+                                  onClick={() => setShowPassword(!showPassword)}
+                                >
+                                  {showPassword ? (
+                                    <FaEyeSlash style={{ width: "30px" }} />
+                                  ) : (
+                                    <FaEye style={{ width: "30px" }} />
+                                  )}
+                                </span>
+                                    <span className="text-danger input-group text-center">
                                       <ErrorMessage name='confirmPassword'/>
                                   </span>
 

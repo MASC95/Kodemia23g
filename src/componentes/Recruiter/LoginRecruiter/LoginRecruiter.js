@@ -5,7 +5,8 @@ import logo from './img/logo.png'
 import './scss/style.scss'
 import { Link, useNavigate } from "react-router-dom";
 import { useState} from "react";
-import useJob from '../../../hooks/useJob';
+import useJob from '../../../hooks/useJob'
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import swal from "sweetalert";
 
 
@@ -35,6 +36,7 @@ export const LoginRecruiter=()=>{
 
     const [dataForm, setDataForm] = useState(initialDataForm);
     const navigate=useNavigate();
+    const [showPassword, setShowPassword] = useState(false);
     
 
     // const [formValues, setFormValues] = useState({
@@ -121,15 +123,15 @@ export const LoginRecruiter=()=>{
                                    onChange={props.handleChange}
                                    onBlur={props.handleBlur}
                                 />
-                                  <span className="text-danger">
+                                  <span className="text-danger input-group">
                                       <ErrorMessage name='email'/>
                                   </span>
                             </Form.Group>
 
-                            <Form.Group  className="form-group">
+                            <Form.Group  className="form-group input-group">
                                 {/* <Form.Label>Password</Form.Label> */}
                                 <Form.Control
-                                   type="password" 
+                                  type={showPassword ? "text" : "password"}
                                    className={`form-control rounded ${
                                     props.touched.email && props.errors.email
                                       ? "border border-danger"
@@ -142,10 +144,27 @@ export const LoginRecruiter=()=>{
                                    onChange={props.handleChange}
                                    onBlur={props.handleBlur}
                                 />
-                                <span className="text-danger">
+                                <span
+                                  className="input-group-text "
+                                  style={{
+                                    color: "#f2f2f2",
+                                    backgroundColor: "#0093E9",
+                                    backgroundImage:
+                                      "linear-gradient(160deg, #0093E9 0%, #80D0C7 100%)",
+                                  }}
+                                  onClick={() => setShowPassword(!showPassword)}
+                                >
+                                  {showPassword ? (
+                                    <FaEyeSlash style={{ width: "30px" }} />
+                                  ) : (
+                                    <FaEye style={{ width: "30px" }} />
+                                  )}
+                                </span>
+                                <span className="text-danger input-group">
                                     <ErrorMessage name='password'/>
                                 </span>
                             </Form.Group>
+                            
 
                             <Button type="submit" className="buttons btn btn-info btn-lg m-3">
                             Enviar

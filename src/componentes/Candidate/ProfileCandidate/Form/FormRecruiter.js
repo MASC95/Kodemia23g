@@ -291,8 +291,8 @@ const FormRecruiter = () => {
             enableReinitialize={true} // solo para formularios que sirven para editar informacion
             validationSchema={profileSchema}
             onSubmit={(values) => 
-              console.log('values form:..',values)
-              //handleSubmit(values)
+              // console.log('values form:..',values)
+              handleSubmit(values)
             }
           >
             {(props) => (

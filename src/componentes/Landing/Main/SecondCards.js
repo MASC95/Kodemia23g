@@ -16,13 +16,17 @@ const SecondCards = () => {
         <div className="row row-second-card">
           <div className="col-5 columna-2">
             <div className="card-2">
-              <div className="img-div-2">
+              <picture className="img-div-2">
+                <source
+                  type="image/jpeg"
+                  srcSet="https://frontjobinderimg.s3.amazonaws.com/BlondeGirl.jpg"
+                />
                 <img
                   src="https://frontjobinderimg.s3.amazonaws.com/VideoBlondeGirl.avif"
                   className="video-img"
                   alt="Imagen"
                 />
-              </div>
+              </picture>
 
               <div className="card-body-2">
                 <p className="video"> Video Presentación </p>
@@ -37,13 +41,17 @@ const SecondCards = () => {
           </div>
           <div className="col-5 columna-2">
             <div className="card-2">
-              <div className=" img-div-2">
+              <picture className=" img-div-2">
+                <source
+                  type="image/jpeg"
+                  srcSet="https://frontjobinderimg.s3.amazonaws.com/KnowledegeBackendDev.jpg"
+                />
                 <img
                   src="https://frontjobinderimg.s3.amazonaws.com/KnowledgeBackendDev.avif"
                   alt="knowledg-img"
                   className=" video-img"
                 />
-              </div>
+              </picture>
               <div className="card-body-2 ">
                 <p className="video ms-3">Conocimientos y Habilidades</p>
                 <h5 className="card-title-2 text-center">

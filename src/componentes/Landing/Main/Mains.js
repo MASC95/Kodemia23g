@@ -10,7 +10,11 @@ import SecondCards from "./SecondCards";
 import SectionThree from "./SectionThree";
 const Mains = () => {
   return (
-    <header>
+    <header
+      style={{
+        backgroundImage: "linear-gradient(45deg, #fffeff 0%, #d7fffe 100%)",
+      }}
+    >
       <Navbar />
       <div className="primary-container">
         <h1
@@ -24,7 +28,10 @@ const Mains = () => {
           con nuestra app de búsqueda de empleo basada en tus <br />
           habilidades de programación.
         </h1>
-        <p className="text-mobile d-md-none">
+        <p
+          className="text-mobile d-md-none mt-5 mb.5"
+          style={{ fontFamily: "Poppins" }}
+        >
           Con Jobinder, tu trabajo ideal está a sólo un clic de distancia.
         </p>
 

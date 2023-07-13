@@ -14,6 +14,7 @@ const ListVacancies = ({
   totalRows,
   currentPage,
   perPage,
+  btnDelete
 }) => {
   useEffect(() => {
     console.log("Nuevo valor de limit:..", perPage);
@@ -77,13 +78,16 @@ const ListVacancies = ({
             <FaEdit className="icon_edit1" />
           </button>
         </Link>,
+   
         <button
           type="button"
+          disabled={btnDelete}
           className="buttons btn btn-outline-danger"
           onClick={childHandleDeleteSkill.bind(this, d.qty)}
         >
           <FaTrash className="icon_trash" />
-        </button>,
+        </button>
+        
       ],
     },
   ];

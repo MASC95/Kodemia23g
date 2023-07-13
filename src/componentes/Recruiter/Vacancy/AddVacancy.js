@@ -355,7 +355,7 @@ export const AddVacancy = () => {
                     >
                       <option> Selecciona</option>
                       <option> Iniciado</option>
-                      <option> Cerrado</option>
+                      {/* <option> Cerrado</option> */}
                     </select>
                   </div>
                 </div>
@@ -367,7 +367,7 @@ export const AddVacancy = () => {
                     >
                       Actividades
                     </label>
-                    <input
+                    <textarea
                       type="text"
                       id="actividades"
                       name="activities"
@@ -396,7 +396,7 @@ export const AddVacancy = () => {
                   type="submit"
                   className="buttons btn btn-info text-light"
                 >
-                  Guardar VacanteROR
+                  Guardar Vacante
                 </button>
               </div>
             </form>

@@ -205,9 +205,9 @@ export const EditSkill=({listSkills,setListSkills})=>{
                     </button>
                   </div>
               </div>
-                  <Link to={'/Dashboard-Recruiter/softskill-addNew'} className="text-black d-flex justify-content-start mb-3 mt-2 fs-6">
+                  {/* <Link to={'/Dashboard-Recruiter/softskill-addNew'} className="text-black d-flex justify-content-start mb-3 mt-2 fs-6">
                       <p className="">Crear nueva SoftSkill</p> 
-                  </Link>          
+                  </Link>           */}
               
           </div>
           {/* table of skills */}

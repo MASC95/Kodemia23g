@@ -65,10 +65,10 @@ export const RegisterRecruiter=()=>{
   const [dataCandidate, setDataCandidate, dataRecruiter, setDataRecruiter, dataLocalStorage, setDataLocalStorage]= useJob();
 
   const fetchUser=async()=>{
-    const response = await axios.get(endpointsGral.userURL);
-    const dataInformation = response.data["item"];
+    const response = await axios.get(`${endpointsGral.userURL}getAllUserOutPaginate`);
+    const dataInformation = response.data;
     if(dataInformation){
-      setInformationUser(dataInformation["docs"]);
+      setInformationUser(dataInformation);
     }else{
       console.log('error infoSkill')
     }

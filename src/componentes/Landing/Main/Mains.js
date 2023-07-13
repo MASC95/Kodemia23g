@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./scss/style.scss";
 import { Link } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
@@ -8,7 +8,31 @@ import Footer from "../Footer/Footer";
 import Section from "./Section";
 import SecondCards from "./SecondCards";
 import SectionThree from "./SectionThree";
+import useJob from "../../../hooks/useJob";
+import { useNavigate } from "react-router-dom";
+
 const Mains = () => {
+  const[dataCandidate,setDataCandidate,dataRecrutier,setDataRecruiter,dataLocalStorage]=useJob();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    
+    console.log('dataLocalStorage:..',dataLocalStorage);
+
+  if(dataLocalStorage?.role==='candidato'){
+    navigate('/dashboard-candidato/home')
+  }
+  if(dataLocalStorage?.role==='empresa'){
+    navigate('/dashboard-recruiter/home')
+  }
+  
+    
+  
+
+  }, [dataLocalStorage])
+  
+
+
   return (
     <header
       style={{

@@ -36,12 +36,12 @@ function OffCanvasCandidate({ showOffcanvas, handleShowOffcanvas }) {
         className="off-canvas"
       >
         <Offcanvas.Header className="d-flex justify-content-center align-items-center offcanvas-header">
-          <Link to={"index.html"} className="logo-jobinder">
+          <Link to={"/"} className="logo-jobinder">
             <img
               src={logo}
               className="img-jobinder"
               alt="logoJobinder"
-              style={{ width: "150px", height: "50px", margin: "50px 0 50px" }}
+              style={{ width: "150px", height: "50px", margin: "50px 0 20px" }}
             />
           </Link>
         </Offcanvas.Header>
@@ -52,18 +52,18 @@ function OffCanvasCandidate({ showOffcanvas, handleShowOffcanvas }) {
           >
             <Link to={`/dashboard-candidato/home`} className="link">
               <FaHome className="icons" />
-              <span className="text">Home</span>
+              <span className="text fs-6">Home</span>
             </Link>
             <Link to={`/dashboard-candidato/profile`} className="link">
-              <FaUser className="icons" /> <span className="text">Perfil</span>
+              <FaUser className="icons" /> <span className="text fs-6">Perfil</span>
             </Link>
             <Link to={`/dashboard-candidato/search`} className="link">
               <FaSearch className="icons" />{" "}
-              <span className="text">Buscar</span>
+              <span className="text fs-6">Buscar</span>
             </Link>
             <Link to={`/dashboard-candidato/app-vacancies`} className="link">
               <FaSuitcase className="icons" />{" "}
-              <span className="text">Mis Vacantes</span>
+              <span className="text fs-6">Mis Vacantes</span>
             </Link>
             <div className="link">
               <button
@@ -81,7 +81,7 @@ function OffCanvasCandidate({ showOffcanvas, handleShowOffcanvas }) {
                 }}
               >
                 <FaSignOutAlt className="icons" />
-                <span className="text">Log Out</span>
+                <span className="text fs-6">Log Out</span>
               </button>
             </div>
           </div>

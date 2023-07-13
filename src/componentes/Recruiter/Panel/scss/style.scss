@@ -1,5 +1,11 @@
+
+
 @mixin dzone{
     display: flex;
+    // display: grid;
+    // gap:1rem;
+    // grid-auto-rows: 22rem;
+    // grid-template-columns: repeat(auto-fill,minmax(15rem,1fr));
     flex-direction: column;
     grid-gap: 16px;
     height: 100%;
@@ -11,10 +17,14 @@
     margin-bottom: 0;
 }
 @mixin columnas{
+     // display: grid;
+    // gap:1rem;
+    // grid-auto-rows: 22rem;
+    // grid-template-columns: repeat(auto-fill,minmax(15rem,1fr));
     display: flex;
     flex-direction: column;
     background-color: #F6F8FC;
-    width: 400px;
+    // width: 40%;
     min-height: 100px;
     padding: 24px 12px;
     border-radius: 8px;
@@ -30,6 +40,7 @@
     color: #5b5b73;
 
 }
+
 .main{
     h1{
         color: red;
@@ -58,6 +69,9 @@
                 }
 
             }
+            @media (min-width: 992px) {
+                width: 22%;
+            }
 
         }
         .column--2{
@@ -82,6 +96,9 @@
                 }
 
             }
+            @media (min-width: 992px) {
+                width: 22%;
+            }
         }
         .column--3{
             border-color: #6FD2AF;
@@ -104,6 +121,9 @@
                 }
                 
                 
+            }
+            @media (min-width: 992px) {
+                width: 22%;
             }
         }
 
@@ -128,6 +148,9 @@
                 }
                 
                 
+            }
+            @media (min-width: 992px) {
+                width: 22%;
             }
         }
     }

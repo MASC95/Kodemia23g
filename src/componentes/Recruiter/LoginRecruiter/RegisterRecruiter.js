@@ -11,13 +11,15 @@ import useJob from '../../../hooks/useJob';
 
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { Formik, Field, ErrorMessage } from "formik";
+import { Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 
 const initDataForm={
   email:'',
   password:'',
+  confirmPassword:'',
   role:'empresa',
   code: "",
   backCode:''
@@ -27,7 +29,7 @@ const profileSchema = Yup.object().shape({
   email: Yup.string()
     .required("Favor de ingresar correo")
     .matches(
-      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
       "Favor de Ingresar un email valido"
     ),
   password: Yup.string()
@@ -37,14 +39,24 @@ const profileSchema = Yup.object().shape({
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/,
       "La contraseña debe tener entre 8 y 10 caracteres, al menos un dígito, al menos una minúscula, al menos una mayúscula y al menos un caracter no alfanumérico."
     ),
-    code: Yup.string()
-    .required("Ingresar el código de verificación")
-    .max(6, "El código de verificación debe tener 6 caracteres"),
+  confirmPassword: Yup.string()
+    .required("Confirma Password")
+    .min(8, "El password debe tener al menos 8 caracteres")
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/,
+      "La contraseña debe tener entre 8 y 10 caracteres, al menos un dígito, al menos una minúscula, al menos una mayúscula y al menos un caracter no alfanumérico."
+    )
+    .oneOf([Yup.ref('password'),null],'El password no coincide')
 });
+
+
+
 
 export const RegisterRecruiter=()=>{
   const navigate =useNavigate()
   const [dataForm, setDataForm] = useState(initDataForm);
+  const [showPassword, setShowPassword] = useState(false);
+    
 
 
   const [isResgitering, setIsResgitering] = useState(false);
@@ -66,170 +78,125 @@ export const RegisterRecruiter=()=>{
       fetchUser()
   },[])
 
-  // const [formValues, setFormValues]=useState({
-  //   email:'',
-  //   password:'',
-  //   role:'empresa',
-  //   code: "",
-  //   backCode:'',
-  // })
-  // useEffect(() => {
-  //   if(formValues.code!==''&&(formValues.code.trim()===String(formValues.backCode))){
-  //     setIsConfirmEmail(true);
-  //   }else{
-  //     setIsConfirmEmail(false);
-  //   }
-  // }, [formValues.code,formValues.backCode])
+  useEffect(() => {
+    if (
+      dataForm.code !== "" &&
+      dataForm.code.trim() === String(dataForm.backCode)
+    ) {
+      setIsConfirmEmail(true);
+    } else {
+      setIsConfirmEmail(false);
+    }
+  }, [dataForm.code, dataForm.backCode]);
 
 
-  // const onFormInputChange=(event)=>{
-  //   const Input=event.target.id;
-  //   const InputValue=event.target.value;
+  const onFormInputChange = (event) => {
+    const Input = event.target.id;
+    const InputValue = event.target.value;
 
-  //   setFormValues({
-  //     ...formValues,[Input]:InputValue
-  //   })
-  // }
-
-  // const importantData= (formValues.email!=='' &&
-  // // formValues.rfc !==''&&
-  // formValues.password!=='')
+    setDataForm({
+      ...dataForm,
+      [Input]: InputValue,
+    });
+  };
 
 
-  // const onFormSubmit=(event)=>{
-  //   event.preventDefault()
 
-  // }
 
-  //   if(importantData){
-  //     const dataRepet=isInformationUser.some((item)=>item.email===formValues.email)
-  //     if(dataRepet){
-  //       Swal.fire({
-  //         icon: 'error',
-  //         title: 'Error al registrar!',
-  //         text: 'Este correo ya tiene una cuenta, inicia sesión!',
-  //       })
-  //     }else{
-        
-  //       setIsResgitering(true);
-  //       confirmAccesCode();
-  //       console.log('agregalo')
-  //     }
-  //   }else{
-  //     swal({
-  //       title: "Todos los campos son requeridos!",
-  //       icon: "error",
-  //       button: "ok!",
-  //     });
-  //   }
-    // console.log(formValues.email)
-    // const dataRepet=isInformationUser.some((item)=>item.email===formValues.email)
-
-    // if(dataRepet){
-    //   Swal.fire({
-    //     icon: 'error',
-    //     title: 'Error al registrar!',
-    //     text: 'Este correo ya tiene una cuenta, inicia sesión!',
-    //   })
-    // }else{
-
-    //   setIsResgitering(true);
-    // confirmAccesCode();
-    //   // console.log('agregalo')
-    // }
-  // }
- 
-
-  // const resetForm=()=>{
-  //       setFormValues({
-  //         email:'',
-  //         password:'',
-  //         role:'empresa',
-  //         code: "",
-  //         backCode:'',
-  //        })
-  //       }
-  //  const confirmAccesCode = async () => {
-  //    console.log("Estamos confirmando el email:..");
-  //    const { confirmEmail } = endpointsGral;
-  //    const dataLogin = {
-  //      email: formValues.email,
-  //    };
-  //    try {
-  //      const response = await axios.post(confirmEmail, dataLogin);
-  //      console.log("responseConfirmEmail:..", response);
-  //      setFormValues({
-  //        ...formValues,
-  //        backCode:response?.data?.code
-  //      })
-  //    } catch (error) {
-  //      console.log(error);
-  //    }  
-  //  };
-  const registerRecruiter=async(values)=>{
-      try {
-      // if(importantData){
-        console.log('lleno')
-        const register=await axios.post(endpointsGral.userURL,values);
-        setDataForm(register)
-        setDataLocalStorage({...register?.data});
-        if(values.role==='empresa'){
-          navigate(`/Dashboard-recruiter/home`)
+  const confirmAccesCode = async (values) => {
+    console.log("Estamos confirmando el email:..");
+    const { confirmEmail } = endpointsGral;
+    const dataLogin = {
+      email: values.email,
+    };
+    try {
+      const response = await axios.post(confirmEmail, dataLogin);
+      console.log("responseConfirmEmail:..", response);
+      setDataForm({
+        ...values,
+        backCode:response?.data?.code
+      })
+    } catch (error) {
+      console.log(error);
+    }  
+  };
+  const handleSubmit = async(values) => {
+    console.log('values from formik',values)
+    // console.log('aqui debe haber datos', values)
+    const dataRepet=isInformationUser.some((item)=>item.email===values.email)
+        if(dataRepet){
+          Swal.fire({
+            icon: 'error',
+            title: 'Error al registrar!',
+            text: 'Este correo ya tiene una cuenta, inicia sesión!',
+          })
         }else{
-          console.log("pagina candidato");
-          navigate(`/dashboard-candidato/home`)
+          setIsResgitering(true);
+            confirmAccesCode(values);
+          console.log('agregalo')
         }
+  };
 
-
-      // } else{
-      //   swal({
-      //     title: "Todos los campos son requeridos!",
-      //     icon: "error",
-      //     button: "ok!",
-      //   });
-      // }
+  const registerRecruiter = async () => {
+    // if (formValues.role === "candidato") {
+    try {
+        const register = await axios.post(
+          endpointsGral.registerUser,
+          dataForm
+        );
+        setDataForm(register);
+        console.log("datos de Registro:..", register);
+        setDataLocalStorage({ ...register?.data });
+        if (dataForm.role === "candidato") {
+          console.log("pagina candidato");
+          navigate(`/dashboard-candidato/home`);
+        } else {
+          console.log("pagina empresa");
+          navigate(`/Dashboard-recruiter/home`);
+        }
+      
     } catch (error) {
       swal({
         title: "Error al registrar!",
         icon: "error",
-        button: "ok!",
+        button: "Aceptar",
       });
     }
-  }
+  };
 
-  // const handleSubmit = (code) => {
-  //   console.log("codigo:", formValues.code);
-  //   console.log('codigoBack:..', formValues.backCode);
-  //   if(formValues.code===''){
-  //     swal({
-  //       title: "Agregar código de verficación!",
-  //       icon: "error",
-  //       button: "ok!",
-  //     });
-  //   }else{
-  //   if(isConfirmEmail===true){
-  //       registerRecruiter();
-  //      console.log('Email confirmado con Exito:..')  
-  //   }else{
-  //     console.log('Codigo de acceso Erroneo:..');
-  //     swal({
-  //       title: "Código de verficación incorrecto!",
-  //       icon: "error",
-  //       button: "ok!",
-  //     });
-  //   }
-  // }
-  // };
+  const handleConfirmEmail = () => {
+   console.log('hola')
+   console.log("codigo:", dataForm.code);
+   console.log("codigo:", dataForm.code);
+   console.log("codigoBack:..", dataForm.backCode);
+   if(dataForm.code===''){
+    Swal.fire({
+      icon: 'error',
+      title: 'Error al registrar código!',
+      text: 'Ingresa el código de verificación enviado a tu correo!',
+    })
+   }else{
+    if (isConfirmEmail === true) {
+      registerRecruiter();
+      console.log("Email confirmado con Exito:..");
+    } else {
+      console.log("Codigo de acceso Erroneo:..");
+      Swal.fire({
+        title: "Error!",
+        text: "Ingrese el código que se le envió a su correo",
+        titleText: "Código de Acceso Incorrecto!",
+        icon: "error",
+        confirmButtonText: "Aceptar",
+        target: "Ingrese un nuevo código",
 
-  const handleSubmit = () => {
-    console.log('aqui debe haber datos')
-    
-  
+        confirmButtonColor: "#04F06A",
+      });
+    }
+   }
+
   };
 
   //Use Formik
-
-
 
 
     return(
@@ -268,14 +235,14 @@ export const RegisterRecruiter=()=>{
                                    onChange={props.handleChange}
                                    onBlur={props.handleBlur}
                                 />
-                                    <span className="text-danger">
+                                    <span className="text-danger input-group">
                                       <ErrorMessage name='email'/>
                                   </span>
                             </Form.Group>
 
-                            <Form.Group  className="form-group">
+                            <Form.Group  className="input-group">
                                 <Form.Control
-                                   type="password" 
+                                   type={showPassword ? "text" : "password"}
                                    className={`form-control rounded ${
                                     props.touched.password && props.errors.password
                                       ? "border border-danger"
@@ -288,40 +255,117 @@ export const RegisterRecruiter=()=>{
                                    onChange={props.handleChange}
                                    onBlur={props.handleBlur}
                                 />
-                                    <span className="text-danger">
+                                  <span
+                                  className="input-group-text "
+                                  style={{
+                                    color: "#f2f2f2",
+                                    backgroundColor: "#0093E9",
+                                    backgroundImage:
+                                      "linear-gradient(160deg, #0093E9 0%, #80D0C7 100%)",
+                                  }}
+                                  onClick={() => setShowPassword(!showPassword)}
+                                >
+                                  {showPassword ? (
+                                    <FaEyeSlash style={{ width: "30px" }} />
+                                  ) : (
+                                    <FaEye style={{ width: "30px" }} />
+                                  )}
+                                </span>
+                                    <span className="text-danger input-group">
                                       <ErrorMessage name='password'/>
                                   </span>
+                            </Form.Group>
+
+                            <Form.Group  className="input-group">
+                                <Form.Control
+                                   type={showPassword ? "text" : "password"}
+                                   className={`form-control rounded ${
+                                    props.touched.confirmPassword && props.errors.confirmPassword
+                                      ? "border border-danger"
+                                      : "border border-secondary"
+                                  }`} 
+                                   id="confirmPassword" 
+                                   name="confirmPassword"
+                                   placeholder="Confirmar Password"
+                                   value={props.values.confirmPassword}
+                                   onChange={props.handleChange}
+                                   onBlur={props.handleBlur}
+                                />
+                                  <span
+                                  className="input-group-text "
+                                  style={{
+                                    color: "#f2f2f2",
+                                    backgroundColor: "#0093E9",
+                                    backgroundImage:
+                                      "linear-gradient(160deg, #0093E9 0%, #80D0C7 100%)",
+                                  }}
+                                  onClick={() => setShowPassword(!showPassword)}
+                                >
+                                  {showPassword ? (
+                                    <FaEyeSlash style={{ width: "30px" }} />
+                                  ) : (
+                                    <FaEye style={{ width: "30px" }} />
+                                  )}
+                                </span>
+                                    <span className="text-danger input-group text-center">
+                                      <ErrorMessage name='confirmPassword'/>
+                                  </span>
+
+
                             </Form.Group>
                             {!isResgitering &&(
                               <Button type="submit" className="buttons btn btn-info btn-lg m-3">
                             Enviar
                             </Button>
                             )}
-                            {isResgitering &&(
+                              {isResgitering && (
+                      <>
+                        <label className="text-dark" htmlFor="code">
+                          Captura el código que fue enviado a tu E-mail:
+                        </label>
+                        <input
+                          type="text"
+                          value={dataForm.code}
+                          id="code"
+                          onChange={onFormInputChange}
+                          className="form-control"
+                          placeholder="codigo de acceso"
+                        />
+                        <div className="buttons_actions d-grid">
+                          <button
+                            type="button"
+                            onClick={handleConfirmEmail}
+                            className="buttons btn btn-info btn-lg"
+                          >
+                            Confirmar
+                          </button>
+                        </div>
+                      </>
+                    )}
+                         {/* {isResgitering &&(  
                               <>
                               <Form.Group className="form-group">
                                 <Form.Control
-                                   type="password" 
-                                   className={`form-control ${
-                                    props.touched.code && props.errors.code
-                                      ? "border border-danger"
-                                      : "border border-secondary"
-                                  }`} 
+                                   type="text" 
+                                   className={`form-control rounded `} 
                                    id="text" 
                                    name="text"
                                    placeholder="Código de verficación"
                                    value={props.values.code}
-                                   onChange={props.handleChange}
-                                   onBlur={props.handleBlur}
+                                  //  value={props.values.code}
+                                  // //  onChange={props.handleChange}
+                                  //  onBlur={props.handleBlur}
                                 />
-                                    <ErrorMessage name='code'/>
-                            </Form.Group>
+                                  <span className="text-danger">
+                                      <ErrorMessage name='code'/>
+                                  </span>
+                            </Form.Group> 
                             <Button type="submit" className="buttons btn btn-info btn-lg">
                             Confirmar
                             </Button>
                               </>
 
-                            )}
+                            )} */}
                             
                             </Form>
                         )}

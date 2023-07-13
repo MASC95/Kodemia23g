@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./scss/style.scss";
 import { Link } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
@@ -8,9 +8,37 @@ import Footer from "../Footer/Footer";
 import Section from "./Section";
 import SecondCards from "./SecondCards";
 import SectionThree from "./SectionThree";
+import useJob from "../../../hooks/useJob";
+import { useNavigate } from "react-router-dom";
+
 const Mains = () => {
+  const[dataCandidate,setDataCandidate,dataRecrutier,setDataRecruiter,dataLocalStorage]=useJob();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    
+    console.log('dataLocalStorage:..',dataLocalStorage);
+
+  if(dataLocalStorage?.role==='candidato'){
+    navigate('/dashboard-candidato/home')
+  }
+  if(dataLocalStorage?.role==='empresa'){
+    navigate('/dashboard-recruiter/home')
+  }
+  
+    
+  
+
+  }, [dataLocalStorage])
+  
+
+
   return (
-    <header>
+    <header
+      style={{
+        backgroundImage: "linear-gradient(45deg, #fffeff 0%, #d7fffe 100%)",
+      }}
+    >
       <Navbar />
       <div className="primary-container">
         <h1
@@ -24,7 +52,10 @@ const Mains = () => {
           con nuestra app de búsqueda de empleo basada en tus <br />
           habilidades de programación.
         </h1>
-        <p className="text-mobile d-md-none">
+        <p
+          className="text-mobile d-md-none mt-5 mb.5"
+          style={{ fontFamily: "Poppins" }}
+        >
           Con Jobinder, tu trabajo ideal está a sólo un clic de distancia.
         </p>
 

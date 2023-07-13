@@ -12,29 +12,31 @@
 }
 
 .primary-container {
-  @include mobile {
-    background-image: linear-gradient(-225deg, #fffeff 0%, #d7fffe 100%);
-  }
-  @include tablet {
-    background-image: linear-gradient(-225deg, #fffeff 0%, #d7fffe 100%);
-  }
-  @include desktop {
-  }
   .match {
     @include mobile {
       @include poppins;
       font-size: 22px;
-      color: #093040;
       padding: 10px 20px 0 20px;
       text-align: center;
       margin-top: 70px;
+      background-image: url("https://frontjobinderimg.s3.amazonaws.com/background-2.jpg");
+      background-size: 110% auto;
+      background-position: center;
+      color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
     }
     @include tablet {
       @include poppins;
       font-size: 20px;
       text-align: center;
-      color: #093040;
       margin-top: 50px;
+      background-image: url("https://frontjobinderimg.s3.amazonaws.com/background-2.jpg");
+      background-size: 110% auto;
+      background-position: center;
+      color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
     }
     @include desktop {
       @include poppins;
@@ -43,7 +45,12 @@
       text-indent: 100px;
       font-size: 31px;
       line-height: 48px;
-      color: #093040;
+      background-image: url("https://frontjobinderimg.s3.amazonaws.com/background-2.jpg");
+      background-size: 110% auto;
+      background-position: center;
+      color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
     }
   }
   .text-mobile {

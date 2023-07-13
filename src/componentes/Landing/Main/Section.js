@@ -45,8 +45,12 @@ const Section = () => {
               to="/login-candidato"
               className="link-card text-decoration-none" 
             > */}
-            <div className="cartas">
-              <div className="img-div">
+            <div className="cartas" style={{ cursor: "pointer" }}>
+              <picture className="img-div">
+                <source
+                  type="image/jpeg"
+                  srcSet="https://frontjobinderimg.s3.amazonaws.com/Candidate.jpg"
+                />
                 <img
                   src={
                     "https://frontjobinderimg.s3.amazonaws.com/Candidate.avif"
@@ -57,29 +61,27 @@ const Section = () => {
                   className="card-img-top "
                   alt="Imagen"
                 />
-              </div>
+              </picture>
+
               <div className="card-body-1 ">
                 <h5 className="card-title text-center">¿Eres Reclutador?</h5>
                 <p className="card-text text-center">
                   Accede a nuestra plataforma para publicar tus vacantes, buscar
                   talentos y gestionar tus procesos de selección.
                 </p>
-                <button className="btn-link  btn btn-primary d-flex justify-content-center align-items-center d-none">
-                  <a href="!#" className="access-btn">
-                    Accede como Reclutador
-                  </a>
-                </button>
+                <p className="access d-sm-block d-md-none text-center">
+                  Acceder como Reclutador
+                </p>
               </div>
             </div>
-            {/*  </Link> */}
           </div>
-          <div
-            style={{ cursor: "pointer" }}
-            className="col-5 columna "
-            onClick={handleClickCandidate}
-          >
-            <div className="cartas">
-              <div className=" img-div">
+          <div className="col-5 columna " onClick={handleClickCandidate}>
+            <div className="cartas" style={{ cursor: "pointer" }}>
+              <picture className=" img-div">
+                <source
+                  type="image/jpeg"
+                  srcSet="https://frontjobinderimg.s3.amazonaws.com/Recruiter.jpg"
+                />
                 <img
                   src={
                     "https://frontjobinderimg.s3.amazonaws.com/Recruiter.avif"
@@ -90,7 +92,7 @@ const Section = () => {
                   alt="Imagen"
                   className="card-img-top"
                 />
-              </div>
+              </picture>
               <div className="card-body-1 ">
                 <h5 className="card-title text-center">¿Eres Candidato?</h5>
                 <p className="card-text text-center">
@@ -98,11 +100,9 @@ const Section = () => {
                   vacantes de las empresas más importantes y haz crecer tu
                   carrera.
                 </p>
-                <button className="btn-link  btn btn-primary d-none">
-                  <a className="access-btn " href="!#">
-                    Acceder como Reclutador
-                  </a>
-                </button>
+                <p className="access d-sm-block d-md-none text-center">
+                  Acceder como Candidato
+                </p>
               </div>
             </div>
           </div>

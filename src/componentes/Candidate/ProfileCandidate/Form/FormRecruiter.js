@@ -5,7 +5,7 @@ import { Form } from "react-bootstrap";
 import * as Yup from "yup";
 //import { useFormik } from "formik";
 import axios from "axios";
-import {  useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { endpointsGral } from "../../../Recruiter/services/vacancy";
 import UploadImage from "../../../UploadImage/UploadImage";
 import useJob from "../../../../hooks/useJob";
@@ -20,14 +20,14 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 //const localEndPoinst = "http://localhost:4000/api/v1/users/";
 
-const defaultPassword= "";
+const defaultPassword = "";
 
 const initDataForm = {
   name: "",
   last_name: "",
   email: "",
   resetPassword: defaultPassword,
-  password:'',
+  password: "",
   age: "",
   working_experience: "",
   bachelor: "",
@@ -73,7 +73,7 @@ const profileSchema = Yup.object().shape({
   email: Yup.string()
     .required("El correo electrónico es requerido")
     .email("ingrese un correo electrónico válido"),
-  resetPassword:Yup.string(),
+  resetPassword: Yup.string(),
   age: Yup.number()
     .required("El campo es requerido")
     .min(18, "Debe ser mayor de 18 años"),
@@ -87,7 +87,7 @@ const FormRecruiter = () => {
   const [noPassword, setNoPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isResetPassword, setIsResetPassword] = useState(false);
-  
+
   const [
     dataCandidate,
     setDataCandidate,
@@ -105,7 +105,7 @@ const FormRecruiter = () => {
         name: dataCandidate.name || "",
         last_name: dataCandidate.last_name || "",
         email: dataCandidate.email || "",
-        password:"",
+        password: "",
         resetPassword: noPassword,
         age: dataCandidate.age || "",
         working_experience: dataCandidate.working_experience || "",
@@ -115,9 +115,9 @@ const FormRecruiter = () => {
     }
   }, [dataCandidate]);
 
-  useEffect(()=>{
-    console.log('datos en dataForm:..',dataForm)
-  },[dataForm])
+  useEffect(() => {
+    console.log("datos en dataForm:..", dataForm);
+  }, [dataForm]);
 
   useEffect(() => {
     if (listSkills.length === 0) {
@@ -128,7 +128,7 @@ const FormRecruiter = () => {
     }
   }, [listSkills]);
 
- /*  const formik = useFormik({
+  /*  const formik = useFormik({
     initialValues: dataForm,
     enableReinitialize: true,
     validationSchema: Yup.object({
@@ -157,8 +157,8 @@ const FormRecruiter = () => {
     }),
     onSubmit: (values) => {
       /*  alert(JSON.stringify(values, null, 2)); */
-      // console.log('values:..',values);
-    /*   },
+  // console.log('values:..',values);
+  /*   },
   }); */
 
   const handleSubmit = async (values) => {
@@ -231,9 +231,9 @@ const FormRecruiter = () => {
       });
   };
 
-  const handleResetPassword =()=>{
-    setIsResetPassword(prev=>!prev);
-  }
+  const handleResetPassword = () => {
+    setIsResetPassword((prev) => !prev);
+  };
 
   return (
     <div className="">
@@ -290,7 +290,7 @@ const FormRecruiter = () => {
             initialValues={dataForm}
             enableReinitialize={true} // solo para formularios que sirven para editar informacion
             validationSchema={profileSchema}
-            onSubmit={(values) => 
+            onSubmit={(values) =>
               // console.log('values form:..',values)
               handleSubmit(values)
             }
@@ -430,7 +430,6 @@ const FormRecruiter = () => {
                       <label
                         className="form-label"
                         htmlFor="form6Example1"
-                        
                         style={{
                           color: "#498BA6",
                           fontFamily:
@@ -440,7 +439,7 @@ const FormRecruiter = () => {
                         Email:
                       </label>
                       <input
-                      autoComplete="false"
+                        autoComplete="false"
                         type="email"
                         id="email"
                         placeholder="Email"
@@ -459,38 +458,36 @@ const FormRecruiter = () => {
                   <div className="col">
                     <div className="form-outline">
                       <label
-                      
                         className="form-label"
                         htmlFor="resetPasswordProfile"
                         onClick={handleResetPassword}
                         style={{
                           color: "#498BA6",
-                          cursor:"pointer",
+                          cursor: "pointer",
                           fontFamily:
                             "Poppins, sans-serif, Verdana, Geneva, Tahoma",
                         }}
                       >
                         Reset Password:
                       </label>
-                      <div className={isResetPassword?"d-flex":"d-none"}>
-                        
-                      <input
-                        type={showPassword ? "text" : "password"}
-                        id="resetPasswordProfile"
-                        autoComplete="false"
-                        placeholder={noPassword}
-                        name="resetPassword"
-                        className={`form-control ${
-                          props.touched.resetPassword &&
-                          props.errors.resetPassword
-                            ? "border border-danger"
-                            : "border border-secondary"
-                        }`}
-                        value={props.values.resetPassword}
-                        onChange={props.handleChange}
-                        onBlur={props.handleBlur}
-                      />
-                      <span
+                      <div className={isResetPassword ? "d-flex" : "d-none"}>
+                        <input
+                          type={showPassword ? "text" : "password"}
+                          id="resetPasswordProfile"
+                          autoComplete="false"
+                          placeholder={noPassword}
+                          name="resetPassword"
+                          className={`form-control ${
+                            props.touched.resetPassword &&
+                            props.errors.resetPassword
+                              ? "border border-danger"
+                              : "border border-secondary"
+                          }`}
+                          value={props.values.resetPassword}
+                          onChange={props.handleChange}
+                          onBlur={props.handleBlur}
+                        />
+                        <span
                           className="input-group-text "
                           style={{
                             color: "#f2f2f2",
@@ -506,7 +503,7 @@ const FormRecruiter = () => {
                             <FaEye style={{ width: "30px" }} />
                           )}
                         </span>
-                        </div>
+                      </div>
                       <ErrorMessage name="resetPassword" />
                     </div>
                   </div>
@@ -557,7 +554,7 @@ const FormRecruiter = () => {
 
                   <button
                     type="submit"
-                    className="buttons btn btn-info text-light d-block ms-auto"
+                    className="buttons btn btn-info text-light d-block ms-auto mb-5"
                     value="enviar"
                     id="save-changes"
                   >

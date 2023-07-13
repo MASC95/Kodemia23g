@@ -11,7 +11,7 @@ import AppVacancyCandidate from "./componentes/Candidate/VacancyCandidate/AppVac
 import Buscar from "./componentes/Candidate/BuscarCandidate/Buscar";
 import RegisterCandidate from "./componentes/Candidate/LoginCandidate/RegisterCandidate";
 import Details from "./componentes/Candidate/BuscarCandidate/Details";
-
+import FAQSection from "./componentes/Landing/Footer/LinksFooter/FAQSection";
 import LoginRecruiter from "./componentes/Recruiter/LoginRecruiter/LoginRecruiter";
 import RegisterRecruiter from "./componentes/Recruiter/LoginRecruiter/RegisterRecruiter";
 import DashboardRecruiter from "./componentes/Recruiter/Dashboard/Dashboard";
@@ -31,8 +31,10 @@ import { useEffect, useState } from "react";
 import SendAccessCode from "./componentes/SendAccessCode/SendAccessCode";
 import { useLocalStorage } from "usehooks-ts";
 import { useNavigate } from "react-router-dom";
+import TerminosCondiciones from "./componentes/Landing/Footer/LinksFooter/TerminosyCondiciones";
+import PoliticaPrivacidad from "./componentes/Landing/Footer/LinksFooter/PoliticaPrivacidad";
 //import ListResponsive from './componentes/Candidate/BuscarCandidate/ListResponsive';
-
+import About from "./componentes/Landing/Footer/LinksFooter/About";
 function App() {
   const [dataLocalStorage, setDataLocalStorage] = useLocalStorage(
     "accessToken",
@@ -40,18 +42,18 @@ function App() {
   );
   const [dataRecruiter, setDataRecruiter] = useState({});
   const [dataCandidate, setDataCandidate] = useState({});
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
-  useEffect(()=>{
+  useEffect(() => {
     if (dataLocalStorage?.role === "candidato") {
       setDataCandidate(dataLocalStorage);
-      navigate('/dashboard-candidato/home');
+      navigate("/dashboard-candidato/home");
     }
     if (dataLocalStorage?.role === "empresa") {
       setDataRecruiter(dataLocalStorage);
-      navigate('/dashboard-recruiter/home');
+      navigate("/dashboard-recruiter/home");
     }
-  },[])
+  }, []);
 
   useEffect(() => {
     console.log("Actualizando dataLocalStorage:..");
@@ -64,9 +66,7 @@ function App() {
     }
   }, [dataLocalStorage]);
 
-  useEffect(()=>{
-
-  },[dataCandidate,dataRecruiter])
+  useEffect(() => {}, [dataCandidate, dataRecruiter]);
 
   return (
     <JobContext.Provider
@@ -82,19 +82,28 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<Mains />} />
+          <Route
+            path="/TerminosyCondiciones"
+            element={<TerminosCondiciones />}
+          />
+          <Route
+            path="/PoliticaPrivacidad"
+            element={<PoliticaPrivacidad />}
+          ></Route>
+          <Route path="/About" element={<About />}></Route>
+          <Route path="/FAQSection" element={<FAQSection />}></Route>
           <Route path="/SendAccessCode" element={<SendAccessCode />} />
           {/* <Route path ='/pruebas' element ={<ListResponsive/>}/> */}
           {/* aqui las rutas de la seccion candidato */}
-          <Route path='/login-candidato' element={<LoginCandidate />}/>
-          <Route path='/register-candidato' element={<RegisterCandidate/>}/>
-          <Route path='/dashboard-candidato' element={<DashboardCandidate />}>
-            <Route path='home' element={<HomeCandidate/>}/>
-            <Route path='profile' element={<ProfileCandidate />}/>
-            <Route path='search' element={<Buscar/>}/>
-            <Route path='detail-vacancy/:id' element={<Details/>}/>
-            <Route path='app-vacancies' element={<AppVacancyCandidate/>}/>
-		        <Route path ='SearchList' element ={<ListBuscar/>}/>
-            
+          <Route path="/login-candidato" element={<LoginCandidate />} />
+          <Route path="/register-candidato" element={<RegisterCandidate />} />
+          <Route path="/dashboard-candidato" element={<DashboardCandidate />}>
+            <Route path="home" element={<HomeCandidate />} />
+            <Route path="profile" element={<ProfileCandidate />} />
+            <Route path="search" element={<Buscar />} />
+            <Route path="detail-vacancy/:id" element={<Details />} />
+            <Route path="app-vacancies" element={<AppVacancyCandidate />} />
+            <Route path="SearchList" element={<ListBuscar />} />
           </Route>
           {/* aqui las rutas de la seccion reclutador */}
           <Route path="/login-recruiter" element={<LoginRecruiter />} />

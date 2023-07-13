@@ -8,15 +8,12 @@
 
 .card-body {
   @include mobile {
-    margin-right: 50px !important;
   }
   @include tablet {
-    margin-right: 50px !important;
     display: flex;
     flex-direction: column;
   }
   @include desktop {
-    margin-right: 50px !important;
   }
   .container_form_General1 {
     @include mobile {

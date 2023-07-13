@@ -5,6 +5,7 @@ import "react-data-table-component-extensions/dist/index.css";
 import { Link } from "react-router-dom";
 import { myId } from "../../lib/myLib";
 import useJob from "../../../hooks/useJob";
+import Footer from "../../Landing/Footer/Footer";
 
 const HorizonTable = ({
   vacancies,
@@ -22,7 +23,7 @@ const HorizonTable = ({
   const [dataCandidate] = useJob();
   useEffect(() => {
     initDataMyVacancies();
-    console.log('vancacies:...',vacancies);
+    console.log("vancacies:...", vacancies);
   }, []);
 
   function parseJwt(token) {
@@ -38,7 +39,7 @@ const HorizonTable = ({
       console.log("data Token(jwt):...", result);
       idUser = result._id;
     }
-    let innerArray=[];
+    let innerArray = [];
     vacancies.forEach((element) => {
       const isFoudedUser = element?.rejecteds?.find(
         (item) => String(item) === idUser
@@ -155,30 +156,33 @@ const HorizonTable = ({
   };
 
   return (
-    <div
-      className=" m-5 p-3"
-      style={{ fontFamily: "Poppins, sans-serif, Verdana, Geneva, Tahoma" }}
-    >
-      <DataTableExtensions {...tableData} export={false} print={false}>
-        <DataTable
-          {...tableData}
-          key={myId()}
-          columns={columns}
-          data={data}
-          noHeader
-          defaultSortField="#"
-          defaultSortAsc={true}
-          pagination
-          paginationServer
-          paginationTotalRows={totalRows}
-          paginationDefaultPage={currentPage}
-          onChangeRowsPerPage={handlePerRowsChange}
-          onChangePage={handlePageChange}
-          highlightOnHover
-          dense
-        />
-      </DataTableExtensions>
-    </div>
+    <>
+      <div
+        className=" m-5 p-3"
+        style={{ fontFamily: "Poppins, sans-serif, Verdana, Geneva, Tahoma" }}
+      >
+        <DataTableExtensions {...tableData} export={false} print={false}>
+          <DataTable
+            {...tableData}
+            key={myId()}
+            columns={columns}
+            data={data}
+            noHeader
+            defaultSortField="#"
+            defaultSortAsc={true}
+            pagination
+            paginationServer
+            paginationTotalRows={totalRows}
+            paginationDefaultPage={currentPage}
+            onChangeRowsPerPage={handlePerRowsChange}
+            onChangePage={handlePageChange}
+            highlightOnHover
+            dense
+          />
+        </DataTableExtensions>
+      </div>
+      <Footer />
+    </>
   );
 };
 

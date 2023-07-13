@@ -554,7 +554,7 @@ const FormRecruiter = () => {
 
                   <button
                     type="submit"
-                    className="buttons btn btn-info text-light d-block ms-auto"
+                    className="buttons btn btn-info text-light d-block ms-auto mb-5"
                     value="enviar"
                     id="save-changes"
                   >

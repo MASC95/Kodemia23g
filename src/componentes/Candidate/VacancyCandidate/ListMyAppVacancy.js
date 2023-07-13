@@ -73,6 +73,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import useJob from "../../../hooks/useJob";
 import { myId } from "../../lib/myLib";
+import Footer from "../../Landing/Footer/Footer";
 export const ListMyAppVacancy = () => {
   const [dataCandidate] = useJob();
   const { my_vacancies } = dataCandidate;
@@ -145,25 +146,28 @@ export const ListMyAppVacancy = () => {
   };
 
   return (
-    <div
-      className="m-5 p-3"
-      id="formGral"
-      style={{ fontFamily: "Poppins, sans-serif, Verdana, Geneva, Tahoma" }}
-    >
-      <DataTableExtensions {...tableData} export={false} print={false}>
-        <DataTable
-          {...tableData}
-          columns={columns}
-          data={data}
-          defaultSortField="#"
-          defaultSortAsc
-          pagination
-          highlightOnHover
-          dense
-          key={myId()}
-        />
-      </DataTableExtensions>
-    </div>
+    <>
+      {" "}
+      <div
+        className="m-5 p-3"
+        id="formGral"
+        style={{ fontFamily: "Poppins, sans-serif, Verdana, Geneva, Tahoma" }}
+      >
+        <DataTableExtensions {...tableData} export={false} print={false}>
+          <DataTable
+            {...tableData}
+            columns={columns}
+            data={data}
+            defaultSortField="#"
+            defaultSortAsc
+            pagination
+            highlightOnHover
+            dense
+            key={myId()}
+          />
+        </DataTableExtensions>
+      </div>
+    </>
   );
 };
 

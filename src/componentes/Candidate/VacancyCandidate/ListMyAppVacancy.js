@@ -73,7 +73,6 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import useJob from "../../../hooks/useJob";
 import { myId } from "../../lib/myLib";
-import Footer from "../../Landing/Footer/Footer";
 export const ListMyAppVacancy = () => {
   const [dataCandidate] = useJob();
   const { my_vacancies } = dataCandidate;

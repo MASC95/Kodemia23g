@@ -115,13 +115,28 @@ export const RegisterCandidate = () => {
       console.log(error);
     }
   };
+
+  const searchUserInDB = async(email)=>{
+    try {
+      const response = await axios.get(`${endpointsGral.userURL}getUserByEmail?email=${email}`);
+      console.log('response searchUserInDB:..',response);
+      if(response?.data?.user){
+        return true
+      }else{
+        return false
+      }
+       
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+
   const handleSubmit = async (values) => {
     console.log("values from formik", values);
     // console.log('aqui debe haber datos', values)
-    const dataRepet = isInformationUser.some(
-      (item) => item.email === values.email
-    );
-    if (dataRepet) {
+    const dataRepet = searchUserInDB(values.email);
+    if (dataRepet===true) {
       Swal.fire({
         icon: "error",
         title: "Error al registrar!",

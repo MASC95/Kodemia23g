@@ -12,6 +12,7 @@ import "./navbarcandidate.scss";
 import { FaUserCircle, FaBell, FaSignOutAlt, FaUser } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import useJob from "../../../../hooks/useJob";
+
 import {
   OverlayTrigger,
   Tooltip,
@@ -21,7 +22,7 @@ import {
 import { useNavigate } from "react-router-dom";
 
 const NavbarCandidate = () => {
-  const navigate= useNavigate();
+  const navigate = useNavigate();
   const [showOffcanvas, setShowOffcanvas] = useState(false);
   const [
     dataCandidate,
@@ -69,14 +70,12 @@ const NavbarCandidate = () => {
     setShowOffcanvas((prev) => !prev);
   };
 
-
   const logout = () => {
     setDataLocalStorage({});
     setDataCandidate({});
     setDataRecruiter({});
     navigate("/");
   };
-
 
   return (
     <Navbar expand="lg" className="nav w-100 main-navbar-color">
@@ -123,7 +122,10 @@ const NavbarCandidate = () => {
             style={{ cursor: "pointer" }}
             placement={placement}
             overlay={
-              <Tooltip className={showDropdown?'d-none':''} id={`tooltip-${placement}`}>
+              <Tooltip
+                className={showDropdown ? "d-none" : ""}
+                id={`tooltip-${placement}`}
+              >
                 Welcome Back! {dataCandidate.email}
               </Tooltip>
             }
@@ -187,7 +189,6 @@ const NavbarCandidate = () => {
                         "Poppins, sans-serif, Verdana, Geneva, Tahoma",
                     }}
                     onClick={logout}
-                    
                   >
                     <FaSignOutAlt /> Cerrar Sesión
                   </Dropdown.Item>

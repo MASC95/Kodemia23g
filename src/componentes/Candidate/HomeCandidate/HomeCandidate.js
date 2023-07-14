@@ -17,7 +17,7 @@ const HomeCandidate = () => {
 
   return (
     <>
-      <Carousel className="w-100 main-carousel">
+      <Carousel className="w-100 main-carousel ">
         <Carousel.Item className="carousel-img">
           <img
             className="d-block w-100 carousel-main-img"

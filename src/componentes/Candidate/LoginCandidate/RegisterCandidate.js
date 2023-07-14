@@ -11,9 +11,19 @@ import useJob from "../../../hooks/useJob";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { Formik, Field, ErrorMessage } from "formik";
+import { Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
+let previousTitle = document.title;
+
+window.addEventListener("blur", () => {
+  previousTitle = document.title;
+  document.title = "Haz crecer tu carrera con Jobinder";
+});
+
+window.addEventListener("focus", () => {
+  document.title = previousTitle;
+});
 const initDataForm = {
   email: "",
   password: "",
@@ -116,27 +126,29 @@ export const RegisterCandidate = () => {
     }
   };
 
-  const searchUserInDB = async(email)=>{
+  const searchUserInDB = async (email) => {
     try {
-      const response = await axios.get(`${endpointsGral.userURL}getUserByEmail?email=${email}`);
-      console.log('response searchUserInDB:..',response);
-      if(response?.data?.user){
-        return true
-      }else{
-        return false
+      const response = await axios.get(
+        `${endpointsGral.userURL}getUserByEmail?email=${email}`
+      );
+      console.log("response searchUserInDB:..", response);
+      if (response?.data?.user) {
+        return true;
+      } else {
+        return false;
       }
-       
     } catch (error) {
       console.log(error);
     }
-  }
-
+  };
 
   const handleSubmit = async (values) => {
     console.log("values from formik", values);
-    // console.log('aqui debe haber datos', values)
-    const dataRepet = searchUserInDB(values.email);
-    if (dataRepet===true) {
+    // console.log('aqui debe haber datos', values) se hicieron cambios aqui
+    const dataRepet = isInformationUser.some(
+      (item) => item.email === values.email
+    );
+    if (dataRepet) {
       Swal.fire({
         icon: "error",
         title: "Error al registrar!",
@@ -248,9 +260,9 @@ export const RegisterCandidate = () => {
                         </span>
                       </Form.Group>
 
-                      <Form.Group className="input-group">
+                      <Form.Group className="input-group ">
                         <Form.Control
-                          type="password"
+                          type={showPassword ? "text" : "password"}
                           className={`form-control rounded ${
                             props.touched.password && props.errors.password
                               ? "border border-danger"
@@ -279,14 +291,14 @@ export const RegisterCandidate = () => {
                             <FaEye style={{ width: "30px" }} />
                           )}
                         </span>
-                        <span className="text-danger">
+                        <span className="text-danger input-group">
                           <ErrorMessage name="password" />
                         </span>
                       </Form.Group>
 
                       <Form.Group className="input-group">
                         <Form.Control
-                          type="password"
+                          type={showPassword ? "text" : "password"}
                           className={`form-control rounded ${
                             props.touched.confirmPassword &&
                             props.errors.confirmPassword
@@ -316,7 +328,7 @@ export const RegisterCandidate = () => {
                             <FaEye style={{ width: "30px" }} />
                           )}
                         </span>
-                        <span className="text-danger">
+                        <span className="text-danger input-group">
                           <ErrorMessage name="confirmPassword" />
                         </span>
                       </Form.Group>

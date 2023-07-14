@@ -43,6 +43,8 @@
           }
 
           @include tablet {
+            width: 350px;
+            height: 350px;
           }
           @include desktop {
             width: 350px;

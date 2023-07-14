@@ -33,23 +33,27 @@ const NavbarCandidate = () => {
   ] = useJob();
 
   const [isErrorImg, setIsErrorImg] = useState(false);
+  const [isLoadImg,setIsLoadImg] = useState(true);
 
   useEffect(() => {
+    if(isErrorImg)
     console.log("Reloading Navbar:...");
-  }, [isErrorImg]);
+  }, [isErrorImg,isLoadImg]);
 
   const toggleErrorImg = () => {
     setIsErrorImg((prev) => !prev);
   };
 
   const handleError = () => {
-    console.log("Error al cargar la Imagen:...");
-    toggleErrorImg();
+    
+    setIsErrorImg(true);
+    setIsLoadImg(false);
   };
 
   const handleLoad = () => {
-    console.log("Imagen cargada con exito:...");
-    //toggleErrorImg();
+    console.log("Imagen cargada con exito:...",String(isErrorImg));
+    setIsLoadImg(true);
+    setIsErrorImg(false);
   };
   const placement = "bottom";
   const [showDropdown, setShowDropdown] = useState(false);

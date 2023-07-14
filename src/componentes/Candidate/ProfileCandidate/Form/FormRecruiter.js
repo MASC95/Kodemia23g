@@ -34,24 +34,7 @@ const initDataForm = {
   avatar_url: "",
 };
 
-const saveChanges = () => {
-  swal
-    .fire({
-      title: "Mensaje de confirmación",
-      text: "¿Estás seguro de que quieres guardar los cambios?",
-      icon: "question",
-      showCancelButton: true,
-      confirmButtonColor: "#0CF574",
-      cancelButtonColor: "#FF2F2F",
-      confirmButtonText: "Guardar",
-      cancelButtonText: "Cancelar",
-    })
-    .then((result) => {
-      if (result.isConfirmed) {
-        swal.fire("Los cambios han sido guardados correctamente!");
-      }
-    });
-};
+
 
 /*
 password: Yup.string().required('Requerido').min(8, 'La contraseña debe tener al menos 8 caracteres')
@@ -128,38 +111,7 @@ const FormRecruiter = () => {
     }
   }, [listSkills]);
 
-  /*  const formik = useFormik({
-    initialValues: dataForm,
-    enableReinitialize: true,
-    validationSchema: Yup.object({
-      nombre: Yup.string()
-        .required("El Nombres es Requerido")
-        .min(2, "El nombre debe tener al menos 2 caracteres")
-        .max(50, "El nombre debe tener como máximo 50 caracteres"),
-      apellido: Yup.string()
-        .required("El Apellido es Requerido")
-        .min(2, "El apellido debe tener al menos 2 caracteres")
-        .max(50, "El apellido debe tener como máximo 50 caracteres"),
-      email: Yup.string()
-        .required("El correo electrónico es requerido")
-        .email("ingrese un correo electrónico válido"),
-      resetPassword: Yup.string()
-        .required("Requerido")
-        .min(8, "La contraseña debe tener al menos 8 caracteres")
-        .matches(
-          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/,
-          "La contraseña debe contener al menos una letra mayúscula, una letra minúscula, un número y un carácter especial"
-        ),
-      age: Yup.number()
-        .required("El campo es requerido")
-        .min(18, "Debe ser mayor de 18 años"),
-      exp: Yup.string().required("Ingrese una experiencia válida"),
-    }),
-    onSubmit: (values) => {
-      /*  alert(JSON.stringify(values, null, 2)); */
-  // console.log('values:..',values);
-  /*   },
-  }); */
+  
 
   const handleSubmit = async (values) => {
     //e.preventDefault();
@@ -208,10 +160,11 @@ const FormRecruiter = () => {
                 }
               )
               .then((response) => {
-                console.log("response.data:..", response.data);
+                //console.log("response.data:..", response.data);
 
                 if (response?.data?.message === "Update User Ok") {
                   if (response?.data?.updateUser) {
+                    console.log('setDatalocalStorage updatedUser:...');
                     setDataLocalStorage({
                       ...response?.data?.updateUser,
                       accessToken: dataCandidate.accessToken,
@@ -474,7 +427,7 @@ const FormRecruiter = () => {
                         <input
                           type={showPassword ? "text" : "password"}
                           id="resetPasswordProfile"
-                          autoComplete="false"
+                          autoComplete="new-password"
                           placeholder={noPassword}
                           name="resetPassword"
                           className={`form-control ${

@@ -8,6 +8,7 @@ import Button from "react-bootstrap/Button";
 import { FaBars } from "react-icons/fa";
 import logo from "../../../Recruiter/assets/img/logo.png";
 import logoSmall from "../../../Candidate/img/logoSmall-removebg-preview.png";
+import tempImgUser from "../../../Candidate/img/tempImgUser.png";
 import "./navbarcandidate.scss";
 import { FaUserCircle, FaBell, FaSignOutAlt, FaUser } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -20,6 +21,7 @@ import {
   Dropdown,
 } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import ImageProfile from "./ImageProfile";
 
 const NavbarCandidate = () => {
   const navigate = useNavigate();
@@ -33,28 +35,48 @@ const NavbarCandidate = () => {
     setDataLocalStorage,
   ] = useJob();
 
-  const [isErrorImg, setIsErrorImg] = useState(false);
-  const [isLoadImg,setIsLoadImg] = useState(true);
+  const [isErrorImg, setIsErrorImg] = useState(null);
+  const [isLoadImg,setIsLoadImg] = useState(null);
+  const [imgUserUrl, setImgUserUrl] = useState(dataCandidate?.avatar_url?dataCandidate?.avatar_url:tempImgUser);
 
   useEffect(() => {
-    if(isErrorImg)
-    console.log("Reloading Navbar:...");
-  }, [isErrorImg,isLoadImg]);
+    /* if(isErrorImg===true){
+      console.log('Error al cargar la Imagen:...')
+      whileErrorImg();
+    }
+    if(isLoadImg===true){
+      console.log('Imagen Carganda con exito:...')
+    } */
+    console.log('Avatar URL USER:..',dataCandidate.avatar_url)
+    console.log("Reloading Navbar:...",imgUserUrl);
 
-  const toggleErrorImg = () => {
-    setIsErrorImg((prev) => !prev);
+  }, [imgUserUrl]);
+
+
+  useEffect(()=>{
+    if(dataCandidate?.avatar_url){
+      setImgUserUrl(dataCandidate.avatar_url)
+    }
+
+  },[dataLocalStorage,dataCandidate])
+
+  const whileErrorImg = () => {
+    setIsErrorImg(null);
+      setIsLoadImg(null);
   };
 
   const handleError = () => {
-    
-    setIsErrorImg(true);
-    setIsLoadImg(false);
+    console.log('Error al cargar Imagen(handleError):...')
+    setImgUserUrl(tempImgUser);
+    //setIsErrorImg(true);
+    //setIsLoadImg(false);
   };
 
   const handleLoad = () => {
-    console.log("Imagen cargada con exito:...",String(isErrorImg));
-    setIsLoadImg(true);
-    setIsErrorImg(false);
+    console.log('Imagen Carganda con exito(handleLoad):...')
+    setImgUserUrl(dataCandidate.avatar_url);
+    //setIsLoadImg(true);
+    //setIsErrorImg(false);
   };
   const placement = "bottom";
   const [showDropdown, setShowDropdown] = useState(false);
@@ -135,17 +157,18 @@ const NavbarCandidate = () => {
             }
           >
             <div>
-              {dataCandidate?.avatar_url ? (
+            <ImageProfile src={imgUserUrl} placeholderSrc={tempImgUser}  handleDropdownToggle={handleDropdownToggle}/>
+              {/* {dataCandidate?.avatar_url ? (
                 <img
-                  src={
-                    dataCandidate.avatar_url ? dataCandidate.avatar_url : logo
-                  }
-                  alt="candidate-profile-pic"
-                  className="candidate-profile-pic "
-                  onError={handleError}
-                  onLoad={handleLoad}
-                  onClick={handleDropdownToggle}
-                />
+                src={
+                  dataCandidate.avatar_url ? dataCandidate.avatar_url : logo
+                }
+                alt="candidate-profile-pic"
+                className="candidate-profile-pic "
+                onError={handleError}
+                onLoad={handleLoad}
+                onClick={handleDropdownToggle}
+              />
               ) : (
                 <FaUserCircle
                   className="candidate-profile-icon"
@@ -158,7 +181,7 @@ const NavbarCandidate = () => {
                     cursor: "pointer",
                   }}
                 />
-              )}
+              )} */}
 
               {showDropdown && (
                 <Dropdown.Menu

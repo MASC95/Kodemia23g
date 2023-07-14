@@ -11,6 +11,7 @@ import UploadImage from "../../UploadImage/UploadImage";
 import logo from "../../Recruiter/assets/img/perfil2.jpg";
 import "./style.scss";
 import useJob from "../../../hooks/useJob";
+import ToDoList from "./Forms/ToDoList";
 
 
 const initDataForm = {
@@ -28,6 +29,7 @@ export const AddVacancy = () => {
   const [listSkills, setListSkills] = useState([]);
   const [imageUser, setImageUser] = useState(null);
   const [dataForm, setDataForm] = useState(initDataForm);
+  const [addTask, setAddTaks]=useState([])
   const [
     dataCandidate,
     setDataCandidate,
@@ -54,7 +56,17 @@ export const AddVacancy = () => {
     onSubmit: (values) => {
       setTimeout(() => {
         console.log("...........", imageUser);
+        console.log("RFC COMPLETE", dataRecruiter.rfc)
 
+        if(dataRecruiter.rfc===undefined){
+          swal({
+            title: "Completa tu perfil para agregar vacantes!!",
+            icon: "error",
+            button: "ok",
+          });
+          return
+        }else{
+         
         if(!imageUser){
             swal({
                 title: "Falta la Imagen!!",
@@ -80,6 +92,7 @@ export const AddVacancy = () => {
         for (const pair of formData.entries()) {
           // console.log(`${pair[0]}, ${pair[1]}`);
         }
+       
         console.log("...........", formData);
         axios.defaults.headers.common[
           "Authorization"
@@ -97,11 +110,12 @@ export const AddVacancy = () => {
               icon: "success",
               button: "ok!",
             });
-            navigate(`/Dashboard-Recruiter/vacancy`);
+            // navigate(`/Dashboard-Recruiter/vacancy`);
           })
           .catch((error) => {
             //   console.log(error.response);
           });
+        }
       }, 400);
     },
   });
@@ -118,6 +132,7 @@ export const AddVacancy = () => {
             fontFamily: "Poppins, sans-serif, Verdana, Geneva, Tahoma",
           }}
         >
+          {/* <p>{dataRecruiter.rfc}</p> */}
           Crear Vacante
         </h1>
         <div
@@ -359,8 +374,8 @@ export const AddVacancy = () => {
                     </select>
                   </div>
                 </div>
-                <div className="col">
-                  <div className="form-outline">
+               {/* <div className="col">
+                   <div className="form-outline">
                     <label
                       className="form-label text-dark"
                       htmlFor="form6Example1"
@@ -385,10 +400,18 @@ export const AddVacancy = () => {
                         {formik.errors.activities}
                       </span>
                     )}
-                  </div>
-                </div>
+                  </div> 
+                </div>*/}
               </div>
-
+              <ToDoList
+              value={formik.values.activities}
+              onChange={formik.handleChange}
+              className={`form-control ${
+                formik.touched.activities && formik.errors.activities
+                  ? "border border-danger"
+                  : "border border-secondary"
+              }`}
+              /> <br></br>
               <Softskills setListSkills={setListSkills} skillsCandidate={[]} />
 
               <div className="buttons_actions d-flex justify-content-end align-content-end">

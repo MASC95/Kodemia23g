@@ -26,7 +26,10 @@ const Example = () => {
   const queryMatch= async(page,newPerPage)=>{
       try {
         setLoading(true)
-        const allVacancies=await axios.get(`${endpointsGral.vacancyURL}?page=${page}&limit=${newPerPage}`)
+        axios.defaults.headers.common[
+          "Authorization"
+        ] = `Bearer: ${dataRecruiter.accessToken}`;
+        const allVacancies=await axios.get(`${endpointsGral.vacancyURL}getAllJobVacancyByUser/${dataRecruiter.accessToken}?page=${page}&limit=${newPerPage}`)
         const datas=allVacancies.data['item']
         console.log('backend Response:..',datas);
         // const statusStart= datas['docs'].filter(item=>item.status==='Iniciado')

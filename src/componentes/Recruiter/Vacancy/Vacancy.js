@@ -28,8 +28,11 @@ export const Vacancy = () => {
 
   const fetch = async (page, newPerPage) => {
     setLoading(true);
+    axios.defaults.headers.common[
+      "Authorization"
+    ] = `Bearer: ${dataRecruiter.accessToken}`;
     const allVacancies = await axios.get(
-      `${endpointsGral.vacancyURL}?page=${page}&limit=${newPerPage}`
+      `${endpointsGral.vacancyURL}getAllJobVacancyByUser/${dataRecruiter.accessToken}?page=${page}&limit=${newPerPage}`
     );
     const datas = allVacancies.data["item"];
     console.log("backend Response:..", datas);

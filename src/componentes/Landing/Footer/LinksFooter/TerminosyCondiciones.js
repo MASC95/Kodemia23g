@@ -47,7 +47,7 @@ const TerminosCondiciones = () => {
       }}
     >
       <Container className="m-3 p-5" style={estilo}>
-        <Link to="/">
+        <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
           <FaHome
             style={iconStyle}
             onMouseEnter={handleMouseEnter}

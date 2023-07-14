@@ -13,7 +13,7 @@ const PoliticaPrivacidad = () => {
     setHovered(false);
   };
   const estilo = {
-    backgroundImage: "linear-gradient(to top, #37ecba 0%, #72afd3 100%)",
+    backgroundImage: " linear-gradient(to top, #37ecba 0%, #72afd3 100%)  ",
     fontFamily: "Poppins",
     boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
     borderRadius: "25px",
@@ -43,8 +43,8 @@ const PoliticaPrivacidad = () => {
         color: "#0D324D",
       }}
     >
-      <Container className="m-3 p-5" style={estilo}>
-        <Link to="/">
+      <Container className="m-3 p-5  " style={estilo}>
+        <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
           <FaHome
             style={iconStyle}
             onMouseEnter={handleMouseEnter}

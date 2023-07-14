@@ -353,7 +353,7 @@ export const EditVacancy = () => {
                   >
                     <option> Selecciona</option>
                     <option> Iniciado</option>
-                    <option> Cerrado</option>
+                    {/* <option> Cerrado</option> */}
                   </select>
                 </div>
               </div>
@@ -362,7 +362,7 @@ export const EditVacancy = () => {
                   <label className="form-label text-dark" htmlFor="form6Example1">
                     Actividades
                   </label>
-                  <input
+                  <textarea
                     type="text"
                     id="actividades"
                     name="activities"

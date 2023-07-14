@@ -9,10 +9,13 @@ import DataTable from "react-data-table-component";
 import DataTableExtensions from "react-data-table-component-extensions";
 import Swal from "sweetalert2";
 import "./scss/style.scss";
+import { useNavigate } from "react-router-dom";
 export const Candidate = () => {
   const valores = window.location.search;
   const urlParams = new URLSearchParams(valores);
   const idCandidate = urlParams.get("c");
+  const idVacancy= urlParams.get("v")
+  const navigate =useNavigate()
   const [
     dataCandidate,
     setDataCandidate,
@@ -25,6 +28,8 @@ export const Candidate = () => {
   console.log(idCandidate);
   const [dataSkill, setDataSkill] = useState([]);
   const [infoCandidate, setInfoCandidate] = useState({});
+  const [isDisable, setIsDisable]=useState(false)
+  const [isHidePanel, setIsHidePanel]=useState(false)
   const queryByUsers = async () => {
     try {
       const response = await axios.get(`${endpointsGral.userURL}getUser/${idCandidate}`);
@@ -40,6 +45,8 @@ export const Candidate = () => {
     }
   };
 
+  console.log('my vacancies',infoCandidate.my_vacancies)
+
   useEffect(() => {
     queryByUsers();
     
@@ -51,104 +58,103 @@ export const Candidate = () => {
     }
   };
 
-  // const handleOfPanel=(id)=>{
-   
-  // Swal.fire({
-  //   title: "Panel de reclutamiento",
-  //   text: "Estas seguro de agregar al candidato?!",
-  //   icon: "warning",
-  //   showCancelButton: true,
-  //   confirmButtonColor: "#3085d6",
-  //   cancelButtonColor: "#d33",
-  //   confirmButtonText: "Si, agregar!",
-  // }).then(async (result) => {
-  //   if (result.isConfirmed) {
-  //     const selectUser = dataByUserCandidate[index];
+  const queryPhase = async () => {
 
-  //     let tempDataUser = [...tempListUser];
-  //     const dataRepet = tempDataUser.some(
-  //       (item) => item._id === selectUser._id
-  //     );
-  //     console.log("data repet", dataRepet);
-  //     if (dataRepet) {
-  //       console.log("ya esta agregado");
-  //       Swal.fire(
-  //         "Acción rechazada!",
-  //         "Este usuario ya esta agregado al panel!",
-  //         "error"
-  //       );
-  //     } else {
-  //       const selectUser = dataByUserCandidate[index];
-  //       console.log("agregando usuario a primera fase:..", selectUser._id);
-  //       console.log("dentro de la vacante:..", idVacancy);
-  //       try {
-  //         axios.defaults.headers.common[
-  //           "Authorization"
-  //         ] = `Bearer: ${dataRecruiter.accessToken}`;
-  //         const response = await axios.patch(
-  //           `${endpointsGral.phaseURL}?phase=Llamada&idVacancie=${idVacancy}&idCandidate=${selectUser._id}`
-  //         );
-  //         console.log("responseBackend (candidato Agregado):..", response);
-  //         if (response) {
-  //           queryPhase();
-  //         }
-  //       } catch (error) {
-  //         console.log(error);
-  //       }
-  //       tempDataUser.push(selectUser);
-  //       setListDataUser([...tempDataUser]);
-  //     }
-  //     // console.log('lista de usuarios para reclutamiento',tempDataUser)
-  //     setButtonDisabled(true);
-  //     // setButtonState("btn-outline-secondary")
-  //   }
-  // });
-  // }
+    const phases= ['Llamada','Entrevista','Pruebas','Contratado'];
+    let tempData=[];
+    for (const phase of phases) {
+      const endpointPhase = `${endpointsGral.phaseUrlGetPhase}?phase=${phase}`;
+      try {
+        const response = await axios.get(endpointPhase);
+        console.log("Phase One, backend", response);
+        const result = response?.data?.infoPhase?.vacancies;
+  
+        const dataInformationVacancy = result.find(
+          (item) => String(item.idVacancie) === idVacancy
+        );
+        console.log(`dataInformationVacancy:..${phase}`, dataInformationVacancy);
+        tempData=[...tempData,...dataInformationVacancy?.applicants];
+        
+      } catch (error) {
+        console.log(error);
+      }  
+    }
+    console.log('todos los applicantes en las 4 fases:..',tempData);
+  };
 
-  // const handleOfHidePanel=(id)=>{
-  //   console.log("En el papa(index):", index);
-  //   Swal.fire({
-  //     title: "Ocultar candidato",
-  //     text: "Estas seguro de ocultar esta candidato?!",
-  //     icon: "warning",
-  //     showCancelButton: true,
-  //     confirmButtonColor: "#3085d6",
-  //     cancelButtonColor: "#d33",
-  //     confirmButtonText: "Si, ocultar!",
-  //   }).then(async (result) => {
-  //     if (result.isConfirmed) {
-  //       console.log("indice a borrar:..", index);
-  //       const hideCandidate = dataByUserCandidate[index];
-  //       const id = hideCandidate._id;
-  //       console.log("candidato a ocultar:..", id);
-  //       if (hideCandidate) {
-  //         const deleteOnList = dataByUserCandidate.filter(
-  //           (_, i) => i !== index
-  //         );
-  //         try {
-  //           axios.defaults.headers.common[
-  //             "Authorization"
-  //           ] = `Bearer: ${dataRecruiter.accessToken}`;
-  //           console.log(
-  //             "dataRecruiter.accessToken ",
-  //             dataRecruiter.accessToken
-  //           );
-  //           const responseBack = await axios.post(
-  //             `${endpointsGral.hideUserInVacancy}`,
-  //             { idVacancy, idCandidate: id, emailUser: hideCandidate.email }
-  //           );
-  //           console.log("responseBack HideUser:..", responseBack);
-  //         } catch (error) {
-  //           console.log(error);
-  //         }
-  //         setDataByUserCandidate(deleteOnList);
-  //         console.log("lista de candidatos sin el oculto:..", deleteOnList);
-  //       } else {
-  //         console.log("error al ocultar");
-  //       }
-  //     }
-  //   });
-  // }
+  const handleOfPanel=(id)=>{
+    console.log(id)
+    console.log(idVacancy)
+    Swal.fire({
+      title: "Panel de reclutamiento",
+      text: "Estas seguro de agregar al candidato?!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si, agregar!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        
+          try {
+            axios.defaults.headers.common[
+              "Authorization"
+            ] = `Bearer: ${dataRecruiter.accessToken}`;
+            const response = await axios.patch(
+              `${endpointsGral.phaseURL}?phase=Llamada&idVacancie=${idVacancy}&idCandidate=${id}`
+            );
+            console.log("responseBackend (candidato Agregado):..", response);
+            if (response) {
+              queryPhase();
+            }
+          } catch (error) {
+            console.log(error);
+          }
+        }
+        // console.log('lista de usuarios para reclutamiento',tempDataUser)
+        navigate(`/Dashboard-Recruiter/details-match/?=${idVacancy}`)
+        setIsDisable(true)
+        
+        // setButtonState("btn-outline-secondary")
+    });
+  }
+
+  const handleOfHidePanel=(email)=>{
+    console.log("En el papa(index):", email);
+    Swal.fire({
+      title: "Ocultar candidato",
+      text: "Estas seguro de ocultar esta candidato?!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si, ocultar!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+          try {
+            axios.defaults.headers.common[
+              "Authorization"
+            ] = `Bearer: ${dataRecruiter.accessToken}`;
+            console.log(
+              "dataRecruiter.accessToken ",
+              dataRecruiter.accessToken
+            );
+            const responseBack = await axios.post(
+              `${endpointsGral.hideUserInVacancy}`,
+              { idVacancy, idCandidate: idCandidate, emailUser: email }
+            );
+            console.log("responseBack HideUser:..", responseBack);
+          } catch (error) {
+            console.log(error);
+          }
+          setIsHidePanel(true)
+          navigate(`/Dashboard-Recruiter/details-match/?=${idVacancy}`)
+        } else {
+          console.log("error al ocultar");
+        }
+      
+    });
+  }
 
   useEffect(() => {
     console.log('infoCandidate:...',infoCandidate);
@@ -235,14 +241,16 @@ export const Candidate = () => {
                 <button
                   type="button"
                   className="buttons btn btn-outline-success"
-                  // onClick={handleOfPanel.bind(this,infoCandidate._id)}
+                  disabled={isDisable}
+                  onClick={handleOfPanel.bind(this,infoCandidate._id)}
                  >
                   <FaCheck className="icon_check"/>
                 </button>
                 <button
                   type="button"
+                  disabled={isHidePanel}
                   className="buttons btn btn-outline-secondary"
-                  //  onClick={handleOfHidePanel.bind(this,infoCandidate._id)}
+                   onClick={handleOfHidePanel.bind(this,infoCandidate.email)}
                 >
                   <FaEyeSlash className="icon_eyeSlash"/>
                 </button>

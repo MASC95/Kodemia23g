@@ -29,6 +29,8 @@ const Example = () => {
         const allVacancies=await axios.get(`${endpointsGral.vacancyURL}?page=${page}&limit=${newPerPage}`)
         const datas=allVacancies.data['item']
         console.log('backend Response:..',datas);
+        // const statusStart= datas['docs'].filter(item=>item.status==='Iniciado')
+        // console.log('lista iniciados',statusStart)
           setDataInformation(datas['docs'])
           console.log('PAGINATION',datas["totalDocs"])
          setTotalRows(datas["totalDocs"])
@@ -141,17 +143,6 @@ const Example = () => {
   
    const data= dataInformation?.map((vacante, index) => {
      
-
-    /* const outDataDuplex=vacante.applicants?.filter((idUserAplicant, indice)=>{
-       const objetoString = JSON.stringify(idUserAplicant);
-       return (
-         vacante.applicants.findIndex((aplicante, i)=>{
-           return JSON.stringify(aplicante) === objetoString;
-         }) === indice
-       ); 
-
-
-     });*/
      const tempArray=[];
      const aplicantes= [...vacante.applicants];
      aplicantes.forEach((idAplicante)=>{
@@ -160,8 +151,6 @@ const Example = () => {
           tempArray.push(idAplicante);
         }
      })
-
-
 
      return(
        {
@@ -210,7 +199,7 @@ const Example = () => {
         <Link to={`/Dashboard-Recruiter/details-match/?m=${d.id}`}>
         <button type="button" className="buttons btn btn-outline-info" ><FaEye className="icon_eye1"/></button>
         </Link>,
-        <button type="button" className="buttons btn btn-outline-success" onClick={handleClick.bind(this,d.qty)} ><FaEdit className="icon_edit1"/></button> 
+        // <button type="button" className="buttons btn btn-outline-success" onClick={handleClick.bind(this,d.qty)} ><FaEdit className="icon_edit1"/></button> 
   ]
  }
 ];

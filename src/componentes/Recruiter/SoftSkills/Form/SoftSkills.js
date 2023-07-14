@@ -106,11 +106,12 @@ export const Softskills = ({ setListSkills, isCandidate, skillsCandidate }) => {
     }
   };
   return (
-    <div className="row">
-      <div className="col-12 col-md-4">
-        <div className="">
+  <>
+    <div className="row softskills-tableEdit ">
+    <div className="col">
+        <div className="row d-flex"> 
           <label
-            className="form-label "
+            className="form-label d-block"
             htmlFor="form6Example1"
             style={{
               color: "#498BA6",
@@ -119,8 +120,8 @@ export const Softskills = ({ setListSkills, isCandidate, skillsCandidate }) => {
           >
             Elige las SoftSkill de tu {!isCandidate ? "vacante" : "perfil"}:
           </label>
-
-          <div className="">
+          <div className="col">
+          <div className="form-outline">
             <select
               className="form-control"
               id="selectSkill"
@@ -139,8 +140,8 @@ export const Softskills = ({ setListSkills, isCandidate, skillsCandidate }) => {
               })}
             </select>
           </div>
-
-          <div className="col-2 buttons_actions gap-3">
+          </div>
+            <div className="col-2 buttons_actions">
             <button
               type="button"
               onClick={isCandidate ? onFormSubmitCandidate : onFormSubmit}
@@ -149,19 +150,21 @@ export const Softskills = ({ setListSkills, isCandidate, skillsCandidate }) => {
               <FaPlus> Agregar </FaPlus>
             </button>
           </div>
+
+          
         </div>
 
-        {!isCandidate && (
+        {/* {!isCandidate && (
           <Link
             to={"/Dashboard-Recruiter/softskill-addNew"}
             className="text-black d-flex justify-content-start mb-3 mt-2 fs-6"
           >
             <p className="">Crear nueva SoftSkill</p>
           </Link>
-        )}
+        )} */}
       </div>
 
-      <div className="col-12 col-md-8">
+      <div className="col">
         <label className="form-label text-dark" htmlFor="">
           Lista de SoftSkill agregadas
         </label>
@@ -216,6 +219,7 @@ export const Softskills = ({ setListSkills, isCandidate, skillsCandidate }) => {
         </table>
       </div>
     </div>
+  </>
   );
 };
 export default Softskills;

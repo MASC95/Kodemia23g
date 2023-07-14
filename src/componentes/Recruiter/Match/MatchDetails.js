@@ -248,6 +248,7 @@ export const MatchDetails = () => {
               isButtonDisabled={isButtonDisabled}
               buttonState={buttonState}
               listApplicantsPhaseOne={listApplicantsPhaseOne}
+              idVacancy={idVacancy}
             />
           )}
         </div>

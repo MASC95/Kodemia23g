@@ -252,7 +252,7 @@ try {
           style={estilo}
         >
           <h3 className="text-dark">
-            Primer Contacto <BsThreeDots className="mx-3" />
+            Primer Contacto
           </h3>
           <div
             className="dd-zone"
@@ -277,7 +277,7 @@ try {
           style={estilo}
         >
           <h3 className="text-dark">
-            Entrevista <BsThreeDots className="mx-3" />
+            Entrevista 
           </h3>
           <div
             className="dd-zone zona2"
@@ -302,7 +302,7 @@ try {
           style={estilo}
         >
           <h3 className="text-dark">
-            Pruebas <BsThreeDots className="mx-3" />
+            Pruebas 
           </h3>
           <div
             className="dd-zone zona3"
@@ -327,7 +327,7 @@ try {
           style={estilo}
         >
           <h3 className="text-dark">
-            Contratado <BsThreeDots className="mx-3" />
+            Contratado
           </h3>
           <div
             className="dd-zone zona4"

@@ -24,6 +24,7 @@ export const Vacancy = () => {
   const [totalRows, setTotalRows] = useState(0);
   const [perPage, setPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
+  const [btnDetele, setBtnDelete]=useState(false)
 
   const fetch = async (page, newPerPage) => {
     setLoading(true);
@@ -66,6 +67,25 @@ export const Vacancy = () => {
     setPerPage(newPerPage);
   };
   // pagination
+
+  useEffect(()=>{
+    // console.log('applicants', vacancyAll)
+    // checkApplicants()
+    let tempApplicants=false
+    vacancyAll.forEach((item)=>{
+       const checkArr=item.applicants
+       if(checkArr.length>0){
+        console.log('si tiene candidatos',checkArr)
+        tempApplicants=true
+      }
+    })
+    setBtnDelete(tempApplicants)
+  },[vacancyAll])
+
+  console.log('si tiene candidatos outSet', btnDetele)
+
+
+
   const handleDeleteSkill = (index) => {
     Swal.fire({
       title: "Eliminar Vacante?",
@@ -126,6 +146,7 @@ export const Vacancy = () => {
               totalRows={totalRows}
               loading={loading}
               currentPage={currentPage}
+              btnDetele={btnDetele}
             />
           </div>
         </div>

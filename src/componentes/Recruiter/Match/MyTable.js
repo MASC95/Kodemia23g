@@ -23,7 +23,8 @@ const MyTable = ({
   dadHandleofPanel,
   isButtonDisabled,
   buttonState,
-  listApplicantsPhaseOne
+  listApplicantsPhaseOne,
+  idVacancy
   }) => {
 
     useEffect(()=>{
@@ -97,6 +98,7 @@ const MyTable = ({
   // let userSkills=[]
 
   const columns = [
+   
     {
       name: "rowId",
       selector: (row,i) => row.id + row.i,
@@ -131,7 +133,7 @@ const MyTable = ({
       sortable: false,
       selector: (row, i) => row.null,
       cell: (d) => [
-        <Link to={`/dashboard-recruiter/profile-candidato/?c=${d.id}`}>
+        <Link to={`/dashboard-recruiter/profile-candidato/?c=${d.id}&v=${idVacancy}`}>
           <button type="button" className="buttons btn btn-outline-info">
             <FaEye className="icon_eye1" />
           </button>
@@ -165,6 +167,8 @@ const MyTable = ({
         columns,
         data,
       };
+
+      console.log('Id vacante', idVacancy)
   return (
     <DataTableExtensions export={false} print={false} {...tableData}>
           <DataTable

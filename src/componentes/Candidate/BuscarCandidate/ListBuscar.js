@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-
 import { endpointsGral } from "../../Recruiter/services/vacancy";
 import "../Alerts/Alert";
 import AlertComponent from "../Alerts/Alert";
 import useJob from "../../../hooks/useJob";
 import HorizonTable from "./HorizonTable";
-import VerticalTable from "./VerticalTable";
+/* import VerticalTable from "./VerticalTable"; componente padre */
 
 export const ListBuscar = () => {
   const [vacancies, setVacancies] = useState([]);
@@ -142,13 +141,15 @@ export const ListBuscar = () => {
   return (
     <>
       {/* <VerticalTable vacancies={vacancies} my_vacancies={my_vacancies} handleApply={handleApply} handleStopApplying={handleStopApplying}/> */}
-      {vacancies.length>0&&<HorizonTable
-        vacancies={vacancies}
-        my_vacancies={my_vacancies}
-        handleApply={handleApply}
-        handleStopApplying={handleStopApplying}
-      />}
-      
+      {vacancies.length > 0 && (
+        <HorizonTable
+          vacancies={vacancies}
+          my_vacancies={my_vacancies}
+          handleApply={handleApply}
+          handleStopApplying={handleStopApplying}
+        />
+      )}
+
       {showAlert && <AlertComponent />}
     </>
   );

@@ -17,9 +17,10 @@ const HomeCandidate = () => {
 
   return (
     <>
-      <Carousel className="w-100 main-carousel">
-        <Carousel.Item className="carousel-img">
+      <Carousel style={{zIndex:'0', position:'relative'}} className="w-100 main-carousel ">
+        <Carousel.Item style={{zIndex:'0', position:'relative'}} className="carousel-img">
           <img
+          style={{zIndex:'0', position:'relative'}}
             className="d-block w-100 carousel-main-img"
             src={img1}
             alt="First slide"
@@ -46,8 +47,8 @@ const HomeCandidate = () => {
             </p>
           </Carousel.Caption>
         </Carousel.Item>
-        <Carousel.Item className="carousel-img">
-          <img className="d-block w-100" src={img2} alt="Second slide" />
+        <Carousel.Item style={{zIndex:'0', position:'relative'}} className="carousel-img">
+          <img style={{zIndex:'0', position:'relative'}} className="d-block w-100" src={img2} alt="Second slide" />
 
           <Carousel.Caption className="carousel-text">
             <h3
@@ -65,8 +66,8 @@ const HomeCandidate = () => {
             </p>
           </Carousel.Caption>
         </Carousel.Item>
-        <Carousel.Item className="carousel-img">
-          <img className="d-block w-100" src={img3} alt="Third slide" />
+        <Carousel.Item style={{zIndex:'0', position:'relative'}} className="carousel-img">
+          <img style={{zIndex:'0', position:'relative'}} className="d-block w-100" src={img3} alt="Third slide" />
 
           <Carousel.Caption className="carousel-text">
             <h3

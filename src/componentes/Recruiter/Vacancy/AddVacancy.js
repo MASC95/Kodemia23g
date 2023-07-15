@@ -29,7 +29,7 @@ export const AddVacancy = () => {
   const [listSkills, setListSkills] = useState([]);
   const [imageUser, setImageUser] = useState(null);
   const [dataForm, setDataForm] = useState(initDataForm);
-  const [addTask, setAddTaks]=useState([])
+  const [dataTask, setDataTask]=useState([])
   const [
     dataCandidate,
     setDataCandidate,
@@ -40,6 +40,8 @@ export const AddVacancy = () => {
   ] = useJob();
 
   const navigate = useNavigate();
+
+ 
 
   const formik = useFormik({
     initialValues: dataForm,
@@ -404,13 +406,8 @@ export const AddVacancy = () => {
                 </div>*/}
               </div>
               <ToDoList
-              value={formik.values.activities}
-              onChange={formik.handleChange}
-              className={`form-control ${
-                formik.touched.activities && formik.errors.activities
-                  ? "border border-danger"
-                  : "border border-secondary"
-              }`}
+              dataTask={dataTask}
+              setDataTask={setDataTask}
               /> <br></br>
               <Softskills setListSkills={setListSkills} skillsCandidate={[]} />
 

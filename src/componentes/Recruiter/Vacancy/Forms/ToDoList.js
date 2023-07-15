@@ -8,41 +8,44 @@ import swal from "sweetalert";
 
 
 
-const ToDoList=({value, onChange,className})=>{
+const ToDoList=({dataTask,setDataTask})=>{
 
-  const [dataSkill, setDataSkill] = useState([]);
-  const [selectSkill, setSelectSkill] = useState("select");
-  const [skillTemp, setSkillTemp] = useState([]);
+  const [addTask,setAddTask]=useState([])
 
-  const handleSkillChange = (event) => {
+  const handleChange = (event) => {
     const value = event.target.value;
-    setSelectSkill(value);
+    setDataTask([...addTask,
+      value]);
   };
-  const onFormSubmit = (event) => {
-    event.preventDefault();
-    // console.log('selectSkill:..',selectSkill);
-    const newSkill = {
-      skill: selectSkill,
-    };
+  const handleTask = (event) => {
+    console.log(addTask)
+    setAddTask([...dataTask,addTask])
 
-    if(newSkill.skill==='select'){
-      swal({
-        title: "Favor de Seleccionar una Skill !!",
-        icon: "error",
-        button: "ok!",
-    });
-    return
-    }
-    const dataRepet= skillTemp?.find(item=>item.skill===newSkill.skill);
-    if(dataRepet){
-        swal({
-            title: "Ya hemos agregado esa skill!",
-            icon: "error",
-            button: "ok!",
-        });
-    }else{
-        setSkillTemp([...skillTemp, newSkill]);
-    }
+
+    // event.preventDefault();
+    // // console.log('selectSkill:..',selectSkill);
+    // const newSkill = {
+    //   skill: selectSkill,
+    // };
+
+    // if(newSkill.skill==='select'){
+    //   swal({
+    //     title: "Favor de Seleccionar una Skill !!",
+    //     icon: "error",
+    //     button: "ok!",
+    // });
+    // return
+    // }
+    // const dataRepet= skillTemp?.find(item=>item.skill===newSkill.skill);
+    // if(dataRepet){
+    //     swal({
+    //         title: "Ya hemos agregado esa skill!",
+    //         icon: "error",
+    //         button: "ok!",
+    //     });
+    // }else{
+    //     setSkillTemp([...skillTemp, newSkill]);
+    // }
   };
   const handleDeleteSkill = (index) => {
  
@@ -59,17 +62,17 @@ const ToDoList=({value, onChange,className})=>{
                   <div className="form-outline">
                   <input
                       type="text"
-                      id="salary"
-                      name="salary"
-                      value={value}
-                      onChange={onChange}
-                      className={className}
+                      id="task"
+                      name="task"
+                      value={addTask.value}
+                      onChange={handleChange}
+                      className='form-control'
                       placeholder="Escribe una actividad"
                     />
                   </div>
                 </div>
                   <div className="col-2 buttons_actions sm">
-                    <button type="button" onClick={onFormSubmit} className="buttons btn btn-info text-light">
+                    <button type="button" onClick={handleTask} className="buttons btn btn-info text-light">
                       <FaPlus> </FaPlus>
                     </button>
                   </div>
@@ -77,26 +80,44 @@ const ToDoList=({value, onChange,className})=>{
           </div>
           {/* table of skills */}
           <div className="col">
-            <label className="form-label text-dark" htmlFor="">Lista de actividades agregadas</label>
-            <div className="main-table">
-                {/* <DataTableExtensions  
-                    export={false}
-                    print={false}
-                    {...tableData}>
-                    <DataTable {...tableData}
-                    key={myId()}
-                    columns={columns}
-                    data={data}
-                    noHeader
-                    defaultSortField="#"
-                    defaultSortAsc={true}
-                    pagination
-                    highlightOnHover
-                    dense
-                    />
-                </DataTableExtensions> */}
-            </div>
-            </div>
+        <label className="form-label text-dark" htmlFor="">
+          Actividades agregadas
+        </label>
+        <table className="table">
+          <thead className="thead-dark bg-body-secondary">
+            <tr>
+              <th scope="col">#</th>
+              <th className="text-center" scope="col">
+               Actividad
+              </th>
+              <th className="text-center" scope="col">
+                Opciones
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {dataTask.map((item) => {
+              return (
+                <tr key={myId()}>
+                  <td>{item.task}</td>
+                  <td className="text-center">
+                    <button
+                      type="button"
+                      className="buttons btn btn-outline-danger"
+                    >
+                      <FaTrash
+                        className="icon_trash"
+                        onClick={() => handleDeleteSkill(item)}
+                      />
+                    </button>
+                    {/* <FaTrash className="icon_trash"  onClick={() => handleDeleteSkill(index)}/> */}
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
 
           {/* Table Skills */}
         </div>

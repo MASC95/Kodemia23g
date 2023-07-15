@@ -33,8 +33,17 @@ const initDataForm = {
   bachelor: "",
   avatar_url: "",
 };
-
-
+const style = {
+  borderRadius: "14%",
+  margin: "20px",
+  boxShadow:
+    "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px",
+  borderWidth: "2px",
+  borderStyle: "solid",
+  width: "20vw",
+  borderImage:
+    "radial-gradient(circle 588px at 31.7% 40.2%, rgba(225, 200, 239, 1) 21.4%, rgba(163, 225, 233, 1) 57.1%)",
+};
 
 /*
 password: Yup.string().required('Requerido').min(8, 'La contraseña debe tener al menos 8 caracteres')
@@ -111,8 +120,6 @@ const FormRecruiter = () => {
     }
   }, [listSkills]);
 
-  
-
   const handleSubmit = async (values) => {
     //e.preventDefault();
 
@@ -164,7 +171,7 @@ const FormRecruiter = () => {
 
                 if (response?.data?.message === "Update User Ok") {
                   if (response?.data?.updateUser) {
-                    console.log('setDatalocalStorage updatedUser:...');
+                    console.log("setDatalocalStorage updatedUser:...");
                     setDataLocalStorage({
                       ...response?.data?.updateUser,
                       accessToken: dataCandidate.accessToken,

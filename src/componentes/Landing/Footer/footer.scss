@@ -11,6 +11,7 @@ $social-icon5: #0077b5;
   border-radius: 10vw;
   background-color: $jobinderHover;
   margin-left: 44px;
+  transition: background-color 0.5s, transform 0.5s;
   &:hover {
     background-color: $social-icon2;
     scale: (1.3);
@@ -21,6 +22,7 @@ $social-icon5: #0077b5;
   border-radius: 10vw;
   background-color: $jobinderHover;
   margin-left: 44px;
+  transition: background-color 0.5s, transform 0.5s;
   &:hover {
     background-color: $social-icon5;
     scale: (1.3);
@@ -31,6 +33,7 @@ $social-icon5: #0077b5;
   border-radius: 10vw;
   background-color: $jobinderHover;
   margin-left: 44px;
+  transition: background-color 0.5s, transform 0.5s;
   &:hover {
     background-color: #000000;
     scale: (1.3);
@@ -41,6 +44,7 @@ $social-icon5: #0077b5;
   border-radius: 10vw;
   background-color: $jobinderHover;
   margin-left: 44px;
+  transition: background-color 0.5s, transform 0.5s;
   &:hover {
     background-color: $social-icon1;
     scale: (1.3);

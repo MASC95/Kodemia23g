@@ -5,11 +5,11 @@ import axios from "axios";
 import "./style.scss";
 import { myId } from "../../lib/myLib";
 import { endpointsGral } from "../services/vacancy";
-
+import Button2 from "../../Candidate/Buttons/Button2";
 import useJob from "../../../hooks/useJob";
 import Swal from "sweetalert2";
 import ListVacancies from "./ListVacancies";
-
+import { useMediaQuery } from "react-responsive";
 export const Vacancy = () => {
   const [
     dataCandidate,
@@ -24,7 +24,7 @@ export const Vacancy = () => {
   const [totalRows, setTotalRows] = useState(0);
   const [perPage, setPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
-  const [btnDetele, setBtnDelete]=useState(false)
+  const [btnDetele, setBtnDelete] = useState(false);
 
   const fetch = async (page, newPerPage) => {
     setLoading(true);
@@ -46,6 +46,8 @@ export const Vacancy = () => {
   }, []);
   console.log(vacancyAll);
   console.log(totalRows);
+
+  const isMobile = useMediaQuery({ query: "(max-width: 576px)" });
 
   useEffect(() => {
     if (vacancyAll.length > 0) {
@@ -71,23 +73,21 @@ export const Vacancy = () => {
   };
   // pagination
 
-  useEffect(()=>{
+  useEffect(() => {
     // console.log('applicants', vacancyAll)
     // checkApplicants()
-    let tempApplicants=false
-    vacancyAll.forEach((item)=>{
-       const checkArr=item.applicants
-       if(checkArr.length>0){
-        console.log('si tiene candidatos',checkArr)
-        tempApplicants=true
+    let tempApplicants = false;
+    vacancyAll.forEach((item) => {
+      const checkArr = item.applicants;
+      if (checkArr.length > 0) {
+        console.log("si tiene candidatos", checkArr);
+        tempApplicants = true;
       }
-    })
-    setBtnDelete(tempApplicants)
-  },[vacancyAll])
+    });
+    setBtnDelete(tempApplicants);
+  }, [vacancyAll]);
 
-  console.log('si tiene candidatos outSet', btnDetele)
-
-
+  console.log("si tiene candidatos outSet", btnDetele);
 
   const handleDeleteSkill = (index) => {
     Swal.fire({
@@ -125,18 +125,36 @@ export const Vacancy = () => {
 
   return (
     <>
-      <div className="row container_form_ForVacancy m-3">
-        <div className="content-principal">
-          <h1 className="text-start">Vacantes</h1>
-          <div className="">
-            <Link
-              to={`/Dashboard-Recruiter/vacancy-new`}
-              className="text-light buttons btn btn-info btn-lg text-decoration-none d-sm-block btn-sm h-100"
-            >
-              Crear vacante
-            </Link>
-          </div>
+      <div
+        className="row container_form_ForVacancy  m-3 p-3"
+        style={{ fontFamily: "Poppins, sans-serif, Verdana, Geneva, Tahoma" }}
+      >
+        <div className="d-flex justify-content-center align-items-center">
+          <h1
+            className="text-start mt-3 "
+            style={{
+              color: "#498BA6",
+              textShadow:
+                "0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px rgba(60, 64, 67, 0.15)",
+              fontFamily: "Poppins, sans-serif, Verdana, Geneva, Tahoma",
+            }}
+          >
+            Vacantes
+          </h1>
         </div>
+        <div
+          className={`tu-clase ${
+            isMobile ? "d-flex justify-content-center align-items-center" : ""
+          }`}
+        >
+          <Link
+            to={`/Dashboard-Recruiter/vacancy-new`}
+            className="text-decoration-none d-sm-block p-3"
+          >
+            <Button2 text="Crear Vacante" paddingB="10px" fs="14px" />
+          </Link>
+        </div>
+        <div className="content-principal"></div>
         {/* </div> */}
         {/* <div className='card-body'> */}
         <div className="row softskills">

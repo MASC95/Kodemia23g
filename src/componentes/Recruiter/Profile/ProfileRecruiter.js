@@ -21,6 +21,17 @@ const initDataForm = {
   age: "",
   avatar_url: "",
 };
+const style = {
+  borderRadius: "10%",
+  margin: "20px",
+  boxShadow:
+    "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px",
+  borderWidth: "2px",
+  borderStyle: "solid",
+  width: "20vw",
+  borderImage:
+    "radial-gradient(circle 588px at 31.7% 40.2%, rgba(225, 200, 239, 1) 21.4%, rgba(163, 225, 233, 1) 57.1%)",
+};
 
 const profileSchema = Yup.object().shape({
   name: Yup.string().required("El Nombres es Requerido"),
@@ -137,7 +148,7 @@ export const ProfileRecruiter = () => {
           }`}
         >
           <h1
-            className="d-flex justify-content-center align-items-center"
+            className="d-flex justify-content-center align-items-center ms-3"
             style={{
               color: "#498BA6",
               textShadow:
@@ -160,10 +171,10 @@ export const ProfileRecruiter = () => {
             {!imageUser && (
               <>
                 <img
-                  style={{ width: "20vw", height: "auto" }}
+                  style={style}
                   src={dataForm.avatar_url ? dataForm.avatar_url : imgProfile}
                   alt="imgProfile"
-                  className="d-block ms-auto me-auto my-2 rounded"
+                  className="d-block ms-auto me-auto my-2 "
                 />
                 <p
                   className="allowed-files w-100 text-center mt-3 "

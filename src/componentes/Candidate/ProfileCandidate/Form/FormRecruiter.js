@@ -18,7 +18,7 @@ import "sweetalert2/dist/sweetalert2.css";
 import TableSkillsCandidate from "../TableSkillsCandidate/TableSkillsCandidate";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import TableExperience from "./TableExperience";
-
+import { useMediaQuery } from "react-responsive";
 //const localEndPoinst = "http://localhost:4000/api/v1/users/";
 
 const defaultPassword = "";
@@ -34,7 +34,7 @@ const initDataForm = {
   avatar_url: "",
 };
 const style = {
-  borderRadius: "14%",
+  borderRadius: "10%",
   margin: "20px",
   boxShadow:
     "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px",
@@ -70,7 +70,6 @@ const profileSchema = Yup.object().shape({
   age: Yup.number()
     .required("El campo es requerido")
     .min(18, "Debe ser mayor de 18 años"),
-  
 });
 
 const FormRecruiter = () => {
@@ -93,18 +92,16 @@ const FormRecruiter = () => {
 
   const tempDataExp = [
     {
-      position:'dev',
-      description:'soporte'
-    }
-  ]
+      position: "dev",
+      description: "soporte",
+    },
+  ];
 
   /* const parseExperience = (dataBackendExp)=>{
     console.log('datos del backend dataBackendExp:...',dataBackendExp)
     
     return tempDataExp
   } */
-
-
 
   useEffect(() => {
     if (dataCandidate) {
@@ -122,15 +119,13 @@ const FormRecruiter = () => {
       });
     }
 
-    if(dataCandidate.working_experience){
-      setDataExperience([...dataCandidate.working_experience])
+    if (dataCandidate.working_experience) {
+      setDataExperience([...dataCandidate.working_experience]);
     }
-
   }, [dataCandidate]);
 
   useEffect(() => {
     console.log("datos en dataForm:..", dataForm);
-    
   }, [dataForm]);
 
   useEffect(() => {
@@ -142,6 +137,7 @@ const FormRecruiter = () => {
     }
   }, [listSkills]);
 
+  const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
   const handleSubmit = async (values) => {
     //e.preventDefault();
 
@@ -175,8 +171,11 @@ const FormRecruiter = () => {
               }
             }
             if (dataExperience) {
-              for(let i =0; i<dataExperience.length;i++){
-                formData.append("working_experience",JSON.stringify(dataExperience[i]))
+              for (let i = 0; i < dataExperience.length; i++) {
+                formData.append(
+                  "working_experience",
+                  JSON.stringify(dataExperience[i])
+                );
               }
             }
             Object.entries(values).forEach(([key, value]) => {
@@ -225,7 +224,11 @@ const FormRecruiter = () => {
   return (
     <div className="">
       <h1
-        className="text-start ms-2"
+        className={` ${
+          isMobile
+            ? "d-flex justify-content-center align-items-center mt-3 "
+            : "d-flex flex-start mt-3 ms-3"
+        }`}
         style={{
           color: "#498BA6",
           textShadow:
@@ -239,17 +242,17 @@ const FormRecruiter = () => {
         <div className="col-12 col-md-4">
           {dataForm.avatar_url && !imageUser && (
             <img
-              style={{ width: "20vw", height: "auto" }}
+              style={style}
               src={dataForm.avatar_url}
               alt="imgProfile"
-              className="d-block ms-auto me-auto my-2 rounded"
+              className="d-block ms-auto me-auto my-2 "
             />
           )}
-         
+
           {!imageUser && !dataForm.avatar_url && (
             <FaUserCircle
               className="d-block ms-auto me-auto my-2"
-              style={{ width: "20vw", height: "auto" }}
+              style={style}
             />
           )}
 
@@ -523,7 +526,10 @@ const FormRecruiter = () => {
                     </div>
                   </div>
                 </div> */}
-                <TableExperience dataExperience={dataExperience} setDataExpirience={setDataExperience}/>
+                <TableExperience
+                  dataExperience={dataExperience}
+                  setDataExpirience={setDataExperience}
+                />
 
                 <TableSkillsCandidate setDataListSkills={setListSkills} />
 

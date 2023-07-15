@@ -29,8 +29,8 @@ const CustomDropDown = () => {
           paddingB="12px"
           widthB="100px"
           fs="10px"
-          bgcolor="#004BA8"
-          borde="#f2f2f2"
+          bgcolor="#093040"
+          borde="#093040"
           colortext="#f2f2f2"
         />
       </Link>

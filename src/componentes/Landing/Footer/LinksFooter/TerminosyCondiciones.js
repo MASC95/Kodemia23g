@@ -30,7 +30,7 @@ const TerminosCondiciones = () => {
     height: "5vh",
     color: hovered ? "#232ED1 " : "#004BA8",
     backgroundColor: "transparent",
-    transition: "transform 0.3s",
+
     transform: hovered ? "scale(1.2)" : "scale(1)",
     cursor: "pointer",
     opacity: hovered ? "0.7" : "1",

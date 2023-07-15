@@ -9,7 +9,7 @@ import DataTable from "react-data-table-component";
 import DataTableExtensions from "react-data-table-component-extensions";
 import Swal from "sweetalert2";
 import "./scss/style.scss";
-import Footer from "../../Landing/Footer/Footer";
+
 import { useNavigate } from "react-router-dom";
 export const Candidate = () => {
   const valores = window.location.search;
@@ -215,127 +215,119 @@ export const Candidate = () => {
         </h1>
 
         {infoCandidate?.name && (
-          <>
-            <div
-              className="row"
-              style={{
-                color: "#106973",
-                fontFamily: "Poppins, sans-serif, Verdana, Geneva, Tahoma",
-              }}
-            >
-              <div className="col-12 col-md-4">
-                <img
-                  style={{ width: "20vw", height: "auto" }}
-                  src={
-                    infoCandidate?.avatar_url ? infoCandidate?.avatar_url : ""
-                  }
-                  alt="avatarImg"
-                  className="d-block ms-auto me-auto my-2 rounded"
-                />
-                <div className="">
-                  <p className="text-center text-dark">{`${infoCandidate.name} ${infoCandidate.last_name}`}</p>
-                  <p className="text-center text-dark">
-                    <FaMailBulk /> {infoCandidate.email}
-                  </p>
+          <div
+            className="row"
+            style={{
+              color: "#106973",
+              fontFamily: "Poppins, sans-serif, Verdana, Geneva, Tahoma",
+            }}
+          >
+            <div className="col-12 col-md-4">
+              <img
+                style={{ width: "20vw", height: "auto" }}
+                src={infoCandidate?.avatar_url ? infoCandidate?.avatar_url : ""}
+                alt="avatarImg"
+                className="d-block ms-auto me-auto my-2 rounded"
+              />
+              <div className="">
+                <p className="text-center text-dark">{`${infoCandidate.name} ${infoCandidate.last_name}`}</p>
+                <p className="text-center text-dark">
+                  <FaMailBulk /> {infoCandidate.email}
+                </p>
+              </div>
+              <div className="buttons_actions d-flex justify-content-center gap-3">
+                <button
+                  type="button"
+                  className="buttons btn btn-outline-success"
+                  disabled={isDisable}
+                  onClick={handleOfPanel.bind(this, infoCandidate._id)}
+                >
+                  <FaCheck className="icon_check" />
+                </button>
+                <button
+                  type="button"
+                  disabled={isHidePanel}
+                  className="buttons btn btn-outline-secondary"
+                  onClick={handleOfHidePanel.bind(this, infoCandidate.email)}
+                >
+                  <FaEyeSlash className="icon_eyeSlash" />
+                </button>
+              </div>
+            </div>
+            <div className="col-12 col-md-8 px-5">
+              <div className="row mb-4">
+                <h2 className="text-start text-dark">Información General</h2>
+                <div className="col">
+                  <div className="form-outline bg-gray">
+                    <label
+                      className="form-label text-start text-dark"
+                      for="form6Example1"
+                    >
+                      Nombre
+                    </label>
+                    <p className="text-dark">{`${infoCandidate.name}`}</p>
+                  </div>
                 </div>
-                <div className="buttons_actions d-flex justify-content-center gap-3">
-                  <button
-                    type="button"
-                    className="buttons btn btn-outline-success"
-                    disabled={isDisable}
-                    onClick={handleOfPanel.bind(this, infoCandidate._id)}
-                  >
-                    <FaCheck className="icon_check" />
-                  </button>
-                  <button
-                    type="button"
-                    disabled={isHidePanel}
-                    className="buttons btn btn-outline-secondary"
-                    onClick={handleOfHidePanel.bind(this, infoCandidate.email)}
-                  >
-                    <FaEyeSlash className="icon_eyeSlash" />
-                  </button>
+                <div className="col">
+                  <div className="form-outline">
+                    <label
+                      className="form-label text-start text-dark"
+                      for="form6Example1"
+                    >
+                      Apellido
+                    </label>
+                    <p className="text-dark">{infoCandidate.last_name}</p>
+                  </div>
+                </div>
+                <div className="col">
+                  <div className="form-outline">
+                    <label
+                      className="form-label text-start text-dark"
+                      for="form6Example1"
+                    >
+                      Edad
+                    </label>
+                    <p className="text-dark">{infoCandidate.age} años</p>
+                  </div>
                 </div>
               </div>
-              <div className="col-12 col-md-8 px-5">
-                <div className="row mb-4">
-                  <h2 className="text-start text-dark">Información General</h2>
-                  <div className="col">
-                    <div className="form-outline bg-gray">
-                      <label
-                        className="form-label text-start text-dark"
-                        for="form6Example1"
-                      >
-                        Nombre
-                      </label>
-                      <p className="text-dark">{`${infoCandidate.name}`}</p>
-                    </div>
-                  </div>
-                  <div className="col">
-                    <div className="form-outline">
-                      <label
-                        className="form-label text-start text-dark"
-                        for="form6Example1"
-                      >
-                        Apellido
-                      </label>
-                      <p className="text-dark">{infoCandidate.last_name}</p>
-                    </div>
-                  </div>
-                  <div className="col">
-                    <div className="form-outline">
-                      <label
-                        className="form-label text-start text-dark"
-                        for="form6Example1"
-                      >
-                        Edad
-                      </label>
-                      <p className="text-dark">{infoCandidate.age} años</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="row mb-4">
-                  <div className="col">
-                    <div className="form-outline">
-                      <label
-                        className="form-label text-dark"
-                        for="form6Example1"
-                      >
-                        Experiencia
-                      </label>
-                      <p className="text-dark">
-                        {infoCandidate.working_experience}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <h3 className="text-dark">Lista de skills agregadas</h3>
+              <div className="row mb-4">
                 <div className="col">
-                  <div className="main">
-                    <DataTableExtensions
-                      export={false}
-                      print={false}
-                      {...tableData}
-                    >
-                      <DataTable
-                        {...tableData}
-                        key={myId()}
-                        columns={columns}
-                        data={data}
-                        noHeader
-                        defaultSortField="#"
-                        defaultSortAsc={true}
-                        pagination
-                        highlightOnHover
-                        dense
-                      />
-                    </DataTableExtensions>
+                  <div className="form-outline">
+                    <label className="form-label text-dark" for="form6Example1">
+                      Experiencia
+                    </label>
+                    <p className="text-dark">
+                      {infoCandidate.working_experience}
+                    </p>
                   </div>
+                </div>
+              </div>
+              <h3 className="text-dark">Lista de skills agregadas</h3>
+              <div className="col">
+                <div className="main">
+                  <DataTableExtensions
+                    export={false}
+                    print={false}
+                    {...tableData}
+                  >
+                    <DataTable
+                      {...tableData}
+                      key={myId()}
+                      columns={columns}
+                      data={data}
+                      noHeader
+                      defaultSortField="#"
+                      defaultSortAsc={true}
+                      pagination
+                      highlightOnHover
+                      dense
+                    />
+                  </DataTableExtensions>
                 </div>
               </div>
             </div>
-            <Footer />
-          </>
+          </div>
         )}
       </div>
     </>

@@ -23,7 +23,7 @@ const About = () => {
     height: "5vh",
     color: hovered ? "#232ED1 " : "#004BA8",
     backgroundColor: "transparent",
-
+    transition: "",
     transform: hovered ? "scale(1.2)" : "scale(1)",
     cursor: "pointer",
     opacity: hovered ? "0.7" : "1",
@@ -89,17 +89,17 @@ const About = () => {
     if (hovered) {
       overlayStyle.left = "100%";
     }
-
+    //, transform: mover()
     return (
       <div
-        className={`card-2 move`}
-        style={{ ...cardStyle, transform: mover() }}
+        className={``}
+        style={{ ...cardStyle }}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
         <div className="d-flex justify-content-center align-items-center">
           <img
-            className="video-img"
+            className=""
             style={{
               width: "60%",
               height: "60%",
@@ -153,21 +153,21 @@ const About = () => {
             preferencias.
           </h2>
         </div>
-        <div className="col-sm-12 col-md-4 col-lg-4 columna-2 ">
+        <div className="col-sm-12 col-md-4 col-lg-4  ">
           <Card
             image="https://frontjobinderimg.s3.amazonaws.com/extra3.jpg"
             title="Misión"
             content="Nuestra misión en Jobinder es simplificar y transformar el proceso de búsqueda de empleo al conectar de manera efectiva a los candidatos con las oportunidades laborales ideales. Buscamos empoderar a los profesionales al proporcionarles herramientas y recursos innovadores que les permitan alcanzar sus metas y desarrollar su potencial. Nos esforzamos por ser líderes en la industria y ser reconocidos como el aliado confiable  para aquellos que buscan oportunidades de empleo."
           />
         </div>
-        <div className="col-sm-12 col-md-4 col-lg-4 columna-2">
+        <div className="col-sm-12 col-md-4 col-lg-4 ">
           <Card
             image="https://frontjobinderimg.s3.amazonaws.com/extra5.jpg"
             title="Visión"
             content="Nuestra visión en Jobinder es ir más allá de ser simplemente una plataforma de búsqueda de empleo, aspiramos a convertirnos en el referente global en el campo de la empleabilidad y el desarrollo profesional. Nos esforzamos por crear un ecosistema inclusivo y dinámico que permita a los candidatos descubrir nuevas oportunidades, desarrollar sus habilidades y alcanzar el éxito en sus carreras. Buscamos ser reconocidos por nuestra innovación constante, calidad excepcional y la creación de un impacto positivo en la vida de las personas a través del empleo."
           />
         </div>
-        <div className="col-sm-12 col-md-4 col-lg-4 columna-2">
+        <div className="col-sm-12 col-md-4 col-lg-4 ">
           <Card
             image="https://frontjobinderimg.s3.amazonaws.com/extra6.jpg"
             title="Valores"

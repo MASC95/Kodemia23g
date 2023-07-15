@@ -17,6 +17,7 @@ import swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.css";
 import TableSkillsCandidate from "../TableSkillsCandidate/TableSkillsCandidate";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import TableExperience from "./TableExperience";
 
 //const localEndPoinst = "http://localhost:4000/api/v1/users/";
 
@@ -29,7 +30,6 @@ const initDataForm = {
   resetPassword: defaultPassword,
   password: "",
   age: "",
-  working_experience: "",
   bachelor: "",
   avatar_url: "",
 };
@@ -52,6 +52,7 @@ password: Yup.string().required('Requerido').min(8, 'La contraseña debe tener a
     'La contraseña debe contener al menos una letra mayúscula, una letra minúscula, un número y un carácter especial'
   ),
 */
+//working_experience: Yup.string().required("Ingrese una experiencia válida"),
 
 const profileSchema = Yup.object().shape({
   name: Yup.string()
@@ -69,7 +70,7 @@ const profileSchema = Yup.object().shape({
   age: Yup.number()
     .required("El campo es requerido")
     .min(18, "Debe ser mayor de 18 años"),
-  working_experience: Yup.string().required("Ingrese una experiencia válida"),
+  
 });
 
 const FormRecruiter = () => {
@@ -79,6 +80,7 @@ const FormRecruiter = () => {
   const [noPassword, setNoPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isResetPassword, setIsResetPassword] = useState(false);
+  const [dataExperience, setDataExperience] = useState([]);
 
   const [
     dataCandidate,
@@ -88,6 +90,21 @@ const FormRecruiter = () => {
     dataLocalStorage,
     setDataLocalStorage,
   ] = useJob();
+
+  const tempDataExp = [
+    {
+      position:'dev',
+      description:'soporte'
+    }
+  ]
+
+  /* const parseExperience = (dataBackendExp)=>{
+    console.log('datos del backend dataBackendExp:...',dataBackendExp)
+    
+    return tempDataExp
+  } */
+
+
 
   useEffect(() => {
     if (dataCandidate) {
@@ -100,15 +117,20 @@ const FormRecruiter = () => {
         password: "",
         resetPassword: noPassword,
         age: dataCandidate.age || "",
-        working_experience: dataCandidate.working_experience || "",
         bachelor: dataCandidate.bachelor || "",
         avatar_url: dataCandidate.avatar_url || "",
       });
     }
+
+    if(dataCandidate.working_experience){
+      setDataExperience([...dataCandidate.working_experience])
+    }
+
   }, [dataCandidate]);
 
   useEffect(() => {
     console.log("datos en dataForm:..", dataForm);
+    
   }, [dataForm]);
 
   useEffect(() => {
@@ -150,6 +172,11 @@ const FormRecruiter = () => {
             if (idsSkills) {
               for (let i = 0; i < idsSkills.length; i++) {
                 formData.append("user_skills", idsSkills[i]);
+              }
+            }
+            if (dataExperience) {
+              for(let i =0; i<dataExperience.length;i++){
+                formData.append("working_experience",JSON.stringify(dataExperience[i]))
               }
             }
             Object.entries(values).forEach(([key, value]) => {
@@ -218,12 +245,7 @@ const FormRecruiter = () => {
               className="d-block ms-auto me-auto my-2 rounded"
             />
           )}
-          {/* {imageUser&&<img
-                src={imageUser}
-                alt="imgProfile"
-                className="perfil-C d-flex justify-content-center border "
-                
-              />} */}
+         
           {!imageUser && !dataForm.avatar_url && (
             <FaUserCircle
               className="d-block ms-auto me-auto my-2"
@@ -468,7 +490,8 @@ const FormRecruiter = () => {
                     </div>
                   </div>
                 </div>
-                <div className="row mb-4">
+
+                {/* <div className="row mb-4">
                   <div className="col">
                     <div className="form-outline">
                       <label
@@ -499,7 +522,8 @@ const FormRecruiter = () => {
                       />
                     </div>
                   </div>
-                </div>
+                </div> */}
+                <TableExperience dataExperience={dataExperience} setDataExpirience={setDataExperience}/>
 
                 <TableSkillsCandidate setDataListSkills={setListSkills} />
 

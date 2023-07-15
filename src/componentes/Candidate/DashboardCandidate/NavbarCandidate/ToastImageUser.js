@@ -1,5 +1,5 @@
 import Toast from "react-bootstrap/Toast";
-import Modal from 'react-bootstrap/Modal';
+import Modal from "react-bootstrap/Modal";
 
 import logoSmall from "../../img/logoSmall-removebg-preview.png";
 import { useState } from "react";
@@ -8,15 +8,16 @@ import { useEffect } from "react";
 const ToastImageUser = () => {
   const [showToast, setShowToast] = useState(true);
 
-useEffect(()=>{
- if(showToast===false){
-    window.location.reload();
- }
-},[showToast])
+  useEffect(() => {
+    if (showToast === false) {
+      window.location.reload();
+      console.log("publicando imagen");
+    }
+  }, [showToast]);
 
-  const handleClose = ()=>{
-    setShowToast(false)
-  }
+  const handleClose = () => {
+    setShowToast(false);
+  };
   return (
     <Modal show={showToast} onHide={handleClose} className="">
       <Modal.Header closeButton>

@@ -29,6 +29,7 @@ const style = {
   borderWidth: "2px",
   borderStyle: "solid",
   width: "20vw",
+  height: "auto",
   borderImage:
     "radial-gradient(circle 588px at 31.7% 40.2%, rgba(225, 200, 239, 1) 21.4%, rgba(163, 225, 233, 1) 57.1%)",
 };
@@ -148,7 +149,7 @@ export const ProfileRecruiter = () => {
           }`}
         >
           <h1
-            className="d-flex justify-content-center align-items-center ms-3"
+            className="d-flex justify-content-center align-items-center"
             style={{
               color: "#498BA6",
               textShadow:

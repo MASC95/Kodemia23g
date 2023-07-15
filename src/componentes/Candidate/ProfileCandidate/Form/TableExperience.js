@@ -4,7 +4,7 @@ import Table from "react-bootstrap/Table";
 import { myId } from "../../../lib/myLib";
 import { FaPlus, FaTrash } from "react-icons/fa";
 import { useEffect } from "react";
-
+import Button2 from "../../../Candidate/Buttons/Button2";
 const initAddExp = {
   position: "",
   description: "",
@@ -21,9 +21,9 @@ const TableExperience = ({ dataExperience, setDataExpirience }) => {
     });
   };
 
-  useEffect(()=>{
-    console.log('dataExperience:..',dataExperience)
-  },[dataExperience])
+  useEffect(() => {
+    console.log("dataExperience:..", dataExperience);
+  }, [dataExperience]);
 
   const handleExperience = () => {
     console.log("Agregando Experiencia:..", addExp);
@@ -36,15 +36,24 @@ const TableExperience = ({ dataExperience, setDataExpirience }) => {
 
   const handleDeleteExp = (index) => {
     console.log("Borrar el index:...", index);
-    const tempData= [...dataExperience];
-    const newData= tempData.filter((_,i)=>i!==index);
-    console.log('newData:..',newData);
+    const tempData = [...dataExperience];
+    const newData = tempData.filter((_, i) => i !== index);
+    console.log("newData:..", newData);
     setDataExpirience([...newData]);
-
   };
 
   return (
-    <div>
+    <div
+      style={{
+        background: "rgba(0, 189, 214, 0.18)",
+        borderRadius: "16px",
+        boxShadow:
+          "rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset",
+        backdropFilter: "blur(2px)",
+        WebkitBackdropFilter: "blur(2px)",
+        padding: "50px",
+      }}
+    >
       <h2
         className="text-center mt-4 mb-4 fs-1 "
         style={{
@@ -57,18 +66,32 @@ const TableExperience = ({ dataExperience, setDataExpirience }) => {
         Experiencia Laboral
       </h2>
       <div className="">
-        <label htmlFor="position" className="form-label">
+        <label
+          htmlFor="position"
+          className="form-label mb-3"
+          style={{
+            color: "#498BA6",
+            fontFamily: "Poppins, sans-serif, Verdana, Geneva, Tahoma",
+          }}
+        >
           Puesto:
         </label>
         <input
           id="position"
           name="position"
           value={addExp.position}
-          className="form-control"
+          className="form-control mb-3"
           type="text"
           onChange={handleChange}
         />
-        <label htmlFor="description" className="form-label">
+        <label
+          htmlFor="description"
+          className="form-label "
+          style={{
+            color: "#498BA6",
+            fontFamily: "Poppins, sans-serif, Verdana, Geneva, Tahoma",
+          }}
+        >
           Descripción:
         </label>
         <input
@@ -79,9 +102,14 @@ const TableExperience = ({ dataExperience, setDataExpirience }) => {
           type="text"
           onChange={handleChange}
         />
+
         <button
-          type="button"
-          className="btn btn-outline-info"
+          className="button-2 mb-2 mt-2"
+          style={{
+            width: "150px",
+            fontSize: "10px",
+            padding: "15px",
+          }}
           onClick={handleExperience}
         >
           <FaPlus /> Sumar Experiencia
@@ -92,6 +120,7 @@ const TableExperience = ({ dataExperience, setDataExpirience }) => {
           <tr>
             <th>Puesto</th>
             <th>Decripcion</th>
+            <th>Botones de acción</th>
           </tr>
         </thead>
         <tbody>
@@ -104,7 +133,7 @@ const TableExperience = ({ dataExperience, setDataExpirience }) => {
                   <span
                     className="btn btn-outline-danger"
                     name={index}
-                    onClick={()=>handleDeleteExp(index)}
+                    onClick={() => handleDeleteExp(index)}
                   >
                     <FaTrash />
                   </span>

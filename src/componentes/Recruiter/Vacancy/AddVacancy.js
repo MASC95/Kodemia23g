@@ -1,5 +1,5 @@
 // import PostVacancy from "./Forms/PostVacancy";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import axios from "axios";
 import { endpointsGral } from "../services/vacancy";
 import Softskills from "../SoftSkills/Form/SoftSkills";
@@ -23,13 +23,12 @@ const initDataForm = {
   city: "",
   salary: "",
   status: "",
-  activities: "",
 };
 export const AddVacancy = () => {
   const [listSkills, setListSkills] = useState([]);
   const [imageUser, setImageUser] = useState(null);
   const [dataForm, setDataForm] = useState(initDataForm);
-  const [dataTask, setDataTask]=useState([])
+  const [dataActivities, setDataActivities]=useState([])
   const [
     dataCandidate,
     setDataCandidate,
@@ -41,7 +40,10 @@ export const AddVacancy = () => {
 
   const navigate = useNavigate();
 
- 
+  useEffect(() => {
+    console.log("datos en dataForm:..", dataForm);
+    
+  }, [dataForm]);
 
   const formik = useFormik({
     initialValues: dataForm,
@@ -53,7 +55,6 @@ export const AddVacancy = () => {
       city: Yup.string().required("Requerido"),
       salary: Yup.number().required("Requerido"),
       status: Yup.string().required("Requerido"),
-      activities: Yup.string().required("Requerido"),
     }),
     onSubmit: (values) => {
       setTimeout(() => {
@@ -86,14 +87,19 @@ export const AddVacancy = () => {
             formData.append("job_skills", idsSkills[i]);
           }
         }
+        if(dataActivities){
+          for (let i = 0; i < dataActivities.length; i++) {
+            formData.append("activities",JSON.stringify(dataActivities[i]))
+          }
+        }
         Object.entries(values).forEach(([key, value]) => {
           formData.append(key, value);
         });
-        console.log("idsSkills:..", idsSkills);
+        // console.log("idsSkills:..", idsSkills);
 
-        for (const pair of formData.entries()) {
-          // console.log(`${pair[0]}, ${pair[1]}`);
-        }
+        // for (const pair of formData.entries()) {
+        //   // console.log(`${pair[0]}, ${pair[1]}`);
+        // }
        
         console.log("...........", formData);
         axios.defaults.headers.common[
@@ -112,7 +118,7 @@ export const AddVacancy = () => {
               icon: "success",
               button: "ok!",
             });
-            // navigate(`/Dashboard-Recruiter/vacancy`);
+            navigate(`/Dashboard-Recruiter/vacancy`);
           })
           .catch((error) => {
             //   console.log(error.response);
@@ -376,8 +382,8 @@ export const AddVacancy = () => {
                     </select>
                   </div>
                 </div>
-               {/* <div className="col">
-                   <div className="form-outline">
+                <div className="col">
+                 {/*  <div className="form-outline">
                     <label
                       className="form-label text-dark"
                       htmlFor="form6Example1"
@@ -402,12 +408,12 @@ export const AddVacancy = () => {
                         {formik.errors.activities}
                       </span>
                     )}
-                  </div> 
-                </div>*/}
+                  </div> */}
+                </div>
               </div>
               <ToDoList
-              dataTask={dataTask}
-              setDataTask={setDataTask}
+              dataActivities={dataActivities}
+              setDataActivities={setDataActivities}
               /> <br></br>
               <Softskills setListSkills={setListSkills} skillsCandidate={[]} />
 

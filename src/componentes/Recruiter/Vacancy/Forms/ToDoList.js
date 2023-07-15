@@ -1,127 +1,186 @@
-import  { useEffect , useState } from "react";
-import {FaTrash, FaPlus, FaEdit} from 'react-icons/fa'
-import DataTable from 'react-data-table-component';
-import DataTableExtensions from 'react-data-table-component-extensions';
+import React from "react";
+import { useState } from "react";
+import Table from "react-bootstrap/Table";
 import { myId } from "../../../lib/myLib";
+import { FaPlus, FaTrash } from "react-icons/fa";
+import { useEffect } from "react";
 import Swal from "sweetalert2";
-import swal from "sweetalert";
+import DataTable,  { createTheme } from "react-data-table-component";
+import DataTableExtensions from "react-data-table-component-extensions";
+
+const initAddExp = {
+  task: ""
+};
 
 
+const ToDoList = ({ dataActivities, setDataActivities }) => {
 
-const ToDoList=({dataTask,setDataTask})=>{
+  
+  
+  const [addTask, setAddTask] = useState(initAddExp);
 
-  const [addTask,setAddTask]=useState([])
-
-  const handleChange = (event) => {
-    const value = event.target.value;
-    setDataTask([...addTask,
-      value]);
+  const handleChange = (e) => {
+    console.log(e.target.name, e.target.value);
+    setAddTask({
+      ...addTask,
+      [e.target.name]: e.target.value,
+    });
   };
-  const handleTask = (event) => {
-    console.log(addTask)
-    setAddTask([...dataTask,addTask])
 
+  useEffect(()=>{
+    console.log('dataActivities:..',dataActivities)
+  },[dataActivities])
 
-    // event.preventDefault();
-    // // console.log('selectSkill:..',selectSkill);
-    // const newSkill = {
-    //   skill: selectSkill,
-    // };
+  const handleExperience = () => {
+    
+    console.log("Agregando Actividad:..", addTask);
+    if (addTask.task === "") {
+      Swal.fire(
+        'Agrega una actividad!',
+        'Valor vacio',
+        'error'
+      )
+    }else{
+      setDataActivities([...dataActivities, addTask]);
+      setAddTask(initAddExp);
+      Swal.fire(
+        'Actividad agregada!',
+        'listo!',
+        'success'
+      )
+    }
 
-    // if(newSkill.skill==='select'){
-    //   swal({
-    //     title: "Favor de Seleccionar una Skill !!",
-    //     icon: "error",
-    //     button: "ok!",
-    // });
-    // return
-    // }
-    // const dataRepet= skillTemp?.find(item=>item.skill===newSkill.skill);
-    // if(dataRepet){
-    //     swal({
-    //         title: "Ya hemos agregado esa skill!",
-    //         icon: "error",
-    //         button: "ok!",
-    //     });
-    // }else{
-    //     setSkillTemp([...skillTemp, newSkill]);
-    // }
   };
-  const handleDeleteSkill = (index) => {
- 
+
+  const handleDeleteExp = (index) => {
+    console.log("Borrar el index:...", index);
+    const tempData= [...dataActivities];
+    const newData= tempData.filter((_,i)=>i!==index);
+    console.log('newData:..',newData);
+    setDataActivities([...newData]);
+
   };
-    return(
-        <>
-         <div className="row softskills-tableEdit ">
-          <div className="col">
-              <div className="row d-flex">
-                <label className="form-label text-dark" htmlFor="form6Example1">
-                  Actividades:
-                </label>
-                <div className="col">
-                  <div className="form-outline">
-                  <input
-                      type="text"
-                      id="task"
-                      name="task"
-                      value={addTask.value}
-                      onChange={handleChange}
-                      className='form-control'
-                      placeholder="Escribe una actividad"
-                    />
-                  </div>
-                </div>
-                  <div className="col-2 buttons_actions sm">
-                    <button type="button" onClick={handleTask} className="buttons btn btn-info text-light">
-                      <FaPlus> </FaPlus>
-                    </button>
-                  </div>
-              </div>
-          </div>
-          {/* table of skills */}
-          <div className="col">
-        <label className="form-label text-dark" htmlFor="">
-          Actividades agregadas
-        </label>
-        <table className="table">
-          <thead className="thead-dark bg-body-secondary">
-            <tr>
-              <th scope="col">#</th>
-              <th className="text-center" scope="col">
-               Actividad
-              </th>
-              <th className="text-center" scope="col">
-                Opciones
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {dataTask.map((item) => {
-              return (
-                <tr key={myId()}>
-                  <td>{item.task}</td>
-                  <td className="text-center">
-                    <button
-                      type="button"
-                      className="buttons btn btn-outline-danger"
-                    >
-                      <FaTrash
-                        className="icon_trash"
-                        onClick={() => handleDeleteSkill(item)}
-                      />
-                    </button>
-                    {/* <FaTrash className="icon_trash"  onClick={() => handleDeleteSkill(index)}/> */}
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+  const data = dataActivities?.map((item, index) => {
+    return {
+      qty: index,
+      task: item.task
+    };
+  });
+
+  const columns = [
+    {
+      name: "rowId",
+      selector: (row,i) => i,
+      sortable: true,
+      hide: true,
+      omit: true,
+    },
+    {
+      name: "#",
+      selector: (row, i) => i + 1,
+      sortable: true,
+      hide: true,
+      omit: true,
+    },
+    {
+      name: "Descripción",
+      grow: 2,
+      selector: (row, i) => `${row.task}`,
+      sortable: true,
+    },
+    {
+      name: "OPCIONES",
+      sortable: false,
+      right: true,
+      selector: (row, i) => row.null,
+      cell: (d) => [
+        <span
+        className="btn btn-outline-danger"
+        name={d.i}
+        onClick={handleDeleteExp.bind(this,d.qty)}
+      >
+        <FaTrash />
+      </span>
+        // <button type="button" className="buttons btn btn-outline-success" onClick={handleClick.bind(this,d.qty)} ><FaEdit className="icon_edit1"/></button>
+      ],
+    },
+  ];
+  const tableData = {
+    columns,
+    data,
+  };
+
+  return (
+    <div className="row" >
+      <h2
+        className="text-start mt-4 fs-4 text-center"
+        style={{
+          color: "rgb(73, 139, 166)",
+          textShadow:
+            "rgba(60, 64, 67, 0.3) 0px 1px 2px, rgba(60, 64, 67, 0.15) 0px 1px 3px",
+          fontFamily: "Poppins, sans-serif, Verdana, Geneva, Tahoma",
+        }}>
+        Actividades
+      </h2>
+      <div className="col-12 form-outline">
+        <textarea
+          id="task"
+          name="task"
+          value={addTask.task}
+          className="form-control"
+          type="text"
+          onChange={handleChange}
+        />
+         <button
+          type="button"
+          className="btn btn-outline-info m-2"
+          onClick={handleExperience}
+        >
+          <FaPlus /> Agregar actividad
+        </button>
       </div>
+      <div className="col-12">
+      <DataTableExtensions export={false} print={false} {...tableData}>
+        <DataTable
+          {...tableData}
+          columns={columns}
+          data={data}
+          highlightOnHover
+          dense
+          title="Lista de actividades agregadas"
+        
+        />
+      </DataTableExtensions>
+      </div>
+      {/* <Table striped bordered hover>
+        <thead>
+          <tr>
+            <th className="fs-6">#</th>
+            <th>Descripcion</th>
+          </tr>
+        </thead>
+        <tbody>
+          {dataActivities?.map((item, index) => {
+            return (
+              <tr key={myId()}>
+                <td>{index+1}</td>
+                <td>{item.task}</td>
+                <td>
+                  <span
+                    className="btn btn-outline-danger"
+                    name={index}
+                    onClick={()=>handleDeleteExp(index)}
+                  >
+                    <FaTrash />
+                  </span>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </Table> */}
+    </div>
+  );
+};
 
-          {/* Table Skills */}
-        </div>
-        </>
-    )
-}
-export default ToDoList
+export default ToDoList;

@@ -176,11 +176,22 @@ export const EditSkill=({listSkills,setListSkills})=>{
   };
   return (
     <>
-        <div className="row softskills-tableEdit ">
-          <div className="col">
+        <div className="row">
+        <h2
+        className="text-start mt-4 fs-4 text-center "
+        style={{
+          color: "rgb(73, 139, 166)",
+          textShadow:
+            "rgba(60, 64, 67, 0.3) 0px 1px 2px, rgba(60, 64, 67, 0.15) 0px 1px 3px",
+          fontFamily: "Poppins, sans-serif, Verdana, Geneva, Tahoma",
+        }}
+      >
+        SoftSkills
+      </h2>
+          <div className="col-12 col-md-4">
               <div className="row d-flex">
                 <label className="form-label text-dark" htmlFor="form6Example1">
-                  Elige las SoftSkill de tu preferencia:
+                  Elige la SoftSkill:
                 </label>
                 <div className="col">
                   <div className="form-outline">
@@ -211,8 +222,7 @@ export const EditSkill=({listSkills,setListSkills})=>{
               
           </div>
           {/* table of skills */}
-          <div className="col">
-            <label className="form-label text-dark" htmlFor="">Lista de SoftSkill agregadas</label>
+          <div className="col-12 col-md-8">
             <div className="main-table">
                 <DataTableExtensions  
                     export={false}
@@ -222,12 +232,13 @@ export const EditSkill=({listSkills,setListSkills})=>{
                     key={myId()}
                     columns={columns}
                     data={data}
-                    noHeader
-                    defaultSortField="#"
-                    defaultSortAsc={true}
+                    // noHeader
+                    // defaultSortField="#"
+                    // defaultSortAsc={true}
                     pagination
                     highlightOnHover
                     dense
+                    title="Lista de actividades agregadas"
                     />
                 </DataTableExtensions>
             </div>

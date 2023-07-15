@@ -121,7 +121,7 @@ export const ProfileRecruiter=()=>{
     return(
         <>
         <div className=''>
-           <h1 className="text-start ms-2"
+           <h1 className="text-start ms-2 px-2"
           style={{
             color: "#498BA6",
             textShadow:

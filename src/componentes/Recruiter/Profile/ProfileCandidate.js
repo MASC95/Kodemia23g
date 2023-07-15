@@ -10,6 +10,7 @@ import DataTableExtensions from "react-data-table-component-extensions";
 import Swal from "sweetalert2";
 import "./scss/style.scss";
 import { useNavigate } from "react-router-dom";
+import Table from "react-bootstrap/Table";
 export const Candidate = () => {
   const valores = window.location.search;
   const urlParams = new URLSearchParams(valores);
@@ -299,13 +300,31 @@ export const Candidate = () => {
                     <label className="form-label text-dark" for="form6Example1">
                       Experiencia
                     </label>
-                    <p className="text-dark">
+                    {/* <p className="text-dark">
                       {infoCandidate.working_experience}
-                    </p>
+                    </p> */}
+                     <Table striped bordered hover>
+                      <thead>
+                        <tr>
+                          <th>Puesto</th>
+                          <th>Decripcion</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {infoCandidate.working_experience?.map((item, index) => {
+                          return (
+                            <tr key={myId()}>
+                              <td>{item.position}</td>
+                              <td>{item.description}</td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </Table>
                   </div>
                 </div>
               </div>
-              <h3 className="text-dark">Lista de skills agregadas</h3>
+              {/* <h3 className="text-dark">Lista de skills agregadas</h3> */}
               <div className="col">
                 <div className="main">
                   <DataTableExtensions
@@ -318,7 +337,7 @@ export const Candidate = () => {
                       key={myId()}
                       columns={columns}
                       data={data}
-                      noHeader
+                      title='Lista de skills agregadas'
                       defaultSortField="#"
                       defaultSortAsc={true}
                       pagination

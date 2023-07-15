@@ -10,6 +10,7 @@ import useJob from "../../../hooks/useJob";
 import { useParams } from "react-router-dom";
 import UploadImage from "../../UploadImage/UploadImage";
 import logo from "../../Recruiter/assets/img/perfil2.jpg";
+import ToDoList from "./Forms/ToDoList";
 import './style.scss'
 
 const initDataForm = {
@@ -21,7 +22,7 @@ const initDataForm = {
   city: "",
   salary: "",
   status: "",
-  activities: "",
+  // activities: "",
 };
 
 const validations = Yup.object().shape({
@@ -32,7 +33,7 @@ const validations = Yup.object().shape({
   city: Yup.string().required("Requerido"),
   salary: Yup.number().required("Requerido"),
   status: Yup.string().required("Requerido"),
-  activities: Yup.string().required("Requerido"),
+  // activities: Yup.string().required("Requerido"),
 });
 
 export const EditVacancy = () => {
@@ -47,6 +48,8 @@ export const EditVacancy = () => {
   const [infoDataVacancy, setInfoDataVacancy] = useState({});
   const [dataForm, setDataForm] = useState(initDataForm);
   const [imageUser, setImageUser] = useState(null);
+  const [dataActivities, setDataActivities]=useState([])
+
   const [
     dataCandidate,
     setDataCandidate,
@@ -68,7 +71,11 @@ export const EditVacancy = () => {
       const retrievedSkills = skills?.job_skills.map((item) => {
         return { skill: item._id };
       });
+      const retrieveTask= skills?.activities.map((element)=>{
+        return{task:element.task}
+      })
       setListSkills([...retrievedSkills]);
+      setDataActivities([...retrieveTask])
     } catch (error) {
       // console.log(error);
     }
@@ -92,9 +99,12 @@ export const EditVacancy = () => {
         city: infoDataVacancy.city || "",
         salary: infoDataVacancy.salary || "",
         status: infoDataVacancy.status || "",
-        activities: infoDataVacancy.activities || "",
+        // activities: infoDataVacancy.activities || [],
         job_skills: infoDataVacancy.job_skills || "",
       });
+    }
+    if(infoDataVacancy.activities){
+      setDataActivities([...infoDataVacancy.activities])
     }
   }, [infoDataVacancy]);
 
@@ -106,6 +116,7 @@ export const EditVacancy = () => {
     validationSchema: validations,
     onSubmit: (values) => {
       const idsSkills = listSkills.map((item) => item.skill);
+      // const idsTask= dataActivities.map(item)
       const completeForm = {
         ...values,
         job_skills: [...idsSkills],
@@ -119,14 +130,20 @@ export const EditVacancy = () => {
           formData.append("job_skills", idsSkills[i]);
         }
       }
+      if(dataActivities){
+        for (let i = 0; i < dataActivities.length; i++) {
+          formData.append("activities",JSON.stringify(dataActivities[i]))
+        }
+      }
       delete values.job_skills;
+      delete values.activities
       Object.entries(values).forEach(([key, value]) => {
         formData.append(key, value);
       });
       // console.log("idsSkills:..", idsSkills);
-      for (const pair of formData.entries()) {
-        // console.log(`${pair[0]}, ${pair[1]}`);
-      }
+      // for (const pair of formData.entries()) {
+      //   // console.log(`${pair[0]}, ${pair[1]}`);
+      // }
       axios.defaults.headers.common[
         "Authorization"
       ] = `Bearer: ${dataRecruiter.accessToken}`;
@@ -153,7 +170,7 @@ export const EditVacancy = () => {
   return (
     <>
      <div className=''>
-      <h2 className="text-start ms-2 mt-3"
+      <h2 className="text-start ms-2 mt-3 px-2"
        style={{
         color: "#498BA6",
         textShadow:
@@ -358,7 +375,7 @@ export const EditVacancy = () => {
                 </div>
               </div>
               <div className="col">
-                <div className="form-outline">
+                {/* <div className="form-outline">
                   <label className="form-label text-dark" htmlFor="form6Example1">
                     Actividades
                   </label>
@@ -380,12 +397,16 @@ export const EditVacancy = () => {
                       {formik.errors.activities}
                     </span>
                   )}
-                </div>
+                </div> */}
               </div>
             </div>
+            <ToDoList
+              dataActivities={dataActivities}
+              setDataActivities={setDataActivities}
+              /> <br></br>
             <EditSkill listSkills={listSkills} setListSkills={setListSkills} />
             <div className="buttons_actions d-flex justify-content-end align-content-end">
-              <button type="submit" className="buttons btn btn-info text-light">
+              <button type="submit" className="buttons btn btn-info text-light m-5">
                 Guardar Vacante
               </button>
             </div>

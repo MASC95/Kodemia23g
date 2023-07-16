@@ -353,6 +353,7 @@ export const RegisterCandidate = () => {
                             className="form-control"
                             placeholder="codigo de acceso"
                           />
+                          <div className="text-muted">Revisa tu bandeja de entrada o tu carpeta de Spam</div>
                           <div className="buttons_actions d-grid">
                             <button
                               type="button"

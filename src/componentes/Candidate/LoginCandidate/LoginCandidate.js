@@ -28,8 +28,7 @@ const profileSchema = Yup.object().shape({
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
       "Favor de Ingresar un email valido"
     ),
-  password: Yup.string()
-    .required("Favor de Ingresar el password"),
+  password: Yup.string().required("Favor de Ingresar el password"),
 });
 export const LoginCandidate = () => {
   const [formValues, setFormValues] = useState({ ...initFormValues });
@@ -122,11 +121,10 @@ export const LoginCandidate = () => {
                   className="text-left clearfix"
                   id="formCandidate"
                   initialValues={formValues}
-                  onSubmit={(values)=>{
-                    onFormSubmit(values)
-                    values={}
-                    }
-                  }
+                  onSubmit={(values) => {
+                    onFormSubmit(values);
+                    values = {};
+                  }}
                   validationSchema={profileSchema}
                   enableReinitialize={true}
                 >

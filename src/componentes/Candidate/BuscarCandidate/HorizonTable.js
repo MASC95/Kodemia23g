@@ -22,6 +22,9 @@ const HorizonTable = ({
   const [tempArrayVancies, setTempArrayVancies] = useState([]);
   const [dataCandidate] = useJob();
   useEffect(() => {
+    console.log("Nuevo valor de limit:..", perPage);
+  }, [perPage]);
+  useEffect(() => {
     initDataMyVacancies();
     console.log("vancacies:...", vacancies);
   }, []);
@@ -51,7 +54,7 @@ const HorizonTable = ({
     setTempArrayVancies([...innerArray]);
   };
 
-  const data = tempArrayVancies?.map((item, index) => ({
+  const data = vacancies?.map((item, index) => ({
     ...item,
     id: myId(),
     _id: item._id,
@@ -167,9 +170,10 @@ const HorizonTable = ({
             key={myId()}
             columns={columns}
             data={data}
-            noHeader
-            defaultSortField="#"
-            defaultSortAsc={true}
+            /*    noHeader
+            defaultSortField="#" 
+            defaultSortAsc={true} */
+            progressPending={loading}
             pagination
             paginationServer
             paginationTotalRows={totalRows}

@@ -41,7 +41,8 @@ const style = {
   borderWidth: "2px",
   borderStyle: "solid",
   width: "20vw",
-  height: "auto",
+  maxHeight: "300px",
+  objectFit: "cover",
   borderImage:
     "radial-gradient(circle 588px at 31.7% 40.2%, rgba(225, 200, 239, 1) 21.4%, rgba(163, 225, 233, 1) 57.1%)",
 };
@@ -238,7 +239,7 @@ const FormRecruiter = () => {
             color: "#498BA6",
             textShadow:
               "0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px rgba(60, 64, 67, 0.15)",
-            fontFamily: "Poppins, sans-serif, Verdana, Geneva, Tahoma",
+            fontFamily: "Poppins, sans-serif, Verdana, Geneva,Tahoma",
           }}
         >
           Perfil

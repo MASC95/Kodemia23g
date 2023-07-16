@@ -24,7 +24,13 @@ export const AppVacancyCandidate = () => {
           Vacantes aplicadas
         </h1>
 
-        <ListMyAppVacancy />
+        <ListMyAppVacancy
+        /*  handlePageChange={handlePageChange}
+          handlePerRowsChange={handlePerRowsChange}
+          totalRows={totalRows}
+          loading={loading}
+          currentPage={currentPage} */
+        />
         <Footer />
         {/* <VerticalListVacancy/> */}
       </div>

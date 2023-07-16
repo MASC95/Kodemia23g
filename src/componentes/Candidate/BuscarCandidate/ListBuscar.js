@@ -10,6 +10,10 @@ import HorizonTable from "./HorizonTable";
 export const ListBuscar = () => {
   const [vacancies, setVacancies] = useState([]);
   const [showAlert, setShowAlert] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [totalRows, setTotalRows] = useState(0);
+  const [perPage, setPerPage] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1);
   const [
     dataCandidate,
     setDataCandidate,
@@ -20,23 +24,43 @@ export const ListBuscar = () => {
   ] = useJob();
   const { my_vacancies } = dataCandidate;
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async (page, limit) => {
+  const fetchData = async (page, newPerPage) => {
+    setLoading(true);
     try {
       const response = await axios.get(
-        `${endpointsGral.vacancyURL}?page=1&limit=10`
+        `${endpointsGral.vacancyURL}?page=${page}&limit=${newPerPage}`
       );
       const datas = response.data["item"];
       setVacancies(datas["docs"]);
+      setTotalRows(datas["totalDocs"]);
+      setLoading(false);
       console.log(response.data);
+      console.log("Response Data All vacancies.... ", response.data);
     } catch (error) {
       console.log(error);
     }
   };
 
+  useEffect(() => {
+    fetchData(1, 10);
+  }, []);
+  console.log("....TOTAL ROWS....", totalRows);
+  console.log("....TOTAL VACANCIES....", vacancies);
+  // pagination
+  useEffect(() => {
+    console.log("Nuevo valor de limit:..", perPage);
+  }, [perPage]);
+
+  const handlePageChange = (page) => {
+    fetchData(page, perPage);
+    setCurrentPage(page);
+  };
+
+  const handlePerRowsChange = async (newPerPage, page) => {
+    console.log("Cambiando limit:...", newPerPage);
+    fetchData(page, newPerPage);
+    setPerPage(newPerPage);
+  }; // pagination
   useEffect(() => {
     if (showAlert === true) {
       setTimeout(() => {
@@ -144,9 +168,14 @@ export const ListBuscar = () => {
       {vacancies.length > 0 && (
         <HorizonTable
           vacancies={vacancies}
-          my_vacancies={my_vacancies}
+              my_vacancies={my_vacancies} 
           handleApply={handleApply}
           handleStopApplying={handleStopApplying}
+          totalRows={totalRows}
+          loading={loading}
+          currentPage={currentPage}
+          handlePageChange={handlePageChange}
+          handlePerRowsChange={handlePerRowsChange}
         />
       )}
 

@@ -101,6 +101,21 @@ export const RegisterRecruiter = () => {
       [Input]: InputValue,
     });
   };
+  const searchUserInDB = async (email) => {
+    try {
+      const response = await axios.get(
+        `${endpointsGral.userURL}getUserByEmail?email=${email}`
+      );
+      console.log("response searchUserInDB:..", response);
+      if (response?.data?.user) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const confirmAccesCode = async (values) => {
     console.log("Estamos confirmando el email:..");
@@ -122,10 +137,12 @@ export const RegisterRecruiter = () => {
   const handleSubmit = async (values) => {
     console.log("values from formik", values);
     // console.log('aqui debe haber datos', values)
-    const dataRepet = isInformationUser.some(
+    const dataRepet =searchUserInDB(values.email);
+    
+    /* = isInformationUser.some(
       (item) => item.email === values.email
-    );
-    if (dataRepet) {
+    ); */
+    if (dataRepet===true) {
       Swal.fire({
         icon: "error",
         title: "Error al registrar!",

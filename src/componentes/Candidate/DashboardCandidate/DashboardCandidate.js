@@ -6,6 +6,7 @@ import { Outlet } from "react-router-dom";
 import useJob from '../../../hooks/useJob';
 import './styleDashboard.css';
 import NavbarCandidate from "./NavbarCandidate/NavbarCandidate";
+import Footer from "../../Landing/Footer/Footer"
 
 export const DashboardCandidate = () => {
   const [isVisibleSidebar, setIsVisibleSidebar] = useState(false);
@@ -22,7 +23,7 @@ export const DashboardCandidate = () => {
     <NavbarCandidate/>
       
        <Outlet />
-          
+       <Footer />
     </>
   );
 };

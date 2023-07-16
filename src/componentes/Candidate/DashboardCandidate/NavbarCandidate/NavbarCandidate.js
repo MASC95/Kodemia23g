@@ -47,8 +47,8 @@ const NavbarCandidate = () => {
     if(isLoadImg===true){
       console.log('Imagen Carganda con exito:...')
     } */
-    console.log('Avatar URL USER:..',dataCandidate.avatar_url)
-    console.log("Reloading Navbar:...",imgUserUrl);
+    //console.log('Avatar URL USER:..',dataCandidate.avatar_url)
+    //console.log("Reloading Navbar:...",imgUserUrl);
 
   }, [imgUserUrl]);
 
@@ -157,7 +157,7 @@ const NavbarCandidate = () => {
             }
           >
             <div>
-            <ImageProfile src={imgUserUrl} placeholderSrc={tempImgUser}  handleDropdownToggle={handleDropdownToggle}/>
+            <ImageProfile src={imgUserUrl} placeholderSrc={tempImgUser}  handledropdowntoggle={handleDropdownToggle}/>
               {/* {dataCandidate?.avatar_url ? (
                 <img
                 src={

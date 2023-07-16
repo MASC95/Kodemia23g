@@ -5,7 +5,7 @@ import Carousel from "react-bootstrap/Carousel";
 import img1 from "../../Candidate/img/img-1.jpg";
 import img2 from "../../Candidate/img/img-2.jpg";
 import img3 from "../../Candidate/img/img-3.jpg";
-import Footer from "../../Landing/Footer/Footer";
+//import Footer from "../../Landing/Footer/Footer";
 
 const HomeCandidate = () => {
   const [anchoVW, setAnchoVW] = useState(window.innerWidth);
@@ -15,6 +15,13 @@ const HomeCandidate = () => {
     console.log("anchoVW:..", anchoVW);
   }, [window.innerWidth, anchoVW]);
 
+  const handleError = ()=>{
+    console.log('Error al cargar imagen:..');
+  }
+  const handleLoad = ()=>{
+    console.log('Imagen Cargada con Exito:..');
+  }
+
   return (
     <>
       <Carousel style={{zIndex:'0', position:'relative'}} className="w-100 main-carousel ">
@@ -23,6 +30,8 @@ const HomeCandidate = () => {
           style={{zIndex:'0', position:'relative'}}
             className="d-block w-100 carousel-main-img"
             src={img1}
+            onError={handleError}
+            onLoad={handleLoad}
             alt="First slide"
           />
           <Carousel.Caption className="carousel-text">
@@ -86,7 +95,7 @@ const HomeCandidate = () => {
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
-      <Footer />
+      
     </>
   );
 };

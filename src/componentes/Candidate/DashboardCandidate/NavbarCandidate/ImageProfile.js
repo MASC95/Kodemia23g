@@ -2,7 +2,7 @@ import { Tooltip } from "react-bootstrap";
 import React, { useEffect, useState } from "react";
 import ToastImageUser from "./ToastImageUser";
 
-const ImageProfile = ({ placeholderSrc, src, ...props }) => {
+const ImageProfile = ({ placeholderSrc,handledropdowntoggle, src, ...props }) => {
   const [imgSrc, setImgSrc] = useState(placeholderSrc || src);
   const [onErrorImg, setOnErrorImg] = useState(false);
 
@@ -25,7 +25,7 @@ const ImageProfile = ({ placeholderSrc, src, ...props }) => {
       <img
         {...{ src: imgSrc, ...props }}
         alt={props.alt || "candidate-profile-pic"}
-        onClick={props.handleDropdownToggle}
+        onClick={handledropdowntoggle}
         className="candidate-profile-pic"
       />
       {onErrorImg&&<ToastImageUser/>}

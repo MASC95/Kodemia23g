@@ -5,7 +5,7 @@ import "react-data-table-component-extensions/dist/index.css";
 import { Link } from "react-router-dom";
 import { myId } from "../../lib/myLib";
 import useJob from "../../../hooks/useJob";
-import Footer from "../../Landing/Footer/Footer";
+//import Footer from "../../Landing/Footer/Footer";
 
 const HorizonTable = ({
   vacancies,
@@ -22,11 +22,11 @@ const HorizonTable = ({
   const [tempArrayVancies, setTempArrayVancies] = useState([]);
   const [dataCandidate] = useJob();
   useEffect(() => {
-    console.log("Nuevo valor de limit:..", perPage);
+    console.log("Nuevo valor de limit(Hijo):..", perPage);
   }, [perPage]);
   useEffect(() => {
     initDataMyVacancies();
-    console.log("vancacies:...", vacancies);
+    //console.log("vancacies:...", vacancies);
   }, []);
 
   function parseJwt(token) {
@@ -71,11 +71,6 @@ const HorizonTable = ({
       selector: (row) => row._id,
       sortable: true,
       omit: true,
-    },
-    {
-      name: "#",
-      selector: (row, index) => index + 1,
-      sortable: true,
     },
     {
       name: "TÍTULO ",
@@ -176,6 +171,7 @@ const HorizonTable = ({
             progressPending={loading}
             pagination
             paginationServer
+            paginationPerPage={perPage}
             paginationTotalRows={totalRows}
             paginationDefaultPage={currentPage}
             onChangeRowsPerPage={handlePerRowsChange}
@@ -185,7 +181,7 @@ const HorizonTable = ({
           />
         </DataTableExtensions>
       </div>
-      <Footer />
+      
     </>
   );
 };

@@ -44,14 +44,16 @@ export const ListBuscar = () => {
   useEffect(() => {
     fetchData(1, 10);
   }, []);
-  console.log("....TOTAL ROWS....", totalRows);
-  console.log("....TOTAL VACANCIES....", vacancies);
+  //console.log("....TOTAL ROWS....", totalRows);
+  //console.log("....TOTAL VACANCIES....", vacancies);
   // pagination
   useEffect(() => {
     console.log("Nuevo valor de limit:..", perPage);
-  }, [perPage]);
+    console.log("Nuevo valor de currentPage:..", currentPage);
+  }, [perPage,currentPage]);
 
   const handlePageChange = (page) => {
+    console.log("handlePageChange Page:..", page);
     fetchData(page, perPage);
     setCurrentPage(page);
   };
@@ -168,7 +170,7 @@ export const ListBuscar = () => {
       {vacancies.length > 0 && (
         <HorizonTable
           vacancies={vacancies}
-              my_vacancies={my_vacancies} 
+          my_vacancies={my_vacancies}
           handleApply={handleApply}
           handleStopApplying={handleStopApplying}
           totalRows={totalRows}
@@ -176,6 +178,7 @@ export const ListBuscar = () => {
           currentPage={currentPage}
           handlePageChange={handlePageChange}
           handlePerRowsChange={handlePerRowsChange}
+          perPage={perPage}
         />
       )}
 

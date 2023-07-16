@@ -34,6 +34,7 @@ const NavbarCandidate = () => {
   ] = useJob();
 
   const [isErrorImg, setIsErrorImg] = useState(null);
+  const [onSuccessImg, setOnSuccessImg] = useState(false);
   const [isLoadImg,setIsLoadImg] = useState(null);
   const [imgUserUrl, setImgUserUrl] = useState(dataRecruiter?.avatar_url?dataRecruiter?.avatar_url:tempImgUser);
 
@@ -45,8 +46,8 @@ const NavbarCandidate = () => {
     if(isLoadImg===true){
       console.log('Imagen Carganda con exito:...')
     } */
-    console.log('Avatar URL USER:..',dataRecruiter.avatar_url)
-    console.log("Reloading Navbar:...",imgUserUrl);
+    //console.log('Avatar URL USER:..',dataRecruiter.avatar_url)
+    //console.log("Reloading Navbar:...",imgUserUrl);
 
   }, [imgUserUrl]);
 
@@ -93,6 +94,15 @@ const NavbarCandidate = () => {
   const handleShowOffCanvas = () => {
     setShowOffcanvas((prev) => !prev);
   };
+  const goHome= ()=>{
+    
+    if(onSuccessImg===true)
+      navigate('/')
+
+      //setOnSuccessImg(false);
+    
+  }
+  
 
   const logout = () => {
     setDataLocalStorage({});
@@ -155,7 +165,13 @@ const NavbarCandidate = () => {
             }
           >
             <div>
-            <ImageProfile src={imgUserUrl} placeholderSrc={tempImgUser}  handleDropdownToggle={handleDropdownToggle}/>
+            <ImageProfile 
+            src={imgUserUrl} 
+            goHome={goHome}
+            placeholderSrc={tempImgUser}  
+            onSuccessImg={onSuccessImg}
+            setOnSuccessImg={setOnSuccessImg}
+            handleDropdownToggle={handleDropdownToggle}/>
               {/* {dataRecruiter?.avatar_url ? (
                 <img
                 src={

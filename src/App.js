@@ -56,7 +56,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    console.log("Actualizando dataLocalStorage:..");
+    //console.log("Actualizando dataLocalStorage:..");
 
     if (dataLocalStorage?.role === "candidato") {
       setDataCandidate(dataLocalStorage);

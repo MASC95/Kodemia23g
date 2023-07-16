@@ -7,7 +7,7 @@ import { endpointsGral } from "../services/vacancy";
 import { myId } from "../../lib/myLib";
 import Swal from "sweetalert2";
 import Example from "./Example";
-
+import Footer from "../../Landing/Footer/Footer";
 export const Match = () => {
   const [dataInformation, setDataInformation] = useState([]);
   const queryMatch = async () => {
@@ -70,6 +70,7 @@ export const Match = () => {
 
         {/* </div>   */}
       </div>
+      <Footer />
     </>
   );
 };

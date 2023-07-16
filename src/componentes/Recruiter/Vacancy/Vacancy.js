@@ -10,6 +10,7 @@ import useJob from "../../../hooks/useJob";
 import Swal from "sweetalert2";
 import ListVacancies from "./ListVacancies";
 import { useMediaQuery } from "react-responsive";
+import Footer from "../../Landing/Footer/Footer";
 export const Vacancy = () => {
   const [
     dataCandidate,
@@ -157,7 +158,7 @@ export const Vacancy = () => {
         <div className="content-principal"></div>
         {/* </div> */}
         {/* <div className='card-body'> */}
-        <div className="row softskills">
+        <div className="row softskills" style={{ marginBottom: "100px" }}>
           <div className="col">
             <ListVacancies
               vacancyAll={vacancyAll}
@@ -174,6 +175,7 @@ export const Vacancy = () => {
         {/* <ListVacancy postdata={vacancyAll}/>
               <Outlet/> */}
       </div>
+      <Footer />
     </>
   );
 };

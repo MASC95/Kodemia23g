@@ -102,11 +102,6 @@ export const ListMyAppVacancy = () => {
       omit: true,
     },
     {
-      name: "#",
-      selector: (row, index) => index + 1,
-      sortable: true,
-    },
-    {
       name: "TITULO",
       selector: (row) => `${row.title}`,
       sortable: true,
@@ -160,6 +155,7 @@ export const ListMyAppVacancy = () => {
             defaultSortField="#"
             defaultSortAsc
             pagination
+            /*  paginationPerPage={perPage} */
             highlightOnHover
             dense
             key={myId()}

@@ -5,6 +5,7 @@ import { myId } from "../../../lib/myLib";
 import { FaPlus, FaTrash } from "react-icons/fa";
 import { useEffect } from "react";
 import Button2 from "../../../Candidate/Buttons/Button2";
+import Swal from "sweetalert2";
 const initAddExp = {
   position: "",
   description: "",
@@ -28,18 +29,34 @@ const TableExperience = ({ dataExperience, setDataExpirience }) => {
   const handleExperience = () => {
     console.log("Agregando Experiencia:..", addExp);
     if (addExp.description === "" || addExp.position === "") {
-      return;
+      Swal.fire("Agrega experiencia!", "Valor vacio", "error");
+    } else {
+      setDataExpirience([...dataExperience, addExp]);
+      setAddExp(initAddExp);
+      Swal.fire("Elemento agregado!", "listo!", "success");
     }
-    setDataExpirience([...dataExperience, addExp]);
-    setAddExp(initAddExp);
+    console.log("...Aquí se agrega experiencia---");
   };
 
   const handleDeleteExp = (index) => {
-    console.log("Borrar el index:...", index);
-    const tempData = [...dataExperience];
-    const newData = tempData.filter((_, i) => i !== index);
-    console.log("newData:..", newData);
-    setDataExpirience([...newData]);
+    Swal.fire({
+      title: "Eliminar Elemento",
+      text: "Estas seguro de eliminar este elemento?!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si, eliminar!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        console.log("Borrar el index:...", index);
+        const tempData = [...dataExperience];
+        const newData = tempData.filter((_, i) => i !== index);
+        console.log("newData:..", newData);
+        setDataExpirience([...newData]);
+        Swal.fire("Eliminado!", "Eliminado correctamente!", "success");
+      }
+    });
   };
 
   return (
@@ -104,7 +121,8 @@ const TableExperience = ({ dataExperience, setDataExpirience }) => {
         />
 
         <button
-          className="button-2 mb-2 mt-2"
+          className=" button-2 mb-2 mt-2"
+          type="button"
           style={{
             width: "150px",
             fontSize: "10px",

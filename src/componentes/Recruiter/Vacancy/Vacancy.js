@@ -134,7 +134,7 @@ export const Vacancy = () => {
               color: "#498BA6",
               textShadow:
                 "0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px rgba(60, 64, 67, 0.15)",
-              fontFamily: "Poppins, sans-serif, Verdana, Geneva, Tahoma",
+              fontFamily: "Poppins, sans-serif, Verdana, Geneva,Tahoma",
             }}
           >
             Vacantes
@@ -166,6 +166,7 @@ export const Vacancy = () => {
               loading={loading}
               currentPage={currentPage}
               btnDetele={btnDetele}
+              perPage={perPage}
             />
           </div>
         </div>

@@ -246,20 +246,7 @@ const FormRecruiter = () => {
         </h1>
       </div>
       <div className="row">
-        <div
-          className="col-12 col-md-4"
-          style={{
-            background: "rgba(0, 189, 214, 0.18)",
-            borderRadius: "16px",
-            boxShadow:
-              "rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset",
-            backdropFilter: "blur(2px)",
-            WebkitBackdropFilter: "blur(2px)",
-            padding: "50px",
-            marginBottom: "30px",
-            height: "50%",
-          }}
-        >
+        <div className="col-12 col-md-4">
           <div>
             {dataForm.avatar_url && !imageUser && (
               <img

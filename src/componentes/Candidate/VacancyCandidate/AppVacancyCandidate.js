@@ -6,7 +6,7 @@ import ListMyAppVacancy from "./ListMyAppVacancy";
 //import ResponsiveTable from "./ResponsiveTable";
 import VerticalListVacancy from "./VerticalListVacancy";
 import Example from "./Example";
-import Footer from "../../Landing/Footer/Footer";
+
 //muestra mis vacantes
 export const AppVacancyCandidate = () => {
   return (
@@ -31,7 +31,7 @@ export const AppVacancyCandidate = () => {
           loading={loading}
           currentPage={currentPage} */
         />
-        <Footer />
+
         {/* <VerticalListVacancy/> */}
       </div>
     </>

@@ -4,14 +4,14 @@ import imgProfile from "../../Recruiter/assets/img/perfil2.jpg";
 import SidebarCandidate from "../SidebarCandidate/SidebarCandidate";
 import FormRecruiter from "./Form/FormRecruiter";
 import Softskills from "../../Recruiter/SoftSkills/Form/SoftSkills";
-import Footer from "../../Landing/Footer/Footer";
+
 // import Softskills from "../../Recruiter/SoftSkills/SoftSkills";
 export const ProfileCandidates = () => {
   // console.log('ProfileCandidates:...');
   return (
     <>
       <FormRecruiter />
-      <Footer />
+
       {/* <div className='dashboard'>
         <SidebarCandidate/>
         <div className='dashboard-app'>

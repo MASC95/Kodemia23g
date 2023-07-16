@@ -13,6 +13,7 @@ const CustomDropDown = () => {
             width: "100px",
             fontSize: "10px",
             padding: "12px",
+            cursor: "pointer",
           }}
         >
           iniciar sesion

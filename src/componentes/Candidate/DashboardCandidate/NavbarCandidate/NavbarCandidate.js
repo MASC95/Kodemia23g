@@ -36,8 +36,10 @@ const NavbarCandidate = () => {
   ] = useJob();
 
   const [isErrorImg, setIsErrorImg] = useState(null);
-  const [isLoadImg,setIsLoadImg] = useState(null);
-  const [imgUserUrl, setImgUserUrl] = useState(dataCandidate?.avatar_url?dataCandidate?.avatar_url:tempImgUser);
+  const [isLoadImg, setIsLoadImg] = useState(null);
+  const [imgUserUrl, setImgUserUrl] = useState(
+    dataCandidate?.avatar_url ? dataCandidate?.avatar_url : tempImgUser
+  );
 
   useEffect(() => {
     /* if(isErrorImg===true){
@@ -49,31 +51,28 @@ const NavbarCandidate = () => {
     } */
     //console.log('Avatar URL USER:..',dataCandidate.avatar_url)
     //console.log("Reloading Navbar:...",imgUserUrl);
-
   }, [imgUserUrl]);
 
-
-  useEffect(()=>{
-    if(dataCandidate?.avatar_url){
-      setImgUserUrl(dataCandidate.avatar_url)
+  useEffect(() => {
+    if (dataCandidate?.avatar_url) {
+      setImgUserUrl(dataCandidate.avatar_url);
     }
-
-  },[dataLocalStorage,dataCandidate])
+  }, [dataLocalStorage, dataCandidate]);
 
   const whileErrorImg = () => {
     setIsErrorImg(null);
-      setIsLoadImg(null);
+    setIsLoadImg(null);
   };
 
   const handleError = () => {
-    console.log('Error al cargar Imagen(handleError):...')
+    console.log("Error al cargar Imagen(handleError):...");
     setImgUserUrl(tempImgUser);
     //setIsErrorImg(true);
     //setIsLoadImg(false);
   };
 
   const handleLoad = () => {
-    console.log('Imagen Carganda con exito(handleLoad):...')
+    console.log("Imagen Carganda con exito(handleLoad):...");
     setImgUserUrl(dataCandidate.avatar_url);
     //setIsLoadImg(true);
     //setIsErrorImg(false);
@@ -157,7 +156,11 @@ const NavbarCandidate = () => {
             }
           >
             <div>
-            <ImageProfile src={imgUserUrl} placeholderSrc={tempImgUser}  handledropdowntoggle={handleDropdownToggle}/>
+              <ImageProfile
+                src={imgUserUrl}
+                placeholderSrc={tempImgUser}
+                handledropdowntoggle={handleDropdownToggle}
+              />
               {/* {dataCandidate?.avatar_url ? (
                 <img
                 src={

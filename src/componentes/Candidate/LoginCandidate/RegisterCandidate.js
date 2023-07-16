@@ -145,10 +145,12 @@ export const RegisterCandidate = () => {
   const handleSubmit = async (values) => {
     console.log("values from formik", values);
     // console.log('aqui debe haber datos', values) se hicieron cambios aqui
-    const dataRepet = isInformationUser.some(
+    const dataRepet = searchUserInDB(values.email)
+    
+    /* isInformationUser.some(
       (item) => item.email === values.email
-    );
-    if (dataRepet) {
+    ); */
+    if (dataRepet===true) {
       Swal.fire({
         icon: "error",
         title: "Error al registrar!",

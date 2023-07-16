@@ -2,12 +2,12 @@ import React from "react";
 import "./Scss/style.scss";
 // import 'animate.css';
 import Carousel from "react-bootstrap/Carousel";
-import Footer from "../../Landing/Footer/Footer";
+
 export const HomeRecruiter = () => {
   return (
     <>
-      {/* <h1 className="text-center">BIENVENIDO A JOBINDER</h1> */}
-      <Carousel className="w-100 main-carousel d-sm-block h-100">
+      {/* <h1 className="text-center">BIENVENIDO A JOBINDER</h1>  */}
+      <Carousel style={{position:'relative',zIndex:'-1000'}} className="w-100 main-carousel d-sm-block h-100">
         <Carousel.Item className="carousel-img">
           <img
             style={{ width: "100vw", height: "90vh", backgroundSize: "cover" }}
@@ -37,7 +37,7 @@ export const HomeRecruiter = () => {
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
-      <Footer />
+      
     </>
   );
 };

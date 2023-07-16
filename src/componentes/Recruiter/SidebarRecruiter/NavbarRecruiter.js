@@ -193,7 +193,7 @@ const NavbarCandidate = () => {
                     color: "#FFF",
                     marginLeft: "30px",
                     cursor: "pointer",
-                  }}
+                  }}background: "rgba(119, 197, 229, 0.13)",
                 />
               )} */}
 
@@ -203,7 +203,9 @@ const NavbarCandidate = () => {
                   align="end"
                   onSelect={handleDropdownSelect}
                   style={{
-                    background: "rgba(119, 197, 229, 0.13)",
+                    position:'absolute',
+                    zIndex:'100000000000',
+                    backgroundColor:'white',
                     boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
                     backdropFilter: "blur(5px)",
                     WebkitBackdropFilter: "blur(5px)",

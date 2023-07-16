@@ -56,9 +56,11 @@ export const Match = () => {
     <>
       <div className="card-body">
         <h1
-          className="text-center mt-3"
+          className="text-center mt-2"
           style={{
-            color: "#498BA6",
+            color: "#f2f2f2",
+            backgroundColor:'#498BA6',
+            borderRadius:'26px 26px 0px 0px',
             textShadow:
               "0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px rgba(60, 64, 67, 0.15)",
             fontFamily: "Poppins, sans-serif, Verdana, Geneva, Tahoma",

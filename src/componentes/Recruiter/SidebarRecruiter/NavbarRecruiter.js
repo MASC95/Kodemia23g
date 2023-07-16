@@ -202,7 +202,7 @@ const NavbarCandidate = () => {
                         "Poppins, sans-serif, Verdana, Geneva, Tahoma",
                     }}
                     as={Link}
-                    to="/dashboard-candidato/profile"
+                    to="/dashboard-recruiter/profile"
                   >
                     <FaUser /> Mi Cuenta
                   </Dropdown.Item>
@@ -217,7 +217,7 @@ const NavbarCandidate = () => {
                   >
                     <FaSignOutAlt /> Cerrar Sesión
                   </Dropdown.Item>
-                  <Dropdown.Item
+                  {/* <Dropdown.Item
                     eventKey="opcion3"
                     style={{
                       color: "#498BA6",
@@ -227,7 +227,7 @@ const NavbarCandidate = () => {
                   >
                     <FaBell className="animate__animated animate__headShake" />{" "}
                     Notificaciones
-                  </Dropdown.Item>
+                  </Dropdown.Item> */}
                 </Dropdown.Menu>
               )}
             </div>

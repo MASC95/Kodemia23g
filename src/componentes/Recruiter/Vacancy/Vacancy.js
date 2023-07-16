@@ -42,6 +42,8 @@ export const Vacancy = () => {
     setTotalRows(datas["totalDocs"]);
     setLoading(false);
   };
+
+  
   useEffect(() => {
     fetch(1, 10);
   }, []);
@@ -130,7 +132,7 @@ export const Vacancy = () => {
         className="row container_form_ForVacancy  m-3 p-3"
         style={{ fontFamily: "Poppins, sans-serif, Verdana, Geneva, Tahoma" }}
       >
-        <div className="d-flex justify-content-center align-items-center">
+        <div className="d-flex">
           <h1
             className="text-start mt-3 "
             style={{
@@ -143,19 +145,18 @@ export const Vacancy = () => {
             Vacantes
           </h1>
         </div>
-        <div
-          className={`tu-clase ${
-            isMobile ? "d-flex justify-content-center align-items-center" : ""
-          }`}
-        >
-          <Link
-            to={`/Dashboard-Recruiter/vacancy-new`}
-            className="text-decoration-none d-sm-block p-3"
+          <div
+            className={`tu-clase ${
+              isMobile ? "d-flex justify-content-center align-items-center" : ""
+            }`}
           >
-            <Button2 text="Crear Vacante" paddingB="10px" fs="14px" />
-          </Link>
-        </div>
-        <div className="content-principal"></div>
+            <Link
+              to={`/Dashboard-Recruiter/vacancy-new`}
+              className="text-decoration-none d-sm-block p-2"
+            >
+              <Button2 text="Crear Vacante" paddingB="10px" fs="14px" />
+            </Link>
+          </div>
         {/* </div> */}
         {/* <div className='card-body'> */}
         <div className="row softskills" style={{ marginBottom: "100px" }}>

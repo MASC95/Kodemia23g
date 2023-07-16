@@ -27,6 +27,12 @@ export const Candidate = () => {
     setDataLocalStorage,
   ] = useJob();
 
+  const style={
+    color: "#498BA6",
+    fontFamily:
+      "Poppins, sans-serif, Verdana, Geneva, Tahoma",
+  }
+
   console.log(idCandidate);
   const [dataSkill, setDataSkill] = useState([]);
   const [infoCandidate, setInfoCandidate] = useState({});
@@ -230,10 +236,10 @@ export const Candidate = () => {
                 alt="avatarImg"
                 className="d-block ms-auto me-auto my-2 rounded"
               />
-              <div className="">
+              <div className="row">
                 <p className="text-center text-dark">{`${infoCandidate.name} ${infoCandidate.last_name}`}</p>
                 <p className="text-center text-dark">
-                  <FaMailBulk /> {infoCandidate.email}
+                   {infoCandidate.email}
                 </p>
               </div>
               <div className="buttons_actions d-flex justify-content-center gap-3">
@@ -257,12 +263,13 @@ export const Candidate = () => {
             </div>
             <div className="col-12 col-md-8 px-5">
               <div className="row mb-4">
-                <h2 className="text-start text-dark">Información General</h2>
+                {/* <h2 className="text-start text-dark">Información General</h2> */}
                 <div className="col">
                   <div className="form-outline bg-gray">
                     <label
-                      className="form-label text-start text-dark"
+                      className="form-label text-start"
                       for="form6Example1"
+                      style={style}
                     >
                       Nombre
                     </label>
@@ -272,8 +279,9 @@ export const Candidate = () => {
                 <div className="col">
                   <div className="form-outline">
                     <label
-                      className="form-label text-start text-dark"
+                      className="form-label text-start"
                       for="form6Example1"
+                      style={style}
                     >
                       Apellido
                     </label>
@@ -283,8 +291,9 @@ export const Candidate = () => {
                 <div className="col">
                   <div className="form-outline">
                     <label
-                      className="form-label text-start text-dark"
+                      className="form-label text-start"
                       for="form6Example1"
+                      style={style}
                     >
                       Edad
                     </label>
@@ -303,9 +312,9 @@ export const Candidate = () => {
                     </p> */}
                      <Table striped bordered hover>
                       <thead>
-                        <tr>
-                          <th>Puesto</th>
-                          <th>Decripcion</th>
+                        <tr style={{borderRadius:'200px'}}>
+                          <th style={{backgroundColor:'#7FADC0', borderRadius:'10px 0px 0px 0px'}}>Puesto</th>
+                          <th style={{backgroundColor:'#7FADC0', borderRadius:'0px 10px 0px 0px'}}>Descripción</th>
                         </tr>
                       </thead>
                       <tbody>

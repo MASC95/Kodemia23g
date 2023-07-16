@@ -8,7 +8,7 @@ import * as Yup from "yup";
 import swal from "sweetalert";
 import { useNavigate } from "react-router-dom";
 import UploadImage from "../../UploadImage/UploadImage";
-import logo from "../../Recruiter/assets/img/perfil2.jpg";
+import logo from "../../Candidate/img/tempImgUser.png";
 import "./style.scss";
 import useJob from "../../../hooks/useJob";
 import ToDoList from "./Forms/ToDoList";
@@ -37,6 +37,24 @@ export const AddVacancy = () => {
     dataLocalStorage,
     setDataLocalStorage,
   ] = useJob();
+
+  const stylePerfil={
+    borderRadius: "14%",
+    margin: "20px",
+    filter:
+      "drop-shadow(0px 54px 55px rgba(0, 0, 0, 0.25)) drop-shadow(0px -12px 30px rgba(0, 0, 0, 0.12)) drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.12)) drop-shadow(0px 12px 13px rgba(0, 0, 0, 0.17)) drop-shadow(0px -3px 5px rgba(0, 0, 0, 0.09))",
+    borderWidth: "2px",
+    borderStyle: "solid",
+    width: "20vw",
+    height: "auto",
+    borderImage:
+      "radial-gradient(circle 588px at 31.7% 40.2%, rgba(225, 200, 239, 1) 21.4%, rgba(163, 225, 233, 1) 57.1%)",
+  }
+  const style={
+    color: "#498BA6",
+    fontFamily:
+      "Poppins, sans-serif, Verdana, Geneva, Tahoma",
+  }
 
   const navigate = useNavigate();
 
@@ -154,7 +172,7 @@ export const AddVacancy = () => {
             {!imageUser && (
               <>
                 <img
-                  style={{ width: "20vw", height: "auto" }}
+                  style={stylePerfil}
                   src={dataForm.avatar_url ? dataForm.avatar_url : logo}
                   alt="imgProfile"
                   className="d-block ms-auto me-auto my-2 rounded"
@@ -175,7 +193,17 @@ export const AddVacancy = () => {
               <UploadImage setDataImg={setImageUser} />
             </div>
           </div>
-          <div className="col-12 col-md-8 px-5">
+          <div className="col-12 col-md-8 px-5" style={{
+            background: "rgba(0, 189, 214, 0.18)",
+            borderRadius: "16px",
+            boxShadow:
+              "rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset",
+            backdropFilter: "blur(2px)",
+            WebkitBackdropFilter: "blur(2px)",
+            padding: "50px",
+            marginBottom: "30px",
+            height: "50%",
+          }}>
             <form
               onSubmit={formik.handleSubmit}
               style={{
@@ -187,8 +215,8 @@ export const AddVacancy = () => {
                 <div className="col">
                   <div className="form-outline bg-gray">
                     <label
-                      className="form-label text-dark"
-                      htmlFor="form6Example1"
+                      className="form-label"
+                      htmlFor="form6Example1" style={style}
                     >
                       Nombre de la Empresa
                     </label>
@@ -217,8 +245,9 @@ export const AddVacancy = () => {
                 <div className="col">
                   <div className="form-outline bg-gray">
                     <label
-                      className="form-label text-dark"
+                      className="form-label"
                       htmlFor="form6Example1"
+                      style={style}
                     >
                       Título
                     </label>
@@ -247,8 +276,9 @@ export const AddVacancy = () => {
                 <div className="col">
                   <div className="form-outline">
                     <label
-                      className="form-label text-dark"
+                      className="form-label"
                       htmlFor="form6Example1"
+                      style={style}
                     >
                       Tipo de trabajo
                     </label>
@@ -273,8 +303,9 @@ export const AddVacancy = () => {
                 <div className="col">
                   <div className="form-outline">
                     <label
-                      className="form-label text-dark"
+                      className="form-label"
                       htmlFor="form6Example1"
+                      style={style}
                     >
                       Modalidad
                     </label>
@@ -302,8 +333,9 @@ export const AddVacancy = () => {
                 <div className="col">
                   <div className="form-outline">
                     <label
-                      className="form-label text-dark"
+                      className="form-label"
                       htmlFor="form6Example1"
+                      style={style}
                     >
                       Ciudad
                     </label>
@@ -329,8 +361,9 @@ export const AddVacancy = () => {
                 <div className="col">
                   <div className="form-outline">
                     <label
-                      className="form-label text-dark"
+                      className="form-label"
                       htmlFor="form6Example2"
+                      style={style}
                     >
                       Sueldo
                     </label>
@@ -359,8 +392,9 @@ export const AddVacancy = () => {
                 <div className="col">
                   <div className="form-outline">
                     <label
-                      className="form-label text-dark"
+                      className="form-label"
                       htmlFor="form6Example2"
+                      style={style}
                     >
                       Status
                     </label>

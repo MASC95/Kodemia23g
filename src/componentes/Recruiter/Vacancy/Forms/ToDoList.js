@@ -53,11 +53,33 @@ const ToDoList = ({ dataActivities, setDataActivities }) => {
   };
 
   const handleDeleteExp = (index) => {
-    console.log("Borrar el index:...", index);
-    const tempData= [...dataActivities];
-    const newData= tempData.filter((_,i)=>i!==index);
-    console.log('newData:..',newData);
-    setDataActivities([...newData]);
+    Swal.fire({
+      title: 'Eliminar actividad',
+      text: "Estas seguro de eliminar esta actividad?!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, eliminar!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const tempData= [...dataActivities];
+        const newData= tempData.filter((_,i)=>i!==index);
+        console.log('newData:..',newData);
+        setDataActivities([...newData]);
+        Swal.fire(
+          'Eliminado!',
+          'Actividad eliminada!',
+          'success'
+        )
+      }
+    })
+    // ----------------------------------------
+    // console.log("Borrar el index:...", index);
+    // const tempData= [...dataActivities];
+    // const newData= tempData.filter((_,i)=>i!==index);
+    // console.log('newData:..',newData);
+    // setDataActivities([...newData]);
 
   };
   const data = dataActivities?.map((item, index) => {
@@ -147,7 +169,7 @@ const ToDoList = ({ dataActivities, setDataActivities }) => {
           data={data}
           highlightOnHover
           dense
-          title="Lista de actividades agregadas"
+          title="Actividades agregadas"
         
         />
       </DataTableExtensions>

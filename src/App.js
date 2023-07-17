@@ -35,6 +35,7 @@ import TerminosCondiciones from "./componentes/Landing/Footer/LinksFooter/Termin
 import PoliticaPrivacidad from "./componentes/Landing/Footer/LinksFooter/PoliticaPrivacidad";
 //import ListResponsive from './componentes/Candidate/BuscarCandidate/ListResponsive';
 import About from "./componentes/Landing/Footer/LinksFooter/About";
+import UpdatePassword from "./componentes/Candidate/LoginCandidate/UpdatePassword";
 function App() {
   const [dataLocalStorage, setDataLocalStorage] = useLocalStorage(
     "accessToken",
@@ -56,7 +57,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    console.log("Actualizando dataLocalStorage:..");
+    //console.log("Actualizando dataLocalStorage:..");
 
     if (dataLocalStorage?.role === "candidato") {
       setDataCandidate(dataLocalStorage);
@@ -92,11 +93,14 @@ function App() {
           ></Route>
           <Route path="/About" element={<About />}></Route>
           <Route path="/FAQSection" element={<FAQSection />}></Route>
-          <Route path="/SendAccessCode" element={<SendAccessCode />} />
+          {/* <Route path="/SendAccessCode" element={<SendAccessCode />} /> */}
           {/* <Route path ='/pruebas' element ={<ListResponsive/>}/> */}
           {/* aqui las rutas de la seccion candidato */}
+
           <Route path="/login-candidato" element={<LoginCandidate />} />
           <Route path="/register-candidato" element={<RegisterCandidate />} />
+          <Route path="/update-password/:email" element={<UpdatePassword />} />
+          {dataLocalStorage?.role==='candidato'&&
           <Route path="/dashboard-candidato" element={<DashboardCandidate />}>
             <Route path="home" element={<HomeCandidate />} />
             <Route path="profile" element={<ProfileCandidate />} />
@@ -105,9 +109,13 @@ function App() {
             <Route path="app-vacancies" element={<AppVacancyCandidate />} />
             <Route path="SearchList" element={<ListBuscar />} />
           </Route>
+          }
+          
           {/* aqui las rutas de la seccion reclutador */}
           <Route path="/login-recruiter" element={<LoginRecruiter />} />
           <Route path="/register-recruiter" element={<RegisterRecruiter />} />
+
+          {dataLocalStorage?.role==='empresa'&&
           <Route path="/dashboard-recruiter" element={<DashboardRecruiter />}>
             <Route path="home" element={<HomeRecruiter />} />
             <Route path="profile" element={<ProfileRecruiter />} />
@@ -120,6 +128,8 @@ function App() {
             <Route path="panel-phases" element={<Reclutamiento />} />
             <Route path="softskill-addNew" element={<AddSkills />} />
           </Route>
+          }
+          
         </Routes>
       </div>
     </JobContext.Provider>

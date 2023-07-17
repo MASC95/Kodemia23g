@@ -49,8 +49,8 @@ const NavbarCandidate = () => {
     if(isLoadImg===true){
       console.log('Imagen Carganda con exito:...')
     } */
-    //console.log('Avatar URL USER:..',dataCandidate.avatar_url)
-    //console.log("Reloading Navbar:...",imgUserUrl);
+    console.log("Avatar URL USER:..", dataCandidate.avatar_url);
+    console.log("Reloading Navbar:...", imgUserUrl);
   }, [imgUserUrl]);
 
   useEffect(() => {
@@ -79,7 +79,13 @@ const NavbarCandidate = () => {
   };
   const placement = "bottom";
   const [showDropdown, setShowDropdown] = useState(false);
+  const [onSuccessImg, setOnSuccessImg] = useState(false);
 
+  const goHome = () => {
+    if (onSuccessImg === true) navigate("/");
+
+    //setOnSuccessImg(false);
+  };
   const handleDropdownToggle = () => {
     console.log("Muestrame el DropDown:...");
     setShowDropdown((prev) => !prev);
@@ -158,8 +164,11 @@ const NavbarCandidate = () => {
             <div>
               <ImageProfile
                 src={imgUserUrl}
+                onSuccessImg={onSuccessImg}
+                setOnSuccessImg={setOnSuccessImg}
+                goHome={goHome}
                 placeholderSrc={tempImgUser}
-                handledropdowntoggle={handleDropdownToggle}
+                handleDropdownToggle={handleDropdownToggle}
               />
               {/* {dataCandidate?.avatar_url ? (
                 <img

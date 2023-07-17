@@ -46,6 +46,7 @@ export const ProfileRecruiter = () => {
   const [dataForm, setDataForm] = useState(initDataForm);
   const [imageUser, setImageUser] = useState(null);
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
+  const isDesktop = useMediaQuery({ query: "(min-width: 769px)" });
 
   const [
     dataCandidate,
@@ -132,7 +133,7 @@ export const ProfileRecruiter = () => {
             console.log("error:..", error);
           }
           Swal.fire("Los cambios han sido guardados correctamente!");
-          navigate(`/Dashboard-Recruiter/vacancy`);
+          // navigate(`/Dashboard-Recruiter/vacancy`);
         }
       });
     },
@@ -149,7 +150,7 @@ export const ProfileRecruiter = () => {
           }`}
         >
           <h1
-            className="d-flex justify-content-center align-items-center"
+            className="d-flex justify-content-center align-items-center px-3"
             style={{
               color: "#498BA6",
               textShadow:
@@ -194,7 +195,17 @@ export const ProfileRecruiter = () => {
               <UploadImage setDataImg={setImageUser} />
             </div>
           </div>
-          <div className="col-12 col-md-8 px-5">
+          <div className="col-12 col-md-8 px-5" style={{
+            background: "rgba(0, 189, 214, 0.18)",
+            borderRadius: "16px",
+            boxShadow:
+              "rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset",
+            backdropFilter: "blur(2px)",
+            WebkitBackdropFilter: "blur(2px)",
+            padding: "50px",
+            marginBottom: "30px",
+            height: "50%",
+          }}>
             <form onSubmit={formik.handleSubmit}>
               <div className="row mb-4">
                 <div className="col">

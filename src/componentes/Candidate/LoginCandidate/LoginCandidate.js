@@ -196,16 +196,23 @@ export const LoginCandidate = () => {
                           </button>
                         </div>
                       </div>
-                    </form>
-                  )}
-                </Formik>
-
-                <p className="mt-20 text-black text-decoration-none">
+                      <p className="mt-20 text-black text-decoration-none">
                   No tienes una cuenta?
                   <Link to={`/register-candidato`}>
                     Crea una cuenta con nosotros.
                   </Link>
                 </p>
+                <p className="mt-20 text-black text-decoration-none">
+                  Olvidaste tu Contraseña?
+                  <Link to={props.values.email!==''?`/update-password/${props.values.email}`:`/update-password/none`}>
+                    Cambia tu Contraseña.
+                  </Link>
+                </p>
+                    </form>
+                  )}
+                </Formik>
+
+                
               </div>
             </div>
             <div className="col-md-6 col-md-offset-3">

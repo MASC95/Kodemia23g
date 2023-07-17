@@ -89,20 +89,15 @@ const About = () => {
     if (hovered) {
       overlayStyle.left = "100%";
     }
-//, transform: mover()
+    //, transform: mover()
     return (
       <div
         className={``}
         style={{ ...cardStyle }}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        
       >
-        
-        <div className="d-flex justify-content-center align-items-center"
-        
-        >
-          
+        <div className="d-flex justify-content-center align-items-center">
           <img
             className=""
             style={{
@@ -159,7 +154,6 @@ const About = () => {
           </h2>
         </div>
         <div className="col-sm-12 col-md-4 col-lg-4  ">
-          
           <Card
             image="https://frontjobinderimg.s3.amazonaws.com/extra3.jpg"
             title="Misión"

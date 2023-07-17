@@ -133,8 +133,10 @@ export const RegisterCandidate = () => {
       );
       console.log("response searchUserInDB:..", response);
       if (response?.data?.user) {
+        //console.log('Email duplicado (no puede continuar):...')
         return true;
       } else {
+        //console.log('Puede continuar con su registro:...')
         return false;
       }
     } catch (error) {
@@ -143,12 +145,14 @@ export const RegisterCandidate = () => {
   };
 
   const handleSubmit = async (values) => {
-    console.log("values from formik", values);
+    //console.log("Registrando mail:..", values.email);
     // console.log('aqui debe haber datos', values) se hicieron cambios aqui
-    const dataRepet = isInformationUser.some(
+    const dataRepet = await searchUserInDB(values.email)
+    
+    /* isInformationUser.some(
       (item) => item.email === values.email
-    );
-    if (dataRepet) {
+    ); */
+    if (dataRepet===true) {
       Swal.fire({
         icon: "error",
         title: "Error al registrar!",
@@ -185,7 +189,7 @@ export const RegisterCandidate = () => {
   };
 
   const handleConfirmEmail = () => {
-    console.log("hola");
+    console.log("hola:..");
     console.log("codigo:", dataForm.code);
     console.log("codigo:", dataForm.code);
     console.log("codigoBack:..", dataForm.backCode);
@@ -353,6 +357,7 @@ export const RegisterCandidate = () => {
                             className="form-control"
                             placeholder="codigo de acceso"
                           />
+                          <div className="text-muted">Revisa tu bandeja de entrada o tu carpeta de Spam</div>
                           <div className="buttons_actions d-grid">
                             <button
                               type="button"

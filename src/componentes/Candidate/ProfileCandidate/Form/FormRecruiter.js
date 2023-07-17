@@ -18,7 +18,7 @@ import "sweetalert2/dist/sweetalert2.css";
 import TableSkillsCandidate from "../TableSkillsCandidate/TableSkillsCandidate";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import TableExperience from "./TableExperience";
-
+import { useMediaQuery } from "react-responsive";
 //const localEndPoinst = "http://localhost:4000/api/v1/users/";
 
 const defaultPassword = "";
@@ -41,6 +41,7 @@ const style = {
   borderWidth: "2px",
   borderStyle: "solid",
   width: "20vw",
+  height: "auto",
   borderImage:
     "radial-gradient(circle 588px at 31.7% 40.2%, rgba(225, 200, 239, 1) 21.4%, rgba(163, 225, 233, 1) 57.1%)",
 };
@@ -70,7 +71,6 @@ const profileSchema = Yup.object().shape({
   age: Yup.number()
     .required("El campo es requerido")
     .min(18, "Debe ser mayor de 18 años"),
-  
 });
 
 const FormRecruiter = () => {
@@ -93,18 +93,16 @@ const FormRecruiter = () => {
 
   const tempDataExp = [
     {
-      position:'dev',
-      description:'soporte'
-    }
-  ]
+      position: "dev",
+      description: "soporte",
+    },
+  ];
 
   /* const parseExperience = (dataBackendExp)=>{
     console.log('datos del backend dataBackendExp:...',dataBackendExp)
     
     return tempDataExp
   } */
-
-
 
   useEffect(() => {
     if (dataCandidate) {
@@ -122,15 +120,13 @@ const FormRecruiter = () => {
       });
     }
 
-    if(dataCandidate.working_experience){
-      setDataExperience([...dataCandidate.working_experience])
+    if (dataCandidate.working_experience) {
+      setDataExperience([...dataCandidate.working_experience]);
     }
-
   }, [dataCandidate]);
 
   useEffect(() => {
     console.log("datos en dataForm:..", dataForm);
-    
   }, [dataForm]);
 
   useEffect(() => {
@@ -175,8 +171,11 @@ const FormRecruiter = () => {
               }
             }
             if (dataExperience) {
-              for(let i =0; i<dataExperience.length;i++){
-                formData.append("working_experience",JSON.stringify(dataExperience[i]))
+              for (let i = 0; i < dataExperience.length; i++) {
+                formData.append(
+                  "working_experience",
+                  JSON.stringify(dataExperience[i])
+                );
               }
             }
             Object.entries(values).forEach(([key, value]) => {
@@ -222,34 +221,70 @@ const FormRecruiter = () => {
     setIsResetPassword((prev) => !prev);
   };
 
+  const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
+
   return (
-    <div className="">
-      <h1
-        className="text-start ms-2"
-        style={{
-          color: "#498BA6",
-          textShadow:
-            "0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px rgba(60, 64, 67, 0.15)",
-          fontFamily: "Poppins, sans-serif, Verdana, Geneva, Tahoma",
-        }}
+    <div>
+      <div
+        className={` ${
+          isMobile
+            ? "d-flex justify-content-center align-items-center mt-3"
+            : "d-flex flex-start mt-3"
+        }`}
       >
-        Perfil
-      </h1>
+        <h1
+          className="text-start ms-2"
+          style={{
+            color: "#498BA6",
+            textShadow:
+              "0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px rgba(60, 64, 67, 0.15)",
+            fontFamily: "Poppins, sans-serif, Verdana, Geneva, Tahoma",
+          }}
+        >
+          Perfil
+        </h1>
+      </div>
       <div className="row">
-        <div className="col-12 col-md-4">
-          {dataForm.avatar_url && !imageUser && (
-            <img
-              style={{ width: "20vw", height: "auto" }}
-              src={dataForm.avatar_url}
-              alt="imgProfile"
-              className="d-block ms-auto me-auto my-2 rounded"
-            />
-          )}
-         
+        <div
+          className="col-12 col-md-4"
+          style={{
+            background: "rgba(0, 189, 214, 0.18)",
+            borderRadius: "16px",
+            boxShadow:
+              "rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset",
+            backdropFilter: "blur(2px)",
+            WebkitBackdropFilter: "blur(2px)",
+            padding: "50px",
+            marginBottom: "30px",
+            height: "50%",
+          }}
+        >
+          <div>
+            {dataForm.avatar_url && !imageUser && (
+              <img
+                style={style}
+                src={dataForm.avatar_url}
+                alt="imgProfile"
+                className="d-block ms-auto me-auto my-2 rounded"
+              />
+            )}
+          </div>
+
           {!imageUser && !dataForm.avatar_url && (
             <FaUserCircle
               className="d-block ms-auto me-auto my-2"
-              style={{ width: "20vw", height: "auto" }}
+              style={{
+                borderRadius: "14%",
+                margin: "20px",
+                filter:
+                  "drop-shadow(0px 54px 55px rgba(0, 0, 0, 0.25)) drop-shadow(0px -12px 30px rgba(0, 0, 0, 0.12)) drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.12)) drop-shadow(0px 12px 13px rgba(0, 0, 0, 0.17)) drop-shadow(0px -3px 5px rgba(0, 0, 0, 0.09))",
+                borderWidth: "2px",
+                borderStyle: "solid",
+                width: "20vw",
+                height: "auto",
+                borderImage:
+                  "radial-gradient(circle 588px at 31.7% 40.2%, rgba(225, 200, 239, 1) 21.4%, rgba(163, 225, 233, 1) 57.1%)",
+              }}
             />
           )}
 
@@ -279,214 +314,228 @@ const FormRecruiter = () => {
           >
             {(props) => (
               <Form onSubmit={props.handleSubmit} autoComplete="off">
-                <div className="row mb-4">
-                  <div className="col">
-                    <div className="form-outline bg-gray">
-                      <label
-                        className="form-label"
-                        htmlFor="form6Example1"
-                        style={{
-                          color: "#498BA6",
-                          fontFamily:
-                            "Poppins, sans-serif, Verdana, Geneva, Tahoma",
-                        }}
-                      >
-                        Nombre:
-                      </label>
-
-                      <Field
-                        type="text"
-                        id="name"
-                        name="name"
-                        placeholder="Nombre"
-                        className={`form-control ${
-                          props.touched.name && props.errors.name
-                            ? "border border-danger"
-                            : "border border-secondary"
-                        }`}
-                        value={props.values.name}
-                        onChange={props.handleChange}
-                        onBlur={props.handleBlur}
-                      />
-                      {props.touched.name && props.errors.name && (
-                        <span className="text-danger">{props.errors.name}</span>
-                      )}
-                    </div>
-                  </div>
-                  <div className="col">
-                    <div className="form-outline">
-                      <label
-                        className="form-label"
-                        htmlFor="form6Example1"
-                        style={{
-                          color: "#498BA6",
-                          fontFamily:
-                            "Poppins, sans-serif, Verdana, Geneva, Tahoma",
-                        }}
-                      >
-                        Apellido:
-                      </label>
-                      <Field
-                        type="text"
-                        id="last_name"
-                        placeholder="Apellido"
-                        name="last_name"
-                        className={`form-control ${
-                          props.touched.last_name && props.errors.last_name
-                            ? "border border-danger"
-                            : "border border-secondary"
-                        }`}
-                        value={props.values.last_name}
-                        onChange={props.handleChange}
-                        onBlur={props.handleBlur}
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="row mb-4">
-                  <div className="col">
-                    <div className="div-outline bg-gray">
-                      <label
-                        className="form-label"
-                        htmlFor="form6Example1"
-                        style={{
-                          color: "#498BA6",
-                          fontFamily:
-                            "Poppins, sans-serif, Verdana, Geneva, Tahoma",
-                        }}
-                      >
-                        Edad:
-                      </label>
-                      <Field
-                        type="text"
-                        id="age"
-                        placeholder="Edad"
-                        name="age"
-                        className={`form-control ${
-                          props.touched.age && props.errors.age
-                            ? "border border-danger"
-                            : "border border-secondary"
-                        }`}
-                        value={props.values.age}
-                        onChange={props.handleChange}
-                        onBlur={props.handleBlur}
-                      />
-                    </div>
-                  </div>
-                  <div className="col">
-                    <div className="form-outline">
-                      <label
-                        className="form-label"
-                        htmlFor="form6Example1"
-                        style={{
-                          color: "#498BA6",
-                          fontFamily:
-                            "Poppins, sans-serif, Verdana, Geneva, Tahoma",
-                        }}
-                      >
-                        Escolaridad:
-                      </label>
-                      <select
-                        className={`form-control ${
-                          props.touched.bachelor && props.errors.bachelor
-                            ? "border border-danger"
-                            : "border border-secondary"
-                        }`}
-                        name="bachelor"
-                        id="bachelor"
-                        value={props.values.bachelor}
-                        onChange={props.handleChange}
-                        onBlur={props.handleBlur}
-                      >
-                        <option>Selecciona</option>
-                        <option>Maestria</option>
-                        <option>Licenciatura</option>
-                        <option>Carrera Técnica</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-                <div className="row mb-4">
-                  <div className="col">
-                    <div className="form-outline bg-gray">
-                      <label
-                        className="form-label"
-                        htmlFor="form6Example1"
-                        style={{
-                          color: "#498BA6",
-                          fontFamily:
-                            "Poppins, sans-serif, Verdana, Geneva, Tahoma",
-                        }}
-                      >
-                        Email:
-                      </label>
-                      <input
-                        autoComplete="false"
-                        type="email"
-                        id="email"
-                        placeholder="Email"
-                        name="email"
-                        className={`form-control ${
-                          props.touched.email && props.errors.email
-                            ? "border border-danger"
-                            : "border border-secondary"
-                        }`}
-                        value={props.values.email}
-                        onChange={props.handleChange}
-                        onBlur={props.handleBlur}
-                      />
-                    </div>
-                  </div>
-                  <div className="col">
-                    <div className="form-outline">
-                      <label
-                        className="form-label"
-                        htmlFor="resetPasswordProfile"
-                        onClick={handleResetPassword}
-                        style={{
-                          color: "#498BA6",
-                          cursor: "pointer",
-                          fontFamily:
-                            "Poppins, sans-serif, Verdana, Geneva, Tahoma",
-                        }}
-                      >
-                        Reset Password:
-                      </label>
-                      <div className={isResetPassword ? "d-flex" : "d-none"}>
-                        <input
-                          type={showPassword ? "text" : "password"}
-                          id="resetPasswordProfile"
-                          autoComplete="new-password"
-                          placeholder={noPassword}
-                          name="resetPassword"
+                <div
+                  style={{
+                    background: "rgba(0, 189, 214, 0.18)",
+                    borderRadius: "16px",
+                    boxShadow:
+                      "rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset",
+                    backdropFilter: "blur(2px)",
+                    WebkitBackdropFilter: "blur(2px)",
+                    padding: "50px",
+                    marginBottom: "30px",
+                  }}
+                >
+                  <div className="row mb-4">
+                    <div className="col na">
+                      <div className="form-outline bg-gray">
+                        <label
+                          className="form-label"
+                          htmlFor="form6Example1"
+                          style={{
+                            color: "#498BA6",
+                            fontFamily:
+                              "Poppins, sans-serif, Verdana, Geneva, Tahoma",
+                          }}
+                        >
+                          Nombre:
+                        </label>
+                        <Field
+                          type="text"
+                          id="name"
+                          name="name"
+                          placeholder="Nombre"
                           className={`form-control ${
-                            props.touched.resetPassword &&
-                            props.errors.resetPassword
+                            props.touched.name && props.errors.name
                               ? "border border-danger"
                               : "border border-secondary"
                           }`}
-                          value={props.values.resetPassword}
+                          value={props.values.name}
                           onChange={props.handleChange}
                           onBlur={props.handleBlur}
                         />
-                        <span
-                          className="input-group-text "
-                          style={{
-                            color: "#f2f2f2",
-                            backgroundColor: "#0093E9",
-                            backgroundImage:
-                              "linear-gradient(160deg, #0093E9 0%, #80D0C7 100%)",
-                          }}
-                          onClick={() => setShowPassword(!showPassword)}
-                        >
-                          {showPassword ? (
-                            <FaEyeSlash style={{ width: "30px" }} />
-                          ) : (
-                            <FaEye style={{ width: "30px" }} />
-                          )}
-                        </span>
+                        {props.touched.name && props.errors.name && (
+                          <span className="text-danger">
+                            {props.errors.name}
+                          </span>
+                        )}
                       </div>
-                      <ErrorMessage name="resetPassword" />
+                    </div>
+                    <div className="col">
+                      <div className="form-outline la">
+                        <label
+                          className="form-label"
+                          htmlFor="form6Example1"
+                          style={{
+                            color: "#498BA6",
+                            fontFamily:
+                              "Poppins, sans-serif, Verdana, Geneva, Tahoma",
+                          }}
+                        >
+                          Apellido:
+                        </label>
+                        <Field
+                          type="text"
+                          id="last_name"
+                          placeholder="Apellido"
+                          name="last_name"
+                          className={`form-control ${
+                            props.touched.last_name && props.errors.last_name
+                              ? "border border-danger"
+                              : "border border-secondary"
+                          }`}
+                          value={props.values.last_name}
+                          onChange={props.handleChange}
+                          onBlur={props.handleBlur}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="row mb-4 eys">
+                    <div className="col">
+                      <div className="div-outline bg-gray">
+                        <label
+                          className="form-label"
+                          htmlFor="form6Example1"
+                          style={{
+                            color: "#498BA6",
+                            fontFamily:
+                              "Poppins, sans-serif, Verdana, Geneva, Tahoma",
+                          }}
+                        >
+                          Edad:
+                        </label>
+                        <Field
+                          type="text"
+                          id="age"
+                          placeholder="Edad"
+                          name="age"
+                          className={`form-control ${
+                            props.touched.age && props.errors.age
+                              ? "border border-danger"
+                              : "border border-secondary"
+                          }`}
+                          value={props.values.age}
+                          onChange={props.handleChange}
+                          onBlur={props.handleBlur}
+                        />
+                      </div>
+                    </div>
+                    <div className="col">
+                      <div className="form-outline">
+                        <label
+                          className="form-label"
+                          htmlFor="form6Example1"
+                          style={{
+                            color: "#498BA6",
+                            fontFamily:
+                              "Poppins, sans-serif, Verdana, Geneva, Tahoma",
+                          }}
+                        >
+                          Escolaridad:
+                        </label>
+                        <select
+                          className={`form-control ${
+                            props.touched.bachelor && props.errors.bachelor
+                              ? "border border-danger"
+                              : "border border-secondary"
+                          }`}
+                          name="bachelor"
+                          id="bachelor"
+                          value={props.values.bachelor}
+                          onChange={props.handleChange}
+                          onBlur={props.handleBlur}
+                        >
+                          <option>Selecciona</option>
+                          <option>Maestria</option>
+                          <option>Licenciatura</option>
+                          <option>Carrera Técnica</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="row mb-4">
+                    <div className="col">
+                      <div className="form-outline bg-gray e">
+                        <label
+                          className="form-label"
+                          htmlFor="form6Example1"
+                          style={{
+                            color: "#498BA6",
+                            fontFamily:
+                              "Poppins, sans-serif, Verdana, Geneva, Tahoma",
+                          }}
+                        >
+                          Email:
+                        </label>
+                        <input
+                          autoComplete="false"
+                          type="email"
+                          id="email"
+                          placeholder="Email"
+                          name="email"
+                          className={`form-control ${
+                            props.touched.email && props.errors.email
+                              ? "border border-danger"
+                              : "border border-secondary"
+                          }`}
+                          value={props.values.email}
+                          onChange={props.handleChange}
+                          onBlur={props.handleBlur}
+                        />
+                      </div>
+                    </div>
+                    <div className="col r">
+                      <div className="form-outline">
+                        <label
+                          className="form-label"
+                          htmlFor="resetPasswordProfile"
+                          onClick={handleResetPassword}
+                          style={{
+                            color: "#498BA6",
+                            cursor: "pointer",
+                            fontFamily:
+                              "Poppins, sans-serif, Verdana, Geneva, Tahoma",
+                          }}
+                        >
+                          Reset Password:
+                        </label>
+                        <div className={isResetPassword ? "d-flex" : "d-none"}>
+                          <input
+                            type={showPassword ? "text" : "password"}
+                            id="resetPasswordProfile"
+                            autoComplete="new-password"
+                            placeholder={noPassword}
+                            name="resetPassword"
+                            className={`form-control ${
+                              props.touched.resetPassword &&
+                              props.errors.resetPassword
+                                ? "border border-danger"
+                                : "border border-secondary"
+                            }`}
+                            value={props.values.resetPassword}
+                            onChange={props.handleChange}
+                            onBlur={props.handleBlur}
+                          />
+                          <span
+                            className="input-group-text "
+                            style={{
+                              color: "#f2f2f2",
+                              backgroundColor: "#0093E9",
+                              backgroundImage:
+                                "linear-gradient(160deg, #0093E9 0%, #80D0C7 100%)",
+                            }}
+                            onClick={() => setShowPassword(!showPassword)}
+                          >
+                            {showPassword ? (
+                              <FaEyeSlash style={{ width: "30px" }} />
+                            ) : (
+                              <FaEye style={{ width: "30px" }} />
+                            )}
+                          </span>
+                        </div>
+                        <ErrorMessage name="resetPassword" />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -523,7 +572,10 @@ const FormRecruiter = () => {
                     </div>
                   </div>
                 </div> */}
-                <TableExperience dataExperience={dataExperience} setDataExpirience={setDataExperience}/>
+                <TableExperience
+                  dataExperience={dataExperience}
+                  setDataExpirience={setDataExperience}
+                />
 
                 <TableSkillsCandidate setDataListSkills={setListSkills} />
 

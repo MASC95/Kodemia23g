@@ -354,7 +354,8 @@ try {
             className="btn btn-outline-danger"
             onClick={handleClose}
           >
-            Guardar Cambios y Cerrar Vacante
+            {/* Guardar Cambios y Cerrar Vacante */}
+            Cerrar Vacante
           </button>
           
         <button className="btn btn-info text-light" onClick={handleSave}>

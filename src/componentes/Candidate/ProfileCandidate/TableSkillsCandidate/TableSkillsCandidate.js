@@ -41,10 +41,10 @@ const TableSkillsCandidate = ({ setDataListSkills }) => {
   const fetchSkillsInUser = async () => {
     //recuperar los datos(skills) del candidato
     setLoadingSkillsInUser(true);
-    if (user_skills){
+    if (user_skills) {
       setDataSkillsInUser([...user_skills]);
-      console.log('dataCandidate:..',dataCandidate);
-    } 
+      console.log("dataCandidate:..", dataCandidate);
+    }
     //setTotalRowsSkillsInUser(user_skills.length);
     //console.log('Buscando Skilllsss',user_skills)
     setLoadingSkillsInUser(false);
@@ -130,7 +130,17 @@ const TableSkillsCandidate = ({ setDataListSkills }) => {
       });
   };
   return (
-    <div>
+    <div
+    /*       style={{
+        background: "rgba(0, 189, 214, 0.18)",
+        borderRadius: "16px",
+        boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+        backdropFilter: "blur(2px)",
+        WebkitBackdropFilter: "blur(2px)",
+        padding: "50px",
+      }}
+ */
+    >
       <GeneralTableSkills
         generalSkills={dataGeneralSkills}
         handlePageChangeGeneralSkills={handlePageChangeGeneralSkills}

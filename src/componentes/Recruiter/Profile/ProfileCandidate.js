@@ -9,13 +9,15 @@ import DataTable from "react-data-table-component";
 import DataTableExtensions from "react-data-table-component-extensions";
 import Swal from "sweetalert2";
 import "./scss/style.scss";
+
 import { useNavigate } from "react-router-dom";
+import Table from "react-bootstrap/Table";
 export const Candidate = () => {
   const valores = window.location.search;
   const urlParams = new URLSearchParams(valores);
   const idCandidate = urlParams.get("c");
-  const idVacancy= urlParams.get("v")
-  const navigate =useNavigate()
+  const idVacancy = urlParams.get("v");
+  const navigate = useNavigate();
   const [
     dataCandidate,
     setDataCandidate,
@@ -25,66 +27,74 @@ export const Candidate = () => {
     setDataLocalStorage,
   ] = useJob();
 
+  const style={
+    color: "#498BA6",
+    fontFamily:
+      "Poppins, sans-serif, Verdana, Geneva, Tahoma",
+  }
+
   console.log(idCandidate);
   const [dataSkill, setDataSkill] = useState([]);
   const [infoCandidate, setInfoCandidate] = useState({});
-  const [isDisable, setIsDisable]=useState(false)
-  const [isHidePanel, setIsHidePanel]=useState(false)
+  const [isDisable, setIsDisable] = useState(false);
+  const [isHidePanel, setIsHidePanel] = useState(false);
   const queryByUsers = async () => {
     try {
-      const response = await axios.get(`${endpointsGral.userURL}getUser/${idCandidate}`);
-      console.log('response:...',response);
+      const response = await axios.get(
+        `${endpointsGral.userURL}getUser/${idCandidate}`
+      );
+      console.log("response:...", response);
       const dataUser = response?.data;
       const objUser = dataUser?.user;
       /* console.log('objUsers:...',objUsers);
       console.log('idCandidate:..',idCandidate);
       const userFind = objUsers.find((value) => value._id === idCandidate); */
-      if(objUser) setInfoCandidate(objUser);
+      if (objUser) setInfoCandidate(objUser);
     } catch (error) {
       console.log(error);
     }
   };
 
-  console.log('my vacancies',infoCandidate.my_vacancies)
+  console.log("my vacancies", infoCandidate.my_vacancies);
 
   useEffect(() => {
     queryByUsers();
-    
   }, []);
 
-  const fetchSkill =  () => {
-    if(infoCandidate?.user_skills){
+  const fetchSkill = () => {
+    if (infoCandidate?.user_skills) {
       setDataSkill([...infoCandidate?.user_skills]);
     }
   };
 
   const queryPhase = async () => {
-
-    const phases= ['Llamada','Entrevista','Pruebas','Contratado'];
-    let tempData=[];
+    const phases = ["Llamada", "Entrevista", "Pruebas", "Contratado"];
+    let tempData = [];
     for (const phase of phases) {
       const endpointPhase = `${endpointsGral.phaseUrlGetPhase}?phase=${phase}`;
       try {
         const response = await axios.get(endpointPhase);
         console.log("Phase One, backend", response);
         const result = response?.data?.infoPhase?.vacancies;
-  
+
         const dataInformationVacancy = result.find(
           (item) => String(item.idVacancie) === idVacancy
         );
-        console.log(`dataInformationVacancy:..${phase}`, dataInformationVacancy);
-        tempData=[...tempData,...dataInformationVacancy?.applicants];
-        
+        console.log(
+          `dataInformationVacancy:..${phase}`,
+          dataInformationVacancy
+        );
+        tempData = [...tempData, ...dataInformationVacancy?.applicants];
       } catch (error) {
         console.log(error);
-      }  
+      }
     }
-    console.log('todos los applicantes en las 4 fases:..',tempData);
+    console.log("todos los applicantes en las 4 fases:..", tempData);
   };
 
-  const handleOfPanel=(id)=>{
-    console.log(id)
-    console.log(idVacancy)
+  const handleOfPanel = (id) => {
+    console.log(id);
+    console.log(idVacancy);
     Swal.fire({
       title: "Panel de reclutamiento",
       text: "Estas seguro de agregar al candidato?!",
@@ -95,31 +105,30 @@ export const Candidate = () => {
       confirmButtonText: "Si, agregar!",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        
-          try {
-            axios.defaults.headers.common[
-              "Authorization"
-            ] = `Bearer: ${dataRecruiter.accessToken}`;
-            const response = await axios.patch(
-              `${endpointsGral.phaseURL}?phase=Llamada&idVacancie=${idVacancy}&idCandidate=${id}`
-            );
-            console.log("responseBackend (candidato Agregado):..", response);
-            if (response) {
-              queryPhase();
-            }
-          } catch (error) {
-            console.log(error);
+        try {
+          axios.defaults.headers.common[
+            "Authorization"
+          ] = `Bearer: ${dataRecruiter.accessToken}`;
+          const response = await axios.patch(
+            `${endpointsGral.phaseURL}?phase=Llamada&idVacancie=${idVacancy}&idCandidate=${id}`
+          );
+          console.log("responseBackend (candidato Agregado):..", response);
+          if (response) {
+            queryPhase();
           }
+        } catch (error) {
+          console.log(error);
         }
-        // console.log('lista de usuarios para reclutamiento',tempDataUser)
-        navigate(`/Dashboard-Recruiter/details-match/?=${idVacancy}`)
-        setIsDisable(true)
-        
-        // setButtonState("btn-outline-secondary")
-    });
-  }
+      }
+      // console.log('lista de usuarios para reclutamiento',tempDataUser)
+      navigate(`/Dashboard-Recruiter/details-match/?=${idVacancy}`);
+      setIsDisable(true);
 
-  const handleOfHidePanel=(email)=>{
+      // setButtonState("btn-outline-secondary")
+    });
+  };
+
+  const handleOfHidePanel = (email) => {
     console.log("En el papa(index):", email);
     Swal.fire({
       title: "Ocultar candidato",
@@ -131,33 +140,29 @@ export const Candidate = () => {
       confirmButtonText: "Si, ocultar!",
     }).then(async (result) => {
       if (result.isConfirmed) {
-          try {
-            axios.defaults.headers.common[
-              "Authorization"
-            ] = `Bearer: ${dataRecruiter.accessToken}`;
-            console.log(
-              "dataRecruiter.accessToken ",
-              dataRecruiter.accessToken
-            );
-            const responseBack = await axios.post(
-              `${endpointsGral.hideUserInVacancy}`,
-              { idVacancy, idCandidate: idCandidate, emailUser: email }
-            );
-            console.log("responseBack HideUser:..", responseBack);
-          } catch (error) {
-            console.log(error);
-          }
-          setIsHidePanel(true)
-          navigate(`/Dashboard-Recruiter/details-match/?=${idVacancy}`)
-        } else {
-          console.log("error al ocultar");
+        try {
+          axios.defaults.headers.common[
+            "Authorization"
+          ] = `Bearer: ${dataRecruiter.accessToken}`;
+          console.log("dataRecruiter.accessToken ", dataRecruiter.accessToken);
+          const responseBack = await axios.post(
+            `${endpointsGral.hideUserInVacancy}`,
+            { idVacancy, idCandidate: idCandidate, emailUser: email }
+          );
+          console.log("responseBack HideUser:..", responseBack);
+        } catch (error) {
+          console.log(error);
         }
-      
+        setIsHidePanel(true);
+        navigate(`/Dashboard-Recruiter/details-match/?=${idVacancy}`);
+      } else {
+        console.log("error al ocultar");
+      }
     });
-  }
+  };
 
   useEffect(() => {
-    console.log('infoCandidate:...',infoCandidate);
+    console.log("infoCandidate:...", infoCandidate);
     fetchSkill();
   }, [infoCandidate]);
 
@@ -231,10 +236,10 @@ export const Candidate = () => {
                 alt="avatarImg"
                 className="d-block ms-auto me-auto my-2 rounded"
               />
-              <div className="">
+              <div className="row">
                 <p className="text-center text-dark">{`${infoCandidate.name} ${infoCandidate.last_name}`}</p>
                 <p className="text-center text-dark">
-                  <FaMailBulk /> {infoCandidate.email}
+                   {infoCandidate.email}
                 </p>
               </div>
               <div className="buttons_actions d-flex justify-content-center gap-3">
@@ -242,28 +247,29 @@ export const Candidate = () => {
                   type="button"
                   className="buttons btn btn-outline-success"
                   disabled={isDisable}
-                  onClick={handleOfPanel.bind(this,infoCandidate._id)}
-                 >
-                  <FaCheck className="icon_check"/>
+                  onClick={handleOfPanel.bind(this, infoCandidate._id)}
+                >
+                  <FaCheck className="icon_check" />
                 </button>
                 <button
                   type="button"
                   disabled={isHidePanel}
                   className="buttons btn btn-outline-secondary"
-                   onClick={handleOfHidePanel.bind(this,infoCandidate.email)}
+                  onClick={handleOfHidePanel.bind(this, infoCandidate.email)}
                 >
-                  <FaEyeSlash className="icon_eyeSlash"/>
+                  <FaEyeSlash className="icon_eyeSlash" />
                 </button>
               </div>
             </div>
             <div className="col-12 col-md-8 px-5">
               <div className="row mb-4">
-                <h2 className="text-start text-dark">Información General</h2>
+                {/* <h2 className="text-start text-dark">Información General</h2> */}
                 <div className="col">
                   <div className="form-outline bg-gray">
                     <label
-                      className="form-label text-start text-dark"
+                      className="form-label text-start"
                       for="form6Example1"
+                      style={style}
                     >
                       Nombre
                     </label>
@@ -273,8 +279,9 @@ export const Candidate = () => {
                 <div className="col">
                   <div className="form-outline">
                     <label
-                      className="form-label text-start text-dark"
+                      className="form-label text-start"
                       for="form6Example1"
+                      style={style}
                     >
                       Apellido
                     </label>
@@ -284,8 +291,9 @@ export const Candidate = () => {
                 <div className="col">
                   <div className="form-outline">
                     <label
-                      className="form-label text-start text-dark"
+                      className="form-label text-start"
                       for="form6Example1"
+                      style={style}
                     >
                       Edad
                     </label>
@@ -299,13 +307,31 @@ export const Candidate = () => {
                     <label className="form-label text-dark" for="form6Example1">
                       Experiencia
                     </label>
-                    <p className="text-dark">
+                    {/* <p className="text-dark">
                       {infoCandidate.working_experience}
-                    </p>
+                    </p> */}
+                     <Table striped bordered hover>
+                      <thead>
+                        <tr style={{borderRadius:'200px'}}>
+                          <th style={{backgroundColor:'#7FADC0', borderRadius:'10px 0px 0px 0px'}}>Puesto</th>
+                          <th style={{backgroundColor:'#7FADC0', borderRadius:'0px 10px 0px 0px'}}>Descripción</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {infoCandidate.working_experience?.map((item, index) => {
+                          return (
+                            <tr key={myId()}>
+                              <td>{item.position}</td>
+                              <td>{item.description}</td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </Table>
                   </div>
                 </div>
               </div>
-              <h3 className="text-dark">Lista de skills agregadas</h3>
+              {/* <h3 className="text-dark">Lista de skills agregadas</h3> */}
               <div className="col">
                 <div className="main">
                   <DataTableExtensions
@@ -318,7 +344,7 @@ export const Candidate = () => {
                       key={myId()}
                       columns={columns}
                       data={data}
-                      noHeader
+                      title='Lista de skills agregadas'
                       defaultSortField="#"
                       defaultSortAsc={true}
                       pagination

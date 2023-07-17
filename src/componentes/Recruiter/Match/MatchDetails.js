@@ -90,7 +90,6 @@ export const MatchDetails = () => {
         );
         console.log(`dataInformationVacancy:..${phase}`, dataInformationVacancy);
         tempData=[...tempData,...dataInformationVacancy?.applicants];
-        
       } catch (error) {
         console.log(error);
       }  

@@ -10,6 +10,7 @@ import useJob from "../../../hooks/useJob";
 import Swal from "sweetalert2";
 import ListVacancies from "./ListVacancies";
 import { useMediaQuery } from "react-responsive";
+import Footer from "../../Landing/Footer/Footer";
 export const Vacancy = () => {
   const [
     dataCandidate,
@@ -28,16 +29,21 @@ export const Vacancy = () => {
 
   const fetch = async (page, newPerPage) => {
     setLoading(true);
+    axios.defaults.headers.common[
+      "Authorization"
+    ] = `Bearer: ${dataRecruiter.accessToken}`;
     const allVacancies = await axios.get(
-      `${endpointsGral.vacancyURL}?page=${page}&limit=${newPerPage}`
+      `${endpointsGral.vacancyURL}getAllJobVacancyByUser/${dataRecruiter.accessToken}?page=${page}&limit=${newPerPage}`
     );
     const datas = allVacancies.data["item"];
-    console.log("backend Response:..", datas);
+    // console.log("backend Response:..", datas);
     setVacancyAll(datas["docs"]);
-    console.log("PAGINATION", datas["totalDocs"]);
+    // console.log("PAGINATION", datas["totalDocs"]);
     setTotalRows(datas["totalDocs"]);
     setLoading(false);
   };
+
+  
   useEffect(() => {
     fetch(1, 10);
   }, []);
@@ -126,7 +132,7 @@ export const Vacancy = () => {
         className="row container_form_ForVacancy  m-3 p-3"
         style={{ fontFamily: "Poppins, sans-serif, Verdana, Geneva, Tahoma" }}
       >
-        <div className="d-flex justify-content-center align-items-center">
+        <div className="d-flex">
           <h1
             className="text-start mt-3 "
             style={{
@@ -139,22 +145,21 @@ export const Vacancy = () => {
             Vacantes
           </h1>
         </div>
-        <div
-          className={`tu-clase ${
-            isMobile ? "d-flex justify-content-center align-items-center" : ""
-          }`}
-        >
-          <Link
-            to={`/Dashboard-Recruiter/vacancy-new`}
-            className="text-decoration-none d-sm-block p-3"
+          <div
+            className={`tu-clase ${
+              isMobile ? "d-flex justify-content-center align-items-center" : ""
+            }`}
           >
-            <Button2 text="Crear Vacante" paddingB="10px" fs="14px" />
-          </Link>
-        </div>
-        <div className="content-principal"></div>
+            <Link
+              to={`/Dashboard-Recruiter/vacancy-new`}
+              className="text-decoration-none d-sm-block p-2"
+            >
+              <Button2 text="Crear Vacante" paddingB="10px" fs="14px" />
+            </Link>
+          </div>
         {/* </div> */}
         {/* <div className='card-body'> */}
-        <div className="row softskills">
+        <div className="row softskills" style={{ marginBottom: "100px" }}>
           <div className="col">
             <ListVacancies
               vacancyAll={vacancyAll}
@@ -171,6 +176,7 @@ export const Vacancy = () => {
         {/* <ListVacancy postdata={vacancyAll}/>
               <Outlet/> */}
       </div>
+      <Footer />
     </>
   );
 };

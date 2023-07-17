@@ -108,8 +108,8 @@ export const Softskills = ({ setListSkills, isCandidate, skillsCandidate }) => {
   return (
   <>
     <div className="row softskills-tableEdit ">
-    <div className="col">
-        <div className="row d-flex"> 
+    <div className="col-12 mb-3">
+        <div className="row d-flex justify-content-around"> 
           <label
             className="form-label d-block"
             htmlFor="form6Example1"
@@ -141,13 +141,13 @@ export const Softskills = ({ setListSkills, isCandidate, skillsCandidate }) => {
             </select>
           </div>
           </div>
-            <div className="col-2 buttons_actions">
+            <div className="col-2 ">
             <button
               type="button"
               onClick={isCandidate ? onFormSubmitCandidate : onFormSubmit}
               className="buttons btn btn-info text-light"
             >
-              <FaPlus> Agregar </FaPlus>
+              <FaPlus/>
             </button>
           </div>
 

@@ -30,6 +30,7 @@ const SkillsCandidate = ({
           borderRadius: "15px 15px 0px 0px",
           marginBottom: "0px",
           fontFamily: "Poppins, sans-serif, Verdana, Geneva, Tahoma",
+          marginTop: "30px",
         }}
       >
         <FaCode style={{ marginRight: "10px" }} />

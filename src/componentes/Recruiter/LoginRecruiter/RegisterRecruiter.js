@@ -205,6 +205,7 @@ export const RegisterRecruiter = () => {
                   <img src={logo} alt="" />
                 </Link>
                 <h2 className="text-center">Crear cuenta</h2>
+                <span>para empresa</span>
                 <Formik
                   initialValues={dataForm}
                   enableReinitialize={true}

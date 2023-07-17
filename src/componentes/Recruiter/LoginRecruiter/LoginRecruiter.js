@@ -96,7 +96,7 @@ export const LoginRecruiter=()=>{
                     <Link to={'/'} className="logo_Jobinder">
                         <img src={logo} alt=""/>
                     </Link>
-                    <h2 className="text-center text-dark">Bienvenido</h2>
+                    <h2 className="text-center text-dark">Bienvenido Reclutador</h2>
                     <Formik
                         initialValues={dataForm}
                         enableReinitialize={true}

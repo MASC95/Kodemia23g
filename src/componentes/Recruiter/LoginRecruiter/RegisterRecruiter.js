@@ -137,7 +137,7 @@ export const RegisterRecruiter = () => {
   const handleSubmit = async (values) => {
     console.log("values from formik", values);
     // console.log('aqui debe haber datos', values)
-    const dataRepet =searchUserInDB(values.email);
+    const dataRepet = await searchUserInDB(values.email);
     
     /* = isInformationUser.some(
       (item) => item.email === values.email

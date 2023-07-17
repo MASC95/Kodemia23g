@@ -79,7 +79,16 @@ const NavbarCandidate = () => {
   };
   const placement = "bottom";
   const [showDropdown, setShowDropdown] = useState(false);
+  const [onSuccessImg, setOnSuccessImg] = useState(false);
 
+  const goHome= ()=>{
+    
+    if(onSuccessImg===true)
+      navigate('/')
+
+      //setOnSuccessImg(false);
+    
+  }
   const handleDropdownToggle = () => {
     console.log("Muestrame el DropDown:...");
     setShowDropdown((prev) => !prev);
@@ -158,6 +167,9 @@ const NavbarCandidate = () => {
             <div>
               <ImageProfile
                 src={imgUserUrl}
+                onSuccessImg={onSuccessImg}
+                setOnSuccessImg={setOnSuccessImg}
+                goHome={goHome}
                 placeholderSrc={tempImgUser}
                 handleDropdownToggle={handleDropdownToggle}
               />

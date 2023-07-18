@@ -12,6 +12,8 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
 
+const expEmail=/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
 
 const initData = {
   email: "",
@@ -26,16 +28,25 @@ const UpdatePassword = () => {
   const [accessCode, setAccessCode] = useState(null);
   const [isConfirmCode, setIsConfirmCode] = useState(false);
   const [dataFormUpdate, setDataFormUpdate] = useState(initData);
+  const [isValidEmail, setIsValidEmail] = useState(false);
+  const [isValidUserCode, setIsValidUserCode] = useState(false);
+  const [erroUserCode, setErroUserCode] = useState(false);
   const navigate=useNavigate();
 
   useEffect(() => {
     if (email !== "none") {
       console.log("Email USER:..", email);
+      validateEmail(email);
       
-      enviarCodigo(email);
     }
   }, []);
 
+  const validateEmail = (emailUser)=>{
+    const resultValidate= expEmail.test(emailUser);
+    setIsValidEmail(resultValidate);
+    console.log('resultVAlidateEmail:..',String(resultValidate));
+    return resultValidate
+  }
 
   useEffect(() => {
     if(accessCode!==''){
@@ -63,6 +74,46 @@ const UpdatePassword = () => {
         })
     }
   },[email])
+
+  useEffect(()=>{
+    validateEmail(dataFormUpdate.email)
+  },[dataFormUpdate.email])
+
+  useEffect(()=>{
+     validateUserCode(dataFormUpdate.userCode);
+     if(isValidUserCode&&(dataFormUpdate.userCode!==dataFormUpdate.accessCode)){
+       setErroUserCode(true)
+     }
+     if(dataFormUpdate.userCode===dataFormUpdate.accessCode){
+      setErroUserCode(false)
+     }
+  },[dataFormUpdate.userCode])
+
+  const validateUserCode = (code)=>{
+    
+    if (code.length>6){
+      setIsValidUserCode(false)
+      return
+    }
+    if(!isNaN(parseInt(code,10))){
+      setIsValidUserCode(false)
+      return
+    }
+    setIsValidUserCode(true)
+    return
+  }
+
+  const searchEmailInDB = async(emailUser)=>{
+    const {userURL}=endpointsGral;
+    try {
+      const response = await axios.get(`${userURL}getUserByEmail?email=${emailUser}`);
+      const isFoundUser= response?.data?.user?.email
+      console.log('resultado de busqueda de usuario:..',isFoundUser);
+      return isFoundUser
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
 
   const enviarCodigo = async (emailUser) => {
@@ -109,6 +160,14 @@ const UpdatePassword = () => {
                 navigate('/login-candidato')
               )
               
+            }else{
+              Swal.fire(
+                'Error!',
+                'Email no encotrado!',
+                'error'
+              ).then(
+                navigate('/login-candidato')
+              )
             }
             
         } catch (error) {
@@ -120,13 +179,25 @@ const UpdatePassword = () => {
   };
 
   const handleSendCode = async()=>{
-    console.log('enviando AccessCode:..');
-    try {
-      if(dataFormUpdate?.email!==''){
-        await enviarCodigo(dataFormUpdate?.email)
+    
+    if(!isValidEmail) return
 
+    
+
+    try {
+      const resultSearch= await searchEmailInDB(dataFormUpdate?.email);
+      if(resultSearch){
+        console.log('enviando AccessCode:..');
+        await enviarCodigo(dataFormUpdate?.email)
+      }else{
+        Swal.fire(
+          'Error!',
+          'Email no encotrado!',
+          'error'
+        ).then(
+          navigate('/')
+        )
       }
-      
     } catch (error) {
       console.log(error)
     }
@@ -138,7 +209,7 @@ const UpdatePassword = () => {
       {/* <NavbarCandidate /> */}
       <h2>Actualizando Contraseña</h2>
       <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Group className={accessCode?"d-none":"mb-3"} controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control
             type="email"
@@ -146,19 +217,21 @@ const UpdatePassword = () => {
             name="email"
             value={dataFormUpdate.email}
             onChange={handleChange}
+            
           />
         </Form.Group>
+        {!isValidEmail&&<Form.Text className="text-danger">Ingresar un email valido</Form.Text>}
 
-        {email==='none'&&!accessCode&&
-        <div>
-           <Form.Label className="d-block">
+        
+        <div className={accessCode?"d-none":""}>
+           <Form.Label className={isValidEmail?"d-block":"d-none"}>
               Se te enviara un codigo a tu email.
             </Form.Label>
-            <Button type="button" onClick={handleSendCode} >
+            <Button type="button" onClick={handleSendCode} disabled={!isValidEmail} >
               Enviar Codigo
             </Button>
         </div>
-        }
+        
 
         {accessCode &&!isConfirmCode&& (
             <>
@@ -174,6 +247,10 @@ const UpdatePassword = () => {
               onChange={handleChange}
             />
           </Form.Group>
+          {erroUserCode&&
+          <Form.Text className="text-danger d-block">Error en el codigo de acceso</Form.Text>
+          }
+          
           
         </>
         )}

@@ -1,12 +1,12 @@
 import React from "react";
 import { FaBars } from "react-icons/fa";
-import SidebarCandidate from "../SidebarCandidate/SidebarCandidate";
+
 import imgProfile from "../../Recruiter/assets/img/perfil2.jpg";
 import ListMyAppVacancy from "./ListMyAppVacancy";
 //import ResponsiveTable from "./ResponsiveTable";
 import VerticalListVacancy from "./VerticalListVacancy";
 import Example from "./Example";
-import Footer from "../../Landing/Footer/Footer";
+
 //muestra mis vacantes
 export const AppVacancyCandidate = () => {
   return (
@@ -24,8 +24,14 @@ export const AppVacancyCandidate = () => {
           Vacantes aplicadas
         </h1>
 
-        <ListMyAppVacancy />
-        <Footer />
+        <ListMyAppVacancy
+        /*  handlePageChange={handlePageChange}
+          handlePerRowsChange={handlePerRowsChange}
+          totalRows={totalRows}
+          loading={loading}
+          currentPage={currentPage} */
+        />
+
         {/* <VerticalListVacancy/> */}
       </div>
     </>

@@ -41,7 +41,8 @@ const style = {
   borderWidth: "2px",
   borderStyle: "solid",
   width: "20vw",
-  height: "auto",
+  maxHeight: "300px",
+  objectFit: "cover",
   borderImage:
     "radial-gradient(circle 588px at 31.7% 40.2%, rgba(225, 200, 239, 1) 21.4%, rgba(163, 225, 233, 1) 57.1%)",
 };
@@ -238,27 +239,14 @@ const FormRecruiter = () => {
             color: "#498BA6",
             textShadow:
               "0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px rgba(60, 64, 67, 0.15)",
-            fontFamily: "Poppins, sans-serif, Verdana, Geneva, Tahoma",
+            fontFamily: "Poppins, sans-serif, Verdana, Geneva,Tahoma",
           }}
         >
           Perfil
         </h1>
       </div>
       <div className="row">
-        <div
-          className="col-12 col-md-4"
-          style={{
-            background: "rgba(0, 189, 214, 0.18)",
-            borderRadius: "16px",
-            boxShadow:
-              "rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset",
-            backdropFilter: "blur(2px)",
-            WebkitBackdropFilter: "blur(2px)",
-            padding: "50px",
-            marginBottom: "30px",
-            height: "50%",
-          }}
-        >
+        <div className="col-12 col-md-4">
           <div>
             {dataForm.avatar_url && !imageUser && (
               <img
@@ -324,9 +312,10 @@ const FormRecruiter = () => {
                     WebkitBackdropFilter: "blur(2px)",
                     padding: "50px",
                     marginBottom: "30px",
+                    marginTop: "30px",
                   }}
                 >
-                  <div className="row mb-4">
+                  <div className="row mb-4 mt-3">
                     <div className="col na">
                       <div className="form-outline bg-gray">
                         <label

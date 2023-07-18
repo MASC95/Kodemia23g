@@ -5,7 +5,7 @@ import "react-data-table-component-extensions/dist/index.css";
 import { Link } from "react-router-dom";
 import { myId } from "../../lib/myLib";
 import useJob from "../../../hooks/useJob";
-import Footer from "../../Landing/Footer/Footer";
+//import Footer from "../../Landing/Footer/Footer";
 
 const HorizonTable = ({
   vacancies,
@@ -22,8 +22,11 @@ const HorizonTable = ({
   const [tempArrayVancies, setTempArrayVancies] = useState([]);
   const [dataCandidate] = useJob();
   useEffect(() => {
+    console.log("Nuevo valor de limit(Hijo):..", perPage);
+  }, [perPage]);
+  useEffect(() => {
     initDataMyVacancies();
-    console.log("vancacies:...", vacancies);
+    //console.log("vancacies:...", vacancies);
   }, []);
 
   function parseJwt(token) {
@@ -51,7 +54,7 @@ const HorizonTable = ({
     setTempArrayVancies([...innerArray]);
   };
 
-  const data = tempArrayVancies?.map((item, index) => ({
+  const data = vacancies?.map((item, index) => ({
     ...item,
     id: myId(),
     _id: item._id,
@@ -68,11 +71,6 @@ const HorizonTable = ({
       selector: (row) => row._id,
       sortable: true,
       omit: true,
-    },
-    {
-      name: "#",
-      selector: (row, index) => index + 1,
-      sortable: true,
     },
     {
       name: "TÍTULO ",
@@ -167,11 +165,13 @@ const HorizonTable = ({
             key={myId()}
             columns={columns}
             data={data}
-            noHeader
-            defaultSortField="#"
-            defaultSortAsc={true}
+            /*    noHeader
+            defaultSortField="#" 
+            defaultSortAsc={true} */
+            progressPending={loading}
             pagination
             paginationServer
+            paginationPerPage={perPage}
             paginationTotalRows={totalRows}
             paginationDefaultPage={currentPage}
             onChangeRowsPerPage={handlePerRowsChange}
@@ -181,7 +181,6 @@ const HorizonTable = ({
           />
         </DataTableExtensions>
       </div>
-      <Footer />
     </>
   );
 };

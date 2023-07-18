@@ -1,41 +1,42 @@
 //LOGINRECRUITER
 
-@media (min-width:1001x)  and (max-width:1500px) {
+@media (min-width: 1001x) and (max-width: 1500px) {
+  //REGISTER
 
-//REGISTER
-    
-.account {
-    .buttons_actions{
-        margin-top: 20PX;
-        margin-bottom: 20PX;
-        .btn{
-            color: #ffffff;
-            background-color: #498BA6;
-        }
+  .account {
+    .buttons_actions {
+      margin-top: 20px;
+      margin-bottom: 20px;
+      .btn {
+        color: #ffffff;
+        background-color: #498ba6;
+      }
     }
     .block {
       background-color: #ffffff;
-      box-shadow: 0 16px 24px rgba(0,0,0,.08);
-      padding:30px;
-      margin:100px 0;
-      .logo_Jobinder img{
+      box-shadow: 0 16px 24px rgba(0, 0, 0, 0.08);
+      padding: 30px;
+      margin: 100px 0;
+      .logo_Jobinder img {
         width: 200px;
         height: 80px;
       }
       .welcome-back {
-        font-weight:600;
+        font-weight: 600;
         font-size: 30px;
         margin-top: 40px;
       }
       form {
         margin-top: 50px;
-        input[type="email"],input[type="password"],input[type="text"],select{
-          border-radius:0;
-          box-shadow:none;
-          height:50px;
+        input[type="email"],
+        input[type="password"],
+        input[type="text"],
+        select {
+          border-radius: 0;
+          box-shadow: none;
+          height: 50px;
         }
       }
     }
   }
-  
 }

@@ -71,7 +71,10 @@ const Footer = () => {
               style={{ fontSize: "15px", textDecoration: "none" }}
             >
               <li className="text-footer col-sm-12  col-md-4 col-lg-4 col-xl-4 mb-3 mt-2 w-30">
-                <Link style={ { color:'inherit', textDecoration: "none"} } to="/TerminosyCondiciones">
+                <Link
+                  style={{ color: "inherit", textDecoration: "none" }}
+                  to="/TerminosyCondiciones"
+                >
                   {" "}
                   <FaBookReader
                     className="mx-4 "
@@ -81,7 +84,10 @@ const Footer = () => {
                 </Link>
               </li>
               <li className="text-footer col-sm-12  col-md-4 col-lg-4 col-xl-4 mb-3 mt-2 w-30">
-                <Link style={ { color:'inherit', textDecoration: "none"} } to="/PoliticaPrivacidad">
+                <Link
+                  style={{ color: "inherit", textDecoration: "none" }}
+                  to="/PoliticaPrivacidad"
+                >
                   <FaShieldAlt
                     className="mx-4"
                     style={{ width: "30px", height: "30px" }}
@@ -91,7 +97,12 @@ const Footer = () => {
               </li>
 
               <li className="text-footer col-sm-12  col-md-4 col-lg-4 col-xl-4 mb-3 mt-2 w-30">
-                <a style={ { color:'inherit', textDecoration: "none"} } href="tel: 800 212 0022" className="text-decoration-none">
+                <a
+                  style={{ color: "inherit", textDecoration: "none" }}
+                  href="https://api.whatsapp.com/send?phone=+34613288116&text=%C2%A1Hola%21%20Estoy%20interesado%20en%20la%20%app%20Jobinder.
+                  "
+                  className="text-decoration-none"
+                >
                   {" "}
                   <FaWhatsapp
                     className="mx-4"
@@ -101,7 +112,10 @@ const Footer = () => {
                 </a>
               </li>
               <li className="text-footer col-sm-12  col-md-4 col-lg-4 col-xl-4 mb-3 mt-2 w-30">
-                <a style={ { color:'inherit', textDecoration: "none"} } href="https://www.google.com/maps/place/Kodemia/@19.3958417,-99.1851738,15z/data=!4m6!3m5!1s0x85d1ff670e8593a7:0x412eb750f0bf970c!8m2!3d19.3958417!4d-99.1851738!16s%2Fg%2F11gxmv_zgw?entry=ttu">
+                <a
+                  style={{ color: "inherit", textDecoration: "none" }}
+                  href="https://www.google.com/maps/place/Kodemia/@19.3958417,-99.1851738,15z/data=!4m6!3m5!1s0x85d1ff670e8593a7:0x412eb750f0bf970c!8m2!3d19.3958417!4d-99.1851738!16s%2Fg%2F11gxmv_zgw?entry=ttu"
+                >
                   {" "}
                   <FaMapMarked
                     className="mx-4 "
@@ -111,7 +125,10 @@ const Footer = () => {
                 </a>
               </li>
               <li className="d-none text-footer col-sm-12  col-md-4 col-lg-4 col-xl-4 mb-3 mt-2 w-30">
-                <Link style={ { color:'inherit', textDecoration: "none"} } to="/FAQSection">
+                <Link
+                  style={{ color: "inherit", textDecoration: "none" }}
+                  to="/FAQSection"
+                >
                   <FaQuestion
                     className="mx-4"
                     style={{ width: "30px", height: "30px" }}
@@ -120,7 +137,10 @@ const Footer = () => {
                 </Link>
               </li>
               <li className="text-footer col-sm-12  col-md-4 col-lg-4 col-xl-4 mb-3 mt-2 w-30">
-                <Link style={ { color:'inherit', textDecoration: "none"} } to="/About">
+                <Link
+                  style={{ color: "inherit", textDecoration: "none" }}
+                  to="/About"
+                >
                   <FaInfo
                     className="mx-4"
                     style={{

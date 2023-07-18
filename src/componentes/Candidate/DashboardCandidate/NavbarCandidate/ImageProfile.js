@@ -1,13 +1,21 @@
 import { Tooltip } from "react-bootstrap";
 import React, { useEffect, useState } from "react";
 import ToastImageUser from "./ToastImageUser";
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
-const ImageProfile = ({ placeholderSrc,handleDropdownToggle,goHome,onSuccessImg,setOnSuccessImg, src, ...props }) => {
+const ImageProfile = ({
+  placeholderSrc,
+  handleDropdownToggle,
+  goHome,
+  onSuccessImg,
+  setOnSuccessImg,
+  src,
+  ...props
+}) => {
   const [imgSrc, setImgSrc] = useState(placeholderSrc || src);
   const [onErrorImg, setOnErrorImg] = useState(false);
-  
-  const navigate=useNavigate();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const img = new Image();
@@ -25,10 +33,6 @@ const ImageProfile = ({ placeholderSrc,handleDropdownToggle,goHome,onSuccessImg,
     };
   }, [src]);
 
-  
-
-
-
   return (
     <div className="d-flex flex-column">
       <img
@@ -37,8 +41,7 @@ const ImageProfile = ({ placeholderSrc,handleDropdownToggle,goHome,onSuccessImg,
         onClick={handleDropdownToggle}
         className="candidate-profile-pic"
       />
-      {onErrorImg&&<ToastImageUser/>}
-     
+      {onErrorImg && <ToastImageUser />}
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaHome } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
@@ -18,6 +18,13 @@ const About = () => {
     }, 3000);
   };
 
+  function scrollToTop() {
+    window.scrollTo(0, 0);
+  }
+
+  useEffect(() => {
+    scrollToTop();
+  }, []);
   const iconStyle = {
     width: "5vw",
     height: "5vh",

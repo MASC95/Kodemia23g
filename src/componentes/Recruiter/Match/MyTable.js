@@ -110,8 +110,8 @@ const MyTable = ({
       name: "#",
       selector: (row, i) => i+1,
       sortable: true,
-      // hide: true,
-      // omit: true,
+      hide: true,
+      omit: true,
     },
     {
       name: "NOMBRE",

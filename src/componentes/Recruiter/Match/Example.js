@@ -178,6 +178,7 @@ const Example = () => {
     return {
       id: vacante._id,
       qty: index,
+      company:vacante.companyName,
       title: vacante.title,
       status: vacante.status,
       candidato: tempArray?.length || 0,
@@ -193,8 +194,8 @@ const Example = () => {
       omit: true,
     },
     {
-      name: "#",
-      selector: (row, i) => i + 1,
+      name: "EMPRESA",
+      selector: (row, i) => row.company,
       sortable: true,
     },
     {

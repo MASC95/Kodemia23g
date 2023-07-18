@@ -177,7 +177,7 @@ export const Vacancy = () => {
         {/* <ListVacancy postdata={vacancyAll}/>
               <Outlet/> */}
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

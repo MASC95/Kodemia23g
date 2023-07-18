@@ -156,6 +156,7 @@ const FormRecruiter = () => {
       .then((result) => {
         if (result.isConfirmed) {
           const idsSkills = listSkills.map((item) => item._id);
+          console.log('values form(Candidate):..',values);
           const completeForm = {
             ...values,
             user_skills: [...idsSkills],

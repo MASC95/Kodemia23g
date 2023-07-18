@@ -120,6 +120,7 @@ const UpdatePassword = () => {
   };
 
   const handleSendCode = async()=>{
+    console.log('enviando AccessCode:..');
     try {
       if(dataFormUpdate?.email!==''){
         await enviarCodigo(dataFormUpdate?.email)
@@ -153,7 +154,7 @@ const UpdatePassword = () => {
            <Form.Label className="d-block">
               Se te enviara un codigo a tu email.
             </Form.Label>
-            <Button onClick={handleSendCode} >
+            <Button type="button" onClick={handleSendCode} >
               Enviar Codigo
             </Button>
         </div>

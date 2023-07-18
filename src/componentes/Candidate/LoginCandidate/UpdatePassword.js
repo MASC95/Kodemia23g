@@ -8,6 +8,9 @@ import { useEffect } from "react";
 import { endpointsGral } from "../../Recruiter/services/vacancy";
 import axios from "axios";
 import { useState } from "react";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
+
 
 
 const initData = {
@@ -23,6 +26,7 @@ const UpdatePassword = () => {
   const [accessCode, setAccessCode] = useState(null);
   const [isConfirmCode, setIsConfirmCode] = useState(false);
   const [dataFormUpdate, setDataFormUpdate] = useState(initData);
+  const navigate=useNavigate();
 
   useEffect(() => {
     if (email !== "none") {
@@ -95,6 +99,18 @@ const UpdatePassword = () => {
         try {
             const response = await axios.post(`${userURL}updatePassword`,dataFormUpdate)
             console.log('response UpdatePassword:..',response);
+            const updatedPassword= response?.data?.emailToken;
+            if(updatedPassword){
+              Swal.fire(
+                'Muy bien!',
+                'Tu Contraseña ha sido Actualizada!',
+                'success'
+              ).then(
+                navigate('/login-candidato')
+              )
+              
+            }
+            
         } catch (error) {
             console.log(error);
         }
@@ -102,6 +118,18 @@ const UpdatePassword = () => {
     }
     
   };
+
+  const handleSendCode = async()=>{
+    try {
+      if(dataFormUpdate?.email!==''){
+        await enviarCodigo(dataFormUpdate?.email)
+
+      }
+      
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <div >
@@ -119,6 +147,17 @@ const UpdatePassword = () => {
             onChange={handleChange}
           />
         </Form.Group>
+
+        {email==='none'&&!accessCode&&
+        <div>
+           <Form.Label className="d-block">
+              Se te enviara un codigo a tu email.
+            </Form.Label>
+            <Button onClick={handleSendCode} >
+              Enviar Codigo
+            </Button>
+        </div>
+        }
 
         {accessCode &&!isConfirmCode&& (
             <>

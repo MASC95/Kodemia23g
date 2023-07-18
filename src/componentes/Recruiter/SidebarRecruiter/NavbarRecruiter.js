@@ -4,11 +4,11 @@ import { useState, useEffect } from "react";
 import OffCanvasRecruiter from "./OffCanvasRecruiter/OffCanvarRecruiter";
 import Button from "react-bootstrap/Button";
 import { FaBars } from "react-icons/fa";
-import logo from '../assets/img/logo.png'
+import logo from "../assets/img/logo.png";
 import logoSmall from "../../Candidate/img/logoSmall-removebg-preview.png";
 import tempImgUser from "../../Candidate/img/tempImgUser.png";
 // import "./navbarcandidate.scss";
-import {FaBell, FaSignOutAlt, FaUser } from "react-icons/fa";
+import { FaBell, FaSignOutAlt, FaUser } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import useJob from "../../../hooks/useJob";
 
@@ -35,8 +35,10 @@ const NavbarCandidate = () => {
 
   const [isErrorImg, setIsErrorImg] = useState(null);
   const [onSuccessImg, setOnSuccessImg] = useState(false);
-  const [isLoadImg,setIsLoadImg] = useState(null);
-  const [imgUserUrl, setImgUserUrl] = useState(dataRecruiter?.avatar_url?dataRecruiter?.avatar_url:tempImgUser);
+  const [isLoadImg, setIsLoadImg] = useState(null);
+  const [imgUserUrl, setImgUserUrl] = useState(
+    dataRecruiter?.avatar_url ? dataRecruiter?.avatar_url : tempImgUser
+  );
 
   useEffect(() => {
     /* if(isErrorImg===true){
@@ -48,31 +50,28 @@ const NavbarCandidate = () => {
     } */
     //console.log('Avatar URL USER:..',dataRecruiter.avatar_url)
     //console.log("Reloading Navbar:...",imgUserUrl);
-
   }, [imgUserUrl]);
 
-
-  useEffect(()=>{
-    if(dataRecruiter?.avatar_url){
-      setImgUserUrl(dataRecruiter.avatar_url)
+  useEffect(() => {
+    if (dataRecruiter?.avatar_url) {
+      setImgUserUrl(dataRecruiter.avatar_url);
     }
-
-  },[dataLocalStorage,dataRecruiter])
+  }, [dataLocalStorage, dataRecruiter]);
 
   const whileErrorImg = () => {
     setIsErrorImg(null);
-      setIsLoadImg(null);
+    setIsLoadImg(null);
   };
 
   const handleError = () => {
-    console.log('Error al cargar Imagen(handleError):...')
+    console.log("Error al cargar Imagen(handleError):...");
     setImgUserUrl(tempImgUser);
     //setIsErrorImg(true);
     //setIsLoadImg(false);
   };
 
   const handleLoad = () => {
-    console.log('Imagen Carganda con exito(handleLoad):...')
+    console.log("Imagen Carganda con exito(handleLoad):...");
     setImgUserUrl(dataRecruiter.avatar_url);
     //setIsLoadImg(true);
     //setIsErrorImg(false);
@@ -94,15 +93,11 @@ const NavbarCandidate = () => {
   const handleShowOffCanvas = () => {
     setShowOffcanvas((prev) => !prev);
   };
-  const goHome= ()=>{
-    
-    if(onSuccessImg===true)
-      navigate('/')
+  const goHome = () => {
+    if (onSuccessImg === true) navigate("/");
 
-      //setOnSuccessImg(false);
-    
-  }
-  
+    //setOnSuccessImg(false);
+  };
 
   const logout = () => {
     setDataLocalStorage({});
@@ -165,13 +160,14 @@ const NavbarCandidate = () => {
             }
           >
             <div>
-            <ImageProfile 
-            src={imgUserUrl} 
-            goHome={goHome}
-            placeholderSrc={tempImgUser}  
-            onSuccessImg={onSuccessImg}
-            setOnSuccessImg={setOnSuccessImg}
-            handleDropdownToggle={handleDropdownToggle}/>
+              <ImageProfile
+                src={imgUserUrl}
+                goHome={goHome}
+                placeholderSrc={tempImgUser}
+                onSuccessImg={onSuccessImg}
+                setOnSuccessImg={setOnSuccessImg}
+                handleDropdownToggle={handleDropdownToggle}
+              />
               {/* {dataRecruiter?.avatar_url ? (
                 <img
                 src={
@@ -203,9 +199,9 @@ const NavbarCandidate = () => {
                   align="end"
                   onSelect={handleDropdownSelect}
                   style={{
-                    position:'absolute',
-                    zIndex:'100000000000',
-                    backgroundColor:'white',
+                    position: "absolute",
+                    zIndex: "100000000000",
+                    backgroundColor: "white",
                     boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
                     backdropFilter: "blur(5px)",
                     WebkitBackdropFilter: "blur(5px)",

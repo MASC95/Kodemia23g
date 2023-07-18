@@ -1,6 +1,6 @@
 import React from "react";
 import { FaBars } from "react-icons/fa";
-import SidebarCandidate from "../SidebarCandidate/SidebarCandidate";
+
 import imgProfile from "../../Recruiter/assets/img/perfil2.jpg";
 import ListMyAppVacancy from "./ListMyAppVacancy";
 //import ResponsiveTable from "./ResponsiveTable";

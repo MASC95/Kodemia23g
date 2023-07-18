@@ -312,9 +312,10 @@ const FormRecruiter = () => {
                     WebkitBackdropFilter: "blur(2px)",
                     padding: "50px",
                     marginBottom: "30px",
+                    marginTop: "30px",
                   }}
                 >
-                  <div className="row mb-4">
+                  <div className="row mb-4 mt-3">
                     <div className="col na">
                       <div className="form-outline bg-gray">
                         <label

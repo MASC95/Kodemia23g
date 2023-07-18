@@ -1,5 +1,7 @@
 @import "./mixins.scss";
-
+body {
+  overflow-x: hidden;
+}
 .sectionOne {
   width: 100%;
   .first-card-container {

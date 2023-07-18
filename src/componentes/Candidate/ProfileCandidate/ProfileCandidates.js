@@ -1,7 +1,7 @@
 import React from "react";
 import { FaBars } from "react-icons/fa";
 import imgProfile from "../../Recruiter/assets/img/perfil2.jpg";
-import SidebarCandidate from "../SidebarCandidate/SidebarCandidate";
+
 import FormRecruiter from "./Form/FormRecruiter";
 import Softskills from "../../Recruiter/SoftSkills/Form/SoftSkills";
 

@@ -201,7 +201,7 @@ const NavbarCandidate = () => {
                   align="end"
                   onSelect={handleDropdownSelect}
                   style={{
-                    background: "rgba(119, 197, 229, 0.13)",
+                    background: "#f2f2f2",
                     boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
                     backdropFilter: "blur(5px)",
                     WebkitBackdropFilter: "blur(5px)",
@@ -218,7 +218,7 @@ const NavbarCandidate = () => {
                     as={Link}
                     to="/dashboard-candidato/profile"
                   >
-                    <FaUser /> Mi Cuenta
+                    <FaUser /> Mi Perfil
                   </Dropdown.Item>
                   <Dropdown.Item
                     eventKey="opcion2"
@@ -230,17 +230,6 @@ const NavbarCandidate = () => {
                     onClick={logout}
                   >
                     <FaSignOutAlt /> Cerrar Sesión
-                  </Dropdown.Item>
-                  <Dropdown.Item
-                    eventKey="opcion3"
-                    style={{
-                      color: "#498BA6",
-                      fontFamily:
-                        "Poppins, sans-serif, Verdana, Geneva, Tahoma",
-                    }}
-                  >
-                    <FaBell className="animate__animated animate__headShake" />{" "}
-                    Notificaciones
                   </Dropdown.Item>
                 </Dropdown.Menu>
               )}

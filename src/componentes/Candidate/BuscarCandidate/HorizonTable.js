@@ -181,7 +181,6 @@ const HorizonTable = ({
           />
         </DataTableExtensions>
       </div>
-      
     </>
   );
 };

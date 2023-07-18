@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Form } from "react-bootstrap";
 import { FaHome } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -35,6 +35,14 @@ const TerminosCondiciones = () => {
     cursor: "pointer",
     opacity: hovered ? "0.7" : "1",
   };
+
+  function scrollToTop() {
+    window.scrollTo(0, 0);
+  }
+
+  useEffect(() => {
+    scrollToTop();
+  }, []);
 
   return (
     <div

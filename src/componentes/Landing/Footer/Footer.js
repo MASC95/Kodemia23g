@@ -99,7 +99,7 @@ const Footer = () => {
               <li className="text-footer col-sm-12  col-md-4 col-lg-4 col-xl-4 mb-3 mt-2 w-30">
                 <a
                   style={{ color: "inherit", textDecoration: "none" }}
-                  href="https://api.whatsapp.com/send?phone=+34613288116&text=%C2%A1Hola%21%20Estoy%20interesado%20en%20tu%20Jobinder.
+                  href="https://api.whatsapp.com/send?phone=+34613288116&text=%C2%A1Hola%21%20Estoy%20interesado%20en%20la%20%app%20Jobinder.
                   "
                   className="text-decoration-none"
                 >

@@ -6,20 +6,29 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import swal from "sweetalert";
 import Swal from "sweetalert2";
-import { endpointsGral } from "../services/vacancy";
+import { endpointsGral } from "../../Recruiter/services/vacancy";
 import useJob from "../../../hooks/useJob";
-
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
 
+let previousTitle = document.title;
+
+window.addEventListener("blur", () => {
+  previousTitle = document.title;
+  document.title = "Haz crecer tu carrera con Jobinder";
+});
+
+window.addEventListener("focus", () => {
+  document.title = previousTitle;
+});
 const initDataForm = {
   email: "",
   password: "",
   confirmPassword: "",
-  role: "empresa",
+  role: "candidato",
   code: "",
   backCode: "",
 };
@@ -28,7 +37,7 @@ const profileSchema = Yup.object().shape({
   email: Yup.string()
     .required("Favor de ingresar correo")
     .matches(
-      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
       "Favor de Ingresar un email valido"
     ),
   password: Yup.string()
@@ -48,11 +57,10 @@ const profileSchema = Yup.object().shape({
     .oneOf([Yup.ref("password"), null], "El password no coincide"),
 });
 
-export const RegisterRecruiter = () => {
+export const RegisterCandidate = () => {
   const navigate = useNavigate();
   const [dataForm, setDataForm] = useState(initDataForm);
   const [showPassword, setShowPassword] = useState(false);
-
   const [isResgitering, setIsResgitering] = useState(false);
   const [isConfirmEmail, setIsConfirmEmail] = useState(false);
   const [isInformationUser, setInformationUser] = useState([]);
@@ -66,12 +74,10 @@ export const RegisterRecruiter = () => {
   ] = useJob();
 
   const fetchUser = async () => {
-    const response = await axios.get(
-      `${endpointsGral.userURL}getAllUserOutPaginate`
-    );
-    const dataInformation = response.data;
+    const response = await axios.get(endpointsGral.userURL);
+    const dataInformation = response.data["item"];
     if (dataInformation) {
-      setInformationUser(dataInformation);
+      setInformationUser(dataInformation["docs"]);
     } else {
       console.log("error infoSkill");
     }
@@ -101,21 +107,6 @@ export const RegisterRecruiter = () => {
       [Input]: InputValue,
     });
   };
-  const searchUserInDB = async (email) => {
-    try {
-      const response = await axios.get(
-        `${endpointsGral.userURL}getUserByEmail?email=${email}`
-      );
-      console.log("response searchUserInDB:..", response);
-      if (response?.data?.user) {
-        return true;
-      } else {
-        return false;
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   const confirmAccesCode = async (values) => {
     console.log("Estamos confirmando el email:..");
@@ -134,12 +125,31 @@ export const RegisterRecruiter = () => {
       console.log(error);
     }
   };
+
+  const searchUserInDB = async (email) => {
+    try {
+      const response = await axios.get(
+        `${endpointsGral.userURL}getUserByEmail?email=${email}`
+      );
+      console.log("response searchUserInDB:..", response);
+      if (response?.data?.user) {
+        //console.log('Email duplicado (no puede continuar):...')
+        return true;
+      } else {
+        //console.log('Puede continuar con su registro:...')
+        return false;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const handleSubmit = async (values) => {
-    console.log("values from formik", values);
-    // console.log('aqui debe haber datos', values)
+    //console.log("Registrando mail:..", values.email);
+    // console.log('aqui debe haber datos', values) se hicieron cambios aqui
     const dataRepet = await searchUserInDB(values.email);
 
-    /* = isInformationUser.some(
+    /* isInformationUser.some(
       (item) => item.email === values.email
     ); */
     if (dataRepet === true) {
@@ -179,7 +189,7 @@ export const RegisterRecruiter = () => {
   };
 
   const handleConfirmEmail = () => {
-    console.log("hola");
+    console.log("hola:..");
     console.log("codigo:", dataForm.code);
     console.log("codigo:", dataForm.code);
     console.log("codigoBack:..", dataForm.backCode);
@@ -270,7 +280,6 @@ export const RegisterRecruiter = () => {
     borderImage:
       "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px",
   };
-
   return (
     <>
       <section className="signin-page account" style={loginInit}>
@@ -283,7 +292,7 @@ export const RegisterRecruiter = () => {
                   className="d-flex justify-content-center align-items-center"
                 >
                   <Link to={"/"} className="logo_Jobinder">
-                    <img src={logo} alt="jobinder-logo" />
+                    <img src={logo} alt="" />
                   </Link>
                 </div>
                 <h2 className="text-center">Crear cuenta</h2>
@@ -313,12 +322,13 @@ export const RegisterRecruiter = () => {
                           onChange={props.handleChange}
                           onBlur={props.handleBlur}
                         />
-                        <span className="text-danger input-group">
+
+                        <span className="text-danger">
                           <ErrorMessage name="email" />
                         </span>
                       </Form.Group>
 
-                      <Form.Group className="input-group">
+                      <Form.Group className="input-group ">
                         <Form.Control
                           type={showPassword ? "text" : "password"}
                           className={`form-control rounded ${
@@ -386,7 +396,7 @@ export const RegisterRecruiter = () => {
                             <FaEye style={{ width: "30px" }} />
                           )}
                         </span>
-                        <span className="text-danger input-group text-center">
+                        <span className="text-danger input-group">
                           <ErrorMessage name="confirmPassword" />
                         </span>
                       </Form.Group>
@@ -400,7 +410,7 @@ export const RegisterRecruiter = () => {
                       )}
                       {isResgitering && (
                         <>
-                          <label className="text-dark" htmlFor="code">
+                          <label htmlFor="code">
                             Captura el código que fue enviado a tu E-mail:
                           </label>
                           <input
@@ -411,6 +421,9 @@ export const RegisterRecruiter = () => {
                             className="form-control"
                             placeholder="codigo de acceso"
                           />
+                          <div className="text-muted">
+                            Revisa tu bandeja de entrada o tu carpeta de Spam
+                          </div>
                           <div className="buttons_actions d-grid">
                             <button
                               type="button"
@@ -451,7 +464,7 @@ export const RegisterRecruiter = () => {
                 </Formik>
                 <p className="mt-20 ">
                   Ya tienes una cuenta?
-                  <Link to={`/login-recruiter`}>Accede</Link>
+                  <Link to={`/login-candidato`}>Accede</Link>
                 </p>
               </div>
             </div>
@@ -462,8 +475,8 @@ export const RegisterRecruiter = () => {
               >
                 <img
                   className="container w-100 h-50"
-                  src="https://frontjobinderimg.s3.amazonaws.com/JobinderRegister.png"
-                  alt="register-img"
+                  src="https://frontjobinderimg.s3.amazonaws.com/LOGIN-CANDIDATE.png"
+                  alt=""
                   style={imgInside}
                 />
               </div>
@@ -475,4 +488,4 @@ export const RegisterRecruiter = () => {
   );
 };
 
-export default RegisterRecruiter;
+export default RegisterCandidate;

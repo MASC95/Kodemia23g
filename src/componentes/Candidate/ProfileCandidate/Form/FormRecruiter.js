@@ -472,7 +472,7 @@ const FormRecruiter = () => {
                           value={props.values.email}
                           onChange={props.handleChange}
                           onBlur={props.handleBlur}
-                          disabled
+                          disabled={true}
                         />
                       </div>
                     </div>

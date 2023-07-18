@@ -169,15 +169,21 @@ export const LoginRecruiter=()=>{
                             <Button type="submit" className="buttons btn btn-info btn-lg m-3">
                             Enviar
                             </Button>
+                            <p className="mt-20 text-black text-decoration-none">No tienes una cuenta?
+                            <Link to={`/register-recruiter`}>
+                            Crea una con nosotros
+                            </Link>
+                            </p>
+                            <p className="mt-20 text-black text-decoration-none">
+                              Olvidaste tu Contraseña?
+                              <Link to={props.values.email!==''?`/updatePasswordRecruiter/${props.values.email}`:`/updatePasswordRecruiter/none`}>
+                                Cambia tu Contraseña.
+                              </Link>
+                            </p>
                             </Form>
                         )}
                     
                     </Formik>
-                    <p className="mt-20 text-black text-decoration-none">No tienes una cuenta?
-                    <Link to={`/register-recruiter`}>
-                    Crea una con nosotros
-                    </Link>
-                    </p>
                     </div>
                 </div>
                 <div className="col-md-6 col-md-offset-3 d-none d-sm-block">

@@ -28,6 +28,7 @@ const ListVacancies = ({
     return {
       id: item._id,
       qty: index,
+      company:item.companyName,
       title: item.title,
       type: item.type,
       mode: item.mode,
@@ -44,8 +45,8 @@ const ListVacancies = ({
       omit: true,
     },
     {
-      name: "#",
-      selector: (row, i) => i + 1,
+      name: "EMPRESA",
+      selector: (row, i) => row.company,
       sortable: true,
     },
     {

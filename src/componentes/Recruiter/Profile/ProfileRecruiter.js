@@ -372,7 +372,7 @@ export const ProfileRecruiter = () => {
             </form>
           </div>
         </div>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </>
   );

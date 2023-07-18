@@ -36,6 +36,8 @@ import PoliticaPrivacidad from "./componentes/Landing/Footer/LinksFooter/Politic
 //import ListResponsive from './componentes/Candidate/BuscarCandidate/ListResponsive';
 import About from "./componentes/Landing/Footer/LinksFooter/About";
 import UpdatePassword from "./componentes/Candidate/LoginCandidate/UpdatePassword";
+import UpdatePasswordRecruiter from "./componentes/Recruiter/LoginRecruiter/UpdatePassword";
+
 function App() {
   const [dataLocalStorage, setDataLocalStorage] = useLocalStorage(
     "accessToken",
@@ -114,6 +116,7 @@ function App() {
           {/* aqui las rutas de la seccion reclutador */}
           <Route path="/login-recruiter" element={<LoginRecruiter />} />
           <Route path="/register-recruiter" element={<RegisterRecruiter />} />
+          <Route path="/updatePasswordRecruiter/:email" element={<UpdatePasswordRecruiter/>}/>
 
           {dataLocalStorage?.role==='empresa'&&
           <Route path="/dashboard-recruiter" element={<DashboardRecruiter />}>

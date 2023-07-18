@@ -72,7 +72,7 @@ export const Match = () => {
 
         {/* </div>   */}
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

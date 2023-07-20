@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 import '../scss/style.scss'
 export const EditSkill=({listSkills,setListSkills})=>{
 
-  console.log('listSkills',listSkills)
+  //console.log('listSkills',listSkills)
 
   const [dataSkill, setDataSkill] = useState([]);
   const [selectSkill, setSelectSkill] = useState("select");
@@ -22,7 +22,7 @@ export const EditSkill=({listSkills,setListSkills})=>{
     const response = await axios.get(`${endpointsGral.jobSkill}/getAllSkillsForVacancy`);
     const infoSkill = response.data.getAllSkills;
     let arrShort=infoSkill.sort((x, y) => x.name.localeCompare(y.name));
-    console.log(arrShort);
+    //console.log(arrShort);
     setDataSkill(arrShort);
   };
   useEffect(() => {
@@ -33,7 +33,7 @@ export const EditSkill=({listSkills,setListSkills})=>{
   useEffect(()=>{
     if(skillTemp.length===0){
       if(listSkills.length>0){
-        console.log('skillsCandidate:..',listSkills);
+        //console.log('skillsCandidate:..',listSkills);
         setSkillTemp([...listSkills])
       }
     }
@@ -49,7 +49,7 @@ export const EditSkill=({listSkills,setListSkills})=>{
     }else{
       setListSkills([])
     }
-    console.log('skillTemp:..',skillTemp)
+    //console.log('skillTemp:..',skillTemp)
   },[skillTemp])
  
  
@@ -143,7 +143,8 @@ export const EditSkill=({listSkills,setListSkills})=>{
     {
       name: "#",
       selector: (row,i) => i + 1,
-      sortable: true
+      sortable: true,
+      omit:true,
     },
     {
       name: "SKILL",
@@ -188,7 +189,7 @@ export const EditSkill=({listSkills,setListSkills})=>{
       >
         SoftSkills
       </h2>
-          <div className="col-12 col-md-4">
+          <div className="col-12 col-md-12">
               <div className="row d-flex">
                 <label className="form-label text-dark" htmlFor="form6Example1">
                   Elige la SoftSkill:
@@ -222,7 +223,7 @@ export const EditSkill=({listSkills,setListSkills})=>{
               
           </div>
           {/* table of skills */}
-          <div className="col-12 col-md-8">
+          <div className="col-12 col-md-12">
             <div className="main-table">
                 <DataTableExtensions  
                     export={false}
@@ -232,6 +233,7 @@ export const EditSkill=({listSkills,setListSkills})=>{
                     key={myId()}
                     columns={columns}
                     data={data}
+                    defaultSortAsc={true}
                     // noHeader
                     // defaultSortField="#"
                     // defaultSortAsc={true}

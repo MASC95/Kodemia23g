@@ -46,7 +46,7 @@ export const MatchDetails = () => {
       setTotalRows(datasUsers["totalDocs"]);
       setLoading(false);
     } catch (error) {
-      console.log(error);
+      //console.log(error);
     }
   };
   useEffect(() => {
@@ -59,7 +59,7 @@ export const MatchDetails = () => {
       const endpointVacancy = `${endpointsGral.vacancyURL}${idVacancy}`;
       const response = await axios.get(endpointVacancy);
       const dataVacancy = response?.data?.infoVacancy;
-      console.log("datos vacante", dataVacancy);
+      //console.log("datos vacante", dataVacancy);
       setDataInfoVacancy(dataVacancy);
     } catch (error) {}
   };
@@ -69,7 +69,7 @@ export const MatchDetails = () => {
   }, []);
 
   useEffect(() => {
-    console.log("lista de aplicantes Fase1:..", listApplicantsPhaseOne);
+    //console.log("lista de aplicantes Fase1:..", listApplicantsPhaseOne);
   }, [listApplicantsPhaseOne]);
 
   // Phase
@@ -82,28 +82,28 @@ export const MatchDetails = () => {
       const endpointPhase = `${endpointsGral.phaseUrlGetPhase}?phase=${phase}`;
       try {
         const response = await axios.get(endpointPhase);
-        console.log("Phase One, backend", response);
+        //console.log("Phase One, backend", response);
         const result = response?.data?.infoPhase?.vacancies;
   
         const dataInformationVacancy = result.find(
           (item) => String(item.idVacancie) === idVacancy
         );
-        console.log(`dataInformationVacancy:..${phase}`, dataInformationVacancy);
+        //console.log(`dataInformationVacancy:..${phase}`, dataInformationVacancy);
         tempData=[...tempData,...dataInformationVacancy?.applicants];
       } catch (error) {
-        console.log(error);
+        //console.log(error);
       }  
     }
-    console.log('todos los applicantes en las 4 fases:..',tempData);
+    //console.log('todos los applicantes en las 4 fases:..',tempData);
     setListApplicantsPhaseOne([...tempData]);
 
     
   };
 
   useEffect(() => {
-    //console.log('dataSkill(AddSkills):..',dataSkill)
+    ////console.log('dataSkill(AddSkills):..',dataSkill)
     if (tempListUser.length > 0) {
-      console.log("Lista de usuarios para panel:..", tempListUser);
+      //console.log("Lista de usuarios para panel:..", tempListUser);
     }
   }, [tempListUser]);
 
@@ -114,14 +114,14 @@ export const MatchDetails = () => {
   };
 
   const handlePerRowsChange = async (newPerPage, page) => {
-    console.log("Cambiando limit:...", newPerPage);
+    //console.log("Cambiando limit:...", newPerPage);
     queryVacancy(page, newPerPage);
     setPerPage(newPerPage);
   };
   // pagination
 
   useEffect(() => {
-    console.log("nueva lista de candidatos:..", dataByUserCandidate);
+    //console.log("nueva lista de candidatos:..", dataByUserCandidate);
     if (dataByUserCandidate) {
       listadoApplicants();
     }
@@ -132,7 +132,7 @@ export const MatchDetails = () => {
   };
 
   const dadHandleHideofPanel = (index) => {
-    console.log("En el papa(index):", index);
+    //console.log("En el papa(index):", index);
     Swal.fire({
       title: "Ocultar candidato",
       text: "Estas seguro de ocultar esta candidato?!",
@@ -143,10 +143,10 @@ export const MatchDetails = () => {
       confirmButtonText: "Si, ocultar!",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        console.log("indice a borrar:..", index);
+        //console.log("indice a borrar:..", index);
         const hideCandidate = dataByUserCandidate[index];
         const id = hideCandidate._id;
-        console.log("candidato a ocultar:..", id);
+        //console.log("candidato a ocultar:..", id);
         if (hideCandidate) {
           const deleteOnList = dataByUserCandidate.filter(
             (_, i) => i !== index
@@ -155,22 +155,22 @@ export const MatchDetails = () => {
             axios.defaults.headers.common[
               "Authorization"
             ] = `Bearer: ${dataRecruiter.accessToken}`;
-            console.log(
-              "dataRecruiter.accessToken ",
-              dataRecruiter.accessToken
-            );
+            //console.log(
+            //   "dataRecruiter.accessToken ",
+            //   dataRecruiter.accessToken
+            // );
             const responseBack = await axios.post(
               `${endpointsGral.hideUserInVacancy}`,
               { idVacancy, idCandidate: id, emailUser: hideCandidate.email }
             );
-            console.log("responseBack HideUser:..", responseBack);
+            //console.log("responseBack HideUser:..", responseBack);
           } catch (error) {
-            console.log(error);
+            //console.log(error);
           }
           setDataByUserCandidate(deleteOnList);
-          console.log("lista de candidatos sin el oculto:..", deleteOnList);
+          //console.log("lista de candidatos sin el oculto:..", deleteOnList);
         } else {
-          console.log("error al ocultar");
+          //console.log("error al ocultar");
         }
       }
     });
@@ -192,9 +192,9 @@ export const MatchDetails = () => {
         const dataRepet = tempDataUser.some(
           (item) => item._id === selectUser._id
         );
-        console.log("data repet", dataRepet);
+        //console.log("data repet", dataRepet);
         if (dataRepet) {
-          console.log("ya esta agregado");
+          //console.log("ya esta agregado");
           Swal.fire(
             "Acción rechazada!",
             "Este usuario ya esta agregado al panel!",
@@ -202,8 +202,8 @@ export const MatchDetails = () => {
           );
         } else {
           const selectUser = dataByUserCandidate[index];
-          console.log("agregando usuario a primera fase:..", selectUser._id);
-          console.log("dentro de la vacante:..", idVacancy);
+          //console.log("agregando usuario a primera fase:..", selectUser._id);
+          //console.log("dentro de la vacante:..", idVacancy);
           try {
             axios.defaults.headers.common[
               "Authorization"
@@ -211,12 +211,12 @@ export const MatchDetails = () => {
             const response = await axios.patch(
               `${endpointsGral.phaseURL}?phase=Llamada&idVacancie=${idVacancy}&idCandidate=${selectUser._id}`
             );
-            console.log("responseBackend (candidato Agregado):..", response);
+            //console.log("responseBackend (candidato Agregado):..", response);
             if (response) {
               queryPhase();
             }
           } catch (error) {
-            console.log(error);
+            //console.log(error);
           }
           tempDataUser.push(selectUser);
           setListDataUser([...tempDataUser]);
@@ -230,8 +230,8 @@ export const MatchDetails = () => {
   return (
     <>
       <div className="row m-3">
-        <h2 className="fs-1 text-center my-2">{dataInfoVacancy.title}</h2>
-        <h2 className="text-dark">Lista de aplicantes</h2>
+        <h2 className="fs-1 text-center  fs-4">Título de la vacante: {dataInfoVacancy.title}</h2>
+        {/* <h2 className="text-dark">Lista de aplicantes</h2> */}
         <div className="col">
           {dataByUserCandidate?.length > 0 && (
             <MyTable

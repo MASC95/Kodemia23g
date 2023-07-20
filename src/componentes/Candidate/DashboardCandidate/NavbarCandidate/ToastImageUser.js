@@ -11,7 +11,7 @@ const ToastImageUser = () => {
   useEffect(() => {
     if (showToast === false) {
       window.location.reload();
-      console.log("publicando imagen");
+      //console.log("publicando imagen");
     }
   }, [showToast]);
 

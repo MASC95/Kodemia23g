@@ -17,7 +17,7 @@ const Mains = () => {
 
   useEffect(() => {
     
-    console.log('dataLocalStorage:..',dataLocalStorage);
+    // console.log('dataLocalStorage:..',dataLocalStorage);
 
   if(dataLocalStorage?.role==='candidato'){
     navigate('/dashboard-candidato/home')

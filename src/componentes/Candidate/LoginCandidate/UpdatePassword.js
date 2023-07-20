@@ -35,7 +35,7 @@ const UpdatePassword = () => {
 
   useEffect(() => {
     if (email !== "none") {
-      console.log("Email USER:..", email);
+      //console.log("Email USER:..", email);
       validateEmail(email);
       
     }
@@ -44,7 +44,7 @@ const UpdatePassword = () => {
   const validateEmail = (emailUser)=>{
     const resultValidate= expEmail.test(emailUser);
     setIsValidEmail(resultValidate);
-    console.log('resultVAlidateEmail:..',String(resultValidate));
+    //console.log('resultVAlidateEmail:..',String(resultValidate));
     return resultValidate
   }
 
@@ -108,10 +108,10 @@ const UpdatePassword = () => {
     try {
       const response = await axios.get(`${userURL}getUserByEmail?email=${emailUser}`);
       const isFoundUser= response?.data?.user?.email
-      console.log('resultado de busqueda de usuario:..',isFoundUser);
+      //console.log('resultado de busqueda de usuario:..',isFoundUser);
       return isFoundUser
     } catch (error) {
-      console.log(error);
+      //console.log(error);
     }
   }
 
@@ -123,13 +123,13 @@ const UpdatePassword = () => {
     };
     try {
       const response = await axios.post(confirmEmail, dataLogin);
-      console.log("responseConfirmEmail:..", response);
+      //console.log("responseConfirmEmail:..", response);
       const backCode = response?.data?.code;
       if (backCode) {
         setAccessCode(backCode);
       }
     } catch (error) {
-      console.log(error);
+      //console.log(error);
     }
   };
 
@@ -142,14 +142,14 @@ const UpdatePassword = () => {
 
   const handleSubmit = async(e) => {
     e.preventDefault();
-    console.log("Valores del form:..", dataFormUpdate);
+    //console.log("Valores del form:..", dataFormUpdate);
 
     if(dataFormUpdate.password!==''&&dataFormUpdate.confirmPassword===dataFormUpdate.password){
         const {userURL}=endpointsGral;
 
         try {
             const response = await axios.post(`${userURL}updatePassword`,dataFormUpdate)
-            console.log('response UpdatePassword:..',response);
+            //console.log('response UpdatePassword:..',response);
             const updatedPassword= response?.data?.emailToken;
             if(updatedPassword){
               Swal.fire(
@@ -171,7 +171,7 @@ const UpdatePassword = () => {
             }
             
         } catch (error) {
-            console.log(error);
+            //console.log(error);
         }
 
     }
@@ -187,7 +187,7 @@ const UpdatePassword = () => {
     try {
       const resultSearch= await searchEmailInDB(dataFormUpdate?.email);
       if(resultSearch){
-        console.log('enviando AccessCode:..');
+        //console.log('enviando AccessCode:..');
         await enviarCodigo(dataFormUpdate?.email)
       }else{
         Swal.fire(
@@ -199,7 +199,7 @@ const UpdatePassword = () => {
         )
       }
     } catch (error) {
-      console.log(error)
+      //console.log(error)
     }
   }
 

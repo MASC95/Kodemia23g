@@ -10,7 +10,7 @@ export const ViewTableSkills=({listSkils})=>{
     const [dataSkils, setDataSkils] = useState([]);
 
     useEffect(() => {
-      console.log('listSkills:..',listSkils);
+      //console.log('listSkills:..',listSkils);
         //cargarDatos();
     }, [])
     
@@ -20,9 +20,9 @@ export const ViewTableSkills=({listSkils})=>{
                 const tempArray =[];
             for(let i =0; i<listSkils?.length; i++){
                 const response = await axios.get(`${endpointsGral.jobSkill}/${listSkils[i]}`);
-                console.log('responseDataJobSkill:..',response);
+                //console.log('responseDataJobSkill:..',response);
                 if (response?.data?.infoJobSkill){
-                    console.log('responseDataJobSkill:..',response);
+                    //console.log('responseDataJobSkill:..',response);
                     const {name,level}= response.data.infoJobSkill;
                    tempArray.push({
                     name,
@@ -38,7 +38,7 @@ export const ViewTableSkills=({listSkils})=>{
             
             //
         } catch (error) {
-            console.log(error);
+            //console.log(error);
         }
     }
 

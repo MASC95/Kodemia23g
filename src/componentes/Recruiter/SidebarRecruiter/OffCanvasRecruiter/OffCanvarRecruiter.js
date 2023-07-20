@@ -49,7 +49,7 @@ function OffCanvasRecruiter({ showOffcanvas, handleShowOffcanvas }) {
           <div onClick={handleShowOffcanvas} className="d-flex flex-column columns">
             <Link to={`/Dashboard-Recruiter/home`} className="link">
               <FaHome className="icons" />
-              <span className="text">Home</span>
+              <span className="text">Inicio</span>
             </Link>
             <Link to={`/Dashboard-Recruiter/profile`} className="link">
               <FaUser className="icons" /> <span className="text">Perfil</span>
@@ -64,7 +64,7 @@ function OffCanvasRecruiter({ showOffcanvas, handleShowOffcanvas }) {
             </Link>
             <Link to={`/Dashboard-Recruiter/match`} className="link">
               <FaCheckDouble className="icons" />{" "}
-              <span className="text">Match</span>
+              <span className="text">Aplicantes</span>
             </Link>
             <div className="link">
               <span
@@ -73,7 +73,7 @@ function OffCanvasRecruiter({ showOffcanvas, handleShowOffcanvas }) {
                 className=" link"
               >
                 <FaSignOutAlt className="icons" />
-                <span className="text">Log Out</span>
+                <span className="text">Cerrar Sesión</span>
               </span>
             </div>
           </div>

@@ -64,14 +64,14 @@ const NavbarCandidate = () => {
   };
 
   const handleError = () => {
-    console.log("Error al cargar Imagen(handleError):...");
+    //console.log("Error al cargar Imagen(handleError):...");
     setImgUserUrl(tempImgUser);
     //setIsErrorImg(true);
     //setIsLoadImg(false);
   };
 
   const handleLoad = () => {
-    console.log("Imagen Carganda con exito(handleLoad):...");
+    //console.log("Imagen Carganda con exito(handleLoad):...");
     setImgUserUrl(dataRecruiter.avatar_url);
     //setIsLoadImg(true);
     //setIsErrorImg(false);
@@ -80,12 +80,12 @@ const NavbarCandidate = () => {
   const [showDropdown, setShowDropdown] = useState(false);
 
   const handleDropdownToggle = () => {
-    console.log("Muestrame el DropDown:...");
+    //console.log("Muestrame el DropDown:...");
     setShowDropdown((prev) => !prev);
   };
 
   const handleDropdownSelect = (eventKey) => {
-    console.log("opción seleccionada:", eventKey);
+    //console.log("opción seleccionada:", eventKey);
   };
   // console.log("dataRecruiter...", dataRecruiter);
   // console.log("dataRecruiter...", dataRecruiter);}

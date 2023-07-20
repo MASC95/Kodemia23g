@@ -4,7 +4,7 @@ import DataTableExtensions from "react-data-table-component-extensions";
 import { FaEye, FaCheck, FaEyeSlash } from "react-icons/fa";
 import { myId } from "../../lib/myLib";
 import { Link } from 'react-router-dom';
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 
 
 const MyFaCheck =({text})=>{
@@ -27,17 +27,44 @@ const MyTable = ({
   idVacancy
   }) => {
 
-    useEffect(()=>{
-        console.log('MyTable datos:..',dataByUserCandidate);
-    },[])
+    const customStyles = {
+      rows: {
+          style: {
+              minHeight: '72px', // override the row height
+              fontsize:"18px",
+          },
+      },
+      headCells: {
+          style: {
+            backgroundColor:'#7FADC0',
+            color:'#fff',
+            fontWeight: "bold",
+            fontsize:"12px",
+            paddingLeft: '8px', // override the cell padding for head cells
+            paddingRight: '8px',
+          },
+      },
+      cells: {
+          style: {
+            fontsize:"18px",
+            paddingLeft: '8px', // override the cell padding for data cells
+            paddingRight: '8px',
+          },
+      },
+  };
+  
+
+    // useEffect(()=>{
+    //     console.log('MyTable datos:..',dataByUserCandidate);
+    // },[])
 
     const handleHideofPanel=(index)=>{
-        console.log('Ocultando el usuario(MyTable):..',index);
+        //console.log('Ocultando el usuario(MyTable):..',index);
         dadHandleHideofPanel(index);
     } 
     
     const handleAddPanel= (index)=>{
-      console.log('Agregando usuario a panel (MyTable):..',index);
+      //console.log('Agregando usuario a panel (MyTable):..',index);
       dadHandleofPanel(index);
     }
 
@@ -61,8 +88,8 @@ const MyTable = ({
       const retriveUser=item.user_skills.map((idSkills)=>{
         return idSkills._id
       })
-      // console.log('skills usuario', retriveUser)
-      // console.log('skills vacante', retriveVacancy)
+      // //console.log('skills usuario', retriveUser)
+      // //console.log('skills vacante', retriveVacancy)
 
       const conteo = {};
       retriveUser.forEach((elemento) => {
@@ -79,12 +106,12 @@ const MyTable = ({
           suma += conteo[elemento];
         }
       });
-      // console.log(`La suma de los valores repetidos es: ${suma}`);
-      // console.log(((suma*100)/quanty))
+      // //console.log(`La suma de los valores repetidos es: ${suma}`);
+      // //console.log(((suma*100)/quanty))
       const operador = Math.floor((suma * 100) / quanty);
-      console.log(operador)
+      //console.log(operador)
       const nameUser = `${item.name} ${item.last_name}`;    
-      console.log('nuevo map para iterar', )
+      //console.log('nuevo map para iterar', )
 
       return {
         id: item._id,
@@ -168,12 +195,13 @@ const MyTable = ({
         data,
       };
 
-      console.log('Id vacante', idVacancy)
+      //console.log('Id vacante', idVacancy)
   return (
     <DataTableExtensions export={false} print={false} {...tableData}>
           <DataTable
             {...tableData}
             key={myId()}
+            customStyles={customStyles}
             columns={columns}
             data={data}
             // noHeader
@@ -189,6 +217,7 @@ const MyTable = ({
             onChangePage={handlePageChange}
             highlightOnHover
             dense
+            title="Lista de aplicantes"
           />
         </DataTableExtensions>
   )

@@ -10,12 +10,12 @@ const SkillsCandidate = ({
   handleDeleteSkill,
 }) => {
   const childHandleDeleteSkill = (id) => {
-    //console.log("Eliminando Skill (hijo):..", id);
+    ////console.log("Eliminando Skill (hijo):..", id);
     handleDeleteSkill(id);
   };
 
   useEffect(() => {
-    console.log("dataSkillsInUser:..", dataSkillsInUser);
+    //console.log("dataSkillsInUser:..", dataSkillsInUser);
   }, [dataSkillsInUser]);
 
   return (
@@ -40,7 +40,7 @@ const SkillsCandidate = ({
         <thead>
           <tr>
             <th>Skill</th>
-            <th>Level</th>
+            <th>Nivel</th>
             <th>Opciones</th>
           </tr>
         </thead>

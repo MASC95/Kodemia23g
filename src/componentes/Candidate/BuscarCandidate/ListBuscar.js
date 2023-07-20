@@ -34,32 +34,32 @@ export const ListBuscar = () => {
       setVacancies(datas["docs"]);
       setTotalRows(datas["totalDocs"]);
       setLoading(false);
-      console.log(response.data);
-      console.log("Response Data All vacancies.... ", response.data);
+      //console.log(response.data);
+      //console.log("Response Data All vacancies.... ", response.data);
     } catch (error) {
-      console.log(error);
+      //console.log(error);
     }
   };
 
   useEffect(() => {
     fetchData(1, 10);
   }, []);
-  //console.log("....TOTAL ROWS....", totalRows);
-  //console.log("....TOTAL VACANCIES....", vacancies);
+  ////console.log("....TOTAL ROWS....", totalRows);
+  ////console.log("....TOTAL VACANCIES....", vacancies);
   // pagination
   useEffect(() => {
-    console.log("Nuevo valor de limit:..", perPage);
-    console.log("Nuevo valor de currentPage:..", currentPage);
+    //console.log("Nuevo valor de limit:..", perPage);
+    //console.log("Nuevo valor de currentPage:..", currentPage);
   }, [perPage,currentPage]);
 
   const handlePageChange = (page) => {
-    console.log("handlePageChange Page:..", page);
+    //console.log("handlePageChange Page:..", page);
     fetchData(page, perPage);
     setCurrentPage(page);
   };
 
   const handlePerRowsChange = async (newPerPage, page) => {
-    console.log("Cambiando limit:...", newPerPage);
+    //console.log("Cambiando limit:...", newPerPage);
     fetchData(page, newPerPage);
     setPerPage(newPerPage);
   }; // pagination
@@ -71,9 +71,9 @@ export const ListBuscar = () => {
     }
   }, [showAlert]);
   useEffect(() => {
-    console.log("dataLocalStorage:..", dataLocalStorage);
-    console.log("my_vacancies:..", my_vacancies);
-    console.log("dataCandidate:..", dataCandidate);
+    //console.log("dataLocalStorage:..", dataLocalStorage);
+    //console.log("my_vacancies:..", my_vacancies);
+    //console.log("dataCandidate:..", dataCandidate);
   }, [dataLocalStorage, dataCandidate, my_vacancies]);
 
   const handleApply = async (e) => {
@@ -114,10 +114,10 @@ export const ListBuscar = () => {
             accessToken: dataCandidate.accessToken,
           });
       }
-      console.log("Response updateDataUser:..", responseUpdateDataUser);
-      console.log("Response updateDataVacancie:..", responseUpdateDataVacancie);
+      //console.log("Response updateDataUser:..", responseUpdateDataUser);
+      //console.log("Response updateDataVacancie:..", responseUpdateDataVacancie);
     } catch (error) {
-      console.log(error);
+      //console.log(error);
     }
 
     setShowAlert(true);
@@ -160,7 +160,7 @@ export const ListBuscar = () => {
           });
       }
     } catch (error) {
-      console.log(error);
+      //console.log(error);
     }
   };
 

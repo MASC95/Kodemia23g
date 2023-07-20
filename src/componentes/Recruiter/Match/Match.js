@@ -15,9 +15,9 @@ export const Match = () => {
       const response = await axios.get(endpointsGral.vacancyURL);
       const datas = response.data["item"];
       setDataInformation(datas["docs"]);
-      console.log(response.data);
+      //console.log(response.data);
     } catch (error) {
-      console.log(error);
+      //console.log(error);
     }
   };
   useEffect(() => {
@@ -58,15 +58,13 @@ export const Match = () => {
         <h1
           className="text-center mt-2"
           style={{
-            color: "#f2f2f2",
-            backgroundColor:'#498BA6',
-            borderRadius:'26px 26px 0px 0px',
+            color: "#498BA6",
             textShadow:
               "0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px rgba(60, 64, 67, 0.15)",
-            fontFamily: "Poppins, sans-serif, Verdana, Geneva, Tahoma",
+            fontFamily: "Poppins, sans-serif, Verdana, Geneva,Tahoma",
           }}
         >
-          Match's
+          Aplicantes
         </h1>
         <Example />
 

@@ -7,8 +7,8 @@ import imgProfile from '../../Recruiter/assets/img/perfil2.jpg'
 import { useNavigate } from 'react-router-dom';
 export const DetailVacancy=()=>{
     const myParams = useParams();
-    console.log(myParams);
-    console.log("componente detail vacancy");
+    //console.log(myParams);
+    //console.log("componente detail vacancy");
 
   
 

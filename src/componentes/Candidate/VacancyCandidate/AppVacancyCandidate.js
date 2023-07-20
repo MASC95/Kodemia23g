@@ -13,7 +13,7 @@ export const AppVacancyCandidate = () => {
     <>
       <div className="card-body">
         <h1
-          className="text-center  my-5"
+          className="text-center  my-5 mb-0"
           style={{
             color: "#498ba6",
             textShadow:

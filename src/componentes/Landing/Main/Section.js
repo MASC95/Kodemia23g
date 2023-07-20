@@ -15,12 +15,12 @@ const Section = () => {
   };
 
   useEffect(() => {
-    console.log("Recargando por falla de Imagen:..");
+    // console.log("Recargando por falla de Imagen:..");
     //console.log(isErorImg);
   }, [isErorImgCadidate, isErorImgRecrutier]);
 
   const handleErrorImg = (e) => {
-    console.log("Error al cargar img:..", e.target.name);
+    // console.log("Error al cargar img:..", e.target.name);
     const failImg = e.target.name;
     if (failImg === "candidateImg") {
       setIsErorImgCandidate((prev) => !prev);
@@ -30,7 +30,7 @@ const Section = () => {
   };
 
   const handleLoadImg = (e) => {
-    console.log("Success al cargar img:..", e.target.name);
+    // console.log("Success al cargar img:..", e.target.name);
   };
 
   return (

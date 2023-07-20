@@ -19,14 +19,41 @@ const HorizonTable = ({
   currentPage,
   perPage,
 }) => {
+  const customStyles = {
+    rows: {
+        style: {
+            minHeight: '72px', // override the row height
+            fontsize:"18px",
+        },
+    },
+    headCells: {
+        style: {
+          backgroundColor:'#7FADC0',
+          color:'#fff',
+          fontWeight: "bold",
+          fontsize:"12px",
+          paddingLeft: '8px', // override the cell padding for head cells
+          paddingRight: '8px',
+        },
+    },
+    cells: {
+        style: {
+          fontsize:"18px",
+          paddingLeft: '8px', // override the cell padding for data cells
+          paddingRight: '8px',
+        },
+    },
+};
+
+
   const [tempArrayVancies, setTempArrayVancies] = useState([]);
   const [dataCandidate] = useJob();
   useEffect(() => {
-    console.log("Nuevo valor de limit(Hijo):..", perPage);
+    ////console.log("Nuevo valor de limit(Hijo):..", perPage);
   }, [perPage]);
   useEffect(() => {
     initDataMyVacancies();
-    //console.log("vancacies:...", vacancies);
+    ////console.log("vancacies:...", vacancies);
   }, []);
 
   function parseJwt(token) {
@@ -39,7 +66,7 @@ const HorizonTable = ({
     let idUser = "";
     if (dataCandidate?.accessToken) {
       const result = parseJwt(dataCandidate?.accessToken);
-      console.log("data Token(jwt):...", result);
+      //console.log("data Token(jwt):...", result);
       idUser = result._id;
     }
     let innerArray = [];
@@ -59,12 +86,13 @@ const HorizonTable = ({
     id: myId(),
     _id: item._id,
     index: index + 1,
+    company: item.companyName,
     title: item.title,
     type: item.type,
     mode: item.mode,
-    salary: item.salary,
+    salary:`$ ${item.salary}.00`,
   }));
-  console.log("datooos....", data);
+  //console.log("datooos....", data);
   const columns = [
     {
       name: "id",
@@ -73,7 +101,12 @@ const HorizonTable = ({
       omit: true,
     },
     {
-      name: "TÍTULO ",
+      name: "EMPRESA ",
+      selector: (row) => row.company,
+      sortable: true,
+    },
+    {
+      name: "TÍTULO DE LA VACANTE",
       selector: (row) => row.title,
       sortable: true,
     },
@@ -178,6 +211,7 @@ const HorizonTable = ({
             onChangePage={handlePageChange}
             highlightOnHover
             dense
+            customStyles={customStyles}
           />
         </DataTableExtensions>
       </div>

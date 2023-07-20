@@ -16,7 +16,7 @@ const SendAccessCode = () => {
     const [dataLogin, setDataLogin] = useState(initDataLogin);
 
     const handleChange = (e)=>{
-        console.log(e.target.name,e.target.value);
+        //console.log(e.target.name,e.target.value);
         setDataLogin({
             ...dataLogin,
             [e.target.name]: e.target.value
@@ -25,12 +25,12 @@ const SendAccessCode = () => {
 
     const handleSubmit = async(e)=>{
         e.preventDefault();
-        console.log('dataLogin:...',dataLogin);
+        //console.log('dataLogin:...',dataLogin);
         try {
             const response = await axios.post(backUrl,dataLogin);
-            console.log(response);
+            //console.log(response);
         } catch (error) {
-            console.log(error);
+            //console.log(error);
         }
     }
 

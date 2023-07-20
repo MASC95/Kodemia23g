@@ -47,20 +47,20 @@ export const Vacancy = () => {
   useEffect(() => {
     fetch(1, 10);
   }, []);
-  console.log(vacancyAll);
-  console.log(totalRows);
+  //console.log(vacancyAll);
+  //console.log(totalRows);
 
   const isMobile = useMediaQuery({ query: "(max-width: 576px)" });
 
   useEffect(() => {
     if (vacancyAll.length > 0) {
-      console.log("vaListTem", vacancyAll);
+      //console.log("vaListTem", vacancyAll);
       setVacancyAll([...vacancyAll]);
     }
   }, []);
 
   useEffect(() => {
-    console.log("Nuevo valor de limit:..", perPage);
+    //console.log("Nuevo valor de limit:..", perPage);
   }, [perPage]);
 
   // pagination
@@ -70,27 +70,27 @@ export const Vacancy = () => {
   };
 
   const handlePerRowsChange = async (newPerPage, page) => {
-    console.log("Cambiando limit:...", newPerPage);
+    //console.log("Cambiando limit:...", newPerPage);
     fetch(page, newPerPage);
     setPerPage(newPerPage);
   };
   // pagination
 
   useEffect(() => {
-    // console.log('applicants', vacancyAll)
+    // //console.log('applicants', vacancyAll)
     // checkApplicants()
     let tempApplicants = false;
     vacancyAll.forEach((item) => {
       const checkArr = item.applicants;
       if (checkArr.length > 0) {
-        console.log("si tiene candidatos", checkArr);
+        //console.log("si tiene candidatos", checkArr);
         tempApplicants = true;
       }
     });
     setBtnDelete(tempApplicants);
   }, [vacancyAll]);
 
-  console.log("si tiene candidatos outSet", btnDetele);
+  //console.log("si tiene candidatos outSet", btnDetele);
 
   const handleDeleteSkill = (index) => {
     Swal.fire({
@@ -103,7 +103,7 @@ export const Vacancy = () => {
       confirmButtonText: "Si, eliminar",
     }).then((result) => {
       if (result.isConfirmed) {
-        console.log(index);
+        //console.log(index);
         const deleteVacancy = vacancyAll[index];
         const id = deleteVacancy?._id;
         axios.defaults.headers.common[
@@ -113,12 +113,12 @@ export const Vacancy = () => {
         axios
           .delete(`${endpointsGral.vacancyURL}${id}`)
           .then((response) => {
-            console.log(response);
+            //console.log(response);
             const updateList = vacancyAll.filter((_, i) => i !== index);
             setVacancyAll(updateList);
           })
           .catch((error) => {
-            console.log(error.response);
+            //console.log(error.response);
           });
         Swal.fire("Eliminado!", "Vacante eliminada correctamente.", "success");
       }

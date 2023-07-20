@@ -18,9 +18,9 @@ export const Softskills = ({ setListSkills, isCandidate, skillsCandidate }) => {
     const response = await axios.get(`${endpointsGral.jobSkill}getAllSkillsForVacancy`);
     console.trace(response)
     const infoSkill = response.data.getAllSkills;
-    console.log('infoSkill:...',infoSkill);
+    //console.log('infoSkill:...',infoSkill);
     let arrShort=infoSkill.sort((x, y) => x.name.localeCompare(y.name));
-    console.log(arrShort);
+    //console.log(arrShort);
     setDataSkill(infoSkill);
   };
   useEffect(() => {
@@ -30,7 +30,7 @@ export const Softskills = ({ setListSkills, isCandidate, skillsCandidate }) => {
   useEffect(() => {
     if (skillTemp.length === 0) {
       if (skillsCandidate.length > 0) {
-        console.log("skillsCandidate:..", skillsCandidate);
+        //console.log("skillsCandidate:..", skillsCandidate);
         setSkillTemp([...skillsCandidate]);
       }
     }
@@ -171,7 +171,7 @@ export const Softskills = ({ setListSkills, isCandidate, skillsCandidate }) => {
         <table className="table">
           <thead className="thead-dark bg-body-secondary">
             <tr>
-              <th scope="col">#</th>
+              {/* <th scope="col">#</th> */}
               <th className="text-center" scope="col">
                 Skill
               </th>
@@ -197,7 +197,7 @@ export const Softskills = ({ setListSkills, isCandidate, skillsCandidate }) => {
               //console.log('myDataSkill:..',myDataSkill,'skill:..',skill);
               return (
                 <tr key={myId()}>
-                  <td>{index + 1}</td>
+                  {/* <td>{index + 1}</td> */}
                   <td>{myDataSkill?.name}</td>
                   <td>{myDataSkill?.level}</td>
                   <td className="text-center">

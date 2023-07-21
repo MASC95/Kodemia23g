@@ -118,17 +118,21 @@ const NavbarCandidate = () => {
           >
             <FaBars />
           </Button>
-          <img
-            src={logoSmall}
-            width={"50px"}
-            alt="Logo"
-            className="d-flex d-md-none justify-content-start rounded"
-          />
-          <img
-            src={logo}
-            alt="Logo"
-            className="d-none logo-img d-md-flex justify-content-start"
-          />{" "}
+          <Link to="/dashboard-recruiter/home">
+            <img
+              src={logoSmall}
+              width={"50px"}
+              alt="Logo"
+              className="d-flex d-md-none justify-content-start rounded"
+            />
+          </Link>
+          <Link to="/dashboard-recruiter/home">
+            <img
+              src={logo}
+              alt="Logo"
+              className="d-none logo-img d-md-flex justify-content-start"
+            />{" "}
+          </Link>
         </Navbar.Brand>
         <OffCanvasRecruiter
           showOffcanvas={showOffcanvas}

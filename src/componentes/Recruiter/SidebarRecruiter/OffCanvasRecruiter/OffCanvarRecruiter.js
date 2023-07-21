@@ -7,7 +7,7 @@ import {
   FaCode,
   FaSignOutAlt,
   FaHome,
-  FaCheckDouble
+  FaCheckDouble,
 } from "react-icons/fa";
 import useJob from "../../../../hooks/useJob";
 import "../style.scss";
@@ -46,10 +46,13 @@ function OffCanvasRecruiter({ showOffcanvas, handleShowOffcanvas }) {
           </Link>
         </Offcanvas.Header>
         <Offcanvas.Body className="canvas-body">
-          <div onClick={handleShowOffcanvas} className="d-flex flex-column columns">
+          <div
+            onClick={handleShowOffcanvas}
+            className="d-flex flex-column columns"
+          >
             <Link to={`/Dashboard-Recruiter/home`} className="link">
               <FaHome className="icons" />
-              <span className="text">Home</span>
+              <span className="text">Inicio</span>
             </Link>
             <Link to={`/Dashboard-Recruiter/profile`} className="link">
               <FaUser className="icons" /> <span className="text">Perfil</span>
@@ -67,13 +70,9 @@ function OffCanvasRecruiter({ showOffcanvas, handleShowOffcanvas }) {
               <span className="text">Match</span>
             </Link>
             <div className="link">
-              <span
-                type="submit"
-                onClick={logout}
-                className=" link"
-              >
+              <span type="submit" onClick={logout} className=" link">
                 <FaSignOutAlt className="icons" />
-                <span className="text">Log Out</span>
+                <span className="text">Cerrar Sesión</span>
               </span>
             </div>
           </div>

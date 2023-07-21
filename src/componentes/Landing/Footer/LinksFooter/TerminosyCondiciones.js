@@ -64,7 +64,7 @@ const TerminosCondiciones = () => {
         </Link>
 
         <h1 className="text-center mb-5 fw-bold">
-          Términos y Condiciones de Jobinder
+          Términos y Condiciones de Jobinder.
         </h1>
 
         <p className="mb-3">

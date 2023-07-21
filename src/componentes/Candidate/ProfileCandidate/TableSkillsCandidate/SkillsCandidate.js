@@ -15,7 +15,7 @@ const SkillsCandidate = ({
   };
 
   useEffect(() => {
-    console.log("dataSkillsInUser:..", dataSkillsInUser);
+    // console.log("dataSkillsInUser:..", dataSkillsInUser);
   }, [dataSkillsInUser]);
 
   return (

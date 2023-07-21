@@ -69,7 +69,7 @@ export const LoginCandidate = () => {
         //console.log("formValues:..", formValues);
         const loginCandidate = await endpoints.loginAxios(values);
         setFormValues(loginCandidate);
-        console.log("loginCandidate(checando user_skills):..", loginCandidate);
+        //console.log("loginCandidate(checando user_skills):..", loginCandidate);
         setDataLocalStorage({ ...loginCandidate });
         const role = loginCandidate?.role;
         if (role === "candidato") {
@@ -79,7 +79,7 @@ export const LoginCandidate = () => {
             button: "ok!",
           });
           resetForm();
-          console.log("dashboard Candidato");
+          //console.log("dashboard Candidato");
           navigate("/dashboard-candidato/home");
         } else {
           swal({
@@ -157,8 +157,9 @@ export const LoginCandidate = () => {
                   </Link>
                 </div>
                 <h2 className="text-center welcome-back">
-                  Bienvenido de vuelta!
+                  Inicia sesión en tu cuenta
                 </h2>
+                <span>para hacer match con la vacante ideal.</span>
                 <Formik
                   className="text-left clearfix"
                   id="formCandidate"

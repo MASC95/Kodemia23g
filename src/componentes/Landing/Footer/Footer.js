@@ -80,7 +80,7 @@ const Footer = () => {
                     className="mx-4 "
                     style={{ width: "30px", height: "30px" }}
                   />{" "}
-                  Terminos y Condiciones{" "}
+                  Términos y Condiciones{" "}
                 </Link>
               </li>
               <li className="text-footer col-sm-12  col-md-4 col-lg-4 col-xl-4 mb-3 mt-2 w-30">
@@ -108,7 +108,7 @@ const Footer = () => {
                     className="mx-4"
                     style={{ width: "30px", height: "30px" }}
                   />{" "}
-                  Contacanos!{" "}
+                  Contáctanos!{" "}
                 </a>
               </li>
               <li className="text-footer col-sm-12  col-md-4 col-lg-4 col-xl-4 mb-3 mt-2 w-30">

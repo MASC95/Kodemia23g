@@ -61,7 +61,7 @@ const SkillsSection = () => {
     axios
       .post(endpoints.profileAddSkills, skills)
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
       })
       .catch((error) => {
         console.error(error);

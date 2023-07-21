@@ -22,7 +22,7 @@ const HorizonTable = ({
   const [tempArrayVancies, setTempArrayVancies] = useState([]);
   const [dataCandidate] = useJob();
   useEffect(() => {
-    console.log("Nuevo valor de limit(Hijo):..", perPage);
+    //console.log("Nuevo valor de limit(Hijo):..", perPage);
   }, [perPage]);
   useEffect(() => {
     initDataMyVacancies();
@@ -39,7 +39,7 @@ const HorizonTable = ({
     let idUser = "";
     if (dataCandidate?.accessToken) {
       const result = parseJwt(dataCandidate?.accessToken);
-      console.log("data Token(jwt):...", result);
+      //console.log("data Token(jwt):...", result);
       idUser = result._id;
     }
     let innerArray = [];
@@ -64,7 +64,7 @@ const HorizonTable = ({
     mode: item.mode,
     salary: item.salary,
   }));
-  console.log("datooos....", data);
+  //console.log("datooos....", data);
   const columns = [
     {
       name: "id",
@@ -73,7 +73,7 @@ const HorizonTable = ({
       omit: true,
     },
     {
-      name: "TÍTULO ",
+      name: "TÍTULO DE LA VACANTE ",
       selector: (row) => row.title,
       sortable: true,
     },

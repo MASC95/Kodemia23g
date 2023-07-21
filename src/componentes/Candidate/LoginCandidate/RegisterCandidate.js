@@ -109,14 +109,14 @@ export const RegisterCandidate = () => {
   };
 
   const confirmAccesCode = async (values) => {
-    console.log("Estamos confirmando el email:..");
+    //console.log("Estamos confirmando el email:..");
     const { confirmEmail } = endpointsGral;
     const dataLogin = {
       email: values.email,
     };
     try {
       const response = await axios.post(confirmEmail, dataLogin);
-      console.log("responseConfirmEmail:..", response);
+      //console.log("responseConfirmEmail:..", response);
       setDataForm({
         ...values,
         backCode: response?.data?.code,
@@ -131,7 +131,7 @@ export const RegisterCandidate = () => {
       const response = await axios.get(
         `${endpointsGral.userURL}getUserByEmail?email=${email}`
       );
-      console.log("response searchUserInDB:..", response);
+      //console.log("response searchUserInDB:..", response);
       if (response?.data?.user) {
         //console.log('Email duplicado (no puede continuar):...')
         return true;
@@ -170,13 +170,13 @@ export const RegisterCandidate = () => {
     try {
       const register = await axios.post(endpointsGral.registerUser, dataForm);
       setDataForm(register);
-      console.log("datos de Registro:..", register);
+      //console.log("datos de Registro:..", register);
       setDataLocalStorage({ ...register?.data });
       if (dataForm.role === "candidato") {
-        console.log("pagina candidato");
+        //console.log("pagina candidato");
         navigate(`/dashboard-candidato/home`);
       } else {
-        console.log("pagina empresa");
+        //console.log("pagina empresa");
         navigate(`/Dashboard-recruiter/home`);
       }
     } catch (error) {
@@ -189,10 +189,10 @@ export const RegisterCandidate = () => {
   };
 
   const handleConfirmEmail = () => {
-    console.log("hola:..");
+    /*    console.log("hola:..");
     console.log("codigo:", dataForm.code);
     console.log("codigo:", dataForm.code);
-    console.log("codigoBack:..", dataForm.backCode);
+    console.log("codigoBack:..", dataForm.backCode); */
     if (dataForm.code === "") {
       Swal.fire({
         icon: "error",
@@ -202,9 +202,9 @@ export const RegisterCandidate = () => {
     } else {
       if (isConfirmEmail === true) {
         registerRecruiter();
-        console.log("Email confirmado con Exito:..");
+        //console.log("Email confirmado con Exito:..");
       } else {
-        console.log("Codigo de acceso Erroneo:..");
+        //console.log("Codigo de acceso Erroneo:..");
         Swal.fire({
           title: "Error!",
           text: "Ingrese el código que se le envió a su correo",
@@ -295,7 +295,8 @@ export const RegisterCandidate = () => {
                     <img src={logo} alt="" />
                   </Link>
                 </div>
-                <h2 className="text-center">Crear cuenta</h2>
+                <h2 className="text-center">Crea tu cuenta</h2>
+                <span>y haz match en el empleo ideal en tiempo récord.</span>
                 <Formik
                   initialValues={dataForm}
                   enableReinitialize={true}
@@ -350,6 +351,7 @@ export const RegisterCandidate = () => {
                             backgroundColor: "#0093E9",
                             backgroundImage:
                               "linear-gradient(160deg, #0093E9 0%, #80D0C7 100%)",
+                            borderRadius: "0px 5px 5px 0px",
                           }}
                           onClick={() => setShowPassword(!showPassword)}
                         >
@@ -387,6 +389,7 @@ export const RegisterCandidate = () => {
                             backgroundColor: "#0093E9",
                             backgroundImage:
                               "linear-gradient(160deg, #0093E9 0%, #80D0C7 100%)",
+                            borderRadius: "0px 5px 5px 0px",
                           }}
                           onClick={() => setShowPassword(!showPassword)}
                         >

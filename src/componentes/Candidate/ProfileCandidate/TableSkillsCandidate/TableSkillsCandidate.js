@@ -43,7 +43,7 @@ const TableSkillsCandidate = ({ setDataListSkills }) => {
     setLoadingSkillsInUser(true);
     if (user_skills) {
       setDataSkillsInUser([...user_skills]);
-      console.log("dataCandidate:..", dataCandidate);
+      // console.log("dataCandidate:..", dataCandidate);
     }
     //setTotalRowsSkillsInUser(user_skills.length);
     //console.log('Buscando Skilllsss',user_skills)
@@ -56,8 +56,8 @@ const TableSkillsCandidate = ({ setDataListSkills }) => {
       `${endpointsGral.jobSkill}?page=${page}&limit=${limit}`
     );
     const infoSkill = response.data["item"];
-    console.log("infoSkill (newComponent):...", infoSkill);
-    console.log("totalDocs:..", infoSkill?.totalDocs);
+    // console.log("infoSkill (newComponent):...", infoSkill);
+    // console.log("totalDocs:..", infoSkill?.totalDocs);
     setTotalRowsGeneralSkills(infoSkill?.totalDocs);
     setDataGeneralSkills(infoSkill["docs"]);
     setLoadingGeneralSkills(false);
@@ -100,7 +100,7 @@ const TableSkillsCandidate = ({ setDataListSkills }) => {
   };
 
   const handleDeleteSkill = (id) => {
-    console.log("Eliminando Skill(papa):..", id);
+    // console.log("Eliminando Skill(papa):..", id);
     swal
       .fire({
         title: "Mensaje de confirmación",

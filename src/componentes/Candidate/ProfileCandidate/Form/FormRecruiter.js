@@ -33,21 +33,9 @@ const initDataForm = {
   bachelor: "",
   avatar_url: "",
 };
-const style = {
-  borderRadius: "14%",
-  margin: "20px",
-  boxShadow:
-    "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px",
-  borderWidth: "2px",
-  borderStyle: "solid",
-  width: "20vw",
-  maxHeight: "300px",
-  objectFit: "cover",
-  borderImage:
-    "radial-gradient(circle 588px at 31.7% 40.2%, rgba(225, 200, 239, 1) 21.4%, rgba(163, 225, 233, 1) 57.1%)",
-};
 
 /*
+
 password: Yup.string().required('Requerido').min(8, 'La contraseña debe tener al menos 8 caracteres')
   .matches(
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/,
@@ -71,7 +59,7 @@ const profileSchema = Yup.object().shape({
   resetPassword: Yup.string(),
   age: Yup.number()
     .required("El campo es requerido")
-    .min(18, "Debe ser mayor de 18 años"),
+    .min(18, "debes ser mayor de 18 años"),
 });
 
 const FormRecruiter = () => {
@@ -127,7 +115,7 @@ const FormRecruiter = () => {
   }, [dataCandidate]);
 
   useEffect(() => {
-    console.log("datos en dataForm:..", dataForm);
+    // console.log("datos en dataForm:..", dataForm);
   }, [dataForm]);
 
   useEffect(() => {
@@ -156,7 +144,7 @@ const FormRecruiter = () => {
       .then((result) => {
         if (result.isConfirmed) {
           const idsSkills = listSkills.map((item) => item._id);
-          console.log('values form(Candidate):..',values);
+          // console.log("values form(Candidate):..", values);
           const completeForm = {
             ...values,
             user_skills: [...idsSkills],
@@ -199,7 +187,7 @@ const FormRecruiter = () => {
 
                 if (response?.data?.message === "Update User Ok") {
                   if (response?.data?.updateUser) {
-                    console.log("setDatalocalStorage updatedUser:...");
+                    // console.log("setDatalocalStorage updatedUser:...");
                     setDataLocalStorage({
                       ...response?.data?.updateUser,
                       accessToken: dataCandidate.accessToken,
@@ -211,7 +199,7 @@ const FormRecruiter = () => {
                 console.error(error);
               });
           } catch (error) {
-            console.log("error:..", error);
+            // console.log("error:..", error);
           }
 
           swal.fire("Los cambios han sido guardados correctamente!");
@@ -223,13 +211,30 @@ const FormRecruiter = () => {
     setIsResetPassword((prev) => !prev);
   };
 
-  const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
+  const isTablet = useMediaQuery({ query: "(max-width: 767px)" });
+  const isMobileOrTablet = useMediaQuery({
+    query: "(max-width: 767px)",
+  });
+
+  const style = {
+    borderRadius: "14%",
+    margin: "20px",
+    boxShadow:
+      "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px",
+    borderWidth: "2px",
+    borderStyle: "solid",
+    width: isMobileOrTablet ? "40vw" : "20vw ",
+    maxHeight: "300px",
+    objectFit: "cover",
+    borderImage:
+      "radial-gradient(circle 588px at 31.7% 40.2%, rgba(225, 200, 239, 1) 21.4%, rgba(163, 225, 233, 1) 57.1%)",
+  };
 
   return (
     <div>
       <div
         className={` ${
-          isMobile
+          isTablet
             ? "d-flex justify-content-center align-items-center mt-3"
             : "d-flex flex-start mt-3"
         }`}
@@ -378,6 +383,11 @@ const FormRecruiter = () => {
                           onChange={props.handleChange}
                           onBlur={props.handleBlur}
                         />
+                        {props.touched.last_name && props.errors.last_name && (
+                          <span className="text-danger">
+                            {props.errors.last_name}
+                          </span>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -409,6 +419,11 @@ const FormRecruiter = () => {
                           onChange={props.handleChange}
                           onBlur={props.handleBlur}
                         />
+                        {props.touched.age && props.errors.age && (
+                          <span className="text-danger">
+                            {props.errors.age}
+                          </span>
+                        )}
                       </div>
                     </div>
                     <div className="col">
@@ -473,6 +488,11 @@ const FormRecruiter = () => {
                           onChange={props.handleChange}
                           onBlur={props.handleBlur}
                         />
+                        {props.touched.email && props.errors.email && (
+                          <span className="text-danger">
+                            {props.errors.email}
+                          </span>
+                        )}
                       </div>
                     </div>
                     <div className="col r">

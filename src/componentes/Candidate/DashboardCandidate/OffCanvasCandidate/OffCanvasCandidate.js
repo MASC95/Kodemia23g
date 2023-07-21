@@ -52,10 +52,11 @@ function OffCanvasCandidate({ showOffcanvas, handleShowOffcanvas }) {
           >
             <Link to={`/dashboard-candidato/home`} className="link">
               <FaHome className="icons" />
-              <span className="text fs-6">Home</span>
+              <span className="text fs-6">Inicio</span>
             </Link>
             <Link to={`/dashboard-candidato/profile`} className="link">
-              <FaUser className="icons" /> <span className="text fs-6">Perfil</span>
+              <FaUser className="icons" />{" "}
+              <span className="text fs-6">Perfil</span>
             </Link>
             <Link to={`/dashboard-candidato/search`} className="link">
               <FaSearch className="icons" />{" "}
@@ -81,7 +82,7 @@ function OffCanvasCandidate({ showOffcanvas, handleShowOffcanvas }) {
                 }}
               >
                 <FaSignOutAlt className="icons" />
-                <span className="text fs-6">Log Out</span>
+                <span className="text fs-6">Cerrar Sesión</span>
               </button>
             </div>
           </div>

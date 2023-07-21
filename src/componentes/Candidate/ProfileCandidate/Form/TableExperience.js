@@ -23,11 +23,11 @@ const TableExperience = ({ dataExperience, setDataExpirience }) => {
   };
 
   useEffect(() => {
-    console.log("dataExperience:..", dataExperience);
+    // console.log("dataExperience:..", dataExperience);
   }, [dataExperience]);
 
   const handleExperience = () => {
-    console.log("Agregando Experiencia:..", addExp);
+    // console.log("Agregando Experiencia:..", addExp);
     if (addExp.description === "" || addExp.position === "") {
       Swal.fire("Agrega experiencia!", "Valor vacio", "error");
     } else {
@@ -35,7 +35,7 @@ const TableExperience = ({ dataExperience, setDataExpirience }) => {
       setAddExp(initAddExp);
       Swal.fire("Elemento agregado!", "listo!", "success");
     }
-    console.log("...Aquí se agrega experiencia---");
+    // console.log("...Aquí se agrega experiencia---");
   };
 
   const handleDeleteExp = (index) => {
@@ -49,10 +49,10 @@ const TableExperience = ({ dataExperience, setDataExpirience }) => {
       confirmButtonText: "Si, eliminar!",
     }).then((result) => {
       if (result.isConfirmed) {
-        console.log("Borrar el index:...", index);
+        // console.log("Borrar el index:...", index);
         const tempData = [...dataExperience];
         const newData = tempData.filter((_, i) => i !== index);
-        console.log("newData:..", newData);
+        // console.log("newData:..", newData);
         setDataExpirience([...newData]);
         Swal.fire("Eliminado!", "Eliminado correctamente!", "success");
       }
@@ -130,14 +130,14 @@ const TableExperience = ({ dataExperience, setDataExpirience }) => {
           }}
           onClick={handleExperience}
         >
-          <FaPlus /> Sumar Experiencia
+          <FaPlus /> Añadir Experiencia
         </button>
       </div>
       <Table striped bordered hover>
         <thead>
           <tr>
             <th>Puesto</th>
-            <th>Decripcion</th>
+            <th>Descripción</th>
             <th>Botones de acción</th>
           </tr>
         </thead>

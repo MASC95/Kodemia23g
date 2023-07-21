@@ -150,7 +150,7 @@ const UpdatePassword = () => {
         try {
             const response = await axios.post(`${userURL}updatePassword`,dataFormUpdate)
             console.log('response UpdatePassword:..',response);
-            const updatedPassword= response?.data?.emailToken;
+            const updatedPassword= response?.data?.email;
             if(updatedPassword){
               Swal.fire(
                 'Muy bien!',

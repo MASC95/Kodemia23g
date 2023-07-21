@@ -14,6 +14,31 @@ import MyTable from "./MyTable";
 // import 'datatables.net-responsive';
 
 const Example = () => {
+  const customStyles = {
+    rows: {
+        style: {
+            minHeight: '72px', // override the row height
+            fontsize:"18px",
+        },
+    },
+    headCells: {
+        style: {
+          backgroundColor:'#7FADC0',
+          color:'#fff',
+          fontWeight: "bold",
+          fontsize:"12px",
+          paddingLeft: '8px', // override the cell padding for head cells
+          paddingRight: '8px',
+        },
+    },
+    cells: {
+        style: {
+          fontsize:"18px",
+          paddingLeft: '8px', // override the cell padding for data cells
+          paddingRight: '8px',
+        },
+    },
+  }
   const [
     dataCandidate,
     setDataCandidate,
@@ -55,15 +80,15 @@ const Example = () => {
       ] = `Bearer: ${dataRecruiter.accessToken}`;
       const allVacancies=await axios.get(`${endpointsGral.vacancyURL}getAllJobVacancyByUser/${dataRecruiter.accessToken}?page=${page}&limit=${newPerPage}`)
       const datas=allVacancies.data['item']
-      console.log('backend Response:..',datas);
+      //console.log('backend Response:..',datas);
       // const statusStart= datas['docs'].filter(item=>item.status==='Iniciado')
-      // console.log('lista iniciados',statusStart)
+      // //console.log('lista iniciados',statusStart)
         setDataInformation(datas['docs'])
-        console.log('PAGINATION',datas["totalDocs"])
+        //console.log('PAGINATION',datas["totalDocs"])
        setTotalRows(datas["totalDocs"])
        setLoading(false)
     } catch (error) {
-        console.log(error) 
+        //console.log(error) 
     }
 }
 
@@ -71,12 +96,12 @@ const Example = () => {
     queryMatch(1, 10);
   }, []);
   useEffect(() => {
-    console.log("Nuevo valor de limit:..", perPage);
+    //console.log("Nuevo valor de limit:..", perPage);
   }, [perPage]);
 
   useEffect(() => {
     if (dataStatusEditing)
-      console.log("dataStatusEditing:..", dataStatusEditing);
+      console.log();
   }, [dataStatusEditing]);
 
   // pagination
@@ -86,7 +111,7 @@ const Example = () => {
   };
 
   const handlePerRowsChange = async (newPerPage, page) => {
-    console.log("Cambiando limit:...", newPerPage);
+    //console.log("Cambiando limit:...", newPerPage);
     queryMatch(page, newPerPage);
     setPerPage(newPerPage);
   };
@@ -137,11 +162,11 @@ const Example = () => {
         }
       }
     });
-    console.log(`You clicked me! ${index}`);
+    //console.log(`You clicked me! ${index}`);
   };
 
   const editStatus = (values, editState) => {
-    console.log("value", values);
+    //console.log("value", values);
     const arrVacancy = dataInformation.map((item) => {
       if (item._id === editState._id) {
         item.status = values.status;
@@ -150,7 +175,7 @@ const Example = () => {
     });
     setDataInformation([...arrVacancy]);
 
-    console.log(arrVacancy);
+    //console.log(arrVacancy);
     axios.defaults.headers.common[
       "Authorization"
     ] = `Bearer: ${dataRecruiter.accessToken}`;
@@ -158,10 +183,10 @@ const Example = () => {
     axios
       .patch(`${endpointsGral.vacancyURL}${editState._id}`, values)
       .then((response) => {
-        console.log(response);
+        //console.log(response);
       })
       .catch((error) => {
-        console.log(error.response);
+        //console.log(error.response);
       });
   };
 
@@ -212,6 +237,7 @@ const Example = () => {
       name: "APLICANTES",
       selector: (row, i) => row.candidato,
       sortable: true,
+      center: true,
     },
     {
       name: "OPCIONES",
@@ -246,6 +272,7 @@ const Example = () => {
           {...tableData}
           columns={columns}
           data={data}
+          customStyles={customStyles}
           progressPending={loading}
           pagination
           paginationServer

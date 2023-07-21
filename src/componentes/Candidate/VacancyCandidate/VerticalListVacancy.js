@@ -13,9 +13,9 @@ const VerticalListVacancy = () => {
   const cargarDatos = async () => {
     try {
       const response = await axios.get(endpoints.candidateMyVacancies);
-      console.log("responseMyVacancies:..", response);
+      //console.log("responseMyVacancies:..", response);
     } catch (error) {
-      console.log(error);
+      //console.log(error);
     }
   };
   return (

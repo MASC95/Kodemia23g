@@ -13,6 +13,38 @@ import "./scss/style.scss";
 import { useNavigate } from "react-router-dom";
 import Table from "react-bootstrap/Table";
 export const Candidate = () => {
+  const customStyles = {
+    rows: {
+        style: {
+            minHeight: '72px', // override the row height
+            fontsize:"18px",
+        },
+    },
+    headCells: {
+        style: {
+          backgroundColor:'#7FADC0',
+          color:'#fff',
+          fontWeight: "bold",
+          fontsize:"12px",
+          paddingLeft: '8px', // override the cell padding for head cells
+          paddingRight: '8px',
+        },
+    },
+    cells: {
+        style: {
+          fontsize:"18px",
+          paddingLeft: '8px', // override the cell padding for data cells
+          paddingRight: '8px',
+        },
+    },
+};
+
+
+
+
+
+
+  
   const valores = window.location.search;
   const urlParams = new URLSearchParams(valores);
   const idCandidate = urlParams.get("c");
@@ -33,7 +65,7 @@ export const Candidate = () => {
       "Poppins, sans-serif, Verdana, Geneva, Tahoma",
   }
 
-  console.log(idCandidate);
+  //console.log(idCandidate);
   const [dataSkill, setDataSkill] = useState([]);
   const [infoCandidate, setInfoCandidate] = useState({});
   const [isDisable, setIsDisable] = useState(false);
@@ -43,19 +75,19 @@ export const Candidate = () => {
       const response = await axios.get(
         `${endpointsGral.userURL}getUser/${idCandidate}`
       );
-      console.log("response:...", response);
+      //console.log("response:...", response);
       const dataUser = response?.data;
       const objUser = dataUser?.user;
-      /* console.log('objUsers:...',objUsers);
-      console.log('idCandidate:..',idCandidate);
+      /* //console.log('objUsers:...',objUsers);
+      //console.log('idCandidate:..',idCandidate);
       const userFind = objUsers.find((value) => value._id === idCandidate); */
       if (objUser) setInfoCandidate(objUser);
     } catch (error) {
-      console.log(error);
+      //console.log(error);
     }
   };
 
-  console.log("my vacancies", infoCandidate.my_vacancies);
+  //console.log("my vacancies", infoCandidate.my_vacancies);
 
   useEffect(() => {
     queryByUsers();
@@ -74,27 +106,27 @@ export const Candidate = () => {
       const endpointPhase = `${endpointsGral.phaseUrlGetPhase}?phase=${phase}`;
       try {
         const response = await axios.get(endpointPhase);
-        console.log("Phase One, backend", response);
+        //console.log("Phase One, backend", response);
         const result = response?.data?.infoPhase?.vacancies;
 
         const dataInformationVacancy = result.find(
           (item) => String(item.idVacancie) === idVacancy
         );
-        console.log(
-          `dataInformationVacancy:..${phase}`,
-          dataInformationVacancy
-        );
+        //console.log(
+        //   `dataInformationVacancy:..${phase}`,
+        //   dataInformationVacancy
+        // );
         tempData = [...tempData, ...dataInformationVacancy?.applicants];
       } catch (error) {
-        console.log(error);
+        ////console.log(error);
       }
     }
-    console.log("todos los applicantes en las 4 fases:..", tempData);
+    //console.log("todos los applicantes en las 4 fases:..", tempData);
   };
 
   const handleOfPanel = (id) => {
-    console.log(id);
-    console.log(idVacancy);
+    //console.log(id);
+    //console.log(idVacancy);
     Swal.fire({
       title: "Panel de reclutamiento",
       text: "Estas seguro de agregar al candidato?!",
@@ -112,15 +144,15 @@ export const Candidate = () => {
           const response = await axios.patch(
             `${endpointsGral.phaseURL}?phase=Llamada&idVacancie=${idVacancy}&idCandidate=${id}`
           );
-          console.log("responseBackend (candidato Agregado):..", response);
+          //console.log("responseBackend (candidato Agregado):..", response);
           if (response) {
             queryPhase();
           }
         } catch (error) {
-          console.log(error);
+          //console.log(error);
         }
       }
-      // console.log('lista de usuarios para reclutamiento',tempDataUser)
+      // //console.log('lista de usuarios para reclutamiento',tempDataUser)
       navigate(`/Dashboard-Recruiter/details-match/?=${idVacancy}`);
       setIsDisable(true);
 
@@ -129,7 +161,7 @@ export const Candidate = () => {
   };
 
   const handleOfHidePanel = (email) => {
-    console.log("En el papa(index):", email);
+    //console.log("En el papa(index):", email);
     Swal.fire({
       title: "Ocultar candidato",
       text: "Estas seguro de ocultar esta candidato?!",
@@ -144,25 +176,25 @@ export const Candidate = () => {
           axios.defaults.headers.common[
             "Authorization"
           ] = `Bearer: ${dataRecruiter.accessToken}`;
-          console.log("dataRecruiter.accessToken ", dataRecruiter.accessToken);
+          //console.log("dataRecruiter.accessToken ", dataRecruiter.accessToken);
           const responseBack = await axios.post(
             `${endpointsGral.hideUserInVacancy}`,
             { idVacancy, idCandidate: idCandidate, emailUser: email }
           );
-          console.log("responseBack HideUser:..", responseBack);
+          //console.log("responseBack HideUser:..", responseBack);
         } catch (error) {
-          console.log(error);
+          //console.log(error);
         }
         setIsHidePanel(true);
         navigate(`/Dashboard-Recruiter/details-match/?=${idVacancy}`);
       } else {
-        console.log("error al ocultar");
+        //console.log("error al ocultar");
       }
     });
   };
 
   useEffect(() => {
-    console.log("infoCandidate:...", infoCandidate);
+    //console.log("infoCandidate:...", infoCandidate);
     fetchSkill();
   }, [infoCandidate]);
 
@@ -187,6 +219,8 @@ export const Candidate = () => {
       name: "#",
       selector: (row, i) => i + 1,
       sortable: true,
+      hide: true,
+      omit: true,
     },
     {
       name: "SKILL",
@@ -304,7 +338,7 @@ export const Candidate = () => {
               <div className="row mb-4">
                 <div className="col">
                   <div className="form-outline">
-                    <label className="form-label text-dark" for="form6Example1">
+                    <label className="form-label text-dark" for="form6Example1" style={{fontSize:'22px'}}>
                       Experiencia
                     </label>
                     {/* <p className="text-dark">
@@ -313,8 +347,8 @@ export const Candidate = () => {
                      <Table striped bordered hover>
                       <thead>
                         <tr style={{borderRadius:'200px'}}>
-                          <th style={{backgroundColor:'#7FADC0', borderRadius:'10px 0px 0px 0px'}}>Puesto</th>
-                          <th style={{backgroundColor:'#7FADC0', borderRadius:'0px 10px 0px 0px'}}>Descripción</th>
+                          <th style={{backgroundColor:'#7FADC0', color:'white', fontSize:"12px"}}>PUESTO</th>
+                          <th style={{backgroundColor:'#7FADC0', color:'white', fontSize:"12px"}}>DESCRIPCIÓN</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -337,6 +371,7 @@ export const Candidate = () => {
                   <DataTableExtensions
                     export={false}
                     print={false}
+                    filter={false}
                     {...tableData}
                   >
                     <DataTable
@@ -344,12 +379,13 @@ export const Candidate = () => {
                       key={myId()}
                       columns={columns}
                       data={data}
-                      title='Lista de skills agregadas'
+                      title='Lista de skills'
                       defaultSortField="#"
                       defaultSortAsc={true}
                       pagination
                       highlightOnHover
                       dense
+                      customStyles={customStyles} 
                     />
                   </DataTableExtensions>
                 </div>

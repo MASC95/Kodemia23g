@@ -16,8 +16,37 @@ const ListVacancies = ({
   perPage,
   btnDelete
 }) => {
+
+  const customStyles = {
+    rows: {
+        style: {
+            minHeight: '72px', // override the row height
+            fontsize:"18px",
+        },
+    },
+    headCells: {
+        style: {
+          backgroundColor:'#7FADC0',
+          color:'#fff',
+          fontWeight: "bold",
+          fontsize:"12px",
+          paddingLeft: '8px', // override the cell padding for head cells
+          paddingRight: '8px',
+        },
+    },
+    cells: {
+        style: {
+          fontsize:"18px",
+          paddingLeft: '8px', // override the cell padding for data cells
+          paddingRight: '8px',
+        },
+    },
+};
+
+
+
   useEffect(() => {
-    console.log("Nuevo valor de limit:..", perPage);
+    //console.log("Nuevo valor de limit:..", perPage);
   }, [perPage]);
 
   const childHandleDeleteSkill = (index) => {
@@ -32,7 +61,7 @@ const ListVacancies = ({
       title: item.title,
       type: item.type,
       mode: item.mode,
-      salary: item.salary,
+      salary: `$ ${item.salary}.00`,
     };
   });
 
@@ -50,7 +79,7 @@ const ListVacancies = ({
       sortable: true,
     },
     {
-      name: "TITULO",
+      name: "TITULO DE LA VACANTE",
       selector: (row, i) => row.title,
       sortable: true,
     },
@@ -103,6 +132,7 @@ const ListVacancies = ({
         {...tableData}
         columns={columns}
         data={data}
+        customStyles={customStyles}
         // noHeader
         // defaultSortField="#"
         // defaultSortAsc={true}

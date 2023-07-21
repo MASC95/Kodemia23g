@@ -76,12 +76,12 @@ export const Reclutamiento = () => {
                   body: `${applicant.name} ${applicant.last_name}`,
                 },
               ];
-              //console.log('response DataApplicants:...',response?.data?.user);
+              ////console.log('response DataApplicants:...',response?.data?.user);
             }
           }
         }
       } catch (error) {
-        console.log(error);
+        //console.log(error);
       }
     }
     setCandidatos([...tempDataApplicants]);
@@ -93,7 +93,7 @@ export const Reclutamiento = () => {
   };
   const startDrag = (evt, item) => {
     evt.dataTransfer.setData("itemID", item._id);
-    console.log(item);
+    //console.log(item);
   };
   const draggingOver = (evt) => {
     evt.preventDefault();
@@ -143,9 +143,9 @@ export const Reclutamiento = () => {
         
       })
       const response= await axios.post(endpoint,dataBody);
-      console.log('response Close Vacancy:..',response);
+      //console.log('response Close Vacancy:..',response);
     } catch (error) {
-      console.log(error);
+      //console.log(error);
     }
 
   }
@@ -189,7 +189,7 @@ try {
             `${endpointsGral.phaseURL}updatePanel`,
             dataBody
           );
-          console.log("Updating Panel de Reclutamiento:...", response);
+          //console.log("Updating Panel de Reclutamiento:...", response);
           if (response) {
             Swal.fire({
               title: "Guardando",
@@ -206,12 +206,12 @@ try {
             });
           }
         } catch (error) {
-          console.log(error);
+          //console.log(error);
         }
   }
 
   const handleSave = async () => {
-    console.log("Guardando cambios:...");
+    //console.log("Guardando cambios:...");
 
     Swal.fire({
       title: "Guardar Cambios",

@@ -14,6 +14,32 @@ const GeneralTableSkills = ({
   currentPageGeneralSkills,
   handleAddSkill,
 }) => {
+  const customStyles = {
+    rows: {
+        style: {
+            minHeight: '72px', // override the row height
+            fontsize:"18px",
+        },
+    },
+    headCells: {
+        style: {
+          backgroundColor:'#7FADC0',
+          color:'#fff',
+          fontWeight: "bold",
+          fontsize:"12px",
+          paddingLeft: '8px', // override the cell padding for head cells
+          paddingRight: '8px',
+        },
+    },
+    cells: {
+        style: {
+          fontsize:"18px",
+          paddingLeft: '8px', // override the cell padding for data cells
+          paddingRight: '8px',
+        },
+    },
+};
+
   const childHandleAddSkill = (id) => {
     //console.log("Agregando Skill:..",id);
     handleAddSkill(id);
@@ -46,7 +72,7 @@ const GeneralTableSkills = ({
       sortable: true,
     },
     {
-      name: "LEVEL",
+      name: "NIVEL",
       selector: (row, i) => row.level,
       sortable: true,
     },
@@ -84,7 +110,7 @@ const GeneralTableSkills = ({
       >
         Agrega Skills a tu perfil
       </h1>
-      <h2
+      {/* <h2
         style={{
           backgroundColor: "#498ba6",
           color: "#f2f2f2",
@@ -96,12 +122,13 @@ const GeneralTableSkills = ({
         }}
       >
         <FaHammer style={{ marginRight: "10px" }} /> Lista General de Skills
-      </h2>
-      <DataTableExtensions export={false} print={false} {...tableData}>
+      </h2> */}
+      <DataTableExtensions export={false} print={false} filter={false} {...tableData} >
         <DataTable
           {...tableData}
           columns={columns}
           data={data}
+          title="Lista General de Skills"
           // noHeader
           // defaultSortField="#"
           // defaultSortAsc={true}
@@ -114,6 +141,7 @@ const GeneralTableSkills = ({
           onChangePage={handlePageChangeGeneralSkills}
           highlightOnHover
           dense
+          customStyles={customStyles}
         />
       </DataTableExtensions>
     </>

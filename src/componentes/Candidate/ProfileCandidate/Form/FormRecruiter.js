@@ -127,7 +127,7 @@ const FormRecruiter = () => {
   }, [dataCandidate]);
 
   useEffect(() => {
-    console.log("datos en dataForm:..", dataForm);
+    //console.log("datos en dataForm:..", dataForm);
   }, [dataForm]);
 
   useEffect(() => {
@@ -156,7 +156,7 @@ const FormRecruiter = () => {
       .then((result) => {
         if (result.isConfirmed) {
           const idsSkills = listSkills.map((item) => item._id);
-          console.log('values form(Candidate):..',values);
+          //console.log('values form(Candidate):..',values);
           const completeForm = {
             ...values,
             user_skills: [...idsSkills],
@@ -199,7 +199,7 @@ const FormRecruiter = () => {
 
                 if (response?.data?.message === "Update User Ok") {
                   if (response?.data?.updateUser) {
-                    console.log("setDatalocalStorage updatedUser:...");
+                    //console.log("setDatalocalStorage updatedUser:...");
                     setDataLocalStorage({
                       ...response?.data?.updateUser,
                       accessToken: dataCandidate.accessToken,
@@ -211,7 +211,7 @@ const FormRecruiter = () => {
                 console.error(error);
               });
           } catch (error) {
-            console.log("error:..", error);
+            //console.log("error:..", error);
           }
 
           swal.fire("Los cambios han sido guardados correctamente!");

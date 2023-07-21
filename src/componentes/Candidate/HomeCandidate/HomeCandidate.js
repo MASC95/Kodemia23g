@@ -12,14 +12,14 @@ const HomeCandidate = () => {
 
   useEffect(() => {
     setAnchoVW(window.innerWidth);
-    console.log("anchoVW:..", anchoVW);
+    // console.log("anchoVW:..", anchoVW);
   }, [window.innerWidth, anchoVW]);
 
   const handleError = () => {
-    console.log("Error al cargar imagen:..");
+    // console.log("Error al cargar imagen:..");
   };
   const handleLoad = () => {
-    console.log("Imagen Cargada con Exito:..");
+    // console.log("Imagen Cargada con Exito:..");
   };
 
   return (

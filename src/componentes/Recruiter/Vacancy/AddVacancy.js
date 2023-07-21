@@ -59,7 +59,7 @@ export const AddVacancy = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log("datos en dataForm:..", dataForm);
+    ////console.log("datos en dataForm:..", dataForm);
     
   }, [dataForm]);
 
@@ -76,8 +76,8 @@ export const AddVacancy = () => {
     }),
     onSubmit: (values) => {
       setTimeout(() => {
-        console.log("...........", imageUser);
-        console.log("RFC COMPLETE", dataRecruiter.rfc)
+        ////console.log("...........", imageUser);
+        //console.log("RFC COMPLETE", dataRecruiter.rfc)
 
         if(dataRecruiter.rfc===undefined){
           swal({
@@ -113,13 +113,13 @@ export const AddVacancy = () => {
         Object.entries(values).forEach(([key, value]) => {
           formData.append(key, value);
         });
-        // console.log("idsSkills:..", idsSkills);
+        // //console.log("idsSkills:..", idsSkills);
 
         // for (const pair of formData.entries()) {
-        //   // console.log(`${pair[0]}, ${pair[1]}`);
+        //   // //console.log(`${pair[0]}, ${pair[1]}`);
         // }
        
-        console.log("...........", formData);
+        //console.log("...........", formData);
         axios.defaults.headers.common[
           "Authorization"
         ] = `Bearer: ${dataRecruiter.accessToken}`;
@@ -130,7 +130,7 @@ export const AddVacancy = () => {
             },
           })
           .then((response) => {
-            //   console.log(response);
+            //   //console.log(response);
             swal({
               title: "Vacante creada!!",
               icon: "success",
@@ -139,7 +139,7 @@ export const AddVacancy = () => {
             navigate(`/Dashboard-Recruiter/vacancy`);
           })
           .catch((error) => {
-            //   console.log(error.response);
+            //   //console.log(error.response);
           });
         }
       }, 400);
@@ -249,7 +249,7 @@ export const AddVacancy = () => {
                       htmlFor="form6Example1"
                       style={style}
                     >
-                      Título
+                      Título de la vacante
                     </label>
                     <input
                       type="text"

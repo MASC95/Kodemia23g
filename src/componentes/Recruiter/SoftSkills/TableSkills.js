@@ -21,7 +21,7 @@ export const TableSkills=()=>{
 
     useEffect(()=>{
         if(getSoftSkills.length>0){
-            // console.log('intentando cargar datos', getSoftSkills)
+            // //console.log('intentando cargar datos', getSoftSkills)
             cargarDatos()
         }
     },[getSoftSkills])
@@ -41,9 +41,9 @@ export const TableSkills=()=>{
             for(let i =0; i<getSoftSkills?.length; i++){
                 const response = await axios.get(`${endpointsGral.jobSkill}/${getSoftSkills[i]}`);
                 const datasBySkill=response.data
-                console.log('response', datasBySkill)
+                //console.log('response', datasBySkill)
                 if (response?.data){
-                    console.log('responseDataJobSkill:..',response.data);
+                    //console.log('responseDataJobSkill:..',response.data);
                     const {_id,name,level}= response.data;
                    tempArray.push({
                     _id,
@@ -57,7 +57,7 @@ export const TableSkills=()=>{
             )
         }  
         } catch (error) {
-            console.log(error);
+            //console.log(error);
         }
     }
     return(
@@ -75,7 +75,7 @@ export const TableSkills=()=>{
                 </thead>
                 <tbody>
                     {dataSkils.map((skill,i)=>{
-                        console.log(skill._id)
+                        //console.log(skill._id)
                         return (
                             <tr>
                             <th scope="row">{i+1}</th>

@@ -47,7 +47,7 @@ const AdminLogin = () => {
   const navigate=useNavigate();
 
   const handleSubmit=(values)=>{
-    console.log("values:..", values);
+    //console.log("values:..", values);
     const {user,password}=values;
     if(user===adminUser&&password===adminPassword){
       navigate('/createArticle');

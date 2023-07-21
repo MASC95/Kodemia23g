@@ -38,7 +38,7 @@ export const AddSkills=()=>{
         const response = await axios.get(`${endpointsGral.jobSkill}?page=${page}&limit=${newPerPage}`);
         const infoSkill = response.data["item"];
         setDataSkill(infoSkill["docs"]);
-        console.log('PAGINATION',infoSkill["totalDocs"])
+        //console.log('PAGINATION',infoSkill["totalDocs"])
          setTotalRows(infoSkill["totalDocs"])
          setLoading(false)
     }
@@ -48,14 +48,14 @@ export const AddSkills=()=>{
     },[])
 
     useEffect(()=>{
-      //console.log('dataSkill(AddSkills):..',dataSkill)
+      ////console.log('dataSkill(AddSkills):..',dataSkill)
       if(dataSkill.length>0){
-        console.log('dataSkill(AddSkills):..',dataSkill)
+        //console.log('dataSkill(AddSkills):..',dataSkill)
       }
     },[dataSkill])
 
     useEffect(()=>{
-      console.log('Nuevo valor de limit:..',perPage)
+      //console.log('Nuevo valor de limit:..',perPage)
     },[perPage])
     
 
@@ -66,7 +66,7 @@ export const AddSkills=()=>{
     };
 
     const handlePerRowsChange = async (newPerPage, page) => {
-      console.log('Cambiando limit:...',newPerPage);
+      //console.log('Cambiando limit:...',newPerPage);
       fetchSkill(page,newPerPage)
       setPerPage(newPerPage)
     };
@@ -75,9 +75,9 @@ export const AddSkills=()=>{
     const insertandoSkill= (values) => {
       let tempDataSkill = [...dataSkill];
       const tempNewSkil= {...values};
-      console.log('values(AddSkills):..',values);
+      //console.log('values(AddSkills):..',values);
       const dataRepet=tempDataSkill.some((item) => item.name ===values.name && item.level===values.level);
-      console.log('datarepet',dataRepet)
+      //console.log('datarepet',dataRepet)
 
       if(dataRepet){
         swal({
@@ -96,12 +96,12 @@ export const AddSkills=()=>{
           axios
             .post(`${endpointsGral.jobSkill}`, values) 
             .then(response => {
-              console.log(response);
+              //console.log(response);
               values.name='';
               values.level='';
             })
             .catch(error => {
-              console.log(error.response);
+              //console.log(error.response);
             });
       
 

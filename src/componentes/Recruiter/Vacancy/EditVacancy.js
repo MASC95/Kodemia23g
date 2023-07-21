@@ -78,13 +78,13 @@ export const EditVacancy = () => {
       "Poppins, sans-serif, Verdana, Geneva, Tahoma",
   }
 
-  console.log("idVacancy:..", idVacancy);
+  //console.log("idVacancy:..", idVacancy);
 
   const fetchForVacancy = async () => {
     try {
       const endpointURL = `${endpointsGral.vacancyURL}${idVacancy}`;
       const response = await axios.get(endpointURL);
-      // console.log("response:..", response);
+      // //console.log("response:..", response);
       const skills = response.data["infoVacancy"];
       setInfoDataVacancy(skills);
       const retrievedSkills = skills?.job_skills.map((item) => {
@@ -103,10 +103,10 @@ export const EditVacancy = () => {
     fetchForVacancy();
   }, []);
   useEffect(() => {
-    console.log("cargado datos de las Skills  de  la Vacante:..");
+    //console.log("cargado datos de las Skills  de  la Vacante:..");
   }, [listSkills]);
 
-  console.log("data vancancy bd:..", infoDataVacancy);
+  //console.log("data vancancy bd:..", infoDataVacancy);
   useEffect(() => {
     if (infoDataVacancy) {
       setDataForm({

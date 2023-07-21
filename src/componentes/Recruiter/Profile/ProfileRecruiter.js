@@ -39,7 +39,8 @@ const profileSchema = Yup.object().shape({
   last_name: Yup.string().required("El Apellido es Requerido"),
   email: Yup.string().required("El correo electrónico es requerido"),
   age: Yup.number().required("El campo es requerido"),
-  rfc: Yup.string().required("Ingrese una experiencia válida"),
+  rfc: Yup.string().required("Ingrese una experiencia válida").matches(/^([A-ZÑ\x26]{3,4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1]))((-)?([A-Z\d]{3}))?$/,
+  "El RFC debe tener 4 letras, 6 numeros y homoclave"),
 });
 
 export const ProfileRecruiter = () => {
@@ -78,11 +79,12 @@ export const ProfileRecruiter = () => {
       name: Yup.string().required("El Nombres es Requerido"),
       last_name: Yup.string().required("El Apellido es Requerido"),
       email: Yup.string().required("El correo electrónico es requerido"),
-      age: Yup.number().required("El campo es requerido"),
-      rfc: Yup.string().required("Ingrese una experiencia válida"),
+      age: Yup.number().required("El campo es requerido").min(18, "Tu edad debe ser mayor a 18 años"),
+      rfc: Yup.string().required("Ingrese un RFC válido").matches(/^([A-ZÑ\x26]{3,4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1]))((-)?([A-Z\d]{3}))?$/,
+      "El RFC debe tener 4 letras, 6 numeros y homoclave"),
     }),
     onSubmit: (values) => {
-      console.log("values", values);
+      //console.log("values", values);
       Swal.fire({
         title: "Mensaje de confirmación",
         text: "¿Estás seguro de que quieres guardar los cambios?",
@@ -104,7 +106,7 @@ export const ProfileRecruiter = () => {
               formData.append(key, value);
               //console.log(key,value);
             });
-            console.log("formData", formData);
+            //console.log("formData", formData);
             axios
               .patch(
                 `${endpointsGral.userURL}${dataRecruiter.accessToken}`,
@@ -116,7 +118,7 @@ export const ProfileRecruiter = () => {
                 }
               )
               .then((response) => {
-                console.log("response.data:..", response.data);
+                //console.log("response.data:..", response.data);
                 if (response?.data?.message === "Update User Ok") {
                   if (response?.data?.updateUser) {
                     setDataLocalStorage({
@@ -130,7 +132,7 @@ export const ProfileRecruiter = () => {
                 console.error(error);
               });
           } catch (error) {
-            console.log("error:..", error);
+            //console.log("error:..", error);
           }
           Swal.fire("Los cambios han sido guardados correctamente!");
           // navigate(`/Dashboard-Recruiter/vacancy`);

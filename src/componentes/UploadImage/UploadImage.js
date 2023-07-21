@@ -18,7 +18,7 @@ const UploadImage = ({ setDataImg }) => {
 
   useEffect(() => {
    
-    console.log("images:..", images);
+    // console.log("images:..", images);
     //setDataImg(images)
   }, [images]);
 

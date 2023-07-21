@@ -67,7 +67,7 @@ export const UpdatePasswordRecruiter = () => {
   const navigate = useNavigate();
   useEffect(() => {
     if (email !== "none") {
-      console.log("Email USER:..", email);
+      //console.log("Email USER:..", email);
 
       enviarCodigo(email);
     }
@@ -104,13 +104,13 @@ export const UpdatePasswordRecruiter = () => {
     };
     try {
       const response = await axios.post(confirmEmail, dataLogin);
-      console.log("responseConfirmEmail:..", response);
+      //console.log("responseConfirmEmail:..", response);
       const backCode = response?.data?.code;
       if (backCode) {
         setAccessCode(backCode);
       }
     } catch (error) {
-      console.log(error);
+      //console.log(error);
     }
   };
 
@@ -123,7 +123,7 @@ export const UpdatePasswordRecruiter = () => {
 
   const handleSubmit = async (values) => {
     // e.preventDefault();
-    console.log("Valores del form(values):..", values);
+    //console.log("Valores del form(values):..", values);
 
     if (
       values.email !== "" &&
@@ -139,13 +139,13 @@ export const UpdatePasswordRecruiter = () => {
         password:values.password
       }
       
-      console.log("Valores del form(tempData):..", tempData);
+      //console.log("Valores del form(tempData):..", tempData);
       try {
         const response = await axios.post(
           `${userURL}updatePassword`,
           tempData
         );
-        console.log("response UpdatePassword:..", response);
+        //console.log("response UpdatePassword:..", response);
         Swal.fire({
           icon: "success",
           title: "Contraseña actualizada!",
@@ -153,7 +153,7 @@ export const UpdatePasswordRecruiter = () => {
         });
         navigate("/login-recruiter");
       } catch (error) {
-        console.log(error);
+        //console.log(error);
         Swal.fire({
           icon: "error",
           title: "Error al actualizar!",
@@ -170,13 +170,13 @@ export const UpdatePasswordRecruiter = () => {
     }
   };
   const handleSendCode = async(emailUser)=>{
-    console.log('enviando AccessCode:..');
+    //console.log('enviando AccessCode:..');
     try {
       if(emailUser!==''){
         await enviarCodigo(emailUser)
       }
     } catch (error) {
-      console.log(error)
+      //console.log(error)
     }
   }
 

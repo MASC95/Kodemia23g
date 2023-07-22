@@ -12,6 +12,7 @@ import logo from "../../Candidate/img/tempImgUser.png";
 import "./style.scss";
 import useJob from "../../../hooks/useJob";
 import ToDoList from "./Forms/ToDoList";
+import { Spinner } from "react-bootstrap";
 
 const initDataForm = {
   companyName: "",
@@ -28,6 +29,7 @@ export const AddVacancy = () => {
   const [imageUser, setImageUser] = useState(null);
   const [dataForm, setDataForm] = useState(initDataForm);
   const [dataActivities, setDataActivities] = useState([]);
+  const [isSaving,setIsSaving]=useState(false);
   const [
     dataCandidate,
     setDataCandidate,
@@ -73,6 +75,7 @@ export const AddVacancy = () => {
       status: Yup.string().required("Requerido"),
     }),
     onSubmit: (values) => {
+
       setTimeout(() => {
         ////console.log("...........", imageUser);
         //console.log("RFC COMPLETE", dataRecruiter.rfc)
@@ -93,7 +96,7 @@ export const AddVacancy = () => {
               });
               return
         }
-
+        setIsSaving(true);
         const idsSkills = listSkills.map((item) => item.skill);
         const formData = new FormData();
         if (imageUser) formData.append("image", imageUser);
@@ -116,35 +119,9 @@ export const AddVacancy = () => {
         //   // //console.log(`${pair[0]}, ${pair[1]}`);
         // }
        
-        //console.log("...........", formData);
-        axios.defaults.headers.common[
-          "Authorization"
-        ] = `Bearer: ${dataRecruiter.accessToken}`;
-        axios
-          .post(`${endpointsGral.vacancyURL}${dataRecruiter.accessToken}`, formData, {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          })
-          .then((response) => {
-            //   //console.log(response);
-            swal({
-              title: "Vacante creada!!",
-              icon: "success",
-              button: "ok!",
-            });
-            navigate(`/Dashboard-Recruiter/vacancy`);
-          })
-          .catch((error) => {
-            //   //console.log(error.response);
-          });
-          // console.log("idsSkills:..", idsSkills);
+        
 
-          // for (const pair of formData.entries()) {
-          //   // console.log(`${pair[0]}, ${pair[1]}`);
-          // }
-
-          console.log("...........", formData);
+          //console.log("...........", formData);
           axios.defaults.headers.common[
             "Authorization"
           ] = `Bearer: ${dataRecruiter.accessToken}`;
@@ -165,9 +142,11 @@ export const AddVacancy = () => {
                 icon: "success",
                 button: "ok!",
               });
+              setIsSaving(false);
               navigate(`/Dashboard-Recruiter/vacancy`);
             })
             .catch((error) => {
+              setIsSaving(false);
               //   console.log(error.response);
             });
         }
@@ -449,32 +428,7 @@ export const AddVacancy = () => {
                   </div>
                 </div>
                 <div className="col">
-                  {/*  <div className="form-outline">
-                    <label
-                      className="form-label text-dark"
-                      htmlFor="form6Example1"
-                    >
-                      Actividades
-                    </label>
-                    <textarea
-                      type="text"
-                      id="actividades"
-                      name="activities"
-                      value={formik.values.activities}
-                      onChange={formik.handleChange}
-                      className={`form-control ${
-                        formik.touched.activities && formik.errors.activities
-                          ? "border border-danger"
-                          : "border border-secondary"
-                      }`}
-                      placeholder="Actividades"
-                    />
-                    {formik.touched.activities && formik.errors.activities && (
-                      <span className="text-danger">
-                        {formik.errors.activities}
-                      </span>
-                    )}
-                  </div> */}
+                  
                 </div>
               </div>
               <ToDoList
@@ -487,8 +441,9 @@ export const AddVacancy = () => {
                 <button
                   type="submit"
                   className="buttons btn btn-info text-light"
+                  disabled={isSaving}
                 >
-                  Guardar Vacante
+                  {isSaving?<Spinner/>:'Guardar Vacante'}
                 </button>
               </div>
             </form>

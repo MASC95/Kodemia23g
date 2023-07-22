@@ -102,6 +102,8 @@ function App() {
           <Route path="/login-candidato" element={<LoginCandidate />} />
           <Route path="/register-candidato" element={<RegisterCandidate />} />
           <Route path="/update-password/:email" element={<UpdatePassword />} />
+          
+
           {dataLocalStorage?.role==='candidato'&&
           <Route path="/dashboard-candidato" element={<DashboardCandidate />}>
             <Route path="home" element={<HomeCandidate />} />

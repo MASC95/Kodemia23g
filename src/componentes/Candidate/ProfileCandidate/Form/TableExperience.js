@@ -137,8 +137,8 @@ const TableExperience = ({ dataExperience, setDataExpirience }) => {
         <thead>
           <tr>
             <th>Puesto</th>
-            <th>Decripcion</th>
-            <th>Botones de acción</th>
+            <th>Decripción</th>
+            <th>Opciones</th>
           </tr>
         </thead>
         <tbody>

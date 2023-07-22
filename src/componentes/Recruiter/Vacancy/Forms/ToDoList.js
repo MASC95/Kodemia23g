@@ -20,7 +20,7 @@ const ToDoList = ({ dataActivities, setDataActivities }) => {
   const [addTask, setAddTask] = useState(initAddExp);
 
   const handleChange = (e) => {
-    console.log(e.target.name, e.target.value);
+    // console.log(e.target.name, e.target.value);
     setAddTask({
       ...addTask,
       [e.target.name]: e.target.value,
@@ -28,12 +28,12 @@ const ToDoList = ({ dataActivities, setDataActivities }) => {
   };
 
   useEffect(()=>{
-    console.log('dataActivities:..',dataActivities)
+    //console.log('dataActivities:..',dataActivities)
   },[dataActivities])
 
   const handleExperience = () => {
     
-    console.log("Agregando Actividad:..", addTask);
+    //console.log("Agregando Actividad:..", addTask);
     if (addTask.task === "") {
       Swal.fire(
         'Agrega una actividad!',
@@ -65,7 +65,7 @@ const ToDoList = ({ dataActivities, setDataActivities }) => {
       if (result.isConfirmed) {
         const tempData= [...dataActivities];
         const newData= tempData.filter((_,i)=>i!==index);
-        console.log('newData:..',newData);
+        //console.log('newData:..',newData);
         setDataActivities([...newData]);
         Swal.fire(
           'Eliminado!',

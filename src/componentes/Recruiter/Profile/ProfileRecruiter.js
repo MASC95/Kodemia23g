@@ -322,7 +322,7 @@ export const ProfileRecruiter = () => {
                     <input
                       type="text"
                       id="age"
-                      placeholder="age"
+                      placeholder="Edad"
                       name="age"
                       className={`form-control ${
                         formik.touched.age && formik.errors.age

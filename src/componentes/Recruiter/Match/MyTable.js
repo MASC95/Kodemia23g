@@ -88,8 +88,8 @@ const MyTable = ({
       const retriveUser=item.user_skills.map((idSkills)=>{
         return idSkills._id
       })
-      // //console.log('skills usuario', retriveUser)
-      // //console.log('skills vacante', retriveVacancy)
+      console.log('skills usuario', retriveUser)
+      console.log('skills vacante', retriveVacancy)
 
       const conteo = {};
       retriveUser.forEach((elemento) => {
@@ -106,19 +106,24 @@ const MyTable = ({
           suma += conteo[elemento];
         }
       });
-      // //console.log(`La suma de los valores repetidos es: ${suma}`);
-      // //console.log(((suma*100)/quanty))
-      const operador = Math.floor((suma * 100) / quanty);
-      //console.log(operador)
+      // console.log(`La suma de los valores repetidos es: ${suma}`);
+      let operador =0
+      if(suma===0){
+        operador=0
+      }else{
+        // console.log(((suma*100)/quanty))
+        operador = Math.floor((suma * 100) / quanty);
+        // console.log(operador)
+        //console.log('nuevo map para iterar', )
+      }
       const nameUser = `${item.name} ${item.last_name}`;    
-      //console.log('nuevo map para iterar', )
-
+      
       return {
         id: item._id,
         qty: index,
         name: isFoundedUser(item._id)?<MyFaCheck text={nameUser}/>:nameUser,
         bachelor: `${item.bachelor} `,
-        match: `${operador} %` || "",
+        match: `${operador} %` || 0 ,
       };
     });
 

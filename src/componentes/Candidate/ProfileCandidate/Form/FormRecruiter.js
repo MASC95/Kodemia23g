@@ -95,7 +95,7 @@ const FormRecruiter = () => {
 
   useEffect(() => {
     if (dataCandidate) {
-      // console.log("dataCandidate:..", dataCandidate);
+      console.log("dataCandidate:..", dataCandidate);
 
       setDataForm({
         name: dataCandidate.name || "",
@@ -161,10 +161,17 @@ const FormRecruiter = () => {
               }
             }
             if (dataExperience) {
+              console.log('Agregando dataExperience:...',dataExperience);
               for (let i = 0; i < dataExperience.length; i++) {
                 formData.append(
                   "working_experience",
                   JSON.stringify(dataExperience[i])
+                );
+              }
+              if(dataExperience.length===0){
+                formData.append(
+                  "working_experience",
+                  'none'
                 );
               }
             }
@@ -232,6 +239,7 @@ const FormRecruiter = () => {
 
   return (
     <div>
+      
       <div
         className={` ${
           isTablet

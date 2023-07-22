@@ -49,7 +49,7 @@ const HorizonTable = ({
   const [tempArrayVancies, setTempArrayVancies] = useState([]);
   const [dataCandidate] = useJob();
   useEffect(() => {
-    ////console.log("Nuevo valor de limit(Hijo):..", perPage);
+    //console.log("Nuevo valor de limit(Hijo):..", perPage);
   }, [perPage]);
   useEffect(() => {
     initDataMyVacancies();

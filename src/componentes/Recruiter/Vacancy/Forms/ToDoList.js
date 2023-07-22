@@ -5,18 +5,14 @@ import { myId } from "../../../lib/myLib";
 import { FaPlus, FaTrash } from "react-icons/fa";
 import { useEffect } from "react";
 import Swal from "sweetalert2";
-import DataTable,  { createTheme } from "react-data-table-component";
+import DataTable, { createTheme } from "react-data-table-component";
 import DataTableExtensions from "react-data-table-component-extensions";
 
 const initAddExp = {
-  task: ""
+  task: "",
 };
 
-
 const ToDoList = ({ dataActivities, setDataActivities }) => {
-
-  
-  
   const [addTask, setAddTask] = useState(initAddExp);
 
   const handleChange = (e) => {
@@ -32,67 +28,52 @@ const ToDoList = ({ dataActivities, setDataActivities }) => {
   },[dataActivities])
 
   const handleExperience = () => {
-    
     console.log("Agregando Actividad:..", addTask);
     if (addTask.task === "") {
-      Swal.fire(
-        'Agrega una actividad!',
-        'Valor vacio',
-        'error'
-      )
-    }else{
+      Swal.fire("Agrega una actividad!", "Valor vacio", "error");
+    } else {
       setDataActivities([...dataActivities, addTask]);
       setAddTask(initAddExp);
-      Swal.fire(
-        'Actividad agregada!',
-        'listo!',
-        'success'
-      )
+      Swal.fire("Actividad agregada!", "listo!", "success");
     }
-
   };
 
   const handleDeleteExp = (index) => {
     Swal.fire({
-      title: 'Eliminar actividad',
+      title: "Eliminar actividad",
       text: "Estas seguro de eliminar esta actividad?!",
-      icon: 'warning',
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Si, eliminar!'
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si, eliminar!",
     }).then((result) => {
       if (result.isConfirmed) {
-        const tempData= [...dataActivities];
-        const newData= tempData.filter((_,i)=>i!==index);
-        console.log('newData:..',newData);
+        const tempData = [...dataActivities];
+        const newData = tempData.filter((_, i) => i !== index);
+        console.log("newData:..", newData);
         setDataActivities([...newData]);
-        Swal.fire(
-          'Eliminado!',
-          'Actividad eliminada!',
-          'success'
-        )
+        Swal.fire("Eliminado!", "Actividad eliminada!", "success");
       }
-    })
+    });
     // ----------------------------------------
     // console.log("Borrar el index:...", index);
     // const tempData= [...dataActivities];
     // const newData= tempData.filter((_,i)=>i!==index);
     // console.log('newData:..',newData);
     // setDataActivities([...newData]);
-
   };
   const data = dataActivities?.map((item, index) => {
     return {
       qty: index,
-      task: item.task
+      task: item.task,
     };
   });
 
   const columns = [
     {
       name: "rowId",
-      selector: (row,i) => i,
+      selector: (row, i) => i,
       sortable: true,
       hide: true,
       omit: true,
@@ -117,12 +98,12 @@ const ToDoList = ({ dataActivities, setDataActivities }) => {
       selector: (row, i) => row.null,
       cell: (d) => [
         <span
-        className="btn btn-outline-danger"
-        name={d.i}
-        onClick={handleDeleteExp.bind(this,d.qty)}
-      >
-        <FaTrash />
-      </span>
+          className="btn btn-outline-danger"
+          name={d.i}
+          onClick={handleDeleteExp.bind(this, d.qty)}
+        >
+          <FaTrash />
+        </span>,
         // <button type="button" className="buttons btn btn-outline-success" onClick={handleClick.bind(this,d.qty)} ><FaEdit className="icon_edit1"/></button>
       ],
     },
@@ -133,7 +114,7 @@ const ToDoList = ({ dataActivities, setDataActivities }) => {
   };
 
   return (
-    <div className="row" >
+    <div className="row">
       <h2
         className="text-start mt-4 fs-4 text-center"
         style={{
@@ -141,7 +122,8 @@ const ToDoList = ({ dataActivities, setDataActivities }) => {
           textShadow:
             "rgba(60, 64, 67, 0.3) 0px 1px 2px, rgba(60, 64, 67, 0.15) 0px 1px 3px",
           fontFamily: "Poppins, sans-serif, Verdana, Geneva, Tahoma",
-        }}>
+        }}
+      >
         Actividades
       </h2>
       <div className="col-12 form-outline">
@@ -153,7 +135,7 @@ const ToDoList = ({ dataActivities, setDataActivities }) => {
           type="text"
           onChange={handleChange}
         />
-         <button
+        <button
           type="button"
           className="btn btn-outline-info m-2"
           onClick={handleExperience}
@@ -162,17 +144,16 @@ const ToDoList = ({ dataActivities, setDataActivities }) => {
         </button>
       </div>
       <div className="col-12">
-      <DataTableExtensions export={false} print={false} {...tableData}>
-        <DataTable
-          {...tableData}
-          columns={columns}
-          data={data}
-          highlightOnHover
-          dense
-          title="Actividades agregadas"
-        
-        />
-      </DataTableExtensions>
+        <DataTableExtensions export={false} print={false} {...tableData}>
+          <DataTable
+            {...tableData}
+            columns={columns}
+            data={data}
+            highlightOnHover
+            dense
+            title="Actividades agregadas"
+          />
+        </DataTableExtensions>
       </div>
       {/* <Table striped bordered hover>
         <thead>

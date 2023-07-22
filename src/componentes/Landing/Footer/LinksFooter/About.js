@@ -148,7 +148,18 @@ const About = () => {
         <h1 className="mb-3 mt-5 text-center" style={letters}>
           Acerca de Jobinder
         </h1>
-        <div className="p-3">
+        <div
+          className="p-3"
+          style={{
+            background: "rgba(0, 189, 214, 0.18)",
+            borderRadius: "16px",
+            boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+            backdropFilter: "blur(5.7px)",
+            WebkitBackdropFilter: "blur(5.7px)",
+            border: "1px solid rgba(255, 255, 255, 0.3)",
+            width: "100%",
+          }}
+        >
           <h2 className="m-5" style={{ color: "#110066" }}>
             Bienvenido a Jobinder, la plataforma líder en búsqueda de empleo
             dedicada a conectar nuestros usuarios con sus trabajos ideales.

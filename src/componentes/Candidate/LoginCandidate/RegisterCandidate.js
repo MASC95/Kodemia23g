@@ -295,7 +295,8 @@ export const RegisterCandidate = () => {
                     <img src={logo} alt="" />
                   </Link>
                 </div>
-                <h2 className="text-center">Crear cuenta</h2>
+                <h2 className="text-center">Crea tu cuenta</h2>
+                <span>y haz match en el empleo ideal en tiempo récord.</span>
                 <Formik
                   initialValues={dataForm}
                   enableReinitialize={true}
@@ -350,6 +351,7 @@ export const RegisterCandidate = () => {
                             backgroundColor: "#0093E9",
                             backgroundImage:
                               "linear-gradient(160deg, #0093E9 0%, #80D0C7 100%)",
+                            borderRadius: "0px 5px 5px 0px",
                           }}
                           onClick={() => setShowPassword(!showPassword)}
                         >
@@ -387,6 +389,7 @@ export const RegisterCandidate = () => {
                             backgroundColor: "#0093E9",
                             backgroundImage:
                               "linear-gradient(160deg, #0093E9 0%, #80D0C7 100%)",
+                            borderRadius: "0px 5px 5px 0px",
                           }}
                           onClick={() => setShowPassword(!showPassword)}
                         >

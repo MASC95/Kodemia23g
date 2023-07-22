@@ -1,5 +1,5 @@
 // import PostVacancy from "./Forms/PostVacancy";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { endpointsGral } from "../services/vacancy";
 import Softskills from "../SoftSkills/Form/SoftSkills";
@@ -12,7 +12,6 @@ import logo from "../../Candidate/img/tempImgUser.png";
 import "./style.scss";
 import useJob from "../../../hooks/useJob";
 import ToDoList from "./Forms/ToDoList";
-
 
 const initDataForm = {
   companyName: "",
@@ -28,7 +27,7 @@ export const AddVacancy = () => {
   const [listSkills, setListSkills] = useState([]);
   const [imageUser, setImageUser] = useState(null);
   const [dataForm, setDataForm] = useState(initDataForm);
-  const [dataActivities, setDataActivities]=useState([])
+  const [dataActivities, setDataActivities] = useState([]);
   const [
     dataCandidate,
     setDataCandidate,
@@ -38,7 +37,7 @@ export const AddVacancy = () => {
     setDataLocalStorage,
   ] = useJob();
 
-  const stylePerfil={
+  const stylePerfil = {
     borderRadius: "14%",
     margin: "20px",
     filter:
@@ -49,12 +48,11 @@ export const AddVacancy = () => {
     height: "auto",
     borderImage:
       "radial-gradient(circle 588px at 31.7% 40.2%, rgba(225, 200, 239, 1) 21.4%, rgba(163, 225, 233, 1) 57.1%)",
-  }
-  const style={
+  };
+  const style = {
     color: "#498BA6",
-    fontFamily:
-      "Poppins, sans-serif, Verdana, Geneva, Tahoma",
-  }
+    fontFamily: "Poppins, sans-serif, Verdana, Geneva, Tahoma",
+  };
 
   const navigate = useNavigate();
 
@@ -79,16 +77,15 @@ export const AddVacancy = () => {
         ////console.log("...........", imageUser);
         //console.log("RFC COMPLETE", dataRecruiter.rfc)
 
-        if(dataRecruiter.rfc===undefined){
+        if (dataRecruiter.rfc === undefined) {
           swal({
             title: "Completa tu perfil para agregar vacantes!!",
             icon: "error",
             button: "ok",
           });
-          return
-        }else{
-         
-        if(!imageUser){
+          return;
+        } else {
+          if (!imageUser) {
             swal({
                 title: "Falta la Imagen!!",
                 icon: "error",
@@ -141,6 +138,38 @@ export const AddVacancy = () => {
           .catch((error) => {
             //   //console.log(error.response);
           });
+          // console.log("idsSkills:..", idsSkills);
+
+          // for (const pair of formData.entries()) {
+          //   // console.log(`${pair[0]}, ${pair[1]}`);
+          // }
+
+          console.log("...........", formData);
+          axios.defaults.headers.common[
+            "Authorization"
+          ] = `Bearer: ${dataRecruiter.accessToken}`;
+          axios
+            .post(
+              `${endpointsGral.vacancyURL}${dataRecruiter.accessToken}`,
+              formData,
+              {
+                headers: {
+                  "Content-Type": "multipart/form-data",
+                },
+              }
+            )
+            .then((response) => {
+              //   console.log(response);
+              swal({
+                title: "Vacante creada!!",
+                icon: "success",
+                button: "ok!",
+              });
+              navigate(`/Dashboard-Recruiter/vacancy`);
+            })
+            .catch((error) => {
+              //   console.log(error.response);
+            });
         }
       }, 400);
     },
@@ -193,17 +222,20 @@ export const AddVacancy = () => {
               <UploadImage setDataImg={setImageUser} />
             </div>
           </div>
-          <div className="col-12 col-md-8 px-5" style={{
-            background: "rgba(0, 189, 214, 0.18)",
-            borderRadius: "16px",
-            boxShadow:
-              "rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset",
-            backdropFilter: "blur(2px)",
-            WebkitBackdropFilter: "blur(2px)",
-            padding: "50px",
-            marginBottom: "30px",
-            height: "50%",
-          }}>
+          <div
+            className="col-12 col-md-8 px-5"
+            style={{
+              background: "rgba(0, 189, 214, 0.18)",
+              borderRadius: "16px",
+              boxShadow:
+                "rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset",
+              backdropFilter: "blur(2px)",
+              WebkitBackdropFilter: "blur(2px)",
+              padding: "50px",
+              marginBottom: "30px",
+              height: "50%",
+            }}
+          >
             <form
               onSubmit={formik.handleSubmit}
               style={{
@@ -216,7 +248,8 @@ export const AddVacancy = () => {
                   <div className="form-outline bg-gray">
                     <label
                       className="form-label"
-                      htmlFor="form6Example1" style={style}
+                      htmlFor="form6Example1"
+                      style={style}
                     >
                       Nombre de la Empresa
                     </label>
@@ -271,7 +304,6 @@ export const AddVacancy = () => {
                   </div>
                 </div>
               </div>
-
               <div className="row mb-4">
                 <div className="col">
                   <div className="form-outline">
@@ -396,7 +428,7 @@ export const AddVacancy = () => {
                       htmlFor="form6Example2"
                       style={style}
                     >
-                      Status
+                      Estado de la vacante
                     </label>
                     <select
                       className={`form-control ${
@@ -410,14 +442,14 @@ export const AddVacancy = () => {
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                     >
-                      <option> Selecciona</option>
+                      <option> Seleccionar</option>
                       <option> Iniciado</option>
                       {/* <option> Cerrado</option> */}
                     </select>
                   </div>
                 </div>
                 <div className="col">
-                 {/*  <div className="form-outline">
+                  {/*  <div className="form-outline">
                     <label
                       className="form-label text-dark"
                       htmlFor="form6Example1"
@@ -446,11 +478,11 @@ export const AddVacancy = () => {
                 </div>
               </div>
               <ToDoList
-              dataActivities={dataActivities}
-              setDataActivities={setDataActivities}
-              /> <br></br>
+                dataActivities={dataActivities}
+                setDataActivities={setDataActivities}
+              />{" "}
+              <br></br>
               <Softskills setListSkills={setListSkills} skillsCandidate={[]} />
-
               <div className="buttons_actions d-flex justify-content-end align-content-end">
                 <button
                   type="submit"

@@ -47,7 +47,7 @@ const SectionThree = () => {
             <ul className="check-list list group w-100 ">
               <li className="list-unstyled li-register">
                 <FaCheck color="green" className="icon-check" />
-                Registro gratuito. Encuentra tu proximo trabajo hoy
+                Registro gratuito. Encuentra tu próximo trabajo hoy
               </li>
               <li className="list-unstyled li-register">
                 <FaCheck color="green" className="icon-check" />

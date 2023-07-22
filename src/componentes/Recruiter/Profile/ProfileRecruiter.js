@@ -12,7 +12,7 @@ import UploadImage from "../../UploadImage/UploadImage";
 import useJob from "../../../hooks/useJob";
 import Footer from "../../Landing/Footer/Footer";
 import { useMediaQuery } from "react-responsive";
-
+import profilepic from "../../Candidate/img/tempImgUser.png";
 const initDataForm = {
   name: "",
   last_name: "",
@@ -179,7 +179,7 @@ export const ProfileRecruiter = () => {
               <>
                 <img
                   style={style}
-                  src={dataForm.avatar_url ? dataForm.avatar_url : imgProfile}
+                  src={dataForm.avatar_url ? dataForm.avatar_url : profilepic}
                   alt="imgProfile"
                   className="d-block ms-auto me-auto my-2 "
                 />
@@ -200,17 +200,20 @@ export const ProfileRecruiter = () => {
               <UploadImage setDataImg={setImageUser} />
             </div>
           </div>
-          <div className="col-12 col-md-8 px-5" style={{
-            background: "rgba(0, 189, 214, 0.18)",
-            borderRadius: "16px",
-            boxShadow:
-              "rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset",
-            backdropFilter: "blur(2px)",
-            WebkitBackdropFilter: "blur(2px)",
-            padding: "50px",
-            marginBottom: "30px",
-            height: "50%",
-          }}>
+          <div
+            className="col-12 col-md-8 px-5"
+            style={{
+              background: "rgba(0, 189, 214, 0.18)",
+              borderRadius: "16px",
+              boxShadow:
+                "rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset",
+              backdropFilter: "blur(2px)",
+              WebkitBackdropFilter: "blur(2px)",
+              padding: "50px",
+              marginBottom: "30px",
+              height: "50%",
+            }}
+          >
             <form onSubmit={formik.handleSubmit}>
               <div className="row mb-4">
                 <div className="col">

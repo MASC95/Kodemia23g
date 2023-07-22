@@ -3,9 +3,8 @@ import Form from "react-bootstrap/Form";
 import { Formik, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useState } from "react";
-import { adminUser,adminPassword } from "../../assets/constants";
+import { adminUser, adminPassword } from "../../assets/constants";
 import { useNavigate } from "react-router-dom";
-
 
 /*
 
@@ -40,11 +39,9 @@ const initialDataForm = {
   password: "",
 };
 
-
-
 const AdminLogin = () => {
   const [dataForm, setDataForm] = useState(initialDataForm);
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
   const handleSubmit=(values)=>{
     //console.log("values:..", values);
@@ -55,7 +52,7 @@ const AdminLogin = () => {
       navigate('/error')
     }
     //console.log(adminUser,adminPassword)
-  }
+  };
 
   return (
     <Formik
@@ -74,7 +71,6 @@ const AdminLogin = () => {
             <Form.Control
               type="text"
               placeholder="Enter user"
-              
               name="user"
               className={`form-control ${
                 props.touched.user && props.errors.user
@@ -85,7 +81,7 @@ const AdminLogin = () => {
               onChange={props.handleChange}
               onBlur={props.handleBlur}
             />
-            <ErrorMessage name='user'/>
+            <ErrorMessage name="user" />
             {/* <div>{props.errors.user}</div> */}
           </Form.Group>
 
@@ -94,7 +90,6 @@ const AdminLogin = () => {
             <Form.Control
               type="password"
               placeholder="Password"
-              
               name="password"
               className={`form-control ${
                 props.touched.password && props.errors.password
@@ -105,7 +100,7 @@ const AdminLogin = () => {
               onChange={props.handleChange}
               onBlur={props.handleBlur}
             />
-            <ErrorMessage name='password'/>
+            <ErrorMessage name="password" />
             {/* <div>{props.errors.password}</div> */}
           </Form.Group>
 
@@ -118,4 +113,4 @@ const AdminLogin = () => {
   );
 };
 
-export default AdminLogin;
+export default AdminLogin;

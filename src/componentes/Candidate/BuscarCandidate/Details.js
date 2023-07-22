@@ -279,7 +279,7 @@ export const Details = () => {
                 <div className="col">
                   <div className="form-outline">
                     <label className="form-label text-dark" for="form6Example1" style={{fontSize:'22px'}}>
-                      Lo que haras con nosotros será:
+                     Lo que pedimos y lo que haras con nosotros será:
                     </label>
                     {/* <p className="text-dark">
                       {infoCandidate.working_experience}

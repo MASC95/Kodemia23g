@@ -124,7 +124,7 @@ const ToDoList = ({ dataActivities, setDataActivities }) => {
           fontFamily: "Poppins, sans-serif, Verdana, Geneva, Tahoma",
         }}
       >
-        Actividades
+        Actividades y Requisitos
       </h2>
       <div className="col-12 form-outline">
         <textarea

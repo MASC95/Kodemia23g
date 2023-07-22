@@ -16,7 +16,7 @@ export const Softskills = ({ setListSkills, isCandidate, skillsCandidate }) => {
 
   const fetchSkill = async () => {
     const response = await axios.get(`${endpointsGral.jobSkill}getAllSkillsForVacancy`);
-    console.trace(response)
+    //console.trace(response)
     const infoSkill = response.data.getAllSkills;
     //console.log('infoSkill:...',infoSkill);
     let arrShort=infoSkill.sort((x, y) => x.name.localeCompare(y.name));
@@ -81,6 +81,16 @@ export const Softskills = ({ setListSkills, isCandidate, skillsCandidate }) => {
     const newSkill = {
       skill: selectSkill,
     };
+    //console.log('Agregando Skill:...',selectSkill);
+    if(selectSkill==='select'){
+      //console.log('Skill vacia:...');
+      swal({
+        title: "Elige una Skill!",
+        icon: "error",
+        button: "ok!",
+      });
+      return
+    }
     const dataRepet = skillTemp?.find((item) => item.skill === newSkill.skill);
    console.log('new',newSkill)
    if(newSkill.skill==='select'){

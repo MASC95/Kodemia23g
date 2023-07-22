@@ -12,7 +12,7 @@ import UploadImage from "../../UploadImage/UploadImage";
 import useJob from "../../../hooks/useJob";
 import Footer from "../../Landing/Footer/Footer";
 import { useMediaQuery } from "react-responsive";
-
+import profilepic from "../../Candidate/img/tempImgUser.png";
 const initDataForm = {
   name: "",
   last_name: "",
@@ -21,6 +21,8 @@ const initDataForm = {
   age: "",
   avatar_url: "",
 };
+// (ror) // /^([A-ZÑ\x26]{3,4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[A-Z|\d]{3})$/
+// (cin) // /^([A-ZÑ\x26]{3,4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1]))((-)?([A-Z\d]{3}))?$/
 const style = {
   borderRadius: "10%",
   margin: "20px",
@@ -39,13 +41,15 @@ const profileSchema = Yup.object().shape({
   last_name: Yup.string().required("El Apellido es Requerido"),
   email: Yup.string().required("El correo electrónico es requerido"),
   age: Yup.number().required("El campo es requerido"),
-  rfc: Yup.string().required("Ingrese una experiencia válida").matches(/^([A-ZÑ\x26]{3,4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1]))((-)?([A-Z\d]{3}))?$/,
+  rfc: Yup.string().required("Ingrese un RFC válido")
+  .matches(/^([A-ZÑ\x26]{3,4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1]))((-)?([A-Z\d]{3}))?$/,
   "El RFC debe tener 4 letras, 6 numeros y homoclave"),
 });
 
 export const ProfileRecruiter = () => {
   const [dataForm, setDataForm] = useState(initDataForm);
   const [imageUser, setImageUser] = useState(null);
+  const [isResetPassword, setIsResetPassword] = useState(false);
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
   const isDesktop = useMediaQuery({ query: "(min-width: 769px)" });
 
@@ -144,6 +148,7 @@ export const ProfileRecruiter = () => {
   return (
     <>
       <div>
+        
         <div
           className={` ${
             isMobile
@@ -176,7 +181,7 @@ export const ProfileRecruiter = () => {
               <>
                 <img
                   style={style}
-                  src={dataForm.avatar_url ? dataForm.avatar_url : imgProfile}
+                  src={dataForm.avatar_url ? dataForm.avatar_url : profilepic}
                   alt="imgProfile"
                   className="d-block ms-auto me-auto my-2 "
                 />
@@ -197,18 +202,21 @@ export const ProfileRecruiter = () => {
               <UploadImage setDataImg={setImageUser} />
             </div>
           </div>
-          <div className="col-12 col-md-8 px-5" style={{
-            background: "rgba(0, 189, 214, 0.18)",
-            borderRadius: "16px",
-            boxShadow:
-              "rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset",
-            backdropFilter: "blur(2px)",
-            WebkitBackdropFilter: "blur(2px)",
-            padding: "50px",
-            marginBottom: "30px",
-            height: "50%",
-          }}>
-            <form onSubmit={formik.handleSubmit}>
+          <div
+            className="col-12 col-md-8 px-5"
+            style={{
+              background: "rgba(0, 189, 214, 0.18)",
+              borderRadius: "16px",
+              boxShadow:
+                "rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset",
+              backdropFilter: "blur(2px)",
+              WebkitBackdropFilter: "blur(2px)",
+              padding: "50px",
+              marginBottom: "30px",
+              height: "50%",
+            }}
+          >
+            <form onSubmit={formik.handleSubmit} >
               <div className="row mb-4">
                 <div className="col">
                   <div className="form-outline bg-gray">
@@ -288,19 +296,25 @@ export const ProfileRecruiter = () => {
                 </div>
                 <div className="col">
                   <div className="form-outline">
-                    <label className="form-label" htmlFor="form6Example1">
+                    <label 
+                    style={{cursor:'pointer'}}
+                    onClick={()=>setIsResetPassword(prev=>!prev)} 
+                    className="form-label" 
+                    htmlFor="form6Example1">
                       Reset Password
                     </label>
+                    
                     <input
                       type="password"
                       id="password"
                       placeholder="Reset Password"
+                      autoComplete="new-password"
                       name="password"
-                      className={`form-control ${
+                      className={isResetPassword?`form-control ${
                         formik.touched.password && formik.errors.password
                           ? "border border-danger"
                           : "border border-secondary"
-                      }`}
+                      }`:'d-none'}
                       value={formik.values.password}
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}

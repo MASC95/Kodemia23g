@@ -106,7 +106,7 @@ export const RegisterRecruiter = () => {
       const response = await axios.get(
         `${endpointsGral.userURL}getUserByEmail?email=${email}`
       );
-      //console.log("response searchUserInDB:..", response);
+      console.log("response searchUserInDB:..", response);
       if (response?.data?.user) {
         return true;
       } else {
@@ -287,7 +287,7 @@ export const RegisterRecruiter = () => {
                   </Link>
                 </div>
                 <h2 className="text-center">Crear cuenta</h2>
-                <span>para empresa</span>
+                <span>y empieza a seleccionar</span>
                 <Formik
                   initialValues={dataForm}
                   enableReinitialize={true}
@@ -341,6 +341,7 @@ export const RegisterRecruiter = () => {
                             backgroundColor: "#0093E9",
                             backgroundImage:
                               "linear-gradient(160deg, #0093E9 0%, #80D0C7 100%)",
+                            borderRadius: "0px 5px 5px 0px",
                           }}
                           onClick={() => setShowPassword(!showPassword)}
                         >
@@ -378,6 +379,7 @@ export const RegisterRecruiter = () => {
                             backgroundColor: "#0093E9",
                             backgroundImage:
                               "linear-gradient(160deg, #0093E9 0%, #80D0C7 100%)",
+                            borderRadius: "0px 5px 5px 0px",
                           }}
                           onClick={() => setShowPassword(!showPassword)}
                         >
@@ -401,7 +403,7 @@ export const RegisterRecruiter = () => {
                       )}
                       {isResgitering && (
                         <>
-                          <label className="text-dark" htmlFor="code">
+                          <label className="text-white" htmlFor="code">
                             Captura el código que fue enviado a tu E-mail:
                           </label>
                           <input

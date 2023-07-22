@@ -55,7 +55,8 @@ function OffCanvasCandidate({ showOffcanvas, handleShowOffcanvas }) {
               <span className="text fs-6">Inicio</span>
             </Link>
             <Link to={`/dashboard-candidato/profile`} className="link">
-              <FaUser className="icons" /> <span className="text fs-6">Perfil</span>
+              <FaUser className="icons" />{" "}
+              <span className="text fs-6">Perfil</span>
             </Link>
             <Link to={`/dashboard-candidato/search`} className="link">
               <FaSearch className="icons" />{" "}

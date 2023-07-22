@@ -29,24 +29,40 @@ export const Vacancy = () => {
 
   const fetch = async (page, newPerPage) => {
     setLoading(true);
-    axios.defaults.headers.common[
-      "Authorization"
-    ] = `Bearer: ${dataRecruiter.accessToken}`;
-    const allVacancies = await axios.get(
-      `${endpointsGral.vacancyURL}getAllJobVacancyByUser/${dataRecruiter.accessToken}?page=${page}&limit=${newPerPage}`
-    );
-    const datas = allVacancies.data["item"];
-    // console.log("backend Response:..", datas);
-    setVacancyAll(datas["docs"]);
-    // console.log("PAGINATION", datas["totalDocs"]);
-    setTotalRows(datas["totalDocs"]);
-    setLoading(false);
+    try {
+      axios.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer: ${dataRecruiter.accessToken}`;
+      const allVacancies = await axios.get(
+        `${endpointsGral.vacancyURL}getAllJobVacancyByUser/${dataRecruiter.accessToken}?page=${page}&limit=${newPerPage}`
+      );
+      const datas = allVacancies.data["item"];
+       //console.log("backend Response:..", allVacancies);
+      setVacancyAll(datas["docs"]);
+      // console.log("PAGINATION", datas["totalDocs"]);
+      setTotalRows(datas["totalDocs"]);
+      setLoading(false);
+      
+    } catch (error) {
+      console.log('Error al intentar recuperar datos:..',error?.response?.data?.errors[0]?.message);
+      const errMsg= error?.response?.data?.errors[0]?.message;
+      if(errMsg){
+        Swal.fire(
+          'Lo sentimos!',
+          `${errMsg}`,
+          'error'
+        )
+      }
+    }
+    
   };
 
   
   useEffect(() => {
+    if(dataRecruiter?.accessToken)
     fetch(1, 10);
-  }, []);
+  }, [dataRecruiter]);
+
   //console.log(vacancyAll);
   //console.log(totalRows);
 

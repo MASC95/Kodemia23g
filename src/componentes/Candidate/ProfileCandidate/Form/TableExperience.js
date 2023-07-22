@@ -130,7 +130,7 @@ const TableExperience = ({ dataExperience, setDataExpirience }) => {
           }}
           onClick={handleExperience}
         >
-          <FaPlus /> Sumar Experiencia
+          <FaPlus /> Añadir Experiencia
         </button>
       </div>
       <Table striped bordered hover>

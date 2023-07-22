@@ -4,7 +4,7 @@ import "animate.css";
 import Carousel from "react-bootstrap/Carousel";
 import img1 from "../../Candidate/img/img-1.jpg";
 import img2 from "../../Candidate/img/img-2.jpg";
-import img3 from "../../Candidate/img/img-3.jpg";
+
 //import Footer from "../../Landing/Footer/Footer";
 
 const HomeCandidate = () => {
@@ -27,11 +27,9 @@ const HomeCandidate = () => {
       <Carousel
         style={{ zIndex: "-1000", position: "relative" }}
         className="w-100 main-carousel "
+        controls={false}
       >
-        <Carousel.Item
-          style={{ zIndex: "0", position: "relative" }}
-          className="carousel-img"
-        >
+        <Carousel.Item className="carousel-img">
           <img
             style={{ zIndex: "0", position: "relative" }}
             className="d-block w-100 carousel-main-img"
@@ -45,7 +43,7 @@ const HomeCandidate = () => {
               style={{ fontSize: "7vw" }}
               className="welcome-text animate__animated animate__heartBeat animate__delay-2s"
             >
-              Welcome to Jobinder{" "}
+              Bienvenido a Jobinder!{" "}
             </h2>
             <h3
               style={{ fontSize: "4vw" }}
@@ -96,7 +94,7 @@ const HomeCandidate = () => {
           <img
             style={{ zIndex: "0", position: "relative" }}
             className="d-block w-100"
-            src={img3}
+            src="https://frontjobinderimg.s3.amazonaws.com/businessman-woman-planning-success-illuminated-skyscraper-generated-by-ai.jpg"
             alt="Third slide"
           />
 

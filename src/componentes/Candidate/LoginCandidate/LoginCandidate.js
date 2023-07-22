@@ -262,7 +262,7 @@ export const LoginCandidate = () => {
                 </Formik>
               </div>
             </div>
-            <div className="col-md-6 col-md-offset-3">
+            <div className="col-md-6 col-md-offset-3 d-none d-md-block">
               <div
                 className="block text-center  shadow-none"
                 style={{

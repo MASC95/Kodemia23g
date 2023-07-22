@@ -124,7 +124,7 @@ const Footer = () => {
                   Ubicación{" "}
                 </a>
               </li>
-              <li className="d-none text-footer col-sm-12  col-md-4 col-lg-4 col-xl-4 mb-3 mt-2 w-30">
+              <li className="text-footer col-sm-12  col-md-4 col-lg-4 col-xl-4 mb-3 mt-2 w-30">
                 <Link
                   style={{ color: "inherit", textDecoration: "none" }}
                   to="/FAQSection"

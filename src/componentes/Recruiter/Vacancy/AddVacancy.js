@@ -29,7 +29,7 @@ export const AddVacancy = () => {
   const [imageUser, setImageUser] = useState(null);
   const [dataForm, setDataForm] = useState(initDataForm);
   const [dataActivities, setDataActivities] = useState([]);
-  const [isSaving,setIsSaving]=useState(false);
+  const [isSaving, setIsSaving] = useState(false);
   const [
     dataCandidate,
     setDataCandidate,
@@ -60,7 +60,6 @@ export const AddVacancy = () => {
 
   useEffect(() => {
     ////console.log("datos en dataForm:..", dataForm);
-    
   }, [dataForm]);
 
   const formik = useFormik({
@@ -75,7 +74,6 @@ export const AddVacancy = () => {
       status: Yup.string().required("Requerido"),
     }),
     onSubmit: (values) => {
-
       setTimeout(() => {
         ////console.log("...........", imageUser);
         //console.log("RFC COMPLETE", dataRecruiter.rfc)
@@ -90,36 +88,35 @@ export const AddVacancy = () => {
         } else {
           if (!imageUser) {
             swal({
-                title: "Falta la Imagen!!",
-                icon: "error",
-                button: "ok",
-              });
-              return
-        }
-        setIsSaving(true);
-        const idsSkills = listSkills.map((item) => item.skill);
-        const formData = new FormData();
-        if (imageUser) formData.append("image", imageUser);
-        if (idsSkills) {
-          for (let i = 0; i < idsSkills.length; i++) {
-            formData.append("job_skills", idsSkills[i]);
+              title: "Falta la Imagen!!",
+              icon: "error",
+              button: "ok",
+            });
+            return;
           }
-        }
-        if(dataActivities){
-          for (let i = 0; i < dataActivities.length; i++) {
-            formData.append("activities",JSON.stringify(dataActivities[i]))
+          setIsSaving(true);
+          console.log("agregando vacantes...");
+          const idsSkills = listSkills.map((item) => item.skill);
+          const formData = new FormData();
+          if (imageUser) formData.append("image", imageUser);
+          if (idsSkills) {
+            for (let i = 0; i < idsSkills.length; i++) {
+              formData.append("job_skills", idsSkills[i]);
+            }
           }
-        }
-        Object.entries(values).forEach(([key, value]) => {
-          formData.append(key, value);
-        });
-        // //console.log("idsSkills:..", idsSkills);
+          if (dataActivities) {
+            for (let i = 0; i < dataActivities.length; i++) {
+              formData.append("activities", JSON.stringify(dataActivities[i]));
+            }
+          }
+          Object.entries(values).forEach(([key, value]) => {
+            formData.append(key, value);
+          });
+          // //console.log("idsSkills:..", idsSkills);
 
-        // for (const pair of formData.entries()) {
-        //   // //console.log(`${pair[0]}, ${pair[1]}`);
-        // }
-       
-        
+          // for (const pair of formData.entries()) {
+          //   // //console.log(`${pair[0]}, ${pair[1]}`);
+          // }
 
           //console.log("...........", formData);
           axios.defaults.headers.common[
@@ -427,9 +424,7 @@ export const AddVacancy = () => {
                     </select>
                   </div>
                 </div>
-                <div className="col">
-                  
-                </div>
+                <div className="col"></div>
               </div>
               <ToDoList
                 dataActivities={dataActivities}
@@ -443,7 +438,7 @@ export const AddVacancy = () => {
                   className="buttons btn btn-info text-light"
                   disabled={isSaving}
                 >
-                  {isSaving?<Spinner/>:'Guardar Vacante'}
+                  {isSaving ? <Spinner /> : "Guardar Vacante"}
                 </button>
               </div>
             </form>

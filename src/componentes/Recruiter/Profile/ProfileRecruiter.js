@@ -49,6 +49,7 @@ const profileSchema = Yup.object().shape({
 export const ProfileRecruiter = () => {
   const [dataForm, setDataForm] = useState(initDataForm);
   const [imageUser, setImageUser] = useState(null);
+  const [isResetPassword, setIsResetPassword] = useState(false);
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
   const isDesktop = useMediaQuery({ query: "(min-width: 769px)" });
 
@@ -147,6 +148,7 @@ export const ProfileRecruiter = () => {
   return (
     <>
       <div>
+        
         <div
           className={` ${
             isMobile
@@ -214,7 +216,7 @@ export const ProfileRecruiter = () => {
               height: "50%",
             }}
           >
-            <form onSubmit={formik.handleSubmit}>
+            <form onSubmit={formik.handleSubmit} >
               <div className="row mb-4">
                 <div className="col">
                   <div className="form-outline bg-gray">
@@ -294,19 +296,25 @@ export const ProfileRecruiter = () => {
                 </div>
                 <div className="col">
                   <div className="form-outline">
-                    <label className="form-label" htmlFor="form6Example1">
+                    <label 
+                    style={{cursor:'pointer'}}
+                    onClick={()=>setIsResetPassword(prev=>!prev)} 
+                    className="form-label" 
+                    htmlFor="form6Example1">
                       Reset Password
                     </label>
+                    
                     <input
                       type="password"
                       id="password"
                       placeholder="Reset Password"
+                      autoComplete="new-password"
                       name="password"
-                      className={`form-control ${
+                      className={isResetPassword?`form-control ${
                         formik.touched.password && formik.errors.password
                           ? "border border-danger"
                           : "border border-secondary"
-                      }`}
+                      }`:'d-none'}
                       value={formik.values.password}
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}

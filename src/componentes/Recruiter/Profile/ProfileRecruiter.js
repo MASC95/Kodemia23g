@@ -49,6 +49,7 @@ const profileSchema = Yup.object().shape({
 export const ProfileRecruiter = () => {
   const [dataForm, setDataForm] = useState(initDataForm);
   const [imageUser, setImageUser] = useState(null);
+  const [first, setfirst] = useState('');
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
   const isDesktop = useMediaQuery({ query: "(min-width: 769px)" });
 
@@ -147,6 +148,7 @@ export const ProfileRecruiter = () => {
   return (
     <>
       <div>
+        
         <div
           className={` ${
             isMobile

@@ -81,6 +81,16 @@ export const Softskills = ({ setListSkills, isCandidate, skillsCandidate }) => {
     const newSkill = {
       skill: selectSkill,
     };
+    //console.log('Agregando Skill:...',selectSkill);
+    if(selectSkill==='select'){
+      //console.log('Skill vacia:...');
+      swal({
+        title: "Elige una Skill!",
+        icon: "error",
+        button: "ok!",
+      });
+      return
+    }
     const dataRepet = skillTemp?.find((item) => item.skill === newSkill.skill);
     if (dataRepet) {
       swal({

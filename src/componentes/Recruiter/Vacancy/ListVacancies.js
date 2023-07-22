@@ -3,6 +3,7 @@ import DataTable from "react-data-table-component";
 import DataTableExtensions from "react-data-table-component-extensions";
 import { Link } from "react-router-dom";
 import { FaEdit, FaTrash } from "react-icons/fa";
+import { myId } from "../../lib/myLib";
 //import swal from "sweetalert";
 
 const ListVacancies = ({
@@ -103,13 +104,14 @@ const ListVacancies = ({
       sortable: false,
       selector: (row, i) => row.null,
       cell: (d) => [
-        <Link to={`/Dashboard-Recruiter/vacancy-edit/?v=${d.id}`}>
-          <button type="button" className="buttons btn btn-outline-success">
+        <Link key={myId()}className="buttons btn btn-outline-success me-1" to={`/Dashboard-Recruiter/vacancy-edit/?v=${d.id}`}>
+          
             <FaEdit className="icon_edit1" />
-          </button>
+          
         </Link>,
    
         <button
+        key={myId()}
           type="button"
           disabled={btnDelete}
           className="buttons btn btn-outline-danger"

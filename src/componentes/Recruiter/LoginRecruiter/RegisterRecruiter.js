@@ -106,7 +106,7 @@ export const RegisterRecruiter = () => {
       const response = await axios.get(
         `${endpointsGral.userURL}getUserByEmail?email=${email}`
       );
-      //console.log("response searchUserInDB:..", response);
+      console.log("response searchUserInDB:..", response);
       if (response?.data?.user) {
         return true;
       } else {

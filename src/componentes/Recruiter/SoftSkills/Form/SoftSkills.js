@@ -16,7 +16,7 @@ export const Softskills = ({ setListSkills, isCandidate, skillsCandidate }) => {
 
   const fetchSkill = async () => {
     const response = await axios.get(`${endpointsGral.jobSkill}getAllSkillsForVacancy`);
-    console.trace(response)
+    //console.trace(response)
     const infoSkill = response.data.getAllSkills;
     //console.log('infoSkill:...',infoSkill);
     let arrShort=infoSkill.sort((x, y) => x.name.localeCompare(y.name));

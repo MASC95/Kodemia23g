@@ -21,6 +21,8 @@ const initDataForm = {
   age: "",
   avatar_url: "",
 };
+// (ror) // /^([A-ZÑ\x26]{3,4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[A-Z|\d]{3})$/
+// (cin) // /^([A-ZÑ\x26]{3,4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1]))((-)?([A-Z\d]{3}))?$/
 const style = {
   borderRadius: "10%",
   margin: "20px",
@@ -39,7 +41,8 @@ const profileSchema = Yup.object().shape({
   last_name: Yup.string().required("El Apellido es Requerido"),
   email: Yup.string().required("El correo electrónico es requerido"),
   age: Yup.number().required("El campo es requerido"),
-  rfc: Yup.string().required("Ingrese una experiencia válida").matches(/^([A-ZÑ\x26]{3,4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1]))((-)?([A-Z\d]{3}))?$/,
+  rfc: Yup.string().required("Ingrese un RFC válido")
+  .matches(/^([A-ZÑ\x26]{3,4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1]))((-)?([A-Z\d]{3}))?$/,
   "El RFC debe tener 4 letras, 6 numeros y homoclave"),
 });
 

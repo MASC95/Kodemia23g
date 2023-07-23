@@ -53,7 +53,7 @@ export const LoginRecruiter = () => {
     try {
       const loginRecruiter = await endpoints.loginAxios(values);
       setDataForm(loginRecruiter);
-      console.log("loginRecruiter:..", loginRecruiter);
+      // console.log("loginRecruiter:..", loginRecruiter);
       setDataLocalStorage({ ...loginRecruiter });
       const role = loginRecruiter?.role;
       if (role === "empresa") {
@@ -62,7 +62,7 @@ export const LoginRecruiter = () => {
           icon: "success",
           button: "ok!",
         });
-        console.log("dashboard Recruiter");
+        // console.log("dashboard Recruiter");
         navigate("/Dashboard-Recruiter/home");
       } else {
         swal({

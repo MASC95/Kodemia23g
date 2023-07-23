@@ -92,7 +92,7 @@ export const Softskills = ({ setListSkills, isCandidate, skillsCandidate }) => {
       return
     }
     const dataRepet = skillTemp?.find((item) => item.skill === newSkill.skill);
-   console.log('new',newSkill)
+  //  console.log('new',newSkill)
    if(newSkill.skill==='select'){
     swal({
       title: "Elige una skill!",

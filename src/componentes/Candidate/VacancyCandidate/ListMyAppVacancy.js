@@ -8,6 +8,8 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import useJob from "../../../hooks/useJob";
 import { myId } from "../../lib/myLib";
+
+
 export const ListMyAppVacancy = () => {
   const customStyles = {
     rows: {
@@ -46,6 +48,12 @@ export const ListMyAppVacancy = () => {
       //console.log(error);
     }
   };
+  useEffect(()=>{
+
+    if(dataCandidate?.phase_status){
+      console.log('dataCandidate:..',dataCandidate)
+    }
+  },[dataCandidate])
   const data = my_vacancies?.map((item, index) => ({
     ...item,
     id: index + 1,
@@ -113,6 +121,7 @@ export const ListMyAppVacancy = () => {
         id="formGral"
         style={{ fontFamily: "Poppins, sans-serif, Verdana, Geneva, Tahoma" }}
       >
+        
         <DataTableExtensions {...tableData} export={false} print={false}>
           <DataTable
             {...tableData}

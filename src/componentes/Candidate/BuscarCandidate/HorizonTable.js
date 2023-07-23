@@ -192,6 +192,7 @@ const HorizonTable = ({
         className=" m-5 p-3"
         style={{ fontFamily: "Poppins, sans-serif, Verdana, Geneva, Tahoma" }}
       >
+        
         <DataTableExtensions {...tableData} export={false} print={false}>
           <DataTable
             {...tableData}

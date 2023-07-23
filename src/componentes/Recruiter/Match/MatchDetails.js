@@ -28,7 +28,6 @@ export const MatchDetails = () => {
   const [buttonState, setButtonState] = useState("btn-outline-success");
   const [tempListUser, setListDataUser] = useState([]);
   const [listApplicantsPhaseOne, setListApplicantsPhaseOne] = useState([]);
-  
 
   const [loading, setLoading] = useState(false);
   const [totalRows, setTotalRows] = useState(0);
@@ -75,29 +74,31 @@ export const MatchDetails = () => {
   // Phase
 
   const queryPhase = async () => {
-
-    const phases= ['Llamada','Entrevista','Pruebas','Contratado'];
-    let tempData=[];
+    const phases = ["Llamada", "Entrevista", "Pruebas", "Contratado"];
+    let tempData = [];
     for (const phase of phases) {
       const endpointPhase = `${endpointsGral.phaseUrlGetPhase}?phase=${phase}`;
       try {
         const response = await axios.get(endpointPhase);
-        //console.log("Phase One, backend", response);
+
         const result = response?.data?.infoPhase?.vacancies;
-  
+        //console.log(`Phase ${phase}, backend:..`, result);
         const dataInformationVacancy = result.find(
           (item) => String(item.idVacancie) === idVacancy
         );
-        //console.log(`dataInformationVacancy:..${phase}`, dataInformationVacancy);
-        tempData=[...tempData,...dataInformationVacancy?.applicants];
-      } catch (error) {
-        //console.log(error);
-      }  
-    }
-    //console.log('todos los applicantes en las 4 fases:..',tempData);
-    setListApplicantsPhaseOne([...tempData]);
 
-    
+        if (dataInformationVacancy) {
+          console.log(`dataInformationVacancy:..${phase}`, dataInformationVacancy);
+          tempData = [...tempData, ...dataInformationVacancy?.applicants];
+        } else {
+          tempData = [...tempData];
+        }
+      } catch (error) {
+        console.log("Error al recuperar los datos de las fases:..", error);
+      }
+    }
+    console.log("todos los applicantes en las 4 fases:..", tempData);
+    setListApplicantsPhaseOne([...tempData]);
   };
 
   useEffect(() => {
@@ -189,9 +190,10 @@ export const MatchDetails = () => {
         const selectUser = dataByUserCandidate[index];
 
         let tempDataUser = [...tempListUser];
-        const dataRepet = tempDataUser.some(
+        /*const dataRepet = tempDataUser.some(
           (item) => item._id === selectUser._id
-        );
+        );*/
+        const dataRepet = listApplicantsPhaseOne.find(el=>String(el)===String(selectUser._id));
         //console.log("data repet", dataRepet);
         if (dataRepet) {
           //console.log("ya esta agregado");
@@ -216,7 +218,7 @@ export const MatchDetails = () => {
               queryPhase();
             }
           } catch (error) {
-            //console.log(error);
+            console.log("Error al agregar candidato:..", error);
           }
           tempDataUser.push(selectUser);
           setListDataUser([...tempDataUser]);
@@ -230,7 +232,12 @@ export const MatchDetails = () => {
   return (
     <>
       <div className="row m-3">
-        <h2 className="fs-1 text-center  fs-4">Título de la vacante: {dataInfoVacancy.title}</h2>
+        <h2 className="fs-1 text-center  fs-4">
+          Empresa: {dataInfoVacancy?.companyName}
+        </h2>
+        <h2 className="fs-1 text-center  fs-4">
+          Título de la vacante: {dataInfoVacancy.title}
+        </h2>
         {/* <h2 className="text-dark">Lista de aplicantes</h2> */}
         <div className="col">
           {dataByUserCandidate?.length > 0 && (

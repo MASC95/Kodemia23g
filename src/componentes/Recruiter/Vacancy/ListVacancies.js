@@ -130,6 +130,7 @@ const ListVacancies = ({
 
   return (
     <DataTableExtensions export={false} print={false} {...tableData}>
+      
       <DataTable
         {...tableData}
         columns={columns}

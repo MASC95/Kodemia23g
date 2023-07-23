@@ -54,7 +54,7 @@ export const LoginRecruiter = () => {
       const loginRecruiter = await endpoints.loginAxios(values);
       setDataForm(loginRecruiter);
       //console.log("loginRecruiter:..", loginRecruiter);
-      
+
       const role = loginRecruiter?.role;
       if (role === "empresa") {
         swal({
@@ -220,8 +220,8 @@ export const LoginRecruiter = () => {
                         <Link
                           to={
                             props.values.email !== ""
-                              ? `/updatePasswordRecruiter/${props.values.email}`
-                              : `/updatePasswordRecruiter/none`
+                              ? `/update-password/${props.values.email}`
+                              : `/update-password/none`
                           }
                         >
                           Cambia tu Contraseña.

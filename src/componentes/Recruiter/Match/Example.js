@@ -114,7 +114,8 @@ const Example = () => {
   }, [errorBackend]);
 
   useEffect(() => {
-    if (dataStatusEditing) console.log();
+    if (dataStatusEditing);
+    //  console.log();
   }, [dataStatusEditing]);
 
   // pagination
@@ -249,7 +250,7 @@ const Example = () => {
        center: true,
     },
     {
-      name: "STATUS",
+      name: "ESTADO DE LA VACANTE",
       selector: (row, i) => row.status,
       sortable: true,
     },

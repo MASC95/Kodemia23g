@@ -88,8 +88,8 @@ const MyTable = ({
       const retriveUser=item.user_skills.map((idSkills)=>{
         return idSkills._id
       })
-      console.log('skills usuario', retriveUser)
-      console.log('skills vacante', retriveVacancy)
+      //console.log('skills usuario', retriveUser)
+      //console.log('skills vacante', retriveVacancy)
 
       const conteo = {};
       retriveUser.forEach((elemento) => {

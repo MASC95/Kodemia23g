@@ -111,8 +111,9 @@ const NavbarCandidate = () => {
   return (
     <Navbar expand="lg" className="nav w-100 main-navbar-color">
       <Container className="container-fluid contenedor">
-        <Navbar.Brand href="#home" className="logo d-flex gap-2">
+        <Navbar.Brand  className="logo d-flex gap-2">
           {" "}
+          
           <Button
             variant="primary"
             onClick={handleShowOffCanvas}

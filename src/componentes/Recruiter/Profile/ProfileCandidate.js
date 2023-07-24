@@ -15,36 +15,30 @@ import Table from "react-bootstrap/Table";
 export const Candidate = () => {
   const customStyles = {
     rows: {
-        style: {
-            minHeight: '72px', // override the row height
-            fontsize:"18px",
-        },
+      style: {
+        minHeight: "72px", // override the row height
+        fontsize: "18px",
+      },
     },
     headCells: {
-        style: {
-          backgroundColor:'#7FADC0',
-          color:'#fff',
-          fontWeight: "bold",
-          fontsize:"12px",
-          paddingLeft: '8px', // override the cell padding for head cells
-          paddingRight: '8px',
-        },
+      style: {
+        backgroundColor: "#7FADC0",
+        color: "#fff",
+        fontWeight: "bold",
+        fontsize: "12px",
+        paddingLeft: "8px", // override the cell padding for head cells
+        paddingRight: "8px",
+      },
     },
     cells: {
-        style: {
-          fontsize:"18px",
-          paddingLeft: '8px', // override the cell padding for data cells
-          paddingRight: '8px',
-        },
+      style: {
+        fontsize: "18px",
+        paddingLeft: "8px", // override the cell padding for data cells
+        paddingRight: "8px",
+      },
     },
-};
+  };
 
-
-
-
-
-
-  
   const valores = window.location.search;
   const urlParams = new URLSearchParams(valores);
   const idCandidate = urlParams.get("c");
@@ -59,11 +53,10 @@ export const Candidate = () => {
     setDataLocalStorage,
   ] = useJob();
 
-  const style={
+  const style = {
     color: "#498BA6",
-    fontFamily:
-      "Poppins, sans-serif, Verdana, Geneva, Tahoma",
-  }
+    fontFamily: "Poppins, sans-serif, Verdana, Geneva, Tahoma",
+  };
 
   //console.log(idCandidate);
   const [dataSkill, setDataSkill] = useState([]);
@@ -272,9 +265,7 @@ export const Candidate = () => {
               />
               <div className="row">
                 <p className="text-center text-dark">{`${infoCandidate.name} ${infoCandidate.last_name}`}</p>
-                <p className="text-center text-dark">
-                   {infoCandidate.email}
-                </p>
+                <p className="text-center text-dark">{infoCandidate.email}</p>
               </div>
               <div className="buttons_actions d-flex justify-content-center gap-3">
                 <button
@@ -338,28 +329,50 @@ export const Candidate = () => {
               <div className="row mb-4">
                 <div className="col">
                   <div className="form-outline">
-                    <label className="form-label text-dark" for="form6Example1" style={{fontSize:'22px'}}>
+                    <label
+                      className="form-label text-dark"
+                      for="form6Example1"
+                      style={{ fontSize: "22px" }}
+                    >
                       Experiencia
                     </label>
                     {/* <p className="text-dark">
                       {infoCandidate.working_experience}
                     </p> */}
-                     <Table striped bordered hover>
+                    <Table striped bordered hover>
                       <thead>
-                        <tr style={{borderRadius:'200px'}}>
-                          <th style={{backgroundColor:'#7FADC0', color:'white', fontSize:"12px"}}>PUESTO</th>
-                          <th style={{backgroundColor:'#7FADC0', color:'white', fontSize:"12px"}}>DESCRIPCIÓN</th>
+                        <tr style={{ borderRadius: "200px" }}>
+                          <th
+                            style={{
+                              backgroundColor: "#7FADC0",
+                              color: "white",
+                              fontSize: "12px",
+                            }}
+                          >
+                            PUESTO
+                          </th>
+                          <th
+                            style={{
+                              backgroundColor: "#7FADC0",
+                              color: "white",
+                              fontSize: "12px",
+                            }}
+                          >
+                            DESCRIPCIÓN
+                          </th>
                         </tr>
                       </thead>
                       <tbody>
-                        {infoCandidate.working_experience?.map((item, index) => {
-                          return (
-                            <tr key={myId()}>
-                              <td>{item.position}</td>
-                              <td>{item.description}</td>
-                            </tr>
-                          );
-                        })}
+                        {infoCandidate.working_experience?.map(
+                          (item, index) => {
+                            return (
+                              <tr key={myId()}>
+                                <td>{item.position}</td>
+                                <td>{item.description}</td>
+                              </tr>
+                            );
+                          }
+                        )}
                       </tbody>
                     </Table>
                   </div>
@@ -379,13 +392,13 @@ export const Candidate = () => {
                       key={myId()}
                       columns={columns}
                       data={data}
-                      title='Lista de skills'
+                      title="Lista de skills"
                       defaultSortField="#"
                       defaultSortAsc={true}
                       pagination
                       highlightOnHover
                       dense
-                      customStyles={customStyles} 
+                      customStyles={customStyles}
                     />
                   </DataTableExtensions>
                 </div>

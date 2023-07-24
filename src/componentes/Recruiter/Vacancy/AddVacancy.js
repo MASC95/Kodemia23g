@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { endpointsGral } from "../services/vacancy";
 import Softskills from "../SoftSkills/Form/SoftSkills";
-import { useFormik } from "formik";
+import { useFormik, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import swal from "sweetalert";
 import { useNavigate } from "react-router-dom";
@@ -164,7 +164,7 @@ export const AddVacancy = () => {
           }}
         >
           {/* <p>{dataRecruiter.rfc}</p> */}
-          Crear Vacante
+          Crear Vacante 
         </h1>
         <div
           className="row"
@@ -306,6 +306,9 @@ export const AddVacancy = () => {
                       <option> Tiempo Completo</option>
                       <option> Por proyecto</option>
                     </select>
+                    {formik.touched.type && formik.errors.type && (
+                      <span className="text-danger">{formik.errors.type}</span>
+                    )}
                   </div>
                 </div>
                 <div className="col">
@@ -334,6 +337,9 @@ export const AddVacancy = () => {
                       <option> Remoto</option>
                       <option> Hibrído</option>
                     </select>
+                    {formik.touched.mode && formik.errors.mode && (
+                      <span className="text-danger">{formik.errors.mode}</span>
+                    )}
                   </div>
                 </div>
               </div>
@@ -422,6 +428,9 @@ export const AddVacancy = () => {
                       <option> Iniciado</option>
                       {/* <option> Cerrado</option> */}
                     </select>
+                    {formik.touched.status && formik.errors.status && (
+                      <span className="text-danger">{formik.errors.status}</span>
+                    )}
                   </div>
                 </div>
                 <div className="col"></div>
@@ -433,6 +442,20 @@ export const AddVacancy = () => {
               <br></br>
               <Softskills setListSkills={setListSkills} skillsCandidate={[]} />
               <div className="buttons_actions d-flex justify-content-end align-content-end">
+              {(
+              (formik.touched.salary && formik.errors.salary) 
+              ||(formik.touched.companyName && formik.errors.companyName)
+              ||(formik.touched.title && formik.errors.title)
+              ||(formik.touched.type && formik.errors.type)
+              ||(formik.touched.mode && formik.errors.mode)
+              ||(formik.touched.city && formik.errors.city)
+              ||(formik.touched.status && formik.errors.status)
+              )
+              && (
+                      <span className="text-danger me-2">
+                        Favor de llenar correctamente el formulario
+                      </span>
+                    )}
                 <button
                   type="submit"
                   className="buttons btn btn-info text-light"

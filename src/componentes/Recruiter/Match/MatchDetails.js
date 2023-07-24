@@ -7,6 +7,8 @@ import useJob from "../../../hooks/useJob";
 import "./style.scss";
 import MyTable from "./MyTable";
 import { idPhaseOne } from "../../lib/myLib";
+import {FcRefresh} from "react-icons/fc";
+
 
 export const MatchDetails = () => {
   const valores = window.location.search;
@@ -28,6 +30,7 @@ export const MatchDetails = () => {
   const [buttonState, setButtonState] = useState("btn-outline-success");
   const [tempListUser, setListDataUser] = useState([]);
   const [listApplicantsPhaseOne, setListApplicantsPhaseOne] = useState([]);
+  const [errorBackend, setErrorBackend] = useState('');
 
   const [loading, setLoading] = useState(false);
   const [totalRows, setTotalRows] = useState(0);
@@ -88,7 +91,7 @@ export const MatchDetails = () => {
         );
 
         if (dataInformationVacancy) {
-          console.log(`dataInformationVacancy:..${phase}`, dataInformationVacancy);
+          //console.log(`dataInformationVacancy:..${phase}`, dataInformationVacancy);
           tempData = [...tempData, ...dataInformationVacancy?.applicants];
         } else {
           tempData = [...tempData];
@@ -97,7 +100,7 @@ export const MatchDetails = () => {
         console.log("Error al recuperar los datos de las fases:..", error);
       }
     }
-    console.log("todos los applicantes en las 4 fases:..", tempData);
+    //console.log("todos los applicantes en las 4 fases:..", tempData);
     setListApplicantsPhaseOne([...tempData]);
   };
 
@@ -113,6 +116,13 @@ export const MatchDetails = () => {
     queryVacancy(page, perPage);
     setCurrentPage(page);
   };
+  const handleRefresh = ()=>{
+    console.log('refrescando datos:..');
+    queryVacancy();
+    queryPhase();
+    fetchForMatch(1, 10);
+    listadoApplicants();
+  }
 
   const handlePerRowsChange = async (newPerPage, page) => {
     //console.log("Cambiando limit:...", newPerPage);
@@ -127,6 +137,11 @@ export const MatchDetails = () => {
       listadoApplicants();
     }
   }, [dataByUserCandidate]);
+  useEffect(()=>{
+    if(errorBackend!==''){
+      Swal.fire('Lo sentimos!',errorBackend,'error')
+    }
+  },[errorBackend])
 
   const listadoApplicants = () => {
     setNuevoListado(true);
@@ -166,7 +181,11 @@ export const MatchDetails = () => {
             );
             //console.log("responseBack HideUser:..", responseBack);
           } catch (error) {
-            //console.log(error);
+            console.log('Error al ocultar user:..',error);
+            const errMs= error?.response?.data?.errors[0]?.message;
+            if(errMs){
+              setErrorBackend(errMs)
+            }
           }
           setDataByUserCandidate(deleteOnList);
           //console.log("lista de candidatos sin el oculto:..", deleteOnList);
@@ -219,6 +238,10 @@ export const MatchDetails = () => {
             }
           } catch (error) {
             console.log("Error al agregar candidato:..", error);
+            const errMs= error?.response?.data?.errors[0]?.message;
+            if(errMs){
+              setErrorBackend(errMs)
+            }
           }
           tempDataUser.push(selectUser);
           setListDataUser([...tempDataUser]);
@@ -238,6 +261,14 @@ export const MatchDetails = () => {
         <h2 className="fs-1 text-center  fs-4">
           Título de la vacante: {dataInfoVacancy.title}
         </h2>
+        <div className="d-flex justify-content-end">
+        <span 
+        style={{width:'fit-content',cursor:'pointer', color:'blue'}} 
+        onClick={handleRefresh}
+        className=" btn btn-outline-info d-flex justify-content-center align-items-center">
+          <FcRefresh style={{color:'blue'}}/>
+          </span>
+          </div>
         {/* <h2 className="text-dark">Lista de aplicantes</h2> */}
         <div className="col">
           {dataByUserCandidate?.length > 0 && (

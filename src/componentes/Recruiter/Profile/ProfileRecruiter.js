@@ -41,10 +41,13 @@ const profileSchema = Yup.object().shape({
   last_name: Yup.string().required("El Apellido es Requerido"),
   email: Yup.string().required("El correo electrónico es requerido"),
   age: Yup.number().required("El campo es requerido"),
-  rfc: Yup.string().required("Ingrese un RFC válido")
-     .matches(/^([A-ZÑ\x26]{3,4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[A-Z|\d]{3})$/,
-  // .matches(/^([A-ZÑ\x26]{3,4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1]))((-)?([A-Z\d]{3}))?$/,
-  "El RFC debe tener 4 letras, 6 numeros y homoclave"),
+  rfc: Yup.string()
+    .required("Ingrese un RFC válido")
+    .matches(
+      /^([A-ZÑ\x26]{3,4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[A-Z|\d]{3})$/,
+      // .matches(/^([A-ZÑ\x26]{3,4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1]))((-)?([A-Z\d]{3}))?$/,
+      "El RFC debe tener 4 letras, 6 numeros y homoclave"
+    ),
 });
 
 export const ProfileRecruiter = () => {
@@ -84,9 +87,15 @@ export const ProfileRecruiter = () => {
       name: Yup.string().required("El Nombres es Requerido"),
       last_name: Yup.string().required("El Apellido es Requerido"),
       email: Yup.string().required("El correo electrónico es requerido"),
-      age: Yup.number().required("El campo es requerido").min(18, "Tu edad debe ser mayor a 18 años"),
-      rfc: Yup.string().required("Ingrese un RFC válido").matches(/^([A-ZÑ\x26]{3,4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1]))((-)?([A-Z\d]{3}))?$/,
-      "El RFC debe tener 4 letras, 6 numeros y homoclave"),
+      age: Yup.number()
+        .required("El campo es requerido")
+        .min(18, "Tu edad debe ser mayor a 18 años"),
+      rfc: Yup.string()
+        .required("Ingrese un RFC válido")
+        .matches(
+          /^([A-ZÑ\x26]{3,4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1]))((-)?([A-Z\d]{3}))?$/,
+          "El RFC debe tener 4 letras, 6 numeros y homoclave"
+        ),
     }),
     onSubmit: (values) => {
       //console.log("values", values);
@@ -149,7 +158,6 @@ export const ProfileRecruiter = () => {
   return (
     <>
       <div>
-        
         <div
           className={` ${
             isMobile
@@ -217,7 +225,7 @@ export const ProfileRecruiter = () => {
               height: "50%",
             }}
           >
-            <form onSubmit={formik.handleSubmit} >
+            <form onSubmit={formik.handleSubmit}>
               <div className="row mb-4">
                 <div className="col">
                   <div className="form-outline bg-gray">
@@ -297,25 +305,30 @@ export const ProfileRecruiter = () => {
                 </div>
                 <div className="col">
                   <div className="form-outline">
-                    <label 
-                    style={{cursor:'pointer'}}
-                    onClick={()=>setIsResetPassword(prev=>!prev)} 
-                    className="form-label" 
-                    htmlFor="form6Example1">
+                    <label
+                      style={{ cursor: "pointer" }}
+                      onClick={() => setIsResetPassword((prev) => !prev)}
+                      className="form-label"
+                      htmlFor="form6Example1"
+                    >
                       Reset Password
                     </label>
-                    
+
                     <input
                       type="password"
                       id="password"
                       placeholder="Reset Password"
                       autoComplete="new-password"
                       name="password"
-                      className={isResetPassword?`form-control ${
-                        formik.touched.password && formik.errors.password
-                          ? "border border-danger"
-                          : "border border-secondary"
-                      }`:'d-none'}
+                      className={
+                        isResetPassword
+                          ? `form-control ${
+                              formik.touched.password && formik.errors.password
+                                ? "border border-danger"
+                                : "border border-secondary"
+                            }`
+                          : "d-none"
+                      }
                       value={formik.values.password}
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}

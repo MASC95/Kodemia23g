@@ -122,7 +122,7 @@ const MyTable = ({
         id: item._id,
         qty: index,
         name: isFoundedUser(item._id)?<MyFaCheck text={nameUser}/>:nameUser,
-        bachelor: `${item.bachelor} `,
+        bachelor: item.bachelor?`${item.bachelor} `:'-',
         match: `${operador} %` || 0 ,
       };
     });
@@ -165,7 +165,7 @@ const MyTable = ({
       sortable: false,
       selector: (row, i) => row.null,
       cell: (d) => [
-        <Link to={`/dashboard-recruiter/profile-candidato/?c=${d.id}&v=${idVacancy}`}>
+        <Link key={myId()} to={`/dashboard-recruiter/profile-candidato/?c=${d.id}&v=${idVacancy}`}>
           <button type="button" className="buttons btn btn-outline-info">
             <FaEye className="icon_eye1" />
           </button>
@@ -174,6 +174,7 @@ const MyTable = ({
         <button
           disabled={isFoundedUser(d.id)}
           type="button"
+          key={myId()}
           className={`buttons btn ${buttonState}`}
           // className="buttons btn btn-outline-success"
           onClick={handleAddPanel.bind(this, d.qty)}
@@ -185,6 +186,7 @@ const MyTable = ({
         
         <button
           type="button"
+          key={myId()}
           className="buttons btn btn-outline-secondary"
           onClick={handleHideofPanel.bind(this, d.qty)}
         >

@@ -9,7 +9,12 @@ import "react-data-table-component-extensions/dist/index.css";
 import { myId } from "../../lib/myLib";
 import { Link } from "react-router-dom";
 import useJob from "../../../hooks/useJob";
+//import {GrRefresh} from "react-icons/gr";
+import {FcRefresh} from "react-icons/fc";
+//GrRefresh  FcRefresh
+
 import MyTable from "./MyTable";
+
 
 // import 'datatables.net-responsive';
 
@@ -282,6 +287,11 @@ const Example = () => {
     data,
   };
 
+  const handleRefresh = ()=>{
+    console.log('refrescando datos:..');
+    queryMatch(1, 10);
+  }
+
   return (
     <div
       className="row m-2 p-3"
@@ -293,7 +303,15 @@ const Example = () => {
         {errorBackend}
         </div>
       ) : (
+        <>
+        <span 
+        style={{width:'fit-content',cursor:'pointer', color:'blue'}} 
+        onClick={handleRefresh}
+        className=" text-center ms-auto btn btn-outline-info">
+          <FcRefresh style={{color:'blue'}}/>
+          </span>
         <DataTableExtensions export={false} print={false} {...tableData}>
+          
           <DataTable
             {...tableData}
             columns={columns}
@@ -310,6 +328,7 @@ const Example = () => {
             dense
           />
         </DataTableExtensions>
+        </>
       )}
     </div>
   );

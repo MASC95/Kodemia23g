@@ -12,6 +12,7 @@ import { endpointsGral } from "../../Recruiter/services/vacancy";
 
 
 export const ListMyAppVacancy = ({refreshing}) => {
+  
   const customStyles = {
     rows: {
       style: {
@@ -85,8 +86,16 @@ export const ListMyAppVacancy = ({refreshing}) => {
       (el) => el.idVacancy === item._id
     );
     let myPhase = "Aplicando";
+    let myBadge ='secondary';
+    
     if (findVacancy) {
       myPhase = findVacancy.phase;
+      if(myPhase!=='Aplicando'&&myPhase!=='Contratado'){
+        myBadge='info';
+      }
+      if(myPhase==='Contratado'){
+        myBadge='primary';
+      }
     }
     return {
       ...item,
@@ -97,6 +106,7 @@ export const ListMyAppVacancy = ({refreshing}) => {
       mode: item.mode,
       salary: `$ ${item.salary}.00`,
       phase: myPhase,
+      badge: myBadge
     };
   });
 
@@ -138,7 +148,7 @@ export const ListMyAppVacancy = ({refreshing}) => {
       sortable: true,
 
       cell: (row) => (
-        <Badge bg="info" className="badge_state1 p-2 buscar">
+        <Badge bg={row.badge} className="badge_state1 p-2 buscar">
           {row.phase}
         </Badge>
       ),

@@ -286,7 +286,7 @@ export const RegisterRecruiter = () => {
                     <img src={logo} alt="jobinder-logo" />
                   </Link>
                 </div>
-                <h2 className="text-center">Crear cuenta</h2>
+                <h2 className="text-center">Crea tu cuenta</h2>
                 <span>y empieza a seleccionar</span>
                 <Formik
                   initialValues={dataForm}
@@ -458,14 +458,14 @@ export const RegisterRecruiter = () => {
                 </p>
               </div>
             </div>
-            <div className="col-md-6 col-md-offset-3">
+            <div className="col-md-6 col-md-offset-3 d-none d-md-block">
               <div
                 className="block text-center  shadow-none"
                 style={imgContainer}
               >
                 <img
                   className="container w-100 h-50"
-                  src="https://frontjobinderimg.s3.amazonaws.com/JobinderRegister.png"
+                  src="https://frontjobinderimg.s3.amazonaws.com/registerRec.png"
                   alt="register-img"
                   style={imgInside}
                 />

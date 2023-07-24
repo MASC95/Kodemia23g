@@ -92,15 +92,25 @@ export const Softskills = ({ setListSkills, isCandidate, skillsCandidate }) => {
       return
     }
     const dataRepet = skillTemp?.find((item) => item.skill === newSkill.skill);
-    if (dataRepet) {
-      swal({
-        title: "Ya hemos agregado esa skill!",
-        icon: "error",
-        button: "ok!",
-      });
-    } else {
-      setSkillTemp([...skillTemp, newSkill]);
-    }
+  //  console.log('new',newSkill)
+   if(newSkill.skill==='select'){
+    swal({
+      title: "Elige una skill!",
+      icon: "error",
+      button: "ok!",
+    });
+   }else{
+
+     if (dataRepet) {
+       swal({
+         title: "Ya hemos agregado esa skill!",
+         icon: "error",
+         button: "ok!",
+       });
+     } else {
+       setSkillTemp([...skillTemp, newSkill]);
+     }
+   }
   };
 
   //   console.log("arr de skills", skillTemp);
@@ -182,10 +192,10 @@ export const Softskills = ({ setListSkills, isCandidate, skillsCandidate }) => {
           <thead className="thead-dark bg-body-secondary">
             <tr>
               {/* <th scope="col">#</th> */}
-              <th className="text-center" scope="col">
+              <th  scope="col">
                 Skill
               </th>
-              <th className="text-center" scope="col">
+              <th scope="col">
                 Nivel
               </th>
               <th className="text-center" scope="col">

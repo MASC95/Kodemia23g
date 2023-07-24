@@ -175,7 +175,7 @@ export const Details = () => {
             fontFamily: "Poppins, sans-serif, Verdana, Geneva, Tahoma",
           }}
         >
-          ${dataVacancy.companyName} solicita {dataVacancy.title}:
+          {dataVacancy.companyName} solicita {dataVacancy.title}:
         </h3>
 
         {dataVacancy?.companyName && (
@@ -269,7 +269,7 @@ export const Details = () => {
                       for="form6Example1"
                       style={style}
                     >
-                     Salario
+                     Salario Mensual
                     </label>
                     <p className="text-dark">$ {dataVacancy?.salary}.00</p>
                   </div>
@@ -279,7 +279,7 @@ export const Details = () => {
                 <div className="col">
                   <div className="form-outline">
                     <label className="form-label text-dark" for="form6Example1" style={{fontSize:'22px'}}>
-                      Lo que haras con nosotros será:
+                     Lo que pedimos y lo que haras con nosotros será:
                     </label>
                     {/* <p className="text-dark">
                       {infoCandidate.working_experience}

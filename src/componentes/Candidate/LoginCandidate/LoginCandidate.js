@@ -70,7 +70,7 @@ export const LoginCandidate = () => {
         const loginCandidate = await endpoints.loginAxios(values);
         setFormValues(loginCandidate);
         //console.log("loginCandidate(checando user_skills):..", loginCandidate);
-        setDataLocalStorage({ ...loginCandidate });
+        
         const role = loginCandidate?.role;
         if (role === "candidato") {
           swal({
@@ -79,6 +79,7 @@ export const LoginCandidate = () => {
             button: "ok!",
           });
           resetForm();
+          setDataLocalStorage({ ...loginCandidate });
           //console.log("dashboard Candidato");
           navigate("/dashboard-candidato/home");
         } else {
@@ -262,7 +263,7 @@ export const LoginCandidate = () => {
                 </Formik>
               </div>
             </div>
-            <div className="col-md-6 col-md-offset-3">
+            <div className="col-md-6 col-md-offset-3 d-none d-md-block">
               <div
                 className="block text-center  shadow-none"
                 style={{

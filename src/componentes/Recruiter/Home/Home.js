@@ -9,7 +9,7 @@ export const HomeRecruiter = () => {
     console.log("Error al cargar imagen:..");
   };
   const handleLoad = () => {
-    console.log("Imagen Cargada con Exito:..");
+    // console.log("Imagen Cargada con Exito:..");
   };
   return (
     <>

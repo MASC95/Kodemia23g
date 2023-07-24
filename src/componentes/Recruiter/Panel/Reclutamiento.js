@@ -206,7 +206,7 @@ try {
             });
           }
         } catch (error) {
-          //console.log(error);
+          console.log('Error al guardar:..',error);
         }
   }
 

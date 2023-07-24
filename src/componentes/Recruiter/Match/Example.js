@@ -16,29 +16,29 @@ import MyTable from "./MyTable";
 const Example = () => {
   const customStyles = {
     rows: {
-        style: {
-            minHeight: '72px', // override the row height
-            fontsize:"18px",
-        },
+      style: {
+        minHeight: "72px", // override the row height
+        fontsize: "18px",
+      },
     },
     headCells: {
-        style: {
-          backgroundColor:'#7FADC0',
-          color:'#fff',
-          fontWeight: "bold",
-          fontsize:"12px",
-          paddingLeft: '8px', // override the cell padding for head cells
-          paddingRight: '8px',
-        },
+      style: {
+        backgroundColor: "#7FADC0",
+        color: "#fff",
+        fontWeight: "bold",
+        fontsize: "12px",
+        paddingLeft: "8px", // override the cell padding for head cells
+        paddingRight: "8px",
+      },
     },
     cells: {
-        style: {
-          fontsize:"18px",
-          paddingLeft: '8px', // override the cell padding for data cells
-          paddingRight: '8px',
-        },
+      style: {
+        fontsize: "18px",
+        paddingLeft: "8px", // override the cell padding for data cells
+        paddingRight: "8px",
+      },
     },
-  }
+  };
   const [
     dataCandidate,
     setDataCandidate,
@@ -53,6 +53,7 @@ const Example = () => {
   const [totalRows, setTotalRows] = useState(0);
   const [perPage, setPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
+  const [errorBackend, setErrorBackend] = useState("");
 
   // const queryMatch = async (page, newPerPage) => {
   //   try {
@@ -72,25 +73,31 @@ const Example = () => {
   //     console.log(error);
   //   }
   // };
-  const queryMatch= async(page,newPerPage)=>{
+  const queryMatch = async (page, newPerPage) => {
     try {
-      setLoading(true)
+      setLoading(true);
       axios.defaults.headers.common[
         "Authorization"
       ] = `Bearer: ${dataRecruiter.accessToken}`;
-      const allVacancies=await axios.get(`${endpointsGral.vacancyURL}getAllJobVacancyByUser/${dataRecruiter.accessToken}?page=${page}&limit=${newPerPage}`)
-      const datas=allVacancies.data['item']
-      //console.log('backend Response:..',datas);
+      const allVacancies = await axios.get(
+        `${endpointsGral.vacancyURL}getAllJobVacancyByUser/${dataRecruiter.accessToken}?page=${page}&limit=${newPerPage}`
+      );
+      const datas = allVacancies.data["item"];
+      //console.log('backend Response:..',allVacancies);
       // const statusStart= datas['docs'].filter(item=>item.status==='Iniciado')
       // //console.log('lista iniciados',statusStart)
-        setDataInformation(datas['docs'])
-        //console.log('PAGINATION',datas["totalDocs"])
-       setTotalRows(datas["totalDocs"])
-       setLoading(false)
+      setDataInformation(datas["docs"]);
+      //console.log('PAGINATION',datas["totalDocs"])
+      setTotalRows(datas["totalDocs"]);
+      setLoading(false);
     } catch (error) {
-        //console.log(error) 
+      console.log("Error al recuperar datos:..", error);
+      const errMsg = error?.response?.data?.errors[0]?.message;
+      if (errMsg) {
+        setErrorBackend(errMsg);
+      }
     }
-}
+  };
 
   useEffect(() => {
     queryMatch(1, 10);
@@ -100,8 +107,15 @@ const Example = () => {
   }, [perPage]);
 
   useEffect(() => {
-    if (dataStatusEditing)
-      console.log();
+    if (errorBackend !== "") {
+      Swal.fire("Lo sentimos!", `${errorBackend}`, "error")
+      console.log("Error Backend:..", errorBackend);
+    }
+  }, [errorBackend]);
+
+  useEffect(() => {
+    if (dataStatusEditing);
+    //  console.log();
   }, [dataStatusEditing]);
 
   // pagination
@@ -203,8 +217,9 @@ const Example = () => {
     return {
       id: vacante._id,
       qty: index,
-      company:vacante.companyName,
+      company: vacante.companyName,
       title: vacante.title,
+      salary:`$${vacante.salary}.00`,
       status: vacante.status,
       candidato: tempArray?.length || 0,
     };
@@ -224,12 +239,18 @@ const Example = () => {
       sortable: true,
     },
     {
-      name: "TITULO",
+      name: "TITULO DE LA VACANTE",
       selector: (row, i) => `${row.title}`,
       sortable: true,
     },
     {
-      name: "STATUS",
+      name: "SALARIO MENSUAL",
+      selector: (row, i) => `${row.salary}`,
+      sortable: true,
+       center: true,
+    },
+    {
+      name: "ESTADO DE LA VACANTE",
       selector: (row, i) => row.status,
       sortable: true,
     },
@@ -237,14 +258,14 @@ const Example = () => {
       name: "APLICANTES",
       selector: (row, i) => row.candidato,
       sortable: true,
-      center: true,
+      // center: true,
     },
     {
       name: "OPCIONES",
       sortable: false,
       selector: (row, i) => row.null,
       cell: (d) => [
-        <Link to={`/Dashboard-Recruiter/details-match/?m=${d.id}`}>
+        <Link key={myId()} to={`/Dashboard-Recruiter/details-match/?m=${d.id}`}>
           <button type="button" className="buttons btn btn-outline-info">
             <FaEye className="icon_eye1" />
           </button>
@@ -266,24 +287,30 @@ const Example = () => {
       className="row m-2 p-3"
       style={{ fontFamily: "Poppins, sans-serif, Verdana, Geneva, Tahoma" }}
     >
-      {/* <MyTable/> */}
-      <DataTableExtensions export={false} print={false} {...tableData}>
-        <DataTable
-          {...tableData}
-          columns={columns}
-          data={data}
-          customStyles={customStyles}
-          progressPending={loading}
-          pagination
-          paginationServer
-          paginationTotalRows={totalRows}
-          paginationDefaultPage={currentPage}
-          onChangeRowsPerPage={handlePerRowsChange}
-          onChangePage={handlePageChange}
-          highlightOnHover
-          dense
-        />
-      </DataTableExtensions>
+      
+      {errorBackend !== "" ? (
+        <div>
+        {errorBackend}
+        </div>
+      ) : (
+        <DataTableExtensions export={false} print={false} {...tableData}>
+          <DataTable
+            {...tableData}
+            columns={columns}
+            data={data}
+            customStyles={customStyles}
+            progressPending={loading}
+            pagination
+            paginationServer
+            paginationTotalRows={totalRows}
+            paginationDefaultPage={currentPage}
+            onChangeRowsPerPage={handlePerRowsChange}
+            onChangePage={handlePageChange}
+            highlightOnHover
+            dense
+          />
+        </DataTableExtensions>
+      )}
     </div>
   );
 };

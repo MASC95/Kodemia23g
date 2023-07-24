@@ -95,7 +95,7 @@ const FormRecruiter = () => {
 
   useEffect(() => {
     if (dataCandidate) {
-      // console.log("dataCandidate:..", dataCandidate);
+      console.log("dataCandidate:..", dataCandidate);
 
       setDataForm({
         name: dataCandidate.name || "",
@@ -115,12 +115,12 @@ const FormRecruiter = () => {
   }, [dataCandidate]);
 
   useEffect(() => {
-    //console.log("datos en dataForm:..", dataForm);
+    console.log("datos en dataForm:..", dataForm);
   }, [dataForm]);
 
   useEffect(() => {
     if (listSkills.length === 0) {
-      // console.log('Actualizando skillsCandidate:..')
+      console.log('Actualizando skillsCandidate:..')
       if (dataCandidate?.user_skills?.length > 0) {
         setListSkills([...dataCandidate.user_skills]);
       }
@@ -144,7 +144,7 @@ const FormRecruiter = () => {
       .then((result) => {
         if (result.isConfirmed) {
           const idsSkills = listSkills.map((item) => item._id);
-          //console.log('values form(Candidate):..',values);
+          console.log('values form(Candidate):..',values);
           const completeForm = {
             ...values,
             user_skills: [...idsSkills],
@@ -161,16 +161,24 @@ const FormRecruiter = () => {
               }
             }
             if (dataExperience) {
+              console.log('Agregando dataExperience:...',dataExperience);
               for (let i = 0; i < dataExperience.length; i++) {
                 formData.append(
                   "working_experience",
                   JSON.stringify(dataExperience[i])
                 );
               }
+              if(dataExperience.length===0){
+                formData.append(
+                  "working_experience",
+                  'none'
+                );
+              }
             }
+            console.log('data experencie',dataExperience)
             Object.entries(values).forEach(([key, value]) => {
               formData.append(key, value);
-              //console.log(key,value);
+              console.log(key,value);
             });
             axios
               .patch(
@@ -183,11 +191,11 @@ const FormRecruiter = () => {
                 }
               )
               .then((response) => {
-                //console.log("response.data:..", response.data);
+                console.log("response.data:..", response.data);
 
                 if (response?.data?.message === "Update User Ok") {
                   if (response?.data?.updateUser) {
-                    //console.log("setDatalocalStorage updatedUser:...");
+                    console.log("setDatalocalStorage updatedUser:...");
                     setDataLocalStorage({
                       ...response?.data?.updateUser,
                       accessToken: dataCandidate.accessToken,
@@ -232,6 +240,7 @@ const FormRecruiter = () => {
 
   return (
     <div>
+      
       <div
         className={` ${
           isTablet

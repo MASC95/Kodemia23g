@@ -53,8 +53,8 @@ export const LoginRecruiter = () => {
     try {
       const loginRecruiter = await endpoints.loginAxios(values);
       setDataForm(loginRecruiter);
-      console.log("loginRecruiter:..", loginRecruiter);
-      setDataLocalStorage({ ...loginRecruiter });
+      //console.log("loginRecruiter:..", loginRecruiter);
+
       const role = loginRecruiter?.role;
       if (role === "empresa") {
         swal({
@@ -62,7 +62,8 @@ export const LoginRecruiter = () => {
           icon: "success",
           button: "ok!",
         });
-        console.log("dashboard Recruiter");
+        setDataLocalStorage({ ...loginRecruiter });
+        // console.log("dashboard Recruiter");
         navigate("/Dashboard-Recruiter/home");
       } else {
         swal({
@@ -219,8 +220,8 @@ export const LoginRecruiter = () => {
                         <Link
                           to={
                             props.values.email !== ""
-                              ? `/updatePasswordRecruiter/${props.values.email}`
-                              : `/updatePasswordRecruiter/none`
+                              ? `/update-password/${props.values.email}`
+                              : `/update-password/none`
                           }
                         >
                           Cambia tu Contraseña.

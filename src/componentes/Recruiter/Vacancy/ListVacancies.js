@@ -95,7 +95,7 @@ const ListVacancies = ({
       sortable: true,
     },
     {
-      name: "SALARIO",
+      name: "SALARIO MENSUAL",
       selector: (row, i) => row.salary,
       sortable: true,
     },
@@ -130,6 +130,7 @@ const ListVacancies = ({
 
   return (
     <DataTableExtensions export={false} print={false} {...tableData}>
+      
       <DataTable
         {...tableData}
         columns={columns}

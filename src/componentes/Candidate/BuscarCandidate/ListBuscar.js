@@ -5,6 +5,7 @@ import "../Alerts/Alert";
 import AlertComponent from "../Alerts/Alert";
 import useJob from "../../../hooks/useJob";
 import HorizonTable from "./HorizonTable";
+import Swal from "sweetalert2";
 /* import VerticalTable from "./VerticalTable"; componente padre */
 
 export const ListBuscar = () => {
@@ -14,6 +15,7 @@ export const ListBuscar = () => {
   const [totalRows, setTotalRows] = useState(0);
   const [perPage, setPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
+  const [errorBackend,setErrorBackend]= useState('');
   const [
     dataCandidate,
     setDataCandidate,
@@ -24,9 +26,14 @@ export const ListBuscar = () => {
   ] = useJob();
   const { my_vacancies } = dataCandidate;
 
+
+
   const fetchData = async (page, newPerPage) => {
     setLoading(true);
     try {
+      axios.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer: ${dataCandidate?.accessToken}`;
       const response = await axios.get(
         `${endpointsGral.vacancyURL}?page=${page}&limit=${newPerPage}`
       );
@@ -70,6 +77,11 @@ export const ListBuscar = () => {
       }, 1000);
     }
   }, [showAlert]);
+  useEffect(()=>{
+    if(errorBackend!==''){
+      Swal.fire('Lo sentimos!',errorBackend,'error');
+    }
+  },[errorBackend])
   useEffect(() => {
     //console.log("dataLocalStorage:..", dataLocalStorage);
     //console.log("my_vacancies:..", my_vacancies);
@@ -117,7 +129,11 @@ export const ListBuscar = () => {
       //console.log("Response updateDataUser:..", responseUpdateDataUser);
       //console.log("Response updateDataVacancie:..", responseUpdateDataVacancie);
     } catch (error) {
-      //console.log(error);
+      console.log('Error al aplicar:...',error);
+      const errMsg = error?.response?.data?.errors[0]?.message;
+      if(errMsg){
+        setErrorBackend(errMsg)
+      }
     }
 
     setShowAlert(true);

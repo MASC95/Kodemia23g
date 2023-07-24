@@ -261,7 +261,7 @@ export const EditVacancy = () => {
               <div className="col">
                 <div className="form-outline bg-gray">
                   <label className="form-label" htmlFor="form6Example1" style={style}>
-                    Título
+                    Título de la vacante
                   </label>
                   <input
                     type="text"
@@ -361,7 +361,7 @@ export const EditVacancy = () => {
               <div className="col">
                 <div className="form-outline">
                   <label className="form-label" htmlFor="form6Example2" style={style}>
-                    Sueldo
+                    Sueldo Mensual
                   </label>
                   <input
                     type="text"

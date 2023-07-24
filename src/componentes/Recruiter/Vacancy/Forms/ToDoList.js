@@ -28,7 +28,7 @@ const ToDoList = ({ dataActivities, setDataActivities }) => {
   },[dataActivities])
 
   const handleExperience = () => {
-    console.log("Agregando Actividad:..", addTask);
+    // console.log("Agregando Actividad:..", addTask);
     if (addTask.task === "") {
       Swal.fire("Agrega una actividad!", "Valor vacio", "error");
     } else {
@@ -63,55 +63,59 @@ const ToDoList = ({ dataActivities, setDataActivities }) => {
     // console.log('newData:..',newData);
     // setDataActivities([...newData]);
   };
-  const data = dataActivities?.map((item, index) => {
-    return {
-      qty: index,
-      task: item.task,
-    };
-  });
+  // const data = dataActivities?.map((item, index) => {
+  //   return {
+  //     qty: index,
+  //     task: item.task,
+  //   };
+  // });
 
-  const columns = [
-    {
-      name: "rowId",
-      selector: (row, i) => i,
-      sortable: true,
-      hide: true,
-      omit: true,
-    },
-    {
-      name: "#",
-      selector: (row, i) => i + 1,
-      sortable: true,
-      hide: true,
-      omit: true,
-    },
-    {
-      name: "Descripción",
-      grow: 2,
-      selector: (row, i) => `${row.task}`,
-      sortable: true,
-    },
-    {
-      name: "OPCIONES",
-      sortable: false,
-      right: true,
-      selector: (row, i) => row.null,
-      cell: (d) => [
-        <span
-          className="btn btn-outline-danger"
-          name={d.i}
-          onClick={handleDeleteExp.bind(this, d.qty)}
-        >
-          <FaTrash />
-        </span>,
-        // <button type="button" className="buttons btn btn-outline-success" onClick={handleClick.bind(this,d.qty)} ><FaEdit className="icon_edit1"/></button>
-      ],
-    },
-  ];
-  const tableData = {
-    columns,
-    data,
-  };
+  // const columns = [
+  //   {
+  //     name: "rowId",
+  //     selector: (row, i) => i,
+  //     sortable: true,
+  //     hide: true,
+  //     omit: true,
+  //   },
+  //   {
+  //     name: "#",
+  //     selector: (row, i) => i + 1,
+  //     sortable: true,
+  //     hide: true,
+  //     omit: true,
+  //   },
+  //   {
+  //     name: "Descripción",
+  //     grow: 5,
+  //     selector: (row, i) => `${row.task}`,
+  //     sortable: true,
+  //     style: {
+  //       maxWidth: '806px',
+  //       minHeight: '56px',
+  //     },
+  //   },
+  //   {
+  //     name: "OPCIONES",
+  //     sortable: false,
+  //     right: true,
+  //     selector: (row, i) => row.null,
+  //     cell: (d) => [
+  //       <span
+  //         className="btn btn-outline-danger"
+  //         name={d.i}
+  //         onClick={handleDeleteExp.bind(this, d.qty)}
+  //       >
+  //         <FaTrash />
+  //       </span>,
+  //       // <button type="button" className="buttons btn btn-outline-success" onClick={handleClick.bind(this,d.qty)} ><FaEdit className="icon_edit1"/></button>
+  //     ],
+  //   },
+  // ];
+  // const tableData = {
+  //   columns,
+  //   data,
+  // };
 
   return (
     <div className="row">
@@ -124,7 +128,7 @@ const ToDoList = ({ dataActivities, setDataActivities }) => {
           fontFamily: "Poppins, sans-serif, Verdana, Geneva, Tahoma",
         }}
       >
-        Actividades
+        Actividades y Requisitos
       </h2>
       <div className="col-12 form-outline">
         <textarea
@@ -144,7 +148,35 @@ const ToDoList = ({ dataActivities, setDataActivities }) => {
         </button>
       </div>
       <div className="col-12">
-        <DataTableExtensions export={false} print={false} {...tableData}>
+         <Table striped bordered hover>
+        <thead>
+          <tr>
+            {/* <th className="fs-6">#</th> */}
+            <th>Descripción</th>
+            <th>Opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {dataActivities?.map((item, index) => {
+            return (
+              <tr key={myId()}>
+                {/* <td>{index+1}</td> */}
+                <td>{item.task}</td>
+                <td>
+                  <span
+                    className="btn btn-outline-danger"
+                    name={index}
+                    onClick={()=>handleDeleteExp(index)}
+                  >
+                    <FaTrash />
+                  </span>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </Table>
+        {/* <DataTableExtensions export={false} print={false} {...tableData}>
           <DataTable
             {...tableData}
             columns={columns}
@@ -153,7 +185,7 @@ const ToDoList = ({ dataActivities, setDataActivities }) => {
             dense
             title="Actividades agregadas"
           />
-        </DataTableExtensions>
+        </DataTableExtensions> */}
       </div>
       {/* <Table striped bordered hover>
         <thead>

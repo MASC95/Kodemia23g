@@ -63,7 +63,7 @@ export const LoginRecruiter = () => {
           button: "ok!",
         });
         setDataLocalStorage({ ...loginRecruiter });
-        console.log("dashboard Recruiter");
+        // console.log("dashboard Recruiter");
         navigate("/Dashboard-Recruiter/home");
       } else {
         swal({

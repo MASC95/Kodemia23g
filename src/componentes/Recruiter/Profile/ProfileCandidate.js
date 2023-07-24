@@ -293,7 +293,7 @@ export const Candidate = () => {
                   <div className="form-outline bg-gray">
                     <label
                       className="form-label text-start"
-                      for="form6Example1"
+                      htmlFor="form6Example1"
                       style={style}
                     >
                       Nombre
@@ -305,7 +305,7 @@ export const Candidate = () => {
                   <div className="form-outline">
                     <label
                       className="form-label text-start"
-                      for="form6Example1"
+                      htmlFor="form6Example1"
                       style={style}
                     >
                       Apellido
@@ -317,7 +317,7 @@ export const Candidate = () => {
                   <div className="form-outline">
                     <label
                       className="form-label text-start"
-                      for="form6Example1"
+                      htmlFor="form6Example1"
                       style={style}
                     >
                       Edad
@@ -331,7 +331,7 @@ export const Candidate = () => {
                   <div className="form-outline">
                     <label
                       className="form-label text-dark"
-                      for="form6Example1"
+                      htmlFor="form6Example1"
                       style={{ fontSize: "22px" }}
                     >
                       Experiencia

@@ -95,7 +95,7 @@ const ListVacancies = ({
       sortable: true,
     },
     {
-      name: "SALARIO",
+      name: "SALARIO MENSUAL",
       selector: (row, i) => row.salary,
       sortable: true,
     },

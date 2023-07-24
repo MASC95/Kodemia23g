@@ -89,6 +89,7 @@ const HorizonTable = ({
     company: item.companyName,
     title: item.title,
     type: item.type,
+    city: item.city,
     mode: item.mode,
     salary:`$ ${item.salary}.00`,
   }));
@@ -113,6 +114,11 @@ const HorizonTable = ({
     {
       name: "TIPO DE TRABAJO",
       selector: (row) => row.type,
+      sortable: true,
+    },
+    {
+      name: "CIUDAD",
+      selector: (row) => row.city,
       sortable: true,
     },
     {

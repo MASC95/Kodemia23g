@@ -166,7 +166,7 @@ const MyTable = ({
       selector: (row, i) => row.null,
       cell: (d) => [
         <Link to={`/dashboard-recruiter/profile-candidato/?c=${d.id}&v=${idVacancy}`}>
-          <button type="button" className="buttons btn btn-outline-info">
+          <button type="button" className="buttons btn btn-outline-info" key={myId()}>
             <FaEye className="icon_eye1" />
           </button>
         </Link>,
@@ -174,6 +174,7 @@ const MyTable = ({
         <button
           disabled={isFoundedUser(d.id)}
           type="button"
+          key={myId()}
           className={`buttons btn ${buttonState}`}
           // className="buttons btn btn-outline-success"
           onClick={handleAddPanel.bind(this, d.qty)}

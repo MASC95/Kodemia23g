@@ -59,7 +59,7 @@ const profileSchema = Yup.object().shape({
   resetPassword: Yup.string(),
   age: Yup.number()
     .required("El campo es requerido")
-    .min(18, "debes ser mayor de 18 años"),
+    .min(18, "Tu edad debe ser mayor a 18 años"),
 });
 
 const FormRecruiter = () => {

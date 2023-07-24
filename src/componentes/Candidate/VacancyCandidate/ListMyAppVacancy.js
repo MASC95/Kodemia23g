@@ -10,7 +10,8 @@ import useJob from "../../../hooks/useJob";
 import { myId } from "../../lib/myLib";
 import { endpointsGral } from "../../Recruiter/services/vacancy";
 
-export const ListMyAppVacancy = () => {
+
+export const ListMyAppVacancy = ({refreshing}) => {
   const customStyles = {
     rows: {
       style: {
@@ -52,10 +53,16 @@ export const ListMyAppVacancy = () => {
       const response = await axios.get(
         `${endpointsGral.userURL}getUserByEmail?email=${dataCandidate.email}`
       );
+      //console.log('response Backend:..',response);
       const dataPhaseStatus = response?.data?.user?.phase_status;
+      const dataMyVacancies = response?.data?.user?.my_vacancies;
+      const newDataMyVacancies= dataMyVacancies.filter(el=>el.status==='Iniciado');
+      const reversedData= newDataMyVacancies?.reverse();
+      //console.log('dataMyVacancies:..',dataMyVacancies);
       if (dataPhaseStatus && dataCandidate) {
         setDataLocalStorage({
           ...dataLocalStorage,
+          my_vacancies:[...reversedData],
           phase_status:[...dataPhaseStatus]
         });
       }
@@ -66,10 +73,11 @@ export const ListMyAppVacancy = () => {
   };
   useEffect(() => {
     cargarDatos();
-  }, []);
+    //console.log('cargando componente:...',String(refreshing));
+  }, [refreshing]);
   useEffect(() => {
     if (dataCandidate?.phase_status) {
-      console.log("phase_status:..", dataCandidate?.phase_status);
+      //console.log("phase_status:..", dataCandidate?.phase_status);
     }
   }, [dataCandidate]);
   const data = my_vacancies?.map((item, index) => {
@@ -141,7 +149,7 @@ export const ListMyAppVacancy = () => {
     columns,
     data,
   };
-
+  
   return (
     <>
       <div
@@ -149,6 +157,7 @@ export const ListMyAppVacancy = () => {
         id="formGral"
         style={{ fontFamily: "Poppins, sans-serif, Verdana, Geneva, Tahoma" }}
       >
+        
         <DataTableExtensions {...tableData} export={false} print={false}>
           <DataTable
             {...tableData}

@@ -168,7 +168,7 @@ export const Vacancy = () => {
           >
             <Link
               to={`/Dashboard-Recruiter/vacancy-new`}
-              className="text-decoration-none d-sm-block p-2"
+              // className="text-decoration-none d-sm-block p-2"
             >
               <Button2 text="Crear Vacante" paddingB="10px" fs="14px" />
             </Link>

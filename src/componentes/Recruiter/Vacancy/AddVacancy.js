@@ -373,7 +373,7 @@ export const AddVacancy = () => {
                       htmlFor="form6Example2"
                       style={style}
                     >
-                      Sueldo
+                      Sueldo Mensual
                     </label>
                     <input
                       type="text"

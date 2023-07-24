@@ -120,7 +120,7 @@ export const ListMyAppVacancy = () => {
       sortable: true,
     },
     {
-      name: "SALARIO",
+      name: "SALARIO MENSUAL",
       selector: (row) => `${row.salary}`,
       sortable: true,
     },

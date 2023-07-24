@@ -114,7 +114,8 @@ const Example = () => {
   }, [errorBackend]);
 
   useEffect(() => {
-    if (dataStatusEditing) console.log();
+    if (dataStatusEditing);
+    //  console.log();
   }, [dataStatusEditing]);
 
   // pagination
@@ -218,6 +219,7 @@ const Example = () => {
       qty: index,
       company: vacante.companyName,
       title: vacante.title,
+      salary:`$${vacante.salary}.00`,
       status: vacante.status,
       candidato: tempArray?.length || 0,
     };
@@ -237,12 +239,18 @@ const Example = () => {
       sortable: true,
     },
     {
-      name: "TITULO",
+      name: "TITULO DE LA VACANTE",
       selector: (row, i) => `${row.title}`,
       sortable: true,
     },
     {
-      name: "STATUS",
+      name: "SALARIO MENSUAL",
+      selector: (row, i) => `${row.salary}`,
+      sortable: true,
+       center: true,
+    },
+    {
+      name: "ESTADO DE LA VACANTE",
       selector: (row, i) => row.status,
       sortable: true,
     },
@@ -250,7 +258,7 @@ const Example = () => {
       name: "APLICANTES",
       selector: (row, i) => row.candidato,
       sortable: true,
-      center: true,
+      // center: true,
     },
     {
       name: "OPCIONES",

@@ -111,7 +111,7 @@ const TableExperience = ({ dataExperience, setDataExpirience }) => {
         >
           Descripción:
         </label>
-        <input
+        <textarea
           id="description"
           name="description"
           value={addExp.description}
@@ -138,7 +138,7 @@ const TableExperience = ({ dataExperience, setDataExpirience }) => {
           <tr>
             <th>Puesto</th>
             <th>Descripción</th>
-            <th>Botones de acción</th>
+            <th>Opciones</th>
           </tr>
         </thead>
         <tbody>

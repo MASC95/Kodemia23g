@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { FaBars } from "react-icons/fa";
 
 import imgProfile from "../../Recruiter/assets/img/perfil2.jpg";
@@ -12,12 +12,12 @@ import { FcRefresh } from "react-icons/fc";
 export const AppVacancyCandidate = () => {
   const [refreshing, setRefreshing] = useState(false);
 
-  useEffect(()=>{
+  useEffect(() => {
     //console.log("refrescando datos:..");
-  },[refreshing])
+  }, [refreshing]);
   const handleRefresh = () => {
     //console.log("refrescando datos:..");
-    setRefreshing(prev=>!prev);
+    setRefreshing((prev) => !prev);
   };
   return (
     <>
@@ -44,8 +44,8 @@ export const AppVacancyCandidate = () => {
         </div>
 
         <ListMyAppVacancy
-        refreshing={String(refreshing)}
-        /*  handlePageChange={handlePageChange}
+          refreshing={String(refreshing)}
+          /*  handlePageChange={handlePageChange}
           handlePerRowsChange={handlePerRowsChange}
           totalRows={totalRows}
           loading={loading}

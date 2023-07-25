@@ -174,11 +174,19 @@ export const RegisterCandidate = () => {
       setDataLocalStorage({ ...register?.data });
       if (dataForm.role === "candidato") {
         //console.log("pagina candidato");
-        navigate(`/dashboard-candidato/home`);
-      } else {
-        //console.log("pagina empresa");
-        navigate(`/Dashboard-recruiter/home`);
-      }
+        // navigate(`/dashboard-candidato/home`);
+        navigate(`/dashboard-candidato/profile`);
+        swal({
+          title: "Bienvenido!",
+          text:'Por favor completa tu perfil!',
+          icon: "success",
+          button: "Aceptar",
+        });
+      } 
+      // else {
+      //   //console.log("pagina empresa");
+      //   // navigate(`/Dashboard-recruiter/home`);
+      // }
     } catch (error) {
       swal({
         title: "Error al registrar!",

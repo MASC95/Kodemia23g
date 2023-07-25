@@ -97,6 +97,8 @@ export const ListMyAppVacancy = ({refreshing}) => {
         myBadge='primary';
       }
     }
+    var str = item.salary.toString().split(".");
+    str[0] = str[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     return {
       ...item,
       id: index + 1,
@@ -104,7 +106,7 @@ export const ListMyAppVacancy = ({refreshing}) => {
       title: item.title,
       type: item.type,
       mode: item.mode,
-      salary: `$ ${item.salary}.00`,
+      salary: `$ ${str}.00`,
       phase: myPhase,
       badge: myBadge
     };

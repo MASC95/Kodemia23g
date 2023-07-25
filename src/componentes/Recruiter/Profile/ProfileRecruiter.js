@@ -148,7 +148,13 @@ export const ProfileRecruiter = () => {
           } catch (error) {
             //console.log("error:..", error);
           }
-          Swal.fire("Los cambios han sido guardados correctamente!");
+          swal({
+            title: "Felicidades!",
+            text:'Ya puedes agregar vacantes!',
+            icon: "success",
+            button: "Aceptar",
+          });
+          // Swal.fire("Los cambios han sido guardados correctamente!");
           // navigate(`/Dashboard-Recruiter/vacancy`);
         }
       });

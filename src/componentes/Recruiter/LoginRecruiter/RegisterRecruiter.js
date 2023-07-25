@@ -162,13 +162,20 @@ export const RegisterRecruiter = () => {
       setDataForm(register);
       //console.log("datos de Registro:..", register);
       setDataLocalStorage({ ...register?.data });
-      if (dataForm.role === "candidato") {
+      if (dataForm.role === "empresa") {
         //console.log("pagina candidato");
-        navigate(`/dashboard-candidato/home`);
-      } else {
-        //console.log("pagina empresa");
-        navigate(`/Dashboard-recruiter/home`);
-      }
+        navigate(`/Dashboard-recruiter/profile`);
+        swal({
+          title: "Bienvenido!",
+          text:'Por favor completa tu perfil!',
+          icon: "success",
+          button: "Aceptar",
+        });
+      } 
+      // else {
+      //   // navigate(`/dashboard-candidato/home`);
+      //   //console.log("pagina empresa");
+      // }
     } catch (error) {
       swal({
         title: "Error al registrar!",

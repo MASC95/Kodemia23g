@@ -210,7 +210,13 @@ const FormRecruiter = () => {
             //console.log("error:..", error);
           }
 
-          swal.fire("Los cambios han sido guardados correctamente!");
+          // swal.fire("Los cambios han sido guardados correctamente!");
+          swal({
+            title: "Felicidades!",
+            text:'Ya puedes aplicar a vacantes!',
+            icon: "success",
+            button: "Aceptar",
+          });
         }
       });
   };

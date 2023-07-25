@@ -123,7 +123,7 @@ const GeneralTableSkills = ({
       >
         <FaHammer style={{ marginRight: "10px" }} /> Lista General de Skills
       </h2> */}
-      <DataTableExtensions export={false} print={false} filter={false} {...tableData} >
+      <DataTableExtensions export={false} print={false} {...tableData} >
         <DataTable
           {...tableData}
           columns={columns}

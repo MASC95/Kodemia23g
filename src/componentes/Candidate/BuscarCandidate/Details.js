@@ -161,6 +161,7 @@ export const Details = () => {
       //console.log(error);
     }
   };
+  
   //console.log('datasSkilssss', dataVacancy.job_skills)
 
   return (
@@ -271,7 +272,8 @@ export const Details = () => {
                     >
                      Salario Mensual
                     </label>
-                    <p className="text-dark">$ {dataVacancy?.salary}.00</p>
+                    
+                    <p className="text-dark">$ {dataVacancy?.salary.toString().split(".")[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",")}.00</p>
                   </div>
                 </div>
               </div>

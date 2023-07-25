@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import DataTable from "react-data-table-component";
 import DataTableExtensions from "react-data-table-component-extensions";
 import { FaEye, FaCheck, FaEyeSlash } from "react-icons/fa";
@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 
 const MyFaCheck =({text})=>{
-return <div><FaCheck/> <span className='ms-1'>{text}</span>{text}</div>
+return <div><FaCheck/> <span className='ms-1'>{text}</span></div>
 }
 
 const MyTable = ({ 
@@ -27,6 +27,9 @@ const MyTable = ({
   idVacancy
   }) => {
 
+    useEffect(()=>{
+      //console.log('dataInfoVacancy:..',dataInfoVacancy);
+    },[dataInfoVacancy])
     const customStyles = {
       rows: {
           style: {

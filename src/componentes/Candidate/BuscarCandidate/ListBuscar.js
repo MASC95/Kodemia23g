@@ -6,6 +6,7 @@ import AlertComponent from "../Alerts/Alert";
 import useJob from "../../../hooks/useJob";
 import HorizonTable from "./HorizonTable";
 import Swal from "sweetalert2";
+import {FcRefresh} from "react-icons/fc";
 /* import VerticalTable from "./VerticalTable"; componente padre */
 
 export const ListBuscar = () => {
@@ -15,7 +16,8 @@ export const ListBuscar = () => {
   const [totalRows, setTotalRows] = useState(0);
   const [perPage, setPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
-  const [errorBackend,setErrorBackend]= useState('');
+  const [errorBackend, setErrorBackend] = useState("");
+  const [isRefreshing, setIsRefreshing] = useState(false);
   const [
     dataCandidate,
     setDataCandidate,
@@ -25,8 +27,6 @@ export const ListBuscar = () => {
     setDataLocalStorage,
   ] = useJob();
   const { my_vacancies } = dataCandidate;
-
-
 
   const fetchData = async (page, newPerPage) => {
     setLoading(true);
@@ -57,7 +57,7 @@ export const ListBuscar = () => {
   useEffect(() => {
     //console.log("Nuevo valor de limit:..", perPage);
     //console.log("Nuevo valor de currentPage:..", currentPage);
-  }, [perPage,currentPage]);
+  }, [perPage, currentPage]);
 
   const handlePageChange = (page) => {
     //console.log("handlePageChange Page:..", page);
@@ -77,11 +77,14 @@ export const ListBuscar = () => {
       }, 1000);
     }
   }, [showAlert]);
-  useEffect(()=>{
-    if(errorBackend!==''){
-      Swal.fire('Lo sentimos!',errorBackend,'error');
+  useEffect(() => {
+    if (errorBackend !== "") {
+      Swal.fire("Lo sentimos!", errorBackend, "error");
     }
-  },[errorBackend])
+  }, [errorBackend]);
+  useEffect(()=>{
+    //console.log("refrescando datos:..");
+  },[isRefreshing])
   useEffect(() => {
     //console.log("dataLocalStorage:..", dataLocalStorage);
     //console.log("my_vacancies:..", my_vacancies);
@@ -129,10 +132,10 @@ export const ListBuscar = () => {
       //console.log("Response updateDataUser:..", responseUpdateDataUser);
       //console.log("Response updateDataVacancie:..", responseUpdateDataVacancie);
     } catch (error) {
-      console.log('Error al aplicar:...',error);
+      console.log("Error al aplicar:...", error);
       const errMsg = error?.response?.data?.errors[0]?.message;
-      if(errMsg){
-        setErrorBackend(errMsg)
+      if (errMsg) {
+        setErrorBackend(errMsg);
       }
     }
 
@@ -179,12 +182,33 @@ export const ListBuscar = () => {
       //console.log(error);
     }
   };
+  const handleRefresh = ()=>{
+    // console.log('refrescando datos:..');
+    fetchData(1, 10);
+  }
+
 
   return (
     <>
+      {/* <span 
+        style={{width:'fit-content',cursor:'pointer', color:'blue'}} 
+        onClick={handleRefresh}
+        className=" text-center ms-auto btn btn-outline-info">
+          <FcRefresh style={{color:'blue'}}/>
+          </span> */}
       {/* <VerticalTable vacancies={vacancies} my_vacancies={my_vacancies} handleApply={handleApply} handleStopApplying={handleStopApplying}/> */}
+      <div className="container d-flex justify-content-end">
+        <span
+          style={{ width: "fit-content", cursor: "pointer", color: "blue" }}
+          onClick={handleRefresh}
+          className=" text-center  btn btn-outline-info"
+        >
+          <FcRefresh style={{ color: "blue" }} />
+        </span>
+      </div>
       {vacancies.length > 0 && (
         <HorizonTable
+          isRefreshing={isRefreshing}
           vacancies={vacancies}
           my_vacancies={my_vacancies}
           handleApply={handleApply}

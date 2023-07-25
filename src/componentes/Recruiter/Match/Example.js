@@ -218,13 +218,14 @@ const Example = () => {
         tempArray.push(idAplicante);
       }
     });
-
+    const str = vacante.salary.toString().split(".");
+    str[0] = str[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     return {
       id: vacante._id,
       qty: index,
       company: vacante.companyName,
       title: vacante.title,
-      salary:`$${vacante.salary}.00`,
+      salary:`$${str}.00`,
       status: vacante.status,
       candidato: tempArray?.length || 0,
     };
@@ -288,7 +289,7 @@ const Example = () => {
   };
 
   const handleRefresh = ()=>{
-    console.log('refrescando datos:..');
+    // console.log('refrescando datos:..');
     queryMatch(1, 10);
   }
 

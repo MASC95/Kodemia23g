@@ -99,6 +99,7 @@ export const EditSkill=({listSkills,setListSkills})=>{
       confirmButtonText: 'Si, eliminar!'
     }).then((result) => {
       if (result.isConfirmed) {
+
         const skillToDelete = skillTemp[index];
         if (skillToDelete) {
           const updatedSkills = skillTemp.filter((_, i) => i !== index);

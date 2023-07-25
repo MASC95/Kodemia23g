@@ -64,7 +64,7 @@ export const LoginRecruiter = () => {
         });
         setDataLocalStorage({ ...loginRecruiter });
         // console.log("dashboard Recruiter");
-        navigate("/Dashboard-Recruiter/home");
+        navigate("/Dashboard-Recruiter/vacancy");
       } else {
         swal({
           title: "Error al acceder!",

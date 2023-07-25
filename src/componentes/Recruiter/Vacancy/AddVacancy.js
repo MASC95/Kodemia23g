@@ -95,7 +95,7 @@ export const AddVacancy = () => {
             return;
           }
           setIsSaving(true);
-          console.log("agregando vacantes...");
+          // console.log("agregando vacantes...");
           const idsSkills = listSkills.map((item) => item.skill);
           const formData = new FormData();
           if (imageUser) formData.append("image", imageUser);

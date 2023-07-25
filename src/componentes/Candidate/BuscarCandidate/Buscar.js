@@ -9,7 +9,7 @@ export const Buscar = () => {
     <>
       <div className="card-body">
         <h1
-          className="text-center my-5"
+          className="text-center my-3"
           style={{
             color: "#498BA6",
             textShadow:

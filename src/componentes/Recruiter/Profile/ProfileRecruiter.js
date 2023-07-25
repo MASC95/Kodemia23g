@@ -374,8 +374,8 @@ export const ProfileRecruiter = () => {
                     <input
                       type="text"
                       id="rfc"
-                      placeholder="RFC"
-                      name="AAAA0000000A0"
+                      placeholder="AAAA0000000A0"
+                      name="rfc"
                       className={`form-control ${
                         formik.touched.rfc && formik.errors.rfc
                           ? "border border-danger"

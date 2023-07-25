@@ -19,6 +19,8 @@ export const Reclutamiento = () => {
   const [isClosedVacancy, setIsClosedVacancy] = useState(false);
   const [showSpinner, setShowSpinner] = useState(false);
   const idVacancy = searchParams.get("v");
+  const vacancyTitle= searchParams.get("title");
+  const vacancyCompany= searchParams.get("company");
   const navigate = useNavigate();
 
   //console.log('searchParams:..',searchParams.get('v'));
@@ -185,6 +187,7 @@ try {
               ];
             }
           });
+          console.log('Verificando los datos a enviar(panel):..',dataBody)
           const response = await axios.post(
             `${endpointsGral.phaseURL}updatePanel`,
             dataBody
@@ -239,6 +242,12 @@ try {
   return (
     <div className="main m-5">
       <h1 className="text-dark">Panel de reclutamiento</h1>
+      <h2 className="fs-1 text-center  fs-4">
+          Empresa: {vacancyCompany}
+        </h2>
+        <h2 className="fs-1 text-center  fs-4">
+          Título de la vacante: {vacancyTitle}
+        </h2>
       {showSpinner && (
         <span className="d-flex justify-content-center">
           <Spinner />

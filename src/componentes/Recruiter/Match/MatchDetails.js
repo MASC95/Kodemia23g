@@ -8,6 +8,7 @@ import "./style.scss";
 import MyTable from "./MyTable";
 import { idPhaseOne } from "../../lib/myLib";
 import {FcRefresh} from "react-icons/fc";
+import { Spinner } from "react-bootstrap";
 
 
 export const MatchDetails = () => {
@@ -271,6 +272,7 @@ export const MatchDetails = () => {
           </div>
         {/* <h2 className="text-dark">Lista de aplicantes</h2> */}
         <div className="col">
+          {dataByUserCandidate?.length===0&&<div className="d-flex justify-content-center"><Spinner/></div>}
           {dataByUserCandidate?.length > 0 && (
             <MyTable
               dadHandleHideofPanel={dadHandleHideofPanel}
@@ -291,7 +293,7 @@ export const MatchDetails = () => {
         </div>
       </div>
       <div className="d-flex w-100 justify-content-end p-4">
-        <Link to={`/Dashboard-Recruiter/panel-phases?v=${idVacancy}`}>
+        <Link to={`/Dashboard-Recruiter/panel-phases?v=${idVacancy}&title=${dataInfoVacancy.title}&company=${dataInfoVacancy.companyName}`}>
           <button type="button" className="btn btn-info text-light">
             Panel de Reclutamiento
           </button>

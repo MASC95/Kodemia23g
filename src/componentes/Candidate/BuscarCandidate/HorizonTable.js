@@ -18,6 +18,7 @@ const HorizonTable = ({
   totalRows,
   currentPage,
   perPage,
+  isRefreshing
 }) => {
   const customStyles = {
     rows: {
@@ -54,7 +55,12 @@ const HorizonTable = ({
   useEffect(() => {
     initDataMyVacancies();
     ////console.log("vancacies:...", vacancies);
+    
   }, []);
+
+  useEffect(()=>{
+    console.log('refreshing data:...',String(isRefreshing))
+  },[isRefreshing])
 
   function parseJwt(token) {
     var base64Url = token.split(".")[1];
@@ -89,6 +95,7 @@ const HorizonTable = ({
     company: item.companyName,
     title: item.title,
     type: item.type,
+    city: item.city,
     mode: item.mode,
     salary:`$ ${item.salary}.00`,
   }));
@@ -113,6 +120,11 @@ const HorizonTable = ({
     {
       name: "TIPO DE TRABAJO",
       selector: (row) => row.type,
+      sortable: true,
+    },
+    {
+      name: "CIUDAD",
+      selector: (row) => row.city,
       sortable: true,
     },
     {

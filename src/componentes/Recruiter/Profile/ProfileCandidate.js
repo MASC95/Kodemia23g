@@ -146,7 +146,7 @@ export const Candidate = () => {
         }
       }
       // //console.log('lista de usuarios para reclutamiento',tempDataUser)
-      navigate(`/Dashboard-Recruiter/details-match/?=${idVacancy}`);
+      navigate(`/Dashboard-Recruiter/details-match/?m=${idVacancy}`);
       setIsDisable(true);
 
       // setButtonState("btn-outline-secondary")

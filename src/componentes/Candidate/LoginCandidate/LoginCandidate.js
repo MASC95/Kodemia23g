@@ -81,7 +81,7 @@ export const LoginCandidate = () => {
           resetForm();
           setDataLocalStorage({ ...loginCandidate });
           //console.log("dashboard Candidato");
-          navigate("/dashboard-candidato/home");
+          navigate("/dashboard-candidato/search");
         } else {
           swal({
             title: "Error al acceder!",

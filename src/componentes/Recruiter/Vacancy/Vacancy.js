@@ -11,6 +11,8 @@ import Swal from "sweetalert2";
 import ListVacancies from "./ListVacancies";
 import { useMediaQuery } from "react-responsive";
 import Footer from "../../Landing/Footer/Footer";
+import {FcRefresh} from "react-icons/fc";
+
 export const Vacancy = () => {
   const [
     dataCandidate,
@@ -141,6 +143,11 @@ export const Vacancy = () => {
     });
   };
   // ----------------------------------- table
+  const handleRefresh = ()=>{
+    // console.log('refrescando datos:..');
+    fetch(1, 10);
+  }
+
 
   return (
     <>
@@ -172,6 +179,12 @@ export const Vacancy = () => {
             >
               <Button2 text="Crear Vacante" paddingB="10px" fs="14px" />
             </Link>
+            <span 
+        style={{width:'fit-content',cursor:'pointer', color:'blue'}} 
+        onClick={handleRefresh}
+        className=" text-center ms-auto btn btn-outline-info d-flex">
+          <FcRefresh style={{color:'blue'}}/>
+          </span>
           </div>
         {/* </div> */}
         {/* <div className='card-body'> */}

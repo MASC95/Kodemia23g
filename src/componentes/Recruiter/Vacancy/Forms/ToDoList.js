@@ -51,7 +51,7 @@ const ToDoList = ({ dataActivities, setDataActivities }) => {
       if (result.isConfirmed) {
         const tempData = [...dataActivities];
         const newData = tempData.filter((_, i) => i !== index);
-        console.log("newData:..", newData);
+        // console.log("newData:..", newData);
         setDataActivities([...newData]);
         Swal.fire("Eliminado!", "Actividad eliminada!", "success");
       }

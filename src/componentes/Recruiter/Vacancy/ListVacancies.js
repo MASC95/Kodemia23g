@@ -55,6 +55,8 @@ const ListVacancies = ({
   };
 
   const data = vacancyAll?.map((item, index) => {
+    const str = item.salary.toString().split(".");
+    str[0] = str[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     return {
       id: item._id,
       qty: index,
@@ -62,7 +64,7 @@ const ListVacancies = ({
       title: item.title,
       type: item.type,
       mode: item.mode,
-      salary: `$ ${item.salary}.00`,
+      salary: `$ ${str}.00`,
     };
   });
 

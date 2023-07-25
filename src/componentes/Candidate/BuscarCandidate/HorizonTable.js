@@ -59,7 +59,7 @@ const HorizonTable = ({
   }, []);
 
   useEffect(()=>{
-    console.log('refreshing data:...',String(isRefreshing))
+    // console.log('refreshing data:...',String(isRefreshing))
   },[isRefreshing])
 
   function parseJwt(token) {
@@ -87,7 +87,10 @@ const HorizonTable = ({
     setTempArrayVancies([...innerArray]);
   };
 
-  const data = vacancies?.map((item, index) => ({
+  const data = vacancies?.map((item, index) => {
+     const str = item.salary.toString().split(".");
+    str[0] = str[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return{
     ...item,
     id: myId(),
     _id: item._id,
@@ -97,8 +100,8 @@ const HorizonTable = ({
     type: item.type,
     city: item.city,
     mode: item.mode,
-    salary:`$ ${item.salary}.00`,
-  }));
+    salary:`$ ${str}.00`,
+  }});
   //console.log("datooos....", data);
   const columns = [
     {
@@ -133,7 +136,7 @@ const HorizonTable = ({
       sortable: true,
     },
     {
-      name: "SALARIO",
+      name: "SALARIO MENSUAL",
       selector: (row) => row.salary,
       sortable: true,
     },
@@ -200,8 +203,9 @@ const HorizonTable = ({
 
   return (
     <>
+    
       <div
-        className=" m-5 p-3"
+        className=" m-2 p-3"
         style={{ fontFamily: "Poppins, sans-serif, Verdana, Geneva, Tahoma" }}
       >
         

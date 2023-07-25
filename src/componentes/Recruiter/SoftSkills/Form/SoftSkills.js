@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../scss/style.scss";
 import swal from "sweetalert";
+import Swal from "sweetalert2";
 import axios from "axios";
 import { endpointsGral } from "../../services/vacancy";
 import { myId } from "../../../lib/myLib";
@@ -116,14 +117,33 @@ export const Softskills = ({ setListSkills, isCandidate, skillsCandidate }) => {
   //   console.log("arr de skills", skillTemp);
 
   const handleDeleteSkill = (index) => {
-    const skillToDelete = skillTemp[index];
-
-    if (skillToDelete) {
-      const updatedSkills = skillTemp.filter((_, i) => i !== index);
-      setSkillTemp(updatedSkills);
-    } else {
-      // console.log("error al eliminar");
-    }
+    Swal.fire({
+      title: 'Eliminar Skill',
+      text: "Estas seguro de eliminar esta skill?!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, eliminar!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const skillToDelete = skillTemp[index];
+        console.log('en busca del alert')
+    
+        if (skillToDelete) {
+          const updatedSkills = skillTemp.filter((_, i) => i !== index);
+          setSkillTemp(updatedSkills);
+        } else {
+          // console.log("error al eliminar");
+        }
+        Swal.fire(
+          'Eliminado!',
+          'Skill eliminada correctamente.',
+          'success'
+        )
+      }
+    })
+   
   };
   return (
   <>

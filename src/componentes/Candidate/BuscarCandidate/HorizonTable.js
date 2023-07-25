@@ -18,6 +18,7 @@ const HorizonTable = ({
   totalRows,
   currentPage,
   perPage,
+  isRefreshing
 }) => {
   const customStyles = {
     rows: {
@@ -54,7 +55,12 @@ const HorizonTable = ({
   useEffect(() => {
     initDataMyVacancies();
     ////console.log("vancacies:...", vacancies);
+    
   }, []);
+
+  useEffect(()=>{
+    // console.log('refreshing data:...',String(isRefreshing))
+  },[isRefreshing])
 
   function parseJwt(token) {
     var base64Url = token.split(".")[1];

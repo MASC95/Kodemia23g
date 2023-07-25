@@ -288,7 +288,7 @@ const Example = () => {
   };
 
   const handleRefresh = ()=>{
-    console.log('refrescando datos:..');
+    // console.log('refrescando datos:..');
     queryMatch(1, 10);
   }
 

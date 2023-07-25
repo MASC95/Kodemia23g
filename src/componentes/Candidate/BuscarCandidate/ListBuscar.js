@@ -6,6 +6,8 @@ import AlertComponent from "../Alerts/Alert";
 import useJob from "../../../hooks/useJob";
 import HorizonTable from "./HorizonTable";
 import Swal from "sweetalert2";
+import {FcRefresh} from "react-icons/fc";
+
 /* import VerticalTable from "./VerticalTable"; componente padre */
 
 export const ListBuscar = () => {
@@ -179,9 +181,19 @@ export const ListBuscar = () => {
       //console.log(error);
     }
   };
+  const handleRefresh = ()=>{
+    // console.log('refrescando datos:..');
+    fetchData(1, 10);
+  }
 
   return (
     <>
+      <span 
+        style={{width:'fit-content',cursor:'pointer', color:'blue'}} 
+        onClick={handleRefresh}
+        className=" text-center ms-auto btn btn-outline-info">
+          <FcRefresh style={{color:'blue'}}/>
+          </span>
       {/* <VerticalTable vacancies={vacancies} my_vacancies={my_vacancies} handleApply={handleApply} handleStopApplying={handleStopApplying}/> */}
       {vacancies.length > 0 && (
         <HorizonTable

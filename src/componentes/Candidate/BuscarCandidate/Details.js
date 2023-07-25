@@ -242,7 +242,7 @@ export const Details = () => {
                   <div className="form-outline bg-gray">
                     <label
                       className="form-label text-start"
-                      for="form6Example1"
+                      htmlFor="form6Example1"
                       style={style}
                     >
                      Modalidad
@@ -254,7 +254,7 @@ export const Details = () => {
                   <div className="form-outline">
                     <label
                       className="form-label text-start"
-                      for="form6Example1"
+                      htmlFor="form6Example1"
                       style={style}
                     >
                       Tipo de trabajo
@@ -266,7 +266,7 @@ export const Details = () => {
                   <div className="form-outline">
                     <label
                       className="form-label text-start"
-                      for="form6Example1"
+                      htmlFor="form6Example1"
                       style={style}
                     >
                      Salario Mensual
@@ -278,7 +278,7 @@ export const Details = () => {
               <div className="row mb-4">
                 <div className="col">
                   <div className="form-outline">
-                    <label className="form-label text-dark" for="form6Example1" style={{fontSize:'22px'}}>
+                    <label className="form-label text-dark" htmlFor="form6Example1" style={{fontSize:'22px'}}>
                      Lo que pedimos y lo que haras con nosotros será:
                     </label>
                     {/* <p className="text-dark">
@@ -306,7 +306,7 @@ export const Details = () => {
               </div>
               {/* <h3 className="text-dark">Lista de skills agregadas</h3> */}
               <div className="col">
-               <label className="form-label text-dark" for="form6Example1" style={{fontSize:'22px'}}>
+               <label className="form-label text-dark" htmlFor="form6Example1" style={{fontSize:'22px'}}>
                       Lista de skills solicitadas
                </label>
               <Table striped bordered hover>

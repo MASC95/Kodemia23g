@@ -297,6 +297,7 @@ export const ProfileRecruiter = () => {
                       value={formik.values.email}
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
+                      disabled={true}
                     />
                     {formik.touched.email && formik.errors.email && (
                       <span className="text-danger">{formik.errors.email}</span>

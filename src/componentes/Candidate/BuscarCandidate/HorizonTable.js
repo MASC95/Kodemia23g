@@ -194,8 +194,9 @@ const HorizonTable = ({
 
   return (
     <>
+    
       <div
-        className=" m-5 p-3"
+        className=" m-2 p-3"
         style={{ fontFamily: "Poppins, sans-serif, Verdana, Geneva, Tahoma" }}
       >
         

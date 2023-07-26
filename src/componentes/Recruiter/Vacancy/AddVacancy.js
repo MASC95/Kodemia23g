@@ -81,6 +81,7 @@ export const AddVacancy = () => {
         if (dataRecruiter.rfc === undefined) {
           swal({
             title: "Completa tu perfil para agregar vacantes!!",
+            text:'Lamentamos los incovenientes, completa tu perfil para continuar!',
             icon: "error",
             button: "ok",
           });

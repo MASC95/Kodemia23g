@@ -127,7 +127,7 @@ export const ListSoftskills=({listSkills,setListSkills})=>{
         }
         Swal.fire(
           'Eliminado!',
-          'Skill eliminada correctamente.',
+          'Skill eliminada correctamente. No olvides guardar tus cambios al final',
           'success'
         )
       }
@@ -205,7 +205,8 @@ export const ListSoftskills=({listSkills,setListSkills})=>{
         backdropFilter: "blur(2px)",
         WebkitBackdropFilter: "blur(2px)",
         padding: "50px",
-        marginTop:"20px"
+        marginTop:"20px",
+        marginBottom:"50px"
       }}>
        <h2
         className="text-center mt-4 mb-4 fs-1 "

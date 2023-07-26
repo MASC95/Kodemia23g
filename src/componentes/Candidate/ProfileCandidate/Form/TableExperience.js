@@ -33,7 +33,7 @@ const TableExperience = ({ dataExperience, setDataExpirience }) => {
     } else {
       setDataExpirience([...dataExperience, addExp]);
       setAddExp(initAddExp);
-      Swal.fire("Elemento agregado!", "listo!", "success");
+      Swal.fire("Elemento agregado!", "listo!, No olvides guardar tus cambios al final.", "success");
     }
     //console.log("...Aquí se agrega experiencia---");
   };
@@ -54,7 +54,7 @@ const TableExperience = ({ dataExperience, setDataExpirience }) => {
         const newData = tempData.filter((_, i) => i !== index);
         //console.log("newData:..", newData);
         setDataExpirience([...newData]);
-        Swal.fire("Eliminado!", "Eliminado correctamente!", "success");
+        Swal.fire("Eliminado!", "Eliminado correctamente!, No olvides guardar tus cambios al final.", "success");
       }
     });
   };

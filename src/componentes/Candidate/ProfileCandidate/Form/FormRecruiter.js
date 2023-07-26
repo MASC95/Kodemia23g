@@ -20,6 +20,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import TableExperience from "./TableExperience";
 import { useMediaQuery } from "react-responsive";
 import ListSoftskills from "./ListSoftskills";
+import { Navigate, useNavigate } from "react-router-dom";
 //const localEndPoinst = "http://localhost:4000/api/v1/users/";
 
 const defaultPassword = "";
@@ -71,6 +72,8 @@ const FormRecruiter = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isResetPassword, setIsResetPassword] = useState(false);
   const [dataExperience, setDataExperience] = useState([]);
+
+  const navigate =useNavigate()
 
   const [
     dataCandidate,
@@ -225,6 +228,7 @@ const FormRecruiter = () => {
           }
 
           swal.fire("Los cambios han sido guardados correctamente!");
+          navigate('/dashboard-candidato/search')
           // swal({
           //   title: "Felicidades!",
           //   text:'Ya puedes aplicar a vacantes!',

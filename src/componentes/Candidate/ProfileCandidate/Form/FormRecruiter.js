@@ -167,7 +167,7 @@ const FormRecruiter = () => {
             if (idsSkills) {
               for (let i = 0; i < idsSkills.length; i++) {
                 formData.append("user_skills", idsSkills[i]);
-                console.log(idsSkills[i])
+                // console.log(idsSkills[i])
               }
             }
             if (dataExperience) {
@@ -185,8 +185,8 @@ const FormRecruiter = () => {
                 );
               }
             }
-            console.log('data experencie',dataExperience)
-            console.log('data skills id',idsSkills)
+            // console.log('data experencie',dataExperience)
+            // console.log('data skills id',idsSkills)
             // for (const pair of formData.entries()) {
             //   console.log(`${pair[0]}, ${pair[1]}`);
             // }
@@ -208,7 +208,7 @@ const FormRecruiter = () => {
                 }
               )
               .then((response) => {
-                console.log("response.data:..", response.data);
+                // console.log("response.data:..", response.data);
 
                 if (response?.data?.message === "Update User Ok") {
                   if (response?.data?.updateUser) {

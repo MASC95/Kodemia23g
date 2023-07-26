@@ -74,10 +74,10 @@ export const ListSoftskills=({listSkills,setListSkills})=>{
     
     const url =`${endpointsGral.jobSkill}getJobSkillForUser/${newSkill.skill}`
     const result= await axios.get(url)
-    console.log('skill desde el back',result.data.infoJobSkill)
+    // console.log('skill desde el back',result.data.infoJobSkill)
     const skillBackend=result.data.infoJobSkill
 
-    console.log(skillBackend)
+    // console.log(skillBackend)
     // const newSkillNew = {
       
     //   skill: selectSkill,

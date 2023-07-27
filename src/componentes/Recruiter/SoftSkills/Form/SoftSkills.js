@@ -147,7 +147,7 @@ export const Softskills = ({ setListSkills, isCandidate, skillsCandidate }) => {
   };
   return (
   <>
-    <div className="row softskills-tableEdit ">
+    <div className="row softskills-tableEdit">
     <div className="col-12 mb-3">
         <div className="row d-flex justify-content-around"> 
           <label

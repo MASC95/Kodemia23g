@@ -11,7 +11,7 @@ import UploadImage from "../../../UploadImage/UploadImage";
 import useJob from "../../../../hooks/useJob";
 import "../SkillsSection.js";
 //import SkillsSection from "../SkillsSection.js";
-//import Softskills from "../../../Recruiter/SoftSkills/Form/SoftSkills";
+import Softskills from "../../../Recruiter/SoftSkills/Form/SoftSkills";
 import { FaUserCircle } from "react-icons/fa";
 import swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.css";
@@ -19,6 +19,8 @@ import TableSkillsCandidate from "../TableSkillsCandidate/TableSkillsCandidate";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import TableExperience from "./TableExperience";
 import { useMediaQuery } from "react-responsive";
+import ListSoftskills from "./ListSoftskills";
+import { Navigate, useNavigate } from "react-router-dom";
 //const localEndPoinst = "http://localhost:4000/api/v1/users/";
 
 const defaultPassword = "";
@@ -71,6 +73,8 @@ const FormRecruiter = () => {
   const [isResetPassword, setIsResetPassword] = useState(false);
   const [dataExperience, setDataExperience] = useState([]);
 
+  const navigate =useNavigate()
+
   const [
     dataCandidate,
     setDataCandidate,
@@ -106,6 +110,7 @@ const FormRecruiter = () => {
         age: dataCandidate.age || "",
         bachelor: dataCandidate.bachelor || "",
         avatar_url: dataCandidate.avatar_url || "",
+        user_skills:dataCandidate.user_skills || [],
       });
     }
 
@@ -118,6 +123,7 @@ const FormRecruiter = () => {
     // console.log("datos en dataForm:..", dataForm);
   }, [dataForm]);
 
+
   useEffect(() => {
     if (listSkills.length === 0) {
       // console.log('Actualizando skillsCandidate:..')
@@ -126,6 +132,7 @@ const FormRecruiter = () => {
       }
     }
   }, [listSkills]);
+  console.log('lista de skills', listSkills)
 
   const handleSubmit = async (values) => {
     //e.preventDefault();
@@ -143,12 +150,14 @@ const FormRecruiter = () => {
       })
       .then((result) => {
         if (result.isConfirmed) {
-          const idsSkills = listSkills.map((item) => item._id);
-          // console.log('values form(Candidate):..',values);
+          // const idsSkills=listSkills
+          const idsSkills = listSkills.map((item,index) => item._id);
+          console.log('skilss',idsSkills);
           const completeForm = {
             ...values,
-            user_skills: [...idsSkills],
+            user_skills: idsSkills,
           };
+        // console.log("completeForm:...", completeForm);
           try {
             axios.defaults.headers.common[
               "Authorization"
@@ -158,10 +167,11 @@ const FormRecruiter = () => {
             if (idsSkills) {
               for (let i = 0; i < idsSkills.length; i++) {
                 formData.append("user_skills", idsSkills[i]);
+                // console.log(idsSkills[i])
               }
             }
             if (dataExperience) {
-              console.log('Agregando dataExperience:...',dataExperience);
+              // console.log('Agregando dataExperience:...',dataExperience);
               for (let i = 0; i < dataExperience.length; i++) {
                 formData.append(
                   "working_experience",
@@ -175,10 +185,17 @@ const FormRecruiter = () => {
                 );
               }
             }
-            console.log('data experencie',dataExperience)
+            // console.log('data experencie',dataExperience)
+            // console.log('data skills id',idsSkills)
+            // for (const pair of formData.entries()) {
+            //   console.log(`${pair[0]}, ${pair[1]}`);
+            // }
+            delete values.working_experience
+            delete values.user_skills
+
             Object.entries(values).forEach(([key, value]) => {
               formData.append(key, value);
-              // console.log(key,value);
+              console.log(key,value);
             });
             axios
               .patch(
@@ -195,7 +212,7 @@ const FormRecruiter = () => {
 
                 if (response?.data?.message === "Update User Ok") {
                   if (response?.data?.updateUser) {
-                    // console.log("setDatalocalStorage updatedUser:...");
+                    console.log("setDatalocalStorage updatedUser:...");
                     setDataLocalStorage({
                       ...response?.data?.updateUser,
                       accessToken: dataCandidate.accessToken,
@@ -207,16 +224,17 @@ const FormRecruiter = () => {
                 console.error(error);
               });
           } catch (error) {
-            //console.log("error:..", error);
+            console.log("error:..", error);
           }
 
-          // swal.fire("Los cambios han sido guardados correctamente!");
-          swal({
-            title: "Felicidades!",
-            text:'Ya puedes aplicar a vacantes!',
-            icon: "success",
-            button: "Aceptar",
-          });
+          swal.fire("Los cambios han sido guardados correctamente!");
+          navigate('/dashboard-candidato/search')
+          // swal({
+          //   title: "Felicidades!",
+          //   text:'Ya puedes aplicar a vacantes!',
+          //   icon: "success",
+          //   button: "Aceptar",
+          // });
         }
       });
   };
@@ -602,8 +620,9 @@ const FormRecruiter = () => {
                   dataExperience={dataExperience}
                   setDataExpirience={setDataExperience}
                 />
-
-                <TableSkillsCandidate setDataListSkills={setListSkills} />
+                <ListSoftskills listSkills={listSkills}
+                setListSkills={setListSkills}/>
+                {/* <TableSkillsCandidate setDataListSkills={setListSkills} /> */}
 
                 {/* <Softskills
                   setListSkills={setListSkills}

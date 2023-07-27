@@ -53,10 +53,10 @@ const SectionThree = () => {
                 <FaCheck color="green" className="icon-check" />
                 Disfruta de ofertas diarias que se ajustan a tu perfil
               </li>
-              <li className="list-unstyled li-register">
+              {/* <li className="list-unstyled li-register">
                 <FaCheck color="green" className="icon-check" />
                 Personaliza tus alertas de empleo para estar siempre informado
-              </li>
+              </li> */}
               <li className="list-unstyled li-register">
                 <FaCheck color="green" className="icon-check" />
                 Completa tu perfil en Jobinder para mostrar tu profesionalismo y

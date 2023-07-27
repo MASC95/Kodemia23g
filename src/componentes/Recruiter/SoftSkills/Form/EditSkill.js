@@ -193,7 +193,7 @@ export const EditSkill=({listSkills,setListSkills})=>{
           <div className="col-12 col-md-12">
               <div className="row d-flex">
                 <label className="form-label text-dark" htmlFor="form6Example1">
-                  Elige la SoftSkill:
+                  Elige una Skill:
                 </label>
                 <div className="col">
                   <div className="form-outline">
@@ -241,7 +241,7 @@ export const EditSkill=({listSkills,setListSkills})=>{
                     pagination
                     highlightOnHover
                     dense
-                    title="Lista de actividades agregadas"
+                    title="Lista de skills agregadas"
                     />
                 </DataTableExtensions>
             </div>

@@ -19,12 +19,11 @@
 }
 .offcanvas-body .link {
   font-family: "Poppins";
-  margin-bottom: 60px;
+  margin-bottom: 30px;
   text-decoration: none;
 }
 .offcanvas-body .link .icons {
   width: 35px;
-  height: 35px;
   color: white;
 }
 .offcanvas-body .link:hover {

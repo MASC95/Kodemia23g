@@ -2,13 +2,16 @@
   .sectionThree .last-text {
     padding-right: 50px;
     padding-left: 50px;
-    margin-top: 50px;
     margin-bottom: 50px;
+    text-align: center;
   }
 }
 @media screen and (min-width: 601px) and (max-width: 1000px) {
   .sectionThree .last-text {
     padding: 50px;
+    padding-right: 50px;
+    padding-left: 50px;
+    text-align: center;
   }
 }
 @media screen and (min-width: 1001px) {
@@ -22,6 +25,13 @@
     align-items: flex-start;
     padding: 30px;
   }
+}
+.sectionThree .main-container {
+  background: rgba(0, 189, 214, 0.18);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
 }
 @media screen and (min-width: 0px) and (max-width: 600px) {
   .sectionThree .main-container .row-main-container .contenedor-imagen {
@@ -37,6 +47,12 @@
   .sectionThree .main-container .row-main-container .contenedor-imagen {
     margin-top: 70px;
     justify-content: space-evenly;
+  }
+}
+@media screen and (min-width: 601px) and (max-width: 1000px) {
+  .sectionThree .main-container .row-main-container .contenedor-imagen .profile-pic-1 {
+    width: 350px;
+    height: 350px;
   }
 }
 @media screen and (min-width: 1001px) {

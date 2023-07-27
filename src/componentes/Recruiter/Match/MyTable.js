@@ -218,6 +218,7 @@ const MyTable = ({
             // defaultSortField="#"
             // defaultSortAsc={true}
             // pagination
+            filterPlaceholder={false}
             progressPending={loading}
             pagination
             paginationServer

@@ -63,6 +63,9 @@ export const RegisterCandidate = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isResgitering, setIsResgitering] = useState(false);
   const [isConfirmEmail, setIsConfirmEmail] = useState(false);
+
+  const [isChecked, setIsChecked] = useState(false);
+
   const [isInformationUser, setInformationUser] = useState([]);
   const [
     dataCandidate,
@@ -144,6 +147,10 @@ export const RegisterCandidate = () => {
     }
   };
 
+  const handleCheckboxChange = () => {
+    setIsChecked(!isChecked);
+  };
+
   const handleSubmit = async (values) => {
     //console.log("Registrando mail:..", values.email);
     // console.log('aqui debe haber datos', values) se hicieron cambios aqui
@@ -159,9 +166,19 @@ export const RegisterCandidate = () => {
         text: "Este correo ya tiene una cuenta, inicia sesión!",
       });
     } else {
-      setIsResgitering(true);
-      confirmAccesCode(values);
-      //console.log("agregalo");
+      if(!isChecked){
+        // console.log('acepta terminos y condiciones')
+        swal({
+            title: "Ups!",
+            text:'Por favor acepta nuestros términos y condiciones!',
+            icon: "error",
+            button: "Aceptar",
+            });
+      }else{
+        setIsResgitering(true);
+        confirmAccesCode(values);
+      }
+      // //console.log("agregalo");
     }
   };
 
@@ -410,6 +427,22 @@ export const RegisterCandidate = () => {
                         <span className="text-danger input-group">
                           <ErrorMessage name="confirmPassword" />
                         </span>
+                      </Form.Group>
+                      <Form.Group className="text-center ">
+                        <Form.Check
+                          type="checkbox"
+                          label="He leído y acepto"
+                          checked={isChecked}
+                          disabled={isChecked===true}
+                          onChange={handleCheckboxChange}
+                          className="d-flex justify-content-center align-items-center "
+                        />
+                      <Link
+                        style={{ color: "inherit",fontSize:'12px'}}
+                        to="/TerminosyCondiciones"
+                      >                   
+                      los términos y condiciones    
+                      </Link>
                       </Form.Group>
                       {!isResgitering && (
                         <Button

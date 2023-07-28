@@ -132,7 +132,7 @@ const FormRecruiter = () => {
       }
     }
   }, [listSkills]);
-  console.log('lista de skills', listSkills)
+  // console.log('lista de skills', listSkills)
 
   const handleSubmit = async (values) => {
     //e.preventDefault();

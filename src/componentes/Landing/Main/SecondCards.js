@@ -29,13 +29,13 @@ const SecondCards = () => {
               </picture>
 
               <div className="card-body-2">
-                <p className="video"> Video Presentación </p>
+                {/* <p className="video"> Video Presentación </p> */}
                 <h5 className="card-title-2 text-center">
                   Destaca tus habilidades únicas y asegura el trabajo que
                   mereces.
                 </h5>
 
-                <p className="card-text-2 ">Grabar Video 🚩</p>
+                {/* <p className="card-text-2 ">Grabar Video 🚩</p> */}
               </div>
             </div>
           </div>
@@ -53,13 +53,13 @@ const SecondCards = () => {
                 />
               </picture>
               <div className="card-body-2 ">
-                <p className="video ms-3">Conocimientos y Habilidades</p>
+                {/* <p className="video ms-3">Conocimientos y Habilidades</p> */}
                 <h5 className="card-title-2 text-center">
-                  Sube tu CV para obtener mejores ofertas laborales y obtener el
+                  Postúlate a las mejores ofertas laborales y obtén el
                   empleo de tus sueños!.
                 </h5>
 
-                <p className="card-text-2  ">Sumar Conocimientos 🚩</p>
+                {/* <p className="card-text-2  ">Sumar Conocimientos 🚩</p> */}
               </div>
             </div>
           </div>

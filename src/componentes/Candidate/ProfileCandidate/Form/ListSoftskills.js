@@ -61,7 +61,7 @@ export const ListSoftskills=({listSkills,setListSkills})=>{
     console.log('valor',value)
     // clearSkills()
   };
-  console.log('newSkill',selectSkill)
+  // console.log('newSkill',selectSkill)
 
   const newSkill = {
     skill: selectSkill,
@@ -78,8 +78,7 @@ export const ListSoftskills=({listSkills,setListSkills})=>{
     const skillBackend=result.data.infoJobSkill
 
     // console.log(skillBackend)
-    // const newSkillNew = {
-      
+    // const newSkillNew = {s      
     //   skill: selectSkill,
     // };
 
@@ -217,7 +216,7 @@ export const ListSoftskills=({listSkills,setListSkills})=>{
           fontFamily: "Poppins, sans-serif, Verdana, Geneva, Tahoma",
         }}
       >
-        SoftSkills
+        Skills
       </h2>
           <div className="col-12 col-md-12">
               <div className="row d-flex">
@@ -272,7 +271,7 @@ export const ListSoftskills=({listSkills,setListSkills})=>{
                     pagination
                     highlightOnHover
                     dense
-                    title="Lista de actividades agregadas"
+                    title="Lista de skills agregadas"
                     />
                 </DataTableExtensions>
             </div>

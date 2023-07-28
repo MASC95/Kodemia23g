@@ -5,11 +5,10 @@
   .sectionTwo .letras .eleva {
     font-family: "Poppins", sans-serif, Verdana, Geneva, Tahoma;
     font-weight: 400;
-    align-items: center;
+    text-align: center;
     text-indent: 1em;
     color: #093040;
-    margin-top: 10px;
-    margin-bottom: 50px;
+    margin-top: 77px;
     padding-left: 50px;
     padding-right: 50px;
   }
@@ -21,7 +20,7 @@
     align-items: center;
     text-indent: 1em;
     color: #093040;
-    margin-top: 20px;
+    margin-top: 77px;
     margin-bottom: 50px;
   }
 }
@@ -34,17 +33,26 @@
     color: #093040;
     margin-top: 100px;
     margin-bottom: 50px;
-    font-size: 4rem;
+    font-size: 3rem;
     text-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px rgba(60, 64, 67, 0.15);
   }
 }
-.sectionTwo .second-card-container {
-  width: 100%;
-  height: 100%;
-  margin-top: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+@media screen and (min-width: 1001px) {
+  .sectionTwo .second-card-container {
+    width: 100%;
+    height: 100%;
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+@media screen and (min-width: 0px) and (max-width: 600px) {
+  .sectionTwo .second-card-container {
+    text-align: center;
+    width: 100%;
+    margin-top: 30px;
+  }
 }
 .sectionTwo .second-card-container .row-second-card {
   display: flex;
@@ -78,6 +86,7 @@
     backdrop-filter: blur(2px);
     -webkit-backdrop-filter: blur(2px);
     overflow: hidden;
+    width: 300px;
   }
   .sectionTwo .second-card-container .row-second-card .columna-2 .card-2::before {
     content: "";

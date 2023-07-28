@@ -56,6 +56,9 @@ export const RegisterRecruiter = () => {
   const [isResgitering, setIsResgitering] = useState(false);
   const [isConfirmEmail, setIsConfirmEmail] = useState(false);
   const [isInformationUser, setInformationUser] = useState([]);
+
+  const [isChecked, setIsChecked] = useState(false);
+
   const [
     dataCandidate,
     setDataCandidate,
@@ -106,7 +109,7 @@ export const RegisterRecruiter = () => {
       const response = await axios.get(
         `${endpointsGral.userURL}getUserByEmail?email=${email}`
       );
-      console.log("response searchUserInDB:..", response);
+      // console.log("response searchUserInDB:..", response);
       if (response?.data?.user) {
         return true;
       } else {
@@ -116,7 +119,9 @@ export const RegisterRecruiter = () => {
       //console.log(error);
     }
   };
-
+  const handleCheckboxChange = () => {
+    setIsChecked(!isChecked);
+  };
   const confirmAccesCode = async (values) => {
     //console.log("Estamos confirmando el email:..");
     const { confirmEmail } = endpointsGral;
@@ -149,14 +154,27 @@ export const RegisterRecruiter = () => {
         text: "Este correo ya tiene una cuenta, inicia sesión!",
       });
     } else {
-      setIsResgitering(true);
-      confirmAccesCode(values);
+      // handleCheckboxChange()
+      if(!isChecked){
+        // console.log('acepta terminos y condiciones')
+        swal({
+            title: "Ups!",
+            text:'Por favor acepta nuestros términos y condiciones!',
+            icon: "error",
+            button: "Aceptar",
+            });
+      }else{
+        console.log('codigo enviado')
+        setIsResgitering(true);
+        confirmAccesCode(values);
+      }
+      // setIsResgitering(true);
+      // confirmAccesCode(values);
       //console.log("agregalo");
     }
   };
 
   const registerRecruiter = async () => {
-    // if (formValues.role === "candidato") {
     try {
       const register = await axios.post(endpointsGral.registerUser, dataForm);
       setDataForm(register);
@@ -186,10 +204,6 @@ export const RegisterRecruiter = () => {
   };
 
   const handleConfirmEmail = () => {
-    //console.log("hola");
-    //console.log("codigo:", dataForm.code);
-    //console.log("codigo:", dataForm.code);
-    //console.log("codigoBack:..", dataForm.backCode);
     if (dataForm.code === "") {
       Swal.fire({
         icon: "error",
@@ -400,6 +414,24 @@ export const RegisterRecruiter = () => {
                           <ErrorMessage name="confirmPassword" />
                         </span>
                       </Form.Group>
+                   
+                      <Form.Group className="text-center ">
+                        <Form.Check
+                          type="checkbox"
+                          label="He leído y acepto"
+                          checked={isChecked}
+                          disabled={isChecked===true}
+                          onChange={handleCheckboxChange}
+                          className="d-flex justify-content-center align-items-center "
+                        />
+                      <Link
+                        style={{ color: "inherit", fontSize:'12px'}}
+                        to="/TerminosyCondiciones"
+                      >                   
+                      los términos y condiciones    
+                      </Link>
+                      </Form.Group>
+                   
                       {!isResgitering && (
                         <Button
                           type="submit"

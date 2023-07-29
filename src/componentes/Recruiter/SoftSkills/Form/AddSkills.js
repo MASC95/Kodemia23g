@@ -336,7 +336,7 @@ export const AddSkills=()=>{
             </div>
           {/* table of skills */}
           <div className="col">
-            <label className="form-label text-dark" >Lista de SoftSkill existentes</label>
+            <label className="form-label text-dark" >Lista de Skills agregadas</label>
             <DataTableExtensions  
             export={false}
             print={false}

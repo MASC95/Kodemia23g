@@ -147,7 +147,7 @@ export const Softskills = ({ setListSkills, isCandidate, skillsCandidate }) => {
   };
   return (
   <>
-    <div className="row softskills-tableEdit ">
+    <div className="row softskills-tableEdit">
     <div className="col-12 mb-3">
         <div className="row d-flex justify-content-around"> 
           <label
@@ -158,7 +158,7 @@ export const Softskills = ({ setListSkills, isCandidate, skillsCandidate }) => {
               fontFamily: "Poppins, sans-serif, Verdana, Geneva, Tahoma",
             }}
           >
-            Elige las SoftSkill de tu {!isCandidate ? "vacante" : "perfil"}:
+            Elige las Skills de tu {!isCandidate ? "vacante" : "perfil"}:
           </label>
           <div className="col">
           <div className="form-outline">
@@ -206,7 +206,7 @@ export const Softskills = ({ setListSkills, isCandidate, skillsCandidate }) => {
 
       <div className="col">
         <label className="form-label text-dark" htmlFor="">
-          Lista de SoftSkill agregadas
+          Lista de skills agregadas
         </label>
         <table className="table">
           <thead className="thead-dark bg-body-secondary">

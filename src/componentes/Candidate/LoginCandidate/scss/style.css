@@ -1,11 +1,11 @@
 @media (min-width: 1001x) and (max-width: 1500px) {
   .account .buttons_actions {
-    margin-top: 20PX;
-    margin-bottom: 20PX;
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
   .account .buttons_actions .btn {
     color: #ffffff;
-    background-color: #498BA6;
+    background-color: #498ba6;
   }
   .account .block {
     background-color: #ffffff;
@@ -25,7 +25,10 @@
   .account .block form {
     margin-top: 50px;
   }
-  .account .block form input[type=email], .account .block form input[type=password], .account .block form input[type=text], .account .block form select {
+  .account .block form input[type=email],
+  .account .block form input[type=password],
+  .account .block form input[type=text],
+  .account .block form select {
     border-radius: 0;
     box-shadow: none;
     height: 50px;
@@ -39,25 +42,25 @@
     height: 100%;
   }
   .form_login input {
-    background-color: #F3F4F6;
+    background-color: #f3f4f6;
   }
   .form_login .buttons_actions {
-    margin-bottom: 20PX;
+    margin-bottom: 20px;
   }
   .form_login .buttons_actions .btn {
     color: #ffffff;
-    background-color: #498BA6;
+    background-color: #498ba6;
   }
   .image_bg {
     display: none;
-    background: #498BA6;
+    background: #498ba6;
   }
   .account .buttons_actions {
-    margin-bottom: 20PX;
+    margin-bottom: 20px;
   }
   .account .buttons_actions .btn {
     color: #ffffff;
-    background-color: #498BA6;
+    background-color: #498ba6;
   }
   .account .block {
     background-color: #ffffff;
@@ -77,7 +80,9 @@
   .account .block form {
     margin-top: 50px;
   }
-  .account .block form input[type=email], .account .block form input[type=password], .account .block form input[type=text] {
+  .account .block form input[type=email],
+  .account .block form input[type=password],
+  .account .block form input[type=text] {
     border-radius: 0;
     box-shadow: none;
     height: 50px;

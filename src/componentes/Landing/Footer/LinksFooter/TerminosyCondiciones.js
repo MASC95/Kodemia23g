@@ -231,7 +231,7 @@ const TerminosCondiciones = () => {
               detenidamente estos términos antes de utilizar los servicios de
               Jobinder.
             </p>
-            <Form.Group className="text-center ">
+            {/* <Form.Group className="text-center ">
               <Form.Check
                 type="checkbox"
                 label="He leído y acepto los términos y condiciones"
@@ -239,7 +239,7 @@ const TerminosCondiciones = () => {
                 onChange={handleCheckboxChange}
                 className="d-flex justify-content-center align-items-center "
               />
-            </Form.Group>
+            </Form.Group> */}
           </Col>
         </Row>
       </Container>

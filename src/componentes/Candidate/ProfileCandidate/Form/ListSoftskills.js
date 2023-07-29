@@ -2,20 +2,21 @@ import  { useEffect , useState } from "react";
 import swal from "sweetalert";
 import Swal from "sweetalert2";
 import axios from "axios";
-import { endpointsGral } from "../../services/vacancy";
+import { endpointsGral } from "../../../Recruiter/services/vacancy";
 import { myId } from "../../../lib/myLib";
 import {FaTrash, FaPlus, FaEdit} from 'react-icons/fa'
 import DataTable from 'react-data-table-component';
 import DataTableExtensions from 'react-data-table-component-extensions';
 import { Link } from "react-router-dom";
 import '../scss/style.scss'
-export const EditSkill=({listSkills,setListSkills})=>{
+export const ListSoftskills=({listSkills,setListSkills})=>{
 
   //console.log('listSkills',listSkills)
 
   const [dataSkill, setDataSkill] = useState([]);
   const [selectSkill, setSelectSkill] = useState("select");
   const [skillTemp, setSkillTemp] = useState(listSkills?listSkills:[]);
+  const [addList, setAddList]=useState({})
 
 
   const fetchSkill = async () => {
@@ -33,13 +34,13 @@ export const EditSkill=({listSkills,setListSkills})=>{
   useEffect(()=>{
     if(skillTemp.length===0){
       if(listSkills.length>0){
-        //console.log('skillsCandidate:..',listSkills);
+        // console.log('skillsCandidate:..',listSkills);
         setSkillTemp([...listSkills])
       }
     }
   },[listSkills]) 
 
- 
+//  console.log('lista desde backend', skillTemp)
  
 
   useEffect(()=>{
@@ -57,14 +58,29 @@ export const EditSkill=({listSkills,setListSkills})=>{
   const handleSkillChange = (event) => {
     const value = event.target.value;
     setSelectSkill(value);
+    console.log('valor',value)
+    // clearSkills()
+  };
+  // console.log('newSkill',selectSkill)
+
+  const newSkill = {
+    skill: selectSkill,
   };
 
-  const onFormSubmit = (event) => {
+
+  const onFormSubmit = async(event) => {
     event.preventDefault();
     // console.log('selectSkill:..',selectSkill);
-    const newSkill = {
-      skill: selectSkill,
-    };
+    
+    const url =`${endpointsGral.jobSkill}getJobSkillForUser/${newSkill.skill}`
+    const result= await axios.get(url)
+    // console.log('skill desde el back',result.data.infoJobSkill)
+    const skillBackend=result.data.infoJobSkill
+
+    // console.log(skillBackend)
+    // const newSkillNew = {s      
+    //   skill: selectSkill,
+    // };
 
     if(newSkill.skill==='select'){
       swal({
@@ -74,7 +90,7 @@ export const EditSkill=({listSkills,setListSkills})=>{
     });
     return
     }
-    const dataRepet= skillTemp?.find(item=>item.skill===newSkill.skill);
+    const dataRepet= skillTemp?.find(item=>item._id===skillBackend._id);
     if(dataRepet){
         swal({
             title: "Ya hemos agregado esa skill!",
@@ -82,7 +98,8 @@ export const EditSkill=({listSkills,setListSkills})=>{
             button: "ok!",
         });
     }else{
-        setSkillTemp([...skillTemp, newSkill]);
+        // setSkillTemp([...skillTemp,newSkill]);
+         setSkillTemp([...skillTemp,skillBackend]);
     }
   };
 
@@ -109,7 +126,7 @@ export const EditSkill=({listSkills,setListSkills})=>{
         }
         Swal.fire(
           'Eliminado!',
-          'Skill eliminada correctamente.',
+          'Skill eliminada correctamente. No olvides guardar tus cambios al final',
           'success'
         )
       }
@@ -119,9 +136,10 @@ export const EditSkill=({listSkills,setListSkills})=>{
 
   const data= skillTemp?.map((skill, index) => {
     let myDataSkill=null;
-    myDataSkill= dataSkill?.find(item=>item._id===skill.skill);
+    myDataSkill= dataSkill?.find(item=>item._id===skill._id);
+    // console.log('compartive',myDataSkill)
     if(!myDataSkill){
-     myDataSkill= dataSkill?.find(item=>item._id===skill);
+     myDataSkill= dataSkill?.find(item=>item._id===skill.skill);
     }
     return(
       {
@@ -162,7 +180,7 @@ export const EditSkill=({listSkills,setListSkills})=>{
       sortable: false,
       selector: (row, i) => row.null,
       cell: (d) =>[
-        <button type="button" className="buttons btn btn-outline-danger"onClick={handleDeleteSkill.bind(this,d.qty)}>
+        <button type="button" myId={myId} className="buttons btn btn-outline-danger"onClick={handleDeleteSkill.bind(this,d.qty)}>
          <FaTrash className="icon_trash" />  
          </button>,
   ]
@@ -177,10 +195,20 @@ export const EditSkill=({listSkills,setListSkills})=>{
     data
   };
   return (
-    <>
-        <div className="row">
-        <h2
-        className="text-start mt-4 fs-4 text-center "
+
+        <div   style={{
+        background: "rgba(0, 189, 214, 0.18)",
+        borderRadius: "16px",
+        boxShadow:
+          "rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset",
+        backdropFilter: "blur(2px)",
+        WebkitBackdropFilter: "blur(2px)",
+        padding: "50px",
+        marginTop:"20px",
+        marginBottom:"50px"
+      }}>
+       <h2
+        className="text-center mt-4 mb-4 fs-1 "
         style={{
           color: "rgb(73, 139, 166)",
           textShadow:
@@ -188,12 +216,12 @@ export const EditSkill=({listSkills,setListSkills})=>{
           fontFamily: "Poppins, sans-serif, Verdana, Geneva, Tahoma",
         }}
       >
-        SoftSkills
+        Skills
       </h2>
           <div className="col-12 col-md-12">
               <div className="row d-flex">
                 <label className="form-label text-dark" htmlFor="form6Example1">
-                  Elige una Skill:
+                  Elige la SoftSkill:
                 </label>
                 <div className="col">
                   <div className="form-outline">
@@ -205,6 +233,7 @@ export const EditSkill=({listSkills,setListSkills})=>{
                     >
                       <option value="select">Select</option>
                       {dataSkill.map((item, index) => {
+                       
                         const id = item._id;
                         const skillComplete = `${item.name} - ${item.level}`;
                         return <option key={myId()}  value={`${id}`}>{skillComplete}</option>;
@@ -229,6 +258,7 @@ export const EditSkill=({listSkills,setListSkills})=>{
                 <DataTableExtensions  
                     export={false}
                     print={false}
+                    filter={false}
                     {...tableData}>
                     <DataTable {...tableData}
                     key={myId()}
@@ -249,8 +279,8 @@ export const EditSkill=({listSkills,setListSkills})=>{
 
           {/* Table Skills */}
         </div>
-    </>
+    
   );
 
 }
-export default EditSkill
+export default ListSoftskills

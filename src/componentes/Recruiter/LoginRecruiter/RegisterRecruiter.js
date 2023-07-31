@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import logo from "./img/logo.png";
-import register from "./img/14.png";
+import register from "./img/login.png";
 import "./scss/style.scss";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -14,6 +14,7 @@ import Form from "react-bootstrap/Form";
 import { Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import Navbar from "../../Landing/Navbar/Navbar";
 
 const initDataForm = {
   email: "",
@@ -294,20 +295,20 @@ export const RegisterRecruiter = () => {
 
   return (
     <>
-      <section className="signin-page account" style={loginInit}>
+    <Navbar/>
+      <section className="signin-page account">
         <div className="container">
           <div className="row">
             <div className="col-md-6 col-md-offset-3">
-              <div className="block text-center" style={glass}>
+              <div className="block text-center">
                 <div
-                  style={logoJobinder}
                   className="d-flex justify-content-center align-items-center"
                 >
                   <Link to={"/"} className="logo_Jobinder">
                     <img src={logo} alt="jobinder-logo" />
                   </Link>
                 </div>
-                <h2 className="text-center">Crea tu cuenta</h2>
+                <h2 className="text-center p-1 m-0">Crea tu cuenta</h2>
                 <span>y empieza a seleccionar</span>
                 <Formik
                   initialValues={dataForm}
@@ -317,7 +318,7 @@ export const RegisterRecruiter = () => {
                 >
                   {(props) => (
                     <Form
-                      className="text-left clearfix"
+                      className="text-left m-2"
                       onSubmit={props.handleSubmit}
                     >
                       <Form.Group className="form-group">
@@ -415,21 +416,20 @@ export const RegisterRecruiter = () => {
                         </span>
                       </Form.Group>
                    
-                      <Form.Group className="text-center ">
+                      <Form.Group className="text-center d-flex justify-content-center align-items-center">
                         <Form.Check
                           type="checkbox"
-                          label="He leído y acepto"
                           checked={isChecked}
                           disabled={isChecked===true}
                           onChange={handleCheckboxChange}
-                          className="d-flex justify-content-center align-items-center "
+                          style={{ color: "inherit",fontSize:'12px'}}
+                          // className="d-flex justify-content-center align-items-center "
                         />
                       <Link
-                        style={{ color: "inherit", fontSize:'12px'}}
+                        style={{ color: "inherit",fontSize:'12px', marginLeft:'10px'}}
                         to="/TerminosyCondiciones"
                       >                   
-                      los términos y condiciones    
-                      </Link>
+                       Acepto los términos y condiciones                       </Link>
                       </Form.Group>
                    
                       {!isResgitering && (
@@ -499,12 +499,14 @@ export const RegisterRecruiter = () => {
             </div>
             <div className="col-md-6 col-md-offset-3 d-none d-md-block">
               <div
-                className="block text-center  shadow-none"
-                style={imgContainer}
+                className="block text-center shadow-none"
+                // style={imgContainer}
               >
                 <img
                   className="container w-100 h-50"
-                  src="https://frontjobinderimg.s3.amazonaws.com/registerRec.png"
+                  src={register}
+                  // src="https://frontjobinderimg.s3.amazonaws.com/Candidate.jpg"
+                  // src="https://frontjobinderimg.s3.amazonaws.com/registerRec.png"
                   alt="register-img"
                   style={imgInside}
                 />

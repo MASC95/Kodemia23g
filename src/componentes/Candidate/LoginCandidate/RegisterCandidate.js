@@ -13,6 +13,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import Navbar from "../../Landing/Navbar/Navbar";
 
 let previousTitle = document.title;
 
@@ -307,20 +308,20 @@ export const RegisterCandidate = () => {
   };
   return (
     <>
-      <section className="signin-page account" style={loginInit}>
+    <Navbar/>
+      <section className="signin-page account">
         <div className="container">
           <div className="row">
             <div className="col-md-6 col-md-offset-3">
-              <div className="block text-center" style={glass}>
+              <div className="block text-center" >
                 <div
-                  style={logoJobinder}
                   className="d-flex justify-content-center align-items-center"
                 >
                   <Link to={"/"} className="logo_Jobinder">
                     <img src={logo} alt="" />
                   </Link>
                 </div>
-                <h2 className="text-center">Crea tu cuenta</h2>
+                <h2 className="text-center p-1 m-0">Crea tu cuenta</h2>
                 <span>y haz match en el empleo ideal en tiempo récord.</span>
                 <Formik
                   initialValues={dataForm}
@@ -330,7 +331,7 @@ export const RegisterCandidate = () => {
                 >
                   {(props) => (
                     <Form
-                      className="text-left clearfix"
+                      className="text-left m-2"
                       onSubmit={props.handleSubmit}
                     >
                       <Form.Group className="form-group">
@@ -428,20 +429,20 @@ export const RegisterCandidate = () => {
                           <ErrorMessage name="confirmPassword" />
                         </span>
                       </Form.Group>
-                      <Form.Group className="text-center ">
+                      <Form.Group className="text-center d-flex justify-content-center align-items-center">
                         <Form.Check
                           type="checkbox"
-                          label="He leído y acepto"
                           checked={isChecked}
                           disabled={isChecked===true}
                           onChange={handleCheckboxChange}
-                          className="d-flex justify-content-center align-items-center "
+                          
+                          className="border-1"
                         />
                       <Link
-                        style={{ color: "inherit",fontSize:'12px'}}
+                        style={{ color: "inherit",fontSize:'12px', marginLeft:'10px'}}
                         to="/TerminosyCondiciones"
                       >                   
-                      los términos y condiciones    
+                      Acepto los términos y condiciones    
                       </Link>
                       </Form.Group>
                       {!isResgitering && (
@@ -515,11 +516,12 @@ export const RegisterCandidate = () => {
             <div className="col-md-6 col-md-offset-3 d-none d-md-block">
               <div
                 className="block text-center  shadow-none"
-                style={imgContainer}
+                // style={imgContainer}
               >
                 <img
                   className="container w-100 h-50"
-                  src="https://frontjobinderimg.s3.amazonaws.com/JobinderRegister.png"
+                  src={register}
+                  // src="https://frontjobinderimg.s3.amazonaws.com/JobinderRegister.png"
                   alt=""
                   style={imgInside}
                 />

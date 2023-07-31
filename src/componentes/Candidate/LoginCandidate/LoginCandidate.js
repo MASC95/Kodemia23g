@@ -133,7 +133,7 @@ export const LoginCandidate = () => {
          <div className="col-md-12 d-flex justify-content-center align-content-center">
             {/* <div className="col-md-6 col-md-offset-3 d-flex justify-content-center align-content-center"> */}
               <div
-                className="block text-center "
+                className="block text-center m-4"
               >
                 <div
                   className="d-flex justify-content-center align-items-center"

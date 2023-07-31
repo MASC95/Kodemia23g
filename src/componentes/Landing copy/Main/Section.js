@@ -38,7 +38,10 @@ const Section = () => {
     <section className="sectionOne">
       <div className="first-card-container">
         <div className="row row-first-card ">
-          <div className="col-5 columna ">
+          <div
+            className="col-5 columna text-decoration-none"
+            onClick={handleClickRecruiter}
+          >
             {/*  <Link
               to="/login-candidato"
               className="link-card text-decoration-none" 
@@ -67,24 +70,13 @@ const Section = () => {
                   Accede a nuestra plataforma para publicar tus vacantes, buscar
                   talentos y gestionar tus procesos de selección.
                 </p>
-                <div className="d-flex justify-content-center align-items-center">
-                  <Button2
-                    className="access"
-                    text="Acceder como candidato"
-                    colortext="#fff"
-                    widthB="250px"
-                    bgcolor="#106973"
-                    fs="14px"
-                    paddingB="10px 20px"
-                    borde="none"
-                    altura="40px"
-                    onClick={handleClickCandidate}
-                  />
-                </div>
+                <p className="access d-sm-block d-md-none text-center">
+                  Acceder como Reclutador
+                </p>
               </div>
             </div>
           </div>
-          <div className="col-5 columna ">
+          <div className="col-5 columna " onClick={handleClickCandidate}>
             <div className="cartas" style={{ cursor: "pointer" }}>
               <picture className=" img-div">
                 <source
@@ -109,20 +101,9 @@ const Section = () => {
                   vacantes de las empresas más importantes.
                 </p>
 
-                <div className="d-flex justify-content-center align-items-center">
-                  <Button2
-                    className="access"
-                    text="Acceder como candidato"
-                    colortext="#fff"
-                    widthB="250px"
-                    bgcolor="#106973"
-                    fs="14px"
-                    paddingB="10px 20px"
-                    borde="none"
-                    altura="40px"
-                    onClick={handleClickCandidate}
-                  />
-                </div>
+                <p className="access d-sm-block d-md-none text-center">
+                  Acceder como Candidato
+                </p>
               </div>
             </div>
           </div>

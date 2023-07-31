@@ -70,7 +70,7 @@ export const LoginCandidate = () => {
         const loginCandidate = await endpoints.loginAxios(values);
         setFormValues(loginCandidate);
         //console.log("loginCandidate(checando user_skills):..", loginCandidate);
-        
+
         const role = loginCandidate?.role;
         if (role === "candidato") {
           swal({
@@ -116,7 +116,7 @@ export const LoginCandidate = () => {
           fontFamily: "Poppins",
           boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
 
-          color: "#f2f2f2",
+          color: "#000",
           backdropFilter: "blur(2px)",
           WebkitBackdropFilter: "blur(2px)",
           backgroundRepeat: "no-repeat",

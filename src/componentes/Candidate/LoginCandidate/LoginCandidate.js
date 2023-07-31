@@ -113,8 +113,7 @@ export const LoginCandidate = () => {
         style={{
           fontFamily: "Poppins",
           boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
-
-          color: "#000",
+          color: "#000000",
         }}
       >
         <div className="container ">
@@ -136,7 +135,7 @@ export const LoginCandidate = () => {
                   <img src={logo} alt="" />
                 </Link>
 
-                <h2 className="text-center welcome-back">
+                <h2 className="text-center welcome-back ">
                   Inicia sesión en tu cuenta
                 </h2>
                 <span>para hacer match con la vacante ideal.</span>

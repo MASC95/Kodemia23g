@@ -261,30 +261,6 @@ export const RegisterCandidate = () => {
     height: "80%",
   };
 
-  const imgContainer = {
-    borderRadius: "5%",
-    margin: "20px",
-    boxShadow:
-      "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px",
-    borderWidth: "2px",
-    borderStyle: "solid",
-    background: "rgba(0, 189, 214, 0.18)",
-
-    backdropFilter: "blur(2px)",
-    WebkitBackdropFilter: "blur(2px)",
-    width: "100%",
-    objectFit: "cover",
-    borderImage:
-      "linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%)",
-    padding: "30px",
-    marginTop: "130px",
-  };
-
-  const imgInside = {
-    borderRadius: "30px",
-    borderImage:
-      "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px",
-  };
   return (
     <>
       <section className="signin-page account" style={loginInit}>

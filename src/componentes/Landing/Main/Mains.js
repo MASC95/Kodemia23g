@@ -64,7 +64,7 @@ const Mains = () => {
         </p>
 
         <Section />
-        <SecondCards />
+
         <SectionThree />
         <FAQSection />
       </div>

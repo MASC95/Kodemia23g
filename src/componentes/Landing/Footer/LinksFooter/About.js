@@ -145,31 +145,40 @@ const About = () => {
             onMouseLeave={handleMouseLeave}
           />
         </Link>
-        <h1 className="mb-3 mt-5 text-center" style={letters}>
-          Acerca de Jobinder
-        </h1>
-        <div
-          className="p-3"
-          style={{
-            background: "rgba(0, 189, 214, 0.18)",
-            borderRadius: "16px",
-            boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
-            backdropFilter: "blur(5.7px)",
-            WebkitBackdropFilter: "blur(5.7px)",
-            border: "1px solid rgba(255, 255, 255, 0.3)",
-            width: "100%",
-          }}
-        >
-          <h2 className="m-5" style={{ color: "#110066" }}>
-            Bienvenido a Jobinder, la plataforma líder en búsqueda de empleo
-            dedicada a conectar nuestros usuarios con sus trabajos ideales.
-            Nuestra misión es simplificar el proceso de búsqueda de empleo y
-            ayudar tanto a los candidatos como a los empleadores a encontrar la
-            combinación perfecta. Con nuestros algoritmos de Match avanzados y
-            una interfaz fácil de usar, ahora es más fácil que nunca encontrar
-            oportunidades laborales que se alineen con tus habilidades y
-            preferencias.
-          </h2>
+
+        <div className="container mb-5">
+          <div className="row">
+            <div className="col-md-3 d-flex justify-content-center align-items-center">
+              <h1 className="mb-3 mt-5 text-center" style={letters}>
+                Acerca de Jobinder
+              </h1>
+            </div>
+            <div className="col-md-9">
+              <div
+                className="p-3"
+                style={{
+                  background: "rgba(0, 189, 214, 0.18)",
+                  borderRadius: "16px",
+                  boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+                  backdropFilter: "blur(5.7px)",
+                  WebkitBackdropFilter: "blur(5.7px)",
+                  border: "1px solid rgba(255, 255, 255, 0.3)",
+                  width: "100%",
+                }}
+              >
+                <h2 className="m-5" style={{ color: "#110066" }}>
+                  Bienvenido a Jobinder, la plataforma líder en búsqueda de
+                  empleo dedicada a conectar nuestros usuarios con sus trabajos
+                  ideales. Nuestra misión es simplificar el proceso de búsqueda
+                  de empleo y ayudar tanto a los candidatos como a los
+                  empleadores a encontrar la combinación perfecta. Con nuestros
+                  algoritmos de Match avanzados y una interfaz fácil de usar,
+                  ahora es más fácil que nunca encontrar oportunidades laborales
+                  que se alineen con tus habilidades y preferencias.
+                </h2>
+              </div>
+            </div>
+          </div>
         </div>
         <div className="col-sm-12 col-md-4 col-lg-4  ">
           <Card

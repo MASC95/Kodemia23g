@@ -32,6 +32,14 @@ const Mains = () => {
     }
   }, [dataLocalStorage]);
 
+  function scrollToTop() {
+    window.scrollTo(0, 0);
+  }
+
+  useEffect(() => {
+    scrollToTop();
+  }, []);
+
   return (
     <header style={{ zIndex: "1", position: "absolute" }}>
       <Navbar />

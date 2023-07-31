@@ -166,15 +166,15 @@ export const RegisterCandidate = () => {
         text: "Este correo ya tiene una cuenta, inicia sesión!",
       });
     } else {
-      if(!isChecked){
+      if (!isChecked) {
         // console.log('acepta terminos y condiciones')
         swal({
-            title: "Ups!",
-            text:'Por favor acepta nuestros términos y condiciones!',
-            icon: "error",
-            button: "Aceptar",
-            });
-      }else{
+          title: "Ups!",
+          text: "Por favor acepta nuestros términos y condiciones!",
+          icon: "error",
+          button: "Aceptar",
+        });
+      } else {
         setIsResgitering(true);
         confirmAccesCode(values);
       }
@@ -195,11 +195,11 @@ export const RegisterCandidate = () => {
         navigate(`/dashboard-candidato/profile`);
         swal({
           title: "Bienvenido!",
-          text:'Por favor completa tu perfil!',
+          text: "Por favor completa tu perfil!",
           icon: "success",
           button: "Aceptar",
         });
-      } 
+      }
       // else {
       //   //console.log("pagina empresa");
       //   // navigate(`/Dashboard-recruiter/home`);
@@ -246,39 +246,19 @@ export const RegisterCandidate = () => {
 
   //Use Formik
   const loginInit = {
-    backgroundImage:
-      "url(https://frontjobinderimg.s3.amazonaws.com/A%C3%B1adir+un+t%C3%ADtulo.png)  ",
     fontFamily: "Poppins",
     boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
 
-    color: "#f2f2f2",
-    backdropFilter: "blur(2px)",
-    WebkitBackdropFilter: "blur(2px)",
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "cover",
-    minHeight: "750px",
-    backgroundAttachment: "fixed",
+    color: "#000",
   };
 
   const glass = {
-    background: "rgba(0, 189, 214, 0.18)",
     borderRadius: "16px",
     boxShadow:
       "rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset",
-    backdropFilter: "blur(2px)",
-    WebkitBackdropFilter: "blur(2px)",
 
     marginBottom: "30px",
     height: "80%",
-  };
-
-  const logoJobinder = {
-    background: "rgba(255, 255, 255, 0.21)",
-
-    borderRadius: "12px",
-    boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
-    backdropFilter: "blur(5.2px)",
-    WebkitBackdropFilter: "blur(5.2px)",
   };
 
   const imgContainer = {
@@ -309,13 +289,10 @@ export const RegisterCandidate = () => {
     <>
       <section className="signin-page account" style={loginInit}>
         <div className="container">
-          <div className="row">
-            <div className="col-md-6 col-md-offset-3">
+          <div className="row d-flex justify-content-center align-items-center">
+            <div className="col-md-7 col-md-offset-3">
               <div className="block text-center" style={glass}>
-                <div
-                  style={logoJobinder}
-                  className="d-flex justify-content-center align-items-center"
-                >
+                <div className="d-flex justify-content-center align-items-center">
                   <Link to={"/"} className="logo_Jobinder">
                     <img src={logo} alt="" />
                   </Link>
@@ -433,16 +410,16 @@ export const RegisterCandidate = () => {
                           type="checkbox"
                           label="He leído y acepto"
                           checked={isChecked}
-                          disabled={isChecked===true}
+                          disabled={isChecked === true}
                           onChange={handleCheckboxChange}
                           className="d-flex justify-content-center align-items-center "
                         />
-                      <Link
-                        style={{ color: "inherit",fontSize:'12px'}}
-                        to="/TerminosyCondiciones"
-                      >                   
-                      los términos y condiciones    
-                      </Link>
+                        <Link
+                          style={{ color: "inherit", fontSize: "12px" }}
+                          to="/TerminosyCondiciones"
+                        >
+                          los términos y condiciones
+                        </Link>
                       </Form.Group>
                       {!isResgitering && (
                         <Button
@@ -510,19 +487,6 @@ export const RegisterCandidate = () => {
                   Ya tienes una cuenta?
                   <Link to={`/login-candidato`}>Accede</Link>
                 </p>
-              </div>
-            </div>
-            <div className="col-md-6 col-md-offset-3 d-none d-md-block">
-              <div
-                className="block text-center  shadow-none"
-                style={imgContainer}
-              >
-                <img
-                  className="container w-100 h-50"
-                  src="https://frontjobinderimg.s3.amazonaws.com/JobinderRegister.png"
-                  alt=""
-                  style={imgInside}
-                />
               </div>
             </div>
           </div>

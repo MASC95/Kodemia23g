@@ -43,8 +43,8 @@ const UpdatePassword = () => {
     const resultValidate = expEmail.test(emailUser);
     setIsValidEmail(resultValidate);
     //console.log('resultVAlidateEmail:..',String(resultValidate));
-    return resultValidate
-  }
+    return resultValidate;
+  };
 
   useEffect(() => {
     if (accessCode !== "") {
@@ -103,10 +103,12 @@ const UpdatePassword = () => {
   const searchEmailInDB = async (emailUser) => {
     const { userURL } = endpointsGral;
     try {
-      const response = await axios.get(`${userURL}getUserByEmail?email=${emailUser}`);
-      const isFoundUser= response?.data?.user?.email
+      const response = await axios.get(
+        `${userURL}getUserByEmail?email=${emailUser}`
+      );
+      const isFoundUser = response?.data?.user?.email;
       //console.log('resultado de busqueda de usuario:..',isFoundUser);
-      return isFoundUser
+      return isFoundUser;
     } catch (error) {
       //console.log(error);
     }
@@ -146,30 +148,24 @@ const UpdatePassword = () => {
     ) {
       const { userURL } = endpointsGral;
 
-        try {
-            const response = await axios.post(`${userURL}updatePassword`,dataFormUpdate)
-            console.log('response UpdatePassword:..',response);
-            const updatedPassword= response?.data?.email;
-            if(updatedPassword){
-              Swal.fire(
-                'Muy bien!',
-                'Tu Contraseña ha sido Actualizada!',
-                'success'
-              ).then(
-                navigate('/login-candidato')
-              )
-              
-            }else{
-              Swal.fire(
-                'Error!',
-                'Email no encotrado!',
-                'error'
-              ).then(
-                navigate('/login-candidato')
-              )
-            }
-            
-       
+      try {
+        const response = await axios.post(
+          `${userURL}updatePassword`,
+          dataFormUpdate
+        );
+        console.log("response UpdatePassword:..", response);
+        const updatedPassword = response?.data?.email;
+        if (updatedPassword) {
+          Swal.fire(
+            "Muy bien!",
+            "Tu Contraseña ha sido Actualizada!",
+            "success"
+          ).then(navigate("/login-candidato"));
+        } else {
+          Swal.fire("Error!", "Email no encotrado!", "error").then(
+            navigate("/login-candidato")
+          );
+        }
       } catch (error) {
         // console.log(error);
       }
@@ -180,18 +176,12 @@ const UpdatePassword = () => {
     if (!isValidEmail) return;
 
     try {
-      const resultSearch= await searchEmailInDB(dataFormUpdate?.email);
-      if(resultSearch){
+      const resultSearch = await searchEmailInDB(dataFormUpdate?.email);
+      if (resultSearch) {
         //console.log('enviando AccessCode:..');
-        await enviarCodigo(dataFormUpdate?.email)
-      }else{
-        Swal.fire(
-          'Error!',
-          'Email no encotrado!',
-          'error'
-        ).then(
-          navigate('/')
-        )
+        await enviarCodigo(dataFormUpdate?.email);
+      } else {
+        Swal.fire("Error!", "Email no encotrado!", "error").then(navigate("/"));
       }
     } catch (error) {
       //console.log(error)
@@ -200,29 +190,21 @@ const UpdatePassword = () => {
 
   const isMobile = useMediaQuery({ query: "(max-width: 576px)" });
   const loginInit = {
-    backgroundImage:
-      "url(https://frontjobinderimg.s3.amazonaws.com/A%C3%B1adir+un+t%C3%ADtulo.png)  ",
     fontFamily: "Poppins",
     boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
-    color: "#f2f2f2",
-    backdropFilter: "blur(2px)",
-    WebkitBackdropFilter: "blur(2px)",
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "cover",
+    color: "#000",
+
     minHeight: "450px",
     display: "flex",
     alignItmes: "center",
     justifyContent: "center",
-    backgroundAttachment: "fixed",
   };
 
   const glass = {
-    background: "rgba(0, 189, 214, 0.18)",
     borderRadius: "16px",
     boxShadow:
       "rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset",
-    backdropFilter: "blur(2px)",
-    WebkitBackdropFilter: "blur(2px)",
+
     marginTop: "50px",
     marginBottom: "50px",
     height: "100%",

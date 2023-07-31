@@ -67,10 +67,13 @@ const Section = () => {
                   Accede a nuestra plataforma para publicar tus vacantes, buscar
                   talentos y gestionar tus procesos de selección.
                 </p>
-                <div className="d-flex justify-content-center align-items-center">
+                <div
+                  className="d-flex justify-content-center align-items-center"
+                  onClick={handleClickRecruiter}
+                >
                   <Button2
                     className="access"
-                    text="Acceder como candidato"
+                    text="Acceder como reclutador"
                     colortext="#fff"
                     widthB="250px"
                     bgcolor="#106973"
@@ -78,7 +81,6 @@ const Section = () => {
                     paddingB="10px 20px"
                     borde="none"
                     altura="40px"
-                    onClick={handleClickCandidate}
                   />
                 </div>
               </div>
@@ -109,7 +111,10 @@ const Section = () => {
                   vacantes de las empresas más importantes.
                 </p>
 
-                <div className="d-flex justify-content-center align-items-center">
+                <div
+                  className="d-flex justify-content-center align-items-center"
+                  onClick={handleClickCandidate}
+                >
                   <Button2
                     className="access"
                     text="Acceder como candidato"
@@ -120,7 +125,6 @@ const Section = () => {
                     paddingB="10px 20px"
                     borde="none"
                     altura="40px"
-                    onClick={handleClickCandidate}
                   />
                 </div>
               </div>

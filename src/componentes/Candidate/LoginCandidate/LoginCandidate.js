@@ -111,52 +111,31 @@ export const LoginCandidate = () => {
       <section
         className="Login-page account"
         style={{
-          backgroundImage:
-            "url(https://frontjobinderimg.s3.amazonaws.com/A%C3%B1adir+un+t%C3%ADtulo.png)  ",
           fontFamily: "Poppins",
           boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
 
           color: "#000",
-          backdropFilter: "blur(2px)",
-          WebkitBackdropFilter: "blur(2px)",
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-          minHeight: "750px",
-          backgroundAttachment: "fixed",
         }}
       >
-        <div className="container">
-          <div className="row">
-            <div className="col-md-6 col-md-offset-3">
+        <div className="container ">
+          <div className="row  d-flex justify-content-center align-items-center">
+            <div className="col-md-7 col-md-offset-3  ">
               <div
                 className="block text-center"
                 style={{
-                  background: "rgba(0, 189, 214, 0.18)",
                   borderRadius: "16px",
                   boxShadow:
                     "rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset",
                   backdropFilter: "blur(2px)",
                   WebkitBackdropFilter: "blur(2px)",
-
                   marginBottom: "30px",
                   height: "80%",
                 }}
               >
-                <div
-                  style={{
-                    background: "rgba(255, 255, 255, 0.21)",
+                <Link to={"/"} className="logo_Jobinder">
+                  <img src={logo} alt="" />
+                </Link>
 
-                    borderRadius: "12px",
-                    boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
-                    backdropFilter: "blur(5.2px)",
-                    WebkitBackdropFilter: "blur(5.2px)",
-                  }}
-                  className="d-flex justify-content-center align-items-center"
-                >
-                  <Link to={"/"} className="logo_Jobinder">
-                    <img src={logo} alt="" />
-                  </Link>
-                </div>
                 <h2 className="text-center welcome-back">
                   Inicia sesión en tu cuenta
                 </h2>
@@ -261,40 +240,6 @@ export const LoginCandidate = () => {
                     </form>
                   )}
                 </Formik>
-              </div>
-            </div>
-            <div className="col-md-6 col-md-offset-3 d-none d-md-block">
-              <div
-                className="block text-center  shadow-none"
-                style={{
-                  borderRadius: "5%",
-                  margin: "20px",
-                  boxShadow:
-                    "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px",
-                  borderWidth: "2px",
-                  borderStyle: "solid",
-                  background: "rgba(0, 189, 214, 0.18)",
-
-                  backdropFilter: "blur(2px)",
-                  WebkitBackdropFilter: "blur(2px)",
-                  width: "100%",
-                  objectFit: "cover",
-                  borderImage:
-                    "linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%)",
-                  padding: "30px",
-                  marginTop: "130px",
-                }}
-              >
-                <img
-                  className="container w-100 h-50"
-                  style={{
-                    borderRadius: "30px",
-                    borderImage:
-                      "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px",
-                  }}
-                  src={login}
-                  alt=""
-                />
               </div>
             </div>
           </div>

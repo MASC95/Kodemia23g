@@ -157,7 +157,7 @@ export const Vacancy = () => {
       >
         <div className="d-flex">
           <h1
-            className="text-start mt-3 "
+            className="d-flex justify-content-center w-100 mt-3 "
             style={{
               color: "#498BA6",
               textShadow:

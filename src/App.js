@@ -50,11 +50,11 @@ function App() {
   useEffect(() => {
     if (dataLocalStorage?.role === "candidato") {
       setDataCandidate(dataLocalStorage);
-      navigate("/dashboard-candidato/home");
+      navigate("/dashboard-candidato/search");
     }
     if (dataLocalStorage?.role === "empresa") {
       setDataRecruiter(dataLocalStorage);
-      navigate("/dashboard-recruiter/home");
+      navigate("/dashboard-recruiter/vacancy");
     }
   }, []);
 
@@ -63,13 +63,17 @@ function App() {
 
     if (dataLocalStorage?.role === "candidato") {
       setDataCandidate(dataLocalStorage);
+      
     }
     if (dataLocalStorage?.role === "empresa") {
       setDataRecruiter(dataLocalStorage);
+      
     }
   }, [dataLocalStorage]);
 
-  useEffect(() => {}, [dataCandidate, dataRecruiter]);
+  useEffect(() => {
+    
+  }, [dataCandidate, dataRecruiter]);
 
   return (
     <JobContext.Provider
@@ -105,7 +109,7 @@ function App() {
           <Route path="/updatePasswordRecruiter/:email" element={<UpdatePasswordRecruiter/>}/>
 
           {/** si intenta ingresar una ruta que no existe lo renderiza a la landing (o si esta deslogeado) */}
-          <Route path="*" element={<Mains/>}/>
+          
 
           {/* aqui las rutas de la seccion candidato */}
           {dataLocalStorage?.role==='candidato'&&
@@ -135,7 +139,7 @@ function App() {
             <Route path="softskill-addNew" element={<AddSkills />} />
           </Route>
           }
-          
+          {/* <Route path="*" element={<Mains/>}/> */}
         </Routes>
       </div>
     </JobContext.Provider>

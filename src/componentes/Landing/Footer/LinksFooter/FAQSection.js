@@ -31,27 +31,11 @@ const FAQSection = () => {
     <>
       <div
         style={{
-          backgroundImage: "linear-gradient(to top, #37ecba 0%, #72afd3 100%)",
           fontFamily: "Poppins",
           color: "#0D324D",
           minHeight: "100vh",
         }}
       >
-        <Link
-          to="/"
-          style={{
-            textDecoration: "none",
-            color: "inherit",
-            marginTop: "40px",
-            marginLeft: "30px",
-          }}
-        >
-          <FaHome
-            style={iconStyle}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-          />
-        </Link>
         <div className="p-5">
           <div
             style={{
@@ -82,7 +66,7 @@ const FAQSection = () => {
               Preguntas Frecuentes
             </h3>
           </div>
-          <Accordion defaultActiveKey={["0"]} alwaysOpen>
+          <Accordion>
             <Accordion.Item eventKey="0">
               <Accordion.Header>
                 ¿Como creo una cuenta en Jobinder?

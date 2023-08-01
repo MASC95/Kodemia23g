@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import "./scss/style.scss";
 import { Link } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
-
+import FAQSection from "../Footer/LinksFooter/FAQSection";
 import "animate.css";
 import Footer from "../Footer/Footer";
 import Section from "./Section";
@@ -10,36 +10,40 @@ import SecondCards from "./SecondCards";
 import SectionThree from "./SectionThree";
 import useJob from "../../../hooks/useJob";
 import { useNavigate } from "react-router-dom";
-
+import HomeCandidate from "../../Candidate/HomeCandidate/HomeCandidate";
 const Mains = () => {
-  const[dataCandidate,setDataCandidate,dataRecrutier,setDataRecruiter,dataLocalStorage]=useJob();
+  const [
+    dataCandidate,
+    setDataCandidate,
+    dataRecrutier,
+    setDataRecruiter,
+    dataLocalStorage,
+  ] = useJob();
   const navigate = useNavigate();
 
   useEffect(() => {
-    
     // console.log('dataLocalStorage:..',dataLocalStorage);
 
-  if(dataLocalStorage?.role==='candidato'){
-    navigate('/dashboard-candidato/home')
-  }
-  if(dataLocalStorage?.role==='empresa'){
-    navigate('/dashboard-recruiter/home')
-  }
-  
-    
-  
+    if (dataLocalStorage?.role === "candidato") {
+      navigate("/dashboard-candidato/home");
+    }
+    if (dataLocalStorage?.role === "empresa") {
+      navigate("/dashboard-recruiter/home");
+    }
+  }, [dataLocalStorage]);
 
-  }, [dataLocalStorage])
-  
+  function scrollToTop() {
+    window.scrollTo(0, 0);
+  }
 
+  useEffect(() => {
+    scrollToTop();
+  }, []);
 
   return (
-    <header
-      style={{
-        backgroundImage: "linear-gradient(45deg, #fffeff 0%, #d7fffe 100%)",
-      }}
-    >
+    <header style={{ zIndex: "1", position: "absolute" }}>
       <Navbar />
+      <HomeCandidate />
       <div className="primary-container">
         <h1
           className="match d-flex justify-content-center mx-100px m-md-5 animate__animated animate__pulse "
@@ -60,8 +64,9 @@ const Mains = () => {
         </p>
 
         <Section />
-        <SecondCards />
+
         <SectionThree />
+        <FAQSection />
       </div>
       <Footer />
     </header>

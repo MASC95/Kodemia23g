@@ -35,8 +35,8 @@ function OffCanvasRecruiter({ showOffcanvas, handleShowOffcanvas }) {
         onHide={handleShowOffcanvas}
         className="off-canvas"
       >
-        <Offcanvas.Header className="d-flex justify-content-center align-items-center canvas-header">
-          <Link to={"index.html"} className="logo-jobinder">
+        <Offcanvas.Header closeButton className=" canvas-header">
+          <Link to={"index.html"} className="logo-jobinder d-flex justify-content-center align-items-center w-100">
             <img
               src={logo}
               className="img-jobinder"
@@ -50,7 +50,7 @@ function OffCanvasRecruiter({ showOffcanvas, handleShowOffcanvas }) {
             onClick={handleShowOffcanvas}
             className="d-flex flex-column columns"
           >
-            <Link to={`/Dashboard-Recruiter/home`} className="link">
+            <Link to={`/Dashboard-Recruiter/home`} className="link d-none">
               <FaHome className="icons" />
               <span className="text">Inicio</span>
             </Link>

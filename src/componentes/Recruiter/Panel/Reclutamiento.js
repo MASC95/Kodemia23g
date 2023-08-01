@@ -10,6 +10,8 @@ import { myId } from "../../lib/myLib";
 import { Spinner } from "react-bootstrap";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import { FaCheck,FaEyeSlash } from "react-icons/fa";
+import useJob from '../../../hooks/useJob';
 import "./scss/style.scss";
 
 export const Reclutamiento = () => {
@@ -22,6 +24,8 @@ export const Reclutamiento = () => {
   const vacancyTitle= searchParams.get("title");
   const vacancyCompany= searchParams.get("company");
   const navigate = useNavigate();
+  const [errorBackend,setErrorBackend]=useState(false);
+  const [dataCandidate,setDataCandidate,dataRecruiter,setDataRecruiter,dataLocalStorage,setDataLocalStorage]=useJob();
 
   //console.log('searchParams:..',searchParams.get('v'));
 
@@ -30,7 +34,7 @@ export const Reclutamiento = () => {
   }, []);
 
   useEffect(() => {
-    console.log("state candidatos:..", candidatos);
+    //console.log("state candidatos:..", candidatos);
     checkListContratados();
   }, [candidatos]);
 
@@ -49,6 +53,9 @@ export const Reclutamiento = () => {
     const phases = ["Llamada", "Entrevista", "Pruebas", "Contratado"];
     let tempDataApplicants = [];
 
+    const dataVacancy= await axios.get(`${endpointsGral.vacancyURL}${idVacancy}`);
+        console.log('DataVacancy (rejecteds):..',dataVacancy.data.infoVacancy.rejecteds);
+    const rejecteds=dataVacancy?.data?.infoVacancy?.rejecteds;
     for (const phase of phases) {
       const listNumber = phases.indexOf(phase) + 1;
 
@@ -56,16 +63,24 @@ export const Reclutamiento = () => {
       try {
         const result = await axios.get(endpointPhase);
         const dataVacancies = result.data.infoPhase.vacancies;
-        console.log("dataVacancies:...", dataVacancies, idVacancy);
+        //console.log("dataVacancies:...", dataVacancies, idVacancy);
         const arrayIdsApplicants = dataVacancies.find(
           (item) => String(item.idVacancie) === idVacancy
         );
-        console.log("dataApplicants(ROR):..", arrayIdsApplicants);
-
-        if (arrayIdsApplicants) {
-          for (let i = 0; i < arrayIdsApplicants?.applicants?.length; i++) {
+        console.log('arrayIdsApplicants:..',arrayIdsApplicants);
+        const listadoApplicants=[];
+        arrayIdsApplicants?.applicants?.forEach((idApplicante)=>{
+          const findInRejecteds= rejecteds.find(idRechazado=>String(idRechazado)===String(idApplicante));
+          if(!findInRejecteds){
+            listadoApplicants.push(idApplicante)
+          }
+        })
+        //console.log("dataApplicants(ROR):..", arrayIdsApplicants);
+        console.log('listadoApplicants:..',listadoApplicants)
+        if (listadoApplicants) {
+          for (let i = 0; i < listadoApplicants?.length; i++) {
             const response = await axios.get(
-              `${endpointsGral.userURL}getUser/${arrayIdsApplicants.applicants[i]}`
+              `${endpointsGral.userURL}getUser/${listadoApplicants[i]}`
             );
             if (response) {
               const applicant = response?.data?.user;
@@ -238,6 +253,64 @@ try {
     backdropFilter: "blur(2px)",
     WebkitBackdropFilter: "blur(2px)",
   };
+  const handleAdvance=(idCandidate)=>{
+    //console.log(`Avanzando de Etapa (${etapa}):.. id:(${idCandidate})`)
+    const newState= candidatos.map(candidato=>{
+      if(String(candidato._id)===idCandidate){
+        candidato.list=candidato.list+1;
+      }
+      return candidato
+    })
+    setCandidatos(newState)
+  }
+  const handleDelete=(idCandidate)=>{
+    console.log('Borrando Aplicante:..',idCandidate)
+    Swal.fire({
+      title: "Eliminar candidato",
+      text: "Estas seguro de eliminar esta candidato?!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si, eliminar!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        //console.log("indice a borrar:..", index);
+        const hideCandidate = candidatos.find(candidato=>candidato._id===idCandidate);
+        const id = hideCandidate._id;
+        //console.log("candidato a ocultar:..", id);
+        if (hideCandidate) {
+          const deleteOnList = candidatos.filter(
+            (candidato) => candidato._id !== idCandidate
+          );
+          try {
+            axios.defaults.headers.common[
+              "Authorization"
+            ] = `Bearer: ${dataRecruiter.accessToken}`;
+            //console.log(
+            //   "dataRecruiter.accessToken ",
+            //   dataRecruiter.accessToken
+            // );
+            const responseBack = await axios.post(
+              `${endpointsGral.hideUserInVacancy}`,
+              { idVacancy, idCandidate: id, emailUser: hideCandidate.email }
+            );
+            //console.log("responseBack HideUser:..", responseBack);
+          } catch (error) {
+            console.log('Error al ocultar user:..',error);
+            const errMs= error?.response?.data?.errors[0]?.message;
+            if(errMs){
+              setErrorBackend(errMs)
+            }
+          }
+          setCandidatos(deleteOnList);
+          //console.log("lista de candidatos sin el oculto:..", deleteOnList);
+        } else {
+          console.log("error al ocultar");
+        }
+      }
+    });
+  }
 
   return (
     <div className="main m-5">
@@ -277,6 +350,10 @@ try {
                 onDragStart={(evt) => startDrag(evt, item)}
               >
                 <p className="body">{item.body}</p>
+                <div className="d-flex justify-content-end gap-2 my-2">
+                <FaCheck onClick={()=>handleAdvance(item._id)}  className="text-info fs-4"/>
+                <FaEyeSlash onClick={()=>handleDelete(item._id)} className="text-danger opacity-50 fs-4"/>
+                </div>
               </div>
             ))}
           </div>
@@ -302,6 +379,10 @@ try {
                 onDragStart={(evt) => startDrag(evt, item)}
               >
                 <p className="body body2">{item.body}</p>
+                <div className="d-flex justify-content-end gap-2 my-2">
+                <FaCheck onClick={()=>handleAdvance(item._id)}  className="text-info fs-4"/>
+                <FaEyeSlash onClick={()=>handleDelete(item._id)} className="text-danger opacity-50 fs-4"/>
+                </div>
               </div>
             ))}
           </div>
@@ -327,6 +408,10 @@ try {
                 onDragStart={(evt) => startDrag(evt, item)}
               >
                 <p className="body body3">{item.body}</p>
+                <div className="d-flex justify-content-end gap-2 my-2">
+                <FaCheck onClick={()=>handleAdvance(item._id)}  className="text-info fs-4"/>
+                <FaEyeSlash onClick={()=>handleDelete(item._id)} className="text-danger opacity-50 fs-4"/>
+                </div>
               </div>
             ))}
           </div>

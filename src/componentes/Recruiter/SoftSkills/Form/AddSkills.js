@@ -11,6 +11,7 @@ import { useFormik } from "formik";
 import * as Yup from 'yup'
 import useJob from '../../../../hooks/useJob'
 import Swal from 'sweetalert2';
+import { myId } from '../../../lib/myLib';
 
 const initDataForm={
   name:'',
@@ -272,10 +273,10 @@ export const AddSkills=()=>{
           sortable: false,
           selector: (row, i) => row.null,
           cell: (d) =>[
-             <button type="button" className="buttons btn btn-outline-success" onClick={handleEdit.bind(this,d.index)}>
+             <button type="button" key={myId()} className="buttons btn btn-outline-success" onClick={handleEdit.bind(this,d.index)}>
               <FaEdit className="icon_edit2"/>
               </button>, 
-             <button type="button" className="buttons btn btn-outline-danger"onClick={handleDeleteSkill.bind(this,d.index)}>
+             <button type="button"  key={myId()} className="buttons btn btn-outline-danger"onClick={handleDeleteSkill.bind(this,d.index)}>
              <FaTrash className="icon_trash" />  
              </button>
             // <FaTrash className="icon_trash" onClick={handleDeleteSkill.bind(this,d.id)}/>  

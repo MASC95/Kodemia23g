@@ -35,8 +35,8 @@ function OffCanvasCandidate({ showOffcanvas, handleShowOffcanvas }) {
         onHide={handleShowOffcanvas}
         className="off-canvas"
       >
-        <Offcanvas.Header className="d-flex justify-content-center align-items-center offcanvas-header">
-          <Link to={"/"} className="logo-jobinder">
+        <Offcanvas.Header closeButton className=" offcanvas-header">
+          <Link to={"/"} className="logo-jobinder d-flex justify-content-center align-items-center w-100">
             <img
               src={logo}
               className="img-jobinder"
@@ -50,7 +50,7 @@ function OffCanvasCandidate({ showOffcanvas, handleShowOffcanvas }) {
             onClick={handleShowOffcanvas}
             className="d-flex flex-column columns"
           >
-            <Link to={`/dashboard-candidato/home`} className="link">
+            <Link to={`/dashboard-candidato/home`} className="link d-none">
               <FaHome className="icons" />
               <span className="text fs-6">Inicio</span>
             </Link>
@@ -60,7 +60,7 @@ function OffCanvasCandidate({ showOffcanvas, handleShowOffcanvas }) {
             </Link>
             <Link to={`/dashboard-candidato/search`} className="link">
               <FaSearch className="icons" />{" "}
-              <span className="text fs-6">Buscar</span>
+              <span className="text fs-6">Buscar Vacantes</span>
             </Link>
             <Link to={`/dashboard-candidato/app-vacancies`} className="link">
               <FaSuitcase className="icons" />{" "}

@@ -3,6 +3,7 @@ import "./scss/style.scss";
 import candidate from "../../Candidate/img/Candidate.avif";
 import recruiter from "../../Candidate/img/Recruiter.avif";
 import "./scss/section.scss";
+import Button2 from "../../Candidate/Buttons/Button2";
 
 const Section = () => {
   const [isErorImgCadidate, setIsErorImgCandidate] = useState(false);
@@ -37,10 +38,7 @@ const Section = () => {
     <section className="sectionOne">
       <div className="first-card-container">
         <div className="row row-first-card ">
-          <div
-            className="col-5 columna text-decoration-none"
-            onClick={handleClickRecruiter}
-          >
+          <div className="col-5 columna ">
             {/*  <Link
               to="/login-candidato"
               className="link-card text-decoration-none" 
@@ -69,13 +67,26 @@ const Section = () => {
                   Accede a nuestra plataforma para publicar tus vacantes, buscar
                   talentos y gestionar tus procesos de selección.
                 </p>
-                <p className="access d-sm-block d-md-none text-center">
-                  Acceder como Reclutador
-                </p>
+                <div
+                  className="d-flex justify-content-center align-items-center"
+                  onClick={handleClickRecruiter}
+                >
+                  <Button2
+                    className="access"
+                    text="Acceder como reclutador"
+                    colortext="#fff"
+                    widthB="250px"
+                    bgcolor="#106973"
+                    fs="14px"
+                    paddingB="10px 20px"
+                    borde="none"
+                    altura="40px"
+                  />
+                </div>
               </div>
             </div>
           </div>
-          <div className="col-5 columna " onClick={handleClickCandidate}>
+          <div className="col-5 columna ">
             <div className="cartas" style={{ cursor: "pointer" }}>
               <picture className=" img-div">
                 <source
@@ -97,12 +108,25 @@ const Section = () => {
                 <h5 className="card-title text-center">¿Eres Candidato?</h5>
                 <p className="card-text text-center">
                   Encuentra las mejores ofertas de trabajo, aplica a las
-                  vacantes de las empresas más importantes y haz crecer tu
-                  carrera.
+                  vacantes de las empresas más importantes.
                 </p>
-                <p className="access d-sm-block d-md-none text-center">
-                  Acceder como Candidato
-                </p>
+
+                <div
+                  className="d-flex justify-content-center align-items-center"
+                  onClick={handleClickCandidate}
+                >
+                  <Button2
+                    className="access"
+                    text="Acceder como candidato"
+                    colortext="#fff"
+                    widthB="250px"
+                    bgcolor="#106973"
+                    fs="14px"
+                    paddingB="10px 20px"
+                    borde="none"
+                    altura="40px"
+                  />
+                </div>
               </div>
             </div>
           </div>

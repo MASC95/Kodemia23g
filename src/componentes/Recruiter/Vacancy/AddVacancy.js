@@ -22,7 +22,7 @@ const initDataForm = {
   mode: "",
   city: "",
   salary: "",
-  status: "",
+  status: "Iniciado",
 };
 export const AddVacancy = () => {
   const [listSkills, setListSkills] = useState([]);
@@ -71,7 +71,6 @@ export const AddVacancy = () => {
       mode: Yup.string().required("Requerido"),
       city: Yup.string().required("Requerido"),
       salary: Yup.number().required("Requerido"),
-      status: Yup.string().required("Requerido"),
     }),
     onSubmit: (values) => {
       setTimeout(() => {
@@ -403,7 +402,7 @@ export const AddVacancy = () => {
                   </div>
                 </div>
               </div>
-              <div className="row mb-4">
+              {/* <div className="row mb-4">
                 <div className="col">
                   <div className="form-outline">
                     <label
@@ -427,7 +426,6 @@ export const AddVacancy = () => {
                     >
                       <option> Seleccionar</option>
                       <option> Iniciado</option>
-                      {/* <option> Cerrado</option> */}
                     </select>
                     {formik.touched.status && formik.errors.status && (
                       <span className="text-danger">{formik.errors.status}</span>
@@ -435,7 +433,7 @@ export const AddVacancy = () => {
                   </div>
                 </div>
                 <div className="col"></div>
-              </div>
+              </div> */}
               <ToDoList
                 dataActivities={dataActivities}
                 setDataActivities={setDataActivities}

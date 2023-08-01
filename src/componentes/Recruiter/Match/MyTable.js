@@ -81,7 +81,14 @@ const MyTable = ({
     }
 
   const retriveVacancy = dataInfoVacancy.job_skills?.map((item) => {
-    return item._id;
+    // const objVacancy={
+    //   id:item._id,
+    //   name:item.name,
+    //   level:item.level
+    // }
+    // return item._id;
+    return item.name;
+
   });
 
 
@@ -89,10 +96,16 @@ const MyTable = ({
     const data = dataByUserCandidate.map((item, index) => {
       // const retriveUser = item.user_skills;
       const retriveUser=item.user_skills.map((idSkills)=>{
-        return idSkills._id
+        // const objNew={
+        //   id:idSkills._id,
+        //   name:idSkills.name,
+        //   level:idSkills.level
+        // }
+        // return idSkills._id
+        return idSkills.name
       })
-      //console.log('skills usuario', retriveUser)
-      //console.log('skills vacante', retriveVacancy)
+      // console.log('skills usuario', retriveUser)
+      // console.log('skills vacante', retriveVacancy)
 
       const conteo = {};
       retriveUser.forEach((elemento) => {

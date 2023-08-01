@@ -10,6 +10,7 @@ import { myId } from "../../lib/myLib";
 import { Spinner } from "react-bootstrap";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import { FaCheck,FaEyeSlash } from "react-icons/fa";
 import "./scss/style.scss";
 
 export const Reclutamiento = () => {
@@ -30,7 +31,7 @@ export const Reclutamiento = () => {
   }, []);
 
   useEffect(() => {
-    console.log("state candidatos:..", candidatos);
+    //console.log("state candidatos:..", candidatos);
     checkListContratados();
   }, [candidatos]);
 
@@ -56,11 +57,11 @@ export const Reclutamiento = () => {
       try {
         const result = await axios.get(endpointPhase);
         const dataVacancies = result.data.infoPhase.vacancies;
-        console.log("dataVacancies:...", dataVacancies, idVacancy);
+        //console.log("dataVacancies:...", dataVacancies, idVacancy);
         const arrayIdsApplicants = dataVacancies.find(
           (item) => String(item.idVacancie) === idVacancy
         );
-        console.log("dataApplicants(ROR):..", arrayIdsApplicants);
+        //console.log("dataApplicants(ROR):..", arrayIdsApplicants);
 
         if (arrayIdsApplicants) {
           for (let i = 0; i < arrayIdsApplicants?.applicants?.length; i++) {
@@ -277,6 +278,10 @@ try {
                 onDragStart={(evt) => startDrag(evt, item)}
               >
                 <p className="body">{item.body}</p>
+                <div className="d-flex justify-content-end">
+                <FaCheck className="text-info"/>
+                <FaEyeSlash/>
+                </div>
               </div>
             ))}
           </div>

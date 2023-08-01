@@ -36,14 +36,12 @@ const About = () => {
     opacity: hovered ? "0.7" : "1",
   };
   const style = {
-    backgroundImage: "linear-gradient(to top, #37ecba 0%, #72afd3 100%)",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center center",
     width: "100vw",
     height: "auto",
-    backgroundAttachment: "fixed",
-    backgroundSize: "cover",
-    color: "#f2f2f2",
+
+    color: "#000",
   };
   const letters = {
     background:

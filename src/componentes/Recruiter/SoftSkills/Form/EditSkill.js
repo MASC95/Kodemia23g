@@ -229,6 +229,7 @@ export const EditSkill=({listSkills,setListSkills})=>{
                 <DataTableExtensions  
                     export={false}
                     print={false}
+                    filter={false}
                     {...tableData}>
                     <DataTable {...tableData}
                     key={myId()}

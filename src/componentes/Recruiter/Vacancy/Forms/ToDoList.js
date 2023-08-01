@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import Table from "react-bootstrap/Table";
 import { myId } from "../../../lib/myLib";
-import { FaPlus, FaTrash } from "react-icons/fa";
+import { FaPlus, FaTrash, FaEdit } from "react-icons/fa";
 import { useEffect } from "react";
 import Swal from "sweetalert2";
 import DataTable, { createTheme } from "react-data-table-component";
@@ -14,6 +14,8 @@ const initAddExp = {
 
 const ToDoList = ({ dataActivities, setDataActivities }) => {
   const [addTask, setAddTask] = useState(initAddExp);
+  const [isEditing, setIsEditing] = useState(false);
+  const [dataEditing, setDataEditing] = useState({});
 
   const handleChange = (e) => {
     //console.log(e.target.name, e.target.value);
@@ -63,59 +65,29 @@ const ToDoList = ({ dataActivities, setDataActivities }) => {
     // console.log('newData:..',newData);
     // setDataActivities([...newData]);
   };
-  // const data = dataActivities?.map((item, index) => {
-  //   return {
-  //     qty: index,
-  //     task: item.task,
-  //   };
-  // });
 
-  // const columns = [
-  //   {
-  //     name: "rowId",
-  //     selector: (row, i) => i,
-  //     sortable: true,
-  //     hide: true,
-  //     omit: true,
-  //   },
-  //   {
-  //     name: "#",
-  //     selector: (row, i) => i + 1,
-  //     sortable: true,
-  //     hide: true,
-  //     omit: true,
-  //   },
-  //   {
-  //     name: "Descripción",
-  //     grow: 5,
-  //     selector: (row, i) => `${row.task}`,
-  //     sortable: true,
-  //     style: {
-  //       maxWidth: '806px',
-  //       minHeight: '56px',
-  //     },
-  //   },
-  //   {
-  //     name: "OPCIONES",
-  //     sortable: false,
-  //     right: true,
-  //     selector: (row, i) => row.null,
-  //     cell: (d) => [
-  //       <span
-  //         className="btn btn-outline-danger"
-  //         name={d.i}
-  //         onClick={handleDeleteExp.bind(this, d.qty)}
-  //       >
-  //         <FaTrash />
-  //       </span>,
-  //       // <button type="button" className="buttons btn btn-outline-success" onClick={handleClick.bind(this,d.qty)} ><FaEdit className="icon_edit1"/></button>
-  //     ],
-  //   },
-  // ];
-  // const tableData = {
-  //   columns,
-  //   data,
-  // };
+  const handleEditTask=(index)=>{
+    setIsEditing(true)
+    let tempEdit= dataActivities[index]
+    setDataEditing({...tempEdit})
+    setAddTask({
+      task:tempEdit.task|| "",
+    })
+  }
+
+  const updateTask=()=>{
+    // console.log('hola')
+    const result=dataActivities.map(item=>{
+      if(item._id===dataEditing._id){
+        item.task=addTask.task
+      }
+      return item
+    })
+    setDataActivities([...result])
+    Swal.fire("Actividad Editada!", "No olvides guardar tus cambios al final!", "success");
+    setIsEditing(false)
+    addTask.task=''
+  }
 
   return (
     <div className="row">
@@ -140,11 +112,21 @@ const ToDoList = ({ dataActivities, setDataActivities }) => {
           onChange={handleChange}
         />
         <button
+          className=" button-2 mb-2 mt-2"
           type="button"
-          className="btn btn-outline-info m-2"
-          onClick={handleExperience}
+          style={{
+            width: "150px",
+            fontSize: "10px",
+            padding: "15px",
+          }}
+          onClick={
+            isEditing?updateTask:
+            handleExperience}
         >
-          <FaPlus /> Agregar actividad
+          {
+            isEditing?'Editar actividad':' Agregar actividad'
+          }
+          
         </button>
       </div>
       <div className="col-12">
@@ -163,13 +145,21 @@ const ToDoList = ({ dataActivities, setDataActivities }) => {
                 {/* <td>{index+1}</td> */}
                 <td>{item.task}</td>
                 <td>
+                  <div className="d-flex justify-content-around">
                   <span
                     className="btn btn-outline-danger"
                     name={index}
-                    onClick={()=>handleDeleteExp(index)}
-                  >
+                    onClick={()=>handleDeleteExp(index)}>
                     <FaTrash />
                   </span>
+                  <span
+                    className="btn btn-outline-success"
+                    name={index}
+                    onClick={()=>handleEditTask(index)}>
+                    <FaEdit />
+                  </span>
+
+                  </div>
                 </td>
               </tr>
             );

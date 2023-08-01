@@ -13,6 +13,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import Navbar from "../../Landing/Navbar/Navbar";
 
 const profileSchema = Yup.object({
   email: Yup.string()
@@ -84,6 +85,7 @@ export const LoginRecruiter = () => {
 
   return (
     <>
+    <Navbar/>
       <section
         className="Login-page account"
         style={{

@@ -4,16 +4,34 @@ import "animate.css";
 import Carousel from "react-bootstrap/Carousel";
 import img1 from "../../Candidate/img/img-1.jpg";
 import img2 from "../../Candidate/img/img-2.jpg";
+import useJob from '../../../hooks/useJob';
+import {useNavigate} from 'react-router-dom';
 
 //import Footer from "../../Landing/Footer/Footer";
 
 const HomeCandidate = () => {
   const [anchoVW, setAnchoVW] = useState(window.innerWidth);
+  const [dataCandidate,setDataCandidate,dataRecruiter,setDataRecruiter,dataLocalStorage,setDataLocalStorage]=useJob();
+  const navigate=useNavigate();
+
 
   useEffect(() => {
     setAnchoVW(window.innerWidth);
     // console.log("anchoVW:..", anchoVW);
   }, [window.innerWidth, anchoVW]);
+
+  useEffect(()=>{
+    if (dataLocalStorage?.role === "candidato") {
+      setDataCandidate(dataLocalStorage);
+      navigate("/dashboard-candidato/search");
+    }
+    if (dataLocalStorage?.role === "empresa") {
+      setDataRecruiter(dataLocalStorage);
+      navigate("/dashboard-recruiter/vacancy");
+    }
+  },[])
+
+
 
   const handleError = () => {
     // console.log("Error al cargar imagen:..");

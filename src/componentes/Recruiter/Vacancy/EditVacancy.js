@@ -21,7 +21,7 @@ const initDataForm = {
   mode: "",
   city: "",
   salary: "",
-  status: "",
+  status: "Iniciado",
   // activities: "",
 };
 
@@ -32,7 +32,7 @@ const validations = Yup.object().shape({
   mode: Yup.string().required("Requerido"),
   city: Yup.string().required("Requerido"),
   salary: Yup.number().required("Requerido"),
-  status: Yup.string().required("Requerido"),
+  // status: Yup.string().required("Requerido"),
   // activities: Yup.string().required("Requerido"),
 });
 
@@ -420,7 +420,7 @@ export const EditVacancy = () => {
                 </div>
               </div>
               <div className="row mb-4">
-                <div className="col">
+                {/* <div className="col">
                   <div className="form-outline">
                     <label
                       className="form-label"
@@ -443,10 +443,9 @@ export const EditVacancy = () => {
                     >
                       <option> Selecciona</option>
                       <option> Iniciado</option>
-                      {/* <option> Cerrado</option> */}
                     </select>
                   </div>
-                </div>
+                </div> */}
                 <div className="col">
                   {/* <div className="form-outline">
                   <label className="form-label text-dark" htmlFor="form6Example1">

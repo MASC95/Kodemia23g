@@ -180,7 +180,7 @@ export const ListSoftskills=({listSkills,setListSkills})=>{
       sortable: false,
       selector: (row, i) => row.null,
       cell: (d) =>[
-        <button type="button" myId={myId} className="buttons btn btn-outline-danger"onClick={handleDeleteSkill.bind(this,d.qty)}>
+        <button type="button" key={myId()} className="buttons btn btn-outline-danger"onClick={handleDeleteSkill.bind(this,d.qty)}>
          <FaTrash className="icon_trash" />  
          </button>,
   ]

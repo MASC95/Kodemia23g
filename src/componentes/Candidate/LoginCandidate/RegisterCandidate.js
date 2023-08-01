@@ -13,6 +13,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import Navbar from "../../Landing/Navbar/Navbar";
 
 let previousTitle = document.title;
 
@@ -263,7 +264,8 @@ export const RegisterCandidate = () => {
 
   return (
     <>
-      <section className="signin-page account" style={loginInit}>
+    <Navbar/>
+      <section className="signin-page account">
         <div className="container">
           <div className="row d-flex justify-content-center align-items-center">
             <div className="col-md-7 col-md-offset-3">
@@ -273,7 +275,7 @@ export const RegisterCandidate = () => {
                     <img src={logo} alt="" />
                   </Link>
                 </div>
-                <h2 className="text-center">Crea tu cuenta</h2>
+                <h2 className="text-center p-1 m-0">Crea tu cuenta</h2>
                 <span>y haz match en el empleo ideal en tiempo récord.</span>
                 <Formik
                   initialValues={dataForm}
@@ -283,7 +285,7 @@ export const RegisterCandidate = () => {
                 >
                   {(props) => (
                     <Form
-                      className="text-left clearfix"
+                      className="text-left m-2"
                       onSubmit={props.handleSubmit}
                     >
                       <Form.Group className="form-group">
@@ -381,14 +383,14 @@ export const RegisterCandidate = () => {
                           <ErrorMessage name="confirmPassword" />
                         </span>
                       </Form.Group>
-                      <Form.Group className="text-center ">
+                      <Form.Group className="text-center d-flex justify-content-center align-items-center">
                         <Form.Check
                           type="checkbox"
-                          label="He leído y acepto"
                           checked={isChecked}
                           disabled={isChecked === true}
                           onChange={handleCheckboxChange}
-                          className="d-flex justify-content-center align-items-center "
+                          
+                          className="border-1"
                         />
                         <Link
                           style={{ color: "inherit", fontSize: "12px" }}

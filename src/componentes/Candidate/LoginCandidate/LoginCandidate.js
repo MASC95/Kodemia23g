@@ -9,6 +9,8 @@ import swal from "sweetalert";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Formik, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import Navbar from "../../Landing/Navbar/Navbar";
+
 const initFormValues = {
   email: "",
   password: "",
@@ -32,8 +34,8 @@ const profileSchema = Yup.object().shape({
 });
 export const LoginCandidate = () => {
   const [formValues, setFormValues] = useState({ ...initFormValues });
-  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
   const [
     dataCandidate,
     setDataCandidate,
@@ -42,6 +44,7 @@ export const LoginCandidate = () => {
     dataLocalStorage,
     setDataLocalStorage,
   ] = useJob();
+
 
   const onFormInputChange = (event) => {
     const InputID = event.target.id;
@@ -78,10 +81,9 @@ export const LoginCandidate = () => {
             icon: "success",
             button: "ok!",
           });
-          resetForm();
           setDataLocalStorage({ ...loginCandidate });
-          //console.log("dashboard Candidato");
           navigate("/dashboard-candidato/search");
+          // resetForm();
         } else {
           swal({
             title: "Error al acceder!",
@@ -108,6 +110,7 @@ export const LoginCandidate = () => {
   };
   return (
     <>
+    <Navbar/>
       <section
         className="Login-page account"
         style={{
@@ -242,7 +245,7 @@ export const LoginCandidate = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> 
       </section>
     </>
   );

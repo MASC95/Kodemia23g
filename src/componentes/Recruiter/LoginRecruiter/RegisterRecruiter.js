@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import logo from "./img/logo.png";
-import register from "./img/14.png";
+import register from "./img/login.png";
 import "./scss/style.scss";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -14,6 +14,7 @@ import Form from "react-bootstrap/Form";
 import { Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import Navbar from "../../Landing/Navbar/Navbar";
 
 const initDataForm = {
   email: "",
@@ -268,7 +269,8 @@ export const RegisterRecruiter = () => {
 
   return (
     <>
-      <section className="signin-page account" style={loginInit}>
+    <Navbar/>
+      <section className="signin-page account">
         <div className="container">
           <div className="row d-flex justify-content-center align-items-center">
             <div className="col-md-7 col-md-offset-3">
@@ -287,7 +289,7 @@ export const RegisterRecruiter = () => {
                 >
                   {(props) => (
                     <Form
-                      className="text-left clearfix"
+                      className="text-left m-2"
                       onSubmit={props.handleSubmit}
                     >
                       <Form.Group className="form-group">
@@ -388,11 +390,11 @@ export const RegisterRecruiter = () => {
                       <Form.Group className="text-center ">
                         <Form.Check
                           type="checkbox"
-                          label="He leído y acepto"
                           checked={isChecked}
                           disabled={isChecked === true}
                           onChange={handleCheckboxChange}
-                          className="d-flex justify-content-center align-items-center "
+                          style={{ color: "inherit",fontSize:'12px'}}
+                          // className="d-flex justify-content-center align-items-center "
                         />
                         <Link
                           style={{ color: "inherit", fontSize: "12px" }}

@@ -172,7 +172,7 @@ export const ProfileRecruiter = () => {
           }`}
         >
           <h1
-            className="d-flex justify-content-center align-items-center px-3"
+            className="d-flex justify-content-center align-items-center px-3 w-100"
             style={{
               color: "#498BA6",
               textShadow:

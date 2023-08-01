@@ -17,7 +17,7 @@ export const Buscar = () => {
             fontFamily: "Poppins, sans-serif, Verdana, Geneva, Tahoma",
           }}
         >
-          Vacantes
+          Buscar Vacantes
         </h1>
 
         <ListBuscar />

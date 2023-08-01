@@ -9,10 +9,13 @@ import { useState, useEffect } from "react";
 import useJob from "../../../hooks/useJob";
 import { myId } from "../../lib/myLib";
 import { endpointsGral } from "../../Recruiter/services/vacancy";
+import { Button } from "react-bootstrap";
+import {FaEye} from 'react-icons/fa'
+import { useNavigate } from "react-router-dom";
 
 
 export const ListMyAppVacancy = ({refreshing}) => {
-  
+  const navigate=useNavigate();
   const customStyles = {
     rows: {
       style: {
@@ -69,7 +72,7 @@ export const ListMyAppVacancy = ({refreshing}) => {
       }
       //console.log("responseDataUser in Backend:..", response?.data?.user);
     } catch (error) {
-      console.log(error);
+      //console.log(error);
     }
   };
   useEffect(() => {
@@ -81,6 +84,13 @@ export const ListMyAppVacancy = ({refreshing}) => {
       //console.log("phase_status:..", dataCandidate?.phase_status);
     }
   }, [dataCandidate]);
+
+
+  const handleView = (idVacancy)=>{
+    //console.log('idVacancy (a mostrar):..',idVacancy);
+    navigate(`/dashboard-candidato/detail-vacancy/${idVacancy}`)
+  }
+
   const data = my_vacancies?.map((item, index) => {
     const findVacancy = dataCandidate?.phase_status?.find(
       (el) => el.idVacancy === item._id
@@ -149,11 +159,14 @@ export const ListMyAppVacancy = ({refreshing}) => {
       selector: (row) => row.null,
       sortable: true,
 
-      cell: (row) => (
-        <Badge bg={row.badge} className="badge_state1 p-2 buscar">
+      cell: (row) => [
+        <Badge key={myId()} bg={row.badge} className="badge_state1 p-2 buscar me-1">
           {row.phase}
-        </Badge>
-      ),
+        </Badge>,
+        <Button key={myId()} onClick={handleView.bind(this,row._id)}>
+          <FaEye/>
+        </Button>
+      ],
     },
   ];
 

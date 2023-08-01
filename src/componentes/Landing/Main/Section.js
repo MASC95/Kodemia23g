@@ -78,15 +78,15 @@ const Section = () => {
                     widthB="250px"
                     bgcolor="#106973"
                     fs="14px"
-                    paddingB="10px 20px"
+                    paddingB="10px 20px 10px 20px"
                     borde="none"
-                    altura="40px"
+                    altura="50px"
                   />
                 </div>
               </div>
             </div>
           </div>
-          <div className="col-5 columna ">
+          <div className="col-5 columna " style={{ marginBottom: "50px" }}>
             <div className="cartas" style={{ cursor: "pointer" }}>
               <picture className=" img-div">
                 <source
@@ -122,9 +122,9 @@ const Section = () => {
                     widthB="250px"
                     bgcolor="#106973"
                     fs="14px"
-                    paddingB="10px 20px"
+                    paddingB="10px 20px 10px 20px"
                     borde="none"
-                    altura="40px"
+                    altura="50px"
                   />
                 </div>
               </div>

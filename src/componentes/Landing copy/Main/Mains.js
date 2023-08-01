@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import "./scss/style.scss";
 import { Link } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
-import FAQSection from "../Footer/LinksFooter/FAQSection";
+
 import "animate.css";
 import Footer from "../Footer/Footer";
 import Section from "./Section";
@@ -32,18 +32,14 @@ const Mains = () => {
     }
   }, [dataLocalStorage]);
 
-  function scrollToTop() {
-    window.scrollTo(0, 0);
-  }
-
-  useEffect(() => {
-    scrollToTop();
-  }, []);
-
   return (
-    <header style={{ zIndex: "1", position: "absolute" }}>
+    <header
+      style={{
+        backgroundImage: "linear-gradient(45deg, #fffeff 0%, #d7fffe 100%)",
+      }}
+    >
       <Navbar />
-      <HomeCandidate />
+
       <div className="primary-container">
         <h1
           className="match d-flex justify-content-center mx-100px m-md-5 animate__animated animate__pulse "
@@ -64,9 +60,8 @@ const Mains = () => {
         </p>
 
         <Section />
-
+        <SecondCards />
         <SectionThree />
-        <FAQSection />
       </div>
       <Footer />
     </header>

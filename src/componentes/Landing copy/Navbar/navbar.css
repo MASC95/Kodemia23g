@@ -1,0 +1,14 @@
+.main-navbar-color {
+  background: rgba(73, 139, 166, 0.7);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(3.9px);
+  -webkit-backdrop-filter: blur(3.9px);
+  border: 1px solid rgba(73, 139, 166, 0.28);
+}
+.main-navbar-color .jobinder-logo {
+  margin-left: 0.7%;
+  opacity: 0.7;
+}
+.main-navbar-color .jobinder-logo:hover {
+  opacity: 1;
+}/*# sourceMappingURL=navbar.css.map */

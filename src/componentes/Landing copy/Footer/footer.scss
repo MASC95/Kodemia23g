@@ -1,0 +1,89 @@
+@import "../../../App.scss";
+@import "../../Landing//Main//scss/mixins.scss";
+$color-icon: #535c68;
+$social-icon1: #e4405f;
+$social-icon2: #3b5999;
+$social-icon3: #e4405f;
+$social-icon4: #cd201f;
+$social-icon5: #0077b5;
+
+.iconsSocialMedia-F {
+  border-radius: 10vw;
+  background-color: $jobinderHover;
+  margin-left: 44px;
+  transition: background-color 0.5s, transform 0.5s;
+  &:hover {
+    background-color: $social-icon2;
+    scale: (1.3);
+    filter: brightness(1.7);
+  }
+}
+.iconsSocialMedia-TW {
+  border-radius: 10vw;
+  background-color: $jobinderHover;
+  margin-left: 44px;
+  transition: background-color 0.5s, transform 0.5s;
+  &:hover {
+    background-color: $social-icon5;
+    scale: (1.3);
+    filter: brightness(1.7);
+  }
+}
+.iconsSocialMedia-GO {
+  border-radius: 10vw;
+  background-color: $jobinderHover;
+  margin-left: 44px;
+  transition: background-color 0.5s, transform 0.5s;
+  &:hover {
+    background-color: #000000;
+    scale: (1.3);
+    filter: brightness(1.7);
+  }
+}
+.iconsSocialMedia-IG {
+  border-radius: 10vw;
+  background-color: $jobinderHover;
+  margin-left: 44px;
+  transition: background-color 0.5s, transform 0.5s;
+  &:hover {
+    background-color: $social-icon1;
+    scale: (1.3);
+    filter: brightness(1.3);
+  }
+}
+
+.text-footer {
+  @include mobile {
+    padding: 1vw;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    text-decoration: none;
+    color: #f2f2f2;
+  }
+  @include tablet {
+    padding: 1vw;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-decoration: none;
+    color: #f2f2f2;
+    width: 100%;
+  }
+  @include desktop {
+    padding: 1vw;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-decoration: none;
+    color: #f2f2f2;
+  }
+
+  &:hover {
+    color: $jobinderColor3;
+    opacity: 0.7;
+    transition: transform 0.5s ease;
+    transform: scale(1.2);
+  }
+}

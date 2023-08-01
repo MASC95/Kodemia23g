@@ -73,7 +73,7 @@ export const LoginCandidate = () => {
         const loginCandidate = await endpoints.loginAxios(values);
         setFormValues(loginCandidate);
         //console.log("loginCandidate(checando user_skills):..", loginCandidate);
-        
+
         const role = loginCandidate?.role;
         if (role === "candidato") {
           swal({
@@ -113,36 +113,32 @@ export const LoginCandidate = () => {
     <Navbar/>
       <section
         className="Login-page account"
-        // style={{
-        //   backgroundImage:
-        //     "url(https://frontjobinderimg.s3.amazonaws.com/A%C3%B1adir+un+t%C3%ADtulo.png)  ",
-        //   fontFamily: "Poppins",
-        //   boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
-
-        //   color: "#f2f2f2",
-        //   backdropFilter: "blur(2px)",
-        //   WebkitBackdropFilter: "blur(2px)",
-        //   backgroundRepeat: "no-repeat",
-        //   backgroundSize: "cover",
-        //   minHeight: "750px",
-        //   backgroundAttachment: "fixed",
-        // }}
+        style={{
+          fontFamily: "Poppins",
+          boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+          color: "#000000",
+        }}
       >
-        <div className="container">
-          {/* <div className="row"> */}
-         <div className="col-md-12 d-flex justify-content-center align-content-center">
-            {/* <div className="col-md-6 col-md-offset-3 d-flex justify-content-center align-content-center"> */}
+        <div className="container ">
+          <div className="row  d-flex justify-content-center align-items-center">
+            <div className="col-md-7 col-md-offset-3  ">
               <div
-                className="block text-center m-4"
+                className="block text-center"
+                style={{
+                  borderRadius: "16px",
+                  boxShadow:
+                    "rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset",
+                  backdropFilter: "blur(2px)",
+                  WebkitBackdropFilter: "blur(2px)",
+                  marginBottom: "30px",
+                  height: "80%",
+                }}
               >
-                <div
-                  className="d-flex justify-content-center align-items-center"
-                >
-                  <Link to={"/"} className="logo_Jobinder">
-                    <img src={logo} alt="" />
-                  </Link>
-                </div>
-                <h2 className="text-center welcome-back">
+                <Link to={"/"} className="logo_Jobinder">
+                  <img src={logo} alt="" />
+                </Link>
+
+                <h2 className="text-center welcome-back ">
                   Inicia sesión en tu cuenta
                 </h2>
                 <span>para hacer match con la vacante ideal.</span>
@@ -248,25 +244,8 @@ export const LoginCandidate = () => {
                 </Formik>
               </div>
             </div>
-            {/* <div className="col-md-6 col-md-offset-3 d-none d-md-block"> */}
-            {/* <div className="col-md-6">
-              <div
-                className="block text-center  shadow-none"
-              >
-                <img
-                  className="container w-100 h-50"
-                  style={{
-                    borderRadius: "30px",
-                    borderImage:
-                      "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px",
-                  }}
-                  src={login}
-                  alt=""
-                />
-              </div>
-            </div> */}
           </div>
-        {/* </div> */}
+        </div> 
       </section>
     </>
   );

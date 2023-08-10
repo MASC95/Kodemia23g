@@ -48,6 +48,7 @@ const HorizonTable = ({
 
 
   const [tempArrayVancies, setTempArrayVancies] = useState([]);
+  const [loadingData, setLoadingData] = useState(false);
   const [dataCandidate] = useJob();
   useEffect(() => {
     //console.log("Nuevo valor de limit(Hijo):..", perPage);
@@ -201,6 +202,10 @@ const HorizonTable = ({
     data,
   };
 
+  
+
+ 
+
   return (
     <>
     
@@ -220,7 +225,7 @@ const HorizonTable = ({
             defaultSortAsc={true} */
             progressPending={loading}
             pagination
-            paginationServer
+            //paginationServer
             paginationPerPage={perPage}
             paginationTotalRows={totalRows}
             paginationDefaultPage={currentPage}
@@ -229,6 +234,10 @@ const HorizonTable = ({
             highlightOnHover
             dense
             customStyles={customStyles}
+            
+			      
+            striped
+            
           />
         </DataTableExtensions>
       </div>

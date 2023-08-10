@@ -4,6 +4,7 @@ import { FaBars } from "react-icons/fa";
 import imgProfile from "../../Recruiter/assets/img/perfil2.jpg";
 import ListBuscar from "./ListBuscar";
 import HorizonTable from "./HorizonTable";
+import RemoteSortTable from "./RemoteSortTable";
 export const Buscar = () => {
   return (
     <>
@@ -20,7 +21,8 @@ export const Buscar = () => {
           Buscar Vacantes
         </h1>
 
-        <ListBuscar />
+        {/* <ListBuscar /> */}
+        <RemoteSortTable/>
       </div>
     </>
   );

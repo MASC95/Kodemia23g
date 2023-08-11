@@ -4,23 +4,29 @@ import "animate.css";
 import Carousel from "react-bootstrap/Carousel";
 import img1 from "../../Candidate/img/img-1.jpg";
 import img2 from "../../Candidate/img/img-2.jpg";
-import useJob from '../../../hooks/useJob';
-import {useNavigate} from 'react-router-dom';
+import useJob from "../../../hooks/useJob";
+import { useNavigate } from "react-router-dom";
 
 //import Footer from "../../Landing/Footer/Footer";
 
 const HomeCandidate = () => {
   const [anchoVW, setAnchoVW] = useState(window.innerWidth);
-  const [dataCandidate,setDataCandidate,dataRecruiter,setDataRecruiter,dataLocalStorage,setDataLocalStorage]=useJob();
-  const navigate=useNavigate();
-
+  const [
+    dataCandidate,
+    setDataCandidate,
+    dataRecruiter,
+    setDataRecruiter,
+    dataLocalStorage,
+    setDataLocalStorage,
+  ] = useJob();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setAnchoVW(window.innerWidth);
     // console.log("anchoVW:..", anchoVW);
   }, [window.innerWidth, anchoVW]);
 
-  useEffect(()=>{
+  useEffect(() => {
     if (dataLocalStorage?.role === "candidato") {
       setDataCandidate(dataLocalStorage);
       navigate("/dashboard-candidato/search");
@@ -29,9 +35,7 @@ const HomeCandidate = () => {
       setDataRecruiter(dataLocalStorage);
       navigate("/dashboard-recruiter/vacancy");
     }
-  },[])
-
-
+  }, []);
 
   const handleError = () => {
     // console.log("Error al cargar imagen:..");
@@ -47,10 +51,10 @@ const HomeCandidate = () => {
         className="w-100 main-carousel "
         controls={false}
       >
-        <Carousel.Item className="carousel-img">
+        <Carousel.Item className="carousel-img ">
           <img
             style={{ zIndex: "0", position: "relative" }}
-            className="d-block w-100 carousel-main-img"
+            className="d-block w-100 carousel-main-img h-25"
             src={img1}
             onError={handleError}
             onLoad={handleLoad}
@@ -84,7 +88,7 @@ const HomeCandidate = () => {
         >
           <img
             style={{ zIndex: "0", position: "relative" }}
-            className="d-block w-100"
+            className="d-block w-100 h-50"
             src={img2}
             alt="Second slide"
           />

@@ -92,22 +92,12 @@ const MyTable = ({
   });
 
 
-
-    const data = dataByUserCandidate.map((item, index) => {
-      // const retriveUser = item.user_skills;
+    const datasCompare = dataByUserCandidate.map((item, index) => {
       const retriveUser=item.user_skills.map((idSkills)=>{
-        // const objNew={
-        //   id:idSkills._id,
-        //   name:idSkills.name,
-        //   level:idSkills.level
-        // }
-        // return idSkills._id
         return idSkills.name
       })
-      // console.log('skills usuario', retriveUser)
-      // console.log('skills vacante', retriveVacancy)
-
       const conteo = {};
+     let newObj=[]
       retriveUser.forEach((elemento) => {
         if (conteo[elemento]) {
           conteo[elemento]++;
@@ -124,24 +114,48 @@ const MyTable = ({
       });
       // console.log(`La suma de los valores repetidos es: ${suma}`);
       let operador =0
+   
       if(suma===0){
         operador=0
       }else{
         // console.log(((suma*100)/quanty))
         operador = Math.floor((suma * 100) / quanty);
-        // console.log(operador)
-        //console.log('nuevo map para iterar', )
+        console.log('operador',operador)
+      //  compare= dataByUserCandidate.sort((a, b) => b.operador- a.operador)
+      //   console.log(compare)
+        //console.log('nuevo map para iterar', ) 
       }
-      const nameUser = `${item.name} ${item.last_name}`;    
+      const nameUser = `${item.name} ${item.last_name}`;   
       
       return {
         id: item._id,
         qty: index,
-        name: isFoundedUser(item._id)?<MyFaCheck text={nameUser}/>:nameUser,
-        bachelor: item.bachelor?`${item.bachelor} `:'-',
-        match: `${operador} %` || 0 ,
+        name: nameUser,
+        bachelor: item.bachelor,
+        match: `${operador}` ,
       };
-    });
+      // return {
+      //   id: item._id,
+      //   qty: index,
+      //   name: isFoundedUser(item._id)?<MyFaCheck text={nameUser}/>:nameUser,
+      //   bachelor: item.bachelor?`${item.bachelor} `:'-',
+      //   match: `${operador} %` || 0 ,
+      // };
+    }
+    );
+
+    datasCompare.sort((a, b) => b.match-a.match)
+    const data=datasCompare.map((item2, index2)=>{
+      console.log('item del map 2', item2)
+      const nameUser = `${item2.name} ${item2.last_name}`;   
+      return {
+        id: item2._id,
+        qty: index2,
+        name: isFoundedUser(item2._id)?<MyFaCheck text={nameUser}/>:nameUser,
+        bachelor: item2.bachelor?`${item2.bachelor} `:'-',
+        match: `${item2.match} %` || 0 ,
+      };
+    })
 
   // let userSkills=[]
 

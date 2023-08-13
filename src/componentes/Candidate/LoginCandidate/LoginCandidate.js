@@ -45,7 +45,6 @@ export const LoginCandidate = () => {
     setDataLocalStorage,
   ] = useJob();
 
-
   const onFormInputChange = (event) => {
     const InputID = event.target.id;
     const InputValue = event.target.value;
@@ -110,7 +109,7 @@ export const LoginCandidate = () => {
   };
   return (
     <>
-    <Navbar/>
+      <Navbar />
       <section
         className="Login-page account"
         style={{
@@ -121,7 +120,7 @@ export const LoginCandidate = () => {
       >
         <div className="container ">
           <div className="row  d-flex justify-content-center align-items-center">
-            <div className="col-md-7 col-md-offset-3  ">
+            <div className="col-md-5 col-md-offset-3  ">
               <div
                 className="block text-center"
                 style={{
@@ -245,7 +244,7 @@ export const LoginCandidate = () => {
               </div>
             </div>
           </div>
-        </div> 
+        </div>
       </section>
     </>
   );

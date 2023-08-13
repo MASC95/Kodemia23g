@@ -204,7 +204,7 @@ const UpdatePassword = () => {
     borderRadius: "16px",
     boxShadow:
       "rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset",
-
+    width: "500px",
     marginTop: "50px",
     marginBottom: "50px",
     height: "100%",
@@ -213,7 +213,7 @@ const UpdatePassword = () => {
   return (
     <>
       <div style={loginInit}>
-        <div className="w-75 ms-auto me-auto my-3" style={glass}>
+        <div className="ms-auto me-auto my-3" style={glass}>
           {/* <NavbarCandidate /> */}
           <h2>Actualizando Contraseña</h2>
           <Form onSubmit={handleSubmit}>

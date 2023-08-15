@@ -116,7 +116,7 @@ const HomeCandidate = () => {
           <img
             style={{ zIndex: "0", position: "relative" }}
             className="d-block w-100"
-            src="https://frontjobinderimg.s3.amazonaws.com/businessman-woman-planning-success-illuminated-skyscraper-generated-by-ai.jpg"
+            src="https://frontjobinderimg.s3.amazonaws.com/young-black-businessman-drinking-coffee-while-working-late-computer-office.jpg"
             alt="Third slide"
           />
 

@@ -138,9 +138,9 @@ export const LoginCandidate = () => {
                 </Link>
 
                 <h2 className="text-center welcome-back ">
-                  Inicia sesión en tu cuenta
+                  Bienvenido Candidato!
                 </h2>
-                <span>para hacer match con la vacante ideal.</span>
+
                 <Formik
                   className="text-left clearfix"
                   id="formCandidate"

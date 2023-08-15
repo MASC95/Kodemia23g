@@ -341,6 +341,7 @@ export const AddSkills=()=>{
             <DataTableExtensions  
             export={false}
             print={false}
+            filter={false}
             {...tableData}>
               <DataTable {...tableData}
                 columns={columns}

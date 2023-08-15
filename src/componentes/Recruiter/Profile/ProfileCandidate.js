@@ -342,6 +342,24 @@ export const Candidate = () => {
                     <Table striped bordered hover>
                       <thead>
                         <tr style={{ borderRadius: "200px" }}>
+                        <th
+                            style={{
+                              backgroundColor: "#7FADC0",
+                              color: "white",
+                              fontSize: "12px",
+                            }}
+                          >
+                            EMPRESA
+                          </th>
+                          <th
+                            style={{
+                              backgroundColor: "#7FADC0",
+                              color: "white",
+                              fontSize: "12px",
+                            }}
+                          >
+                            PERÍODO
+                          </th>
                           <th
                             style={{
                               backgroundColor: "#7FADC0",
@@ -367,6 +385,8 @@ export const Candidate = () => {
                           (item, index) => {
                             return (
                               <tr key={myId()}>
+                                 <td>{item.company}</td>
+                                 <td>{item.period}</td>
                                 <td>{item.position}</td>
                                 <td>{item.description}</td>
                               </tr>

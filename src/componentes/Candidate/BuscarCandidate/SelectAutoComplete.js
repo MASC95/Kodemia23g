@@ -55,7 +55,7 @@ const SelectAutoComplete = ({
       value={valueSelect}
       className="w-75 me-auto ms-auto my-2"
       options={dataOptions}
-      placeholder="Filtrar por Titulo o Empresa"
+      placeholder="Buscar..."
       onChange={handleChange}
     />
   );

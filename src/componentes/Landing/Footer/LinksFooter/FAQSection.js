@@ -33,10 +33,11 @@ const FAQSection = () => {
         style={{
           fontFamily: "Poppins",
           color: "#0D324D",
-          minHeight: "100vh",
+          minHeight: "",
+          marginBottom: "50px",
         }}
       >
-        <div className="p-5">
+        <div className="">
           <div
             style={{
               display: "flex",

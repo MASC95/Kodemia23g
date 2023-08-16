@@ -6,6 +6,7 @@ import img1 from "../../Candidate/img/img-1.jpg";
 import img2 from "../../Candidate/img/img-2.jpg";
 import useJob from "../../../hooks/useJob";
 import { useNavigate } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
 
 //import Footer from "../../Landing/Footer/Footer";
 
@@ -37,6 +38,10 @@ const HomeCandidate = () => {
     }
   }, []);
 
+  const isDesktopOrLaptop = useMediaQuery({
+    query: "(min-width: 1000px)",
+  });
+
   const handleError = () => {
     // console.log("Error al cargar imagen:..");
   };
@@ -48,7 +53,11 @@ const HomeCandidate = () => {
     <>
       <Carousel
         style={{ zIndex: "-1000", position: "relative" }}
-        className="w-100 main-carousel "
+        className={
+          isDesktopOrLaptop
+            ? " w-50 main-carousel me-auto ms-auto"
+            : "w-100 main-carousel "
+        }
         controls={false}
       >
         <Carousel.Item className="carousel-img ">

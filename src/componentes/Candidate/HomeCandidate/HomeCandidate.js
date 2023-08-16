@@ -61,25 +61,12 @@ const HomeCandidate = () => {
             alt="First slide"
           />
           <Carousel.Caption className="carousel-text">
-            <h2
-              style={{ fontSize: "7vw" }}
-              className="welcome-text animate__animated animate__heartBeat animate__delay-2s"
-            >
-              Bienvenido a Jobinder!{" "}
-            </h2>
             <h3
-              style={{ fontSize: "4vw" }}
-              className="carousel-title animate__animated animate__fadeInLeft"
+              style={{ fontSize: "4vw", color: "white" }}
+              className=" animate__animated animate__fadeInLeft"
             >
-              Desbloquea tu potencial profesional con Jobinder
+              Haz match con las empresas de tus sueños.
             </h3>
-            <p
-              style={{ fontSize: "2vw" }}
-              className="carousel-content animate__animated animate__fadeInLeft"
-            >
-              Encuentra tu trabajo ideal y da el siguiente paso hacia el éxito
-              con Jobinder.
-            </p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item
@@ -95,18 +82,11 @@ const HomeCandidate = () => {
 
           <Carousel.Caption className="carousel-text">
             <h3
-              style={{ fontSize: "4vw" }}
-              className="carousel-title  animate__animated animate__fadeInLeft"
+              style={{ fontSize: "4vw", color: "white" }}
+              className="  animate__animated animate__fadeInLeft"
             >
               Explora un mundo de oportunidades con Jobinder
             </h3>
-            <p
-              style={{ fontSize: "2vw" }}
-              className="carousel-content animate__animated animate__fadeInLeft"
-            >
-              Encuentra oportunidades laborales emocionantes y alcanza tus metas
-              profesionales con Jobinder.
-            </p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item
@@ -122,18 +102,11 @@ const HomeCandidate = () => {
 
           <Carousel.Caption className="carousel-text">
             <h3
-              style={{ fontSize: "4vw" }}
-              className="carousel-title  animate__animated animate__fadeInLeft"
+              style={{ fontSize: "4vw", color: "white" }}
+              className="animate__animated animate__fadeInLeft "
             >
-              Descubre tu camino al éxito con Jobinder
+              Descubre tu camino al éxito con Jobinder.
             </h3>
-            <p
-              style={{ fontSize: "2vw" }}
-              className="carousel-content animate__animated animate__fadeInLeft"
-            >
-              Desplázate por un mar de oportunidades laborales con Jobinder, tu
-              guía en el mundo del empleo.
-            </p>
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>

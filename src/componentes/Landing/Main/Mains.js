@@ -57,7 +57,7 @@ const Mains = () => {
           habilidades de programación.
         </h1>
         <p
-          className="text-mobile d-md-none mt-5 mb-5 "
+          className="text-mobile d-none mt-5 mb-5 "
           style={{ fontFamily: "Poppins" }}
         >
           Con Jobinder, tu trabajo ideal está a sólo un clic de distancia.

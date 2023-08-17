@@ -88,7 +88,7 @@ const Example = () => {
         `${endpointsGral.vacancyURL}getAllJobVacancyByUser/${dataRecruiter.accessToken}?page=${page}&limit=${newPerPage}`
       );
       const datas = allVacancies.data["item"];
-      //console.log('backend Response:..',allVacancies);
+      console.log('info todas las vacantes:..',allVacancies);
       // const statusStart= datas['docs'].filter(item=>item.status==='Iniciado')
       // //console.log('lista iniciados',statusStart)
       setDataInformation(datas["docs"]);

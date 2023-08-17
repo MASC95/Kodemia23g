@@ -113,11 +113,12 @@ const RemoteSortTable = () => {
           ] = `Bearer: ${dataCandidate?.accessToken}`;
 
           if (dataCandidate?.my_vacancies) {
-            dataVacancies = [...dataCandidate?.my_vacancies, idVacancie];
+            const tempArrayIdsVacancies=dataCandidate?.my_vacancies?.map(item=>item._id);
+            dataVacancies = [...tempArrayIdsVacancies, idVacancie];
           } else {
             dataVacancies.push(idVacancie);
           }
-
+          
           //se actualiza el array de my_vacancies en la entidad user
           const responseUpdateDataUser = await axios.patch(
             `${endpointsGral.userURL}${dataCandidate.accessToken}`,
@@ -173,9 +174,12 @@ const RemoteSortTable = () => {
           ] = `Bearer: ${dataCandidate?.accessToken}`;
 
           if (my_vacancies) {
-            dataVacancies = my_vacancies.filter(
-              (item) => item._id !== idVacancie
-            );
+            
+            my_vacancies.forEach(element => {
+              if(element._id!==idVacancie){
+                dataVacancies.push(element._id)
+              }
+            });
           }
 
           //se actualiza el array de my_vacancies en la entidad user

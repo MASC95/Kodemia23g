@@ -8,7 +8,7 @@ const SectionThree = () => {
   return (
     <section className="sectionThree">
       <h1
-        className="last-text"
+        className="last-text d-none"
         style={{
           textShadow:
             "0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px rgba(60, 64, 67, 0.15)",

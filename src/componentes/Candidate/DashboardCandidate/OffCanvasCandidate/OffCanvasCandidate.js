@@ -1,6 +1,7 @@
 import Offcanvas from "react-bootstrap/Offcanvas";
 import logo from "../../../Recruiter/assets/img/logo.png";
 import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import {
   FaUser,
   FaSuitcase,
@@ -22,10 +23,24 @@ function OffCanvasCandidate({ showOffcanvas, handleShowOffcanvas }) {
   const navigate = useNavigate();
 
   const logout = (e) => {
-    setDataLocalStorage({});
-    setDataCandidate({});
-    setDataRecruiter({});
-    navigate("/");
+    Swal.fire({
+      title:'Estas Seguro de Cerrar Sesión',
+      confirmButtonText:'Cerrar Sesión',
+      confirmButtonColor:'green',
+      showCancelButton: true,
+      cancelButtonText:'Cancelar',
+      cancelButtonColor:'red',
+      icon:'warning',
+      }).then((result) => {
+      if (result.isConfirmed) {
+        setDataLocalStorage({});
+        setDataCandidate({});
+        setDataRecruiter({});
+        navigate("/");
+      }
+    });
+  
+    
   };
 
   return (
@@ -54,7 +69,7 @@ function OffCanvasCandidate({ showOffcanvas, handleShowOffcanvas }) {
               <FaHome className="icons" />
               <span className="text fs-6">Inicio</span>
             </Link>
-            <Link to={`/dashboard-candidato/remote-table`} className="link">
+            <Link to={`/dashboard-candidato/remote-table`} className="link d-none">
               <FaHome className="icons" />
               <span className="text fs-6">Remote Table</span>
             </Link>

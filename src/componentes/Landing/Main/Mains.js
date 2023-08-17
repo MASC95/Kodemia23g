@@ -44,9 +44,9 @@ const Mains = () => {
     <header style={{ zIndex: "1", position: "absolute" }}>
       <Navbar />
       <HomeCandidate />
-      <div className="primary-container">
+      <div className="contenedorPrincipal">
         <h1
-          className="match d-flex justify-content-center mx-100px m-md-5 animate__animated animate__pulse "
+          className="match d-flex justify-content-center mx-100px m-md-5 animate__animated animate__pulse d-none"
           style={{
             textShadow:
               "0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px rgba(60, 64, 67, 0.15)",
@@ -57,15 +57,14 @@ const Mains = () => {
           habilidades de programación.
         </h1>
         <p
-          className="text-mobile d-md-none mt-5 mb.5"
+          className="text-mobile d-none mt-5 mb-5 "
           style={{ fontFamily: "Poppins" }}
         >
           Con Jobinder, tu trabajo ideal está a sólo un clic de distancia.
         </p>
-
+        <SectionThree />
         <Section />
 
-        <SectionThree />
         <FAQSection />
       </div>
       <Footer />

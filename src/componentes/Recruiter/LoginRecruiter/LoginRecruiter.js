@@ -85,7 +85,7 @@ export const LoginRecruiter = () => {
 
   return (
     <>
-    <Navbar/>
+      <Navbar />
       <section
         className="Login-page account"
         style={{
@@ -96,8 +96,7 @@ export const LoginRecruiter = () => {
       >
         <div className="container">
           <div className="row d-flex justify-content-center align-items-center">
-          {/* <div className="col-md-6 col-md-3"> */}
-            <div className="col-8 col-md-offset-3">
+            <div className="col-md-5 col-md-offset-3">
               <div
                 className="block text-center"
                 style={{

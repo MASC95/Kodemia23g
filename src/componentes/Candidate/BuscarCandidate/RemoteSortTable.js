@@ -334,13 +334,13 @@ const RemoteSortTable = () => {
     data,
   };
   useEffect(()=>{
-    console.log('nuevo valor de currentPage(dad):..',currentPage)
+    //console.log('nuevo valor de currentPage(dad):..',currentPage)
   },[currentPage])
   useEffect(()=>{
 
   },[totalRows])
   useEffect(()=>{
-    console.log('nuevo valor de limit(perPage)(dad):..',perPage)
+    //console.log('nuevo valor de limit(perPage)(dad):..',perPage)
   },[perPage])
   useEffect(()=>{
 
@@ -357,7 +357,7 @@ const RemoteSortTable = () => {
       const response = await axios.get(
         `${endpointsGral.vacancyURL}getDataConsult?value=${value}&page=${pageConsult}&limit=${limitConsult}`
       );
-      console.log(`response getDataConsult currentPage(${pageConsult}) limit(${limitConsult}):..`, response);
+      //console.log(`response getDataConsult currentPage(${pageConsult}) limit(${limitConsult}):..`, response);
       
       if (response?.data) {
         const tempData = response?.data?.item?.docs?.map((item, index) => {

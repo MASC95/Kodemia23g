@@ -16,13 +16,13 @@ const VacanciesDataTable = ({
 
     },[data])
     useEffect(()=>{
-        console.log('nuevo valor de limit(perPage)(son):..',perPage)
+        //console.log('nuevo valor de limit(perPage)(son):..',perPage)
     },[perPage])
     useEffect(()=>{
 
     },[totalRows])
     useEffect(()=>{
-      console.log('nuevo valor de currentPage(son):..',currentPage)
+      //console.log('nuevo valor de currentPage(son):..',currentPage)
     },[currentPage])
   return (
     <DataTable

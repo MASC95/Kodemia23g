@@ -91,7 +91,7 @@ const MyTable = ({
 
   });
 
-
+  console.log('dataByUserCandidate', dataByUserCandidate)
     const datasCompare = dataByUserCandidate.map((item, index) => {
       const retriveUser=item.user_skills.map((idSkills)=>{
         return idSkills.name
@@ -146,12 +146,12 @@ const MyTable = ({
 
     datasCompare.sort((a, b) => b.match-a.match)
     const data=datasCompare.map((item2, index2)=>{
-      console.log('item del map 2', item2)
-      const nameUser = `${item2.name} ${item2.last_name}`;   
+      // console.log('item del map 2', item2)
+      const nameUser = `${item2.name}`;   
       return {
-        id: item2._id,
+        id: item2.id,
         qty: index2,
-        name: isFoundedUser(item2._id)?<MyFaCheck text={nameUser}/>:nameUser,
+        name: isFoundedUser(item2.id)?<MyFaCheck text={nameUser}/>:nameUser,
         bachelor: item2.bachelor?`${item2.bachelor} `:'-',
         match: `${item2.match} %` || 0 ,
       };

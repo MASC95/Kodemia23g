@@ -212,6 +212,7 @@ const Example = () => {
       });
   };
 
+  console.log('data iNFORMATION', dataInformation.applicants)
   const data = dataInformation?.map((vacante, index) => {
     const tempArray = [];
     const aplicantes = [...vacante.applicants];

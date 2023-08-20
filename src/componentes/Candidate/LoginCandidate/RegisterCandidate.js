@@ -275,8 +275,8 @@ export const RegisterCandidate = () => {
                     <img src={logo} alt="" />
                   </Link>
                 </div>
-                <h2 className="text-center p-1 m-0">Crea tu cuenta</h2>
-                <span>y haz match en el empleo ideal en tiempo récord.</span>
+                <h2 className="text-center p-1 m-0">Candidato</h2>
+                <span>Crear cuenta para hacer match en el empleo ideal.</span>
                 <Formik
                   initialValues={dataForm}
                   enableReinitialize={true}
@@ -387,16 +387,14 @@ export const RegisterCandidate = () => {
                         <Form.Check
                           type="checkbox"
                           checked={isChecked}
-                          disabled={isChecked === true}
                           onChange={handleCheckboxChange}
-                          
-                          className="border-1"
+                           style={{ color: "inherit",fontSize:'12px', padding:'10px'}}
                         />
                         <Link
                           style={{ color: "inherit", fontSize: "12px" }}
                           to="/TerminosyCondiciones"
                         >
-                          los términos y condiciones
+                          Aceptar los términos y condiciones
                         </Link>
                       </Form.Group>
                       {!isResgitering && (

@@ -39,8 +39,6 @@ function OffCanvasCandidate({ showOffcanvas, handleShowOffcanvas }) {
         navigate("/");
       }
     });
-  
-    
   };
 
   return (

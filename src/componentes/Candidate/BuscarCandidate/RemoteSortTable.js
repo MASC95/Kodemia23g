@@ -248,6 +248,11 @@ const RemoteSortTable = () => {
       sortable: true,
     },
     {
+      name: "COMPATIBILIDAD",
+      selector: (row) => row.match,
+      sortable: true,
+    },
+    {
       name: "SALARIO MENSUAL",
       selector: (row) => row.salary,
       sortable: true,
@@ -307,9 +312,47 @@ const RemoteSortTable = () => {
       ),
     },
   ];
+
+  const retriveUser=dataCandidate.user_skills?.map((item)=>{
+    return item.name
+  })
   useEffect(() => {
     if (vacancies.length > 0) {
       const tempData = vacancies?.map((item, index) => {
+        const retriveVacancy=item.job_skills.map((idSkill)=>{
+          return idSkill.name
+        })
+        // console.log('Skill vacancy', retriveVacancy)
+        // console.log('skill user', retriveUser)
+        const conteo={}
+
+        retriveVacancy.forEach((element)=>{
+          if(conteo[element]){
+            conteo[element]++
+          }else{
+            conteo[element]=1
+          }
+        });
+
+        let suma=0;
+        const quanty=retriveUser?.length
+
+        retriveUser?.forEach((element) => {
+          if(conteo[element]){
+            suma+=conteo[element]
+          }
+        })
+      //  console.log(`La suma de los valores repetidos es: ${suma}`);
+       console.log(quanty)
+       let operador =0
+      //  console.log('operador ', (suma * 100) / quanty)
+   
+      if(suma===0){
+        operador=0
+      }else{
+        operador = Math.floor((suma * 100) / quanty);
+      
+      }
         const str = item.salary.toString().split(".");
         str[0] = str[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         return {
@@ -322,6 +365,7 @@ const RemoteSortTable = () => {
           type: item.type,
           city: item.city,
           mode: item.mode,
+          match: `${operador} %` ,
           salary: `$ ${str}.00`,
         };
       });

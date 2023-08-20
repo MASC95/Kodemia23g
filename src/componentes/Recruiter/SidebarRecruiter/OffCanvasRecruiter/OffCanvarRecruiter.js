@@ -1,6 +1,7 @@
 import Offcanvas from "react-bootstrap/Offcanvas";
 import logo from "../../../Recruiter/assets/img/logo.png";
 import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import {
   FaUser,
   FaSuitcase,
@@ -22,11 +23,29 @@ function OffCanvasRecruiter({ showOffcanvas, handleShowOffcanvas }) {
     setDataLocalStorage,
   ] = useJob();
   const navigate = useNavigate();
+  // const logout = (e) => {
+  //   setDataLocalStorage({});
+  //   setDataCandidate({});
+  //   setDataRecruiter({});
+  //   navigate("/");
+  // };
   const logout = (e) => {
-    setDataLocalStorage({});
-    setDataCandidate({});
-    setDataRecruiter({});
-    navigate("/");
+    Swal.fire({
+      title:'Estas Seguro de Cerrar Sesión',
+      confirmButtonText:'Cerrar Sesión',
+      confirmButtonColor:'green',
+      showCancelButton: true,
+      cancelButtonText:'Cancelar',
+      cancelButtonColor:'red',
+      icon:'warning',
+      }).then((result) => {
+      if (result.isConfirmed) {
+        setDataLocalStorage({});
+        setDataCandidate({});
+        setDataRecruiter({});
+        navigate("/");
+      }
+    });
   };
   return (
     <>

@@ -4,7 +4,8 @@ import candidate from "../../Candidate/img/Candidate.avif";
 import recruiter from "../../Candidate/img/Recruiter.avif";
 import "./scss/section.scss";
 import Button2 from "../../Candidate/Buttons/Button2";
-
+import { FaCode } from "react-icons/fa";
+import { FaUserTie } from "react-icons/fa";
 const Section = () => {
   const [isErorImgCadidate, setIsErorImgCandidate] = useState(false);
   const [isErorImgRecrutier, setIsErorImgRecrutier] = useState(false);
@@ -44,7 +45,7 @@ const Section = () => {
               className="link-card text-decoration-none" 
             > */}
             <div className="cartas" style={{ cursor: "pointer" }}>
-              <picture className="img-div">
+              {/*  <picture className="img-div">
                 <source
                   type="image/jpeg"
                   srcSet="https://frontjobinderimg.s3.amazonaws.com/Candidate.jpg"
@@ -59,7 +60,18 @@ const Section = () => {
                   className="card-img-top "
                   alt="Imagen"
                 />
-              </picture>
+              </picture> */}
+              <div className="d-flex justify-content-center align-items-center">
+                <FaUserTie
+                  style={{
+                    width: "70px",
+                    height: "70px",
+                    borderRadius: "35px",
+                    color: "black",
+                    marginTop: "20px",
+                  }}
+                />
+              </div>
 
               <div className="card-body-1 ">
                 <h5 className="card-title text-center">¿Eres Reclutador?</h5>
@@ -78,9 +90,9 @@ const Section = () => {
                     widthB="250px"
                     bgcolor="#106973"
                     fs="14px"
-                    paddingB="10px 20px"
+                    paddingB="10px 20px 10px 20px"
                     borde="none"
-                    altura="40px"
+                    altura="50px"
                   />
                 </div>
               </div>
@@ -88,7 +100,7 @@ const Section = () => {
           </div>
           <div className="col-5 columna ">
             <div className="cartas" style={{ cursor: "pointer" }}>
-              <picture className=" img-div">
+              {/* <picture className=" img-div">
                 <source
                   type="image/jpeg"
                   srcSet="https://frontjobinderimg.s3.amazonaws.com/Recruiter.jpg"
@@ -103,7 +115,20 @@ const Section = () => {
                   alt="Imagen"
                   className="card-img-top"
                 />
-              </picture>
+              </picture> */}
+
+              <div className="d-flex justify-content-center align-items-center">
+                <FaCode
+                  style={{
+                    width: "70px",
+                    height: "70px",
+                    borderRadius: "30px",
+
+                    color: "black",
+                    marginTop: "20px",
+                  }}
+                />
+              </div>
               <div className="card-body-1 ">
                 <h5 className="card-title text-center">¿Eres Candidato?</h5>
                 <p className="card-text text-center">
@@ -122,9 +147,9 @@ const Section = () => {
                     widthB="250px"
                     bgcolor="#106973"
                     fs="14px"
-                    paddingB="10px 20px"
+                    paddingB="10px 20px 10px 20px"
                     borde="none"
-                    altura="40px"
+                    altura="50px"
                   />
                 </div>
               </div>

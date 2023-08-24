@@ -279,8 +279,8 @@ export const RegisterRecruiter = () => {
                   <img src={logo} alt="jobinder-logo" />
                 </Link>
 
-                <h2 className="text-center">Crea tu cuenta</h2>
-                <span>y empieza a seleccionar</span>
+                <h2 className="text-center">Reclutador</h2>
+                <span>Crear cuenta</span>
                 <Formik
                   initialValues={dataForm}
                   enableReinitialize={true}
@@ -387,20 +387,18 @@ export const RegisterRecruiter = () => {
                         </span>
                       </Form.Group>
 
-                      <Form.Group className="text-center ">
+                      <Form.Group className="text-center d-flex justify-content-center align-items-center g-3">
                         <Form.Check
                           type="checkbox"
                           checked={isChecked}
-                          disabled={isChecked === true}
                           onChange={handleCheckboxChange}
-                          style={{ color: "inherit",fontSize:'12px'}}
-                          // className="d-flex justify-content-center align-items-center "
+                          style={{ color: "inherit",fontSize:'12px', padding:'10px'}}
                         />
                         <Link
-                          style={{ color: "inherit", fontSize: "12px" }}
+                          style={{ color: "inherit", fontSize: "12px"}}
                           to="/TerminosyCondiciones"
                         >
-                          los términos y condiciones
+                          Aceptar los términos y condiciones
                         </Link>
                       </Form.Group>
 

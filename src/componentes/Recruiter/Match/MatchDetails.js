@@ -43,7 +43,7 @@ export const MatchDetails = () => {
       setLoading(true);
       const endpointURL = `${endpointsGral.usersInVacancy}${idVacancy}?page=${page}&limit=${newPerPage}`;
       const response = await axios.get(endpointURL);
-      // console.log('responseBackend:..',response);
+      console.log('responseBackend:..',response);
       const datasUsers = response?.data?.item?.docs || [];
       setDataByUserCandidate(datasUsers);
       setTotalRows(datasUsers["totalDocs"]);

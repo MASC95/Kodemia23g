@@ -37,6 +37,7 @@ import PoliticaPrivacidad from "./componentes/Landing/Footer/LinksFooter/Politic
 import About from "./componentes/Landing/Footer/LinksFooter/About";
 import UpdatePassword from "./componentes/Candidate/LoginCandidate/UpdatePassword";
 import UpdatePasswordRecruiter from "./componentes/Recruiter/LoginRecruiter/UpdatePassword";
+import RemoteSortTable from "./componentes/Candidate/BuscarCandidate/RemoteSortTable";
 
 function App() {
   const [dataLocalStorage, setDataLocalStorage] = useLocalStorage(
@@ -107,6 +108,7 @@ function App() {
           <Route path="/login-recruiter" element={<LoginRecruiter />} />
           <Route path="/register-recruiter" element={<RegisterRecruiter />} />
           <Route path="/updatePasswordRecruiter/:email" element={<UpdatePasswordRecruiter/>}/>
+          
 
           {/** si intenta ingresar una ruta que no existe lo renderiza a la landing (o si esta deslogeado) */}
           
@@ -115,11 +117,13 @@ function App() {
           {dataLocalStorage?.role==='candidato'&&
           <Route path="/dashboard-candidato" element={<DashboardCandidate />}>
             <Route path="home" element={<HomeCandidate />} />
+            <Route path="remote-table" element={<RemoteSortTable/>}/>
             <Route path="profile" element={<ProfileCandidate />} />
             <Route path="search" element={<Buscar />} />
             <Route path="detail-vacancy/:id" element={<Details />} />
             <Route path="app-vacancies" element={<AppVacancyCandidate />} />
             <Route path="SearchList" element={<ListBuscar />} />
+            
           </Route>
           }
           
@@ -137,6 +141,7 @@ function App() {
             <Route path="profile-candidato" element={<Candidate />} />
             <Route path="panel-phases" element={<Reclutamiento />} />
             <Route path="softskill-addNew" element={<AddSkills />} />
+            
           </Route>
           }
           {/* <Route path="*" element={<Mains/>}/> */}

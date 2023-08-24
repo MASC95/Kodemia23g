@@ -85,7 +85,7 @@ export const LoginRecruiter = () => {
 
   return (
     <>
-    <Navbar/>
+      <Navbar />
       <section
         className="Login-page account"
         style={{
@@ -109,7 +109,7 @@ export const LoginRecruiter = () => {
                   height: "80%",
                 }}
               >
-                +
+                
                 <Link to={"/"} className="logo_Jobinder">
                   <img src={logo} alt="" />
                 </Link>

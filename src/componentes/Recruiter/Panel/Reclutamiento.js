@@ -54,7 +54,7 @@ export const Reclutamiento = () => {
     let tempDataApplicants = [];
 
     const dataVacancy= await axios.get(`${endpointsGral.vacancyURL}${idVacancy}`);
-        console.log('DataVacancy (rejecteds):..',dataVacancy.data.infoVacancy.rejecteds);
+        //console.log('DataVacancy (rejecteds):..',dataVacancy.data.infoVacancy.rejecteds);
     const rejecteds=dataVacancy?.data?.infoVacancy?.rejecteds;
     for (const phase of phases) {
       const listNumber = phases.indexOf(phase) + 1;
@@ -67,7 +67,7 @@ export const Reclutamiento = () => {
         const arrayIdsApplicants = dataVacancies.find(
           (item) => String(item.idVacancie) === idVacancy
         );
-        console.log('arrayIdsApplicants:..',arrayIdsApplicants);
+        //console.log('arrayIdsApplicants:..',arrayIdsApplicants);
         const listadoApplicants=[];
         arrayIdsApplicants?.applicants?.forEach((idApplicante)=>{
           const findInRejecteds= rejecteds.find(idRechazado=>String(idRechazado)===String(idApplicante));
@@ -76,7 +76,7 @@ export const Reclutamiento = () => {
           }
         })
         //console.log("dataApplicants(ROR):..", arrayIdsApplicants);
-        console.log('listadoApplicants:..',listadoApplicants)
+        //console.log('listadoApplicants:..',listadoApplicants)
         if (listadoApplicants) {
           for (let i = 0; i < listadoApplicants?.length; i++) {
             const response = await axios.get(
@@ -202,7 +202,7 @@ try {
               ];
             }
           });
-          console.log('Verificando los datos a enviar(panel):..',dataBody)
+          //console.log('Verificando los datos a enviar(panel):..',dataBody)
           const response = await axios.post(
             `${endpointsGral.phaseURL}updatePanel`,
             dataBody
@@ -334,7 +334,7 @@ try {
           style={estilo}
         >
           <h3 className="text-dark">
-            Primer Contacto
+            Llamada
           </h3>
           <div
             className="dd-zone"

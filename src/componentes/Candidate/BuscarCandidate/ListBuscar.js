@@ -206,6 +206,7 @@ export const ListBuscar = () => {
           <FcRefresh style={{ color: "blue" }} />
         </span>
       </div>
+
       {vacancies.length > 0 && (
         <HorizonTable
           isRefreshing={isRefreshing}
@@ -219,6 +220,7 @@ export const ListBuscar = () => {
           handlePageChange={handlePageChange}
           handlePerRowsChange={handlePerRowsChange}
           perPage={perPage}
+          
         />
       )}
 

@@ -88,7 +88,7 @@ const Example = () => {
         `${endpointsGral.vacancyURL}getAllJobVacancyByUser/${dataRecruiter.accessToken}?page=${page}&limit=${newPerPage}`
       );
       const datas = allVacancies.data["item"];
-      //console.log('backend Response:..',allVacancies);
+      console.log('info todas las vacantes:..',allVacancies);
       // const statusStart= datas['docs'].filter(item=>item.status==='Iniciado')
       // //console.log('lista iniciados',statusStart)
       setDataInformation(datas["docs"]);
@@ -105,7 +105,10 @@ const Example = () => {
   };
 
   useEffect(() => {
-    queryMatch(1, 10);
+    if(dataRecruiter?.accessToken!==undefined && dataRecruiter?.accessToken!==null){
+      queryMatch(1, 10);
+    }
+    
   }, []);
   useEffect(() => {
     //console.log("Nuevo valor de limit:..", perPage);
@@ -209,16 +212,17 @@ const Example = () => {
       });
   };
 
+  console.log('data iNFORMATION', dataInformation.applicants)
   const data = dataInformation?.map((vacante, index) => {
     const tempArray = [];
     const aplicantes = [...vacante.applicants];
-    aplicantes.forEach((idAplicante) => {
-      const isFounded = tempArray.find((id) => id === idAplicante);
+    aplicantes?.forEach((idAplicante) => {
+      const isFounded = tempArray?.find((id) => id === idAplicante);
       if (!isFounded) {
         tempArray.push(idAplicante);
       }
     });
-    const str = vacante.salary.toString().split(".");
+    const str = vacante?.salary?.toString().split(".");
     str[0] = str[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     return {
       id: vacante._id,

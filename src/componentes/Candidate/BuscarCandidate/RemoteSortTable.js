@@ -316,17 +316,17 @@ const RemoteSortTable = () => {
   const retriveUser=dataCandidate.user_skills?.map((item)=>{
     return item.name
   })
+   const filterRDuplexUser=[...new Set(retriveUser)];
   useEffect(() => {
     if (vacancies.length > 0) {
       const tempData = vacancies?.map((item, index) => {
         const retriveVacancy=item.job_skills.map((idSkill)=>{
           return idSkill.name
         })
-        // console.log('Skill vacancy', retriveVacancy)
-        // console.log('skill user', retriveUser)
+        const filterRDuplexVacancy=[...new Set(retriveVacancy)];
         const conteo={}
 
-        retriveVacancy.forEach((element)=>{
+        filterRDuplexVacancy.forEach((element)=>{
           if(conteo[element]){
             conteo[element]++
           }else{
@@ -335,9 +335,9 @@ const RemoteSortTable = () => {
         });
 
         let suma=0;
-        const quanty=retriveUser?.length
+        const quanty=filterRDuplexUser?.length
 
-        retriveUser?.forEach((element) => {
+        filterRDuplexUser?.forEach((element) => {
           if(conteo[element]){
             suma+=conteo[element]
           }

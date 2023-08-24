@@ -44,6 +44,7 @@ const RemoteSortTable = () => {
       );
       const datas = response?.data["item"];
       if(datas){
+        console.log('datas.docs:..',datas["docs"]);
         setVacancies(datas["docs"]);
         setTotalRows(datas["totalDocs"]);
         setCurrentPage(page);

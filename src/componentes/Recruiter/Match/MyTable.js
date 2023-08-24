@@ -31,8 +31,7 @@ const MyTable = ({
       //console.log('dataInfoVacancy:..',dataInfoVacancy);
     },[dataInfoVacancy])
     useEffect(()=>{
-      // console.log('dataByUserCandidate:..',dataByUserCandidate);
-      // console.log('listApplicantsPhaseOne:..',listApplicantsPhaseOne);
+      
     },[dataByUserCandidate,listApplicantsPhaseOne])
     const customStyles = {
       rows: {

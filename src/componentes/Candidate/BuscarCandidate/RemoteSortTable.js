@@ -327,7 +327,7 @@ const RemoteSortTable = () => {
         const filterRDuplexVacancy=[...new Set(retriveVacancy)];
         const conteo={}
 
-        filterRDuplexVacancy.forEach((element)=>{
+        filterRDuplexUser.forEach((element)=>{
           if(conteo[element]){
             conteo[element]++
           }else{
@@ -336,9 +336,9 @@ const RemoteSortTable = () => {
         });
 
         let suma=0;
-        const quanty=filterRDuplexUser?.length
+        const quanty=filterRDuplexVacancy?.length
 
-        filterRDuplexUser?.forEach((element) => {
+        filterRDuplexVacancy?.forEach((element) => {
           if(conteo[element]){
             suma+=conteo[element]
           }

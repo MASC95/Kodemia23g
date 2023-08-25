@@ -100,7 +100,7 @@ const HomeCandidate = () => {
         </Carousel.Item>
         <Carousel.Item
           style={{ zIndex: "0", position: "relative" }}
-          className="carousel-img"
+          className="carousel-img d-none"
         >
           <img
             style={{ zIndex: "0", position: "relative" }}

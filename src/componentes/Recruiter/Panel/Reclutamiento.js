@@ -73,6 +73,8 @@ export const Reclutamiento = () => {
           const findInRejecteds= rejecteds.find(idRechazado=>String(idRechazado)===String(idApplicante));
           if(!findInRejecteds){
             listadoApplicants.push(idApplicante)
+          }else{
+            console.log('Encontrado en rejecteds:..',findInRejecteds);
           }
         })
         //console.log("dataApplicants(ROR):..", arrayIdsApplicants);

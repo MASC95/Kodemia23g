@@ -33,6 +33,11 @@ const RemoteSortTable = () => {
   
   const [dataConsult, setDataConsult] = useState('')
 
+  function parseJwt(token) {
+    var base64Url = token.split(".")[1];
+    var base64 = base64Url.replace("-", "+").replace("_", "/");
+    return JSON.parse(window.atob(base64));
+  }
   const fetchData = async (page, newPerPage) => {
     setLoading(true);
     try {
@@ -45,7 +50,17 @@ const RemoteSortTable = () => {
       const datas = response?.data["item"];
       if(datas){
         console.log('datas.docs:..',datas["docs"]);
-        setVacancies(datas["docs"]);
+
+        const dataUser=parseJwt(dataCandidate.accessToken);
+        let tempDataVacancies = [];
+        datas["docs"].forEach((vacante, index) => {
+          const findCandidateinRejecteds = vacante?.rejecteds?.find((idCandidate) => String(idCandidate) === String(dataUser._id));
+          if(!findCandidateinRejecteds){
+            tempDataVacancies.push(vacante);
+          }
+        });
+        setVacancies([...tempDataVacancies]);
+
         setTotalRows(datas["totalDocs"]);
         setCurrentPage(page);
         setPerPage(newPerPage);
@@ -409,7 +424,17 @@ const RemoteSortTable = () => {
       //console.log(`response getDataConsult currentPage(${pageConsult}) limit(${limitConsult}):..`, response);
       
       if (response?.data) {
-        const tempData = response?.data?.item?.docs?.map((item, index) => {
+        const datas = response?.data?.item;
+        const dataUser=parseJwt(dataCandidate.accessToken);
+        let tempDataVacancies = [];
+        datas["docs"].forEach((vacante, index) => {
+          const findCandidateinRejecteds = vacante?.rejecteds?.find((idCandidate) => String(idCandidate) === String(dataUser._id));
+          if(!findCandidateinRejecteds){
+            tempDataVacancies.push(vacante);
+          }
+        });
+        //setVacancies([...tempDataVacancies]);
+        const tempData = tempDataVacancies.map((item, index) => {
           const str = item.salary.toString().split(".");
           str[0] = str[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
           return {

@@ -30,8 +30,8 @@ const RemoteSortTable = () => {
   const [data, setData] = useState([]);
   const [dataTitles, setDataTitles] = useState([]);
   const [resetConsult, setResetConsult] = useState(false);
-  
-  const [dataConsult, setDataConsult] = useState('')
+
+  const [dataConsult, setDataConsult] = useState("");
 
   function parseJwt(token) {
     var base64Url = token.split(".")[1];
@@ -47,15 +47,22 @@ const RemoteSortTable = () => {
       const response = await axios.get(
         `${endpointsGral.vacancyURL}?page=${page}&limit=${newPerPage}`
       );
+      console.log(
+        `${endpointsGral.vacancyURL}?page=${page}&limit=${newPerPage}`,
+        response
+      );
       const datas = response?.data["item"];
-      if(datas){
-        console.log('datas.docs:..',datas["docs"]);
+      if (datas) {
+        console.log("datas.docs:..", datas["docs"]);
 
-        const dataUser=parseJwt(dataCandidate.accessToken);
+        const dataUser = parseJwt(dataCandidate.accessToken);
         let tempDataVacancies = [];
         datas["docs"].forEach((vacante, index) => {
-          const findCandidateinRejecteds = vacante?.rejecteds?.find((idCandidate) => String(idCandidate) === String(dataUser._id));
-          if(!findCandidateinRejecteds){
+          const findCandidateinRejecteds = vacante?.rejecteds?.find(
+            (dataCandidate) =>
+              String(dataCandidate._id) === String(dataUser._id)
+          );
+          if (!findCandidateinRejecteds) {
             tempDataVacancies.push(vacante);
           }
         });
@@ -65,7 +72,7 @@ const RemoteSortTable = () => {
         setCurrentPage(page);
         setPerPage(newPerPage);
       }
-      
+
       setLoading(false);
       //console.log(`response fetchData page(${page}) newPerPage(${newPerPage}):..`,response.data);
       //console.log("Response Data All vacancies.... ", response.data);
@@ -129,12 +136,14 @@ const RemoteSortTable = () => {
           ] = `Bearer: ${dataCandidate?.accessToken}`;
 
           if (dataCandidate?.my_vacancies) {
-            const tempArrayIdsVacancies=dataCandidate?.my_vacancies?.map(item=>item._id);
+            const tempArrayIdsVacancies = dataCandidate?.my_vacancies?.map(
+              (item) => item._id
+            );
             dataVacancies = [...tempArrayIdsVacancies, idVacancie];
           } else {
             dataVacancies.push(idVacancie);
           }
-          
+
           //se actualiza el array de my_vacancies en la entidad user
           const responseUpdateDataUser = await axios.patch(
             `${endpointsGral.userURL}${dataCandidate.accessToken}`,
@@ -190,10 +199,9 @@ const RemoteSortTable = () => {
           ] = `Bearer: ${dataCandidate?.accessToken}`;
 
           if (my_vacancies) {
-            
-            my_vacancies.forEach(element => {
-              if(element._id!==idVacancie){
-                dataVacancies.push(element._id)
+            my_vacancies.forEach((element) => {
+              if (element._id !== idVacancie) {
+                dataVacancies.push(element._id);
               }
             });
           }
@@ -329,46 +337,45 @@ const RemoteSortTable = () => {
     },
   ];
 
-  const retriveUser=dataCandidate.user_skills?.map((item)=>{
-    return item.name
-  })
-   const filterRDuplexUser=[...new Set(retriveUser)];
+  const retriveUser = dataCandidate.user_skills?.map((item) => {
+    return item.name;
+  });
+  const filterRDuplexUser = [...new Set(retriveUser)];
   useEffect(() => {
     if (vacancies.length > 0) {
       const tempData = vacancies?.map((item, index) => {
-        const retriveVacancy=item.job_skills.map((idSkill)=>{
-          return idSkill.name
-        })
-        const filterRDuplexVacancy=[...new Set(retriveVacancy)];
-        const conteo={}
+        const retriveVacancy = item.job_skills.map((idSkill) => {
+          return idSkill.name;
+        });
+        const filterRDuplexVacancy = [...new Set(retriveVacancy)];
+        const conteo = {};
 
-        filterRDuplexVacancy.forEach((element)=>{
-          if(conteo[element]){
-            conteo[element]++
-          }else{
-            conteo[element]=1
+        filterRDuplexVacancy.forEach((element) => {
+          if (conteo[element]) {
+            conteo[element]++;
+          } else {
+            conteo[element] = 1;
           }
         });
 
-        let suma=0;
-        const quanty=filterRDuplexUser?.length
+        let suma = 0;
+        const quanty = filterRDuplexUser?.length;
 
         filterRDuplexUser?.forEach((element) => {
-          if(conteo[element]){
-            suma+=conteo[element]
+          if (conteo[element]) {
+            suma += conteo[element];
           }
-        })
-      //  console.log(`La suma de los valores repetidos es: ${suma}`);
-       console.log(quanty)
-       let operador =0
-      //  console.log('operador ', (suma * 100) / quanty)
-   
-      if(suma===0){
-        operador=0
-      }else{
-        operador = Math.floor((suma * 100) / quanty);
-      
-      }
+        });
+        //  console.log(`La suma de los valores repetidos es: ${suma}`);
+        console.log(quanty);
+        let operador = 0;
+        //  console.log('operador ', (suma * 100) / quanty)
+
+        if (suma === 0) {
+          operador = 0;
+        } else {
+          operador = Math.floor((suma * 100) / quanty);
+        }
         const str = item.salary.toString().split(".");
         str[0] = str[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         return {
@@ -381,60 +388,92 @@ const RemoteSortTable = () => {
           type: item.type,
           city: item.city,
           mode: item.mode,
-          match: `${operador} %` ,
+          match: `${operador} %`,
           salary: `$ ${str}.00`,
         };
       });
+      tempData.sort((a, b) =>  Number(b.match.slice(0,1))-Number(a.match.slice(0,1)));
+      
       setData([...tempData]);
     }
   }, [vacancies]);
 
-  useEffect(() => {
+ /*  useEffect(() => {
     //console.log('datos de la tabla:...',data);
-  }, [data]);
+  }, [data]); */
 
   const tableData = {
     columns,
     data,
   };
-  useEffect(()=>{
+  useEffect(() => {
     //console.log('nuevo valor de currentPage(dad):..',currentPage)
-  },[currentPage])
-  useEffect(()=>{
-
-  },[totalRows])
-  useEffect(()=>{
+  }, [currentPage]);
+  useEffect(() => {}, [totalRows]);
+  useEffect(() => {
     //console.log('nuevo valor de limit(perPage)(dad):..',perPage)
-  },[perPage])
-  useEffect(()=>{
-
-  },[dataConsult])
-  useEffect(()=>{
-
-  },[resetConsult])
-  const handleConsult = async (value,dataPage,dataPerPage) => {
+  }, [perPage]);
+  useEffect(() => {}, [dataConsult]);
+  useEffect(() => {}, [resetConsult]);
+  const handleConsult = async (value, dataPage, dataPerPage) => {
     //console.log("Buscaremos en el Back:..", value);
     setLoading(true);
-    const pageConsult= dataPage?dataPage:currentPage;
-    const limitConsult= dataPerPage?dataPerPage:perPage;
+    const pageConsult = dataPage ? dataPage : currentPage;
+    const limitConsult = dataPerPage ? dataPerPage : perPage;
     try {
       const response = await axios.get(
         `${endpointsGral.vacancyURL}getDataConsult?value=${value}&page=${pageConsult}&limit=${limitConsult}`
       );
       //console.log(`response getDataConsult currentPage(${pageConsult}) limit(${limitConsult}):..`, response);
-      
+
       if (response?.data) {
         const datas = response?.data?.item;
-        const dataUser=parseJwt(dataCandidate.accessToken);
+        const dataUser = parseJwt(dataCandidate.accessToken);
         let tempDataVacancies = [];
         datas["docs"].forEach((vacante, index) => {
-          const findCandidateinRejecteds = vacante?.rejecteds?.find((idCandidate) => String(idCandidate) === String(dataUser._id));
-          if(!findCandidateinRejecteds){
+          const findCandidateinRejecteds = vacante?.rejecteds?.find(
+            (dataCandidate) =>
+              String(dataCandidate._id) === String(dataUser._id)
+          );
+          if (!findCandidateinRejecteds) {
             tempDataVacancies.push(vacante);
           }
         });
+
         //setVacancies([...tempDataVacancies]);
         const tempData = tempDataVacancies.map((item, index) => {
+          const retriveVacancy = item.job_skills.map((idSkill) => {
+            return idSkill.name;
+          });
+          const filterRDuplexVacancy = [...new Set(retriveVacancy)];
+          const conteo = {};
+  
+          filterRDuplexVacancy.forEach((element) => {
+            if (conteo[element]) {
+              conteo[element]++;
+            } else {
+              conteo[element] = 1;
+            }
+          });
+  
+          let suma = 0;
+          const quanty = filterRDuplexUser?.length;
+  
+          filterRDuplexUser?.forEach((element) => {
+            if (conteo[element]) {
+              suma += conteo[element];
+            }
+          });
+          //  console.log(`La suma de los valores repetidos es: ${suma}`);
+          console.log(quanty);
+          let operador = 0;
+          //  console.log('operador ', (suma * 100) / quanty)
+  
+          if (suma === 0) {
+            operador = 0;
+          } else {
+            operador = Math.floor((suma * 100) / quanty);
+          }
           const str = item.salary.toString().split(".");
           str[0] = str[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
           return {
@@ -447,9 +486,11 @@ const RemoteSortTable = () => {
             type: item.type,
             city: item.city,
             mode: item.mode,
+            match: `${operador} %`,
             salary: `$ ${str}.00`,
           };
         });
+        tempData.sort((a, b) =>  Number(b.match.slice(0,1))-Number(a.match.slice(0,1)));
 
         setData([...tempData]);
         setTotalRows(response?.data?.item?.totalDocs);
@@ -464,23 +505,23 @@ const RemoteSortTable = () => {
   };
   const handlePerRowsChange = async (newPerPage, page) => {
     //console.log("Cambiando limit:...", newPerPage);
-    if(dataConsult===''){
+    if (dataConsult === "") {
       fetchData(page, newPerPage);
-    }else{
-      handleConsult(dataConsult,null,newPerPage);
+    } else {
+      handleConsult(dataConsult, null, newPerPage);
     }
-    
+
     setPerPage(newPerPage);
   }; // pagination
 
   const handlePageChange = (page) => {
     //console.log("handlePageChange Page:..", page);
-    if(dataConsult===''){
+    if (dataConsult === "") {
       fetchData(page, perPage);
-    }else{
-      handleConsult(dataConsult,page);
+    } else {
+      handleConsult(dataConsult, page);
     }
-    
+
     setCurrentPage(page);
   };
   const handleRefresh = () => {
@@ -489,7 +530,7 @@ const RemoteSortTable = () => {
     setPerPage(10);
     fetchData(1, 10);
     setResetConsult(true);
-    setDataConsult('');
+    setDataConsult("");
   };
 
   return (
@@ -515,7 +556,7 @@ const RemoteSortTable = () => {
       <span className="d-flex justify-content-center my-2">
         {loading && <Spinner />}
       </span>
-      
+
       <VacanciesDataTable
         columns={columns}
         data={data}

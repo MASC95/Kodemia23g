@@ -39,7 +39,7 @@ export const Vacancy = () => {
         `${endpointsGral.vacancyURL}getAllJobVacancyByUser/${dataRecruiter.accessToken}?page=${page}&limit=${newPerPage}`
       );
       const datas = allVacancies.data["item"];
-       //console.log("backend Response:..", allVacancies);
+       console.log("backend Response:..", allVacancies);
       setVacancyAll(datas["docs"]);
       // console.log("PAGINATION", datas["totalDocs"]);
       setTotalRows(datas["totalDocs"]);

@@ -31,8 +31,7 @@ const MyTable = ({
       //console.log('dataInfoVacancy:..',dataInfoVacancy);
     },[dataInfoVacancy])
     useEffect(()=>{
-      console.log('dataByUserCandidate:..',dataByUserCandidate);
-      console.log('listApplicantsPhaseOne:..',listApplicantsPhaseOne);
+      
     },[dataByUserCandidate,listApplicantsPhaseOne])
     const customStyles = {
       rows: {
@@ -85,24 +84,19 @@ const MyTable = ({
     }
 
   const retriveVacancy = dataInfoVacancy.job_skills?.map((item) => {
-    // const objVacancy={
-    //   id:item._id,
-    //   name:item.name,
-    //   level:item.level
-    // }
-    // return item._id;
     return item.name;
-
   });
+  const filterRDuplexVacancy=[...new Set(retriveVacancy)];
 
-  console.log('dataByUserCandidate', dataByUserCandidate)
+  
     const datasCompare = dataByUserCandidate.map((item, index) => {
       const retriveUser=item.user_skills.map((idSkills)=>{
         return idSkills.name
       })
+      const filterRDuplex=[...new Set(retriveUser)];
       const conteo = {};
      let newObj=[]
-      retriveUser.forEach((elemento) => {
+      filterRDuplex.forEach((elemento) => {
         if (conteo[elemento]) {
           conteo[elemento]++;
         } else {
@@ -110,13 +104,14 @@ const MyTable = ({
         }
       });
       let suma = 0;
-      const quanty = retriveVacancy?.length;
-      retriveVacancy?.forEach((elemento) => {
+      const quanty = filterRDuplexVacancy?.length;
+      filterRDuplexVacancy?.forEach((elemento) => {
         if (conteo[elemento]) {
           suma += conteo[elemento];
         }
       });
       // console.log(`La suma de los valores repetidos es: ${suma}`);
+
       let operador =0
    
       if(suma===0){
@@ -124,7 +119,6 @@ const MyTable = ({
       }else{
         // console.log(((suma*100)/quanty))
         operador = Math.floor((suma * 100) / quanty);
-        //console.log('operador',operador)
       //  compare= dataByUserCandidate.sort((a, b) => b.operador- a.operador)
       //   console.log(compare)
         //console.log('nuevo map para iterar', ) 

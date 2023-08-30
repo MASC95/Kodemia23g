@@ -350,20 +350,20 @@ const RemoteSortTable = () => {
         const filterRDuplexVacancy = [...new Set(retriveVacancy)];
         const conteo = {};
 
-        filterRDuplexVacancy.forEach((element) => {
-          if (conteo[element]) {
-            conteo[element]++;
-          } else {
-            conteo[element] = 1;
+        filterRDuplexUser.forEach((element)=>{
+          if(conteo[element]){
+            conteo[element]++
+          }else{
+            conteo[element]=1
           }
         });
 
-        let suma = 0;
-        const quanty = filterRDuplexUser?.length;
+        let suma=0;
+        const quanty=filterRDuplexVacancy?.length
 
-        filterRDuplexUser?.forEach((element) => {
-          if (conteo[element]) {
-            suma += conteo[element];
+        filterRDuplexVacancy?.forEach((element) => {
+          if(conteo[element]){
+            suma+=conteo[element]
           }
         });
         //  console.log(`La suma de los valores repetidos es: ${suma}`);

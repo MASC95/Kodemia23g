@@ -98,7 +98,7 @@ const HomeCandidate = () => {
             </h3>
           </Carousel.Caption>
         </Carousel.Item>
-        <Carousel.Item
+        {/* <Carousel.Item
           style={{ zIndex: "0", position: "relative" }}
           className="carousel-img d-none"
         >
@@ -117,7 +117,7 @@ const HomeCandidate = () => {
               Descubre tu camino al éxito con Jobinder.
             </h3>
           </Carousel.Caption>
-        </Carousel.Item>
+        </Carousel.Item> */}
       </Carousel>
     </>
   );

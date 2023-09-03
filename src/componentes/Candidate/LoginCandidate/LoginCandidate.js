@@ -75,11 +75,11 @@ export const LoginCandidate = () => {
 
         const role = loginCandidate?.role;
         if (role === "candidato") {
-          swal({
+          /*swal({
             title: "Bienvenido de vuelta!",
             icon: "success",
             button: "ok!",
-          });
+          });*/
           setDataLocalStorage({ ...loginCandidate });
           navigate("/dashboard-candidato/search");
           // resetForm();

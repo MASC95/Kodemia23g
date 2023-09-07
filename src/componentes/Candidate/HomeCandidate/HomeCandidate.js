@@ -84,7 +84,7 @@ const HomeCandidate = () => {
         >
           <img
             style={{ zIndex: "0", position: "relative" }}
-            className="d-block w-100 h-50"
+            className="d-block w-100 h-25"
             src={img2}
             alt="Second slide"
           />

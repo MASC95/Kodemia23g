@@ -50,7 +50,7 @@ const FAQSection = () => {
               className="text-center"
               style={{
                 background: "rgba(0, 189, 214, 0.18)",
-                borderRadius: "16px",
+
                 boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
                 backdropFilter: "blur(5.7px)",
                 WebkitBackdropFilter: "blur(5.7px)",

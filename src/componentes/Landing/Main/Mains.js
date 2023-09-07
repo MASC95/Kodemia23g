@@ -41,9 +41,9 @@ const Mains = () => {
   }, []);
 
   return (
-    <header style={{ zIndex: "1", position: "absolute" }}>
+    <header style={{ zIndex: "1", position: "relative" }}>
       <Navbar />
-      <HomeCandidate />
+      <HomeCandidate />  
       <div className="contenedorPrincipal">
         <h1
           className="match d-flex justify-content-center mx-100px m-md-5 animate__animated animate__pulse d-none"

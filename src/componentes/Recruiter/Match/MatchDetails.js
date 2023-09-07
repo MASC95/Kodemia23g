@@ -43,7 +43,7 @@ export const MatchDetails = () => {
       setLoading(true);
       const endpointURL = `${endpointsGral.usersInVacancy}${idVacancy}?page=${page}&limit=${newPerPage}`;
       const response = await axios.get(endpointURL);
-      // console.log('responseBackend:..',response);
+       //console.log('responseBackend(match-details):..',response);
       const datasUsers = response?.data?.item?.docs || [];
       setDataByUserCandidate(datasUsers);
       setTotalRows(datasUsers["totalDocs"]);
@@ -272,7 +272,8 @@ export const MatchDetails = () => {
           </div>
         {/* <h2 className="text-dark">Lista de aplicantes</h2> */}
         <div className="col">
-          {dataByUserCandidate?.length===0&&<div className="d-flex justify-content-center"><Spinner/></div>}
+          {loading && <div className="d-flex justify-content-center"><Spinner/></div>}
+          {dataByUserCandidate?.length===0&&<div className="d-flex justify-content-center text-danger">Esta vacante aun no tiene aplicantes</div>}
           {dataByUserCandidate?.length > 0 && (
             <MyTable
               dadHandleHideofPanel={dadHandleHideofPanel}
@@ -293,7 +294,7 @@ export const MatchDetails = () => {
         </div>
       </div>
       <div className="d-flex w-100 justify-content-end p-4">
-        <Link to={`/Dashboard-Recruiter/panel-phases?v=${idVacancy}&title=${dataInfoVacancy.title}&company=${dataInfoVacancy.companyName}`}>
+        <Link to={dataByUserCandidate?.length===0?'#':`/Dashboard-Recruiter/panel-phases?v=${idVacancy}&title=${dataInfoVacancy.title}&company=${dataInfoVacancy.companyName}`}>
           <button type="button" className="btn btn-info text-light">
             Panel de Reclutamiento
           </button>

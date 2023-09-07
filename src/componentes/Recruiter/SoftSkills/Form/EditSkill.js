@@ -162,7 +162,7 @@ export const EditSkill=({listSkills,setListSkills})=>{
       sortable: false,
       selector: (row, i) => row.null,
       cell: (d) =>[
-        <button type="button" className="buttons btn btn-outline-danger"onClick={handleDeleteSkill.bind(this,d.qty)}>
+        <button key={myId()} type="button" className="buttons btn btn-outline-danger"onClick={handleDeleteSkill.bind(this,d.qty)}>
          <FaTrash className="icon_trash" />  
          </button>,
   ]

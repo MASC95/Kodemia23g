@@ -80,7 +80,7 @@ const HomeCandidate = () => {
     <>
       <Carousel
         style={{ zIndex: "-1000", position: "relative" }}
-        className={"w-50 ms-auto me-auto"}
+        className={"w-75 ms-auto me-auto"}
         controls={false}
       >
         <Carousel.Item className=" ">

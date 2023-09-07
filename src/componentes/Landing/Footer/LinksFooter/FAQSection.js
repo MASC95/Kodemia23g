@@ -35,6 +35,7 @@ const FAQSection = () => {
           color: "#0D324D",
           minHeight: "",
           marginBottom: "50px",
+          
         }}
       >
         <div className="">
@@ -67,7 +68,7 @@ const FAQSection = () => {
               Preguntas Frecuentes
             </h3>
           </div>
-          <Accordion>
+          <Accordion className="">
             <Accordion.Item eventKey="0">
               <Accordion.Header>
                 ¿Como creo una cuenta en Jobinder?

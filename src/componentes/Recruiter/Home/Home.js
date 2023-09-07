@@ -33,6 +33,7 @@ export const HomeRecruiter = () => {
   return (
     <>
       {/* <h1 className="text-center">BIENVENIDO A JOBINDER</h1>  */}
+      <h1>SOY RAMIRO</h1>
       <Carousel
         style={{ zIndex: "-1000", position: "relative" }}
         className="w-100 main-carousel "

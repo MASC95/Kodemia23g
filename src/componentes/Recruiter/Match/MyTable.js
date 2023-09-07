@@ -209,11 +209,11 @@ const MyTable = ({
             </button>
           </OverlayTrigger>
         </Link>,
-        <OverlayTrigger placement="bottom" overlay={tooltip2}>
+        <OverlayTrigger key={myId()} placement="bottom" overlay={tooltip2}>
           <button
             disabled={isFoundedUser(d.id)}
             type="button"
-            key={myId()}
+            
             className={`buttons btn ${buttonState}`}
             // className="buttons btn btn-outline-success"
             onClick={handleAddPanel.bind(this, d.qty)}
@@ -228,10 +228,10 @@ const MyTable = ({
             />
           </button>
         </OverlayTrigger>,
-        <OverlayTrigger placement="bottom" overlay={tooltip3}>
+        <OverlayTrigger key={myId()} placement="bottom" overlay={tooltip3}>
           <button
             type="button"
-            key={myId()}
+            
             className="buttons btn btn-outline-secondary"
             onClick={handleHideofPanel.bind(this, d.qty)}
           >

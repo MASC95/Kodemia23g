@@ -7,10 +7,10 @@ import CustomDropDown from "./CustomDropDown/CustomDropDown";
 
 const Navbar = () => {
   return (
-    <div className="main-navbar-color w-100 p-2">
-      <div className="container-fluid">
-        <div className="row align-items-center">
-          <div className="col-3">
+    <div className="main-navbar-color  ">
+      <div className="container">
+        <div className="d-flex justify-content-between">
+          <div className="">
             <Link className="jobinder-logo" to="/">
               <img
                 src={logo}
@@ -20,8 +20,10 @@ const Navbar = () => {
               />
             </Link>
           </div>
-          <div className="col-5"></div>
-          <div className="col-4 d-flex justify-content-end">
+
+          
+
+          <div className="d-flex">
             <CustomDropDown />
           </div>
         </div>

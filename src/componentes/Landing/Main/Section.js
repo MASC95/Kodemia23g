@@ -7,7 +7,7 @@ import Button2 from "../../Candidate/Buttons/Button2";
 import { FaCode } from "react-icons/fa";
 import { FaUserTie } from "react-icons/fa";
 import { useMediaQuery } from "react-responsive";
-import { red } from "@material-ui/core/colors";
+//import { red } from "@material-ui/core/colors";
 
 const Section = () => {
   const [isErorImgCadidate, setIsErorImgCandidate] = useState(false);
@@ -96,14 +96,8 @@ const Section = () => {
                     colortext="#fff"
                     widthB="250px"
                     bgcolor="#106973"
-<<<<<<< HEAD
                     fs={isMobile ? "10px" : "14px"}
                     paddingB={isMobile ? "10px" : "10px : 10px 20px 10px 20px"}
-=======
-                    fs="14px"
-                    paddingB="10px 20px 10px 20px"
-                    
->>>>>>> refs/remotes/origin/devMs
                     borde="none"
                     altura="50px"
                   />

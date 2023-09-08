@@ -43,16 +43,16 @@ const HomeCandidate = () => {
       navigate("/dashboard-recruiter/vacancy");
     }
     if (isMobile) {
-      setMyFontSize("5vw");
+      setMyFontSize("3vw");
     }
     if (isDesktop) {
-      setMyFontSize("4vw");
+      setMyFontSize("3vw");
     }
     if (isUltraWide) {
       setMyFontSize("2vw");
     }
     if (isUltraWide4k) {
-      setMyFontSize("1vw");
+      setMyFontSize(".7vw");
     }
   }, []);
 
@@ -80,7 +80,7 @@ const HomeCandidate = () => {
     <>
       <Carousel
         style={{ zIndex: "-1000", position: "relative" }}
-        className={"w-75 ms-auto me-auto"}
+        className={"w-50 ms-auto me-auto"}
         controls={false}
       >
         <Carousel.Item className=" ">

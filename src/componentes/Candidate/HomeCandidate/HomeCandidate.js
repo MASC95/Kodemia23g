@@ -43,13 +43,16 @@ const HomeCandidate = () => {
       navigate("/dashboard-recruiter/vacancy");
     }
     if (isMobile) {
-      setMyFontSize("3vw");
+      setMyFontSize("4vw");
     }
     if (isDesktop) {
-      setMyFontSize("3vw");
+      setMyFontSize("4vw");
     }
     if (isUltraWide) {
       setMyFontSize("2vw");
+    }
+    if (isUltraWide4k) {
+      setMyFontSize("1vw");
     }
     if (isUltraWide4k) {
       setMyFontSize(".7vw");
@@ -67,6 +70,9 @@ const HomeCandidate = () => {
   });
   const isUltraWide4k = useMediaQuery({
     query: "(min-width: 3000px)",
+  });
+  const isUltraWide4kb = useMediaQuery({
+    query: "(min-width: 4000px)",
   });
 
   const handleError = () => {

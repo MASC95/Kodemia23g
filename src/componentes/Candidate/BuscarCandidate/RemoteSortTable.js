@@ -50,13 +50,13 @@ const RemoteSortTable = () => {
       const response = await axios.get(
         `${endpointsGral.vacancyURL}?page=${page}&limit=${newPerPage}`
       );
-      /*console.log(
+      /*//console.log(
         `${endpointsGral.vacancyURL}?page=${page}&limit=${newPerPage}`,
         response
       );*/
       const datas = response?.data["item"];
       if (datas) {
-        //console.log("datas.docs:..", datas["docs"]);
+        ////console.log("datas.docs:..", datas["docs"]);
 
         const dataUser = parseJwt(dataCandidate.accessToken);
         let tempDataVacancies = [];
@@ -77,10 +77,10 @@ const RemoteSortTable = () => {
       }
 
       setLoading(false);
-      //console.log(`response fetchData page(${page}) newPerPage(${newPerPage}):..`,response.data);
-      //console.log("Response Data All vacancies.... ", response.data);
+      ////console.log(`response fetchData page(${page}) newPerPage(${newPerPage}):..`,response.data);
+      ////console.log("Response Data All vacancies.... ", response.data);
     } catch (error) {
-      console.log(error);
+      //console.log(error);
     }
   };
 
@@ -89,7 +89,7 @@ const RemoteSortTable = () => {
       const response = await axios.get(
         `${endpointsGral.vacancyURL}getTitlesVacancies`
       );
-      //console.log("response getTitlesVacancies:...", response);
+      ////console.log("response getTitlesVacancies:...", response);
       if (response?.data) {
         let tempData = [
           ...response?.data?.distinctTitles,
@@ -103,7 +103,7 @@ const RemoteSortTable = () => {
         }
       }
     } catch (error) {
-      console.log(error);
+      //console.log(error);
     }
   };
 
@@ -130,7 +130,7 @@ const RemoteSortTable = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         const idVacancie = e.target.id;
-        console.log("Manejando la funcion Aplicar:...", idVacancie);
+        //console.log("Manejando la funcion Aplicar:...", idVacancie);
         let dataVacancies = [];
         let dataApplicants = [];
         try {
@@ -169,10 +169,10 @@ const RemoteSortTable = () => {
                 accessToken: dataCandidate.accessToken,
               });
           }
-          //console.log("Response updateDataUser:..", responseUpdateDataUser);
-          //console.log("Response updateDataVacancie:..", responseUpdateDataVacancie);
+          ////console.log("Response updateDataUser:..", responseUpdateDataUser);
+          ////console.log("Response updateDataVacancie:..", responseUpdateDataVacancie);
         } catch (error) {
-          console.log("Error al aplicar:...", error);
+          //console.log("Error al aplicar:...", error);
           const errMsg = error?.response?.data?.errors[0]?.message;
           if (errMsg) {
             setErrorBackend(errMsg);
@@ -194,7 +194,7 @@ const RemoteSortTable = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         const idVacancie = e.target.id;
-        console.log("Manejando la funcion de Dejar de Aplicar:...", idVacancie);
+        //console.log("Manejando la funcion de Dejar de Aplicar:...", idVacancie);
         let dataVacancies = [];
         try {
           axios.defaults.headers.common[
@@ -232,7 +232,7 @@ const RemoteSortTable = () => {
               });
           }
         } catch (error) {
-          console.log("Error al dejar de aplicar:...", error);
+          //console.log("Error al dejar de aplicar:...", error);
           const errMsg = error?.response?.data?.errors[0]?.message;
           if (errMsg) {
             setErrorBackend(errMsg);
@@ -351,7 +351,17 @@ const RemoteSortTable = () => {
           return idSkill.name;
         });
         const filterRDuplexVacancy = [...new Set(retriveVacancy)];
+        if(item.companyName==='DigiComp'){
+          //console.log(`filterRDuplexVacancy(useEffect):..empresa:(${item.companyName})`,filterRDuplexVacancy);
+        }
+        
         const conteo = {};
+        /*
+        {
+          ada:1,
+          actionscript:1,
+        }
+        */
 
         filterRDuplexUser.forEach((element)=>{
           if(conteo[element]){
@@ -369,10 +379,10 @@ const RemoteSortTable = () => {
             suma+=conteo[element]
           }
         });
-        //  console.log(`La suma de los valores repetidos es: ${suma}`);
-        console.log(quanty);
+        //  //console.log(`La suma de los valores repetidos es: ${suma}`);
+        //console.log(quanty);
         let operador = 0;
-        //  console.log('operador ', (suma * 100) / quanty)
+        //  //console.log('operador ', (suma * 100) / quanty)
 
         if (suma === 0) {
           operador = 0;
@@ -402,7 +412,7 @@ const RemoteSortTable = () => {
   }, [vacancies]);
 
  /*  useEffect(() => {
-    //console.log('datos de la tabla:...',data);
+    ////console.log('datos de la tabla:...',data);
   }, [data]); */
 
   const tableData = {
@@ -410,16 +420,17 @@ const RemoteSortTable = () => {
     data,
   };
   useEffect(() => {
-    //console.log('nuevo valor de currentPage(dad):..',currentPage)
+    ////console.log('nuevo valor de currentPage(dad):..',currentPage)
   }, [currentPage]);
   useEffect(() => {}, [totalRows]);
   useEffect(() => {
-    //console.log('nuevo valor de limit(perPage)(dad):..',perPage)
+    ////console.log('nuevo valor de limit(perPage)(dad):..',perPage)
   }, [perPage]);
   useEffect(() => {}, [dataConsult]);
   useEffect(() => {}, [resetConsult]);
+
   const handleConsult = async (value, dataPage, dataPerPage) => {
-    //console.log("Buscaremos en el Back:..", value);
+    //console.log("(HandleConsult)Buscaremos en el Back:..", value);
     setLoading(true);
     const pageConsult = dataPage ? dataPage : currentPage;
     const limitConsult = dataPerPage ? dataPerPage : perPage;
@@ -431,9 +442,9 @@ const RemoteSortTable = () => {
 
       if (response?.data) {
         const datas = response?.data?.item;
-        const dataUser = parseJwt(dataCandidate.accessToken);
+        const dataUser = parseJwt(dataCandidate?.accessToken);
         let tempDataVacancies = [];
-        datas["docs"].forEach((vacante, index) => {
+        datas["docs"]?.forEach((vacante, index) => {
           const findCandidateinRejecteds = vacante?.rejecteds?.find(
             (dataCandidate) =>
               String(dataCandidate._id) === String(dataUser._id)
@@ -444,11 +455,19 @@ const RemoteSortTable = () => {
         });
 
         //setVacancies([...tempDataVacancies]);
+        //console.log('Iniciamos algoritmo de Match:...');
+        //console.log('tempDataVacancies:..',tempDataVacancies);
         const tempData = tempDataVacancies.map((item, index) => {
           const retriveVacancy = item.job_skills.map((idSkill) => {
             return idSkill.name;
           });
+          //console.log('retriveVacancy:..',retriveVacancy);
           const filterRDuplexVacancy = [...new Set(retriveVacancy)];
+          //console.log('companyName...',item.companyName);
+          if(item.companyName==='DigiComp'){
+            //console.log(`filterRDuplexVacancy(handleConsult):..empresa:(${item.companyName})`,filterRDuplexVacancy);
+          }
+          
           const conteo = {};
   
           filterRDuplexVacancy.forEach((element) => {
@@ -458,19 +477,20 @@ const RemoteSortTable = () => {
               conteo[element] = 1;
             }
           });
-  
+          //console.log('conteo:..',conteo);
           let suma = 0;
-          const quanty = filterRDuplexUser?.length;
+          const quanty = filterRDuplexVacancy?.length;
   
           filterRDuplexUser?.forEach((element) => {
             if (conteo[element]) {
               suma += conteo[element];
             }
           });
-          //  console.log(`La suma de los valores repetidos es: ${suma}`);
-          console.log(quanty);
+          //console.log(`La suma de los valores repetidos es: ${suma}`);
+
+          //console.log('quanty:...',quanty);
           let operador = 0;
-          //  console.log('operador ', (suma * 100) / quanty)
+          //  //console.log('operador ', (suma * 100) / quanty)
   
           if (suma === 0) {
             operador = 0;
@@ -503,11 +523,11 @@ const RemoteSortTable = () => {
         setLoading(false);
       }
     } catch (error) {
-      console.log(error);
+      //console.log(error);
     }
   };
   const handlePerRowsChange = async (newPerPage, page) => {
-    //console.log("Cambiando limit:...", newPerPage);
+    ////console.log("Cambiando limit:...", newPerPage);
     if (dataConsult === "") {
       fetchData(page, newPerPage);
     } else {
@@ -518,7 +538,7 @@ const RemoteSortTable = () => {
   }; // pagination
 
   const handlePageChange = (page) => {
-    //console.log("handlePageChange Page:..", page);
+    ////console.log("handlePageChange Page:..", page);
     if (dataConsult === "") {
       fetchData(page, perPage);
     } else {
@@ -528,7 +548,7 @@ const RemoteSortTable = () => {
     setCurrentPage(page);
   };
   const handleRefresh = () => {
-    //console.log("Manejando Refreshing:...");
+    ////console.log("Manejando Refreshing:...");
     setCurrentPage(1);
     setPerPage(10);
     fetchData(1, 10);

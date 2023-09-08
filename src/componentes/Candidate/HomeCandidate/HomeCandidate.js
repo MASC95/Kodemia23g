@@ -30,7 +30,7 @@ const HomeCandidate = () => {
 
   useEffect(() => {
     setAnchoVW(window.innerWidth);
-    console.log("anchoVW:..", anchoVW);
+    //console.log("anchoVW:..", anchoVW);
   }, [window.innerWidth, anchoVW]);
 
   useEffect(() => {
@@ -58,6 +58,7 @@ const HomeCandidate = () => {
       setMyFontSize(".7vw");
     }
   }, []);
+  
 
   const isMobile = useMediaQuery({
     query: "(max-width: 999px)",

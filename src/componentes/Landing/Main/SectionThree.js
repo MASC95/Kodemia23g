@@ -18,7 +18,7 @@ const SectionThree = () => {
         empleo.
       </h1>
 
-      <div className="container-fluid main-container">
+      <div className="conteiner-fluid main-container">
         <div className="row gx-1 row-main-container">
           <div className="col-md-3 col-lg-3 contenedor-imagen d-flex justify-content-end">
             <img

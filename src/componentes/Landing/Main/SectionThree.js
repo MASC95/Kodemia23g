@@ -20,7 +20,7 @@ const SectionThree = () => {
 
       <div className="container-fluid main-container">
         <div className="row gx-1 row-main-container">
-          <div className="col-md-3 col-lg-3 contenedor-imagen d-flex justify-contenr-end">
+          <div className="col-md-3 col-lg-3 contenedor-imagen d-flex justify-content-end">
             <img
               className=" rounded-circle d-none d-lg-block profile-pic-1"
               src="https://frontjobinderimg.s3.amazonaws.com/profile-pic.png"

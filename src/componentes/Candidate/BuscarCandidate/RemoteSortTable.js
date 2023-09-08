@@ -34,9 +34,12 @@ const RemoteSortTable = () => {
   const [dataConsult, setDataConsult] = useState("");
 
   function parseJwt(token) {
-    var base64Url = token.split(".")[1];
-    var base64 = base64Url.replace("-", "+").replace("_", "/");
-    return JSON.parse(window.atob(base64));
+    const base64Url = token?.split(".")[1];
+    const base64 = base64Url?.replace("-", "+")?.replace("_", "/");
+    if(base64){
+      return JSON.parse(window.atob(base64));
+    }
+    
   }
   const fetchData = async (page, newPerPage) => {
     setLoading(true);
@@ -47,20 +50,20 @@ const RemoteSortTable = () => {
       const response = await axios.get(
         `${endpointsGral.vacancyURL}?page=${page}&limit=${newPerPage}`
       );
-      console.log(
+      /*console.log(
         `${endpointsGral.vacancyURL}?page=${page}&limit=${newPerPage}`,
         response
-      );
+      );*/
       const datas = response?.data["item"];
       if (datas) {
-        console.log("datas.docs:..", datas["docs"]);
+        //console.log("datas.docs:..", datas["docs"]);
 
         const dataUser = parseJwt(dataCandidate.accessToken);
         let tempDataVacancies = [];
         datas["docs"].forEach((vacante, index) => {
           const findCandidateinRejecteds = vacante?.rejecteds?.find(
             (dataCandidate) =>
-              String(dataCandidate._id) === String(dataUser._id)
+              String(dataCandidate._id) === String(dataUser?._id)
           );
           if (!findCandidateinRejecteds) {
             tempDataVacancies.push(vacante);

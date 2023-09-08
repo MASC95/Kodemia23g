@@ -10,7 +10,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Formik, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import Navbar from "../../Landing/Navbar/Navbar";
-
+import Button from "react-bootstrap/Button";
 const initFormValues = {
   email: "",
   password: "",
@@ -210,16 +210,13 @@ export const LoginCandidate = () => {
                         <ErrorMessage name="password" />
                       </span>
 
-                      <div className="text-center">
-                        <div className="buttons_actions d-grid">
-                          <button
-                            type="submit"
-                            className="buttons btn btn-info btn-lg"
-                          >
-                            Enviar
-                          </button>
-                        </div>
-                      </div>
+                      <Button
+                        type="submit"
+                        className="buttons btn btn-info btn-lg m-3"
+                      >
+                        Enviar
+                      </Button>
+
                       <p className="mt-20  text-decoration-none">
                         No tienes una cuenta?
                         <Link to={`/register-candidato`}>

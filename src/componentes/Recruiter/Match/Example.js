@@ -10,11 +10,10 @@ import { myId } from "../../lib/myLib";
 import { Link } from "react-router-dom";
 import useJob from "../../../hooks/useJob";
 //import {GrRefresh} from "react-icons/gr";
-import {FcRefresh} from "react-icons/fc";
+import { FcRefresh } from "react-icons/fc";
 //GrRefresh  FcRefresh
 
 import MyTable from "./MyTable";
-
 
 // import 'datatables.net-responsive';
 
@@ -88,7 +87,7 @@ const Example = () => {
         `${endpointsGral.vacancyURL}getAllJobVacancyByUser/${dataRecruiter.accessToken}?page=${page}&limit=${newPerPage}`
       );
       const datas = allVacancies.data["item"];
-      console.log('info todas las vacantes:..',allVacancies);
+      //console.log('info todas las vacantes:..',allVacancies);
       // const statusStart= datas['docs'].filter(item=>item.status==='Iniciado')
       // //console.log('lista iniciados',statusStart)
       setDataInformation(datas["docs"]);
@@ -105,10 +104,12 @@ const Example = () => {
   };
 
   useEffect(() => {
-    if(dataRecruiter?.accessToken!==undefined && dataRecruiter?.accessToken!==null){
+    if (
+      dataRecruiter?.accessToken !== undefined &&
+      dataRecruiter?.accessToken !== null
+    ) {
       queryMatch(1, 10);
     }
-    
   }, []);
   useEffect(() => {
     //console.log("Nuevo valor de limit:..", perPage);
@@ -116,7 +117,7 @@ const Example = () => {
 
   useEffect(() => {
     if (errorBackend !== "") {
-      Swal.fire("Lo sentimos!", `${errorBackend}`, "error")
+      Swal.fire("Lo sentimos!", `${errorBackend}`, "error");
       console.log("Error Backend:..", errorBackend);
     }
   }, [errorBackend]);
@@ -229,7 +230,7 @@ const Example = () => {
       qty: index,
       company: vacante.companyName,
       title: vacante.title,
-      salary:`$${str}.00`,
+      salary: `$${str}.00`,
       status: vacante.status,
       candidato: tempArray?.length || 0,
     };
@@ -257,7 +258,7 @@ const Example = () => {
       name: "SALARIO MENSUAL",
       selector: (row, i) => `${row.salary}`,
       sortable: true,
-       center: true,
+      center: true,
     },
     {
       name: "ESTADO DE LA VACANTE",
@@ -292,47 +293,44 @@ const Example = () => {
     data,
   };
 
-  const handleRefresh = ()=>{
+  const handleRefresh = () => {
     // console.log('refrescando datos:..');
     queryMatch(1, 10);
-  }
+  };
 
   return (
     <div
       className="row m-2 p-3"
       style={{ fontFamily: "Poppins, sans-serif, Verdana, Geneva, Tahoma" }}
     >
-      
       {errorBackend !== "" ? (
-        <div>
-        {errorBackend}
-        </div>
+        <div>{errorBackend}</div>
       ) : (
         <>
-        <span 
-        style={{width:'fit-content',cursor:'pointer', color:'blue'}} 
-        onClick={handleRefresh}
-        className=" text-center ms-auto btn btn-outline-info">
-          <FcRefresh style={{color:'blue'}}/>
+          <span
+            style={{ width: "fit-content", cursor: "pointer", color: "blue" }}
+            onClick={handleRefresh}
+            className=" text-center ms-auto btn btn-outline-info"
+          >
+            <FcRefresh style={{ color: "blue" }} />
           </span>
-        <DataTableExtensions export={false} print={false} {...tableData}>
-          
-          <DataTable
-            {...tableData}
-            columns={columns}
-            data={data}
-            customStyles={customStyles}
-            progressPending={loading}
-            pagination
-            paginationServer
-            paginationTotalRows={totalRows}
-            paginationDefaultPage={currentPage}
-            onChangeRowsPerPage={handlePerRowsChange}
-            onChangePage={handlePageChange}
-            highlightOnHover
-            dense
-          />
-        </DataTableExtensions>
+          <DataTableExtensions export={false} print={false} {...tableData}>
+            <DataTable
+              {...tableData}
+              columns={columns}
+              data={data}
+              customStyles={customStyles}
+              progressPending={loading}
+              pagination
+              paginationServer
+              paginationTotalRows={totalRows}
+              paginationDefaultPage={currentPage}
+              onChangeRowsPerPage={handlePerRowsChange}
+              onChangePage={handlePageChange}
+              highlightOnHover
+              dense
+            />
+          </DataTableExtensions>
         </>
       )}
     </div>

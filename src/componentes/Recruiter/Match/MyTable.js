@@ -5,6 +5,7 @@ import { FaEye, FaCheck, FaEyeSlash } from "react-icons/fa";
 import { myId } from "../../lib/myLib";
 import { Link } from "react-router-dom";
 // import { useEffect } from 'react';
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
 
 const MyFaCheck = ({ text }) => {
   return (
@@ -68,6 +69,12 @@ const MyTable = ({
     dadHandleHideofPanel(index);
   };
 
+  const tooltip = <Tooltip>Ver</Tooltip>;
+
+  const tooltip2 = <Tooltip>Aceptar</Tooltip>;
+
+  const tooltip3 = <Tooltip>Rechazar</Tooltip>;
+
   const handleAddPanel = (index) => {
     //console.log('Agregando usuario a panel (MyTable):..',index);
     dadHandleofPanel(index);
@@ -93,7 +100,6 @@ const MyTable = ({
     const retriveUser = item.user_skills.map((idSkills) => {
       return idSkills.name;
     });
-    // console.log("retrive User", retriveUser);
     const filterRDuplex = [...new Set(retriveUser)];
     const conteo = {};
     let newObj = [];
@@ -197,35 +203,39 @@ const MyTable = ({
           key={myId()}
           to={`/dashboard-recruiter/profile-candidato/?c=${d.id}&v=${idVacancy}`}
         >
-          <button type="button" className="buttons btn btn-outline-info">
-            <FaEye className="icon_eye1" />
-          </button>
+          <OverlayTrigger placement="bottom" overlay={tooltip}>
+            <button type="button" className="buttons btn btn-outline-info">
+              <FaEye className="icon_eye1" />
+            </button>
+          </OverlayTrigger>
         </Link>,
-
-        <button
-          disabled={isFoundedUser(d.id)}
-          type="button"
-          key={myId()}
-          className={`buttons btn ${buttonState}`}
-          // className="buttons btn btn-outline-success"
-          onClick={handleAddPanel.bind(this, d.qty)}
-        >
-          {/* {buttonState==="btn btn-outline-success"?"btn btn-outline-success":"btn-outline-secondary"} */}
-          <FaCheck
-            className={
-              isFoundedUser(d.id) ? "icon_check1 text-secondary" : "icon_check1"
-            }
-          />
-        </button>,
-
-        <button
-          type="button"
-          key={myId()}
-          className="buttons btn btn-outline-secondary"
-          onClick={handleHideofPanel.bind(this, d.qty)}
-        >
-          <FaEyeSlash className="icon_eyeSlash1 text-danger opacity-50" />
-        </button>,
+        <OverlayTrigger key={myId()} placement="bottom" overlay={tooltip2}>
+          <button
+            disabled={isFoundedUser(d.id)}
+            type="button"
+            className={`buttons btn ${buttonState}`}
+            // className="buttons btn btn-outline-success"
+            onClick={handleAddPanel.bind(this, d.qty)}
+          >
+            {/* {buttonState==="btn btn-outline-success"?"btn btn-outline-success":"btn-outline-secondary"} */}
+            <FaCheck
+              className={
+                isFoundedUser(d.id)
+                  ? "icon_check1 text-secondary"
+                  : "icon_check1"
+              }
+            />
+          </button>
+        </OverlayTrigger>,
+        <OverlayTrigger key={myId()} placement="bottom" overlay={tooltip3}>
+          <button
+            type="button"
+            className="buttons btn btn-outline-secondary"
+            onClick={handleHideofPanel.bind(this, d.qty)}
+          >
+            <FaEyeSlash className="icon_eyeSlash1 text-danger opacity-50" />
+          </button>
+        </OverlayTrigger>,
       ],
     },
   ];

@@ -41,9 +41,10 @@ const Mains = () => {
   }, []);
 
   return (
-    <header style={{ zIndex: "1", position: "absolute" }}>
+    <header style={{ zIndex: "1", position: "relative" }}>
       <Navbar />
-      <HomeCandidate />
+      <div className="container">
+      <HomeCandidate />  
       <div className="contenedorPrincipal">
         <h1
           className="match d-flex justify-content-center mx-100px m-md-5 animate__animated animate__pulse d-none"
@@ -62,10 +63,12 @@ const Mains = () => {
         >
           Con Jobinder, tu trabajo ideal está a sólo un clic de distancia.
         </p>
+        
         <SectionThree />
         <Section />
-
         <FAQSection />
+        </div>
+      
       </div>
       <Footer />
     </header>

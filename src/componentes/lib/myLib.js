@@ -9,7 +9,7 @@ export const myId = () => {
   return id.join("");
 };
 
-const nodeEnv = "DEV";
+const nodeEnv = "PRD";
 
 export const backURL =
   nodeEnv === "PRD"

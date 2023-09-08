@@ -35,6 +35,7 @@ const FAQSection = () => {
           color: "#0D324D",
           minHeight: "",
           marginBottom: "50px",
+          
         }}
       >
         <div className="">
@@ -50,7 +51,7 @@ const FAQSection = () => {
               className="text-center"
               style={{
                 background: "rgba(0, 189, 214, 0.18)",
-                borderRadius: "16px",
+
                 boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
                 backdropFilter: "blur(5.7px)",
                 WebkitBackdropFilter: "blur(5.7px)",
@@ -67,7 +68,7 @@ const FAQSection = () => {
               Preguntas Frecuentes
             </h3>
           </div>
-          <Accordion>
+          <Accordion className="">
             <Accordion.Item eventKey="0">
               <Accordion.Header>
                 ¿Como creo una cuenta en Jobinder?

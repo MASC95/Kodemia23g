@@ -58,11 +58,11 @@ export const LoginRecruiter = () => {
 
       const role = loginRecruiter?.role;
       if (role === "empresa") {
-        // swal({
-        //   title: "Bienvenido de vuelta!",
-        //   icon: "success",
-        //   button: "ok!",
-        // });
+        /*swal({
+          title: "Bienvenido de vuelta!",
+          icon: "success",
+          button: "ok!",
+        });*/
         setDataLocalStorage({ ...loginRecruiter });
         // console.log("dashboard Recruiter");
         navigate("/Dashboard-Recruiter/vacancy");

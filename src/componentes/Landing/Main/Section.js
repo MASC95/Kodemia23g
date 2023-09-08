@@ -6,6 +6,9 @@ import "./scss/section.scss";
 import Button2 from "../../Candidate/Buttons/Button2";
 import { FaCode } from "react-icons/fa";
 import { FaUserTie } from "react-icons/fa";
+import { useMediaQuery } from "react-responsive";
+//import { red } from "@material-ui/core/colors";
+
 const Section = () => {
   const [isErorImgCadidate, setIsErorImgCandidate] = useState(false);
   const [isErorImgRecrutier, setIsErorImgRecrutier] = useState(false);
@@ -34,6 +37,10 @@ const Section = () => {
   const handleLoadImg = (e) => {
     // console.log("Success al cargar img:..", e.target.name);
   };
+
+  const isMobile = useMediaQuery({
+    query: "(max-width: 436px)",
+  });
 
   return (
     <section className="sectionOne">
@@ -89,8 +96,8 @@ const Section = () => {
                     colortext="#fff"
                     widthB="250px"
                     bgcolor="#106973"
-                    fs="14px"
-                    paddingB="10px 20px 10px 20px"
+                    fs={isMobile ? "10px" : "14px"}
+                    paddingB={isMobile ? "10px" : "10px : 10px 20px 10px 20px"}
                     borde="none"
                     altura="50px"
                   />
@@ -123,7 +130,6 @@ const Section = () => {
                     width: "70px",
                     height: "70px",
                     borderRadius: "30px",
-
                     color: "black",
                     marginTop: "20px",
                   }}
@@ -146,8 +152,8 @@ const Section = () => {
                     colortext="#fff"
                     widthB="250px"
                     bgcolor="#106973"
-                    fs="14px"
-                    paddingB="10px 20px 10px 20px"
+                    fs={isMobile ? "10px" : "14px"}
+                    paddingB={isMobile ? "10px" : "10px : 10px 20px 10px 20px"}
                     borde="none"
                     altura="50px"
                   />

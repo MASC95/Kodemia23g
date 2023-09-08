@@ -144,7 +144,7 @@ function App() {
             
           </Route>
           }
-          {/* <Route path="*" element={<Mains/>}/> */}
+          <Route path="*" element={<Mains/>}/> 
         </Routes>
       </div>
     </JobContext.Provider>

@@ -348,7 +348,7 @@ try {
               <div
                 className="dd-element"
                 key={myId()}
-                draggable
+                draggable={true}
                 onDragStart={(evt) => startDrag(evt, item)}
               >
                 <p className="body">{item.body}</p>

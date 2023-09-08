@@ -39,7 +39,7 @@ const Section = () => {
   };
 
   const isMobile = useMediaQuery({
-    query: "(max-width: 360px)",
+    query: "(max-width: 436px)",
   });
 
   return (

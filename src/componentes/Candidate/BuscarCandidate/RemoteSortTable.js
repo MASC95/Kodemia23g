@@ -340,54 +340,99 @@ const RemoteSortTable = () => {
   ];
 
   const retriveUser = dataCandidate.user_skills?.map((item) => {
-    return item.name;
+    // return item.name;
+    return {
+      name: item.name,
+      level: item.level,
+    };
   });
   const filterRDuplexUser = [...new Set(retriveUser)];
+  console.log(filterRDuplexUser);
   useEffect(() => {
     if (vacancies.length > 0) {
       const tempData = vacancies?.map((item, index) => {
         const retriveVacancy = item.job_skills.map((idSkill) => {
-          return idSkill.name;
+          return {
+            name: idSkill.name,
+            level: idSkill.level,
+          };
         });
         const filterRDuplexVacancy = [...new Set(retriveVacancy)];
-        if (item.companyName === "DigiComp") {
-          //console.log(`filterRDuplexVacancy(useEffect):..empresa:(${item.companyName})`,filterRDuplexVacancy);
-        }
+        console.log(filterRDuplexVacancy);
+        let coincidencias = 0;
+        const quanty = filterRDuplexVacancy.length;
+        let ignorados = 0;
 
-        const conteo = {};
-        /*
-        {
-          ada:1,
-          actionscript:1,
-        }
-        */
-
-        filterRDuplexUser.forEach((element) => {
-          if (conteo[element]) {
-            conteo[element]++;
-          } else {
-            conteo[element] = 1;
+        for (const elemento1 of filterRDuplexVacancy) {
+          for (const elemento2 of filterRDuplexUser) {
+            if (elemento1.name === elemento2.name) {
+              if (
+                elemento1.level === "Intermedio" ||
+                (elemento1.level === "Avanzado" &&
+                  elemento2.level === "Intermedio") ||
+                elemento2.level === "Avanzado"
+              ) {
+                coincidencias++;
+              }
+              if (
+                elemento1.level === "Basico" &&
+                elemento2.level === "Basico"
+              ) {
+                coincidencias++;
+              }
+              if (
+                elemento1.level === "Intermedio" &&
+                elemento2.level === "Basico"
+              ) {
+                ignorados++;
+              }
+            }
           }
-        });
-
-        let suma = 0;
-        const quanty = filterRDuplexVacancy?.length;
-
-        filterRDuplexVacancy?.forEach((element) => {
-          if (conteo[element]) {
-            suma += conteo[element];
-          }
-        });
-        //  //console.log(`La suma de los valores repetidos es: ${suma}`);
-        //console.log(quanty);
-        let operador = 0;
-        //  //console.log('operador ', (suma * 100) / quanty)
-
-        if (suma === 0) {
-          operador = 0;
-        } else {
-          operador = Math.floor((suma * 100) / quanty);
         }
+        console.log("Coincidencias", coincidencias);
+        console.log("Ignorados", ignorados);
+        const total = coincidencias - ignorados;
+        console.log("total", total);
+        const porcentajeCompatibilidad = Math.floor((total / quanty) * 100);
+        // const retriveVacancy = item.job_skills.map((idSkill) => {
+        //   return idSkill.name;
+        // });
+        // const filterRDuplexVacancy = [...new Set(retriveVacancy)];
+        // if (item.companyName === "DigiComp") {
+        //   //console.log(`filterRDuplexVacancy(useEffect):..empresa:(${item.companyName})`,filterRDuplexVacancy);
+        // }
+
+        // const conteo = {};
+        // /*
+        // {
+        //   ada:1,
+        //   actionscript:1,
+        // }
+        // */
+
+        // filterRDuplexUser.forEach((element) => {
+        //   if (conteo[element]) {
+        //     conteo[element]++;
+        //   } else {
+        //     conteo[element] = 1;
+        //   }
+        // });
+
+        // let suma = 0;
+        // const quanty = filterRDuplexVacancy?.length;
+
+        // filterRDuplexVacancy?.forEach((element) => {
+        //   if (conteo[element]) {
+        //     suma += conteo[element];
+        //   }
+        // });
+        // let operador = 0;
+
+        // if (suma === 0) {
+        //   operador = 0;
+        // } else {
+        //   operador = Math.floor((suma * 100) / quanty);
+        // }
         const str = item.salary.toString().split(".");
         str[0] = str[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         return {
@@ -400,7 +445,7 @@ const RemoteSortTable = () => {
           type: item.type,
           city: item.city,
           mode: item.mode,
-          match: `${operador} %`,
+          match: `${porcentajeCompatibilidad} %`,
           salary: `$ ${str}.00`,
         };
       });
@@ -460,44 +505,88 @@ const RemoteSortTable = () => {
         //console.log('tempDataVacancies:..',tempDataVacancies);
         const tempData = tempDataVacancies.map((item, index) => {
           const retriveVacancy = item.job_skills.map((idSkill) => {
-            return idSkill.name;
+            return {
+              name: idSkill.name,
+              level: idSkill.level,
+            };
           });
-          //console.log('retriveVacancy:..',retriveVacancy);
           const filterRDuplexVacancy = [...new Set(retriveVacancy)];
-          //console.log('companyName...',item.companyName);
-          if (item.companyName === "DigiComp") {
-            //console.log(`filterRDuplexVacancy(handleConsult):..empresa:(${item.companyName})`,filterRDuplexVacancy);
-          }
+          console.log(filterRDuplexVacancy);
+          let coincidencias = 0;
+          const quanty = filterRDuplexVacancy.length;
 
-          const conteo = {};
+          let ignorados = 0;
 
-          filterRDuplexVacancy.forEach((element) => {
-            if (conteo[element]) {
-              conteo[element]++;
-            } else {
-              conteo[element] = 1;
+          for (const elemento1 of filterRDuplexVacancy) {
+            for (const elemento2 of filterRDuplexUser) {
+              if (elemento1.name === elemento2.name) {
+                if (
+                  elemento1.level === "Intermedio" ||
+                  (elemento1.level === "Avanzado" &&
+                    elemento2.level === "Intermedio") ||
+                  elemento2.level === "Avanzado"
+                ) {
+                  coincidencias++;
+                }
+                if (
+                  elemento1.level === "Basico" &&
+                  elemento2.level === "Basico"
+                ) {
+                  coincidencias++;
+                }
+                if (
+                  elemento1.level === "Intermedio" &&
+                  elemento2.level === "Basico"
+                ) {
+                  ignorados++;
+                }
+              }
             }
-          });
-          //console.log('conteo:..',conteo);
-          let suma = 0;
-          const quanty = filterRDuplexVacancy?.length;
-
-          filterRDuplexUser?.forEach((element) => {
-            if (conteo[element]) {
-              suma += conteo[element];
-            }
-          });
-          //console.log(`La suma de los valores repetidos es: ${suma}`);
-
-          //console.log('quanty:...',quanty);
-          let operador = 0;
-          //  //console.log('operador ', (suma * 100) / quanty)
-
-          if (suma === 0) {
-            operador = 0;
-          } else {
-            operador = Math.floor((suma * 100) / quanty);
           }
+          console.log("Coincidencias", coincidencias);
+          console.log("Ignorados", ignorados);
+          const total = coincidencias - ignorados;
+          console.log("total", total);
+          const porcentajeCompatibilidad = Math.floor((total / quanty) * 100);
+          // const retriveVacancy = item.job_skills.map((idSkill) => {
+          //   return idSkill.name;
+          // });
+          // //console.log('retriveVacancy:..',retriveVacancy);
+          // const filterRDuplexVacancy = [...new Set(retriveVacancy)];
+          // //console.log('companyName...',item.companyName);
+          // if (item.companyName === "DigiComp") {
+          //   //console.log(`filterRDuplexVacancy(handleConsult):..empresa:(${item.companyName})`,filterRDuplexVacancy);
+          // }
+
+          // const conteo = {};
+
+          // filterRDuplexVacancy.forEach((element) => {
+          //   if (conteo[element]) {
+          //     conteo[element]++;
+          //   } else {
+          //     conteo[element] = 1;
+          //   }
+          // });
+          // //console.log('conteo:..',conteo);
+          // let suma = 0;
+          // const quanty = filterRDuplexVacancy?.length;
+
+          // filterRDuplexUser?.forEach((element) => {
+          //   if (conteo[element]) {
+          //     suma += conteo[element];
+          //   }
+          // });
+          // //console.log(`La suma de los valores repetidos es: ${suma}`);
+
+          // //console.log('quanty:...',quanty);
+          // let operador = 0;
+          // //  //console.log('operador ', (suma * 100) / quanty)
+
+          // if (suma === 0) {
+          //   operador = 0;
+          // } else {
+          //   operador = Math.floor((suma * 100) / quanty);
+          // }
           const str = item.salary.toString().split(".");
           str[0] = str[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
           return {
@@ -510,7 +599,7 @@ const RemoteSortTable = () => {
             type: item.type,
             city: item.city,
             mode: item.mode,
-            match: `${operador} %`,
+            match: `${porcentajeCompatibilidad} %`,
             salary: `$ ${str}.00`,
           };
         });

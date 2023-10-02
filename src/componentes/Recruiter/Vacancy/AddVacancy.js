@@ -80,7 +80,7 @@ export const AddVacancy = () => {
         if (dataRecruiter.rfc === undefined) {
           swal({
             title: "Completa tu perfil para agregar vacantes!!",
-            text:'Lamentamos los incovenientes, completa tu perfil para continuar!',
+            text: "Lamentamos los incovenientes, completa tu perfil para continuar!",
             icon: "error",
             button: "ok",
           });
@@ -133,7 +133,7 @@ export const AddVacancy = () => {
               }
             )
             .then((response) => {
-              //   console.log(response);
+              console.log(response);
               swal({
                 title: "Vacante creada!!",
                 icon: "success",
@@ -164,7 +164,7 @@ export const AddVacancy = () => {
           }}
         >
           {/* <p>{dataRecruiter.rfc}</p> */}
-          Crear Vacante 
+          Crear Vacante
         </h1>
         <div
           className="row"
@@ -441,20 +441,17 @@ export const AddVacancy = () => {
               <br></br>
               <Softskills setListSkills={setListSkills} skillsCandidate={[]} />
               <div className="buttons_actions d-flex justify-content-end align-content-end">
-              {(
-              (formik.touched.salary && formik.errors.salary) 
-              ||(formik.touched.companyName && formik.errors.companyName)
-              ||(formik.touched.title && formik.errors.title)
-              ||(formik.touched.type && formik.errors.type)
-              ||(formik.touched.mode && formik.errors.mode)
-              ||(formik.touched.city && formik.errors.city)
-              ||(formik.touched.status && formik.errors.status)
-              )
-              && (
-                      <span className="text-danger me-2">
-                        Favor de llenar correctamente el formulario
-                      </span>
-                    )}
+                {((formik.touched.salary && formik.errors.salary) ||
+                  (formik.touched.companyName && formik.errors.companyName) ||
+                  (formik.touched.title && formik.errors.title) ||
+                  (formik.touched.type && formik.errors.type) ||
+                  (formik.touched.mode && formik.errors.mode) ||
+                  (formik.touched.city && formik.errors.city) ||
+                  (formik.touched.status && formik.errors.status)) && (
+                  <span className="text-danger me-2">
+                    Favor de llenar correctamente el formulario
+                  </span>
+                )}
                 <button
                   type="submit"
                   className="buttons btn btn-info text-light"

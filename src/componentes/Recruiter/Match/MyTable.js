@@ -92,44 +92,91 @@ const MyTable = ({
   };
 
   const retriveVacancy = dataInfoVacancy.job_skills?.map((item) => {
-    return item.name;
+    return {
+      name: item.name,
+      level: item.level,
+    };
   });
   const filterRDuplexVacancy = [...new Set(retriveVacancy)];
+  console.log(filterRDuplexVacancy);
 
   const datasCompare = dataByUserCandidate.map((item, index) => {
     const retriveUser = item.user_skills.map((idSkills) => {
-      return idSkills.name;
+      return {
+        name: idSkills.name,
+        level: idSkills.level,
+      };
     });
     const filterRDuplex = [...new Set(retriveUser)];
-    const conteo = {};
-    let newObj = [];
-    filterRDuplex.forEach((elemento) => {
-      if (conteo[elemento]) {
-        conteo[elemento]++;
-      } else {
-        conteo[elemento] = 1;
-      }
-    });
-    let suma = 0;
-    const quanty = filterRDuplexVacancy?.length;
-    filterRDuplexVacancy?.forEach((elemento) => {
-      if (conteo[elemento]) {
-        suma += conteo[elemento];
-      }
-    });
-    // console.log(`La suma de los valores repetidos es: ${suma}`);
+    console.log(filterRDuplex);
+    let coincidencias = 0;
+    const quanty = filterRDuplexVacancy.length;
 
-    let operador = 0;
+    let ignorados = 0;
 
-    if (suma === 0) {
-      operador = 0;
-    } else {
-      // console.log(((suma*100)/quanty))
-      operador = Math.floor((suma * 100) / quanty);
-      //  compare= dataByUserCandidate.sort((a, b) => b.operador- a.operador)
-      //   console.log(compare)
-      //console.log('nuevo map para iterar', )
+    for (const elemento1 of filterRDuplexVacancy) {
+      for (const elemento2 of filterRDuplex) {
+        if (elemento1.name === elemento2.name) {
+          if (
+            elemento1.level === "Intermedio" ||
+            (elemento1.level === "Avanzado" &&
+              elemento2.level === "Intermedio") ||
+            elemento2.level === "Avanzado"
+          ) {
+            coincidencias++;
+          }
+          if (elemento1.level === "Basico" && elemento2.level === "Basico") {
+            coincidencias++;
+          }
+          if (
+            elemento1.level === "Intermedio" &&
+            elemento2.level === "Basico"
+          ) {
+            ignorados++;
+          }
+        }
+      }
     }
+    console.log("Coincidencias", coincidencias);
+    console.log("Ignorados", ignorados);
+    const total = coincidencias - ignorados;
+    console.log("total", total);
+    const porcentajeCompatibilidad = Math.floor((total / quanty) * 100);
+    // return porcentajeCompatibilidad;
+
+    // const retriveUser = item.user_skills.map((idSkills) => {
+    //   return idSkills.name;
+    // });
+    // const filterRDuplex = [...new Set(retriveUser)];
+    // const conteo = {};
+    // let newObj = [];
+    // filterRDuplex.forEach((elemento) => {
+    //   if (conteo[elemento]) {
+    //     conteo[elemento]++;
+    //   } else {
+    //     conteo[elemento] = 1;
+    //   }
+    // });
+    // let suma = 0;
+    // const quanty = filterRDuplexVacancy?.length;
+    // filterRDuplexVacancy?.forEach((elemento) => {
+    //   if (conteo[elemento]) {
+    //     suma += conteo[elemento];
+    //   }
+    // });
+    // // console.log(`La suma de los valores repetidos es: ${suma}`);
+
+    // let operador = 0;
+
+    // if (suma === 0) {
+    //   operador = 0;
+    // } else {
+    //   // console.log(((suma*100)/quanty))
+    //   operador = Math.floor((suma * 100) / quanty);
+    //   //  compare= dataByUserCandidate.sort((a, b) => b.operador- a.operador)
+    //   //   console.log(compare)
+    //   //console.log('nuevo map para iterar', )
+    // }
     const nameUser = `${item.name} ${item.last_name}`;
 
     return {
@@ -137,7 +184,7 @@ const MyTable = ({
       qty: index,
       name: nameUser,
       bachelor: item.bachelor,
-      match: `${operador}`,
+      match: `${porcentajeCompatibilidad}`,
     };
     // return {
     //   id: item._id,
